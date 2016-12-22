@@ -1,0 +1,177 @@
+#### groups.yaml ####
+
+#### Views / Tabs ####
+## DEFUALT VIEW ##
+
+#  default_view:
+#    view: yes
+#    entities:
+#      - 
+
+## OTHER TABS ##
+conservatory_view:
+  name: Conservatory
+  view: yes
+  entities:
+    - group.conservatory_lights
+    - media_player.conservatory      
+living_room_view:
+  name: Living Room
+  view: yes
+  entities:
+    - group.flamerite_fire
+    - group.living_room_lights
+    - media_player.living_room
+kitchen_view:
+  name: Kitchen
+  view: yes
+  entities:
+#      - group.kitchen
+    - media_player.kitchen
+master_bedroom_view:
+  name: Master Bedroom
+  view: yes
+  entities:
+#     - group.master_bedroom
+#     - group.ensuite_bathroom
+      - media_player.master_bedroom
+      - media_player.bathroom
+ironing_room_view:
+  name: Ironing Room
+  view: yes
+  entities:
+    - group.ironing_room
+family_view:
+  name: Family
+  view: yes
+  entities:
+    - device_tracker.martiniphone6
+    - device_tracker.michelleiphone
+    - device_tracker.morgansiphone5
+    - device_tracker.frasersipodtouch
+
+system_view:
+  name: Systems
+  view: yes
+  entities:
+    - group.speedtest
+    - group.HAPi
+    - group.hpilo
+
+#### Groups / Cards ####
+conservatory_lights:
+  name: Conservatory Lights
+  entities:
+    - switch.lwrf_conservatory_1
+    - switch.lwrf_conservatory_2
+    - switch.lwrf_conservatory_3
+#  living_room_lights:
+#    name: Living Room Lights
+#    entities:
+#      - 
+flamerite_fire:
+  name: Fireplace
+  entities:
+    - switch.flamerite_power
+    - switch.flamerite_heat
+    - light.flamerite_dimmer1
+    - light.flamerite_dimmer2
+
+living_room_lights:
+  name: Lights
+  entities:
+    - light.LWRF_LivingRoom_Main
+    - switch.LWRF_LivingRoom_Standard_Lamp
+    - switch.LWRF_Christmastree_Lights
+    - light.LWRF_DiningRoom_Main
+    - switch.LWRF_DiningRoom_Rennie_Mac_Lamp
+
+#  kitchen:
+#    name: Kitchen
+#    entities:
+#      - 
+#  master_bedroom:
+#    name: Master Bedroom
+#    entities:
+#      - 
+#  ensuite_bathroom:
+#    name: Ensuite
+#    entities:
+#      - 
+ironing_room:
+  name: Ironing Room
+  entities:
+    - switch.ironing_room_right
+    - sensor.wemo_insight_state_ironing_room_right
+    - sensor.wemo_insight_power_ironing_room_right
+    - sensor.wemo_insight_power_today_ironing_room_right
+    - switch.ironing_room_left
+    - sensor.wemo_insight_state_ironing_room_left
+    - sensor.wemo_insight_power_ironing_room_left
+    - sensor.wemo_insight_power_today_ironing_room_left
+
+climate:
+  name: Weather (local)
+  entities:
+#    - sensor.yr_temperature
+#    - sensor.yr_humidity
+#    - sensor.yr_symbol
+    - sensor.hallwayhousecondition
+    - sensor.hallwayhousetemperature_2
+    - sensor.hallwayhousehumidity_2
+    - sensor.hallwayhousedirection
+    - sun.sun
+
+speedtest:
+  name: SpeedTest
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+#energy:
+#  name: Home Monitor
+#  entities:
+#    - sensor.135b0100720000002700010000000033b80ce069
+#    - sensor.135b010272000200730001000000000000000069
+#    - sensor.115a0102f75200000003a5000022a22ebd69
+#    - sensor.115a0101f7520100000ef60000255397fc79
+
+HAPi:
+  name: HAPi Server
+  entities:
+    - sensor.cpu_use
+    - sensor.disk_free_
+    - sensor.ram_free
+    - sensor.last_boot
+
+hpilo:
+  name: HP Microserver G7
+  entities:
+    - sensor.server_server_name
+    - sensor.server_server_power_state
+    - sensor.server_server_uid_light
+    - sensor.server_temperature_ambient
+    - sensor.server_temperature_chipset
+    - sensor.server_temperature_exhaust
+    - sensor.server_temperature_memory
+    - sensor.server_temperature_processor
+    - sensor.server_fan
+    - sensor.server_glance_bios
+    - sensor.server_glance_fans
+    - sensor.server_glance_memory
+    - sensor.server_glance_network
+    - sensor.server_glance_power
+    - sensor.server_glance_processor
+    - sensor.server_glance_storage
+    - sensor.server_glance_temperature
+#  - server_fqdn
+#  - server_host_data
+##  - server_oa_info
+#  - server_power_status
+##  - server_power_readings
+#  - server_power_on_time
+##  - server_asset_tag
+#  - server_uid_status
+#  - server_health
+#  - network_settings  

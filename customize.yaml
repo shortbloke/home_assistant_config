@@ -1,0 +1,161 @@
+#######CUSTOMIZE SWITCHES########
+
+#### Lightwave RF Socket Switches ####
+    switch.lwrf_conservatory_1:
+      friendly_name: "Conservatory - Ceiling Lights"
+      icon: mdi:lightbulb
+      emulated_hue_name: "Conservatory ceiling lights"
+    switch.lwrf_conservatory_2:
+      friendly_name: "Conservatory - Window Lamp"
+      icon: mdi:lightbulb
+      emulated_hue_name: "Conservatory window lamp" 
+    switch.lwrf_conservatory_3:
+      friendly_name: "Conservatory - Corner Lamp"
+      icon: mdi:lightbulb
+      emulated_hue_name: "Conservatory corner lamp"
+    switch.LWRF_LivingRoom_Standard_Lamp:
+      friendly_name: "Living Room - Standard Lamp"
+      icon: mdi:lightbulb
+      emulated_hue_name: "Living room lamp"
+    switch.LWRF_Christmastree_Lights:
+      friendly_name: "Christmas tree ligts"
+      icon: mdi:lightbulb
+      emulated_hue_name: "Christmas tree lights"
+    switch.LWRF_DiningRoom_Rennie_Mac_Lamp:
+      friendly_name: "Dining Room - Rennie Mac Lamp"
+      icon: mdi:lightbulb
+      emulated_hue_name: "Rennie Mac Lamp"
+
+#### Lightwave RF Dimmer Switches ####
+    light.LWRF_DiningRoom_Main:
+      friendly_name: "Dining Room - Over Table Lights"
+      emulated_hue_name: "Dining room lights"
+    light.LWRF_LivingRoom_Main:
+      friendly_name: "Living Room - Downlights"
+      emulated_hue_name: "Living room downlights"
+
+#### LightwaveRF Mode Switch - Conseveratory ###
+    switch.LWRF_Conservatory_Remote_Master:
+      emulated_hue: false
+    switch.LWRF_Conservatory_Mood_unknown:
+      emulated_hue: false
+    switch.LWRF_Conservatory_Mood_AllOff:
+      emulated_hue: false
+    switch.lwrf_conservatory_mood_master:
+      emulated_hue: false
+
+#### LightwaveRF Moods ###
+    switch.lwrf_livingroom_mood_alloff:
+      emulated_hue: false
+    switch.lwrf_diningroom_mood_alloff:
+      emulated_hue: false
+
+#### Belkin Wemo Insight Switch ####
+    switch.ironing_room_right:
+      entity_picture: /local/belkin_wemo.png
+      emulated_hue: false
+    switch.ironing_room_left:
+      entity_picture: /local/belkin_wemo.png
+      emulated_hue: false      
+
+#### Flamerite Fire Switches ####
+    switch.flamerite_power:
+      friendly_name: "Fire"
+      icon: mdi:power
+    switch.flamerite_heat:
+      friendly_name: "Fire Heat"
+      icon: mdi:fire
+    light.flamerite_dimmer1:
+      friendly_name: "Dimmer 1"
+      emulated_hue: false
+    light.flamerite_dimmer2:
+      friendly_name: "Dimmer 2"
+      emulated_hue: false
+
+#### Scenes ####
+    scene.bright:
+      emulated_hue_name: "Mood bright"
+    scene.comfortable:
+      emulated_hue_name: "Mood comfortable"
+    scene.movie:
+      emulated_hue_name: "Mood movie"
+
+#######CUSTOMIZE MEDIA PLAYERS########
+    media_player.living_room:
+      friendly_name: "Sonos - Living Room"
+    media_player.kitchen:
+      friendly_name: "Sonos - Kitchen"
+    media_player.conservatory:
+      friendly_name: "Sonos - Conservatory"
+    media_player.master_bedroom:
+      friendly_name: "Sonos - Master Bedroom"
+    media_player.bathroom:
+      friendly_name: "Sonos - Ensuite"
+    media_player.roku_1mk3d6034563:
+      friendly_name: "Now TV Box"
+
+#### HP MicroServer ####
+    sensor.server_server_power_state:
+      icon: mdi:power
+    sensor.server_fan:
+      icon: mdi:fan
+    sensor.server_server_name:
+      icon: mdi:server-network
+    sensor.server_glance_bios:
+      icon: mdi:check
+    sensor.server_glance_fans:
+      icon: mdi:check
+    sensor.server_glance_memory:
+      icon: mdi:check
+    sensor.server_glance_network:
+      icon: mdi:check
+    sensor.server_glance_power:
+      icon: mdi:check
+    sensor.server_glance_processor:
+      icon: mdi:check
+    sensor.server_glance_storage:
+      icon: mdi:check
+    sensor.server_glance_temperature:
+      icon: mdi:check
+
+### Home Energy Monitor ###
+#    sensor.115a0103f75202000004e70000255589f479:
+#      friendly_name: Energy Sensor A
+#    sensor.135b010272000200730001000000000000000069:
+#      friendly_name: Energy Sensor B
+#    sensor.115a0102f75200000003a5000022a22ebd69:
+#      friendly_name: Energy Sensor C
+#    sensor.115a0101f7520100000ef60000255397fc79:
+#      friendly_name: Energy Sensor D
+
+### Yr Climate Information ###
+    sensor.yr_humidity:
+      friendly_name: "Humidity"
+    sensor.yr_symbol:
+      friendly_name: "Symbol"
+    sensor.yr_temperature:
+      friendly_name: "Temperature"
+
+### Nest Climate Information ###
+    sensor.hallwayhousetemperature_2:
+      friendly_name: "Outside Temperature"
+    sensor.hallwayhousecondition:
+      friendly_name: "Condition"  
+    sensor.hallwayhousehumidity_2:
+      friendly_name: "Outside Humidity"
+    sensor.hallwayhousedirection:
+      friendly_name: "Wind Direction"
+#    sensor.hallwayhousekph:
+#      friendly_name: "Wind Speed"
+
+### Liz and Nicks Devices ###
+    switch.Saunders_1:
+      hidden: true
+    switch.Saunders_2:
+      hidden: true
+    switch.Saunders_3:
+      hidden: true
+    switch.Saunders_4:
+      hidden: true
+    switch.Saunders_5:
+      hidden: true

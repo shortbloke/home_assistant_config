@@ -1,0 +1,46 @@
+#### Switches.yaml ####
+- platform: rfxtrx
+  automatic_add: True
+  devices:
+### Lightwave RF ###
+    0a140000f4f6ad01000080:
+      name: LWRF_Conservatory_1
+    0a140002f4f6ad02000080:
+      name: LWRF_Conservatory_2
+    0a140004f4f6ad03000080:
+      name: LWRF_Conservatory_3
+    0a140010f4f6ad10030080:
+      name: LWRF_Conservatory_Remote_Master
+    0a140007f4adf901000070:
+      name: LWRF_Conservatory_Mood_Master
+    0a140009f4adf910030070:
+      name: LWRF_Conservatory_Mood_unknown
+    0a14001203922102000060:
+      name: LWRF_LivingRoom_Standard_Lamp
+    0a14000103922103010070:
+      name: LWRF_Christmastree_Lights
+    0a14000df50db80d000070:
+      name: LWRF_DiningRoom_Rennie_Mac_Lamp
+    0a14002103922210020060:
+      name: LWRF_DiningRoom_Mood_AllOff
+    0a14002c03922110020060:
+      name: LWRF_LivingRoom_Mood_AllOff
+    0a14003403922010020060:
+      name: LWRF_Conservatory_Mood_AllOff
+### Flamerite Fire ###
+    0b11000a015b6eff01010f80:
+      name: Flamerite_Power
+    0b11000f015b6eff02010f70:
+      name: Flamerite_Heat
+
+### Liz and Nicks Devices ###
+    0b110057003591fe03000060:
+      name: Saunders_1
+    0b110051003591fe01030070:
+      name: Saunders_2
+    0b110048005243ea03000070:
+      name: Saunders_3
+    0b110047005243ea02000070:
+      name: Saunders_4
+    0b110046005243ea01000070:
+      name: Saunders_5

@@ -1,0 +1,20 @@
+#### Lights.yaml ####
+
+# RFXCOM 433 Sensors
+- platform: rfxtrx
+  automatic_add: True
+  devices:
+### Flamerite Fire ###
+#    0b11000a015b6eff01010f80:
+#      name: Flamerite_Power
+#    0b11000f015b6eff02010f70:
+#      name: Flamerite_Heat
+    0b110008015b6eff03010f80:
+      name: Flamerite_Dimmer1
+    0b11000d015b6eff04010f80:
+      name: Flamerite_Dimmer2
+### Lightwave RF Dimmer Lights ###
+    0a1400b303922201010060:
+      name: LWRF_DiningRoom_Main
+    0a1400ac03922101010060:
+      name: LWRF_LivingRoom_Main

@@ -1,0 +1,240 @@
+#### Sensors.yaml ####
+
+# Weather Prediction
+#- platform: yr
+#  monitored_conditions:
+#    - temperature
+#    - symbol
+#    - humidity
+
+# Nest
+- platform: nest
+  monitored_conditions:
+    - 'temperature'
+    - 'target'
+    - 'humidity'
+    - 'operation_mode'
+    #- 'last_connection'
+    # Weather info based on Nest Location
+    - 'weather_temperature'
+    - 'weather_humidity'
+    - 'weather_condition'
+    #- 'wind_speed'
+    - 'wind_direction' 
+
+# CPU Speed
+#  - platform: cpuspeed
+#    name: CPU 
+- platform: systemmonitor
+  resources:
+    - type: disk_free
+      arg: /
+    - type: memory_free
+    - type: processor_use
+    - type: last_boot
+
+# SpeedTest
+- platform: speedtest
+  minute:
+    - 0
+    - 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload  
+
+# RFXCOM 433 Sensors
+- platform: rfxtrx
+  automatic_add: True
+#  devices:
+#    f752:
+#      name: Energy Sensor A
+#      data_type:
+#      - Energy usage
+#      - Total usage
+#    7200:
+#      name: Energy Sensor B
+#      data_type:
+#      - Energy usage
+#      - Total usage
+
+############################################################
+#
+# HP Server Integrated Lights Out Monitoring 
+#
+############################################################
+
+- platform: hp_ilo
+  name: Server
+  host: !secret hp_ilo_server
+  port: 443
+  username: !secret hp_ilo_username
+  password: !secret hp_ilo_password
+  monitored_variables:
+  - server_name
+  #- server_fqdn
+#  - server_host_data
+#  - server_oa_info
+  - server_power_status
+#  - server_power_readings
+#  - server_power_on_time
+#  - server_asset_tag
+  - server_uid_status
+  - server_health
+#  - network_settings
+
+############################################################
+#
+#  Sensor Templates
+#
+############################################################
+
+
+- platform: template
+  sensors:
+    #### HP ILO Health Info ####
+    server_fan:
+      value_template: '{{states.sensor.server_server_health.attributes.fans["Fan 1"]["speed"][0] }}'
+      unit_of_measurement: '%'
+      entity_id: sensor.server_server_health
+      friendly_name: "Fan Speed"
+
+    server_glance_power:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["power_supplies"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Power Supplies"
+
+    server_glance_processor:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["processor"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Processor"
+    
+    server_glance_storage:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["storage"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Storage"
+    
+    server_glance_memory:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["memory"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Memory"
+    
+    server_glance_temperature:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["temperature"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Temperature"
+    
+    server_glance_fans:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["fans"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Fans"
+    
+    server_glance_bios:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["bios_hardware"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "BIOS"
+    
+    server_glance_network:
+      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["network"]["status"] }}'
+      entity_id: sensor.server_server_health
+      friendly_name: "Network"
+
+    server_temperature_exhaust:
+      value_template: '{{states.sensor.server_server_health.attributes.temperature["12-Sys Exhaust"]["currentreading"][0] }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.server_server_health
+      friendly_name: "Exhaust"
+
+    server_temperature_chipset:
+      value_template: '{{states.sensor.server_server_health.attributes.temperature["05-Chipset"]["currentreading"][0] }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.server_server_health
+      friendly_name: "Chipset"
+
+    server_temperature_memory:
+      value_template: '{{states.sensor.server_server_health.attributes.temperature["03-P1 DIMM 1-2"]["currentreading"][0] }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.server_server_health
+      friendly_name: "Memory"
+
+    server_temperature_processor:
+      value_template: '{{states.sensor.server_server_health.attributes.temperature["02-CPU"]["currentreading"][0] }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.server_server_health
+      friendly_name: "Processor"
+
+    server_temperature_ambient:
+      value_template: '{{states.sensor.server_server_health.attributes.temperature["01-Inlet Ambient"]["currentreading"][0] }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.server_server_health
+      friendly_name: "Ambient"
+
+#### WeMo Insight Power Usage ####
+# Ironing Room Right #
+    wemo_insight_power_ironing_room_right:
+      value_template: "{{ states.switch.ironing_room_right.attributes.current_power_mwh |  multiply(0.001) | round(1) }}"
+      unit_of_measurement: 'W'
+      entity_id: switch.ironing_room_right
+      friendly_name: "Power Consuption"
+    wemo_insight_power_today_ironing_room_right:
+      value_template: "{{ states.switch.ironing_room_right.attributes.today_mwh |  multiply(0.000001) | int }}"
+      unit_of_measurement: 'KW'
+      entity_id: switch.ironing_room_right
+      friendly_name: "Consuption Today"
+    wemo_insight_state_ironing_room_right:
+      value_template: >-
+        {%- if is_state("switch.ironing_room_right", "off") %}
+          Off
+        {%  elif states.switch.ironing_room_right.attributes.state_detail == 'standby' %}
+          Standby
+        {% elif is_state("switch.ironing_room_right", "on") %}
+          On
+        {% else %}
+          Unknown
+        {%- endif %}
+      entity_id: switch.ironing_room_right
+      friendly_name: "WeMo Ironing Room Right State"
+
+# Ironing Room Left #
+    wemo_insight_power_ironing_room_left:
+      value_template: "{{ states.switch.ironing_room_left.attributes.current_power_mwh |  multiply(0.001) | round(1) }}"
+      unit_of_measurement: 'W'
+      entity_id: switch.ironing_room_left
+      friendly_name: "Power Consuption"
+    wemo_insight_power_today_ironing_room_left:
+      value_template: "{{ states.switch.ironing_room_left.attributes.today_mwh |  multiply(0.000001) | int }}"
+      unit_of_measurement: 'KW'
+      entity_id: switch.ironing_room_left
+      friendly_name: "Consuption Today"
+    wemo_insight_state_ironing_room_left:
+      value_template: >-
+        {%- if is_state("switch.ironing_room_left", "off") %}
+          Off
+        {%  elif states.switch.ironing_room_left.attributes.state_detail == 'standby' %}
+          Standby
+        {% elif is_state("switch.ironing_room_left", "on") %}
+          On
+        {% else %}
+          Unknown
+        {%- endif %}
+      entity_id: switch.ironing_room_left
+      friendly_name: "WeMo Ironing Room Left State"
+
+
+#### iPhone Battery ####
+    battery_iphone:
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.iphone.attributes.battery %}
+              {{ states.device_tracker.iphone.attributes.battery }}
+          {% else %}
+              {{ states.sensor.battery_iphone.state }}
+          {%- endif %}
+    battery_martin_iphone:
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.martiniphone6.attributes.battery %}
+              {{ states.device_tracker.martiniphone6.attributes.battery }}
+          {% else %}
+              {{ states.sensor.battery_martin_iphone.state }}
+          {%- endif %}          

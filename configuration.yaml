@@ -1,0 +1,141 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  latitude: !secret latitude_loc_home
+  longitude: !secret longitude_loc_home
+  temperature_unit: C
+  # Impacts weather/sunrise data
+  elevation: !secret evelation_loc_home
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
+
+  customize: !include customize.yaml
+
+zone:
+  name: Work
+  latitude: !secret latitude_loc_work
+  longitude: !secret longitude_loc_work
+  radius: 250
+  icon: mdi:worker
+
+zone 2: 
+  name: Forest
+  latitude: !secret latitude_loc_forest
+  longitude: !secret longitude_loc_forest
+  radius: 250
+  icon: mdi:school  
+
+ifttt:
+  key: !secret ifttt_key
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: home-assistant-1
+  username: pi
+  password: raspberry
+
+rfxtrx:
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
+  debug: True
+  dummy: False
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+climate:
+  platform: nest
+
+### Amazon Echo Support for RFXTRX ###
+emulated_hue:
+  type: alexa
+  host_ip: 192.168.0.42
+  listen_port: 8300
+  expose_by_default: true
+  exposed_domains:
+    - switch
+    - light
+    - scene
+
+http:
+  api_password: !secret http_api_password
+  ssl_certificate: !secret http_ssl_certificate
+  ssl_key: !secret http_ssl_key
+  base_url: !secret http_base_url
+  
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+media_player:
+  - platform: sonos
+  - platform: plex
+
+### Auto Discover ###
+wemo:
+discovery:
+updater:
+
+####################################################
+#                                                  #
+#                     Includes                     #
+#                                                  #
+####################################################
+sensor: !include sensors.yaml
+switch: !include switches.yaml
+light: !include lights.yaml
+device_tracker: !include device_tracker.yaml
+group: !include groups.yaml
+scene: !include scenes.yaml
+
+logger:
+  default: warn
+  logs:
+    homeassistant.components: info
+    homeassistant.components.rfxtrx: debug
+    homeassistant.components.device_tracker: critical
+
+#logbook:
+#  include:
+#    domains:
+#      - sensor
+#  exclude:
+#    domains:
+#      - media_player
+#      - scene
+#      - light
+#      - group
+#      - switch
+
+recorder:
+  purge_days: 7
+
+history:
+#  include:
+#    domains:
+#      - device_tracker
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - sun
+      - media_player
+      - scene
+      - light
+      - group
+      - switch
+    entities:
+      - sensor.last_boot
+      - sensor.date
+
+sun:
+
+conversation:
+
+frontend:

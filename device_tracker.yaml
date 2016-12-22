@@ -1,0 +1,24 @@
+#### device_tracker.yaml ####
+
+## icloud ###
+- platform: icloud
+  username: !secret icloud_martin_username
+  password: !secret icloud_martin_password
+  track_new_devices: yes
+  interval_seconds: 60
+  consider_home: 300
+  ignored_devices: 
+    - frasersipodtouch
+    - juneipadmini
+
+#- platform: icloud
+#  username: !secret icloud_michelle_username
+#  password: !secret icloud_michelle_password
+#  track_new_devices: yes
+#  interval_seconds: 60
+#  consider_home: 300
+
+## nmap ##
+#- platform: nmap_tracker
+#  hosts: 192.168.0.1/24
+#  home_interval: 10
