@@ -33,4 +33,8 @@ secrets.yaml
 google_calendars.yaml
 components
 deps
+<<<<<<< HEAD
 icloud
+=======
+icloud
+>>>>>>> 5194d85d834d15fa8cea29ad6f08c1cd77eff028
