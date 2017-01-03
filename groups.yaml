@@ -82,7 +82,7 @@ living_room_lights:
   entities:
     - light.LWRF_LivingRoom_Main
     - switch.LWRF_LivingRoom_Standard_Lamp
-    - switch.LWRF_Christmastree_Lights
+    - switch.LWRF_DisplayCabinetLight
     - light.LWRF_DiningRoom_Main
     - switch.LWRF_DiningRoom_Rennie_Mac_Lamp
 

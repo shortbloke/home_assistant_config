@@ -1,0 +1,4 @@
+martin_work:
+  zone: Work
+  devices:
+    - device_tracker.martiniphone6

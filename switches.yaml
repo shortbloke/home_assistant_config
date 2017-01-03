@@ -9,6 +9,8 @@
       name: LWRF_Conservatory_2
     0a140004f4f6ad03000080:
       name: LWRF_Conservatory_3
+    0a140018f4f6ad04000080:
+      name: LWRF_Conservatory_4
     0a140010f4f6ad10030080:
       name: LWRF_Conservatory_Remote_Master
     0a140007f4adf901000070:
@@ -18,7 +20,7 @@
     0a14001203922102000060:
       name: LWRF_LivingRoom_Standard_Lamp
     0a14000103922103010070:
-      name: LWRF_Christmastree_Lights
+      name: LWRF_DisplayCabinetLight
     0a14000df50db80d000070:
       name: LWRF_DiningRoom_Rennie_Mac_Lamp
     0a14002103922210020060:

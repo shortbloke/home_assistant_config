@@ -6,6 +6,7 @@
     light.LWRF_LivingRoom_Main:
       state: on
       brightness: 255
+    switch.DisplayCabinetLight: on
 - name: Comfortable
   entities:
     switch.LWRF_LivingRoom_Standard_Lamp: on
@@ -18,4 +19,6 @@
     light.LWRF_LivingRoom_Main:
       state: on
       brightness: 25
+    switch.DisplayCabinetLight: off
     light.LWRF_DiningRoom_Main: off
+    switch.LWRF_DiningRoom_Rennie_Mac_Lamp: off

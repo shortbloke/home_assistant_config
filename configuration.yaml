@@ -34,8 +34,18 @@ mqtt:
   broker: 127.0.0.1
   port: 1883
   client_id: home-assistant-1
-  username: pi
-  password: raspberry
+  username: !secret MQTT_username
+  password: !secret MQTT_password
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    qos: 1
+    retain: true
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    qos: 1
+    retain: true  
 
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
@@ -76,6 +86,20 @@ media_player:
   - platform: sonos
   - platform: plex
 
+#proximity:
+#  home:
+#    ignored_zones:
+#      - Work
+#      - Forest
+#    devices:
+#      - device_tracker.martiniphone6
+#      - device_tracker.iphone
+#    unit_of_measurement: mi
+#  work:
+#    devices:
+#      - device_tracker.martiniphone6
+#    unit_of_measurement: mi
+
 ### Auto Discover ###
 wemo:
 discovery:
@@ -89,21 +113,31 @@ updater:
 sensor: !include sensors.yaml
 switch: !include switches.yaml
 light: !include lights.yaml
-device_tracker: !include device_tracker.yaml
+#device_tracker: !include device_tracker.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
+#proximity: !include proximity.yaml
+
+# Directories
+automation: !include_dir_merge_list automation 
+
+####################################################
 
 logger:
-  default: warn
+  default: error
   logs:
-    homeassistant.components: info
-    homeassistant.components.rfxtrx: debug
-    homeassistant.components.device_tracker: critical
+    # homeassistant.components.proximity: debug
+    # homeassistant.components.device_tracker: debug
+    # homeassistant.components.emulated_hue: debug
+    homeassistant.components.rfxtrx: info
+    # homeassistant.components.device_tracker: critical
+    homeassistant.components.device_tracker.mqtt: debug
 
-#logbook:
-#  include:
-#    domains:
-#      - sensor
+logbook:
+  include:
+    domains:
+      - automation
+      - proximity
 #  exclude:
 #    domains:
 #      - media_player
@@ -114,6 +148,7 @@ logger:
 
 recorder:
   purge_days: 7
+  db_url: !secret db_url
 
 history:
 #  include:

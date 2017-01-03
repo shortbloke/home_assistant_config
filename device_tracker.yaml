@@ -5,11 +5,17 @@
   username: !secret icloud_martin_username
   password: !secret icloud_martin_password
   track_new_devices: yes
-  interval_seconds: 60
-  consider_home: 300
+  interval_seconds: 300
+  consider_home: 360
   ignored_devices: 
-    - frasersipodtouch
+    - morgansiphone5
     - juneipadmini
+    - frasersipodtouch
+    - martinsipad
+    - junesiphone
+    - michellesapple_watch
+    - iphone
+    - morgansiphone7    
 
 #- platform: icloud
 #  username: !secret icloud_michelle_username

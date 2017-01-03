@@ -17,10 +17,10 @@
       friendly_name: "Living Room - Standard Lamp"
       icon: mdi:lightbulb
       emulated_hue_name: "Living room lamp"
-    switch.LWRF_Christmastree_Lights:
-      friendly_name: "Christmas tree ligts"
+    switch.LWRF_DisplayCabinetLight:
+      friendly_name: "Display cabinet light"
       icon: mdi:lightbulb
-      emulated_hue_name: "Christmas tree lights"
+      emulated_hue_name: "Display cabinet light"
     switch.LWRF_DiningRoom_Rennie_Mac_Lamp:
       friendly_name: "Dining Room - Rennie Mac Lamp"
       icon: mdi:lightbulb
@@ -117,6 +117,8 @@
       icon: mdi:check
     sensor.server_glance_temperature:
       icon: mdi:check
+    sensor.server_server_health:
+      hidden: true
 
 ### Home Energy Monitor ###
 #    sensor.115a0103f75202000004e70000255589f479:
@@ -145,6 +147,12 @@
       friendly_name: "Outside Humidity"
     sensor.hallwayhousedirection:
       friendly_name: "Wind Direction"
+    binary_sensor.hallway_thermostat_house_fan:
+      hidden: true
+    binary_sensor.hallway_thermostat_house_is_locked:
+      hidden: true
+    sensor.hallway_thermostat_house_hvac_state:
+      hideen: true
 #    sensor.hallwayhousekph:
 #      friendly_name: "Wind Speed"
 
@@ -159,3 +167,17 @@
       hidden: true
     switch.Saunders_5:
       hidden: true
+
+### Hidden LWRF Switches ###
+    switch.LWRF_Conservatory_4:
+      hidden: true
+
+### Battery Sensor on phones ###
+    sensor.battery_michelle_iphone:
+      friendly_name: "Michelle's iPhone"
+    sensor.battery_michelle_watch:
+      friendly_name: "Michelle's Apple Watch"
+    sensor.battery_martin_iphone:
+      friendly_name: "Martin's iPhone"
+    sensor.battery_morgan_iphone:
+      friendly_name: "Morgan's iPhone"
