@@ -6,7 +6,7 @@ This is my currently active set of configuration files for my HomeAssistant runn
  - Amazon Echo / Alexa
  - Emulated Hue (quicker integration between Echo and LightwaveRF)
  - HP ILO sensor information
- - iCloud device tracking
+ - iCloud device tracking (*REMOVED DUE TO HIGH BATTERY DRAIN*)
  - IFTTT
  - LightwaveRF (via RFXtrx) - Lights, Switched sockets and more to follow
  - MQTT
@@ -22,3 +22,5 @@ This is my currently active set of configuration files for my HomeAssistant runn
    - various other 433Mhz switches I've detected and now ignore as they aren't in my house
 
 Private information is stored in secrets.yaml (not uploaded)
+
+Useful cheat sheet for setting up config files in git: https://github.com/arsaboo/homeassistant-config/blob/master/HASS%20Cheatsheet.md
