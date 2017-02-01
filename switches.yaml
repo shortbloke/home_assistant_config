@@ -21,6 +21,8 @@
       name: LWRF_LivingRoom_Standard_Lamp
     0a14000103922103010070:
       name: LWRF_DisplayCabinetLight
+    0a14009503922104010060:
+      name: LWRF_WaxBurner
     0a14000df50db80d000070:
       name: LWRF_DiningRoom_Rennie_Mac_Lamp
     0a14002103922210020060:

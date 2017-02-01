@@ -85,6 +85,7 @@ living_room_lights:
     - switch.LWRF_DisplayCabinetLight
     - light.LWRF_DiningRoom_Main
     - switch.LWRF_DiningRoom_Rennie_Mac_Lamp
+    - switch.LWRF_WaxBurner
 
 #  kitchen:
 #    name: Kitchen
@@ -116,11 +117,33 @@ climate:
 #    - sensor.yr_temperature
 #    - sensor.yr_humidity
 #    - sensor.yr_symbol
+    - sun.sun
+
+heating:
+  name: heating
+  entities:
     - sensor.hallwayhousecondition
     - sensor.hallwayhousetemperature_2
     - sensor.hallwayhousehumidity_2
-    - sensor.hallwayhousedirection
-    - sun.sun
+    - sensor.hallway_thermostat_house_hvac_state
+    - sensor.hallway_thermostat_house_target
+    - sensor.hallway_thermostat_house_temperature
+    - binary_sensor.hallway_thermostat_house_has_leaf
+    - binary_sensor.hallway_thermostat_house_is_using_emergency_heat  
+
+environment:
+  name: Environment
+  entities:
+    - sensor.temp_humid_ext_1_temperature
+    - sensor.temp_humid_ext_1_humidity
+    - sensor.portable_sensor_1_temperature
+    - sensor.temp_humid_1_humidity
+    - sensor.portable_sensor_2_temperature
+    - sensor.temp_humid_2_humidity
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity
+    - sensor.hallway_thermostat_house_temperature
+    - sensor.hallway_thermostat_house_humidity
 
 speedtest:
   name: SpeedTest
@@ -129,13 +152,12 @@ speedtest:
     - sensor.speedtest_upload
     - sensor.speedtest_ping
 
-#energy:
-#  name: Home Monitor
-#  entities:
-#    - sensor.135b0100720000002700010000000033b80ce069
-#    - sensor.135b010272000200730001000000000000000069
-#    - sensor.115a0102f75200000003a5000022a22ebd69
-#    - sensor.115a0101f7520100000ef60000255397fc79
+energy:
+  name: Home Monitor
+  entities:
+    - sensor.energy_sensor_a_energy_usage
+    - sensor.energy_sensor_a_total_usage
+    - sensor.energy_sensor_b_total_usage
 
 HAPi:
   name: HAPi Server

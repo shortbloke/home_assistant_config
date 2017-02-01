@@ -45,13 +45,28 @@
 
 # RFXCOM 433 Sensors
 - platform: rfxtrx
-  automatic_add: True
+  automatic_add: False
   devices:
     0a52090ca9000247260289:
       name: Temp_Humid_1
       data_type:
         - Humidity
         - Temperature
+    0a52091a010002673b0179:
+      name: Temp_Humid_2
+      data_type:
+        - Humidity
+        - Temperature
+    0a5209211800026f3a0189:
+      name: Temp_Humid_3
+      data_type:
+        - Humidity
+        - Temperature    
+    0a52016dfc0400bd360079:
+      name: Temp_Humid_Ext_1
+      data_type:
+        - Humidity
+        - Temperature  
     115a0102f7520000000f3700005b0077d779:
       name: Energy_Sensor_A
       data_type:
@@ -176,12 +191,12 @@
 #### WeMo Insight Power Usage ####
 # Ironing Room Right #
     wemo_insight_power_ironing_room_right:
-      value_template: "{{ states.switch.ironing_room_right.attributes.current_power_mwh |  multiply(0.001) | round(1) }}"
+      value_template: "{{ (states.switch.ironing_room_right.attributes.current_power_mwh |  multiply(0.001)) | round(1) }}"
       unit_of_measurement: 'W'
       entity_id: switch.ironing_room_right
       friendly_name: "Power Consuption"
     wemo_insight_power_today_ironing_room_right:
-      value_template: "{{ states.switch.ironing_room_right.attributes.today_mwh |  multiply(0.000001) | int }}"
+      value_template: "{{ (states.switch.ironing_room_right.attributes.today_mwh |  multiply(0.000001)) | int }}"
       unit_of_measurement: 'KW'
       entity_id: switch.ironing_room_right
       friendly_name: "Consuption Today"
@@ -201,12 +216,12 @@
 
 # Ironing Room Left #
     wemo_insight_power_ironing_room_left:
-      value_template: "{{ states.switch.ironing_room_left.attributes.current_power_mwh |  multiply(0.001) | round(1) }}"
+      value_template: "{{ (states.switch.ironing_room_left.attributes.current_power_mwh |  multiply(0.001)) | round(1) }}"
       unit_of_measurement: 'W'
       entity_id: switch.ironing_room_left
       friendly_name: "Power Consuption"
     wemo_insight_power_today_ironing_room_left:
-      value_template: "{{ states.switch.ironing_room_left.attributes.today_mwh |  multiply(0.000001) | int }}"
+      value_template: "{{ (states.switch.ironing_room_left.attributes.today_mwh |  multiply(0.000001)) | int }}"
       unit_of_measurement: 'KW'
       entity_id: switch.ironing_room_left
       friendly_name: "Consuption Today"
@@ -226,44 +241,17 @@
 
 ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:
-      value_template: '{{ states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40 | round(1) }}'
+      value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
       entity_id: sensor.temp_humid_1_temperature
-      friendly_name: "Portable Sensor 1 - Temperature"
-
-#### iPhone Battery ####
-# Michelle #
-#     battery_michelle_iphone:
-#       unit_of_measurement: '%'
-#       value_template: >-
-#           {%- if states.device_tracker.iphone.attributes.battery %}
-#               {{ states.device_tracker.iphone.attributes.battery }}
-#           {% else %}
-#               {{ states.sensor.battery_michelle_iphone.state }}
-#           {%- endif %}
-#     battery_michelle_watch:
-#       unit_of_measurement: '%'
-#       value_template: >-
-#           {%- if states.device_tracker.michellesapple_watch.attributes.battery %}
-#               {{ states.device_tracker.michellesapple_watch.attributes.battery }}
-#           {% else %}
-#               {{ states.sensor.battery_michelle_watch.state }}
-#           {%- endif %}
-# # Martin #
-#     battery_martin_iphone:
-#       unit_of_measurement: '%'
-#       value_template: >-
-#           {%- if states.device_tracker.martiniphone6.attributes.battery %}
-#               {{ states.device_tracker.martiniphone6.attributes.battery }}
-#           {% else %}
-#               {{ states.sensor.battery_martin_iphone.state }}
-#           {%- endif %}          
-# # Morgan #
-#     battery_morgan_iphone:
-#       unit_of_measurement: '%'
-#       value_template: >-
-#           {%- if states.device_tracker.morgansiphone7.attributes.battery %}
-#               {{ states.device_tracker.morgansiphone7.attributes.battery }}
-#           {% else %}
-#               {{ states.sensor.battery_morgan_iphone.state }}
-#           {%- endif %}          
+      friendly_name: "Conservatory - Temperature"
+    portable_sensor_2_temperature:
+      value_template: '{{ (states.sensor.temp_humid_2_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.temp_humid_2_temperature
+      friendly_name: "Living Room - Temperature"
+    portable_sensor_3_temperature:
+      value_template: '{{ (states.sensor.temp_humid_3_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+      unit_of_measurement: '°C'
+      entity_id: sensor.temp_humid_3_temperature
+      friendly_name: "Master Bedroom - Temperature"
