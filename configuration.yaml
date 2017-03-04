@@ -12,6 +12,7 @@ homeassistant:
   time_zone: Europe/London
 
   customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
 
 zone:
   name: Work
@@ -84,7 +85,6 @@ tts:
 
 media_player:
   - platform: sonos
-  - platform: plex
 
 camera:
   platform: ffmpeg

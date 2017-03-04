@@ -1,164 +1,171 @@
 #######CUSTOMIZE SWITCHES########
 
 #### Lightwave RF Socket Switches ####
-    - entity_id: switch.lwrf_conservatory_1
+    switch.lwrf_conservatory_1:
       friendly_name: "Conservatory - Ceiling Lights"
       emulated_hue_name: "Conservatory ceiling lights"
-    - entity_id: switch.lwrf_conservatory_2
+      icon: mdi:lightbulb
+    switch.lwrf_conservatory_2:
       friendly_name: "Conservatory - Window Lamp"
       emulated_hue_name: "Conservatory window lamp"
-    - entity_id: switch.lwrf_conservatory_3
+      icon: mdi:lamp
+    switch.lwrf_conservatory_3:
       friendly_name: "Conservatory - Corner Lamp"
-    - entity_id: switch.LWRF_LivingRoom_Standard_Lamp
+      icon: mdi:lamp
+    switch.LWRF_Conservatory_4:
+      hidden: true
+    switch.LWRF_LivingRoom_Standard_Lamp:
       friendly_name: "Living Room - Standard Lamp"
       emulated_hue_name: "Living room lamp"
-    - entity_id: switch.LWRF_LivingRoom_Standard_Lamp
-      friendly_name: "Living Room - Standard Lamp"
-      emulated_hue_name: "Living room lamp"
-    - entity_id: switch.LWRF_DisplayCabinetLight
+      icon: mdi:lamp
+    switch.LWRF_DisplayCabinetLight:
       friendly_name: "Display cabinet light"
       emulated_hue_name: "Display cabinet light"
-    - entity_id: switch.LWRF_DiningRoom_Rennie_Mac_Lamp
+      icon: mdi:lightbulb
+    switch.LWRF_DiningRoom_Rennie_Mac_Lamp:
       friendly_name: "Dining Room - Rennie Mac Lamp"
       emulated_hue_name: "Rennie Mac Lamp"
-
-    - entity_id: switch.lwrf_conservatory_1, switch.LWRF_DisplayCabinetLight
-      icon: mdi:lightbulb
-    - entity_id: switch.lwrf_conservatory_2, switch.lwrf_conservatory_3, switch.LWRF_LivingRoom_Standard_Lamp, switch.LWRF_LivingRoom_Standard_Lamp, switch.LWRF_DiningRoom_Rennie_Mac_Lamp
       icon: mdi:lamp
-      
-    - entity_id: switch.LWRF_WaxBurner
+    switch.LWRF_WaxBurner:
       friendly_name: "Wax Burner"
       emulated_hue_name: "Wax Burner"
       icon: mdi:radiator
 
 #### Lightwave RF Dimmer Switches ####
-    - entity_id: light.LWRF_DiningRoom_Main
+    light.LWRF_DiningRoom_Main:
       friendly_name: "Dining Room - Over Table Lights"
       emulated_hue_name: "Dining room lights"
-    - entity_id: light.LWRF_LivingRoom_Main
+    light.LWRF_LivingRoom_Main:
       friendly_name: "Living Room - Downlights"
       emulated_hue_name: "Living room downlights"
 
 #### LightwaveRF Mode Switch - Conseveratory ###
-    - entity_id: switch.LWRF_Conservatory_Remote_Master, switch.LWRF_Conservatory_Mood_unknown, switch.LWRF_Conservatory_Mood_AllOff, switch.lwrf_conservatory_mood_master
+    switch.LWRF_Conservatory_Remote_Master:
+      emulated_hue: false
+    switch.LWRF_Conservatory_Mood_unknown:
+      emulated_hue: false
+    switch.LWRF_Conservatory_Mood_AllOff:
+      emulated_hue: false
+    switch.lwrf_conservatory_mood_master:
       emulated_hue: false
 
 #### LightwaveRF Moods ###
-    - entity_id: switch.lwrf_livingroom_mood_alloff, switch.lwrf_diningroom_mood_alloff
+    switch.lwrf_livingroom_mood_alloff: 
       emulated_hue: false
-
-#### Belkin Wemo Insight Switch ####
-    - entity_id: switch.ironing_room*
-      entity_picture: /local/belkin_wemo.png
+    switch.lwrf_diningroom_mood_alloff:
       emulated_hue: false
 
 #### Flamerite Fire Switches ####
-    - entity_id: switch.flamerite_power
+    switch.flamerite_power:
       friendly_name: "Fire"
       icon: mdi:power
-    - entity_id: switch.flamerite_heat
+    switch.flamerite_heat:
       friendly_name: "Fire Heat"
       icon: mdi:fire
-    - entity_id: light.flamerite_dimmer1
+    light.flamerite_dimmer1:
       friendly_name: "Dimmer 1"
       emulated_hue: false
-    - entity_id: light.flamerite_dimmer2
+    light.flamerite_dimmer2:
       friendly_name: "Dimmer 2"
       emulated_hue: false
 
 #### Scenes ####
-    - entity_id: scene.bright
+    scene.bright:
       emulated_hue_name: "Mood bright"
-    - entity_id: scene.comfortable
+    scene.comfortable:
       emulated_hue_name: "Mood comfortable"
-    - entity_id: scene.movie
+    scene.movie:
       emulated_hue_name: "Mood movie"
 
 #######CUSTOMIZE MEDIA PLAYERS########
-    - entity_id: media_player.living_room
+    media_player.living_room:
       friendly_name: "Sonos - Living Room"
-    - entity_id: media_player.kitchen
+    media_player.kitchen:
       friendly_name: "Sonos - Kitchen"
-    - entity_id: media_player.conservatory
+    media_player.conservatory:
       friendly_name: "Sonos - Conservatory"
-    - entity_id: media_player.master_bedroom
+    media_player.master_bedroom:
       friendly_name: "Sonos - Master Bedroom"
-    - entity_id: media_player.bathroom
+    media_player.bathroom:
       friendly_name: "Sonos - Ensuite"
-    - entity_id: media_player.roku_1mk3d6034563
+    media_player.roku_1mk3d6034563:
       friendly_name: "Now TV Box"
 
 #### HP MicroServer ####
-    - entity_id: sensor.server_server_power_state
+    sensor.server_server_power_state:
       icon: mdi:power
-    - entity_id: sensor.server_fan
+    sensor.server_fan:
       icon: mdi:fan
-    - entity_id: sensor.server_server_name
+    sensor.server_server_name:
       icon: mdi:server-network
-    - entity_id: sensor.server_glance*
-      icon: mdi:check
-    - entity_id: sensor.server_server_health
+    sensor.server_server_health:
       hidden: true
 
 ### Yr Climate Information ###
-    - entity_id: sensor.yr_humidity
+    sensor.yr_humidity:
       friendly_name: "Humidity"
-    - entity_id: sensor.yr_symbol
+    sensor.yr_symbol:
       friendly_name: "Symbol"
-    - entity_id: sensor.yr_temperature
+    sensor.yr_temperature:
       friendly_name: "Temperature"
 
 ### Nest Climate Information ###
-    - entity_id: sensor.hallwayhousetemperature_2
+    sensor.hallwayhousetemperature_2:
       friendly_name: "Outside Temperature"
-    - entity_id: sensor.hallwayhousecondition
+    sensor.hallwayhousecondition:
       friendly_name: "Condition"  
-    - entity_id: sensor.hallwayhousehumidity_2
+    sensor.hallwayhousehumidity_2:
       friendly_name: "Outside Humidity"
-    - entity_id: binary_sensor.hallway_thermostat_house_is_using_emergency_heat
+    binary_sensor.hallway_thermostat_house_is_using_emergency_heat:
       friendly_name: "Nest Emergency Heat"
-    - entity_id: sensor.hallway_thermostat_house_hvac_state
+    sensor.hallway_thermostat_house_hvac_state:
       friendly_name: "Heating Status"
-    - entity_id: binary_sensor.hallway_thermostat_house_has_leaf
+    binary_sensor.hallway_thermostat_house_has_leaf:
       friendly_name: "Nest Energy Saving"
-
-    - entity_id: binary_sensor.hallway_thermostat_house_fan, binary_sensor.hallway_thermostat_house_is_locked, sensor.hallway_thermostat_house_operation_mode, binary_sensor.hallway_thermostat_house_online
+    binary_sensor.hallway_thermostat_house_fan:
+      hidden: true
+    binary_sensor.hallway_thermostat_house_is_locked:
+      hidden: true
+    sensor.hallway_thermostat_house_operation_mode:
+      hidden: true
+    binary_sensor.hallway_thermostat_house_online:
       hidden: true
 
 ### Portable Temperature and Humidity Sensors ###
-    - entity_id: sensor.Temp_Humid_1
+    sensor.Temp_Humid_1:
       friendly_name: "Env. Conservatory"
-    - entity_id: sensor.Temp_Humid_2
+      hidden: true
+    sensor.Temp_Humid_2:
       friendly_name: "Env. Living Room"
-    - entity_id: sensor.Temp_Humid_3
+      hidden: true
+    sensor.Temp_Humid_3:
       friendly_name: "Env. Master Bedroom"
-    - entity_id: sensor.temp_humid_ext_1_temperature
+      hidden: true
+    sensor.temp_humid_ext_1_temperature:
       friendly_name: "Outside - Temperature"
-    - entity_id: sensor.temp_humid_ext_1_humidity
-      friendly_name: "Outside - Humidity"      
-    - entity_id: sensor.temp_humid_1_humidity
+    sensor.temp_humid_ext_1_humidity:
+      friendly_name: "Outside - Humidity"   
+      icon: mdi:water-percent   
+    sensor.temp_humid_1_temperature:
+      hidden: true
+    sensor.temp_humid_1_humidity:
       friendly_name: "Conservatory - Humidity"
-    - entity_id: sensor.temp_humid_2_humidity
+      icon: mdi:water-percent
+    sensor.temp_humid_2_temperature:
+      hidden: true      
+    sensor.temp_humid_2_humidity:
       friendly_name: "Living Room - Humidity"
-    - entity_id: sensor.temp_humid_3_humidity
+      icon: mdi:water-percent
+    sensor.temp_humid_3_temperature:
+      hidden: true      
+    sensor.temp_humid_3_humidity:
       friendly_name: "Master Bedroom - Humidity"
-
-    - entity_id: sensor.Temp_Humid_1, ensor.Temp_Humid_2, ensor.Temp_Humid_3
-      hidden: true
-    - entity_id: sensor.temp_humid_1_temperature, sensor.temp_humid_2_temperature, sensor.temp_humid_3_temperature
-      hidden: true
-    - entity_id: sensor.temp_humid_1_humidity, sensor.temp_humid_2_humidity, sensor.temp_humid_3_humidity, sensor.temp_humid_ext_1_humidity
       icon: mdi:water-percent
 
 ### Speed Test ###
-    - entity_id: sensor.speedtest_download
+    sensor.speedtest_download:
       icon: mdi:download
-    - entity_id: sensor.speedtest_upload
+    sensor.speedtest_upload:
       icon: mdi:upload
-    - entity_id: sensor.speedtest_ping
+    sensor.speedtest_ping:
       icon: mdi:clock
-
-#### DEVICES TO HIDE / IGNORE ###
-    - entity_id: switch.LWRF_Conservatory_4, switch.Saunders*
-      hidden: true
