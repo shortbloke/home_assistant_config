@@ -1,0 +1,11 @@
+#######Global Customization########
+#### Belkin Wemo Insight Switch ####
+    switch.ironing_room*:
+      entity_picture: /local/belkin_wemo.png
+      emulated_hue: false
+#### HP MicroServer ####        
+    sensor.server_glance*:
+      icon: mdi:check
+#### Saunders Devices ###
+    switch.saunders_*:
+      hidden: true
