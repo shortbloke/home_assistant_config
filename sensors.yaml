@@ -6,6 +6,8 @@
 #    - temperature
 #    - symbol
 #    - humidity
+# Moon
+- platform: moon
 
 # Nest
 - platform: nest

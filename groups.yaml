@@ -118,6 +118,7 @@ climate:
 #    - sensor.yr_humidity
 #    - sensor.yr_symbol
     - sun.sun
+    - sensor.moon
 
 heating:
   name: heating
