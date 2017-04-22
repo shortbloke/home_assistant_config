@@ -2,7 +2,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.ssl_cert_expiry
-      below: 180
+      below: 21
   action:
     - service: notify.notify
       data:
