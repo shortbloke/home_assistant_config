@@ -193,15 +193,15 @@
 #### WeMo Insight Power Usage ####
 # Ironing Room Right #
     wemo_insight_power_ironing_room_right:
-      value_template: '{{ (states.switch.ironing_room_right.attributes.current_power_mwh |  multiply(0.001)) | round(1) }}'
+      value_template: '{{ (states.switch.ironing_room_right.attributes.current_power_w) | round(1) }}'
       unit_of_measurement: 'W'
       entity_id: switch.ironing_room_right
       friendly_name: "Power Consuption"
-    wemo_insight_power_today_ironing_room_right:
-      value_template: '{{ (states.switch.ironing_room_right.attributes.today_mwh |  multiply(0.000001)) | int }}'
-      unit_of_measurement: 'KW'
-      entity_id: switch.ironing_room_right
-      friendly_name: "Consuption Today"
+    # wemo_insight_power_today_ironing_room_right:
+    #   value_template: '{{ (states.switch.ironing_room_right.attributes.today_energy_kwh) | int }}'
+    #   unit_of_measurement: 'KWh'
+    #   entity_id: switch.ironing_room_right
+    #   friendly_name: "Consuption Today"
     wemo_insight_state_ironing_room_right:
       value_template: >-
         {%- if is_state("switch.ironing_room_right", "off") %}
@@ -218,15 +218,15 @@
 
 # Ironing Room Left #
     wemo_insight_power_ironing_room_left:
-      value_template: '{{ (states.switch.ironing_room_left.attributes.current_power_mwh |  multiply(0.001)) | round(1) }}'
+      value_template: '{{ (states.switch.ironing_room_left.attributes.current_power_w) | round(1) }}'
       unit_of_measurement: 'W'
       entity_id: switch.ironing_room_left
       friendly_name: "Power Consuption"
-    wemo_insight_power_today_ironing_room_left:
-      value_template: '{{ (states.switch.ironing_room_left.attributes.today_mwh |  multiply(0.000001)) | int }}'
-      unit_of_measurement: 'KW'
-      entity_id: switch.ironing_room_left
-      friendly_name: "Consuption Today"
+    # wemo_insight_power_today_ironing_room_left:
+    #   value_template: '{{ (states.switch.ironing_room_left.attributes.today_energy_kwh) | int }}'
+    #   unit_of_measurement: 'KWh'
+    #   entity_id: switch.ironing_room_left
+    #   friendly_name: "Consuption Today"
     wemo_insight_state_ironing_room_left:
       value_template: >-
         {%- if is_state("switch.ironing_room_left", "off") %}

@@ -1,0 +1,9 @@
+- alias: "SSL expiry notification"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ssl_cert_expiry
+      below: 180
+  action:
+    - service: notify.notify
+      data:
+        message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'

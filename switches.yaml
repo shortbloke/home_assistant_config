@@ -31,6 +31,8 @@
       name: LWRF_LivingRoom_Mood_AllOff
     0a14003403922010020060:
       name: LWRF_Conservatory_Mood_AllOff
+    0a140026f4f6ad0d000070:
+      name: LWRF_Hall_Twig_Lights
 ### Flamerite Fire ###
     0b11000a015b6eff01010f80:
       name: Flamerite_Power

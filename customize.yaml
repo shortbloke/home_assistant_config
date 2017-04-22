@@ -30,6 +30,10 @@
       friendly_name: "Wax Burner"
       emulated_hue_name: "Wax Burner"
       icon: mdi:radiator
+    switch.LWRF_Hall_Twig_Lights:
+      friendly_name: "Twig Lights"
+      emulated_hue_name: "Twig Lights"
+      icon: mdi:lamp
 
 #### Lightwave RF Dimmer Switches ####
     light.LWRF_DiningRoom_Main:

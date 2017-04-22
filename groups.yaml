@@ -22,6 +22,13 @@ living_room_view:
     - group.flamerite_fire
     - group.living_room_lights
     - media_player.living_room
+hall_view:
+  name: Hall
+  view: yes
+  entities:
+    - group.hall_lights
+    - group.heating
+
 kitchen_view:
   name: Kitchen
   view: yes
@@ -58,6 +65,12 @@ system_view:
     - group.HAPi
     - group.hpilo
 
+automation_view:
+  name: Automation
+  view: yes
+  entities:
+    - group.automation
+
 #### Groups / Cards ####
 conservatory_lights:
   name: Conservatory Lights
@@ -78,7 +91,7 @@ flamerite_fire:
     - light.flamerite_dimmer2
 
 living_room_lights:
-  name: Lights
+  name: Living Room Lights
   entities:
     - light.LWRF_LivingRoom_Main
     - switch.LWRF_LivingRoom_Standard_Lamp
@@ -86,6 +99,11 @@ living_room_lights:
     - light.LWRF_DiningRoom_Main
     - switch.LWRF_DiningRoom_Rennie_Mac_Lamp
     - switch.LWRF_WaxBurner
+
+hall_lights:
+  name: Hall Lights
+  entities:
+    - switch.LWRF_Hall_Twig_Lights
 
 #  kitchen:
 #    name: Kitchen
@@ -198,3 +216,10 @@ hpilo:
 #  - server_uid_status
 #  - server_health
 #  - network_settings  
+
+automation:
+  name: Automation Scripts
+  entities:
+    - automation.martin_leaves_work
+    - automation.turn_on_lights_at_sunset
+    - automation.SSL_expiry_notification
