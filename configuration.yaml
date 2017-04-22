@@ -26,7 +26,7 @@ zone 2:
   latitude: !secret latitude_loc_forest
   longitude: !secret longitude_loc_forest
   radius: 250
-  icon: mdi:school  
+  icon: mdi:school
 
 ifttt:
   key: !secret ifttt_key
@@ -93,19 +93,8 @@ camera:
   ffmpeg_bin: /usr/bin/ffmpeg
   extra_arguments: -q:v 2
 
-#proximity:
-#  home:
-#    ignored_zones:
-#      - Work
-#      - Forest
-#    devices:
-#      - device_tracker.martiniphone6
-#      - device_tracker.iphone
-#    unit_of_measurement: mi
-#  work:
-#    devices:
-#      - device_tracker.martiniphone6
-#    unit_of_measurement: mi
+# IOS Support
+ios:
 
 ### Auto Discover ###
 wemo:
@@ -120,10 +109,8 @@ updater:
 sensor: !include sensors.yaml
 switch: !include switches.yaml
 light: !include lights.yaml
-#device_tracker: !include device_tracker.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
-#proximity: !include proximity.yaml
 
 # Directories
 automation: !include_dir_merge_list automation 
@@ -133,25 +120,14 @@ automation: !include_dir_merge_list automation
 logger:
   default: error
   logs:
-    # homeassistant.components.proximity: debug
-    # homeassistant.components.device_tracker: debug
     # homeassistant.components.emulated_hue: debug
     homeassistant.components.rfxtrx: info
-    # homeassistant.components.device_tracker: critical
-    homeassistant.components.device_tracker.mqtt: debug
 
 logbook:
   include:
     domains:
       - automation
       - proximity
-#  exclude:
-#    domains:
-#      - media_player
-#      - scene
-#      - light
-#      - group
-#      - switch
 
 recorder:
   purge_days: 7

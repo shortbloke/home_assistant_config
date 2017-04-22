@@ -52,10 +52,7 @@ family_view:
   name: Family
   view: yes
   entities:
-    - device_tracker.martiniphone6
-    - device_tracker.michelleiphone
-    - device_tracker.morgansiphone5
-    - device_tracker.frasersipodtouch
+    - group.Devices
 
 system_view:
   name: Systems
@@ -220,6 +217,12 @@ hpilo:
 automation:
   name: Automation Scripts
   entities:
-    - automation.martin_leaves_work
     - automation.turn_on_lights_at_sunset
     - automation.SSL_expiry_notification
+
+Devices:
+  name: Devices
+  entities:
+    - device_tracker.martins_iphone
+    - sensor.martins_iphone_battery_level
+    - sensor.martins_iphone_battery_state
