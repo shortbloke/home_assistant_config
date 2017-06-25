@@ -92,18 +92,12 @@
   username: !secret hp_ilo_username
   password: !secret hp_ilo_password
   monitored_variables:
-  - server_name
-  #- server_fqdn
-#  - server_host_data
-#  - server_oa_info
-  - server_power_status
-#  - server_power_readings
-#  - server_power_on_time
-#  - server_asset_tag
-  - server_uid_status
-  - server_health
-#  - network_settings
+  - name: Server name
+    sensor_type: server_name
+  - name: Server Health
+    sensor_type: server_health
 
+  
 ############################################################
 #
 #  Sensor Templates
@@ -197,11 +191,6 @@
       unit_of_measurement: 'W'
       entity_id: switch.ironing_room_right
       friendly_name: "Power Consuption"
-    # wemo_insight_power_today_ironing_room_right:
-    #   value_template: '{{ (states.switch.ironing_room_right.attributes.today_energy_kwh) | int }}'
-    #   unit_of_measurement: 'KWh'
-    #   entity_id: switch.ironing_room_right
-    #   friendly_name: "Consuption Today"
     wemo_insight_state_ironing_room_right:
       value_template: >-
         {%- if is_state("switch.ironing_room_right", "off") %}
@@ -222,11 +211,6 @@
       unit_of_measurement: 'W'
       entity_id: switch.ironing_room_left
       friendly_name: "Power Consuption"
-    # wemo_insight_power_today_ironing_room_left:
-    #   value_template: '{{ (states.switch.ironing_room_left.attributes.today_energy_kwh) | int }}'
-    #   unit_of_measurement: 'KWh'
-    #   entity_id: switch.ironing_room_left
-    #   friendly_name: "Consuption Today"
     wemo_insight_state_ironing_room_left:
       value_template: >-
         {%- if is_state("switch.ironing_room_left", "off") %}
