@@ -58,7 +58,7 @@ system_view:
   name: Systems
   view: yes
   entities:
-    - group.speedtest
+    # - group.speedtest
     - group.HAPi
     - group.hpilo
 

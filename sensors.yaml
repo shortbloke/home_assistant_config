@@ -36,14 +36,14 @@
     - type: last_boot
 
 # SpeedTest
-- platform: speedtest
-  minute:
-    - 0
-    - 30
-  monitored_conditions:
-    - ping
-    - download
-    - upload  
+# - platform: speedtest
+#   minute:
+#     - 0
+#     - 30
+#   monitored_conditions:
+#     - ping
+#     - download
+#     - upload  
 
 # RFXCOM 433 Sensors
 - platform: rfxtrx
