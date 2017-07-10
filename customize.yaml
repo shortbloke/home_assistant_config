@@ -145,6 +145,12 @@
     sensor.Temp_Humid_3:
       friendly_name: "Env. Master Bedroom"
       hidden: true
+    sensor.Temp_Humid_4:
+      friendly_name: "Env. Ironing Room"
+      hidden: true
+    sensor.Temp_Humid_5:
+      friendly_name: "Env. Temp_Humid_5"
+      hidden: true
     sensor.temp_humid_ext_1_temperature:
       friendly_name: "Outside - Temperature"
     sensor.temp_humid_ext_1_humidity:
@@ -164,6 +170,14 @@
       hidden: true      
     sensor.temp_humid_3_humidity:
       friendly_name: "Master Bedroom - Humidity"
+      icon: mdi:water-percent
+    sensor.temp_humid_4_temperature:
+      hidden: true
+    sensor.temp_humid_4_humidity:
+      friendly_name: "Ironing Room - Humidity"
+      icon: mdi:water-percent
+    sensor.temp_humid_5_humidity:
+      friendly_name: "Temp_Humid_5 - Humidity"
       icon: mdi:water-percent
 
 ### Speed Test ###

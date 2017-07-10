@@ -171,6 +171,10 @@ environment:
     - sensor.temp_humid_2_humidity
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
+    - sensor.portable_sensor_4_temperature
+    - sensor.temp_humid_4_humidity
+    - sensor.portable_sensor_5_temperature
+    - sensor.temp_humid_5_humidity
     - sensor.hallway_thermostat_house_temperature
     - sensor.hallway_thermostat_house_humidity
 
