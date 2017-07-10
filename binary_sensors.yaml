@@ -1,0 +1,5 @@
+#### Binary_Sensors.yaml ####
+
+# RFXTRX
+- platform: rfxtrx
+  automatic_add: True

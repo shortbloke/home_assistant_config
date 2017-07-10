@@ -107,6 +107,7 @@ updater:
 #                                                  #
 ####################################################
 sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
 switch: !include switches.yaml
 light: !include lights.yaml
 group: !include groups.yaml
@@ -121,7 +122,7 @@ logger:
   default: error
   logs:
     # homeassistant.components.emulated_hue: debug
-    homeassistant.components.rfxtrx: info
+    homeassistant.components.rfxtrx: debug
 
 logbook:
   include:
@@ -131,7 +132,7 @@ logbook:
 
 recorder:
   purge_days: 7
-  db_url: !secret db_url
+  # db_url: !secret db_url
 
 history:
 #  include:

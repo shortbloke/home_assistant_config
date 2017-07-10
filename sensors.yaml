@@ -1,32 +1,12 @@
 #### Sensors.yaml ####
 
-# Weather Prediction
-#- platform: yr
-#  monitored_conditions:
-#    - temperature
-#    - symbol
-#    - humidity
 # Moon
 - platform: moon
 
 # Nest
 - platform: nest
-  monitored_conditions:
-    - 'temperature'
-    - 'target'
-    - 'humidity'
-    - 'operation_mode'
-    #- 'last_connection'
-    # Weather info based on Nest Location
-    - 'weather_temperature'
-    - 'weather_humidity'
-    - 'weather_condition'
-    #- 'wind_speed'
-    - 'wind_direction' 
 
-# CPU Speed
-#  - platform: cpuspeed
-#    name: CPU 
+# Raspberry Pi System Information
 - platform: systemmonitor
   resources:
     - type: disk_free
@@ -47,7 +27,7 @@
 
 # RFXCOM 433 Sensors
 - platform: rfxtrx
-  automatic_add: False
+  automatic_add: True
   devices:
     0a52090ca9000247260289:
       name: Temp_Humid_1
@@ -69,6 +49,8 @@
       data_type:
         - Humidity
         - Temperature  
+    0a520133fc0400a7390069:
+      name: Pending
     115a0102f7520000000f3700005b0077d779:
       name: Energy_Sensor_A
       data_type:
@@ -92,11 +74,34 @@
   username: !secret hp_ilo_username
   password: !secret hp_ilo_password
   monitored_variables:
-  - name: Server name
-    sensor_type: server_name
-  - name: Server Health
-    sensor_type: server_health
-
+    - name: Server name
+      sensor_type: server_name
+    - name: CPU fanspeed
+      sensor_type: server_health
+      unit_of_measurement: '%'
+      value_template: '{{ ilo_data.fans["Fan 1"].speed[0] }}'
+    - name: Inlet temperature
+      sensor_type: server_health
+      unit_of_measurement: '°C'
+      value_template: '{{ ilo_data.temperature["01-Inlet Ambient"].currentreading[0] }}'
+    - name: Exhaust temperature
+      sensor_type: server_health
+      unit_of_measurement: '°C'
+      value_template: '{{ ilo_data.temperature["12-Sys Exhaust"].currentreading[0] }}'
+    - name: CPU temperature
+      sensor_type: server_health
+      unit_of_measurement: '°C'
+      value_template: '{{ ilo_data.temperature["02-CPU"].currentreading[0] }}'
+    - name: Chipset temperature
+      sensor_type: server_health
+      unit_of_measurement: '°C'
+      value_template: '{{ ilo_data.temperature["05-Chipset"].currentreading[0] }}'
+    - name: Memory temperature
+      sensor_type: server_health
+      unit_of_measurement: '°C'
+      value_template: '{{ ilo_data.temperature["03-P1 DIMM 1-2"].currentreading[0] }}'
+    - name: Server Health
+      sensor_type: server_health
   
 ############################################################
 #
@@ -104,86 +109,8 @@
 #
 ############################################################
 
-
 - platform: template
   sensors:
-    #### HP ILO Health Info ####
-    server_fan:
-      value_template: '{{states.sensor.server_server_health.attributes.fans["Fan 1"]["speed"][0] }}'
-      unit_of_measurement: '%'
-      entity_id: sensor.server_server_health
-      friendly_name: "Fan Speed"
-
-    server_glance_power:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["power_supplies"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Power Supplies"
-
-    server_glance_processor:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["processor"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Processor"
-    
-    server_glance_storage:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["storage"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Storage"
-    
-    server_glance_memory:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["memory"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Memory"
-    
-    server_glance_temperature:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["temperature"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Temperature"
-    
-    server_glance_fans:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["fans"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Fans"
-    
-    server_glance_bios:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["bios_hardware"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "BIOS"
-    
-    server_glance_network:
-      value_template: '{{states.sensor.server_server_health.attributes.health_at_a_glance["network"]["status"] }}'
-      entity_id: sensor.server_server_health
-      friendly_name: "Network"
-
-    server_temperature_exhaust:
-      value_template: '{{states.sensor.server_server_health.attributes.temperature["12-Sys Exhaust"]["currentreading"][0] }}'
-      unit_of_measurement: '°C'
-      entity_id: sensor.server_server_health
-      friendly_name: "Exhaust"
-
-    server_temperature_chipset:
-      value_template: '{{states.sensor.server_server_health.attributes.temperature["05-Chipset"]["currentreading"][0] }}'
-      unit_of_measurement: '°C'
-      entity_id: sensor.server_server_health
-      friendly_name: "Chipset"
-
-    server_temperature_memory:
-      value_template: '{{states.sensor.server_server_health.attributes.temperature["03-P1 DIMM 1-2"]["currentreading"][0] }}'
-      unit_of_measurement: '°C'
-      entity_id: sensor.server_server_health
-      friendly_name: "Memory"
-
-    server_temperature_processor:
-      value_template: '{{states.sensor.server_server_health.attributes.temperature["02-CPU"]["currentreading"][0] }}'
-      unit_of_measurement: '°C'
-      entity_id: sensor.server_server_health
-      friendly_name: "Processor"
-
-    server_temperature_ambient:
-      value_template: '{{states.sensor.server_server_health.attributes.temperature["01-Inlet Ambient"]["currentreading"][0] }}'
-      unit_of_measurement: '°C'
-      entity_id: sensor.server_server_health
-      friendly_name: "Ambient"
-
 #### WeMo Insight Power Usage ####
 # Ironing Room Right #
     wemo_insight_power_ironing_room_right:
