@@ -17,6 +17,8 @@ __pycache__
 *.conf
 *.db
 *.db-journal
+*.db-shm
+*.db-wal
 *.log
 *.noload
 *.txt
