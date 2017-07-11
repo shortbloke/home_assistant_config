@@ -134,6 +134,7 @@
       hidden: true
     binary_sensor.hallway_thermostat_house_online:
       hidden: true
+    
 
 ### Portable Temperature and Humidity Sensors ###
     sensor.Temp_Humid_1:

@@ -137,7 +137,7 @@ climate:
     - sensor.moon
 
 heating:
-  name: heating
+  name: Heating
   entities:
     - sensor.hallwayhousecondition
     - sensor.hallwayhousetemperature_2
@@ -147,6 +147,7 @@ heating:
     - sensor.hallway_thermostat_house_temperature
     - binary_sensor.hallway_thermostat_house_has_leaf
     - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
+    - sensor.nest_away_mode
 
 nest_protect:
   name: Nest Protect

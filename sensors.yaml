@@ -215,6 +215,12 @@
       entity_id: sensor.temp_humid_5_temperature
       friendly_name: "Temp_Humid_5 - Temperature"
 
+### Nest Templates
+    nest_away_mode:
+      value_template: '{{ states.climate.hallway_house.attributes.away_mode }}'
+      entity_id: climate.hallway_house
+      friendly_name: "Nest Away Mode"
+
 ### Command Line Sensor for SSL Certifcate Expiry Checking
 - platform: command_line
   name: SSL cert expiry
