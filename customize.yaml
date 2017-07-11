@@ -98,7 +98,7 @@
 #### HP MicroServer ####
     sensor.server_server_power_state:
       icon: mdi:power
-    sensor.server_fan:
+    sensor.server_cpu_fanspeed:
       icon: mdi:fan
     sensor.server_server_name:
       icon: mdi:server-network
