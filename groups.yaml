@@ -204,10 +204,19 @@ hpilo:
   name: HP Microserver G7
   entities:
     - sensor.server_server_name
+    - sensor.server_glance_power_supplies
+    - sensor.server_glance_processor
+    - sensor.server_glance_storage
+    - sensor.server_glance_memory
+    - sensor.server_glance_temperatures
+    - sensor.server_glance_fans
+    - sensor.server_glance_network
+    - sensor.server_glance_bios
     - sensor.server_cpu_fanspeed
     - sensor.server_inlet_temperature
     - sensor.server_exhaust_temperature
     - sensor.server_cpu_temperature
+    - sensor.server_pci_temperature
     - sensor.server_chipset_temperature
     - sensor.server_memory_temperature
 

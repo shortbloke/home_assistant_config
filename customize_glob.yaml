@@ -6,3 +6,6 @@
 #### Saunders Devices ###
     switch.saunders_*:
       hidden: true
+#### HP MicroServer ####        
+    sensor.server_glance*:
+      icon: mdi:check

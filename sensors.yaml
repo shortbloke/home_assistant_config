@@ -84,6 +84,8 @@
   monitored_variables:
     - name: Server name
       sensor_type: server_name
+    - name: Server Health
+      sensor_type: server_health      
     - name: CPU fanspeed
       sensor_type: server_health
       unit_of_measurement: '%'
@@ -108,8 +110,34 @@
       sensor_type: server_health
       unit_of_measurement: '°C'
       value_template: '{{ ilo_data.temperature["03-P1 DIMM 1-2"].currentreading[0] }}'
-    - name: Server Health
+    - name: PCI Temperature
       sensor_type: server_health
+      unit_of_measurement: '°C'
+      value_template: '{{ ilo_data.temperature["10-PCI 1"].currentreading[0] }}'
+    - name: Glance Power Supplies
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["power_supplies"]["status"] }}'
+    - name: Glance Processor
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["processor"]["status"] }}'
+    - name: Glance Storage
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["storage"]["status"] }}'      
+    - name: Glance Memory
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["memory"]["status"] }}'
+    - name: Glance Temperatures  
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["temperature"]["status"] }}'
+    - name: Glance Fans
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["fans"]["status"] }}'
+    - name: Glance Network
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["network"]["status"] }}'
+    - name: Glance bios
+      sensor_type: server_health
+      value_template: '{{ ilo_data.health_at_a_glance["bios_hardware"]["status"] }}'
   
 ############################################################
 #
