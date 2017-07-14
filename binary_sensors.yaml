@@ -3,3 +3,6 @@
 # RFXTRX
 - platform: rfxtrx
   automatic_add: True
+  devices:
+    0a140006f4d6b101010060: 
+      name: LWRF_PIR_1

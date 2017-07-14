@@ -86,12 +86,12 @@ tts:
 media_player:
   - platform: sonos
 
-camera:
-  platform: ffmpeg
-  name: Cam
-  input: !secret ffmpeg_cam_rtsp_stream_source
-  ffmpeg_bin: /usr/bin/ffmpeg
-  extra_arguments: -q:v 2
+# camera:
+#  platform: ffmpeg
+#  name: Cam
+#  input: !secret ffmpeg_cam_rtsp_stream_source
+#  ffmpeg_bin: /usr/bin/ffmpeg
+#  extra_arguments: -q:v 2
 
 # IOS Support
 ios:
@@ -112,9 +112,10 @@ switch: !include switches.yaml
 light: !include lights.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
+automation: !include automations.yaml
 
 # Directories
-automation: !include_dir_merge_list automation 
+#automation: !include_dir_merge_list automation 
 
 ####################################################
 
@@ -123,6 +124,7 @@ logger:
   logs:
     # homeassistant.components.emulated_hue: debug
     homeassistant.components.rfxtrx: info
+    # homeassistant.components.rfxtrx: debug
 
 logbook:
   include:
@@ -154,7 +156,6 @@ history:
       - sensor.date
 
 sun:
-
 conversation:
-
 frontend:
+config:

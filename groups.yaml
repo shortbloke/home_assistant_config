@@ -235,8 +235,11 @@ hpilo:
 automation:
   name: Automation Scripts
   entities:
-    - automation.turn_on_lights_at_sunset
+    - automation.turn_on_twig_lights_at_sunset
     - automation.SSL_expiry_notification
+#    - automation.ironing_room_ac_on_no_motion_detected_for_30mins__tp_iron_plug
+#    - automation.ironing_room_left_on_no_motion_detected_for_30mins__wemo_1
+#    - automation.ironing_room_right_on_no_motion_detected_for_30mins__wemo_2
 
 Devices:
   name: Devices

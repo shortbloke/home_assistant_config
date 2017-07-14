@@ -1,0 +1,68 @@
+- id: '1500048597882'
+  alias: Turn on Twig lights at sunset
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '-01:00:00'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.LWRF_Hall_Twig_Lights
+
+- id: '1500048925363'
+  alias: SSL Expiry notification
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ssl_cert_expiry
+      below: 21
+  action:
+    - service: notify.ios_martins_iphone
+      data:
+        message: "HA SSL Cert expirying soon"
+
+- id: a_IronOn_1
+  alias: "Ironing Room Left ON (no motion detected for 30mins) - Wemo 1"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lwrf_pir_1
+      to: 'off'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: sensor.wemo_insight_state_ironing_room_left
+      state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: sensor.wemo_insight_state_ironing_room_left
+
+- id: a_IronOn_2
+  alias: "Ironing Room Right ON (no motion detected for 30mins) - Wemo 2"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lwrf_pir_1
+      to: 'off'
+      for:
+        minutes: 30
+ condition:
+    - condition: state
+      entity_id: sensor.wemo_insight_state_ironing_room_right
+      state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: sensor.wemo_insight_state_ironing_room_right
+
+- id: a_IronOn_3
+  alias: "Ironing Room AC ON (no motion detected for 30mins) - TP_Iron_Plug"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lwrf_pir_1
+      to: 'off'
+      for:
+        minutes: 30
+  condition:
+    - condition: template
+      value_template: '{{ switch.TP_Iron_Plug.attributes.Current_consumption > 10 }}'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.TP_Iron_Plug
+

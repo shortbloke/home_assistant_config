@@ -50,3 +50,7 @@
       name: Saunders_4
     0b110046005243ea01000070:
       name: Saunders_5
+
+- platform: tplink
+  host: 192.168.0.68
+  name: TP_Iron_Plug

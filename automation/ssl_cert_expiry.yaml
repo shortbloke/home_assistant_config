@@ -1,9 +1,0 @@
-- alias: "SSL expiry notification"
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.ssl_cert_expiry
-      below: 21
-  action:
-    - service: notify.ios_martins_iphone
-      data:
-        message: "HA SSL Certicate Expiring Soon"
