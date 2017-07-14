@@ -1,4 +1,4 @@
-d: '1500048597882'
+- id: '1500048597882'
   alias: Turn on Twig lights at sunset
   trigger:
     - platform: sun
