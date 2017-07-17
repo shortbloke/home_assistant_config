@@ -19,50 +19,74 @@
       data:
         message: "HA SSL Cert expirying soon"
 
-# - id: a_IronOn_1
-#   alias: Ironing Room Left Wemo On No Motion 
-#   trigger:
-#     - platform: state
-#       entity_id: binary_sensor.lwrf_pir_1
-#       to: 'off'
-#       for:
-#         minutes: 30
-#   condition:
-#     - condition: state
-#       entity_id: sensor.wemo_insight_state_ironing_room_left
-#       state: 'on'
-#   action:
-#     - service: homeassistant.turn_off
-#       entity_id: sensor.wemo_insight_state_ironing_room_left
+- id: a_IronOn_1
+  alias: Ironing Room Left Wemo On No Motion 
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: sensor.wemo_insight_state_ironing_room_left
+      state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: sensor.wemo_insight_state_ironing_room_left
+    - service: notify.ios_martins_iphone
+      data:
+        message: "No Motion Detected - Turning off Ironing room left wemo"
 
-# - id: a_IronOn_2
-#   alias: Ironing Room Right Wemo On No Motion 
-#   trigger:
-#     - platform: state
-#       entity_id: binary_sensor.lwrf_pir_1
-#       to: 'off'
-#       for:
-#         minutes: 30
-#   condition:
-#     - condition: state
-#       entity_id: sensor.wemo_insight_state_ironing_room_right
-#       state: 'on'
-#   action:
-#     - service: homeassistant.turn_off
-#       entity_id: sensor.wemo_insight_state_ironing_room_right
+- id: a_IronOn_2
+  alias: Ironing Room Right Wemo On No Motion 
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: sensor.wemo_insight_state_ironing_room_right
+      state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: sensor.wemo_insight_state_ironing_room_right
+    - service: notify.ios_martins_iphone
+      data:
+        message: "No Motion Detected - Turning off Ironing room right wemo"
 
-# - id: a_IronOn_3
-#   alias: Ironing Room AC On No Motion
-#   trigger:
-#     - platform: state
-#       entity_id: binary_sensor.lwrf_pir_1
-#       to: 'off'
-#       for:
-#         minutes: 30
-#   condition:
-#     - condition: template
-#       value_template: '{{ switch.TP_Iron_Plug.attributes.Current_consumption > 10 }}'
-#   action:
-#     - service: homeassistant.turn_off
-#       entity_id: switch.TP_Iron_Plug
+- id: a_IronOn_3
+  alias: Ironing Room AC On No Motion
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+      for:
+        minutes: 30
+  condition:
+    - condition: template
+      value_template: '{{ sensor.tplink_iron_plug > 10 }}'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.TP_Iron_Plug
+    - service: notify.ios_martins_iphone
+      data:
+        message: "No Motion Detected - Turning off Ironing room left TP-Link Plug"
 
+# - id: a_zwave_auto_soft_reset 
+#   alias: ZWave soft reset at 2:30am
+#   trigger:
+#     - platform: time
+#       at: '2:30:00'
+#   action:
+#     - service: zwave.soft_reset
+
+# - id: a_zwave_auto_network_Heal
+#   alias: ZWave heal at 2:31am
+#   trigger:
+#     - platform: time
+#       at: '2:31:00'
+#   action:
+#     - service: zwave.heal_network

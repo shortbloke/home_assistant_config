@@ -53,6 +53,9 @@ rfxtrx:
   debug: True
   dummy: False
 
+zwave:
+  usb_path: /dev/ttyACM0
+
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret

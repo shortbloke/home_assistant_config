@@ -69,6 +69,7 @@
       data_type:
         - Total usage
 
+
 ############################################################
 #
 # HP Server Integrated Lights Out Monitoring 
@@ -188,6 +189,14 @@
       entity_id: switch.ironing_room_left
       friendly_name: "WeMo Ironing Room Left State"
 
+#### TP-Link Power Usage ####
+# switch.tp_iron_plug #
+    tplink_iron_plug:
+      value_template: '{{ (states.switch.tp_iron_plug.attributes["Current consumption"] ) | round (1) }}'
+      entity_id: switch.tp_iron_plug
+      friendly_name: "Power Consuption"
+
+
 ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:
       value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
@@ -213,7 +222,7 @@
       value_template: '{{ (states.sensor.temp_humid_5_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
       entity_id: sensor.temp_humid_5_temperature
-      friendly_name: "Temp_Humid_5 - Temperature"
+      friendly_name: "Loft - Temperature"
 
 ### Nest Templates
     nest_away_mode:

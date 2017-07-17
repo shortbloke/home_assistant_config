@@ -150,7 +150,7 @@
       friendly_name: "Env. Ironing Room"
       hidden: true
     sensor.Temp_Humid_5:
-      friendly_name: "Env. Temp_Humid_5"
+      friendly_name: "Env. Loft"
       hidden: true
     sensor.temp_humid_ext_1_temperature:
       friendly_name: "Outside - Temperature"
@@ -180,7 +180,7 @@
     sensor.temp_humid_5_temperature:
       hidden: true      
     sensor.temp_humid_5_humidity:
-      friendly_name: "Temp_Humid_5 - Humidity"
+      friendly_name: "Loft - Humidity"
       icon: mdi:water-percent
 
 ### Speed Test ###

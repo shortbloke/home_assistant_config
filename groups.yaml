@@ -49,6 +49,8 @@ ironing_room_view:
   view: yes
   entities:
     - group.ironing_room
+    - group.Fibaro_Multi_1
+    - group.Aeotec_Multi_1
 family_view:
   name: Family
   view: yes
@@ -126,6 +128,9 @@ ironing_room:
     - sensor.wemo_insight_state_ironing_room_left
     - sensor.wemo_insight_power_ironing_room_left
     - sensor.wemo_insight_power_today_ironing_room_left
+    - switch.tp_iron_plug
+    - sensor.tplink_iron_plug
+
 
 climate:
   name: Weather (local)
@@ -237,9 +242,11 @@ automation:
   entities:
     - automation.turn_on_twig_lights_at_sunset
     - automation.SSL_expiry_notification
-#    - automation.ironing_room_ac_on_no_motion_detected_for_30mins__tp_iron_plug
-#    - automation.ironing_room_left_on_no_motion_detected_for_30mins__wemo_1
-#    - automation.ironing_room_right_on_no_motion_detected_for_30mins__wemo_2
+   - automation.ironing_room_ac_on_no_motion_detected_for_30mins__tp_iron_plug
+   - automation.ironing_room_left_on_no_motion_detected_for_30mins__wemo_1
+   - automation.ironing_room_right_on_no_motion_detected_for_30mins__wemo_2
+     # - automation.zwave_heal_at_231am
+     # - automation.zwave_soft_reset_at_230am
 
 Devices:
   name: Devices
@@ -247,3 +254,36 @@ Devices:
     - device_tracker.martins_iphone
     - sensor.martins_iphone_battery_level
     - sensor.martins_iphone_battery_state
+
+Fibaro_Multi_1:
+  name: Fibaro Multisensor
+  entities:
+    - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_general
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    # - zwave.fibaro_system_fgms001zw5_motion_sensor
+
+Aeotec_Multi_1:
+  name: Aeotec Multisensor
+  entities:
+    - binary_sensor.aeotec_zw100_multisensor_6_sensor
+    - sensor.aeotec_zw100_multisensor_6_alarm_level
+    - sensor.aeotec_zw100_multisensor_6_alarm_type
+    - sensor.aeotec_zw100_multisensor_6_burglar
+    - sensor.aeotec_zw100_multisensor_6_luminance
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity
+    - sensor.aeotec_zw100_multisensor_6_sourcenodeid
+    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet
+    # - zwave.aeotec_zw100_multisensor_6
+
+# Aeotec_Stick:
+#   name: Z-Wave Aeotec_Stick
+#   entites:
+#     - zwave.aeotec_zw090_zstick_gen5_eu
