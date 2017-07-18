@@ -26,8 +26,7 @@
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
       to: '0'
       for:
-        # minutes: 30
-        minutes: 1
+        minutes: 30
   condition:
     - condition: state
       entity_id: sensor.wemo_insight_state_ironing_room_left
@@ -47,8 +46,7 @@
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
       to: '0'
       for:
-        # minutes: 30
-        minutes: 1
+        minutes: 30
   condition:
     - condition: state
       entity_id: sensor.wemo_insight_state_ironing_room_right
@@ -61,26 +59,25 @@
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room right wemo"
 
-# - id: a_IronOn_3
-#   alias: Ironing Room AC On No Motion
-#   trigger:
-#     - platform: state
-#       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-#       to: '0'
-#       for:
-#         # minutes: 30
-#         minutes: 1        
-#   condition:
-#     # TO FIX - This causes an error. 
-#     - condition: template
-#       value_template: '{{ states.tplink_iron_plug_power > 10 }}'
-#   action:
-#     - service: homeassistant.turn_off
-#       entity_id: switch.tp_iron_plug
-#     - service: notify.notify
-#       data:
-#         title: "Ironing Room Alert!"
-#         message: "No Motion Detected - Turning off Ironing room left TP-Link Plug"
+- id: a_IronOn_3
+  alias: Ironing Room AC On No Motion
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+      for:
+        minutes: 30       
+  condition:
+    # TO FIX - This causes an error. 
+    - condition: template
+      value_template: '{{ states.sensor.tplink_iron_plug_power.state | int > 10 }}'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_iron_plug
+    - service: notify.notify
+      data:
+        title: "Ironing Room Alert!"
+        message: "No Motion Detected - Turning off Ironing room left TP-Link Plug"
 
 # - id: a_zwave_auto_soft_reset 
 #   alias: ZWave soft reset at 2:30am
