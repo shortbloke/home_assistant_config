@@ -191,11 +191,14 @@
 
 #### TP-Link Power Usage ####
 # switch.tp_iron_plug #
-    tplink_iron_plug:
-      value_template: '{{ (states.switch.tp_iron_plug.attributes["Current consumption"] ) | round (1) }}'
+    tplink_iron_plug_power:
+      # TO FIX - This causes an error. 
+      #value_template: '{{ (states.switch.tp_iron_plug.attributes["Current consumption"].split(' ')[0]) | round (1) }}'
+      # This works but outputs a string including value {space} W
+      value_template: '{{ (states.switch.tp_iron_plug.attributes["Current consumption"]) | round (1) }}'
+      unit_of_measurement: 'W'
       entity_id: switch.tp_iron_plug
       friendly_name: "Power Consuption"
-
 
 ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:

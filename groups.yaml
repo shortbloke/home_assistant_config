@@ -129,7 +129,7 @@ ironing_room:
     - sensor.wemo_insight_power_ironing_room_left
     - sensor.wemo_insight_power_today_ironing_room_left
     - switch.tp_iron_plug
-    - sensor.tplink_iron_plug
+    - sensor.tplink_iron_plug_power
 
 
 climate:
@@ -242,9 +242,9 @@ automation:
   entities:
     - automation.turn_on_twig_lights_at_sunset
     - automation.SSL_expiry_notification
-   - automation.ironing_room_ac_on_no_motion_detected_for_30mins__tp_iron_plug
-   - automation.ironing_room_left_on_no_motion_detected_for_30mins__wemo_1
-   - automation.ironing_room_right_on_no_motion_detected_for_30mins__wemo_2
+    - automation.ironing_room_ac_on_no_motion
+    - automation.ironing_room_left_wemo_on_no_motion
+    - automation.ironing_room_right_wemo_on_no_motion
      # - automation.zwave_heal_at_231am
      # - automation.zwave_soft_reset_at_230am
 
