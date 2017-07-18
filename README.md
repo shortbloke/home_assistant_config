@@ -33,7 +33,7 @@ This is my currently active set of configuration files for my HomeAssistant runn
 
 ## Other features being experimented with:
  - MQTT (configured not in use)
- - TTS (Text To Speech) via Google_SAY (configured not in use
+ - TTS (Text To Speech) via Google_SAY (configured not in use)
  
 ## Automation Scripts:
 - Turning on lights an hour before sunset
