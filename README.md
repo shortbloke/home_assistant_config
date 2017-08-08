@@ -1,5 +1,5 @@
 # Shortbloke's Home Assistant Configuration Files
-[Home Assistant](https://home-assistant.io) Configuration Files 
+[Home Assistant](https://home-assistant.io) Configuration Files [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
 
 This is my currently active set of configuration files for my HomeAssistant running on Raspberry Pi. Integrating with:
 
