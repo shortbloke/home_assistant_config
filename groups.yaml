@@ -285,6 +285,7 @@ Aeotec_Multi_1:
     - sensor.aeotec_zw100_multisensor_6_sourcenodeid
     - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
+    - sensor.aeotec_zw100_multisensor_6_dew_point
     # - zwave.aeotec_zw100_multisensor_6
 
 # Aeotec_Stick:
