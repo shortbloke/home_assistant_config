@@ -181,13 +181,14 @@ history:
     domains:
       - automation
     entities:
-      # Nest Protect
+      # Nest
       - sensor.upstairs_nest_protect_battery_health
       - sensor.upstairs_nest_protect_co_status
       - sensor.upstairs_nest_protect_smoke_status
       - sensor.downstairs_nest_protect_battery_health
       - sensor.downstairs_nest_protect_co_status
       - sensor.downstairs_nest_protect_smoke_status
+      - sensor.nest_away_mode
       # Energy Sensor Totals
       - sensor.energy_sensor_a_total_usage
       - sensor.energy_sensor_b_total_usage
