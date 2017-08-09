@@ -1,72 +1,57 @@
+#### configuration.yaml ####
+## Core Config ##
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: Home
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
-  temperature_unit: C
-  # Impacts weather/sunrise data
   elevation: !secret evelation_loc_home
-  # metric for Metric, imperial for Imperial
-  unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/London
-
+  temperature_unit: C
+  unit_system: metric
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
-zone:
-  name: Work
-  latitude: !secret latitude_loc_work
-  longitude: !secret longitude_loc_work
-  radius: 250
-  icon: mdi:worker
+## Hass Web Config ##
+http:
+  api_password: !secret http_api_password
+  ssl_certificate: !secret http_ssl_certificate
+  ssl_key: !secret http_ssl_key
+  base_url: !secret http_base_url
 
-zone 2: 
-  name: Forest
-  latitude: !secret latitude_loc_forest
-  longitude: !secret longitude_loc_forest
-  radius: 250
-  icon: mdi:school
+## Hass UI Config ##
+frontend:
+  # Not implemented yet, but > 0.49 supports themes.
+ios:
+  # iOS App Support
+config:
+  # Add Configutional Panel
 
-ifttt:
-  key: !secret ifttt_key
+## Hardware Components ##
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
-mqtt:
-  broker: 127.0.0.1
-  port: 1883
-  client_id: home-assistant-1
-  username: !secret MQTT_username
-  password: !secret MQTT_password
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-    qos: 1
-    retain: true
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-    qos: 1
-    retain: true  
+media_player:
+  - platform: sonos
 
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
   debug: True
   dummy: False
 
+wemo:
+  # Auto discovers devices
+
 zwave:
   usb_path: /dev/ttyACM0
 
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-
+## Software  Components ##
 climate:
   platform: nest
 
-### Amazon Echo Support for RFXTRX ###
 emulated_hue:
   type: alexa
-  host_ip: 192.168.0.42
+  host_ip: 192.168.0.42 # DHCP Reservation
   listen_port: 8300
   expose_by_default: true
   exposed_domains:
@@ -74,11 +59,8 @@ emulated_hue:
     - light
     - scene
 
-http:
-  api_password: !secret http_api_password
-  ssl_certificate: !secret http_ssl_certificate
-  ssl_key: !secret http_ssl_key
-  base_url: !secret http_base_url
+ifttt:
+  key: !secret ifttt_key
   
 tts:
   - platform: google
@@ -86,15 +68,9 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
-media_player:
-  - platform: sonos
-
-# IOS Support
-ios:
-
-### Auto Discover ###
-wemo:
+## Misc ##
 discovery:
+sun:
 updater:
 
 ####################################################
@@ -102,106 +78,22 @@ updater:
 #                     Includes                     #
 #                                                  #
 ####################################################
-sensor: !include sensors.yaml
-binary_sensor: !include binary_sensors.yaml
-switch: !include switches.yaml
-light: !include lights.yaml
-group: !include groups.yaml
-scene: !include scenes.yaml
 automation: !include automations.yaml
+binary_sensor: !include binary_sensors.yaml
+group: !include groups.yaml
+history: !include history.yaml
+light: !include lights.yaml
+logbook: !include logbook.yaml
+logger: !include logger.yaml
+mqtt: !include mqtt.yaml
+recorder: !include recorder.yaml
+scene: !include scenes.yaml
 script: !include scripts.yaml
+sensor: !include sensors.yaml
 shell_command: !include shell_command.yaml
+switch: !include switches.yaml
 
-# Directories
-#automation: !include_dir_merge_list automation 
+### Include All files with specified directory ###
+zone: !include_dir_list zones/
 
 ####################################################
-
-logger:
-  default: warning
-  logs:
-    # homeassistant.components.emulated_hue: debug
-    homeassistant.components.rfxtrx: info
-    # homeassistant.components.rfxtrx: debug
-    # homeassistant.core: debug
-    # homeassistant.automation: debug
-
-recorder:
-  purge_days: 7
-  include:
-    domains: 
-      - sensor
-      - device_tracker
-      - automation
-  exclude:
-    entities:
-      - sensor.last_boot
-      - sensor.date
-      - sensor.sun
-      - sensor.moon
-      - sensor.ssl_cert_expiry
-      # Aeotec
-      - sensor.aeotec_zw100_multisensor_6_alarm_type
-      - sensor.aeotec_zw100_multisensor_6_alarm_level
-      # - sensor.aeotec_zw100_multisensor_6_burglar
-      - sensor.aeotec_zw100_multisensor_6_luminance
-      - sensor.aeotec_zw100_multisensor_6_sourcenodeid
-      - sensor.aeotec_zw100_multisensor_6_ultraviolet
-      - sensor.aeotec_zw100_multisensor_6_dew_point
-      # Fibaro
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-      #   - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_general
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-      # Phones
-      - sensor.martins_iphone_battery_level
-      - sensor.martins_iphone_battery_state
-      - sensor.michelles_iphone_battery_level
-      - sensor.michelles_iphone_battery_state
-      # HP MicroServer Gen 6 
-      - sensor.server_server_name
-      - sensor.server_glance_power_supplies
-      - sensor.server_glance_processor
-      - sensor.server_glance_storage
-      - sensor.server_glance_memory
-      - sensor.server_glance_temperatures
-      - sensor.server_glance_fans
-      - sensor.server_glance_network
-      - sensor.server_glance_bios
-      - sensor.server_cpu_fanspeed
-      # Travis custom sensors
-      - sensor.travis_build_label
-      - sensor.travis_status
-
-history:
-  exclude: 
-    domains:
-      - automation
-    entities:
-      # Nest
-      - sensor.upstairs_nest_protect_battery_health
-      - sensor.upstairs_nest_protect_co_status
-      - sensor.upstairs_nest_protect_smoke_status
-      - sensor.downstairs_nest_protect_battery_health
-      - sensor.downstairs_nest_protect_co_status
-      - sensor.downstairs_nest_protect_smoke_status
-      - sensor.nest_away_mode
-      # Energy Sensor Totals
-      - sensor.energy_sensor_a_total_usage
-      - sensor.energy_sensor_b_total_usage
-
-logbook:
-  exclude:
-    entities:
-      # Aeotec
-      - sensor.aeotec_zw100_multisensor_6_alarm_type
-      # Fibaro
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-     
-sun:
-conversation:
-frontend:
-config:

@@ -1,0 +1,16 @@
+#### mqtt.yaml ####
+broker: 127.0.0.1
+port: 1883
+client_id: home-assistant-1
+username: !secret MQTT_username
+password: !secret MQTT_password
+birth_message:
+  topic: 'hass/status'
+  payload: 'online'
+  qos: 1
+  retain: true
+will_message:
+  topic: 'hass/status'
+  payload: 'offline'
+  qos: 1
+  retain: true
