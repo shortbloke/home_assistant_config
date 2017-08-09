@@ -5,10 +5,6 @@
   automatic_add: True
   devices:
 ### Flamerite Fire ###
-#    0b11000a015b6eff01010f80:
-#      name: Flamerite_Power
-#    0b11000f015b6eff02010f70:
-#      name: Flamerite_Heat
     0b110008015b6eff03010f80:
       name: Flamerite_Dimmer1
     0b11000d015b6eff04010f80:
