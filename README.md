@@ -53,8 +53,8 @@ The following devices are controlled via my Home Assisant configurations. They m
    - Provides: Discovery component will automatically detect TVs, report status and can be controlled via component.
    - Limitations: Not all Smart TV models are fully supported.
  - [Apple TV](https://www.apple.com/uk/tv/)
-  - Home Assistant Component: [Apple_tv](https://home-assistant.io/components/apple_tv/)
-  - Provides: (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls.
+   - Home Assistant Component: [Apple_tv](https://home-assistant.io/components/apple_tv/)
+   - Provides: (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls.
 
 ## Sensors providing data to Home Assistant (input only)
 ### Voice Control 
