@@ -118,7 +118,7 @@ shell_command: !include shell_command.yaml
 ####################################################
 
 logger:
-  default: error
+  default: warning
   logs:
     # homeassistant.components.emulated_hue: debug
     homeassistant.components.rfxtrx: info
@@ -141,15 +141,17 @@ recorder:
       - sensor.moon
       - sensor.ssl_cert_expiry
       # Aeotec
+      - sensor.aeotec_zw100_multisensor_6_alarm_type
       - sensor.aeotec_zw100_multisensor_6_alarm_level
-      - sensor.aeotec_zw100_multisensor_6_burglar
+      # - sensor.aeotec_zw100_multisensor_6_burglar
       - sensor.aeotec_zw100_multisensor_6_luminance
       - sensor.aeotec_zw100_multisensor_6_sourcenodeid
       - sensor.aeotec_zw100_multisensor_6_ultraviolet
       - sensor.aeotec_zw100_multisensor_6_dew_point
       # Fibaro
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
       - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-      - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+      #   - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
       - sensor.fibaro_system_fgms001zw5_motion_sensor_general
       - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
       - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
