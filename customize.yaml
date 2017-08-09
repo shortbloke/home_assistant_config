@@ -1,4 +1,4 @@
-#######CUSTOMIZE SWITCHES########
+### Customize.yaml ###
 
 #### Lightwave RF Socket Switches ####
     switch.lwrf_conservatory_1:
@@ -81,7 +81,7 @@
     scene.movie:
       emulated_hue_name: "Mood movie"
 
-#######CUSTOMIZE MEDIA PLAYERS########
+### CUSTOMIZE MEDIA PLAYERS ###
     media_player.living_room:
       friendly_name: "Sonos - Living Room"
     media_player.kitchen:
@@ -190,3 +190,9 @@
       icon: mdi:upload
     sensor.speedtest_ping:
       icon: mdi:clock
+
+### travis sensors for autoamtion only ###
+    sensor.travis_build_label:
+      hidden: true
+    sensor.travis_status:
+      hidden: true

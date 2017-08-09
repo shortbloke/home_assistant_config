@@ -1,0 +1,7 @@
+#### Scripts.yaml ####
+
+get_latest_config:
+  alias: 'Update config and restart '
+  sequence:
+    - service: shell_command.git_pull
+    - service: homeassistant.restart

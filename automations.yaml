@@ -79,18 +79,14 @@
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room left TP-Link Plug"
 
-# - id: a_zwave_auto_soft_reset 
-#   alias: ZWave soft reset at 2:30am
-#   trigger:
-#     - platform: time
-#       at: '2:30:00'
-#   action:
-#     - service: zwave.soft_reset
-
-# - id: a_zwave_auto_network_Heal
-#   alias: ZWave heal at 2:31am
-#   trigger:
-#     - platform: time
-#       at: '2:31:00'
-#   action:
-#     - service: zwave.heal_network
+- id: a_config_update
+  alias: Update config HASS if travis build is successfull
+  trigger:
+    - platform: state
+      entity_id: sensor.travis_build_label
+  condition:
+    - condition: state
+      entity_id: sensor.travis_status
+      state: 'Success'
+  action:
+    - service: script.get_latest_config
