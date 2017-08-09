@@ -24,7 +24,7 @@ The following devices are controlled via my Home Assisant configurations. They m
      - Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))
      - Inline Dimmer module ([JSJSLW831](http://amzn.to/2vLdcjH))
      - Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assisant Control)
-   - Home Assistant Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/)
+   - Home Assistant Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/) & related sub components
    - Provides: LightwaveRF devices provide an easy solution for retrofitting automation into existing homes. Many other technologies require for example both Live and Neutral to be present at light switches, which is uncommon for UK installations at least.
    - Limitation: One-Way communication, you can not query state to know devices status, nor can you confirm if commands sent were obeyed.
  - [Belkin Wemo Insight Switch, WiFi SmartPlug](http://amzn.to/2vMEtmN)
