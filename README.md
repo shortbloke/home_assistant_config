@@ -11,19 +11,21 @@ This is my currently active set of configuration files for my [Home Assistant](h
 
 ## Devices controlled by Home Assistant
 The following devices are controlled via my Home Assisant configurations. They may also provide sensors as input.
+### Voice Control 
  - [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz)
    - Home Assistant Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)
-   - Provides: Voice control input to Home Assisant 
+   - Provides: Voice control input to Home Assisant
+### Climate Control
  - [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp)
    - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & and related sub components
    - Provides: Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant
-   - Limitations: 
+   - Limitations:
      - Requires setup of a Nest Developer account (free)
      - Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.
  ### Power and Lighting control
  - [Lightwave RF Devices](https://www.lightwaverf.com)
    - Current devices in use:
-	 - Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))
+     - Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))
      - Inline Dimmer module ([JSJSLW831](http://amzn.to/2vLdcjH))
      - Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assisant Control)
    - Home Assistant Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/)
