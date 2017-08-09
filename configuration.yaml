@@ -89,13 +89,6 @@ tts:
 media_player:
   - platform: sonos
 
-# camera:
-#  platform: ffmpeg
-#  name: Cam
-#  input: !secret ffmpeg_cam_rtsp_stream_source
-#  ffmpeg_bin: /usr/bin/ffmpeg
-#  extra_arguments: -q:v 2
-
 # IOS Support
 ios:
 
