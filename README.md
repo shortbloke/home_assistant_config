@@ -13,7 +13,7 @@ This is my currently active set of configuration files for my [Home Assistant](h
 The following devices are controlled via my Home Assisant configurations. They may also provide sensors as input.
 ### Climate Control
  - [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp)
-   - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & and related sub components
+   - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
    - Provides: Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant
    - Limitations:
      - Requires setup of a Nest Developer account (free)
@@ -53,8 +53,8 @@ The following devices are controlled via my Home Assisant configurations. They m
    - Provides: Discovery component will automatically detect TVs, report status and can be controlled via component.
    - Limitations: Not all Smart TV models are fully supported.
  - [Apple TV](https://www.apple.com/uk/tv/)
-   - Home Assistant Component: [Apple_tv](https://home-assistant.io/components/apple_tv/)
-   - Provides: (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls.
+   - Home Assistant Component: [Apple_tv](https://home-assistant.io/components/apple_tv/) & related sub components 
+   - Provides: (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls. Plus provides access to a remote control.
 
 ## Sensors providing data to Home Assistant (input only)
 ### Voice Control 
@@ -63,7 +63,7 @@ The following devices are controlled via my Home Assisant configurations. They m
    - Provides: Voice control input to Home Assisant
 ### Hardware sensors
  - [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4)
-   - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) and related sub components
+   - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
    - Provides: Monitoring of Smoke and CO2 alarms and system health.
    - Limitations: Requires setup of a Nest Developer account (free)
  - Z-Wave Devices:
