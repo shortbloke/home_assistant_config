@@ -80,12 +80,12 @@ The following devices are controlled via my Home Assisant configurations. They m
  - A range of other 433Mhz devices:
    - Home Assistant Component: [RfxTrx](https://home-assistant.io/components/rfxtrx/)
    - Device: Owl Energy Monitor
-     - Notes: Still being investigated
+     - Note: Still being investigated
    - Device: Internal Temperature and Humidity monitors [WH5](http://www.ebay.co.uk/itm/Extra-Sensor-for-Weather-Station-with-temp-humidity-f-cast-base-Baro-press/261788376051)
-     - Notes: Temperature readings from WH5 are 40 DegC higher than they should be. This can be corrected by use of a template i.e. `value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'`
+     - Note: Temperature readings from WH5 are 40 DegC higher than they should be. This can be corrected by use of a template i.e. `value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'`
      - Research page: [Glen Pitt-Pladdy Blog](https://www.pitt-pladdy.com/blog/_20131228-233456_0000_Imagintronix_Temperature_Humidity_Sensor_Protocol_WH15B_for_WH1400_/)
    - Device: External Temperature and Humidty sensor, Oregon THGN132N
-     - Notes: Seems to work well, no special template required.
+     - Note: Seems to work well, no special template required.
  - HP ILO sensor information
    - Home Assistant Component: [HP_ilo](https://home-assistant.io/components/sensor.hp_ilo/)
    - Provides: Sensor information for HP Servers with ILO such as overall health, temperature at specific points in the chassis.
