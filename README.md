@@ -11,10 +11,6 @@ This is my currently active set of configuration files for my [Home Assistant](h
 
 ## Devices controlled by Home Assistant
 The following devices are controlled via my Home Assisant configurations. They may also provide sensors as input.
-### Voice Control 
- - [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz)
-   - Home Assistant Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)
-   - Provides: Voice control input to Home Assisant
 ### Climate Control
  - [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp)
    - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & and related sub components
@@ -61,6 +57,10 @@ The following devices are controlled via my Home Assisant configurations. They m
   - Provides: (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls.
 
 ## Sensors providing data to Home Assistant (input only)
+### Voice Control 
+ - [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz)
+   - Home Assistant Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)
+   - Provides: Voice control input to Home Assisant
 ### Hardware sensors
  - [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4)
    - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) and related sub components
