@@ -3,14 +3,14 @@
 This is my currently active set of configuration files for my [Home Assistant](https://home-assistant.io) running on Raspberry Pi. Integrating with:
 
 ## Core Hardware of Home Assistant Hub
- - [Raspberry Pi 3 Model B](http://amzn.to/2hI9tyc) - Core control system, running Rasbian.
- - [RFXCOM RFXtrx433E](http://amzn.to/2wFwO63) - Enables RX/TX of 433Mhz signals over a range of protcols.
-   - Note: Lotds of different protols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security. If you capture the code you can control the device, as I found out by accidentially controlling a neighbours plug-in sockets.
+ - [Raspberry Pi 3 Model B](http://amzn.to/2hI9tyc) - Core control system, running Raspbian.
+ - [RFXCOM RFXtrx433E](http://amzn.to/2wFwO63) - Enables RX/TX of 433Mhz signals over a range of protocols.
+   - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security. If you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
  - [Aeotec Z-Stick Gen5 (ZW090)](http://amzn.to/2wrrgwI) - Provides interface to Z-Wave Mesh Network devices.
  - Plus case, Power Supply and MicroSD Card.
 
 ## Devices controlled by Home Assistant
-The following devices are controlled via my Home Assisant configurations. They may also provide sensors as input.
+The following devices are controlled via my Home Assistant configurations. They may also provide sensors as input.
 ### Climate Control
  - [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp)
    - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
@@ -23,7 +23,7 @@ The following devices are controlled via my Home Assisant configurations. They m
    - Current devices in use:
      - Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))
      - Inline Dimmer module ([JSJSLW831](http://amzn.to/2vLdcjH))
-     - Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assisant Control)
+     - Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assistant Control)
    - Home Assistant Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/) & related sub components
    - Provides: LightwaveRF devices provide an easy solution for retrofitting automation into existing homes. Many other technologies require for example both Live and Neutral to be present at light switches, which is uncommon for UK installations at least.
    - Limitation: One-Way communication, you can not query state to know devices status, nor can you confirm if commands sent were obeyed.
@@ -38,9 +38,9 @@ The following devices are controlled via my Home Assisant configurations. They m
    - Home Assistant Component: [switch.tplink](https://home-assistant.io/components/switch.tplink/)
    - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo.
    - Limitations: Too early to report.
- - [Flamerite Eletric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
+ - [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
    - Home Assistant Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)
-   - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Tranceiver was able to dectect the codes from the remote and allow Home Assistant to send the same codes
+   - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes
 ### Media Players
  - [Sonos](http://www.sonos.com)
    - Home Assistant Component: [mediaplayer.sonos](https://home-assistant.io/components/media_player.sonos/)
@@ -60,7 +60,7 @@ The following devices are controlled via my Home Assisant configurations. They m
 ### Voice Control 
  - [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz)
    - Home Assistant Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)
-   - Provides: Voice control input to Home Assisant
+   - Provides: Voice control input to Home Assistant
 ### Hardware sensors
  - [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4)
    - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
@@ -77,7 +77,7 @@ The following devices are controlled via my Home Assisant configurations. They m
      - Provides: A range of movement, light and temperature sensors in a single battery powered device.
      - Limitations:
        - Setup may take multiple attempts. Watch [BRUH Z-Wave Video](https://www.youtube.com/watch?v=ajklDCaOGwY) to learn before attempting setup.
-       - No humidty sensor
+       - No humidity sensor
        - Battery only, which means it goes to sleep a lot to save power. Currently testing in parallel to see if that really matters.
  - A range of other 433Mhz devices:
    - Home Assistant Component: [RfxTrx](https://home-assistant.io/components/rfxtrx/)
@@ -86,17 +86,17 @@ The following devices are controlled via my Home Assisant configurations. They m
    - Device: Internal Temperature and Humidity monitors [WH5](http://www.ebay.co.uk/itm/Extra-Sensor-for-Weather-Station-with-temp-humidity-f-cast-base-Baro-press/261788376051)
      - Note: Temperature readings from WH5 are 40 DegC higher than they should be. This can be corrected by use of a template i.e. `value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'`
      - Research page: [Glen Pitt-Pladdy Blog](https://www.pitt-pladdy.com/blog/_20131228-233456_0000_Imagintronix_Temperature_Humidity_Sensor_Protocol_WH15B_for_WH1400_/)
-   - Device: External Temperature and Humidty sensor, Oregon THGN132N
+   - Device: External Temperature and Humidity sensor, Oregon THGN132N
      - Note: Seems to work well, no special template required.
  - HP ILO sensor information
    - Home Assistant Component: [HP_ilo](https://home-assistant.io/components/sensor.hp_ilo/)
    - Provides: Sensor information for HP Servers with ILO such as overall health, temperature at specific points in the chassis.
 
 ### Software sensors
- - [Sun](https://home-assistant.io/components/sun/) - Provides details on sun posistion, enabling automation to be triggered, e.g. at dusk and dawn.
+ - [Sun](https://home-assistant.io/components/sun/) - Provides details on sun position, enabling automation to be triggered, e.g. at dusk and dawn.
  - [Moon](https://home-assistant.io/components/sensor.moon/) - Provides details on the phase of the moon.
  - [System Monitor](https://home-assistant.io/components/sensor.systemmonitor/) - Provides information on the host system Home Assistant is running on.
- - [Home Assisatnt SSL Certificate Expiry Checking](https://home-assistant.io/docs/ecosystem/certificates/lets_encrypt/#7---set-up-a-sensor-to-monitor-the-expiry-date-of-the-certificate) - Provides a sensor to show the number of days until the current certificate in use expires. So that it can be renewed before it expirs.
+ - [Home Assistant SSL Certificate Expiry Checking](https://home-assistant.io/docs/ecosystem/certificates/lets_encrypt/#7---set-up-a-sensor-to-monitor-the-expiry-date-of-the-certificate) - Provides a sensor to show the number of days until the current certificate in use expires. So that it can be renewed before it expires.
 
 ### Location Tracking
  - iOS App - [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401)
