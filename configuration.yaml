@@ -169,7 +169,10 @@ recorder:
       - sensor.server_glance_fans
       - sensor.server_glance_network
       - sensor.server_glance_bios
-      - sensor.server_cpu_fanspeed  
+      - sensor.server_cpu_fanspeed
+      # Travis custom sensors
+      - sensor.travis_build_label
+      - sensor.travis_status
 
 history:
   exclude: 
