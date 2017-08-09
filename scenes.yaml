@@ -20,6 +20,7 @@
     switch.LWRF_LivingRoom_Standard_Lamp: off
     light.LWRF_LivingRoom_Main:
       state: on
+      # Brightness below 27 doesn't appear to trigger tunning the lights on. Possible bug.
       brightness: 27
     switch.lwrf_displaycabinetlight: off
     light.LWRF_DiningRoom_Main: off
