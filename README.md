@@ -1,4 +1,4 @@
-# Shortbloke's Home Assistant Configuration Files [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
+# Shortbloke's Home Assistant Configuration Files
 
 This is my currently active set of configuration files for my [Home Assistant](https://home-assistant.io) running on Raspberry Pi.
 If you are intested in following my progress be sure ⭐️ Star this github repository. 
@@ -6,6 +6,11 @@ If you are intested in following my progress be sure ⭐️ Star this github rep
 I also need to start to update [my blog](https://www.martinrowan.co.uk) more frequently to share some of the things I'm learning along this journey. Perhaps interest here will provide greater motivation.
 
 These configuration files enable intgration with a wide range of systems through the power of Home Assistant.
+
+### Configuration File Status
+Each commit triggers a deployement to the latest homeassisatnt version with Python 3.4. This is done though TravisCI.
+
+The current status of this project is: [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
 
 ## Core Hardware of Home Assistant Hub
  - [Raspberry Pi 3 Model B](http://amzn.to/2hI9tyc) - Core control system, running Raspbian.
