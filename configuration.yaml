@@ -79,7 +79,8 @@ updater:
 #                                                  #
 ####################################################
 automation: !include automations.yaml
-binary_sensor: !include binary_sensors.yaml
+# Removing binary sensor, since only one is rfxtrx which I believe is causing stability issue
+# binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 history: !include history.yaml
 light: !include lights.yaml
