@@ -2,7 +2,7 @@
 default: error
 logs:
   # homeassistant.components.emulated_hue: debug
-  homeassistant.components.rfxtrx: debug
+  homeassistant.components.rfxtrx: info
   # homeassistant.components.rfxtrx: debug
   #homeassistant.core: debug
   # homeassistant.automation: debug
