@@ -70,6 +70,11 @@ tts:
 
 ## Misc ##
 discovery:
+  ignore:
+    - samsung_tv
+    - apple_tv
+    - plex_mediaserver
+    
 sun:
 updater:
 
