@@ -1,8 +1,7 @@
 #######Global Customization########
-#### Belkin Wemo Insight Switch ####
-    switch.ironing_room*:
-      entity_picture: /local/belkin_wemo.png
-      emulated_hue: false
+#### TP Link HS110 Smart Energy Monitoring Switch ####
+    sensor.tp_hs110_*_power:
+      icon: mdi:chart-line
 #### Saunders Devices ###
     switch.saunders_*:
       hidden: true

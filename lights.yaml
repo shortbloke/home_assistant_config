@@ -2,7 +2,7 @@
 
 # RFXCOM 433 Sensors
 - platform: rfxtrx
-  automatic_add: True
+  automatic_add: False
   devices:
 ### Flamerite Fire ###
     0b110008015b6eff03010f80:

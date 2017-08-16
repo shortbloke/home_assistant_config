@@ -39,9 +39,6 @@ rfxtrx:
   debug: True
   dummy: False
 
-wemo:
-  # Auto discovers devices
-
 zwave:
   usb_path: /dev/ttyACM0
 

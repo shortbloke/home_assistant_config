@@ -1,6 +1,6 @@
 #### Switches.yaml ####
 - platform: rfxtrx
-  automatic_add: True
+  automatic_add: False
   devices:
 ### Lightwave RF ###
     0a140000f4f6ad01000080:
@@ -51,6 +51,13 @@
     0b110046005243ea01000070:
       name: Saunders_5
 
+### TP Link Switches ###
 - platform: tplink
   host: 192.168.0.18 # DHCP reservation
-  name: TP_Iron_Plug
+  name: TP_HS110_1
+- platform: tplink
+  host: 192.168.0.50 # DHCP reservation
+  name: TP_HS110_2
+- platform: tplink
+  host: 192.168.0.53 # DHCP reservation
+  name: TP_HS110_3

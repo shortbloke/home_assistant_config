@@ -41,13 +41,13 @@ The following devices are controlled via my Home Assistant configurations. They 
    - Home Assistant Component: [Wemo](https://home-assistant.io/components/wemo/)
    - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage.
    - Limitations: 
-     - Questionable reliability: I've had 1 that has died less than a year old.
+     - Questionable reliability: I've had two now fail with similar symptoms when turning off devices which pull a considerable current, ~18kW. This is significantly less than the 13A/240V rated maximum. I've now removed all Wemo Insight Plugs from my home.
      - Setup problems: Early firmware versions had problems with setup, especially in environments with multiple access points.
      - No memory of last power state. In the event of a recovery from a power cut, the device connected will remain off. 
  - [TP-Link HS110 WiFi Smart Plug with energy monitoring](http://amzn.to/2vgQU8Q)
    - Home Assistant Component: [switch.tplink](https://home-assistant.io/components/switch.tplink/)
    - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo.
-   - Limitations: Too early to report.
+   - Limitations: Nothing significant so far. I now have 3 of these deivices to replace Wemo Insight Plugs. Hoping they last longer.
  - [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
    - Home Assistant Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)
    - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes

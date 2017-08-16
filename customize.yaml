@@ -92,8 +92,6 @@
       friendly_name: "Sonos - Master Bedroom"
     media_player.bathroom:
       friendly_name: "Sonos - Ensuite"
-    media_player.roku_1mk3d6034563:
-      friendly_name: "Now TV Box"
 
 #### HP MicroServer ####
     sensor.server_server_power_state:
@@ -134,7 +132,6 @@
       hidden: true
     binary_sensor.hallway_thermostat_house_online:
       hidden: true
-    
 
 ### Portable Temperature and Humidity Sensors ###
     sensor.Temp_Humid_1:
@@ -196,3 +193,14 @@
       hidden: true
     sensor.travis_status:
       hidden: true
+
+### TP Link Switches ###
+    switch.TP_HS110_1:
+      friendly_name: "Ironing Room - A/C"
+      icon: mdi:air-conditioner
+    switch.TP_HS110_2:
+      friendly_name: "Ironing Room - Irons (Left)"
+      icon: mdi:power-socket-uk
+    switch.TP_HS110_3:
+      friendly_name: "Ironing Room - Irons (Right)"
+      icon: mdi:power-socket-uk
