@@ -1,27 +1,48 @@
 #### groups.yaml ####
 
-#### Views / Tabs ####
-## DEFUALT VIEW ##
+######################## VIEWS (Tabs) ########################
+## DEFUALT VIEW - HOME##
 
-#  default_view:
-#    view: yes
-#    entities:
-#      - 
+ # default_view:
+ #   view: yes
+ #   entities:
+ #     - sensor.ssl_cert_expiry
+ #     - group.conservatory_lights
+ #     - group.flamerite_fire
+ #     - group.living_room_lights
+ #     - group.dining_room_lights
+ #     - group.hall_lights
+ #     - group.ironing_room
+ #     - group.climate
+ #     - group.heating
+ #     - group.nest_protect
+ #     - group.environment
+ #     - group.energy
+ #     - group.HAPi
+ #     - group.hpilo
+ #     - group.automation
+ #     - group.shell_scripts
+ #     - group.tracked_devices
+ #     - group.Fibaro_Multi_1
+ #     - Aeotec_Multi_1
 
-## OTHER TABS ##
-conservatory_view:
-  name: Conservatory
-  view: yes
-  entities:
-    - group.conservatory_lights
-    - media_player.conservatory      
+## OTHER TABS (VIEWS) ##
 living_room_view:
   name: Living Room
   view: yes
   entities:
     - group.flamerite_fire
     - group.living_room_lights
+    - group.dining_room_lights
     - media_player.living_room
+
+conservatory_view:
+  name: Conservatory
+  view: yes
+  entities:
+    - group.conservatory_lights
+    - media_player.conservatory      
+
 hall_view:
   name: Hall
   view: yes
@@ -34,16 +55,15 @@ kitchen_view:
   name: Kitchen
   view: yes
   entities:
-#      - group.kitchen
     - media_player.kitchen
+
 master_bedroom_view:
   name: Master Bedroom
   view: yes
   entities:
-#     - group.master_bedroom
-#     - group.ensuite_bathroom
       - media_player.master_bedroom
       - media_player.bathroom
+
 ironing_room_view:
   name: Ironing Room
   view: yes
@@ -51,38 +71,39 @@ ironing_room_view:
     - group.ironing_room
     - group.Fibaro_Multi_1
     - group.Aeotec_Multi_1
+
 family_view:
   name: Family
+  icon: mdi:account-multiple
   view: yes
   entities:
-    - group.Devices
+    - group.tracked_devices
 
 system_view:
   name: Systems
+  icon: mdi:server-network
   view: yes
   entities:
-    # - group.speedtest
     - group.HAPi
     - group.hpilo
 
 automation_view:
   name: Automation
+  icon: mdi:home-automation
   view: yes
   entities:
     - group.automation
-    - group.Shell_scripts
+    - group.shell_scripts
 
-#### Groups / Cards ####
+
+######################## GROUPS (Cards) ########################
 conservatory_lights:
   name: Conservatory Lights
   entities:
     - switch.lwrf_conservatory_1
     - switch.lwrf_conservatory_2
     - switch.lwrf_conservatory_3
-#  living_room_lights:
-#    name: Living Room Lights
-#    entities:
-#      - 
+
 flamerite_fire:
   name: Fireplace
   entities:
@@ -97,27 +118,19 @@ living_room_lights:
     - light.LWRF_LivingRoom_Main
     - switch.LWRF_LivingRoom_Standard_Lamp
     - switch.LWRF_DisplayCabinetLight
+    - switch.LWRF_WaxBurner
+
+dining_room_lights:
+  name: Dining Room Lights
+  entities: 
     - light.LWRF_DiningRoom_Main
     - switch.LWRF_DiningRoom_Rennie_Mac_Lamp
-    - switch.LWRF_WaxBurner
 
 hall_lights:
   name: Hall Lights
   entities:
     - switch.LWRF_Hall_Twig_Lights
 
-#  kitchen:
-#    name: Kitchen
-#    entities:
-#      - 
-#  master_bedroom:
-#    name: Master Bedroom
-#    entities:
-#      - 
-#  ensuite_bathroom:
-#    name: Ensuite
-#    entities:
-#      - 
 ironing_room:
   name: Ironing Room
   entities:
@@ -132,13 +145,9 @@ ironing_room:
     - switch.tp_iron_plug
     - sensor.tplink_iron_plug_power
 
-
 climate:
   name: Weather (local)
   entities:
-#    - sensor.yr_temperature
-#    - sensor.yr_humidity
-#    - sensor.yr_symbol
     - sun.sun
     - sensor.moon
 
@@ -185,13 +194,6 @@ environment:
     - sensor.hallway_thermostat_house_temperature
     - sensor.hallway_thermostat_house_humidity
 
-speedtest:
-  name: SpeedTest
-  entities:
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - sensor.speedtest_ping
-
 energy:
   name: Home Monitor
   entities:
@@ -227,17 +229,6 @@ hpilo:
     - sensor.server_chipset_temperature
     - sensor.server_memory_temperature
 
-#  - server_fqdn
-#  - server_host_data
-##  - server_oa_info
-#  - server_power_status
-##  - server_power_readings
-#  - server_power_on_time
-##  - server_asset_tag
-#  - server_uid_status
-#  - server_health
-#  - network_settings  
-
 automation:
   name: Automation Scripts
   entities:
@@ -250,12 +241,12 @@ automation:
      # - automation.zwave_heal_at_231am
      # - automation.zwave_soft_reset_at_230am
 
-Shell_scripts:
+shell_scripts:
   name: Shell Scipts
   entities:
     - script.get_latest_config
 
-Devices:
+tracked_devices:
   name: Devices
   entities:
     - device_tracker.martins_iphone
