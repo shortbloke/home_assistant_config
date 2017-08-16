@@ -248,6 +248,9 @@ automation:
     - automation.update_config_hass_if_travis_build_is_successfull
      # - automation.zwave_heal_at_231am
      # - automation.zwave_soft_reset_at_230am
+  name: Shell Scipts
+  entities: 
+    - script.get_latest_config
 
 Devices:
   name: Devices
