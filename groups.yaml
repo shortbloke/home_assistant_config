@@ -70,6 +70,7 @@ automation_view:
   view: yes
   entities:
     - group.automation
+    - group.Shell_scripts
 
 #### Groups / Cards ####
 conservatory_lights:
@@ -248,8 +249,10 @@ automation:
     - automation.update_config_hass_if_travis_build_is_successfull
      # - automation.zwave_heal_at_231am
      # - automation.zwave_soft_reset_at_230am
+
+Shell_scripts:
   name: Shell Scipts
-  entities: 
+  entities:
     - script.get_latest_config
 
 Devices:
@@ -291,8 +294,3 @@ Aeotec_Multi_1:
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
     - sensor.aeotec_zw100_multisensor_6_dew_point
     # - zwave.aeotec_zw100_multisensor_6
-
-# Aeotec_Stick:
-#   name: Z-Wave Aeotec_Stick
-#   entites:
-#     - zwave.aeotec_zw090_zstick_gen5_eu
