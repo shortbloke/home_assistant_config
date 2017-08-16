@@ -43,22 +43,6 @@
       friendly_name: "Living Room - Downlights"
       emulated_hue_name: "Living room downlights"
 
-#### LightwaveRF Mode Switch - Conseveratory ###
-    switch.LWRF_Conservatory_Remote_Master:
-      emulated_hue: false
-    switch.LWRF_Conservatory_Mood_unknown:
-      emulated_hue: false
-    switch.LWRF_Conservatory_Mood_AllOff:
-      emulated_hue: false
-    switch.lwrf_conservatory_mood_master:
-      emulated_hue: false
-
-#### LightwaveRF Moods ###
-    switch.lwrf_livingroom_mood_alloff: 
-      emulated_hue: false
-    switch.lwrf_diningroom_mood_alloff:
-      emulated_hue: false
-
 #### Flamerite Fire Switches ####
     switch.flamerite_power:
       friendly_name: "Fire"
@@ -120,6 +104,7 @@
       friendly_name: "Outside Humidity"
     binary_sensor.hallway_thermostat_house_is_using_emergency_heat:
       friendly_name: "Nest Emergency Heat"
+      hiddem: true
     sensor.hallway_thermostat_house_hvac_state:
       friendly_name: "Heating Status"
     binary_sensor.hallway_thermostat_house_has_leaf:
@@ -131,6 +116,10 @@
     sensor.hallway_thermostat_house_operation_mode:
       hidden: true
     binary_sensor.hallway_thermostat_house_online:
+      hidden: true
+    sensor.hallway_thermostat_house_target:
+      hidden: true
+    sensor.hallway_thermostat_house_temperature:
       hidden: true
 
 ### Portable Temperature and Humidity Sensors ###

@@ -3,36 +3,38 @@
 ######################## VIEWS (Tabs) ########################
 ## DEFUALT VIEW - HOME##
 
- # default_view:
- #   view: yes
- #   entities:
- #     - sensor.ssl_cert_expiry
- #     - group.conservatory_lights
- #     - group.flamerite_fire
- #     - group.living_room_lights
- #     - group.dining_room_lights
- #     - group.hall_lights
- #     - group.ironing_room
- #     - group.climate
- #     - group.heating
- #     - group.nest_protect
- #     - group.environment
- #     - group.energy
- #     - group.HAPi
- #     - group.hpilo
- #     - group.automation
- #     - group.shell_scripts
- #     - group.tracked_devices
- #     - group.Fibaro_Multi_1
- #     - Aeotec_Multi_1
+# default_view:
+#   view: yes
+#   entities:
+#     - sensor.ssl_cert_expiry
+#     - group.living_room_lights
+#     - group.dining_room_lights
+#     - group.conservatory_lights
+#     # - group.flamerite_fire
+#     # - group.hall_lights
+#     # - group.ironing_room
+#     # - group.climate
+#     # - group.heating
+#     # - group.nest_protect
+#     # - group.environment
+#     # - group.energy
+#     # - group.HAPi
+#     # - group.hpilo
+#     # - group.automation
+#     # - group.shell_scripts
+#     # - group.tracked_devices
+#     # - group.Fibaro_Multi_1
+#     # - group.Aeotec_Multi_1
+#     # - group.Unsorted
 
 ## OTHER TABS (VIEWS) ##
 living_room_view:
   name: Living Room
   view: yes
   entities:
-    - group.flamerite_fire
     - group.living_room_lights
+    - group.scenes_living_room
+    - group.flamerite_fire
     - group.dining_room_lights
     - media_player.living_room
 
@@ -86,6 +88,7 @@ system_view:
   entities:
     - group.HAPi
     - group.hpilo
+    - group.zwave
 
 automation_view:
   name: Automation
@@ -151,11 +154,12 @@ heating:
   name: Heating
   entities:
     - sensor.hallwayhousecondition
-    - sensor.hallwayhousetemperature_2
-    - sensor.hallwayhousehumidity_2
+    - climate.hallway_house
+    # - sensor.hallwayhousetemperature_2
+    # - sensor.hallwayhousehumidity_2
     - sensor.hallway_thermostat_house_hvac_state
-    - sensor.hallway_thermostat_house_target
-    - sensor.hallway_thermostat_house_temperature
+    # - sensor.hallway_thermostat_house_target
+    # - sensor.hallway_thermostat_house_temperature
     - binary_sensor.hallway_thermostat_house_has_leaf
     - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
     - sensor.nest_away_mode
@@ -282,28 +286,16 @@ Aeotec_Multi_1:
     - sensor.aeotec_zw100_multisensor_6_dew_point
     # - zwave.aeotec_zw100_multisensor_6
 
-Unsorted:
-  name: Unsorted
+scenes_living_room:
+  name: Scenes Living Room
   entities:
-    # Wanted as Badges
-    - updater.updater
-    - sensor.ssl_cert_expiry
-    # Auto card
-    - climate.hallway_house
-    # Switches
-    - switch.lwrf_conservatory_mood_alloff
-    - switch.lwrf_conservatory_mood_master
-    - switch.lwrf_conservatory_mood_unknown
-    - switch.lwrf_conservatory_remote_master
-    - switch.lwrf_diningroom_mood_alloff
-    - switch.lwrf_livingroom_mood_alloff
-
-    # Scene
     - scene.bright
     - scene.comfortable
     - scene.movie
 
-    # Zwave
+zwave:
+  name: Z Wave 
+  entities:
     - zwave.aeotec_zw090_zstick_gen5_eu
     - zwave.aeotec_zw100_multisensor_6
     - zwave.fibaro_system_fgms001zw5_motion_sensor
