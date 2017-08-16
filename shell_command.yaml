@@ -1,3 +1,6 @@
 ### Shell_Commands.yaml
 
-git_pull: 'bash /home/hass/.homeassistant/git_pull.sh'
+git_pull: 'bash /home/hass/.homeassistant/bin/git_pull.sh'
+os_update: 'bash /home/hass/.homeassistant/bin/os_update.sh'
+os_reboot: 'bash /home/hass/.homeassistant/bin/reboot.sh'
+hass_update: 'bash /home/hass/.homeassistant/bin/hass_update.sh'

@@ -245,6 +245,9 @@ shell_scripts:
   name: Shell Scipts
   entities:
     - script.get_latest_config
+    - script.update_os
+    - script.update_hass
+    - script.update_all
 
 tracked_devices:
   name: Tracked Devices
