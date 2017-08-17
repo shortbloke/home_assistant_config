@@ -1,4 +1,5 @@
 #### recorder.yaml ####
+db_url: !secret db_url
 purge_days: 7
 include:
   domains: 
