@@ -177,7 +177,7 @@
     sensor.speedtest_ping:
       icon: mdi:clock
 
-### travis sensors for autoamtion only ###
+### travis sensors for automation only ###
     sensor.travis_build_label:
       hidden: true
     sensor.travis_status:

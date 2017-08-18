@@ -27,18 +27,6 @@
     0b11000f015b6eff02010f70:
       name: Flamerite_Heat
 
-### Liz and Nicks Devices ###
-    0b110057003591fe03000060:
-      name: Saunders_1
-    0b110051003591fe01030070:
-      name: Saunders_2
-    0b110048005243ea03000070:
-      name: Saunders_3
-    0b110047005243ea02000070:
-      name: Saunders_4
-    0b110046005243ea01000070:
-      name: Saunders_5
-
 ### TP Link Switches ###
 - platform: tplink
   host: 192.168.0.18 # DHCP reservation
