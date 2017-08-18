@@ -3,35 +3,39 @@
 ######################## VIEWS (Tabs) ########################
 ## DEFUALT VIEW - HOME##
 
-# default_view:
-#   view: yes
-#   entities:
-#     - sensor.ssl_cert_expiry
-#     - group.living_room_lights
-#     - group.dining_room_lights
-#     - group.conservatory_lights
-#     # - group.flamerite_fire
-#     # - group.hall_lights
-#     # - group.ironing_room
-#     # - group.climate
-#     # - group.heating
-#     # - group.nest_protect
-#     # - group.environment
-#     # - group.energy
-#     # - group.HAPi
-#     # - group.hpilo
-#     # - group.automation
-#     # - group.shell_scripts
-#     # - group.tracked_devices
-#     # - group.Fibaro_Multi_1
-#     # - group.Aeotec_Multi_1
-#     # - group.Unsorted
+default_view:
+  view: yes
+  entities:
+    - sensor.ssl_cert_expiry
+    - group.living_room_lights
+    - group.dining_room_lights
+    - group.conservatory_lights
+    - group.scenes_living_room
+    # - group.flamerite_fire
+    # - group.hall_lights
+    # - group.ironing_room
+    - group.climate
+    # - group.heating
+    - group.heating_main_page
+    # - group.nest_protect
+    # - group.environment
+    # - group.energy
+    # - group.HAPi
+    # - group.hpilo
+    # - group.automation
+    # - group.shell_scripts
+    # - group.tracked_devices
+    # - group.Fibaro_Multi_1
+    # - group.Aeotec_Multi_1
+    # - group.zwave
 
 ## OTHER TABS (VIEWS) ##
 living_room_view:
   name: Living Room
   view: yes
   entities:
+    - sensor.portable_sensor_2_temperature
+    - sensor.temp_humid_2_humidity    
     - group.living_room_lights
     - group.scenes_living_room
     - group.flamerite_fire
@@ -42,13 +46,15 @@ conservatory_view:
   name: Conservatory
   view: yes
   entities:
+    - sensor.portable_sensor_1_temperature
+    - sensor.temp_humid_1_humidity    
     - group.conservatory_lights
     - media_player.conservatory      
 
 hall_view:
   name: Hall
   view: yes
-  entities:
+  entities:   
     - group.hall_lights
     - group.heating
     - group.nest_protect
@@ -63,22 +69,43 @@ master_bedroom_view:
   name: Master Bedroom
   view: yes
   entities:
-      - media_player.master_bedroom
-      - media_player.bathroom
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity    
+    - media_player.master_bedroom
+    - media_player.bathroom
 
 ironing_room_view:
   name: Ironing Room
   view: yes
   entities:
+    - sensor.portable_sensor_4_temperature
+    - sensor.temp_humid_4_humidity    
     - group.ironing_room
     - group.Fibaro_Multi_1
     - group.Aeotec_Multi_1
+
+outside_view:
+  name: Outside
+  view: yes
+  entities:
+    - sensor.temp_humid_ext_1_temperature
+    - sensor.temp_humid_ext_1_humidity
+    - group.climate
+
+loft_view:
+  name: loft
+  view: yes
+  entities:
+    - sensor.portable_sensor_5_temperature
+    - sensor.temp_humid_5_humidity
 
 family_view:
   name: Family
   icon: mdi:account-multiple
   view: yes
   entities:
+    - device_tracker.martins_iphone
+    - device_tracker.michelles_iphone
     - group.tracked_devices
 
 system_view:
@@ -153,6 +180,9 @@ climate:
   entities:
     - sun.sun
     - sensor.moon
+    - sensor.hallway_thermostat_house_temperature
+    - sensor.temp_humid_ext_1_temperature
+    - sensor.temp_humid_ext_1_humidity    
 
 heating:
   name: Heating
@@ -167,6 +197,12 @@ heating:
     - binary_sensor.hallway_thermostat_house_has_leaf
     - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
     - sensor.nest_away_mode
+
+heating_main_page:
+  name: Heating
+  entities:
+    - climate.hallway_house
+    - sensor.hallway_thermostat_house_hvac_state
 
 nest_protect:
   name: Nest Protect
