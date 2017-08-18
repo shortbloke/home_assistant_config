@@ -49,3 +49,9 @@
 - platform: tplink
   host: 192.168.0.53 # DHCP reservation
   name: TP_HS110_3
+- platform: tplink
+  host: 192.168.0.61 # DHCP reservation
+  name: TP_HS110_4
+- platform: tplink
+  host: 192.168.0.63 # DHCP reservation
+  name: TP_HS110_5

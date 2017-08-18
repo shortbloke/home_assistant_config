@@ -28,7 +28,7 @@ The following devices are controlled via my Home Assistant configurations. They 
    - Limitations:
      - Requires setup of a Nest Developer account (free)
      - Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.
- ### Power and Lighting control
+### Power and Lighting control
  - [Lightwave RF Devices](https://www.lightwaverf.com)
    - Current devices in use:
      - Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))
@@ -118,9 +118,10 @@ The following devices are controlled via my Home Assistant configurations. They 
  - TTS (Text To Speech) via Google_SAY (configured not in use)
  
 # Automation Scripts
-- Turning on lights an hour before sunset
-- Turning off power sockets if no movement detected for 30 mins and sockets drawing more than just standby power levels. Triggers notification when sockets are turned off.
-- Send notification when Let's Encrypt SSL certificate used for HomeAssistant has less than 3 weeks left before expiry.
+ - Turning on lights an hour before sunset
+ - Turning off power sockets if no movement detected for 30 mins and sockets drawing more than just standby power levels. Triggers notification when sockets are turned off.
+ - Send notification when Let's Encrypt SSL certificate used for HomeAssistant has less than 3 weeks left before expiry.
+ - Automatically syncs down changes from github on sucessful travisCI build and restarts Home Assistant
 
 # Additional Info
 Private information is stored in secrets.yaml (not uploaded)
@@ -132,3 +133,10 @@ Private information is stored in secrets.yaml (not uploaded)
      - `travis_secrets.yaml` - Contains dummy values for the secrets used in the configuration files
      - `travis.fake_ssl_key` and `travis.fake_ssl_crt` - Are dummy files needed for a Home Assistant configuration setup to use SSL.
  - A successful Travis build triggers a git pull request to upload the current configuration, followed by restarting the home assistant service. Thus, enabling changes to be made away from the the Pi/HASS Hub, uploaded to GitHub and directly applied to the running system.
+
+# Backups
+I've implemented a simple backup plan which uses a windows file share on my Microserver to backup my Home Automation system. It provides:
+ - Weekly and Monthly full SD card backups
+ - Daily and Weekly HASS MySQL Database backups
+ - Daily and Weekly backup of .homeassistant directory, which contains running config and dependancies.
+This is driven my crontab. For more information [read these notes](https://github.com/shortbloke/home_assistant_config/issues/3)

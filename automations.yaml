@@ -58,7 +58,7 @@
         message: "No Motion Detected Turning off Ironing room Irons (Left)"
 
 - id: a_IronOn_3
-  alias: Ironing Room No Motion - Turn off Irons Right
+  alias: Ironing Room No Motion Turn off Irons Right
   trigger:
     - platform: state
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
@@ -75,6 +75,44 @@
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room Irons (Right)"
+
+- id: a_IronOn_4
+  alias: Ironing Room No Motion Turn off Ironing Table
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+      for:
+        minutes: 30       
+  condition:
+    - condition: template
+      value_template: '{{ states.sensor.tp_hs110_4_power.state | int > 10 }}'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_4
+    - service: notify.notify
+      data:
+        title: "Ironing Room Alert!"
+        message: "No Motion Detected Turning off Ironing Table"
+
+- id: a_IronOn_5
+  alias: Ironing Room No Motion Turn off Magpie Iron
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+      for:
+        minutes: 30       
+  condition:
+    - condition: template
+      value_template: '{{ states.sensor.tp_hs110_5_power.state | int > 10 }}'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_5
+    - service: notify.notify
+      data:
+        title: "Ironing Room Alert!"
+        message: "No Motion Detected - Turning off Magpie Iron"
 
 - id: a_config_update
   alias: Update config HASS if travis build is successfull

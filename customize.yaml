@@ -193,3 +193,9 @@
     switch.TP_HS110_3:
       friendly_name: "Ironing Room - Irons (Right)"
       icon: mdi:power-socket-uk
+    switch.TP_HS110_4:
+      friendly_name: "Ironing Room - Ironing Table"
+      icon: mdi:power-socket-uk
+    switch.TP_HS110_5:
+      friendly_name: "Ironing Room - Magpie Iron"
+      icon: mdi:power-socket-uk
