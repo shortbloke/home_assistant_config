@@ -31,7 +31,6 @@ __pycache__
 .HA_VERSION
 home-assistant.env
 home-assistant.*
-known_devices.yaml
 secrets.yaml
 google_calendars.yaml
 components

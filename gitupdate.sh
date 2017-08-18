@@ -1,8 +1,26 @@
 #!/bin/bash
 
+skipcheck=0
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        -s|--skipcheck)
+        skipcheck=1
+        shift
+        ;;
+        *)
+            # unknown option
+        ;;
+    esac
+shift
+done
+
 cd /home/hass/.homeassistant
 source /srv/hass/hass_venv/bin/activate
-hass --script check_config
+if [ "$skipcheck" = "0" ]; then
+	hass --script check_config
+fi
 
 while true; do
     read -p "All OK? Add files to Git? (y/n)" yn
