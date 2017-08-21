@@ -84,6 +84,12 @@ ironing_room_view:
     - group.Fibaro_Multi_1
     - group.Aeotec_Multi_1
 
+morgans_room_view:
+  name: Morgans Room
+  view: yes
+  entities:
+    - group.morgans_room
+
 outside_view:
   name: Outside
   view: yes
@@ -98,6 +104,8 @@ loft_view:
   entities:
     - sensor.portable_sensor_5_temperature
     - sensor.temp_humid_5_humidity
+    - group.hpilo
+    - switch.sonoff_loft_fan_power
 
 family_view:
   name: Family
@@ -174,6 +182,11 @@ ironing_room:
     - sensor.tp_hs110_4_power
     - switch.tp_hs110_5
     - sensor.tp_hs110_5_power
+
+morgans_room:
+  name: Lights
+  entities: 
+    - light.LWRF_Morgan_Main
 
 climate:
   name: Weather (local)

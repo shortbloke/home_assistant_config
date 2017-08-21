@@ -10,7 +10,7 @@ These configuration files enable intgration with a wide range of systems through
 ### Configuration File Status
 Each commit triggers a deployement to the latest homeassisatnt version with Python 3.4. This is done though TravisCI.
 
-The current status of this project is: [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
+The current status of these project configuration files are: [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
 
 ## Core Hardware of Home Assistant Hub
  - [Raspberry Pi 3 Model B](http://amzn.to/2hI9tyc) - Core control system, running Raspbian.
@@ -28,6 +28,7 @@ The following devices are controlled via my Home Assistant configurations. They 
    - Limitations:
      - Requires setup of a Nest Developer account (free)
      - Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.
+
 ### Power and Lighting control
  - [Lightwave RF Devices](https://www.lightwaverf.com)
    - Current devices in use:
@@ -37,20 +38,35 @@ The following devices are controlled via my Home Assistant configurations. They 
    - Home Assistant Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/) & related sub components
    - Provides: LightwaveRF devices provide an easy solution for retrofitting automation into existing homes. Many other technologies require for example both Live and Neutral to be present at light switches, which is uncommon for UK installations at least.
    - Limitation: One-Way communication, you can not query state to know devices status, nor can you confirm if commands sent were obeyed.
+ - [TP-Link HS110 WiFi Smart Plug with energy monitoring](http://amzn.to/2vgQU8Q)
+   - Home Assistant Component: [switch.tplink](https://home-assistant.io/components/switch.tplink/)
+   - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo.
+   - Limitations: Nothing significant so far. I now have 3 of these deivices to replace Wemo Insight Plugs. Hoping they last longer.
+ - [Sonoff WiFi Switch Modules](http://sonoff.itead.cc/en/) (with modified hardware and firmware)
+   - Current devices in use:
+     - Inline 10A Switch ([Sonoff Switch](http://amzn.to/2xmjjIY))
+     - Inline 16A Swith with temperature and humidity monitoring ([Sonoff TH16](http://amzn.to/2wiJKm0))
+   - Modifications:
+     - Hardware modified by solding headers onto Sonoff board to enable custome firmware updating. 
+     - Custom Firmware to provide simple web configuration and control and MQTT support. Currently using [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota) additional information  in the [project wiki](https://github.com/arendst/Sonoff-Tasmota/wiki)
+   - Home Assistant Component: [MQTT Switch](https://home-assistant.io/components/switch.mqtt/)
+   - Provides: Simple MQTT enabled switches and sensors at an incredibly low cost.
+   - Limitations:
+     - Need to open up devices and solder headers.
+     - Need to flash custom firmware via [3.3V FTDI USB-to-Serial Converter/Programmer](http://amzn.to/2xlYJIw)
+     - Need to setup MQTT Broker on Raspberry Pi. I'm using Mosquitto. [Useful setup video](https://www.youtube.com/watch?v=AsDHEDbyLfg)
+     - Unclear on the CE status of these devices, there is a lot of mixed information online. (use caution)
+ - [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
+   - Home Assistant Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)
+   - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes
  - [Belkin Wemo Insight Switch, WiFi SmartPlug](http://amzn.to/2vMEtmN)
    - Home Assistant Component: [Wemo](https://home-assistant.io/components/wemo/)
    - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage.
    - Limitations: 
      - Questionable reliability: I've had two now fail with similar symptoms when turning off devices which pull a considerable current, ~18kW. This is significantly less than the 13A/240V rated maximum. I've now removed all Wemo Insight Plugs from my home.
      - Setup problems: Early firmware versions had problems with setup, especially in environments with multiple access points.
-     - No memory of last power state. In the event of a recovery from a power cut, the device connected will remain off. 
- - [TP-Link HS110 WiFi Smart Plug with energy monitoring](http://amzn.to/2vgQU8Q)
-   - Home Assistant Component: [switch.tplink](https://home-assistant.io/components/switch.tplink/)
-   - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo.
-   - Limitations: Nothing significant so far. I now have 3 of these deivices to replace Wemo Insight Plugs. Hoping they last longer.
- - [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
-   - Home Assistant Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)
-   - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes
+     - No memory of last power state. In the event of a recovery from a power cut, the device connected will remain off.
+
 ### Media Players
  - [Sonos](http://www.sonos.com)
    - Home Assistant Component: [mediaplayer.sonos](https://home-assistant.io/components/media_player.sonos/)
@@ -71,6 +87,7 @@ The following devices are controlled via my Home Assistant configurations. They 
  - [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz)
    - Home Assistant Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)
    - Provides: Voice control input to Home Assistant
+
 ### Hardware sensors
  - [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4)
    - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
@@ -114,7 +131,6 @@ The following devices are controlled via my Home Assistant configurations. They 
    - Note: Also provides complete control of HASS, iPhone battery monitoring and is able to receive notifications from HASS.
 
 # Other features being experimented with:
- - MQTT (configured not in use)
  - TTS (Text To Speech) via Google_SAY (configured not in use)
  
 # Automation Scripts

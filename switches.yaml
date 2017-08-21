@@ -43,3 +43,12 @@
 - platform: tplink
   host: 192.168.0.63 # DHCP reservation
   name: TP_HS110_5
+
+- platform: mqtt
+  name: "Sonoff Loft Fan Power"
+  state_topic: "stat/sonoff_loft_fan/POWER"
+  command_topic: "cmnd/sonoff_loft_fan/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true

@@ -42,6 +42,9 @@
     light.LWRF_LivingRoom_Main:
       friendly_name: "Living Room - Downlights"
       emulated_hue_name: "Living room downlights"
+    light.LWRF_Morgan_Main:
+      friendly_name: "Morgans Bedroom Lights"
+      emulated_hue_name: "Morgans Bedroom Lights"
 
 #### Flamerite Fire Switches ####
     switch.flamerite_power:
