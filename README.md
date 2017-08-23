@@ -42,20 +42,22 @@ The following devices are controlled via my Home Assistant configurations. They 
    - Home Assistant Component: [switch.tplink](https://home-assistant.io/components/switch.tplink/)
    - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo.
    - Limitations: Nothing significant so far. I now have 3 of these deivices to replace Wemo Insight Plugs. Hoping they last longer.
- - [Sonoff WiFi Switch Modules](http://sonoff.itead.cc/en/) (with modified hardware and firmware)
+ - [Sonoff WiFi Relay Modules](http://sonoff.itead.cc/en/) (with modified hardware and firmware)
    - Current devices in use:
-     - Inline 10A Switch ([Sonoff Switch](http://amzn.to/2xmjjIY))
-     - Inline 16A Swith with temperature and humidity monitoring ([Sonoff TH16](http://amzn.to/2wiJKm0))
+     - Inline 10A Relay ([Sonoff Switch](http://amzn.to/2xmjjIY))
+     - Inline 16A Relay with temperature and humidity monitoring ([Sonoff TH16](http://amzn.to/2wiJKm0))
    - Modifications:
      - Hardware modified by solding headers onto Sonoff board to enable custome firmware updating. 
      - Custom Firmware to provide simple web configuration and control and MQTT support. Currently using [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota) additional information  in the [project wiki](https://github.com/arendst/Sonoff-Tasmota/wiki)
    - Home Assistant Component: [MQTT Switch](https://home-assistant.io/components/switch.mqtt/)
-   - Provides: Simple MQTT enabled switches and sensors at an incredibly low cost.
+   - Provides: Simple MQTT enabled wifi relay/switches and sensors at an incredibly low cost.
    - Limitations:
-     - Need to open up devices and solder headers.
+     - Need to open up devices and solder headers to flash custom firmware.
      - Need to flash custom firmware via [3.3V FTDI USB-to-Serial Converter/Programmer](http://amzn.to/2xlYJIw)
+       - Be sure to set USB to serial programmer to **3.3V**, it may be 5V by default (mine was) and will likely kill the ESP8266 is you supply it with 5V.
      - Need to setup MQTT Broker on Raspberry Pi. I'm using Mosquitto. [Useful setup video](https://www.youtube.com/watch?v=AsDHEDbyLfg)
-     - Unclear on the CE status of these devices, there is a lot of mixed information online. (use caution)
+     - The TH16 Device is CE marked and having compared the design to the original switch, with a fuse and greater separation between High and Low voltage components. 
+     - The Sonoff Basic switch is not CE certified, based onthe [CE Certification](https://www.itead.cc/wiki/File:CE_Certificate_for_Sonoff_Series.pdf) document. Caution should be used with this device.
  - [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
    - Home Assistant Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)
    - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes
