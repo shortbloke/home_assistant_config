@@ -59,6 +59,18 @@
       data_type:
         - Total usage
 
+# MQTT Sensors
+- platform: mqtt
+  name: "Loft_Fan Temperature"
+  state_topic: "tele/sonoff_loft_fan/SENSOR"
+  value_template: "{{ value_json['DHT22'].Temperature }}"
+  unit_of_measurement: "°C"
+- platform: mqtt
+  name: "Loft_Fan Humidity"
+  state_topic: "tele/sonoff_loft_fan/SENSOR"
+  value_template: "{{ value_json['DHT22'].Humidity }}"
+  unit_of_measurement: "%"
+
 
 ############################################################
 #
@@ -189,7 +201,7 @@
       value_template: '{{ (states.sensor.temp_humid_5_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
       entity_id: sensor.temp_humid_5_temperature
-      friendly_name: "Loft - Temperature"
+      friendly_name: "Morgans Room - Temperature"
     ### Nest Templates
     nest_away_mode:
       value_template: '{{ states.climate.hallway_house.attributes.away_mode }}'

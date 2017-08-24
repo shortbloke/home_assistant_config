@@ -88,6 +88,8 @@ morgans_room_view:
   name: Morgans Room
   view: yes
   entities:
+    - sensor.portable_sensor_5_temperature
+    - sensor.temp_humid_5_humidity    
     - group.morgans_room
 
 outside_view:
@@ -102,10 +104,10 @@ loft_view:
   name: loft
   view: yes
   entities:
-    - sensor.portable_sensor_5_temperature
-    - sensor.temp_humid_5_humidity
     - group.hpilo
     - switch.sonoff_loft_fan_power
+    - sensor.loft_fan_temperature
+    - sensor.loft_fan_humidity
 
 family_view:
   name: Family
@@ -293,6 +295,8 @@ automation:
     - automation.ironing_room_no_motion_turn_off_ironing_table
     - automation.ironing_room_no_motion_turn_off_magpie_iron
     - automation.update_config_hass_if_travis_build_is_successfull
+    - automation.loft_fan_turn_on_when_hot
+    - automation.loft_fan_turn_off_when_not_hot
      # - automation.zwave_heal_at_231am
      # - automation.zwave_soft_reset_at_230am
 

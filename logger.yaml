@@ -6,4 +6,4 @@ logs:
   # homeassistant.components.recorder: debug
   # homeassistant.components.rfxtrx: debug
   # homeassistant.core: debug
-  # homeassistant.automation: debug
+  homeassistant.automation: debug
