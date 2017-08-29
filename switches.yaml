@@ -48,7 +48,8 @@
   name: "Sonoff Loft Fan Power"
   state_topic: "stat/sonoff_loft_fan/POWER"
   command_topic: "cmnd/sonoff_loft_fan/POWER"
+  availability_topic: "tele/sonoff_loft_fan/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
   retain: true
