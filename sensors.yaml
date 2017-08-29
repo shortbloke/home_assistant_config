@@ -15,6 +15,9 @@
     - type: processor_use
     - type: last_boot
 
+# Hass Version
+- platform: version
+
 # RFXCOM 433 Sensors
 - platform: rfxtrx
   automatic_add: False

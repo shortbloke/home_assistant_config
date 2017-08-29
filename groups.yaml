@@ -259,6 +259,7 @@ energy:
 HAPi:
   name: HAPi Server
   entities:
+    - sensor.current_version
     - sensor.cpu_use
     - sensor.disk_free_
     - sensor.ram_free
