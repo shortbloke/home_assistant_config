@@ -89,6 +89,7 @@ light: !include lights.yaml
 logbook: !include logbook.yaml
 logger: !include logger.yaml
 mqtt: !include mqtt.yaml
+panel_iframe: !include iframe.yaml
 recorder: !include recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
