@@ -13,6 +13,7 @@ exclude:
     - sensor.sun
     - sensor.moon
     - sensor.ssl_cert_expiry
+    - sensor.current_version
     # Aeotec
     - sensor.aeotec_zw100_multisensor_6_alarm_type
     - sensor.aeotec_zw100_multisensor_6_alarm_level
@@ -29,11 +30,13 @@ exclude:
     - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
     - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
     - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-    # Phones
+    # IOS Devices
     - sensor.martins_iphone_battery_level
     - sensor.martins_iphone_battery_state
     - sensor.michelles_iphone_battery_level
     - sensor.michelles_iphone_battery_state
+    - sensor.martins_ipad_battery_level
+    - sensor.martins_ipad_battery_state
     # HP MicroServer Gen 6 
     - sensor.server_server_name
     - sensor.server_glance_power_supplies
