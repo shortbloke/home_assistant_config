@@ -65,6 +65,11 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
+influxdb:
+  host: !secret influxdb_host
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+
 ## Misc ##
 discovery:
   ignore:
