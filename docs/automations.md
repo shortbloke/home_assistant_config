@@ -19,11 +19,11 @@
     * Low Memory
 
  # Shell Scripts
- The following scripts are stored in the `bin` directory and defined in [`shell_commands.yaml`](../shell_commands.yaml):
-  * [`git_pull.sh`](../bin/git_pull.sh) - <add desc>
-  * [`hass_update.sh`](../bin/hass_update.sh) - <add desc>
-  * [`os_update.sh`](../bin/os_update.sh) - <add desc>
-  * [`reboot.sh`](../bin/reboot.sh) - <add desc>
+ The following scripts are stored in the `bin` directory and defined in [`shell_command.yaml`](../shell_command.yaml):
+  * [`git_pull.sh`](../bin/git_pull.sh) - performs a git pull request of this repository
+  * [`hass_update.sh`](../bin/hass_update.sh) - performs an upgrade of Home Assistant in a venv
+  * [`os_update.sh`](../bin/os_update.sh) - runs apt-get commands to update OS
+  * [`reboot.sh`](../bin/reboot.sh) - issues reboot command
 
  # Home Assistant Scripts
  The [`scripts.yaml`](../scripts.yaml) defines how Home Assistant can call out to shell scripts. The following scripts are implemented:
