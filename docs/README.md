@@ -19,7 +19,7 @@ Each commit triggers a deployement to the latest home assistant version with Pyt
 
 ## More Information
 * [Devices Controlled and Sensors Monitored](devices.md)
-* [Automations](automations.md)
+* [Automation and Shell Scripts](automations.md)
 * [Configuration validation and automatic deployment](build_deploy.md)
 * [Backup solution](backup.md)
 
