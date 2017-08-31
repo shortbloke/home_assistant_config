@@ -1,16 +1,12 @@
 # Shortbloke's Home Assistant Configuration Files
 
 This is my currently active set of configuration files for my [Home Assistant](https://home-assistant.io) running on Raspberry Pi.
-If you are intested in following my progress be sure ⭐️ Star this github repository. 
-
-I'm also starting to update [my blog](https://www.martinrowan.co.uk) more often sharing some of the things I'm learning along this journey.
+If you are intested in following my progress be sure ⭐️ Star this repository and check out [my blog](https://www.martinrowan.co.uk).
 
 These configuration files enable intgration with a wide range of systems through the power of Home Assistant.
 
-### Configuration File Status
-Each commit triggers a deployement to the latest homeassisatnt version with Python 3.4. This is done though TravisCI.
-
-The current status of these project configuration files are: [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
+### Configuration File Status [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
+Each commit triggers a deployement to the latest home assistant version with Python 3.4. This is done though TravisCI. If this sucessfully passes, then my Pi will update itself with the latest configuration automatically.
 
 ![My Home Assistant Default View](images/default_view.jpg)
 
@@ -24,124 +20,57 @@ The current status of these project configuration files are: [![Build Status](ht
 ## Devices controlled by Home Assistant
 The following devices are controlled via my Home Assistant configurations. They may also provide sensors as input.
 ### Climate Control
- - [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp)
-   - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
-   - Provides: Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant
-   - Limitations:
-     - Requires setup of a Nest Developer account (free)
-     - Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.
+| Device | Component | Functionality| Limitations |
+| ---| ---| --- | --- |
+| [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | [Nest](https://home-assistant.io/components/nest/) & related sub components | Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant | <ul><li>Requires setup of a Nest Developer account (free)</li><li>Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.</li></ul> |
 
 ### Power and Lighting control
- - [Lightwave RF Devices](https://www.lightwaverf.com)
-   - Current devices in use:
-     - Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))
-     - Inline Dimmer module ([JSJSLW831](http://amzn.to/2vLdcjH))
-     - Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assistant Control)
-   - Home Assistant Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/) & related sub components
-   - Provides: LightwaveRF devices provide an easy solution for retrofitting automation into existing homes. Many other technologies require for example both Live and Neutral to be present at light switches, which is uncommon for UK installations at least.
-   - Limitation: One-Way communication, you can not query state to know devices status, nor can you confirm if commands sent were obeyed.
- - [TP-Link HS110 WiFi Smart Plug with energy monitoring](http://amzn.to/2vgQU8Q)
-   - Home Assistant Component: [switch.tplink](https://home-assistant.io/components/switch.tplink/)
-   - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo.
-   - Limitations: Nothing significant so far. I now have 3 of these deivices to replace Wemo Insight Plugs. Hoping they last longer.
- - [Sonoff WiFi Relay Modules](http://sonoff.itead.cc/en/) (with modified hardware and firmware)
-   - Current devices in use:
-     - Inline 10A Relay ([Sonoff Switch](http://amzn.to/2xmjjIY))
-     - Inline 16A Relay with temperature and humidity monitoring ([Sonoff TH16](http://amzn.to/2wiJKm0))
-   - Modifications:
-     - Hardware modified by solding headers onto Sonoff board to enable custome firmware updating. 
-     - Custom Firmware to provide simple web configuration and control and MQTT support. Currently using [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota) additional information  in the [project wiki](https://github.com/arendst/Sonoff-Tasmota/wiki)
-   - Home Assistant Component: [MQTT Switch](https://home-assistant.io/components/switch.mqtt/)
-   - Provides: Simple MQTT enabled wifi relay/switches and sensors at an incredibly low cost.
-   - Limitations:
-     - Need to open up devices and solder headers to flash custom firmware.
-     - Need to flash custom firmware via [3.3V FTDI USB-to-Serial Converter/Programmer](http://amzn.to/2xlYJIw)
-       - Be sure to set USB to serial programmer to **3.3V**, it may be 5V by default (mine was) and will likely kill the ESP8266 is you supply it with 5V.
-     - Need to setup MQTT Broker on Raspberry Pi. I'm using Mosquitto. [Useful setup video](https://www.youtube.com/watch?v=AsDHEDbyLfg)
-     - The TH16 Device is CE marked and having compared the design to the original switch, with a fuse and greater separation between High and Low voltage components. 
-     - The Sonoff Basic switch is not CE certified, based onthe [CE Certification](https://www.itead.cc/wiki/File:CE_Certificate_for_Sonoff_Series.pdf) document. Caution should be used with this device.
- - [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html)
-   - Home Assistant Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)
-   - Provides: Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes
- - [Belkin Wemo Insight Switch, WiFi SmartPlug](http://amzn.to/2vMEtmN)
-   - Home Assistant Component: [Wemo](https://home-assistant.io/components/wemo/)
-   - Provides: WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage.
-   - Limitations: 
-     - Questionable reliability: I've had two now fail with similar symptoms when turning off devices which pull a considerable current, ~18kW. This is significantly less than the 13A/240V rated maximum. I've now removed all Wemo Insight Plugs from my home.
-     - Setup problems: Early firmware versions had problems with setup, especially in environments with multiple access points.
-     - No memory of last power state. In the event of a recovery from a power cut, the device connected will remain off.
+| Device | Component | Functionality| Limitations |
+| ---| ---| --- | --- |
+| [Lightwave RF Devices](https://www.lightwaverf.com) <ul><li>Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))</li><li>Inline Dimmer module ([JSJSLW831](http://amzn.to/2vLdcjH))</li><li>Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assistant Control)</li></ul> | [RFXtrx](https://home-assistant.io/components/rfxtrx/) & related sub components | LightwaveRF devices provide an easy solution for retrofitting automation into existing homes. Many other technologies require for example both Live and Neutral to be present at light switches, which is uncommon for UK installations at least. | <ul><li>One-Way communication, you can not query state to know devices status, nor can you confirm if commands sent were obeyed.</li></ul> |
+| [TP-Link HS110 WiFi Smart Plug with energy monitoring](http://amzn.to/2vgQU8Q) | [switch.tplink](https://home-assistant.io/components/switch.tplink/) | WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. Similar to Belkin Wemo. | <ul><li>Nothing significant so far. I now have 3 of these deivices to replace Wemo Insight Plugs. Hoping they last longer.</li></ul> |
+| [Sonoff WiFi Relay Modules](http://sonoff.itead.cc/en/) (with modified hardware and firmware) <ul><li>Inline 10A Relay ([Sonoff Switch](http://amzn.to/2xmjjIY))</li><li>Inline 16A Relay with temperature and humidity monitoring ([Sonoff TH16](http://amzn.to/2wiJKm0))</li></ul> | [MQTT Switch](https://home-assistant.io/components/switch.mqtt/) | Simple MQTT enabled wifi relay/switches and sensors at an incredibly low cost. With modifications: <ul><li>Hardware modified by solding headers onto Sonoff board to enable custome firmware updating.</li><li>Custom Firmware to provide simple web configuration and control and MQTT support. Currently using [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota) additional information  in the [project wiki](https://github.com/arendst/Sonoff-Tasmota/wiki)</li></ul> | <ul><li>Need to open up devices and solder headers to flash custom firmware.</li><li>Need to flash custom firmware via [3.3V FTDI USB-to-Serial Converter/Programmer](http://amzn.to/2xlYJIw) (Be sure to set USB to serial programmer to **3.3V**, it may be 5V by default (mine was) and will likely kill the ESP8266 is you supply it with 5V.)</li><li>Need to setup MQTT Broker on Raspberry Pi. I'm using Mosquitto. [Useful setup video](https://www.youtube.com/watch?v=AsDHEDbyLfg)</li><li>The TH16 Device is CE marked and having compared the design to the original switch, with a fuse and greater separation between High and Low voltage components.<li><li>The Sonoff Basic switch is not CE certified, based onthe [CE Certification](https://www.itead.cc/wiki/File:CE_Certificate_for_Sonoff_Series.pdf) document. Caution should be used with this device.</li></ul> |
+| [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html) | [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/) | Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes | |
+| [Belkin Wemo Insight Switch, WiFi SmartPlug](http://amzn.to/2vMEtmN) | [Wemo](https://home-assistant.io/components/wemo/) | WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage. | <ul><li>Questionable reliability: I've had two now fail with similar symptoms when turning off devices which pull a considerable current, ~18kW. This is significantly less than the 13A/240V rated maximum. I've now removed all Wemo Insight Plugs from my home. It's possible the current load readings from the Wemo were wrong, investigating.</li><li>Setup problems: Early firmware versions had problems with setup, especially in environments with multiple access points.</li><li>No memory of last power state. In the event of a recovery from a power cut, the device connected will remain off.</li></ul> |
 
 ### Media Players
- - [Sonos](http://www.sonos.com)
-   - Home Assistant Component: [mediaplayer.sonos](https://home-assistant.io/components/media_player.sonos/)
-   - Provides: Automatic detection of all Sonos Devices. Shows what is playing on each device. Able to control playback. Also able to be integrated with Text to Speech components.
- - [Plex](http://www.plex.tv)
-   - Home Assistant Component: [mediaplayer.plex](https://home-assistant.io/components/media_player.plex/)
-   - Provides: Shows activity of Plex Clients.
- - [Samsung Smart TVs](http://www.samsung.com/uk/tvs/all-tvs/)
-   - Home Assistant Component: [mediaplayer.samsungtv](https://home-assistant.io/components/media_player.samsungtv/)
-   - Provides: Discovery component will automatically detect TVs, report status and can be controlled via component.
-   - Limitations: Not all Smart TV models are fully supported.
- - [Apple TV](https://www.apple.com/uk/tv/)
-   - Home Assistant Component: [Apple_tv](https://home-assistant.io/components/apple_tv/) & related sub components 
-   - Provides: (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls. Plus provides access to a remote control.
+| Device | Component | Functionality| Limitations |
+| ---| ---| --- | --- |
+| [Sonos](http://www.sonos.com) | [mediaplayer.sonos](https://home-assistant.io/components/media_player.sonos/) | Automatic detection of all Sonos Devices. Shows what is playing on each device. Able to control playback. Also able to be integrated with Text to Speech components. | |
+| [Plex](http://www.plex.tv) | [mediaplayer.plex](https://home-assistant.io/components/media_player.plex/) | Shows activity of Plex Clients. | |
+| [Samsung Smart TVs](http://www.samsung.com/uk/tvs/all-tvs/) | [mediaplayer.samsungtv](https://home-assistant.io/components/media_player.samsungtv/) | Discovery component will automatically detect TVs, report status and can be controlled via component. | <ul><li>Not all Smart TV models are fully supported.</li></ul> |
+| [Apple TV](https://www.apple.com/uk/tv/) | [Apple_tv](https://home-assistant.io/components/apple_tv/) & related sub components | (Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls. Plus provides access to a remote control. | |
 
 ## Sensors providing data to Home Assistant (input only)
 ### Voice Control 
- - [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz)
-   - Home Assistant Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)
-   - Provides: Voice control input to Home Assistant
+| Device | Component | Functionality| Limitations |
+| ---| ---| --- | --- |
+| [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz) | [Emulated Hue](https://home-assistant.io/components/emulated_hue/) | Voice control input to Home Assistant | |Voice control input to Home Assistant
 
 ### Hardware sensors
- - [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4)
-   - Home Assistant Component: [Nest](https://home-assistant.io/components/nest/) & related sub components
-   - Provides: Monitoring of Smoke and CO2 alarms and system health.
-   - Limitations: Requires setup of a Nest Developer account (free)
- - Z-Wave Devices:
-   - [Aeotec Multisensor 6 (ZW100)](http://amzn.to/2vkpCNo)
-     - Home Assistant Component: [z-wave](https://home-assistant.io/components/zwave/) plus sub components
-     - Provides: A range of movement, light, temperature, humidity sensors in a single device. Has battery or USB power options. Note that when  USB powered device acts as a Z-Wave repeater in the mesh.
-     - Limitations:
-       - Setup may take multiple attempts. Watch [BRUH Z-Wave Video](https://www.youtube.com/watch?v=ajklDCaOGwY) to learn before attempting setup.
-   - [Fibaro Gen 5 Multisensor (FGMS-001-ZW5-UK)](http://amzn.to/2wrJK0g)
-     - Home Assistant Component: [z-wave](https://home-assistant.io/components/zwave/) plus sub components
-     - Provides: A range of movement, light and temperature sensors in a single battery powered device.
-     - Limitations:
-       - Setup may take multiple attempts. Watch [BRUH Z-Wave Video](https://www.youtube.com/watch?v=ajklDCaOGwY) to learn before attempting setup.
-       - No humidity sensor
-       - Battery only, which means it goes to sleep a lot to save power. Currently testing in parallel to see if that really matters.
- - A range of other 433Mhz devices:
-   - Home Assistant Component: [RfxTrx](https://home-assistant.io/components/rfxtrx/)
-   - Device: Owl Energy Monitor
-     - Note: Still being investigated
-   - Device: Internal Temperature and Humidity monitors [WH5](http://www.ebay.co.uk/itm/Extra-Sensor-for-Weather-Station-with-temp-humidity-f-cast-base-Baro-press/261788376051)
-     - Note: Temperature readings from WH5 are 40 DegC higher than they should be. This can be corrected by use of a template i.e. `value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'`
-     - Research page: [Glen Pitt-Pladdy Blog](https://www.pitt-pladdy.com/blog/_20131228-233456_0000_Imagintronix_Temperature_Humidity_Sensor_Protocol_WH15B_for_WH1400_/)
-   - Device: External Temperature and Humidity sensor, Oregon THGN132N
-     - Note: Seems to work well, no special template required.
- - HP ILO sensor information
-   - Home Assistant Component: [HP_ilo](https://home-assistant.io/components/sensor.hp_ilo/)
-   - Provides: Sensor information for HP Servers with ILO such as overall health, temperature at specific points in the chassis.
+| Device | Component | Functionality| Limitations |
+| ---| ---| --- | --- |
+| [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4) | [Nest](https://home-assistant.io/components/nest/) & related sub components | Monitoring of Smoke and CO2 alarms and system health. | <ul><li>Requires setup of a Nest Developer account (free)</li></ul> | 
+| Z-Wave: [Aeotec Multisensor 6 (ZW100)](http://amzn.to/2vkpCNo) | [z-wave](https://home-assistant.io/components/zwave/) plus sub components | A range of movement, light, temperature, humidity sensors in a single device. Has battery or USB power options. Note that when  USB powered device acts as a Z-Wave repeater in the mesh. | <ul><li>Setup may take multiple attempts. Watch [BRUH Z-Wave Video](https://www.youtube.com/watch?v=ajklDCaOGwY) to learn before attempting setup</li></ul> |
+| Z-Wave: [Fibaro Gen 5 Multisensor (FGMS-001-ZW5-UK)](http://amzn.to/2wrJK0g) | [z-wave](https://home-assistant.io/components/zwave/) plus sub components | A range of movement, light and temperature sensors in a single battery powered device. | <ul><li>Setup may take multiple attempts. Watch [BRUH Z-Wave Video](https://www.youtube.com/watch?v=ajklDCaOGwY) to learn before attempting setup.</li><li>No humidity sensor</li><li>Battery only, which means it goes to sleep a lot to save power. Currently testing in parallel to see if that really matters</li></ul> |
+| Other 433Mhz devices | [RfxTrx](https://home-assistant.io/components/rfxtrx/) | <ul><li>Owl Energy Monitor (investigating)</li><li>Internal Temperature and Humidity monitors [WH5](http://www.ebay.co.uk/itm/Extra-Sensor-for-Weather-Station-with-temp-humidity-f-cast-base-Baro-press/261788376051)</li><ul><li>Temperature readings from WH5 are 40 DegC higher than they should be. This can be corrected by use of a template i.e. `value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'`</li><li>Research page: [Glen Pitt-Pladdy Blog](https://www.pitt-pladdy.com/blog/_20131228-233456_0000_Imagintronix_Temperature_Humidity_Sensor_Protocol_WH15B_for_WH1400_/)</li></ul><li>External Temperature and Humidity sensor, Oregon THGN132N | |
+| HP ILO sensor information | [HP_ilo](https://home-assistant.io/components/sensor.hp_ilo/) | Sensor information for HP Servers with ILO such as overall health, temperature at specific points in the chassis | |
 
 ### Software sensors
- - [Sun](https://home-assistant.io/components/sun/) - Provides details on sun position, enabling automation to be triggered, e.g. at dusk and dawn.
- - [Moon](https://home-assistant.io/components/sensor.moon/) - Provides details on the phase of the moon.
- - [System Monitor](https://home-assistant.io/components/sensor.systemmonitor/) - Provides information on the host system Home Assistant is running on.
- - [Home Assistant SSL Certificate Expiry Checking](https://home-assistant.io/docs/ecosystem/certificates/lets_encrypt/#7---set-up-a-sensor-to-monitor-the-expiry-date-of-the-certificate) - Provides a sensor to show the number of days until the current certificate in use expires. So that it can be renewed before it expires.
-
-### Location Tracking
- - iOS App - [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401)
-   - Home Assistant 3rd Party Addon: [ios](https://home-assistant.io/docs/ecosystem/ios/)
-   - Note: Also provides complete control of HASS, iPhone battery monitoring and is able to receive notifications from HASS.
-
-# Other features being experimented with:
- - TTS (Text To Speech) via Google_SAY (configured not in use)
+| Component | Provides | Limitations |
+| --- | --- | --- |
+| [Sun](https://home-assistant.io/components/sun/) | Sun position, enabling automation to be triggered, e.g. at dusk and dawn | |
+| [Moon](https://home-assistant.io/components/sensor.moon/) | Phase of the moon | |
+| [System Monitor](https://home-assistant.io/components/sensor.systemmonitor/) | System resource usage information on the host system Home Assistant is running on | |
+| [Home Assistant SSL Certificate Expiry Checking](https://home-assistant.io/docs/ecosystem/certificates/lets_encrypt/#7---set-up-a-sensor-to-monitor-the-expiry-date-of-the-certificate) | A sensor to show the number of days until the current SSL certificate in use expires. A reminder to renew before it expires | |
+| iOS App [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401) | With Home Assistant addon [ios](https://home-assistant.io/docs/ecosystem/ios/) enables location tracking plus complete control of HASS, iPhone battery monitoring and is able to receive notifications from Home Assistant | |
  
 # Automation Scripts
  - Turning on lights an hour before sunset
- - Turning off power sockets if no movement detected for 30 mins and sockets drawing more than just standby power levels. Triggers notification when sockets are turned off.
- - Send notification when Let's Encrypt SSL certificate used for HomeAssistant has less than 3 weeks left before expiry.
+ - Turning off power sockets if no movement detected for 30 mins and sockets drawing more than just standby power levels. Triggers notification when sockets are turned off
+ - Send notification when Let's Encrypt SSL certificate used for HomeAssistant has less than 3 weeks left before expiry
  - Automatically syncs down changes from github on sucessful travisCI build and restarts Home Assistant
+ - Sends notification when disk space or memory are low on RPi or load level is high.
 
 # Additional Info
 Private information is stored in secrets.yaml (not uploaded)
@@ -150,9 +79,9 @@ Private information is stored in secrets.yaml (not uploaded)
  - Changes to configuration are pushed to git using `gitupdate.sh` script.
  - TravisCI is connected to this repository, which will run a script validation for each check-in automatically. Setup as per: https://home-assistant.io/docs/ecosystem/backup/backup_github/
    - Note in order for Travis to work a number of extra files are required:
-     - `travis_secrets.yaml` - Contains dummy values for the secrets used in the configuration files
-     - `travis.fake_ssl_key` and `travis.fake_ssl_crt` - Are dummy files needed for a Home Assistant configuration setup to use SSL.
- - A successful Travis build triggers a git pull request to upload the current configuration, followed by restarting the home assistant service. Thus, enabling changes to be made away from the the Pi/HASS Hub, uploaded to GitHub and directly applied to the running system.
+     - `travis/travis_secrets.yaml` - Contains dummy values for the secrets used in the configuration files
+     - `travis/travis.fake_ssl_key` and `travis.fake_ssl_crt` - Are dummy files needed for a Home Assistant configuration setup to use SSL.
+ - A successful Travis build triggers a git pull request to update the current configuration, followed by restarting the home assistant service. Enabling changes to be made away from the the Pi/HASS Hub, uploaded to GitHub and directly applied to the running system.
 
 # Backups
 I've implemented a simple backup plan which uses a windows file share on my Microserver to backup my Home Automation system. It provides:
