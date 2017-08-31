@@ -3,7 +3,7 @@ A script `gitupdate.sh` is used to run a check of the configuration files ahead 
 
 TravisCI is linked to this github repository, monitoring for changes and automatically validating changes against the latest version of Home Assistant. As per [Configuration file testing](https://home-assistant.io/docs/ecosystem/backup/backup_github/#step-7-configuration-file-testing)
 
-The Travis configuration file [`.travis.yml`](../..travis.yml) defines the information needed by TravisCI. 
+The Travis configuration file [`.travis.yml`](../.travis.yml) defines the information needed by TravisCI. 
  * Specifically the version of Python to use, currently 3.4
  * The steps to perform ahead of the test such as copying files that are needed, but aren't part of the repository:
    * `travis/travis_secrets.yaml` - Contains dummy values for the secrets used in the configuration files
