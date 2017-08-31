@@ -2,7 +2,9 @@ language: python
 python:
   - "3.4"
 before_install:
-  - mv travis_secrets.yaml secrets.yaml
+  - mv travis\travis_secrets.yaml secrets.yaml
+  - mv travis\travis.fake_ssl_crt travis.fake_ssl_crt
+  - mv travis\travis.fake_ssl_key travis.fake_ssl_key
 install:
   - pip3 install homeassistant
 script:
