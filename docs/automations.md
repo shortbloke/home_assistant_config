@@ -19,14 +19,14 @@
     * Low Memory
 
  # Shell Scripts
- The following scripts are stored in the `bin` directory and defined in [`shell_commands.yaml`](/shell_commands.yaml):
-  * [`git_pull.sh`](/bin/git_pull.sh) - <add desc>
-  * [`hass_update.sh`](/bin/hass_update.sh) - <add desc>
-  * [`os_update.sh`](/bin/os_update.sh) - <add desc>
-  * [`reboot.sh`](/bin/reboot.sh) - <add desc>
+ The following scripts are stored in the `bin` directory and defined in [`shell_commands.yaml`](../shell_commands.yaml):
+  * [`git_pull.sh`](../bin/git_pull.sh) - <add desc>
+  * [`hass_update.sh`](../bin/hass_update.sh) - <add desc>
+  * [`os_update.sh`](../bin/os_update.sh) - <add desc>
+  * [`reboot.sh`](../bin/reboot.sh) - <add desc>
 
  # Home Assistant Scripts
- The [`scripts.yaml`](/scripts.yaml) defines how Home Assistant can call out to shell scripts. The following scripts are implemented:
+ The [`scripts.yaml`](../scripts.yaml) defines how Home Assistant can call out to shell scripts. The following scripts are implemented:
   * get_latest_config - Pulls the latest changes from github then restarts home assistant
   * update_hass - Updates Home Assistant to the latest version (via `git_pull.sh`) and restarts it
   * update_os - (Not working, insufficient permissions) Update OS and then reboot system
