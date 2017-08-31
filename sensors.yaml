@@ -11,8 +11,14 @@
   resources:
     - type: disk_free
       arg: /
+    - type: disk_use_percent
+      arg: /
     - type: memory_free
+    - type: memory_use_percent
     - type: processor_use
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
     - type: last_boot
 
 # Hass Version
