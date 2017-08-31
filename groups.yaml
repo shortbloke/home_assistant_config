@@ -264,8 +264,13 @@ HAPi:
     - sensor.current_version
     - sensor.cpu_use
     - sensor.disk_free_
+    - sensor.disk_use_
     - sensor.ram_free
+    - sensor.ram_use
     - sensor.last_boot
+    - sensor.average_load_1m
+    - sensor.average_load_5m
+    - sensor.average_load_15m
 
 hpilo:
   name: HP Microserver G7
