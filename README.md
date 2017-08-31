@@ -3,7 +3,7 @@
 This is my currently active set of configuration files for my [Home Assistant](https://home-assistant.io) running on Raspberry Pi.
 If you are intested in following my progress be sure ⭐️ Star this github repository. 
 
-I also need to start to update [my blog](https://www.martinrowan.co.uk) more frequently to share some of the things I'm learning along this journey. Perhaps interest here will provide greater motivation.
+I'm also starting to update [my blog](https://www.martinrowan.co.uk) more often sharing some of the things I'm learning along this journey.
 
 These configuration files enable intgration with a wide range of systems through the power of Home Assistant.
 
@@ -18,6 +18,8 @@ The current status of these project configuration files are: [![Build Status](ht
    - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security. If you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
  - [Aeotec Z-Stick Gen5 (ZW090)](http://amzn.to/2wrrgwI) - Provides interface to Z-Wave Mesh Network devices.
  - Plus case, Power Supply and MicroSD Card.
+
+![My Home Assistant Default View](docs/images/default_view.jpg)
 
 ## Devices controlled by Home Assistant
 The following devices are controlled via my Home Assistant configurations. They may also provide sensors as input.
