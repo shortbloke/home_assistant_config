@@ -1,6 +1,3 @@
-# Additional Info
-Private information is stored in secrets.yaml (not uploaded)
-
 # Config updating and validation
  - Changes to configuration are pushed to git using `gitupdate.sh` script.
  - TravisCI is connected to this repository, which will run a script validation for each check-in automatically. Setup as per: https://home-assistant.io/docs/ecosystem/backup/backup_github/

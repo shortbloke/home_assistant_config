@@ -1,12 +1,11 @@
-
-## Devices Controlled by Home Assistant
+# Devices Controlled by Home Assistant
 The following devices are controlled via my Home Assistant configurations. They may also provide sensors as input.
-### Climate Control
+## Climate Control
 | Device | Functionality |
 | ---| --- |
 | [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free)</li><li>Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.</li></ul> |
 
-### Power and Lighting control
+## Power and Lighting control
 | Device |  Functionality |
 | ---| --- |
 | [Lightwave RF Devices](https://www.lightwaverf.com) <ul><li>Plug in sockets ([JSJSLW321](http://amzn.to/2vN1oys))</li><li>Inline Dimmer module ([JSJSLW831](http://amzn.to/2vLdcjH))</li><li>Smartphone Web Link - Hub ([JSJSLW930](http://amzn.to/2vLbJKq)) (Note: Not needed for Home Assistant Control)</li></ul> | Component: [RFXtrx](https://home-assistant.io/components/rfxtrx/)<br>LightwaveRF devices provide an easy solution for retrofitting automation into existing homes. Many other technologies require both Live and Neutral to be present at light switches, which is uncommon for UK installations at least<br><br>Limitations:<ul><li>One-Way communication, you can not query state to know devices status, nor can you confirm if commands sent were obeyed.</li></ul> |
@@ -15,7 +14,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 | [Flamerite Electric Fire](http://www.flameritefires.com/products/floor-standing-suites/junai.html) | Component: [switch.rfxtrx](https://home-assistant.io/components/switch.rfxtrx/)<br>Our famerite fire came with a 433Mhz remote control. The RFXCOM 433 Transceiver was able to detect the codes from the remote and allow Home Assistant to send the same codes |
 | [Belkin Wemo Insight Switch, WiFi SmartPlug](http://amzn.to/2vMEtmN) | Component: [Wemo](https://home-assistant.io/components/wemo/)<br>WiFi controlled plugin adapter with Energy monitoring. Enabling actions/automation to be triggered based on power usage<br><br>Limitations:<ul><li>Questionable reliability: I've had two now fail with similar symptoms when turning off devices which pull a considerable current, ~18kW. This is significantly less than the 13A/240V rated maximum. I've now removed all Wemo Insight Plugs from my home. It's possible the current load readings from the Wemo were wrong, investigating.</li><li>Setup problems: Early firmware versions had problems with setup, especially in environments with multiple access points.</li><li>No memory of last power state. In the event of a recovery from a power cut, the device connected will remain off.</li></ul> |
 
-### Media Players
+## Media Players
 | Device | Functionality |
 | ---| --- |
 | [Sonos](http://www.sonos.com) | Component: [mediaplayer.sonos](https://home-assistant.io/components/media_player.sonos/)<br>Automatic detection of all Sonos Devices. Shows what is playing on each device. Able to control playback. Also able to be integrated with Text to Speech components |
@@ -23,12 +22,12 @@ The following devices are controlled via my Home Assistant configurations. They 
 | [Samsung Smart TVs](http://www.samsung.com/uk/tvs/all-tvs/) | Component: [mediaplayer.samsungtv](https://home-assistant.io/components/media_player.samsungtv/)<br>Discovery component will automatically detect TVs, report status and can be controlled via component<br><br>Limitations:<ul><li>Not all Smart TV models are fully supported.</li></ul> |
 | [Apple TV](https://www.apple.com/uk/tv/) | Component: [Apple_tv](https://home-assistant.io/components/apple_tv/)<br>(Only tested personally tested with Gen3 version) Shows what is playing on AppleTV with device controls. Plus provides access to a remote control. |
 
-### Voice Control 
+## Voice Control 
 | Device |  Functionality |
 | ---| --- |
 | [Amazon Echo Dot (2nd Generation)](http://amzn.to/2unxhgz) | Component: [Emulated Hue](https://home-assistant.io/components/emulated_hue/)<br>Voice control input to Home Assistant |
 
-### Hardware Sensors
+## Hardware Sensors
 | Device | Functionality |
 | ---| --- |
 | [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Monitoring of Smoke and CO2 alarms and system health<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free)</li></ul> | 
@@ -37,7 +36,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 | Other 433Mhz devices | Component: [RfxTrx](https://home-assistant.io/components/rfxtrx/)<ul><li>Owl Energy Monitor (investigating)</li><li>Internal Temperature and Humidity monitors [WH5](http://www.ebay.co.uk/itm/Extra-Sensor-for-Weather-Station-with-temp-humidity-f-cast-base-Baro-press/261788376051)</li><ul><li>Temperature readings from WH5 are 40 DegC higher than they should be. This can be corrected by use of a template i.e. `value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'`</li><li>Research page: [Glen Pitt-Pladdy Blog](https://www.pitt-pladdy.com/blog/_20131228-233456_0000_Imagintronix_Temperature_Humidity_Sensor_Protocol_WH15B_for_WH1400_/)</li></ul><li>External Temperature and Humidity sensor, Oregon THGN132N |
 | HP ILO sensor information | Component: [HP_ilo](https://home-assistant.io/components/sensor.hp_ilo/)<br>Sensor information for HP Servers with ILO such as overall health, temperature at specific points in the chassis |
 
-### Software Sensors
+## Software Sensors
 | Component | Functionality |
 | --- | --- |
 | [Sun](https://home-assistant.io/components/sun/) | Sun position, enabling automation to be triggered, e.g. at dusk and dawn |

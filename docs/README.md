@@ -22,3 +22,5 @@ Each commit triggers a deployement to the latest home assistant version with Pyt
 * [Automations](automations.md)
 * [Configuration validation and automatic deployment](build_deploy.md)
 * [Backup solution](backup.md)
+
+**Note: Private information is stored in secrets.yaml (not uploaded)**
