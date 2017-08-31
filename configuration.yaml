@@ -84,7 +84,7 @@ automation: !include automations.yaml
 # Removing binary sensor, since only one is rfxtrx which I believe is causing stability issue
 # binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
-history: !include history.yaml
+#history: !include history.yaml
 influxdb: !include influxdb.yaml
 light: !include lights.yaml
 logbook: !include logbook.yaml
