@@ -1,0 +1,27 @@
+host: !secret influxdb_host
+username: !secret influxdb_username
+password: !secret influxdb_password
+#ssl: true
+#verify_ssl: true
+include:
+  entities:
+    # Interior Temp and Humidty Sensors
+    - sensor.portable_sensor_2_temperature
+    - sensor.temp_humid_2_humidity
+    - sensor.portable_sensor_1_temperature
+    - sensor.temp_humid_1_humidity
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity
+    - sensor.portable_sensor_4_temperature
+    - sensor.temp_humid_4_humidity
+    - sensor.portable_sensor_5_temperature
+    - sensor.temp_humid_5_humidity
+    # Inside Nest
+    - sensor.hallway_thermostat_house_humidity
+    - sensor.hallway_thermostat_house_temperature
+    # Outside Temp and Humidity
+    - sensor.temp_humid_ext_1_temperature
+    - sensor.temp_humid_ext_1_humidity
+    # Aeotec MultiSensor
+    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity

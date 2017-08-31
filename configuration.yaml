@@ -65,11 +65,6 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
-influxdb:
-  host: !secret influxdb_host
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-
 ## Misc ##
 discovery:
   ignore:
@@ -90,6 +85,7 @@ automation: !include automations.yaml
 # binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 history: !include history.yaml
+influxdb: !include influxdb.yaml
 light: !include lights.yaml
 logbook: !include logbook.yaml
 logger: !include logger.yaml

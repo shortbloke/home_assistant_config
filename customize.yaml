@@ -122,8 +122,6 @@
       hidden: true
     sensor.hallway_thermostat_house_target:
       hidden: true
-    sensor.hallway_thermostat_house_temperature:
-      hidden: true
 
 ### Portable Temperature and Humidity Sensors ###
     sensor.Temp_Humid_1:

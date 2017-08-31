@@ -54,7 +54,9 @@ conservatory_view:
 hall_view:
   name: Hall
   view: yes
-  entities:   
+  entities:
+    - sensor.hallway_thermostat_house_humidity
+    - sensor.hallway_thermostat_house_temperature
     - group.hall_lights
     - group.heating
     - group.nest_protect
