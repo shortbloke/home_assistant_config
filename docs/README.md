@@ -12,7 +12,7 @@ Each commit triggers a deployement to the latest homeassisatnt version with Pyth
 
 The current status of these project configuration files are: [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
 
-![My Home Assistant Default View](docs/images/default_view.jpg)
+![My Home Assistant Default View](images/default_view.jpg)
 
 ## Core Hardware of Home Assistant Hub
  - [Raspberry Pi 3 Model B](http://amzn.to/2hI9tyc) - Core control system, running Raspbian.
