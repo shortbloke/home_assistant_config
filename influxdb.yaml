@@ -21,9 +21,9 @@ include:
     - sensor.hallway_thermostat_house_humidity
     - sensor.hallway_thermostat_house_temperature
     # Loft (Sonoff TH16)
-    - sensor.loft_fan_humidity # Not Yet Graphed
-    - sensor.loft_fan_temperature # Not Yet Graphed
-    - switch.sonoff_loft_fan_power # Fan state - Not yet Graphed
+    - sensor.loft_fan_humidity
+    - sensor.loft_fan_temperature
+    - switch.sonoff_loft_fan_power
     # Outside Temp and Humidity
     - sensor.temp_humid_ext_1_temperature
     - sensor.temp_humid_ext_1_humidity
