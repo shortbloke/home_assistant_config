@@ -3,5 +3,11 @@ exclude:
   entities:
     # Aeotec
     - sensor.aeotec_zw100_multisensor_6_alarm_type
+    - sensor.aeotec_zw100_multisensor_6_burglar 
     # Fibaro
     - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+    # systenm monitor
+    - sensor.average_load_1m
+    - sensor.average_load_5m
+    - sensor.average_load_15m
