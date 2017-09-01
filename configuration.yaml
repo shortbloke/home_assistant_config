@@ -64,7 +64,7 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
-
+    
 ## Misc ##
 discovery:
   ignore:
@@ -83,6 +83,7 @@ updater:
 automation: !include automations.yaml
 # Removing binary sensor, since only one is rfxtrx which I believe is causing stability issue
 # binary_sensor: !include binary_sensors.yaml
+camera: !include camera.yaml
 group: !include groups.yaml
 history: !include history.yaml
 influxdb: !include influxdb.yaml
