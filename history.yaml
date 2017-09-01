@@ -14,3 +14,7 @@ exclude:
     # Energy Sensor Totals
     - sensor.energy_sensor_a_total_usage
     - sensor.energy_sensor_b_total_usage
+    # Load averages
+    - sensor.average_load_1m
+    - sensor.average_load_5m
+    - sensor.average_load_15m
