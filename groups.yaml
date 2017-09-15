@@ -60,6 +60,7 @@ hall_view:
     - group.hall_lights
     - group.heating
     - group.nest_protect
+    - group.Fibaro_Multi_1
 
 kitchen_view:
   name: Kitchen
@@ -83,7 +84,6 @@ ironing_room_view:
     - sensor.portable_sensor_4_temperature
     - sensor.temp_humid_4_humidity    
     - group.ironing_room
-    - group.Fibaro_Multi_1
     - group.Aeotec_Multi_1
 
 morgans_room_view:
@@ -201,8 +201,6 @@ climate:
     - sun.sun
     - sensor.moon
     - sensor.hallway_thermostat_house_temperature
-    - sensor.temp_humid_ext_1_temperature
-    - sensor.temp_humid_ext_1_humidity    
 
 heating:
   name: Heating
@@ -337,6 +335,8 @@ tracked_devices:
     - device_tracker.michelles_iphone
     - sensor.michelles_iphone_battery_level
     - sensor.michelles_iphone_battery_state
+    - sensor.martins_ipad_battery_level
+    - sensor.martins_ipad_battery_state
 
 
 Fibaro_Multi_1:

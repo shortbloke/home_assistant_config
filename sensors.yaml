@@ -26,19 +26,19 @@
 
 # RFXCOM 433 Sensors
 - platform: rfxtrx
-  automatic_add: False
+  automatic_add: True
   devices:
-    0a52090ca9000247260289:
+    0a5209f6ad0002582f0189:  #Convervatory
       name: Temp_Humid_1
       data_type:
         - Humidity
         - Temperature
-    0a52091a010002673b0179:
+    0a52097df600026c330189:  #Living Room
       name: Temp_Humid_2
       data_type:  
         - Humidity
         - Temperature
-    0a5209211800026f3a0189:
+    0a52090246000259320189:  #Master Bedroom
       name: Temp_Humid_3
       data_type:
         - Humidity
@@ -48,16 +48,17 @@
       data_type:
         - Humidity
         - Temperature
-    0a52090ae70002802b0189:
+    0a5209efc0000258320189:  #Morgans Room
       name: Temp_Humid_5
       data_type:
         - Humidity
         - Temperature      
-    0a52016dfc0400bd360079:
+    #0a52016dfc0400bd360079:  # On each battery replace it gets a new value
+    0a520156c10400f93e0189:
       name: Temp_Humid_Ext_1
       data_type:
         - Humidity
-        - Temperature  
+        - Temperature
     115a0102f7520000000f3700005b0077d779:
       name: Energy_Sensor_A
       data_type:

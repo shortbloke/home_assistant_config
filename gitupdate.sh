@@ -17,7 +17,7 @@ shift
 done
 
 cd /home/hass/.homeassistant
-source /srv/hass/hass_venv/bin/activate
+source /srv/hass/bin/activate
 if [ "$skipcheck" = "0" ]; then
 	hass --script check_config
 fi
