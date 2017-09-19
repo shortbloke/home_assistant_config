@@ -73,18 +73,17 @@ master_bedroom_view:
   view: yes
   entities:
     - sensor.portable_sensor_3_temperature
-    - sensor.temp_humid_3_humidity    
+    - sensor.temp_humid_3_humidity
     - media_player.master_bedroom
     - media_player.bathroom
-    - switch.tp_hs110_1
-    - sensor.tp_hs110_1_power
+    - group.laurastar_iron
 
 ironing_room_view:
   name: Ironing Room
   view: yes
   entities:
     - sensor.portable_sensor_4_temperature
-    - sensor.temp_humid_4_humidity    
+    - sensor.temp_humid_4_humidity
     - group.iron_sockets
     - group.Aeotec_Multi_1
 
@@ -93,7 +92,7 @@ morgans_room_view:
   view: yes
   entities:
     - sensor.portable_sensor_5_temperature
-    - sensor.temp_humid_5_humidity    
+    - sensor.temp_humid_5_humidity
     - group.morgans_room
 
 outside_view:
@@ -191,6 +190,12 @@ iron_sockets:
     - sensor.tp_hs110_4_power
     - switch.tp_hs110_5
     - sensor.tp_hs110_5_power
+
+laurastar_iron:
+  name: LauraStar Iron
+  entities:
+    - switch.tp_hs110_1
+    - sensor.tp_hs110_1_power
 
 morgans_room:
   name: Lights
