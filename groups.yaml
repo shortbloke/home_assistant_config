@@ -76,6 +76,8 @@ master_bedroom_view:
     - sensor.temp_humid_3_humidity    
     - media_player.master_bedroom
     - media_player.bathroom
+    - switch.tp_hs110_1
+    - sensor.tp_hs110_1_power
 
 ironing_room_view:
   name: Ironing Room
@@ -83,7 +85,7 @@ ironing_room_view:
   entities:
     - sensor.portable_sensor_4_temperature
     - sensor.temp_humid_4_humidity    
-    - group.ironing_room
+    - group.iron_sockets
     - group.Aeotec_Multi_1
 
 morgans_room_view:
@@ -176,8 +178,8 @@ hall_lights:
   entities:
     - switch.LWRF_Hall_Twig_Lights
 
-ironing_room:
-  name: Ironing Room Sockets
+iron_sockets:
+  name: Iron Sockets
   entities:
     - switch.tp_hs110_1
     - sensor.tp_hs110_1_power
@@ -303,7 +305,7 @@ automation_powercontrol:
   name: Power Control
   entities:
     - automation.turn_on_twig_lights_at_sunset
-    - automation.ironing_room_no_motion_turn_off_ac
+    # - automation.ironing_room_no_motion_turn_off_ac
     - automation.ironing_room_no_motion_turn_off_irons_left
     - automation.ironing_room_no_motion_turn_off_irons_right
     - automation.ironing_room_no_motion_turn_off_ironing_table

@@ -165,7 +165,7 @@
       value_template: '{{ states.switch.tp_hs110_1.attributes["Current consumption"].split(" ")[0]}}'
       unit_of_measurement: 'W'
       entity_id: switch.tp_hs110_1
-      friendly_name: "Power Consumption - Ironing Room A/C"
+      friendly_name: "Power Consumption - Laurastar Iron"
     tp_hs110_2_power:
       value_template: '{{ states.switch.tp_hs110_2.attributes["Current consumption"].split(" ")[0]}}'
       unit_of_measurement: 'W'

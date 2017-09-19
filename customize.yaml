@@ -186,8 +186,8 @@
 
 ### TP Link Switches ###
     switch.TP_HS110_1:
-      friendly_name: "Ironing Room - A/C"
-      icon: mdi:air-conditioner
+      friendly_name: "Laurastar Iron"
+      icon: mdi:power-socket-uk
     switch.TP_HS110_2:
       friendly_name: "Ironing Room - Irons (Left)"
       icon: mdi:power-socket-uk

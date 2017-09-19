@@ -19,24 +19,24 @@
       data:
         message: "HA SSL Cert expirying soon"
 
-- id: a_IronOn_1
-  alias: Ironing Room No Motion Turn off AC
-  trigger:
-    - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
-      for:
-        minutes: 30       
-  condition:
-    - condition: template
-      value_template: '{{ states.sensor.tp_hs110_1_power.state | int > 10 }}'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_1
-    - service: notify.notify
-      data:
-        title: "Ironing Room Alert!"
-        message: "No Motion Detected - Turning off Ironing room A/C"
+# - id: a_IronOn_1
+#   alias: Ironing Room No Motion Turn off AC
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+#       to: '0'
+#       for:
+#         minutes: 30       
+#   condition:
+#     - condition: template
+#       value_template: '{{ states.sensor.tp_hs110_1_power.state | int > 10 }}'
+#   action:
+#     - service: homeassistant.turn_off
+#       entity_id: switch.tp_hs110_1
+#     - service: notify.notify
+#       data:
+#         title: "Ironing Room Alert!"
+#         message: "No Motion Detected - Turning off Ironing room A/C"
 
 - id: a_IronOn_2
   alias: Ironing Room No Motion Turn off Irons Left
