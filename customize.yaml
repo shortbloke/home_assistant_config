@@ -200,3 +200,9 @@
     switch.TP_HS110_5:
       friendly_name: "Ironing Room - Magpie Iron"
       icon: mdi:power-socket-uk
+    switch.TP_HS110_6:
+      friendly_name: "Draytek Router"
+      icon: mdi:power-socket-uk
+    switch.TP_HS110_7:
+      friendly_name: "Server and Cisco Switch"
+      icon: mdi:power-socket-uk

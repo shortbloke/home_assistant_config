@@ -43,6 +43,13 @@
 - platform: tplink
   host: 192.168.0.63 # DHCP reservation
   name: TP_HS110_5
+- platform: tplink
+  host: 192.168.0.33 # DHCP reservation
+  name: TP_HS110_6
+- platform: tplink
+  host: 192.168.0.66 # DHCP reservation
+  name: TP_HS110_7
+
 
 - platform: mqtt
   name: "Sonoff Loft Fan Power"

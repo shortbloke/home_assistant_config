@@ -108,7 +108,7 @@ loft_view:
   view: yes
   entities:
     - group.hpilo
-    - switch.sonoff_loft_fan_power
+    - group.loft
     - sensor.loft_fan_temperature
     - sensor.loft_fan_humidity
 
@@ -201,6 +201,15 @@ morgans_room:
   name: Lights
   entities: 
     - light.LWRF_Morgan_Main
+
+loft:
+  name: loft
+  entities:
+    - switch.tp_hs110_6
+    - sensor.tp_hs110_6_power
+    - switch.tp_hs110_7
+    - sensor.tp_hs110_7_power
+    - switch.sonoff_loft_fan_power
 
 climate:
   name: Weather (local)

@@ -186,6 +186,16 @@
       unit_of_measurement: 'W'
       entity_id: switch.tp_hs110_5
       friendly_name: "Power Consumption - Magpie Iron"
+    tp_hs110_6_power:
+      value_template: '{{ states.switch.tp_hs110_6.attributes["Current consumption"].split(" ")[0]}}'
+      unit_of_measurement: 'W'
+      entity_id: switch.tp_hs110_6
+      friendly_name: "Power Consumption - Draytek Router"
+    tp_hs110_7_power:
+      value_template: '{{ states.switch.tp_hs110_7.attributes["Current consumption"].split(" ")[0]}}'
+      unit_of_measurement: 'W'
+      entity_id: switch.tp_hs110_7
+      friendly_name: "Power Consumption - Server and Cisco Switch"
     ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:
       value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
