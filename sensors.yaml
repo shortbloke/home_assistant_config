@@ -43,7 +43,7 @@
       data_type:
         - Humidity
         - Temperature
-    0a5209026900027e2a0189:
+    0a52091cf900026f3d0189:  #Frasers Room
       name: Temp_Humid_4
       data_type:
         - Humidity
@@ -216,7 +216,7 @@
       value_template: '{{ (states.sensor.temp_humid_4_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
       entity_id: sensor.temp_humid_4_temperature
-      friendly_name: "Ironing Room - Temperature"
+      friendly_name: "Frasers Room - Temperature"
     portable_sensor_5_temperature:
       value_template: '{{ (states.sensor.temp_humid_5_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'

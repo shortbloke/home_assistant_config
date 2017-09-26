@@ -7,27 +7,14 @@ default_view:
   view: yes
   entities:
     - sensor.ssl_cert_expiry
+    - sensor.hallway_thermostat_house_temperature
     - group.living_room_lights
     - group.dining_room_lights
     - group.conservatory_lights
     - group.scenes_living_room
-    # - group.flamerite_fire
-    # - group.hall_lights
-    # - group.ironing_room
     - group.climate
-    # - group.heating
     - group.heating_main_page
-    # - group.nest_protect
-    # - group.environment
-    # - group.energy
-    # - group.HAPi
-    # - group.hpilo
-    # - group.automation
-    # - group.shell_scripts
-    # - group.tracked_devices
-    # - group.Fibaro_Multi_1
-    # - group.Aeotec_Multi_1
-    # - group.zwave
+
 
 ## OTHER TABS (VIEWS) ##
 living_room_view:
@@ -83,17 +70,18 @@ ironing_room_view:
   view: yes
   entities:
     - sensor.portable_sensor_4_temperature
-    - sensor.temp_humid_4_humidity
     - group.iron_sockets
     - group.Aeotec_Multi_1
 
-morgans_room_view:
-  name: Morgans Room
+boys_rooms_view:
+  name: Boys Room
   view: yes
   entities:
     - sensor.portable_sensor_5_temperature
     - sensor.temp_humid_5_humidity
     - group.morgans_room
+    - sensor.portable_sensor_4_temperature
+    - sensor.temp_humid_4_humidity
 
 outside_view:
   name: Outside
@@ -216,7 +204,8 @@ climate:
   entities:
     - sun.sun
     - sensor.moon
-    - sensor.hallway_thermostat_house_temperature
+    # - sensor.temp_humid_ext_1_temperature
+    # - sensor.temp_humid_ext_1_humidity
 
 heating:
   name: Heating

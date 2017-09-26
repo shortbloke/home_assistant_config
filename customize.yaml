@@ -10,8 +10,7 @@
       emulated_hue_name: "Conservatory window lamp"
       icon: mdi:lamp
     switch.lwrf_conservatory_3:
-      friendly_name: "Conservatory - Corner Lamp"
-      icon: mdi:lamp
+      hidden: true
     switch.LWRF_Conservatory_4:
       hidden: true
     switch.LWRF_LivingRoom_Standard_Lamp:
