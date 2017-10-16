@@ -38,6 +38,14 @@
 #         title: "Ironing Room Alert!"
 #         message: "No Motion Detected - Turning off Ironing room A/C"
 
+
+## TODO: These assume that the plugs will be drawing current at the point the 30min timer expires. 
+#        There is no guarantee of this. Maybe need to reverse the check to a more frequent check
+#        of if power is being pulled, if yes, then has the room been empty for > 30mins.
+#        This current assumption has been demonstrated as being false.
+#        may need a template sensor for idle time for the movement sensor or something. Needs research.
+
+## Fix/Hack: 28 Sept, alter threshold from 10W to 2W.
 - id: a_IronOn_2
   alias: Ironing Room No Motion Turn off Irons Left
   trigger:
@@ -45,10 +53,10 @@
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
       to: '0'
       for:
-        minutes: 30       
+        minutes: 30
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_2_power.state | int > 10 }}'
+      value_template: '{{ states.sensor.tp_hs110_2_power.state | int > 2 }}'
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_2
@@ -64,10 +72,10 @@
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
       to: '0'
       for:
-        minutes: 30       
+        minutes: 30
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_3_power.state | int > 10 }}'
+      value_template: '{{ states.sensor.tp_hs110_3_power.state | int > 2 }}'
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_3
@@ -83,10 +91,10 @@
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
       to: '0'
       for:
-        minutes: 30       
+        minutes: 30
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_4_power.state | int > 10 }}'
+      value_template: '{{ states.sensor.tp_hs110_4_power.state | int > 2 }}'
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_4
@@ -102,10 +110,10 @@
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
       to: '0'
       for:
-        minutes: 30       
+        minutes: 30
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_5_power.state | int > 10 }}'
+      value_template: '{{ states.sensor.tp_hs110_5_power.state | int > 2 }}'
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_5

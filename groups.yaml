@@ -49,12 +49,6 @@ hall_view:
     - group.nest_protect
     - group.Fibaro_Multi_1
 
-kitchen_view:
-  name: Kitchen
-  view: yes
-  entities:
-    - media_player.kitchen
-
 master_bedroom_view:
   name: Master Bedroom
   view: yes
@@ -69,7 +63,8 @@ ironing_room_view:
   name: Ironing Room
   view: yes
   entities:
-    - sensor.portable_sensor_4_temperature
+    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity
     - group.iron_sockets
     - group.Aeotec_Multi_1
 
@@ -191,7 +186,7 @@ morgans_room:
     - light.LWRF_Morgan_Main
 
 loft:
-  name: loft
+  name: Loft
   entities:
     - switch.tp_hs110_6
     - sensor.tp_hs110_6_power
@@ -327,9 +322,9 @@ shell_scripts:
   name: Shell Scipts
   entities:
     - script.get_latest_config
-    - script.update_os
-    - script.update_hass
-    - script.update_all
+    # - script.update_os
+    # - script.update_hass
+    # - script.update_all
 
 tracked_devices:
   name: Tracked Devices
@@ -366,9 +361,7 @@ Aeotec_Multi_1:
     - sensor.aeotec_zw100_multisensor_6_alarm_type
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_luminance
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity
     - sensor.aeotec_zw100_multisensor_6_sourcenodeid
-    - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
     - sensor.aeotec_zw100_multisensor_6_dew_point
     # - zwave.aeotec_zw100_multisensor_6

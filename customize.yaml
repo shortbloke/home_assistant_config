@@ -98,6 +98,10 @@
       friendly_name: "Temperature"
 
 ### Nest Climate Information ###
+    sensor.hallway_thermostat_house_humidity:
+      friendly_name: "Humidity"
+    sensor.hallway_thermostat_house_temperature:
+      friendly_name: "Temperature"
     sensor.hallwayhousetemperature_2:
       friendly_name: "Outside Temperature"
     sensor.hallwayhousecondition:
@@ -139,34 +143,34 @@
       friendly_name: "Env. Morgans Room"
       hidden: true
     sensor.temp_humid_ext_1_temperature:
-      friendly_name: "Outside - Temperature"
+      friendly_name: "Temperature"  #Outside
     sensor.temp_humid_ext_1_humidity:
-      friendly_name: "Outside - Humidity"   
+      friendly_name: "Humidity"  #Outside
       icon: mdi:water-percent   
     sensor.temp_humid_1_temperature:
       hidden: true
     sensor.temp_humid_1_humidity:
-      friendly_name: "Conservatory - Humidity"
+      friendly_name: "Humidity"  #Conservatory
       icon: mdi:water-percent
     sensor.temp_humid_2_temperature:
-      hidden: true      
+      hidden: true
     sensor.temp_humid_2_humidity:
-      friendly_name: "Living Room - Humidity"
+      friendly_name: "Humidity"  #Living Room
       icon: mdi:water-percent
     sensor.temp_humid_3_temperature:
-      hidden: true      
+      hidden: true
     sensor.temp_humid_3_humidity:
-      friendly_name: "Master Bedroom - Humidity"
+      friendly_name: "Humidity"  #Master Bedroom
       icon: mdi:water-percent
     sensor.temp_humid_4_temperature:
-      hidden: true 
+      hidden: true
     sensor.temp_humid_4_humidity:
-      friendly_name: "Frasers Room - Humidity"
+      friendly_name: "Humidity (Fraser)"  #Frasers Room
       icon: mdi:water-percent
     sensor.temp_humid_5_temperature:
-      hidden: true      
+      hidden: true
     sensor.temp_humid_5_humidity:
-      friendly_name: "Morgans Room - Humidity"
+      friendly_name: "Humidity (Morgan)"  #Morgans Room
       icon: mdi:water-percent
 
 ### Speed Test ###
@@ -188,20 +192,26 @@
       friendly_name: "Laurastar Iron"
       icon: mdi:power-socket-uk
     switch.TP_HS110_2:
-      friendly_name: "Ironing Room - Irons (Left)"
+      friendly_name: "Irons (Left)"
       icon: mdi:power-socket-uk
     switch.TP_HS110_3:
-      friendly_name: "Ironing Room - Irons (Right)"
+      friendly_name: "Irons (Right)"
       icon: mdi:power-socket-uk
     switch.TP_HS110_4:
-      friendly_name: "Ironing Room - Ironing Table"
+      friendly_name: "Ironing Table"
       icon: mdi:power-socket-uk
     switch.TP_HS110_5:
-      friendly_name: "Ironing Room - Magpie Iron"
+      friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     switch.TP_HS110_6:
-      friendly_name: "Draytek Router"
+      friendly_name: "Draytek Router and HomerunHD"
       icon: mdi:power-socket-uk
     switch.TP_HS110_7:
       friendly_name: "Server and Cisco Switch"
       icon: mdi:power-socket-uk
+
+### Sonoff MQTT switches
+    sensor.loft_fan_temperature:
+      friendly_name: "Temperature"
+    sensor.loft_fan_humidity:
+      friendly_name: "Humidity"
