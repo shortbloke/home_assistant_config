@@ -54,10 +54,10 @@
       icon: mdi:fire
     light.flamerite_dimmer1:
       friendly_name: "Dimmer 1"
-      emulated_hue: false
+      emulated_hue_hidden: true
     light.flamerite_dimmer2:
       friendly_name: "Dimmer 2"
-      emulated_hue: false
+      emulated_hue_hidden: true
 
 #### Scenes ####
     scene.bright:
