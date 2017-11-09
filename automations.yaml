@@ -19,63 +19,54 @@
       data:
         message: "HA SSL Cert expirying soon"
 
-# - id: a_IronOn_1
-#   alias: Ironing Room No Motion Turn off AC
-#   trigger:
-#     - platform: state
-#       entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-#       to: '0'
-#       for:
-#         minutes: 30       
-#   condition:
-#     - condition: template
-#       value_template: '{{ states.sensor.tp_hs110_1_power.state | int > 10 }}'
-#   action:
-#     - service: homeassistant.turn_off
-#       entity_id: switch.tp_hs110_1
-#     - service: notify.notify
-#       data:
-#         title: "Ironing Room Alert!"
-#         message: "No Motion Detected - Turning off Ironing room A/C"
+# Watchdog timer for motion within ironing room.
+# Trigger 1: Goes to idle after 10mins from start of HA (if not reset)
+# Trigger 2: Starts/Resets timer each time aeotec senses motion, state 8
+- id: a_ironing_room_motion_timer
+  alias: Ironing room motion detected
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '8'
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: timer.ironing_room_motion_timer
+        duration: '00:10:00'
+    # # DEBUG ONLY
+    # - service: notify.ios_martins_iphone
+    #   data:
+    #     title: "Timer Reset"
+    #     message: "Motion Detected Resetting Timer"
 
-
-## TODO: These assume that the plugs will be drawing current at the point the 30min timer expires. 
-#        There is no guarantee of this. Maybe need to reverse the check to a more frequent check
-#        of if power is being pulled, if yes, then has the room been empty for > 30mins.
-#        This current assumption has been demonstrated as being false.
-#        may need a template sensor for idle time for the movement sensor or something. Needs research.
-
-## Fix/Hack: 28 Sept, alter threshold from 10W to 2W.
 - id: a_IronOn_2
   alias: Ironing Room No Motion Turn off Irons Left
   trigger:
-    - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
-      for:
-        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_2_power
+      above: 10
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_2_power.state | int > 2 }}'
+      value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_2
     - service: notify.notify
       data:
         title: "Ironing Room Alert!"
-        message: "No Motion Detected Turning off Ironing room Irons (Left)"
+        message: "No Motion Detected - Turning off Ironing room Irons (Left)"
 
 - id: a_IronOn_3
   alias: Ironing Room No Motion Turn off Irons Right
   trigger:
-    - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
-      for:
-        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_3_power
+      above: 10
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_3_power.state | int > 2 }}'
+      value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_3
@@ -87,33 +78,29 @@
 - id: a_IronOn_4
   alias: Ironing Room No Motion Turn off Ironing Table
   trigger:
-    - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
-      for:
-        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_4_power
+      above: 10
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_4_power.state | int > 2 }}'
+      value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_4
     - service: notify.notify
       data:
         title: "Ironing Room Alert!"
-        message: "No Motion Detected Turning off Ironing Table"
+        message: "No Motion Detected - Turning off Ironing Table"
 
 - id: a_IronOn_5
   alias: Ironing Room No Motion Turn off Magpie Iron
   trigger:
-    - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
-      for:
-        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_5_power
+      above: 10
   condition:
     - condition: template
-      value_template: '{{ states.sensor.tp_hs110_5_power.state | int > 2 }}'
+      value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_5

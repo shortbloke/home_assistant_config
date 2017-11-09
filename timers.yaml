@@ -1,0 +1,6 @@
+#### timers.yaml ####
+
+ironing_room_motion_timer: 
+    name: "Ironing Room Motion Timer"
+    icon: mdi:close-circle
+    duration: '00:02:00'

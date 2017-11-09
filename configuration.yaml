@@ -99,6 +99,7 @@ script: !include scripts.yaml
 sensor: !include sensors.yaml
 shell_command: !include shell_command.yaml
 switch: !include switches.yaml
+timer: !include timers.yaml
 
 ### Include All files with specified directory ###
 zone: !include_dir_list zones/
