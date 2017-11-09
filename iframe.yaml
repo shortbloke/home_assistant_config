@@ -1,7 +1,7 @@
 #### iframe.yaml ####
 environment:
   title: 'Environment'
-  url: 'http://192.168.0.164:3000/dashboard/db/environment?from=1504145805346&to=1504167405346&orgId=1&theme=light'
+  url: 'http://192.168.200.164:3000/dashboard/db/environment?from=1504145805346&to=1504167405346&orgId=1&theme=light'
   icon: mdi:thermometer
 windguru:
   title: 'Windguru'
