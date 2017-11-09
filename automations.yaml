@@ -36,7 +36,7 @@
         entity_id: timer.ironing_room_motion_timer
         duration: '00:10:00'
 
-# Trigger: Change in power consuption of a measured socket.
+# Trigger: Change in power consumption from below to above 10W.
 # Condition: Only triggered if no motion detected for 10 mins, using watchdog timer.
 - id: a_IronOn_2
   alias: Ironing Room No Motion Turn off Irons Left
