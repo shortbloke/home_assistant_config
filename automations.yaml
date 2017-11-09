@@ -35,12 +35,9 @@
       data_template:
         entity_id: timer.ironing_room_motion_timer
         duration: '00:10:00'
-    # # DEBUG ONLY
-    # - service: notify.ios_martins_iphone
-    #   data:
-    #     title: "Timer Reset"
-    #     message: "Motion Detected Resetting Timer"
 
+# Trigger: Change in power consuption of a measured socket.
+# Condition: Only triggered if no motion detected for 10 mins, using watchdog timer.
 - id: a_IronOn_2
   alias: Ironing Room No Motion Turn off Irons Left
   trigger:
