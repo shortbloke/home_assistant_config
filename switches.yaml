@@ -29,25 +29,25 @@
 
 ### TP Link Switches ###
 - platform: tplink
-  host: 192.168.0.21 # DHCP reservation
+  host: 192.168.200.21 # DHCP reservation
   name: TP_HS110_1
 - platform: tplink
-  host: 192.168.0.22 # DHCP reservation
+  host: 192.168.200.22 # DHCP reservation
   name: TP_HS110_2
 - platform: tplink
-  host: 192.168.0.23 # DHCP reservation
+  host: 192.168.200.23 # DHCP reservation
   name: TP_HS110_3
 - platform: tplink
-  host: 192.168.0.24 # DHCP reservation
+  host: 192.168.200.24 # DHCP reservation
   name: TP_HS110_4
 - platform: tplink
-  host: 192.168.0.25 # DHCP reservation
+  host: 192.168.200.25 # DHCP reservation
   name: TP_HS110_5
 - platform: tplink
-  host: 192.168.0.26 # DHCP reservation
+  host: 192.168.200.26 # DHCP reservation
   name: TP_HS110_6
 - platform: tplink
-  host: 192.168.0.27 # DHCP reservation
+  host: 192.168.200.27 # DHCP reservation
   name: TP_HS110_7
 
 
