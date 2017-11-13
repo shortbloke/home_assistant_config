@@ -87,7 +87,7 @@ automation: !include automations.yaml
 camera: !include camera.yaml
 group: !include groups.yaml
 history: !include history.yaml
-influxdb: !include influxdb.yaml
+# influxdb: !include influxdb.yaml
 light: !include lights.yaml
 logbook: !include logbook.yaml
 logger: !include logger.yaml
