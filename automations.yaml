@@ -20,7 +20,7 @@
         message: "HA SSL Cert expirying soon"
 
 # Watchdog timer for motion within ironing room.
-# Trigger 1: Goes to idle after 15mins from start of HA (if not reset)
+# Trigger 1: Goes to idle after 30mins from start of HA (if not reset)
 # Trigger 2: Starts/Resets timer each time aeotec senses motion, state 8
 - id: a_ironing_room_motion_timer
   alias: Ironing room motion detected
@@ -34,7 +34,7 @@
     - service: timer.start
       data_template:
         entity_id: timer.ironing_room_motion_timer
-        duration: '00:15:00'
+        duration: '00:30:00'
 
 # Trigger: Change in any properties of the smart plug.
 # Condition 1: Only trigger if drawing more than 10W AND
@@ -52,10 +52,12 @@
         above: 10
       - condition: template
         value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
+      - condition: template
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_2
-    - service: notify.ios_michelles_iphone
+    # - service: homeassistant.turn_off
+    #   entity_id: switch.tp_hs110_2
+    - service: notify.ios_martins_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room Irons (Left)"
@@ -73,10 +75,12 @@
         above: 10
       - condition: template
         value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
+      - condition: template
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_3
-    - service: notify.ios_michelles_iphone
+    # - service: homeassistant.turn_off
+    #   entity_id: switch.tp_hs110_3
+    - service: notify.ios_martins_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room Irons (Right)"
@@ -94,10 +98,12 @@
         above: 10
       - condition: template
         value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
+      - condition: template
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_4
-    - service: notify.ios_michelles_iphone
+    # - service: homeassistant.turn_off
+    #   entity_id: switch.tp_hs110_4
+    - service: notify.ios_martins_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing Table"
@@ -109,12 +115,19 @@
       entity_id: sensor.tp_hs110_5_power
       above: 10
   condition:
-    - condition: template
-      value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.tp_hs110_5_power
+        above: 10
+      - condition: template
+        value_template: "{% if is_state('timer.ironing_room_motion_timer', 'idle') %}true{% endif %}"
+      - condition: template
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_5
-    - service: notify.ios_michelles_iphone
+    # - service: homeassistant.turn_off
+    #   entity_id: switch.tp_hs110_5
+    - service: notify.ios_martins_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Magpie Iron"
