@@ -55,9 +55,9 @@
       - condition: template
         value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    # - service: homeassistant.turn_off
-    #   entity_id: switch.tp_hs110_2
-    - service: notify.ios_martins_iphone
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_2
+    - service: notify.ios_michelles_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room Irons (Left)"
@@ -78,9 +78,9 @@
       - condition: template
         value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    # - service: homeassistant.turn_off
-    #   entity_id: switch.tp_hs110_3
-    - service: notify.ios_martins_iphone
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_3
+    - service: notify.ios_michelles_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing room Irons (Right)"
@@ -101,9 +101,9 @@
       - condition: template
         value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    # - service: homeassistant.turn_off
-    #   entity_id: switch.tp_hs110_4
-    - service: notify.ios_martins_iphone
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_4
+    - service: notify.ios_michelles_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Ironing Table"
@@ -125,9 +125,9 @@
       - condition: template
         value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','0') %}true{% endif %}"
   action:
-    # - service: homeassistant.turn_off
-    #   entity_id: switch.tp_hs110_5
-    - service: notify.ios_martins_iphone
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_5
+    - service: notify.ios_michelles_iphone
       data:
         title: "Ironing Room Alert!"
         message: "No Motion Detected - Turning off Magpie Iron"
@@ -136,11 +136,11 @@
   alias: Update config HASS if travis build is successfull
   trigger:
     - platform: state
-      entity_id: sensor.travis_build_label
+      entity_id: sensor.shortblokehome_assistant_config_last_build_id
   condition:
     - condition: state
-      entity_id: sensor.travis_status
-      state: 'Success'
+      entity_id: sensor.shortblokehome_assistant_config_last_build_state
+      state: 'passed'
   action:
     - service: script.get_latest_config
 

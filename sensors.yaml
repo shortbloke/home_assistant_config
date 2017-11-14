@@ -235,13 +235,11 @@
   scan_interval: 86400
   command: "ssl-cert-check -b -c /etc/letsencrypt/live/rowannet.duckdns.org/cert.pem | awk '{ print $NF }'"
 
-### Command Line Sensor for Travis build status (of config files)
-- platform: command_line
-  name: Travis Status
-  command: /usr/bin/curl -X GET https://api.travis-ci.org/repos/shortbloke/home_assistant_config/cc.xml\?branch\=master | grep lastBuildStatus | cut -d'"' -f2
+### Component to monitor travis-ci status of config file repro.
+- platform: travisci
+  api_key: !secret travisci_api_key
   scan_interval: 60
-
-- platform: command_line
-  name: Travis Build Label
-  command: /usr/bin/curl -X GET https://api.travis-ci.org/repos/shortbloke/home_assistant_config/cc.xml\?branch\=master | grep lastBuildLabel | cut -d'"' -f2
-  scan_interval: 60  
+  repository: "home_assistant_config"
+  monitored_conditions:
+    - last_build_id
+    - last_build_state
