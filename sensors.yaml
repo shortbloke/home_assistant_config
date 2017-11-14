@@ -238,7 +238,7 @@
 ### Component to monitor travis-ci status of config file repro.
 - platform: travisci
   api_key: !secret travisci_api_key
-  scan_interval: 60
+  # scan_interval: 60
   repository: "home_assistant_config"
   monitored_conditions:
     - last_build_id
