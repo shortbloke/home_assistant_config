@@ -176,7 +176,7 @@ iron_sockets:
     - sensor.tp_hs110_5_power
 
 ironing_room_timers:
-  name: Timers
+  name: Ironing Room Timers
   entities:
     - timer.ironing_room_motion_timer
     - timer.ironing_room_motion_timer_reset_poll
