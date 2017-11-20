@@ -34,11 +34,9 @@
     - service: timer.start
       data_template:
         entity_id: timer.ironing_room_motion_timer
-        duration: '00:30:00'
     - service: timer.start
       data_template: 
         entity_id: timer.ironing_room_motion_timer_reset_poll
-        duration: '00:05:00'
 
 # Second watchdog, reset_poll timer expires and motion sensor state is still 8, then there has been constant movement and we should reset the timers
 - id: a_ironing_room_timer_reset
@@ -55,11 +53,9 @@
     - service: timer.start
       data_template:
         entity_id: timer.ironing_room_motion_timer
-        duration: '00:30:00'
     - service: timer.start
       data_template:
         entity_id: timer.ironing_room_motion_timer_reset_poll
-        duration: '00:05:00'
 
 # Trigger: Change in any properties of the smart plug.
 # Condition 1: Only trigger if drawing more than 10W AND

@@ -7,4 +7,4 @@ ironing_room_motion_timer:
 ironing_room_motion_timer_reset_poll:
     name: "Ironing Room Motion Timer Reset Poll"
     icon: mdi:close-circle
-    duration: '00:5:00'
+    duration: '00:05:00'
