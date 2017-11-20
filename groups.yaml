@@ -65,7 +65,7 @@ ironing_room_view:
   entities:
     - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_relative_humidity
-    - timer.ironing_room_motion_timer
+    - group.ironing_room_timers
     - group.iron_sockets
     - group.Aeotec_Multi_1
 
@@ -174,6 +174,12 @@ iron_sockets:
     - sensor.tp_hs110_4_power
     - switch.tp_hs110_5
     - sensor.tp_hs110_5_power
+
+ironing_room_timers:
+  name: Timers
+  entities:
+    - timer.ironing_room_motion_timer
+    - timer.ironing_room_motion_timer_reset_poll
 
 laurastar_iron:
   name: LauraStar Iron
@@ -306,6 +312,7 @@ automation_powercontrol:
     - automation.turn_on_twig_lights_at_sunset
     # - automation.ironing_room_no_motion_turn_off_ac
     - automation.ironing_room_motion_detected
+    - automation.ironing_room_timer_reset
     - automation.ironing_room_no_motion_turn_off_irons_left
     - automation.ironing_room_no_motion_turn_off_irons_right
     - automation.ironing_room_no_motion_turn_off_ironing_table

@@ -19,9 +19,9 @@
       data:
         message: "HA SSL Cert expirying soon"
 
-# Watchdog timer for motion within ironing room.
-# Trigger 1: Goes to idle after 30mins from start of HA (if not reset)
-# Trigger 2: Starts/Resets timer each time aeotec senses motion, state 8
+# Watchdog timer for motion within ironing room. Uses 2 timers to ensure constant state is detected.
+# Trigger 1: Goes to idle after 30 mins from start of HA (if not reset)
+# Trigger 2: Starts/Resets timer each time aeotec senses motion, state transistion to 8
 - id: a_ironing_room_motion_timer
   alias: Ironing room motion detected
   trigger:
@@ -35,6 +35,31 @@
       data_template:
         entity_id: timer.ironing_room_motion_timer
         duration: '00:30:00'
+    - service: timer.start
+      data_template: 
+        entity_id: timer.ironing_room_motion_timer_reset_poll
+        duration: '00:05:00'
+
+# Second watchdog, reset_poll timer expires and motion sensor state is still 8, then there has been constant movement and we should reset the timers
+- id: a_ironing_room_timer_reset
+  alias: Ironing room timer reset
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ironing_room_motion_timer_reset_poll
+  condition:
+    - condition: template
+      value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','8') %}true{% endif %}"
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: timer.ironing_room_motion_timer
+        duration: '00:30:00'
+    - service: timer.start
+      data_template:
+        entity_id: timer.ironing_room_motion_timer_reset_poll
+        duration: '00:05:00'
 
 # Trigger: Change in any properties of the smart plug.
 # Condition 1: Only trigger if drawing more than 10W AND
