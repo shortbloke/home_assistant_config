@@ -149,6 +149,7 @@ living_room_lights:
     - switch.LWRF_LivingRoom_Standard_Lamp
     - switch.LWRF_DisplayCabinetLight
     - switch.LWRF_WaxBurner
+    - switch.LWRF_Christmas_Tree_Lights
 
 dining_room_lights:
   name: Dining Room Lights

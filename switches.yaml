@@ -1,6 +1,6 @@
 #### Switches.yaml ####
 - platform: rfxtrx
-  automatic_add: False
+  automatic_add: true
   devices:
 ### Lightwave RF ###
     0a140000f4f6ad01000080:
@@ -21,6 +21,8 @@
       name: LWRF_DiningRoom_Rennie_Mac_Lamp
     0a140026f4f6ad0d000070:
       name: LWRF_Hall_Twig_Lights
+    0a14000403922105010070:
+      name: LWRF_Christmas_Tree_Lights
 ### Flamerite Fire ###
     0b11000a015b6eff01010f80:
       name: Flamerite_Power

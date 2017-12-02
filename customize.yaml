@@ -33,6 +33,9 @@
       friendly_name: "Twig Lights"
       emulated_hue_name: "Twig Lights"
       icon: mdi:lamp
+    switch.LWRF_Christmas_Tree_Lights:
+      friendly_name: "Christmas Tree Lights"
+      emulated_hue_name: Christmas Tree Lights"
 
 #### Lightwave RF Dimmer Switches ####
     light.LWRF_DiningRoom_Main:
