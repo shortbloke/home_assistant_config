@@ -6,7 +6,9 @@
       offset: '-01:00:00'
   action:
     - service: homeassistant.turn_on
-      entity_id: switch.LWRF_Hall_Twig_Lights
+      entity_id: switch.LWRF_Hall_Socket_2 # Twigs
+    - service: homeassistant.turn_on
+      entity_id: switch.LWRF_Hall_Socket_1 # Outside Xmas Lights
 
 - id: '1500048925363'
   alias: SSL Expiry notification

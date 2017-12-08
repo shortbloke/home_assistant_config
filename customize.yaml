@@ -29,7 +29,10 @@
       friendly_name: "Wax Burner"
       emulated_hue_name: "Wax Burner"
       icon: mdi:radiator
-    switch.LWRF_Hall_Twig_Lights:
+    switch.LWRF_Hall_Socket_1:
+      friendly_name: "Outside Socket"
+      emulated_hue_name: "Outside Lights"
+    switch.LWRF_Hall_Socket_2:
       friendly_name: "Twig Lights"
       emulated_hue_name: "Twig Lights"
       icon: mdi:lamp

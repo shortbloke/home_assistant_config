@@ -160,7 +160,8 @@ dining_room_lights:
 hall_lights:
   name: Hall Lights
   entities:
-    - switch.LWRF_Hall_Twig_Lights
+    - switch.LWRF_Hall_Socket_1
+    - switch.LWRF_Hall_Socket_2
 
 iron_sockets:
   name: Iron Sockets

@@ -19,10 +19,12 @@
       name: LWRF_WaxBurner
     0a14000df50db80d000070:
       name: LWRF_DiningRoom_Rennie_Mac_Lamp
-    0a140026f4f6ad0d000070:
-      name: LWRF_Hall_Twig_Lights
     0a14000403922105010070:
       name: LWRF_Christmas_Tree_Lights
+    0a14000803922301010080:
+      name: LWRF_Hall_Socket_1
+    0a14001303922302010080:
+      name: LWRF_Hall_Socket_2
 ### Flamerite Fire ###
     0b11000a015b6eff01010f80:
       name: Flamerite_Power
