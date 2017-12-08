@@ -1,6 +1,6 @@
 #### Switches.yaml ####
 - platform: rfxtrx
-  automatic_add: true
+  automatic_add: false
   devices:
 ### Lightwave RF ###
     0a140000f4f6ad01000080:
