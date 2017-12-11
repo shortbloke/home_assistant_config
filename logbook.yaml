@@ -13,3 +13,4 @@ exclude:
     - sensor.average_load_15m
     # Automation trigger on movement
     - automation.ironing_room_motion_detected
+    - automation.ironing_room_timer_reset
