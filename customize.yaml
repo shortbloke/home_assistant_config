@@ -215,7 +215,7 @@
       friendly_name: "Draytek Router and HomerunHD"
       icon: mdi:power-socket-uk
     switch.TP_HS110_7:
-      friendly_name: "Server and Cisco Switch"
+      friendly_name: "HP MicroServer"
       icon: mdi:power-socket-uk
 
 ### Sonoff MQTT switches
