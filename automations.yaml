@@ -1,6 +1,8 @@
 - id: '1500048597882'
-  alias: Turn on Twig lights at sunset
+  alias: Turn on lights in the morning and at sunset
   trigger:
+    - platform: time
+      at: "06:30:00"
     - platform: sun
       event: sunset
       offset: '-01:00:00'
@@ -9,6 +11,24 @@
       entity_id: switch.LWRF_Hall_Socket_2 # Twigs
     - service: homeassistant.turn_on
       entity_id: switch.LWRF_Hall_Socket_1 # Outside Xmas Lights
+    - service: homeassistant.turn_on
+      entity_id: switch.LWRF_Christmas_Tree_Lights # Christmas Tree Lights
+
+- id: a_morning_lights
+  alias: Turn off morning lights
+  trigger:
+    - platform: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state.attributes.elevation }}"
+      # Can be a positive or negative number
+      above: 10.0
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.LWRF_Hall_Socket_2 # Twigs
+    - service: homeassistant.turn_off
+      entity_id: switch.LWRF_Hall_Socket_1 # Outside Xmas Lights
+    - service: homeassistant.turn_on
+      entity_id: switch.LWRF_Christmas_Tree_Lights # Christmas Tree Lights
 
 - id: '1500048925363'
   alias: SSL Expiry notification
