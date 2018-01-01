@@ -47,6 +47,7 @@ climate:
   platform: nest
 
 emulated_hue:
+  listen_port: 80
   expose_by_default: true
   exposed_domains:
     - switch
