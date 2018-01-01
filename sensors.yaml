@@ -190,12 +190,12 @@
       value_template: '{{ states.switch.tp_hs110_6.attributes["current_consumption"].split(" ")[0]}}'
       unit_of_measurement: 'W'
       entity_id: switch.tp_hs110_6
-      friendly_name: "Power - Draytek Router and HomerunHD"
+      friendly_name: "Power - Desk Left"
     tp_hs110_7_power:
       value_template: '{{ states.switch.tp_hs110_7.attributes["current_consumption"].split(" ")[0]}}'
       unit_of_measurement: 'W'
       entity_id: switch.tp_hs110_7
-      friendly_name: "Power - HP MicroServer"
+      friendly_name: "Power - HP Z640"
     ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:
       value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'

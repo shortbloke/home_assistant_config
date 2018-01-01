@@ -212,10 +212,10 @@
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     switch.TP_HS110_6:
-      friendly_name: "Draytek Router and HomerunHD"
+      friendly_name: "Desk left"
       icon: mdi:power-socket-uk
     switch.TP_HS110_7:
-      friendly_name: "HP MicroServer"
+      friendly_name: "HP Z640"
       icon: mdi:power-socket-uk
 
 ### Sonoff MQTT switches
