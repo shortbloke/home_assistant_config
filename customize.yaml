@@ -67,6 +67,14 @@
       friendly_name: "Dimmer 2"
       emulated_hue_hidden: true
 
+#### Flux Lights
+    light.morgan_zone_1:
+      friendly_name: "Morgans Zone 1 (Desk)"
+      emulated_hue_name: "zone 1"
+    light.morgan_zone_2:
+      friendly_name: "Morgans Zone 2 (Bed)"
+      emulated_hue_name: "zone 2"
+
 #### Scenes ####
     scene.bright:
       emulated_hue_name: "Mood bright"

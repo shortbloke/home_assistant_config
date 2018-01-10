@@ -16,3 +16,13 @@
       name: LWRF_LivingRoom_Main
     0a14000a03922501010070:
       name: LWRF_Morgan_Main
+
+- platform: flux_led
+  automatic_add: False
+  devices:
+    192.168.200.31:
+      name: Morgan_Zone_1
+      mode: "rgbw"
+    192.168.200.32:
+      name: Morgan_Zone_2
+      mode: "rgbw"

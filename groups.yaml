@@ -202,6 +202,8 @@ morgans_room:
   name: Lights
   entities: 
     - light.LWRF_Morgan_Main
+    - light.morgan_zone_1
+    - light.morgan_zone_2
 
 loft:
   name: Loft

@@ -1,9 +1,5 @@
 #### logger.yaml ####
 default: error
 logs:
-  homeassistant.components.emulated_hue: debug
-  homeassistant.components.rfxtrx: info
-  # homeassistant.components.sensor.rfxtrx: debug
-  # homeassistant.components.recorder: debug
-  # homeassistant.components.rfxtrx: debug
-  # homeassistant.core: debug
+  homeassistant.components.light: info
+  light.flux_led: info
