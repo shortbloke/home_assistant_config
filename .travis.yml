@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.4"
+  - "3.5"
 before_install:
   - mv travis/travis_secrets.yaml secrets.yaml
   - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
