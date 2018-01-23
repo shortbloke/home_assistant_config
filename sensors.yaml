@@ -89,7 +89,7 @@
 ############################################################
 
 - platform: hp_ilo
-  name: Server
+  name: Nano
   host: !secret hp_ilo_server
   port: 443
   username: !secret hp_ilo_username
