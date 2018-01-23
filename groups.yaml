@@ -124,6 +124,7 @@ automation_view:
     - group.automation_utilities
     - group.automation_system
     - group.automation_powercontrol
+    - group.automation_mining
     - group.shell_scripts
 
 
@@ -134,6 +135,7 @@ conservatory_lights:
     - switch.lwrf_conservatory_1
     - switch.lwrf_conservatory_2
     - switch.lwrf_conservatory_3
+    - light.flux_mini
 
 conservatory_sockets:
   name: Conservatory Switches
@@ -202,8 +204,10 @@ morgans_room:
   name: Lights
   entities: 
     - light.LWRF_Morgan_Main
-    - light.morgan_zone_1
-    - light.morgan_zone_2
+    - light.wifi_ufo_1
+    - light.wifi_ufo_2
+    - light.wifi_ufo_3
+    - light.wifi_ufo_4
 
 loft:
   name: Loft
@@ -292,22 +296,22 @@ HAPi:
 hpilo:
   name: HP Microserver G7
   entities:
-    - sensor.server_server_name
-    - sensor.server_glance_power_supplies
-    - sensor.server_glance_processor
-    - sensor.server_glance_storage
-    - sensor.server_glance_memory
-    - sensor.server_glance_temperatures
-    - sensor.server_glance_fans
-    - sensor.server_glance_network
-    - sensor.server_glance_bios
-    - sensor.server_cpu_fanspeed
-    - sensor.server_inlet_temperature
-    - sensor.server_exhaust_temperature
-    - sensor.server_cpu_temperature
-    - sensor.server_pci_temperature
-    - sensor.server_chipset_temperature
-    - sensor.server_memory_temperature
+    - sensor.nano_server_name
+    - sensor.nano_glance_power_supplies
+    - sensor.nano_glance_processor
+    - sensor.nano_glance_storage
+    - sensor.nano_glance_memory
+    - sensor.nano_glance_temperatures
+    - sensor.nano_glance_fans
+    - sensor.nano_glance_network
+    - sensor.nano_glance_bios
+    - sensor.nano_cpu_fanspeed
+    - sensor.nano_inlet_temperature
+    - sensor.nano_exhaust_temperature
+    - sensor.nano_cpu_temperature
+    - sensor.nano_pci_temperature
+    - sensor.nano_chipset_temperature
+    - sensor.nano_memory_temperature
 
 automation_utilities:
   name: Utilities
@@ -336,6 +340,11 @@ automation_system:
     - automation.hapi_high_load_alert
     - automation.hapi_low_disk_space_alert
     - automation.hapi_low_memory_alert
+
+automation_mining:
+  name: Crypto Mining Monitoring
+  entities:
+    - automation.miner01_power_watcher
 
 shell_scripts:
   name: Shell Scipts
