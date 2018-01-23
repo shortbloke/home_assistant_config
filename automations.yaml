@@ -244,3 +244,18 @@
       data: 
         title: "HAPi Low Resource Alert"
         message: "System Load 5m Load Average > 2.8"
+
+- id: a_miner01_power_watch
+  alias: Miner01 Power Watcher
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_6_power
+      below: 750
+      for:
+        minutes: 5
+  action:
+    - service: notify.ios_martins_iphone
+      data_template:
+        title: "Miner01 - Low Power Usage!"
+        message: >-
+          Current usage is {{ states("sensor.tp_hs110_6_power") }} W, expected > 750
