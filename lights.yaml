@@ -21,8 +21,17 @@
   automatic_add: False
   devices:
     192.168.200.31:
-      name: Morgan_Zone_1
+      name: wifi_ufo_1
       mode: "rgbw"
     192.168.200.32:
-      name: Morgan_Zone_2
+      name: wifi_ufo_2
       mode: "rgbw"
+    192.168.200.33:
+      name: wifi_ufo_3
+      mode: "rgbw"
+    192.168.200:34:
+      name: wifi_ufo_4
+      mode: "rgbw"
+    # 192.168.200.170:
+    #   name: flux_mini
+    #   mode: "rgbw"

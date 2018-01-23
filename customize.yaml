@@ -68,13 +68,18 @@
       emulated_hue_hidden: true
 
 #### Flux Lights
-    light.morgan_zone_1:
-      friendly_name: "Morgans Zone 1 (Desk)"
-      emulated_hue_name: "zone 1"
-    light.morgan_zone_2:
-      friendly_name: "Morgans Zone 2 (Bed)"
-      emulated_hue_name: "zone 2"
-
+    light.wifi_ufo_1:
+      friendly_name: "Morgans Desk"
+      emulated_hue_name: "Desk Lights"
+    light.wifi_ufo_2:
+      friendly_name: "Morgans Window"
+      emulated_hue_name: "Window Lights"
+    light.wifi_ufo_3:
+      friendly_name: "Morgans Rear Wall"
+      emulated_hue_name: "Rear wall lights"
+    light.wifi_ufo_4:
+      friendly_name: "Morgans Bed"
+      emulated_hue_name: "Bed Lights"
 #### Scenes ####
     scene.bright:
       emulated_hue_name: "Mood bright"
@@ -220,7 +225,7 @@
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     switch.TP_HS110_6:
-      friendly_name: "Desk left"
+      friendly_name: "Miner01"
       icon: mdi:power-socket-uk
     switch.TP_HS110_7:
       friendly_name: "HP Z640"
