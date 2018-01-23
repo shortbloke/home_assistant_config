@@ -20,7 +20,8 @@ http:
 
 ## Hass UI Config ##
 frontend:
-  # Not implemented yet, but > 0.49 supports themes.
+  javascript_version: latest
+
 ios:
   # iOS App Support
 config:
@@ -36,7 +37,7 @@ nest:
 
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
-  debug: True
+  debug: False
   dummy: False
 
 zwave:
