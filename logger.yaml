@@ -1,5 +1,4 @@
 #### logger.yaml ####
 default: error
-logs:
-  homeassistant.components.light: info
-  light.flux_led: info
+# logs:
+#   homeassistant.components.light: info
