@@ -22,7 +22,7 @@ living_room_view:
   view: yes
   entities:
     - sensor.portable_sensor_2_temperature
-    - sensor.temp_humid_2_humidity    
+    - sensor.temp_humid_2_humidity
     - group.living_room_lights
     - group.scenes_living_room
     - group.flamerite_fire
@@ -34,10 +34,11 @@ conservatory_view:
   view: yes
   entities:
     - sensor.portable_sensor_1_temperature
-    - sensor.temp_humid_1_humidity    
+    - sensor.temp_humid_1_humidity
     - group.conservatory_lights
     - group.conservatory_sockets
-    - media_player.conservatory      
+    - group.Fibaro_Multi_1
+    - media_player.conservatory
 
 hall_view:
   name: Hall
@@ -48,7 +49,6 @@ hall_view:
     - group.hall_lights
     - group.heating
     - group.nest_protect
-    - group.Fibaro_Multi_1
 
 master_bedroom_view:
   name: Master Bedroom
