@@ -4,6 +4,7 @@
 ## DEFUALT VIEW - HOME##
 
 default_view:
+  name: Home
   view: yes
   entities:
     - sensor.ssl_cert_expiry

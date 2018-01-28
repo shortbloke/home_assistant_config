@@ -1,7 +1,7 @@
 #### configuration.yaml ####
 ## Core Config ##
 homeassistant:
-  name: Home
+  name: Home Assistant
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
   elevation: !secret evelation_loc_home
