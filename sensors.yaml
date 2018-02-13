@@ -13,6 +13,8 @@
       arg: /
     - type: disk_use_percent
       arg: /
+    - type: swap_free
+    - type: swap_use_percent
     - type: memory_free
     - type: memory_use_percent
     - type: processor_use

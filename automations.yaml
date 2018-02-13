@@ -213,7 +213,7 @@
   alias: HAPi Low Disk Space Alert
   trigger:
     - platform: numeric_state
-      entity_id: sensor.disk_use_
+      entity_id: sensor.disk_use_percent_
       above: 90
   action:
     - service: notify.ios_martins_iphone
@@ -225,7 +225,7 @@
   alias: HAPi Low Memory Alert
   trigger:
     - platform: numeric_state
-      entity_id: sensor.ram_use
+      entity_id: sensor.memory_use_percent
       above: 90
   action:
     - service: notify.ios_martins_iphone
@@ -237,7 +237,7 @@
   alias: HAPi High Load Alert
   trigger:
     - platform: numeric_state
-      entity_id: sensor.average_load_5m
+      entity_id: sensor.load_5m
       above: 2.8 # 4 Cores in RPi3 x 0.7 per core, for relatively high sustained load = 
   action:
     - service: notify.ios_martins_iphone
@@ -250,12 +250,37 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 750
+      below: 725
       for:
         minutes: 5
   action:
     - service: notify.ios_martins_iphone
       data_template:
-        title: "Miner01 - Low Power Usage!"
+        title: "Miner Moniitor: Miner01 - Low Power"
         message: >-
-          Current usage is {{ states("sensor.tp_hs110_6_power") }} W, expected > 750
+          Current usage is {{ states("sensor.tp_hs110_6_power") }} W, expected > 725
+
+- id: a_miner01_lowpower_reboot
+  alias: Miner01 Low Power Reboot
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_6_power
+      below: 725
+      for:
+        minutes: 10
+  action:
+    - service: notify.ios_martins_iphone
+      data:
+        title: "Miner Monitor: Miner01"
+        message:
+          Rebooting miner01. Low power usage for > 10 mins.
+    - delay: 0:01
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_6
+    - delay: 0:01
+    - service: notify.ios_martins_iphone
+      data:
+        title: "Miner Monitor: Miner01"
+        message: "Powernig Back On!"
+    - service: homeassistant.turn_on
+      entity_id: switch.tp_hs110_6

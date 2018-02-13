@@ -1,0 +1,78 @@
+climate.hallway_house:
+  platform: nest
+  unique_id: DfjSfuW8D_EefggmcBR97IS_9qZV-KT4
+sensor.iphone_battery_level:
+  platform: ios
+  unique_id: level_michelles_iphone
+sensor.martins_ipad_battery_state:
+  platform: ios
+  unique_id: state_martins_ipad
+sensor.martins_ipad_battery_level:
+  platform: ios
+  unique_id: level_martins_ipad
+sensor.martins_iphone_battery_level:
+  platform: ios
+  unique_id: level_martins_iphone
+sensor.martins_iphone_battery_state:
+  platform: ios
+  unique_id: state_martins_iphone
+sensor.iphone_battery_state:
+  platform: ios
+  unique_id: state_michelles_iphone
+binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor:
+  platform: zwave
+  unique_id: 3-72057594093240320
+sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
+  platform: zwave
+  unique_id: 3-72057594093256722
+sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
+  platform: zwave
+  unique_id: 3-72057594093256754
+sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity:
+  platform: zwave
+  unique_id: 3-72057594093257106
+sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type:
+  platform: zwave
+  unique_id: 3-72057594094305281
+sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level:
+  platform: zwave
+  unique_id: 3-72057594094305297
+sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid:
+  platform: zwave
+  unique_id: 3-72057594094305313
+sensor.fibaro_system_fgms001zw5_motion_sensor_burglar:
+  platform: zwave
+  unique_id: 3-72057594094305441
+sensor.fibaro_system_fgms001zw5_motion_sensor_general:
+  platform: zwave
+  unique_id: 3-72057594095009793
+binary_sensor.aeotec_zw100_multisensor_6_sensor:
+  platform: zwave
+  unique_id: 8-72057594177126400
+sensor.aeotec_zw100_multisensor_6_temperature:
+  platform: zwave
+  unique_id: 8-72057594177142802
+sensor.aeotec_zw100_multisensor_6_luminance:
+  platform: zwave
+  unique_id: 8-72057594177142834
+sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  platform: zwave
+  unique_id: 8-72057594177142866
+sensor.aeotec_zw100_multisensor_6_dew_point:
+  platform: zwave
+  unique_id: 8-72057594177142962
+sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  platform: zwave
+  unique_id: 8-72057594177143218
+sensor.aeotec_zw100_multisensor_6_alarm_type:
+  platform: zwave
+  unique_id: 8-72057594178191361
+sensor.aeotec_zw100_multisensor_6_alarm_level:
+  platform: zwave
+  unique_id: 8-72057594178191377
+sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  platform: zwave
+  unique_id: 8-72057594178191393
+sensor.aeotec_zw100_multisensor_6_burglar:
+  platform: zwave
+  unique_id: 8-72057594178191521

@@ -284,15 +284,17 @@ HAPi:
   name: HAPi Server
   entities:
     - sensor.current_version
-    - sensor.cpu_use
+    - sensor.processor_use
     - sensor.disk_free_
-    - sensor.disk_use_
-    - sensor.ram_free
-    - sensor.ram_use
+    - sensor.disk_use_percent_
+    - sensor.swap_free
+    - sensor.swap_use_percent
+    - sensor.memory_free
+    - sensor.memory_use_percent
     - sensor.last_boot
-    - sensor.average_load_1m
-    - sensor.average_load_5m
-    - sensor.average_load_15m
+    - sensor.load_1m
+    - sensor.load_5m
+    - sensor.load_15m
 
 hpilo:
   name: HP Microserver G7
@@ -346,6 +348,7 @@ automation_mining:
   name: Crypto Mining Monitoring
   entities:
     - automation.miner01_power_watcher
+    - automation.miner01_low_power_reboot
 
 shell_scripts:
   name: Shell Scipts
