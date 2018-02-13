@@ -93,7 +93,7 @@ loft_view:
   name: loft
   view: yes
   entities:
-    - group.hpilo
+    # - group.hpilo
     - group.loft
     - sensor.loft_fan_temperature
     - sensor.loft_fan_humidity
