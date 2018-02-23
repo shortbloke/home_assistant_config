@@ -236,3 +236,27 @@
       friendly_name: "Temperature"
     sensor.loft_fan_humidity:
       friendly_name: "Humidity"
+
+### Fibaro Multi-Sensor
+    binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor:
+      friendly_name: "Mining Rig Multi-Sensor"
+    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
+      friendly_name: "Mining Rig Luminance"
+    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
+      friendly_name: "Mining Rig Temperature"
+
+### Aeotec Multi-Sensor
+    binary_sensor.aeotec_zw100_multisensor_6_sensor:
+      friendly_name: "Ironing Room Multi-Sensor"
+    sensor.aeotec_zw100_multisensor_6_burglar:
+      friendly_name: "Ironing Room Motion State"
+    sensor.aeotec_zw100_multisensor_6_luminance:
+      friendly_name: "Ironing Room Luminance"
+    sensor.aeotec_zw100_multisensor_6_ultraviolet:
+      friendly_name: "Ironing Room UV Level"
+    sensor.aeotec_zw100_multisensor_6_dew_point:
+      friendly_name: "Ironing Room Dew Point"
+    sensor.aeotec_zw100_multisensor_6_temperature:
+      friendly_name: "Temperature"
+    sensor.aeotec_zw100_multisensor_6_relative_humidity:
+      friendly_name: "Humidity"

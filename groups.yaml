@@ -375,13 +375,13 @@ Fibaro_Multi_1:
   name: Fibaro Multisensor
   entities:
     - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_general
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_general
     - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
     # - zwave.fibaro_system_fgms001zw5_motion_sensor
 
@@ -389,11 +389,11 @@ Aeotec_Multi_1:
   name: Aeotec Multisensor
   entities:
     - binary_sensor.aeotec_zw100_multisensor_6_sensor
-    - sensor.aeotec_zw100_multisensor_6_alarm_level
-    - sensor.aeotec_zw100_multisensor_6_alarm_type
+    # - sensor.aeotec_zw100_multisensor_6_alarm_level
+    # - sensor.aeotec_zw100_multisensor_6_alarm_type
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_luminance
-    - sensor.aeotec_zw100_multisensor_6_sourcenodeid
+    # - sensor.aeotec_zw100_multisensor_6_sourcenodeid
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
     - sensor.aeotec_zw100_multisensor_6_dew_point
     # - zwave.aeotec_zw100_multisensor_6
