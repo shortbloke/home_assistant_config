@@ -250,7 +250,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 1300
+      below: 1450
       for:
         minutes: 5
   action:
@@ -258,14 +258,14 @@
       data_template:
         title: "Miner Moniitor: Miner01 - Low Power"
         message: >-
-          Current usage is {{ states("sensor.tp_hs110_6_power") }} W, expected > 1300
+          Current usage is {{ states("sensor.tp_hs110_6_power") }} W, expected > 1450
 
 - id: a_miner01_lowpower_reboot
   alias: Miner01 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 1300
+      below: 1450
       for:
         minutes: 15
   action:
