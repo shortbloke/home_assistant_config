@@ -20,7 +20,7 @@ http:
 
 ## Hass UI Config ##
 frontend:
-  javascript_version: latest
+  javascript_version: auto
 
 ios:
   # iOS App Support
