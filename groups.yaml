@@ -38,7 +38,7 @@ conservatory_view:
     - sensor.temp_humid_1_humidity
     - group.conservatory_lights
     - group.conservatory_sockets
-    - group.Fibaro_Multi_1
+    - group.miner01
     - media_player.conservatory
 
 hall_view:
@@ -141,10 +141,29 @@ conservatory_lights:
 conservatory_sockets:
   name: Conservatory Switches
   entities:
-    - switch.tp_hs110_6
-    - sensor.tp_hs110_6_power
     - switch.tp_hs110_7
     - sensor.tp_hs110_7_power
+    - switch.tp_hs110_9
+    - sensor.tp_hs110_9_power
+
+miner01:
+  name: Miner01
+  entities:
+    - switch.tp_hs110_6
+    - sensor.tp_hs110_6_power
+    - switch.tp_hs110_8
+    - sensor.tp_hs110_8_power
+    - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_general
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    # - zwave.fibaro_system_fgms001zw5_motion_sensor
+
 
 flamerite_fire:
   name: Fireplace
@@ -370,20 +389,6 @@ tracked_devices:
     - sensor.martins_ipad_battery_level
     - sensor.martins_ipad_battery_state
 
-
-Fibaro_Multi_1:
-  name: Fibaro Multisensor
-  entities:
-    - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_general
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-    # - zwave.fibaro_system_fgms001zw5_motion_sensor
 
 Aeotec_Multi_1:
   name: Aeotec Multisensor

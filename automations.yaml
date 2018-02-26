@@ -250,22 +250,33 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 1450
+      below: 700
+      for:
+        minutes: 5
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_8_power
+      below: 600
       for:
         minutes: 5
   action:
     - service: notify.ios_martins_iphone
       data_template:
-        title: "Miner Moniitor: Miner01 - Low Power"
+        title: "Miner Monitor: Miner01 - Low Power"
         message: >-
-          Current usage is {{ states("sensor.tp_hs110_6_power") }} W, expected > 1450
+          PSU 1 - {{ states("sensor.tp_hs110_6_power") }} W, expected > 700W, 
+          PSU 2 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 600W
 
 - id: a_miner01_lowpower_reboot
   alias: Miner01 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 1450
+      below: 700
+      for:
+        minutes: 15
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_8_power
+      below: 600
       for:
         minutes: 15
   action:
@@ -277,10 +288,14 @@
     - delay: 0:01
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_6
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_8
     - delay: 0:01
     - service: notify.ios_martins_iphone
       data:
         title: "Miner Monitor: Miner01"
-        message: "Powernig Back On!"
+        message: "Powering Back On!"
+    - service: homeassistant.turn_on
+      entity_id: switch.tp_hs110_8
     - service: homeassistant.turn_on
       entity_id: switch.tp_hs110_6
