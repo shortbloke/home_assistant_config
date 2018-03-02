@@ -1,5 +1,6 @@
 #### mqtt.yaml ####
-broker: core-mosquitto
+broker: 127.0.0.1
+port: 1883
 client_id: home-assistant-1
 username: !secret MQTT_username
 password: !secret MQTT_password

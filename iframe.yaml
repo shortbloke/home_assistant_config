@@ -7,8 +7,3 @@ windguru:
   title: 'Windguru'
   url: 'https://www.windguru.cz/470505'
   icon: mdi:weather-windy
-
-configurator:
-  title: Configurator
-  icon: mdi:wrench
-  url: http://hassio.local:3218
