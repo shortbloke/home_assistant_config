@@ -27,6 +27,10 @@ ios:
 config:
   # Add Configutional Panel
 
+# Cloud
+# cloud:
+  # Not yet setup, but signed up
+
 ## Hardware Components ##
 nest:
   client_id: !secret nest_client_id
