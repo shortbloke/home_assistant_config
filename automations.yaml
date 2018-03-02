@@ -250,12 +250,12 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 700
+      below: 900
       for:
         minutes: 5
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 600
+      below: 750
       for:
         minutes: 5
   action:
@@ -263,20 +263,20 @@
       data_template:
         title: "Miner Monitor: Miner01 - Low Power"
         message: >-
-          PSU 1 - {{ states("sensor.tp_hs110_6_power") }} W, expected > 700W, 
-          PSU 2 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 600W
+          PSU 1 - {{ states("sensor.tp_hs110_6_power") }} W, expected > 900W, 
+          PSU 2 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 750W
 
 - id: a_miner01_lowpower_reboot
   alias: Miner01 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_6_power
-      below: 700
+      below: 900
       for:
         minutes: 15
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 600
+      below: 750
       for:
         minutes: 15
   action:
@@ -284,7 +284,7 @@
       data:
         title: "Miner Monitor: Miner01"
         message:
-          Rebooting miner01. Low power usage for > 15 mins.
+          Rebooting Miner01. Low power usage for > 15 mins.
     - delay: 0:01
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_6
@@ -299,3 +299,43 @@
       entity_id: switch.tp_hs110_8
     - service: homeassistant.turn_on
       entity_id: switch.tp_hs110_6
+
+- id: a_miner02_power_watch
+  alias: Miner02 Power Watcher
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_9_power
+      below: 250
+      for:
+        minutes: 5
+  action:
+    - service: notify.ios_martins_iphone
+      data_template:
+        title: "Miner Monitor: Miner02 - Low Power"
+        message: >-
+          PSU 1 - {{ states("sensor.tp_hs110_9_power") }} W, expected > 250W
+
+- id: a_miner02_lowpower_reboot
+  alias: Miner02 Low Power Reboot
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.tp_hs110_9_power
+      below: 250
+      for:
+        minutes: 15
+  action:
+    - service: notify.ios_martins_iphone
+      data:
+        title: "Miner Monitor: Miner02"
+        message:
+          Rebooting Miner02. Low power usage for > 15 mins.
+    - delay: 0:01
+    - service: homeassistant.turn_off
+      entity_id: switch.tp_hs110_9
+    - delay: 0:01
+    - service: notify.ios_martins_iphone
+      data:
+        title: "Miner Monitor: Miner02"
+        message: "Powering Back On!"
+    - service: homeassistant.turn_on
+      entity_id: switch.tp_hs110_9

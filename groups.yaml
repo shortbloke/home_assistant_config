@@ -39,6 +39,8 @@ conservatory_view:
     - group.conservatory_lights
     - group.conservatory_sockets
     - group.miner01
+    - group.miner02
+    - group.fibaro
     - media_player.conservatory
 
 hall_view:
@@ -143,8 +145,6 @@ conservatory_sockets:
   entities:
     - switch.tp_hs110_7
     - sensor.tp_hs110_7_power
-    - switch.tp_hs110_9
-    - sensor.tp_hs110_9_power
 
 miner01:
   name: Miner01
@@ -153,6 +153,16 @@ miner01:
     - sensor.tp_hs110_6_power
     - switch.tp_hs110_8
     - sensor.tp_hs110_8_power
+
+miner02:
+  name: Miner02
+  entities:
+    - switch.tp_hs110_9
+    - sensor.tp_hs110_9_power
+
+fibaro:
+  name: Fibaro Multi-Sensor
+  entities:
     - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
@@ -163,7 +173,6 @@ miner01:
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
     # - zwave.fibaro_system_fgms001zw5_motion_sensor
-
 
 flamerite_fire:
   name: Fireplace
@@ -368,6 +377,8 @@ automation_mining:
   entities:
     - automation.miner01_power_watcher
     - automation.miner01_low_power_reboot
+    - automation.miner02_power_watcher
+    - automation.miner02_low_power_reboot
 
 shell_scripts:
   name: Shell Scipts
