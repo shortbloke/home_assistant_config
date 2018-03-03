@@ -252,3 +252,13 @@
   monitored_conditions:
     - last_build_id
     - last_build_state
+
+### Component for HaveIBeenPwned Sensor
+- platform: haveibeenpwned
+  email:
+    - !secret hibp_email1
+    - !secret hibp_email2
+    - !secret hibp_email3
+    - !secret hibp_email4
+    - !secret hibp_email5
+    - !secret hibp_email6

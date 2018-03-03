@@ -39,7 +39,6 @@ conservatory_view:
     - group.conservatory_lights
     - group.conservatory_sockets
     - group.miner01
-    - group.miner02
     - group.fibaro
     - media_player.conservatory
 
@@ -99,6 +98,7 @@ loft_view:
     - group.loft
     - sensor.loft_fan_temperature
     - sensor.loft_fan_humidity
+    - group.miner02
 
 family_view:
   name: Family
@@ -108,6 +108,7 @@ family_view:
     - device_tracker.martins_iphone
     - device_tracker.michelles_iphone
     - group.tracked_devices
+    - group.have_i_been_pawned
 
 system_view:
   name: Systems
@@ -400,6 +401,15 @@ tracked_devices:
     - sensor.martins_ipad_battery_level
     - sensor.martins_ipad_battery_state
 
+have_i_been_pawned:
+  name: HaveIBeenPwned
+  entities:
+    - sensor.breaches_martinrowannetcouk
+    - sensor.breaches_michellerowannetcouk
+    - sensor.breaches_robertrowannetcouk
+    - sensor.breaches_junerowannetcouk
+    - sensor.breaches_morganrowannetcouk
+    - sensor.breaches_fraserrowannetcouk
 
 Aeotec_Multi_1:
   name: Aeotec Multisensor
