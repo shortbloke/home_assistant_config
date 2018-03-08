@@ -18,6 +18,14 @@ default_view:
 
 
 ## OTHER TABS (VIEWS) ##
+miners:
+  name: Miners
+  view: yes
+  entities:
+    - group.miner01
+    - group.miner02
+    - group.automation_mining
+
 living_room_view:
   name: Living Room
   view: yes
@@ -57,8 +65,8 @@ master_bedroom_view:
   name: Master Bedroom
   view: yes
   entities:
-    - sensor.portable_sensor_3_temperature
-    - sensor.temp_humid_3_humidity
+    # - sensor.portable_sensor_3_temperature
+    # - sensor.temp_humid_3_humidity
     - media_player.master_bedroom
     - media_player.bathroom
     - group.laurastar_iron
@@ -153,12 +161,15 @@ miner01:
     - sensor.tp_hs110_6_power
     - switch.tp_hs110_8
     - sensor.tp_hs110_8_power
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
 
 miner02:
   name: Miner02
   entities:
     - switch.tp_hs110_9
     - sensor.tp_hs110_9_power
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity
 
 fibaro:
   name: Fibaro Multi-Sensor
