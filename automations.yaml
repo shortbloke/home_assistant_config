@@ -278,13 +278,13 @@
       entity_id: sensor.tp_hs110_8_power
       below: 725
       for:
-        minutes: 15
+        minutes: 30
   action:
     - service: notify.ios_martins_iphone
       data:
         title: "Miner Monitor: Miner01"
         message:
-          Rebooting Miner01. Low power usage for > 15 mins.
+          Rebooting Miner01. Low power usage for > 30 mins.
     - delay: 0:01
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_6
@@ -322,13 +322,13 @@
       entity_id: sensor.tp_hs110_9_power
       below: 250
       for:
-        minutes: 15
+        minutes: 30
   action:
     - service: notify.ios_martins_iphone
       data:
         title: "Miner Monitor: Miner02"
         message:
-          Rebooting Miner02. Low power usage for > 15 mins.
+          Rebooting Miner02. Low power usage for > 30 mins.
     - delay: 0:01
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_9
