@@ -76,3 +76,30 @@ sensor.aeotec_zw100_multisensor_6_sourcenodeid:
 sensor.aeotec_zw100_multisensor_6_burglar:
   platform: zwave
   unique_id: 8-72057594178191521
+sensor.alarm_type:
+  platform: zwave
+  unique_id: 11-72057594228523009
+sensor.alarm_level:
+  platform: zwave
+  unique_id: 11-72057594228523025
+binary_sensor.sensor:
+  platform: zwave
+  unique_id: 11-72057594227458048
+sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
+  platform: zwave
+  unique_id: 11-72057594227474450
+sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
+  platform: zwave
+  unique_id: 11-72057594227474482
+sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2:
+  platform: zwave
+  unique_id: 11-72057594227474834
+sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid_2:
+  platform: zwave
+  unique_id: 11-72057594228523041
+sensor.fibaro_system_fgms001zw5_motion_sensor_burglar_2:
+  platform: zwave
+  unique_id: 11-72057594228523169
+sensor.fibaro_system_fgms001zw5_motion_sensor_general_2:
+  platform: zwave
+  unique_id: 11-72057594229227521

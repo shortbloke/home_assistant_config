@@ -162,7 +162,7 @@ miner01:
     - sensor.tp_hs110_6_power
     - switch.tp_hs110_8
     - sensor.tp_hs110_8_power
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
 
 miner02:
   name: Miner02
@@ -175,16 +175,16 @@ miner02:
 fibaro:
   name: Fibaro Multi-Sensor
   entities:
-    - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_general
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-    # - zwave.fibaro_system_fgms001zw5_motion_sensor
+    - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor_2
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level_2
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type_2
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar_2
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_general_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2
+    # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
+    # - zwave.fibaro_system_fgms001zw5_motion_sensor_2
 
 flamerite_fire:
   name: Fireplace
@@ -447,4 +447,4 @@ zwave:
   entities:
     - zwave.aeotec_zw090_zstick_gen5_eu
     - zwave.aeotec_zw100_multisensor_6
-    - zwave.fibaro_system_fgms001zw5_motion_sensor
+    - zwave.fibaro_system_fgms001zw5_motion_sensor_2
