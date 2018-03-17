@@ -234,7 +234,7 @@
       friendly_name: "Miner01 - PSU2 (1000W)"
       icon: mdi:power-socket-uk
     switch.TP_HS110_9:
-      friendly_name: "Miner02 - PSU1 (850W)"
+      friendly_name: "Miner02"
       icon: mdi:power-socket-uk
 
 ### Sonoff MQTT switches
@@ -244,11 +244,11 @@
       friendly_name: "Humidity"
 
 ### Fibaro Multi-Sensor
-    binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor:
+    binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor_2:
       friendly_name: "Mining Rig Multi-Sensor"
-    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
+    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
       friendly_name: "Mining Rig Luminance"
-    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
+    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
       friendly_name: "Mining Rig Temperature"
 
 ### Aeotec Multi-Sensor

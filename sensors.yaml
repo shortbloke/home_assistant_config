@@ -204,7 +204,7 @@
     tp_hs110_9_power:
       value_template: '{{ states.switch.tp_hs110_9.attributes["current_power_w"].split(" ")[0]}}'
       unit_of_measurement: 'W'
-      friendly_name: "Power - Miner02 - PSU1"
+      friendly_name: "Power - Miner02"
     ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:
       value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'

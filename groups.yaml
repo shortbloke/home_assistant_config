@@ -163,6 +163,8 @@ miner01:
     - switch.tp_hs110_8
     - sensor.tp_hs110_8_power
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
+    - sensor.portable_sensor_1_temperature
+    - sensor.temp_humid_1_humidity
 
 miner02:
   name: Miner02

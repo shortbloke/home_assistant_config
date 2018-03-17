@@ -1,105 +1,144 @@
 climate.hallway_house:
+  name:
   platform: nest
   unique_id: DfjSfuW8D_EefggmcBR97IS_9qZV-KT4
 sensor.iphone_battery_level:
+  name:
   platform: ios
   unique_id: level_michelles_iphone
 sensor.martins_ipad_battery_state:
+  name:
   platform: ios
   unique_id: state_martins_ipad
 sensor.martins_ipad_battery_level:
+  name:
   platform: ios
   unique_id: level_martins_ipad
 sensor.martins_iphone_battery_level:
+  name:
   platform: ios
   unique_id: level_martins_iphone
 sensor.martins_iphone_battery_state:
+  name:
   platform: ios
   unique_id: state_martins_iphone
 sensor.iphone_battery_state:
+  name:
   platform: ios
   unique_id: state_michelles_iphone
 binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor:
+  name:
   platform: zwave
   unique_id: 3-72057594093240320
 sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
+  name:
   platform: zwave
   unique_id: 3-72057594093256722
 sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
+  name:
   platform: zwave
   unique_id: 3-72057594093256754
 sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity:
+  name:
   platform: zwave
   unique_id: 3-72057594093257106
 sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type:
+  name:
   platform: zwave
   unique_id: 3-72057594094305281
 sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level:
+  name:
   platform: zwave
   unique_id: 3-72057594094305297
 sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 3-72057594094305313
 sensor.fibaro_system_fgms001zw5_motion_sensor_burglar:
+  name:
   platform: zwave
   unique_id: 3-72057594094305441
 sensor.fibaro_system_fgms001zw5_motion_sensor_general:
+  name:
   platform: zwave
   unique_id: 3-72057594095009793
 binary_sensor.aeotec_zw100_multisensor_6_sensor:
+  name:
   platform: zwave
   unique_id: 8-72057594177126400
 sensor.aeotec_zw100_multisensor_6_temperature:
+  name:
   platform: zwave
   unique_id: 8-72057594177142802
 sensor.aeotec_zw100_multisensor_6_luminance:
+  name:
   platform: zwave
   unique_id: 8-72057594177142834
 sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  name:
   platform: zwave
   unique_id: 8-72057594177142866
 sensor.aeotec_zw100_multisensor_6_dew_point:
+  name:
   platform: zwave
   unique_id: 8-72057594177142962
 sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  name:
   platform: zwave
   unique_id: 8-72057594177143218
 sensor.aeotec_zw100_multisensor_6_alarm_type:
+  name:
   platform: zwave
   unique_id: 8-72057594178191361
 sensor.aeotec_zw100_multisensor_6_alarm_level:
+  name:
   platform: zwave
   unique_id: 8-72057594178191377
 sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 8-72057594178191393
 sensor.aeotec_zw100_multisensor_6_burglar:
+  name:
   platform: zwave
   unique_id: 8-72057594178191521
 sensor.alarm_type:
+  name:
   platform: zwave
   unique_id: 11-72057594228523009
 sensor.alarm_level:
+  name:
   platform: zwave
   unique_id: 11-72057594228523025
 binary_sensor.sensor:
+  name:
   platform: zwave
   unique_id: 11-72057594227458048
 sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
+  name:
   platform: zwave
   unique_id: 11-72057594227474450
 sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
+  name:
   platform: zwave
   unique_id: 11-72057594227474482
 sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2:
+  name:
   platform: zwave
   unique_id: 11-72057594227474834
 sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid_2:
+  name:
   platform: zwave
   unique_id: 11-72057594228523041
 sensor.fibaro_system_fgms001zw5_motion_sensor_burglar_2:
+  name:
   platform: zwave
   unique_id: 11-72057594228523169
 sensor.fibaro_system_fgms001zw5_motion_sensor_general_2:
+  name:
   platform: zwave
   unique_id: 11-72057594229227521
+sensor.fibaro_system_fgms001zw5_motion_sensor_general_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227474466
