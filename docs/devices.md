@@ -4,6 +4,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 | Device | Functionality |
 | ---| --- |
 | [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free)</li><li>Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.</li></ul> |
+| [Nest Cam IQ Indoor](https://nest.com/uk/cameras/nest-cam-iq-indoor/overview/) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Camera with motion detection, person detection and sound detection.<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free) (this is a single Nest account regardless of the number of Nest devices)</li></ul> |
 
 ## Power and Lighting control
 | Device |  Functionality |
@@ -44,3 +45,5 @@ The following devices are controlled via my Home Assistant configurations. They 
 | [System Monitor](https://home-assistant.io/components/sensor.systemmonitor/) | System resource usage information on the host system Home Assistant is running on |
 | [Home Assistant SSL Certificate Expiry Checking](https://home-assistant.io/docs/ecosystem/certificates/lets_encrypt/#7---set-up-a-sensor-to-monitor-the-expiry-date-of-the-certificate) | A sensor to show the number of days until the current SSL certificate in use expires. A reminder to renew before it expires |
 | iOS App [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401) | With Home Assistant addon [ios](https://home-assistant.io/docs/ecosystem/ios/) enables location tracking plus complete control of HASS, iPhone battery monitoring and is able to receive notifications from Home Assistant |
+| [HaveIBeenPwned](https://home-assistant.io/components/sensor.haveibeenpwned/) | Checks for breached email accounts using [haveibeenpwned](https://haveibeenpwned.com/). Multiple email addresses are monitored which are specified in the secrets.yaml file. |
+| [Travis-CI](https://home-assistant.io/components/sensor.travisci/) | Integrated test results from [Travis-CI](https://travis-ci.org/), providing the capability of automatically updating and restarting Home Assistant when files updated on github pass configuration checks in Travis CI.

@@ -37,6 +37,7 @@ living_room_view:
     - group.flamerite_fire
     - group.dining_room_lights
     - media_player.living_room
+    - group.nest_living_room_camera
 
 conservatory_view:
   name: Conservatory
@@ -450,3 +451,12 @@ zwave:
     - zwave.aeotec_zw090_zstick_gen5_eu
     - zwave.aeotec_zw100_multisensor_6
     - zwave.fibaro_system_fgms001zw5_motion_sensor_2
+
+nest_living_room_camera:
+  name: Living Room Nest camera
+  entities:
+    - camera.living_room
+    - binary_sensor.living_room_camera_online
+    - binary_sensor.living_room_camera_motion_detected
+    - binary_sensor.living_room_camera_person_detected
+    - binary_sensor.living_room_camera_sound_detected
