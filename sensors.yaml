@@ -39,7 +39,7 @@
       data_type:  
         - Humidity
         - Temperature
-    0a52090246000259320189:  #Master Bedroom
+    0a52090246000259320189:  #Loft 2
       name: Temp_Humid_3
       data_type:
         - Humidity
@@ -220,7 +220,7 @@
       value_template: '{{ (states.sensor.temp_humid_3_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
       # entity_id: sensor.temp_humid_3_temperature
-      friendly_name: "Temperature"  #Master Bedroom
+      friendly_name: "Loft 2 Temperature"  #Loft 2
     portable_sensor_4_temperature:
       value_template: '{{ (states.sensor.temp_humid_4_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
@@ -262,3 +262,6 @@
     - !secret hibp_email4
     - !secret hibp_email5
     - !secret hibp_email6
+    - !secret hibp_email7
+    - !secret hibp_email8
+    - !secret hibp_email9

@@ -142,3 +142,39 @@ sensor.fibaro_system_fgms001zw5_motion_sensor_general_3:
   name:
   platform: zwave
   unique_id: 11-72057594227474466
+sensor.alarm_type_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300225
+sensor.alarm_level_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300241
+binary_sensor.sensor_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244235264
+sensor.aeotec_zw100_multisensor_6_temperature_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251666
+sensor.aeotec_zw100_multisensor_6_luminance_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251698
+sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251730
+sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244252082
+sensor.aeotec_zw100_multisensor_6_sourcenodeid_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300257
+sensor.aeotec_zw100_multisensor_6_burglar_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300385

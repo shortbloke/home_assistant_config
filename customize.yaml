@@ -155,7 +155,7 @@
       friendly_name: "Env. Living Room"
       hidden: true
     sensor.Temp_Humid_3:
-      friendly_name: "Env. Master Bedroom"
+      friendly_name: "Env. Loft 2"
       hidden: true
     sensor.Temp_Humid_4:
       friendly_name: "Env. Frasers Room"
@@ -181,7 +181,7 @@
     sensor.temp_humid_3_temperature:
       hidden: true
     sensor.temp_humid_3_humidity:
-      friendly_name: "Humidity"  #Master Bedroom
+      friendly_name: "Loft 2 - Humidity"  #Loft 2
       icon: mdi:water-percent
     sensor.temp_humid_4_temperature:
       hidden: true
@@ -239,17 +239,17 @@
 
 ### Sonoff MQTT switches
     sensor.loft_fan_temperature:
-      friendly_name: "Temperature"
+      friendly_name: "Loft 1 Temperature"
     sensor.loft_fan_humidity:
-      friendly_name: "Humidity"
+      friendly_name: "Loft 1 Humidity"
 
 ### Fibaro Multi-Sensor
-    binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor_2:
-      friendly_name: "Mining Rig Multi-Sensor"
-    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
-      friendly_name: "Mining Rig Luminance"
-    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
-      friendly_name: "Mining Rig Temperature"
+    # binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor_2:
+    #   friendly_name: "Loft 2 Multi-Sensor"
+    # sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
+    #   friendly_name: "Loft 2 Rig Luminance"
+    # sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
+    #   friendly_name: "Loft 2 Rig Temperature"
 
 ### Aeotec Multi-Sensor
     binary_sensor.aeotec_zw100_multisensor_6_sensor:

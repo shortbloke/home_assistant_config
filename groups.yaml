@@ -23,8 +23,11 @@ miners:
   view: yes
   entities:
     - group.miner01
+    - group.Aeotec_Multi_2
     - group.miner02
+    - group.fibaro
     - group.automation_mining
+
 
 living_room_view:
   name: Living Room
@@ -48,7 +51,7 @@ conservatory_view:
     - group.conservatory_lights
     - group.conservatory_sockets
     - group.miner01
-    - group.fibaro
+    - group.Aeotec_Multi_2
     - media_player.conservatory
 
 hall_view:
@@ -105,8 +108,11 @@ loft_view:
   entities:
     # - group.hpilo
     - group.loft
+    - group.fibaro
     - sensor.loft_fan_temperature
     - sensor.loft_fan_humidity
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity
     - group.miner02
 
 family_view:
@@ -163,30 +169,25 @@ miner01:
     - sensor.tp_hs110_6_power
     - switch.tp_hs110_8
     - sensor.tp_hs110_8_power
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
-    - sensor.portable_sensor_1_temperature
-    - sensor.temp_humid_1_humidity
 
 miner02:
   name: Miner02
   entities:
     - switch.tp_hs110_9
     - sensor.tp_hs110_9_power
-    - sensor.portable_sensor_3_temperature
-    - sensor.temp_humid_3_humidity
 
 fibaro:
-  name: Fibaro Multi-Sensor
+  name: Loft 2 - Multisensor
   entities:
-    - binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
+    - binary_sensor.sensor_2
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level_2
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type_2
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar_2
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_general_2
     - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2
     # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
     # - zwave.fibaro_system_fgms001zw5_motion_sensor_2
 
 flamerite_fire:
@@ -364,6 +365,7 @@ automation_utilities:
   entities:
     - automation.SSL_expiry_notification
     - automation.update_config_hass_if_travis_build_is_successfull
+    - automation.Have_I_Been_Pwned_Change
 
 automation_powercontrol:
   name: Power Control
@@ -418,12 +420,15 @@ tracked_devices:
 have_i_been_pawned:
   name: HaveIBeenPwned
   entities:
-    - sensor.breaches_martinrowannetcouk
-    - sensor.breaches_michellerowannetcouk
-    - sensor.breaches_robertrowannetcouk
-    - sensor.breaches_junerowannetcouk
-    - sensor.breaches_morganrowannetcouk
-    - sensor.breaches_fraserrowannetcouk
+    - !secret sensor_hibp_email1
+    - !secret sensor_hibp_email2
+    - !secret sensor_hibp_email3
+    - !secret sensor_hibp_email4
+    - !secret sensor_hibp_email5
+    - !secret sensor_hibp_email6
+    - !secret sensor_hibp_email7
+    - !secret sensor_hibp_email8
+    - !secret sensor_hibp_email9
 
 Aeotec_Multi_1:
   name: Aeotec Multisensor
@@ -436,6 +441,21 @@ Aeotec_Multi_1:
     # - sensor.aeotec_zw100_multisensor_6_sourcenodeid
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
     - sensor.aeotec_zw100_multisensor_6_dew_point
+    # - zwave.aeotec_zw100_multisensor_6
+
+Aeotec_Multi_2:
+  name: Miner01 - Multisensor
+  entities:
+    - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
+    - sensor.aeotec_zw100_multisensor_6_temperature_2
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
+    # - sensor.aeotec_zw100_multisensor_6_alarm_level_2
+    # - sensor.aeotec_zw100_multisensor_6_alarm_type_2
+    - sensor.aeotec_zw100_multisensor_6_burglar_2
+    - sensor.aeotec_zw100_multisensor_6_luminance_2
+    # - sensor.aeotec_zw100_multisensor_6_sourcenodeid_2
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
+    - sensor.aeotec_zw100_multisensor_6_dew_point_2
     # - zwave.aeotec_zw100_multisensor_6
 
 scenes_living_room:
