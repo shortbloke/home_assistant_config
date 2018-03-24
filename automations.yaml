@@ -405,7 +405,7 @@
     - service: script.sonos_alarm
       data:
         # Maximum Volume
-        volume: 1
+        volume: 1.0
         # Duration before stopping and restoring state
         delay: '00:01:00'
 
