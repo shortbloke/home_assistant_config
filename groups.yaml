@@ -9,6 +9,7 @@ default_view:
   entities:
     - sensor.ssl_cert_expiry
     - sensor.hallway_thermostat_house_temperature
+    - sensor.nest_away_mode
     - group.living_room_lights
     - group.dining_room_lights
     - group.conservatory_lights
@@ -18,6 +19,15 @@ default_view:
 
 
 ## OTHER TABS (VIEWS) ##
+security_view:
+  name: Security
+  view: yes
+  entities:
+    - sensor.nest_away_mode
+    - group.nest_living_room_camera
+    - group.alarm
+    - group.motion_sensors
+
 miners:
   name: Miners
   view: yes
@@ -27,7 +37,6 @@ miners:
     - group.miner02
     - group.fibaro
     - group.automation_mining
-
 
 living_room_view:
   name: Living Room
@@ -144,6 +153,7 @@ automation_view:
     - group.automation_system
     - group.automation_powercontrol
     - group.automation_mining
+    - group.alarm
     - group.shell_scripts
 
 
@@ -367,6 +377,7 @@ automation_utilities:
     - automation.update_config_hass_if_travis_build_is_successfull
     - automation.Have_I_Been_Pwned_Change
     - automation.sonos_tts_test
+    - automation.hass_update_available_notifications
 
 automation_powercontrol:
   name: Power Control
@@ -481,3 +492,18 @@ nest_living_room_camera:
     - binary_sensor.living_room_camera_motion_detected
     - binary_sensor.living_room_camera_person_detected
     - binary_sensor.living_room_camera_sound_detected
+    - binary_sensor.living_room_camera__window_activity
+    - binary_sensor.living_room_camera__doorway_activity
+
+alarm:
+  name: Alarm
+  entities:
+    - automation.sonos_burglar_alarm
+    - automation.sonos_restore_snapshot_state
+
+motion_sensors:
+  name: Motion Sensors
+  entities:
+    - sensor.aeotec_zw100_multisensor_6_burglar
+    - sensor.aeotec_zw100_multisensor_6_burglar_2
+    - sensor.alarm_level_2

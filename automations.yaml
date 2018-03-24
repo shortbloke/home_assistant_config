@@ -385,3 +385,34 @@
         message: 'This is a test of Sonos Text to Speech'
         # Delay needs to be long enough to allow text to be read aloud
         delay: '00:00:05'
+
+- id: a_hass_update_available
+  alias: 'HASS Update Available Notifications'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.ios_martins_iphone
+    data:
+      message: 'Update for Home Assistant is available.'
+
+- id: a_sonos_burglar_alarm
+  alias: Sonos Burglar Alarm
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mytest
+  action:
+    - service: script.sonos_alarm
+      data:
+        # Maximum Volume
+        volume: 1
+        # Duration before stopping and restoring state
+        delay: '00:01:00'
+
+- id: a_sonos_restore_snapshot
+  alias: 'Sonos restore snapshot state'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mytest
+  action:
+    - service: media_player.sonos_restore
