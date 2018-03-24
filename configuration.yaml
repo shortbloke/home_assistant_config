@@ -32,8 +32,8 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
-# media_player:
-#   - platform: sonos
+media_player:
+  - platform: sonos
 
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
@@ -63,6 +63,10 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
+  - platform: voicerss
+    api_key: !secret voicerss_api_key
+    language: 'en-gb'
+    format: '44khz_16bit_stereo'
     
 ## Misc ##
 discovery:
@@ -70,7 +74,6 @@ discovery:
     - samsung_tv
     - apple_tv
     - plex_mediaserver
-    - sonos
     
 sun:
 updater:

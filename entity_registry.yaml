@@ -178,3 +178,23 @@ sensor.aeotec_zw100_multisensor_6_burglar_2:
   name:
   platform: zwave
   unique_id: 12-72057594245300385
+media_player.master_bedroom:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD28E53201400
+media_player.living_room:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD1D818301400
+media_player.kitchen:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD0AEE4801400
+media_player.bathroom:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD474F6A01400
+media_player.conservatory:
+  name:
+  platform: sonos
+  unique_id: RINCON_B8E9379735A401400

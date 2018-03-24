@@ -372,3 +372,16 @@
     data_template:
       message: "Warning - HaveIbeenPwned detected {{trigger.to_state.attributes.friendly_name}}"
 
+- id: a_sonos_tts_test
+  alias: Sonos TTS Test
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mytest
+  action:
+    - service: script.sonos_say
+      data:
+        sonos_entity: media_player.conservatory
+        volume: 0.5
+        message: 'This is a test of Sonos Text to Speech'
+        # Delay needs to be long enough to allow text to be read aloud
+        delay: '00:00:05'
