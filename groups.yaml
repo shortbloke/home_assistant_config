@@ -35,7 +35,6 @@ miners:
     - group.miner01
     - group.Aeotec_Multi_2
     - group.miner02
-    - group.fibaro
     - group.automation_mining
 
 living_room_view:
@@ -59,8 +58,6 @@ conservatory_view:
     - sensor.temp_humid_1_humidity
     - group.conservatory_lights
     - group.conservatory_sockets
-    - group.miner01
-    - group.Aeotec_Multi_2
     - media_player.conservatory
 
 hall_view:
@@ -122,6 +119,13 @@ loft_view:
     - sensor.loft_fan_humidity
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
+
+garage_view:
+  name: garage
+  view: yes
+  entities:
+    - group.miner01
+    - group.Aeotec_Multi_2
     - group.miner02
 
 family_view:
@@ -175,16 +179,14 @@ conservatory_sockets:
 miner01:
   name: Miner01
   entities:
-    - switch.tp_hs110_6
-    - sensor.tp_hs110_6_power
-    - switch.tp_hs110_8
-    - sensor.tp_hs110_8_power
+    - switch.tp_hs110_9
+    - sensor.tp_hs110_9_power
 
 miner02:
   name: Miner02
   entities:
-    - switch.tp_hs110_9
-    - sensor.tp_hs110_9_power
+    - switch.tp_hs110_8
+    - sensor.tp_hs110_8_power
 
 fibaro:
   name: Loft 2 - Multisensor
@@ -456,7 +458,7 @@ Aeotec_Multi_1:
     # - zwave.aeotec_zw100_multisensor_6
 
 Aeotec_Multi_2:
-  name: Miner01 - Multisensor
+  name: Mining - Sensor
   entities:
     - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
     - sensor.aeotec_zw100_multisensor_6_temperature_2
