@@ -220,7 +220,7 @@
       value_template: '{{ (states.sensor.temp_humid_3_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'
       # entity_id: sensor.temp_humid_3_temperature
-      friendly_name: "Loft 2 Temperature"  #Loft 2
+      friendly_name: "Temperature"  #Garage
     portable_sensor_4_temperature:
       value_template: '{{ (states.sensor.temp_humid_4_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
       unit_of_measurement: '°C'

@@ -117,8 +117,6 @@ loft_view:
     - group.fibaro
     - sensor.loft_fan_temperature
     - sensor.loft_fan_humidity
-    - sensor.portable_sensor_3_temperature
-    - sensor.temp_humid_3_humidity
 
 garage_view:
   name: garage
@@ -127,6 +125,8 @@ garage_view:
     - group.miner01
     - group.Aeotec_Multi_2
     - group.miner02
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity
 
 family_view:
   name: Family

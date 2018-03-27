@@ -181,7 +181,7 @@
     sensor.temp_humid_3_temperature:
       hidden: true
     sensor.temp_humid_3_humidity:
-      friendly_name: "Loft 2 - Humidity"  #Loft 2
+      friendly_name: "Humidity"  #Garage
       icon: mdi:water-percent
     sensor.temp_humid_4_temperature:
       hidden: true
