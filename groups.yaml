@@ -25,7 +25,7 @@ security_view:
   entities:
     - sensor.nest_away_mode
     - group.nest_living_room_camera
-    # - group.nest_garage_camera
+    - group.nest_garage_camera
     - group.alarm
     - group.motion_sensors
 
@@ -129,7 +129,7 @@ garage_view:
     - group.miner02
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
-    # - group.nest_garage_camera
+    - group.nest_garage_camera
     - group.garage_fan
 
 family_view:
@@ -503,16 +503,16 @@ nest_living_room_camera:
     - binary_sensor.living_room_camera__window_activity
     - binary_sensor.living_room_camera__doorway_activity
 
-# nest_garage_camera:
-#   name: Garage Nest Camera
-#   entities:
-#     - camera.garage
-#     - binary_sensor.garage_camera_online
-#     - binary_sensor.garage_camera_motion_detected
-#     - binary_sensor.garage_camera_person_detected
+nest_garage_camera:
+  name: Garage Nest Camera
+  entities:
+    - camera.garage
+    - binary_sensor.garage_camera_online
+    - binary_sensor.garage_camera_motion_detected
+    - binary_sensor.garage_camera_person_detected
     - binary_sensor.garage_camera_sound_detected
-    # - binary_sensor.garage_camera__window_activity
-    # - binary_sensor.garage_camera__doorway_activity
+    - binary_sensor.garage_camera__garage_door_activity
+    - binary_sensor.garage_camera__hall_door_activity
 
 alarm:
   name: Alarm
