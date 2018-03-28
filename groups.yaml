@@ -25,6 +25,7 @@ security_view:
   entities:
     - sensor.nest_away_mode
     - group.nest_living_room_camera
+    # - group.nest_garage_camera
     - group.alarm
     - group.motion_sensors
 
@@ -36,6 +37,7 @@ miners:
     - group.Aeotec_Multi_2
     - group.miner02
     - group.automation_mining
+    - group.garage_fan
 
 living_room_view:
   name: Living Room
@@ -127,6 +129,8 @@ garage_view:
     - group.miner02
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
+    # - group.nest_garage_camera
+    - group.garage_fan
 
 family_view:
   name: Family
@@ -395,6 +399,8 @@ automation_powercontrol:
     - automation.ironing_room_no_motion_turn_off_magpie_iron
     - automation.loft_fan_turn_on_when_hot
     - automation.loft_fan_turn_off_when_not_hot
+    - automation.garage_fan_turn_on_when_hot
+    - automation.garage_fan_turn_off_when_not_hot
 
 automation_system:
   name: HAPi Resource Monitoring
@@ -487,7 +493,7 @@ zwave:
     - zwave.fibaro_system_fgms001zw5_motion_sensor_2
 
 nest_living_room_camera:
-  name: Living Room Nest camera
+  name: Living Room Nest Camera
   entities:
     - camera.living_room
     - binary_sensor.living_room_camera_online
@@ -496,6 +502,17 @@ nest_living_room_camera:
     - binary_sensor.living_room_camera_sound_detected
     - binary_sensor.living_room_camera__window_activity
     - binary_sensor.living_room_camera__doorway_activity
+
+# nest_garage_camera:
+#   name: Garage Nest Camera
+#   entities:
+#     - camera.garage
+#     - binary_sensor.garage_camera_online
+#     - binary_sensor.garage_camera_motion_detected
+#     - binary_sensor.garage_camera_person_detected
+    - binary_sensor.garage_camera_sound_detected
+    # - binary_sensor.garage_camera__window_activity
+    # - binary_sensor.garage_camera__doorway_activity
 
 alarm:
   name: Alarm
@@ -509,3 +526,9 @@ motion_sensors:
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_burglar_2
     - sensor.alarm_level_2
+
+garage_fan:
+  name: garage fan
+  entities:
+    - switch.tp_hs110_6
+    - sensor.tp_hs110_6_power

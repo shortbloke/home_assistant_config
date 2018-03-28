@@ -224,9 +224,9 @@
     switch.TP_HS110_5:
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
-    # switch.TP_HS110_6:
-    #   friendly_name: "Miner01 - PSU1 (1200W)"
-    #   icon: mdi:power-socket-uk
+    switch.TP_HS110_6:
+      friendly_name: "Garage Fan"
+      icon: mdi:power-socket-uk
     switch.TP_HS110_7:
       friendly_name: "HP Z640"
       icon: mdi:power-socket-uk
