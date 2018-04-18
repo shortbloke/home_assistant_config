@@ -61,6 +61,7 @@ conservatory_view:
     - group.conservatory_lights
     - group.conservatory_sockets
     - media_player.conservatory
+    - media_player.kitchen
 
 hall_view:
   name: Hall

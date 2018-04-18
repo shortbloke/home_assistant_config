@@ -250,7 +250,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_9_power
-      below: 1450
+      below: 1400
       for:
         minutes: 20
   action:
@@ -258,14 +258,14 @@
       data_template:
         title: "Miner Monitor: Miner01 - Low Power"
         message: >-
-          Usage - {{ states("sensor.tp_hs110_9_power") }} W, expected > 1450W, 
+          Usage - {{ states("sensor.tp_hs110_9_power") }} W, expected > 1400W, 
 
 - id: a_miner01_lowpower_reboot
   alias: Miner01 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_9_power
-      below: 1450
+      below: 1400
       for:
         minutes: 30
   action:
@@ -275,7 +275,7 @@
         message:
           Rebooting Miner01. Low power usage for > 30 mins.
     - service: homeassistant.turn_off
-      entity_id: switch.tp_hs110_8
+      entity_id: switch.tp_hs110_9
     - delay: 0:01
     - service: notify.ios_martins_iphone
       data:
@@ -289,7 +289,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 1000
+      below: 1050
       for:
         minutes: 20
   action:
@@ -297,14 +297,14 @@
       data_template:
         title: "Miner Monitor: Miner02 - Low Power"
         message: >-
-          PSU 1 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 1000W
+          PSU 1 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 1050W
 
 - id: a_miner02_lowpower_reboot
   alias: Miner02 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 1000
+      below: 1050
       for:
         minutes: 30
   action:
@@ -406,7 +406,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
-      above: 25
+      above: 20
       for:
         minutes: 10
   action:
@@ -418,7 +418,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
-      below: 25
+      below: 20
       for:
         minutes: 10
   action:
