@@ -402,6 +402,8 @@ automation_powercontrol:
     - automation.loft_fan_turn_off_when_not_hot
     - automation.garage_fan_turn_on_when_hot
     - automation.garage_fan_turn_off_when_not_hot
+    - automation.turn_on_air_freshener_socket_in_the_morning
+    - automation.turn_off_air_freshener_socket_at_night
 
 automation_system:
   name: HAPi Resource Monitoring

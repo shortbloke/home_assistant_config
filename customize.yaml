@@ -30,12 +30,12 @@
       emulated_hue_name: "Wax Burner"
       icon: mdi:radiator
     switch.LWRF_Hall_Socket_1:
-      friendly_name: "Outside Socket"
-      emulated_hue_name: "Outside Lights"
-      icon: mdi:lamp
-    switch.LWRF_Hall_Socket_2:
       friendly_name: "Twig Lights"
       emulated_hue_name: "Twig Lights"
+      icon: mdi:lamp
+    switch.LWRF_Hall_Socket_2:
+      friendly_name: "Hall Air Freshener"
+      emulated_hue_name: "Hall Air Freshener"
       icon: mdi:lamp
     # switch.LWRF_Christmas_Tree_Lights:
     #   friendly_name: "Christmas Tree Lights"

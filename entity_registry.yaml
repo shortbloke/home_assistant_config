@@ -198,3 +198,35 @@ media_player.conservatory:
   name:
   platform: sonos
   unique_id: RINCON_B8E9379735A401400
+zwave.aeotec_zw090_zstick_gen5_eu:
+  name:
+  platform: zwave
+  unique_id: node-1
+zwave.aeotec_zw100_multisensor_6:
+  name:
+  platform: zwave
+  unique_id: node-8
+zwave.fibaro_system_fgms001zw5_motion_sensor:
+  name:
+  platform: zwave
+  unique_id: node-11
+zwave.aeotec_zw100_multisensor_6_2:
+  name:
+  platform: zwave
+  unique_id: node-12
+sensor.aeotec_zw100_multisensor_6_tank_capacity:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251954
+sensor.aeotec_zw100_multisensor_6_power:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177142850
+sensor.aeotec_zw100_multisensor_6_barometric_pressure:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177142930
+sensor.aeotec_zw100_multisensor_6_dew_point_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251826

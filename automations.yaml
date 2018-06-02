@@ -7,10 +7,10 @@
       event: sunset
       offset: '-01:00:00'
   action:
-    - service: homeassistant.turn_on
-      entity_id: switch.LWRF_Hall_Socket_2 # Twigs
     # - service: homeassistant.turn_on
-    #   entity_id: switch.LWRF_Hall_Socket_1 # Outside Xmas Lights
+      # entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
+    - service: homeassistant.turn_on
+      entity_id: switch.LWRF_Hall_Socket_1 # Twigs
     # - service: homeassistant.turn_on
     #   entity_id: switch.LWRF_Christmas_Tree_Lights # Christmas Tree Lights
 
@@ -23,12 +23,31 @@
       # Can be a positive or negative number
       above: 10.0
   action:
-    - service: homeassistant.turn_off
-      entity_id: switch.LWRF_Hall_Socket_2 # Twigs
     # - service: homeassistant.turn_off
-    #   entity_id: switch.LWRF_Hall_Socket_1 # Outside Xmas Lights
+      # entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
+    - service: homeassistant.turn_off
+      entity_id: switch.LWRF_Hall_Socket_1 # Twigs
     # - service: homeassistant.turn_off
     #   entity_id: switch.LWRF_Christmas_Tree_Lights # Christmas Tree Lights
+
+- id: a_daytime_air_freshener_on
+  alias: Turn on air freshener socket in the morning
+  trigger:
+    - platform: time
+      at: "06:30:00"
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
+
+- id: a_daytime_air_freshener_off
+  alias: Turn off air freshener socket at night
+  trigger:
+    - platform: time
+      at: "23:00:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
+
 
 - id: '1500048925363'
   alias: SSL Expiry notification
@@ -289,7 +308,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 1050
+      below: 950
       for:
         minutes: 20
   action:
@@ -297,14 +316,14 @@
       data_template:
         title: "Miner Monitor: Miner02 - Low Power"
         message: >-
-          PSU 1 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 1050W
+          PSU 1 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 950W
 
 - id: a_miner02_lowpower_reboot
   alias: Miner02 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 1050
+      below: 950
       for:
         minutes: 30
   action:
