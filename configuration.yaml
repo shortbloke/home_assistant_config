@@ -32,8 +32,13 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
-media_player:
-  - platform: sonos
+dyson:
+  username: !secret dyson_username
+  password: !secret dyson_password
+  language: GB
+
+fan:
+  - platform: dyson
 
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
