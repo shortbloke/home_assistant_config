@@ -39,7 +39,7 @@
       data_type:  
         - Humidity
         - Temperature
-    0a52090246000259320189:  #Loft 2
+    0a520976cd0002f0120289:  #Garage
       name: Temp_Humid_3
       data_type:
         - Humidity

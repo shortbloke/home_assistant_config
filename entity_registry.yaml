@@ -230,3 +230,7 @@ sensor.aeotec_zw100_multisensor_6_dew_point_2:
   name:
   platform: zwave
   unique_id: 12-72057594244251826
+sensor.aeotec_zw100_multisensor_6_general:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177142818

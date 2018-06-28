@@ -155,7 +155,7 @@
       friendly_name: "Env. Living Room"
       hidden: true
     sensor.Temp_Humid_3:
-      friendly_name: "Env. Loft 2"
+      friendly_name: "Env. Garage"
       hidden: true
     sensor.Temp_Humid_4:
       friendly_name: "Env. Frasers Room"
