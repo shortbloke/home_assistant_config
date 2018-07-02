@@ -41,7 +41,6 @@ fan:
   - platform: dyson
 
 rfxtrx:
-  # device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
   device: /dev/ttyUSB0
   debug: False
   dummy: False
