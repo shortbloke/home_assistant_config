@@ -27,6 +27,9 @@ ios:
 config:
   # Add Configutional Panel
 
+#cloud:
+  # Home Assistant Cloud allows use of the Alexa Skill
+
 ## Hardware Components ##
 nest:
   client_id: !secret nest_client_id
