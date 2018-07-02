@@ -77,8 +77,6 @@ master_bedroom_view:
   name: Master Bedroom
   view: yes
   entities:
-    # - sensor.portable_sensor_3_temperature
-    # - sensor.temp_humid_3_humidity
     - media_player.master_bedroom
     - media_player.bathroom
     - group.laurastar_iron
@@ -196,16 +194,11 @@ miner02:
 fibaro:
   name: Loft 2 - Multisensor
   entities:
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
-    - binary_sensor.sensor_2
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level_2
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar_2
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_general_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2
-    # - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid_2
-    # - zwave.fibaro_system_fgms001zw5_motion_sensor_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    - binary_sensor.sensor
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
 
 flamerite_fire:
   name: Fireplace
@@ -222,7 +215,6 @@ living_room_lights:
     - switch.LWRF_LivingRoom_Standard_Lamp
     - switch.LWRF_DisplayCabinetLight
     - switch.LWRF_WaxBurner
-    # - switch.LWRF_Christmas_Tree_Lights
 
 dining_room_lights:
   name: Dining Room Lights
@@ -281,19 +273,13 @@ climate:
   entities:
     - sun.sun
     - sensor.moon
-    # - sensor.temp_humid_ext_1_temperature
-    # - sensor.temp_humid_ext_1_humidity
 
 heating:
   name: Heating
   entities:
     - sensor.hallwayhousecondition
     - climate.hallway_house
-    # - sensor.hallwayhousetemperature_2
-    # - sensor.hallwayhousehumidity_2
     - sensor.hallway_thermostat_house_hvac_state
-    # - sensor.hallway_thermostat_house_target
-    # - sensor.hallway_thermostat_house_temperature
     - binary_sensor.hallway_thermostat_house_has_leaf
     - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
     - sensor.nest_away_mode
@@ -314,7 +300,7 @@ nest_protect:
     - binary_sensor.upstairs_nest_protect_online
     - sensor.upstairs_nest_protect_smoke_status
     - sensor.upstairs_nest_protect_co_status
-    - sensor.upstairs_nest_protect_battery_health    
+    - sensor.upstairs_nest_protect_battery_health
 
 environment:
   name: Environment
@@ -391,7 +377,6 @@ automation_powercontrol:
   entities:
     - automation.turn_on_lights_in_the_morning_and_at_sunset
     - automation.turn_off_morning_lights
-    # - automation.ironing_room_no_motion_turn_off_ac
     - automation.ironing_room_motion_detected
     - automation.ironing_room_timer_reset
     - automation.ironing_room_no_motion_turn_off_irons_left
@@ -424,9 +409,6 @@ shell_scripts:
   name: Shell Scipts
   entities:
     - script.get_latest_config
-    # - script.update_os
-    # - script.update_hass
-    # - script.update_all
 
 tracked_devices:
   name: Tracked Devices
@@ -457,14 +439,10 @@ Aeotec_Multi_1:
   name: Aeotec Multisensor
   entities:
     - binary_sensor.aeotec_zw100_multisensor_6_sensor
-    # - sensor.aeotec_zw100_multisensor_6_alarm_level
-    # - sensor.aeotec_zw100_multisensor_6_alarm_type
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_luminance
-    # - sensor.aeotec_zw100_multisensor_6_sourcenodeid
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
     - sensor.aeotec_zw100_multisensor_6_dew_point
-    # - zwave.aeotec_zw100_multisensor_6
 
 Aeotec_Multi_2:
   name: Mining - Sensor
@@ -472,14 +450,10 @@ Aeotec_Multi_2:
     - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
     - sensor.aeotec_zw100_multisensor_6_temperature_2
     - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
-    # - sensor.aeotec_zw100_multisensor_6_alarm_level_2
-    # - sensor.aeotec_zw100_multisensor_6_alarm_type_2
     - sensor.aeotec_zw100_multisensor_6_burglar_2
     - sensor.aeotec_zw100_multisensor_6_luminance_2
-    # - sensor.aeotec_zw100_multisensor_6_sourcenodeid_2
     - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
     - sensor.aeotec_zw100_multisensor_6_dew_point_2
-    # - zwave.aeotec_zw100_multisensor_6
 
 scenes_living_room:
   name: Scenes Living Room
@@ -493,7 +467,8 @@ zwave:
   entities:
     - zwave.aeotec_zw090_zstick_gen5_eu
     - zwave.aeotec_zw100_multisensor_6
-    - zwave.fibaro_system_fgms001zw5_motion_sensor_2
+    - zwave.aeotec_zw100_multisensor_6__2
+    - zwave.fibaro_system_fgms001zw5_motion_sensor
 
 nest_living_room_camera:
   name: Living Room Nest Camera
