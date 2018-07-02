@@ -49,16 +49,16 @@
       entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
 
 
-- id: '1500048925363'
-  alias: SSL Expiry notification
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.ssl_cert_expiry
-      below: 21
-  action:
-    - service: notify.ios_martins_iphone
-      data:
-        message: "HA SSL Cert expirying soon"
+# - id: '1500048925363'
+#   alias: SSL Expiry notification
+#   trigger:
+#     - platform: numeric_state
+#       entity_id: sensor.ssl_cert_expiry
+#       below: 21
+#   action:
+#     - service: notify.ios_martins_iphone
+#       data:
+#         message: "HA SSL Cert expirying soon"
 
 # Watchdog timer for motion within ironing room. Uses 2 timers to ensure constant state is detected.
 # Trigger 1: Goes to idle after 30 mins from start of HA (if not reset)

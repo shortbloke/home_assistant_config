@@ -41,7 +41,8 @@ fan:
   - platform: dyson
 
 rfxtrx:
-  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
+  # device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
+  device: /dev/ttyUSB0
   debug: False
   dummy: False
 
@@ -90,7 +91,6 @@ updater:
 #                                                  #
 ####################################################
 automation: !include automations.yaml
-# Removing binary sensor, since only one is rfxtrx which I believe is causing stability issue
 # binary_sensor: !include binary_sensors.yaml
 camera: !include camera.yaml
 group: !include groups.yaml
