@@ -38,3 +38,5 @@ components
 deps
 !/.gitignore
 !/.travis.yml
+.config_entries.json
+.cloud
