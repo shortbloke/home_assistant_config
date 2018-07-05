@@ -308,7 +308,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 950
+      below: 900
       for:
         minutes: 20
   action:
@@ -316,14 +316,14 @@
       data_template:
         title: "Miner Monitor: Miner02 - Low Power"
         message: >-
-          PSU 1 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 950W
+          PSU 1 - {{ states("sensor.tp_hs110_8_power") }} W, expected > 900W
 
 - id: a_miner02_lowpower_reboot
   alias: Miner02 Low Power Reboot
   trigger:
     - platform: numeric_state
       entity_id: sensor.tp_hs110_8_power
-      below: 950
+      below: 900
       for:
         minutes: 30
   action:
