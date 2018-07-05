@@ -16,10 +16,8 @@ while [[ $# -gt 0 ]]; do
 shift
 done
 
-cd /home/hass/.homeassistant
-source /srv/hass/bin/activate
 if [ "$skipcheck" = "0" ]; then
-	hass --script check_config
+	hassio homeassistant check
 fi
 
 while true; do

@@ -158,3 +158,53 @@ sensor.aeotec_zw100_multisensor_6_alarm_level:
   name:
   platform: zwave
   unique_id: 8-72057594178191377
+zwave.aeotec_zw100_multisensor_6_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-12
+binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244235264
+sensor.aeotec_zw100_multisensor_6_sourcenodeid_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300257
+sensor.aeotec_zw100_multisensor_6_burglar_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300385
+sensor.aeotec_zw100_multisensor_6_temperature_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251666
+sensor.aeotec_zw100_multisensor_6_luminance_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251698
+sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251730
+sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244252082
+sensor.aeotec_zw100_multisensor_6_alarm_type_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300225
+sensor.aeotec_zw100_multisensor_6_alarm_level_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300241
