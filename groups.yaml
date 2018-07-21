@@ -97,7 +97,8 @@ boys_rooms_view:
   entities:
     - sensor.portable_sensor_5_temperature
     - sensor.temp_humid_5_humidity
-    - group.morgans_room
+    - group.morgans_room_lights
+    - group.morgans_room_sockets
     - sensor.portable_sensor_4_temperature
     - sensor.temp_humid_4_humidity
 
@@ -254,14 +255,20 @@ laurastar_iron:
     - switch.tp_hs110_1
     - sensor.tp_hs110_1_power
 
-morgans_room:
-  name: Lights
+morgans_room_lights:
+  name: Morgans Lights
   entities: 
     - light.LWRF_Morgan_Main
     - light.wifi_ufo_1
     - light.wifi_ufo_2
     - light.wifi_ufo_3
     - light.wifi_ufo_4
+
+
+morgans_room_sockets:
+  name: Morgans Sockets
+  entities:
+    - switch.LWRF_Morgan_AC
 
 loft:
   name: Loft

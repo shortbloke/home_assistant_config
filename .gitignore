@@ -40,3 +40,4 @@ deps
 !/.travis.yml
 .config_entries.json
 .cloud
+.storage/*

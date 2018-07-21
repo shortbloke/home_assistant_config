@@ -25,6 +25,7 @@
     "30": "switch.flamerite_power",
     "31": "switch.lwrf_livingroom_standard_lamp",
     "32": "switch.lwrf_conservatory_1",
+    "33": "switch.lwrf_morgan_ac",
     "4": "switch.sonoff_loft_fan_power",
     "5": "light.wifi_ufo_4",
     "6": "light.wifi_ufo_2",

@@ -37,10 +37,10 @@
       friendly_name: "Hall Air Freshener"
       emulated_hue_name: "Hall Air Freshener"
       icon: mdi:lamp
-    # switch.LWRF_Christmas_Tree_Lights:
-    #   friendly_name: "Christmas Tree Lights"
-    #   emulated_hue_name: "Christmas Tree Lights"
-    #   icon: mdi:lamp
+    switch.LWRF_Morgan_AC:
+      friendly_name: "Morgan A/C"
+      emulated_hue_name: "Morgan AC"
+      icon: mdi:fan
 
 #### Lightwave RF Dimmer Switches ####
     light.LWRF_DiningRoom_Main:
