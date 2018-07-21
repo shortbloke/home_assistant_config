@@ -16,6 +16,7 @@ default_view:
     - group.scenes_living_room
     - group.climate
     - group.heating_main_page
+    - group.waze_travel
 
 
 ## OTHER TABS (VIEWS) ##
@@ -517,3 +518,9 @@ garage_fan:
   entities:
     - switch.tp_hs110_6
     - sensor.tp_hs110_6_power
+
+waze_travel:
+  name: Waze Journeys
+  entities:
+    - sensor.to_home
+    - sensor.to_work
