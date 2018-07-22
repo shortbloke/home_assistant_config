@@ -93,11 +93,9 @@ updater:
 #                                                  #
 ####################################################
 automation: !include automations.yaml
-# binary_sensor: !include binary_sensors.yaml
 camera: !include camera.yaml
 group: !include groups.yaml
 history: !include history.yaml
-# influxdb: !include influxdb.yaml
 light: !include lights.yaml
 logbook: !include logbook.yaml
 logger: !include logger.yaml

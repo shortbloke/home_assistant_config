@@ -7,12 +7,8 @@
       event: sunset
       offset: '-01:00:00'
   action:
-    # - service: homeassistant.turn_on
-      # entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
     - service: homeassistant.turn_on
-      entity_id: switch.LWRF_Hall_Socket_1 # Twigs
-    # - service: homeassistant.turn_on
-    #   entity_id: switch.LWRF_Christmas_Tree_Lights # Christmas Tree Lights
+      entity_id: switch.lwrf_hall_socket_1 # Twigs
 
 - id: a_morning_lights
   alias: Turn off morning lights
@@ -23,12 +19,8 @@
       # Can be a positive or negative number
       above: 10.0
   action:
-    # - service: homeassistant.turn_off
-      # entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
     - service: homeassistant.turn_off
-      entity_id: switch.LWRF_Hall_Socket_1 # Twigs
-    # - service: homeassistant.turn_off
-    #   entity_id: switch.LWRF_Christmas_Tree_Lights # Christmas Tree Lights
+      entity_id: switch.lwrf_hall_socket_1 # Twigs
 
 - id: a_daytime_air_freshener_on
   alias: Turn on air freshener socket in the morning
@@ -37,7 +29,7 @@
       at: "06:30:00"
   action:
     - service: homeassistant.turn_on
-      entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
+      entity_id: switch.lwrf_hall_socket_2 # Air Freshener
 
 - id: a_daytime_air_freshener_off
   alias: Turn off air freshener socket at night
@@ -46,19 +38,7 @@
       at: "23:00:00"
   action:
     - service: homeassistant.turn_off
-      entity_id: switch.LWRF_Hall_Socket_2 # Air Freshener
-
-
-# - id: '1500048925363'
-#   alias: SSL Expiry notification
-#   trigger:
-#     - platform: numeric_state
-#       entity_id: sensor.ssl_cert_expiry
-#       below: 21
-#   action:
-#     - service: notify.ios_martins_iphone
-#       data:
-#         message: "HA SSL Cert expirying soon"
+      entity_id: switch.lwrf_hall_socket_2 # Air Freshener
 
 # Watchdog timer for motion within ironing room. Uses 2 timers to ensure constant state is detected.
 # Trigger 1: Goes to idle after 30 mins from start of HA (if not reset)
@@ -211,7 +191,6 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.loft_fan_temperature
-      # value_template: '{{ sensor.loft_fan_temperature}}'
       above: 30
   action:
     - service: homeassistant.turn_on
@@ -222,7 +201,6 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.loft_fan_temperature
-      # value_template: '{{ sensor.loft_fan_temperature}}'
       below: 30
   action:
     - service: homeassistant.turn_off

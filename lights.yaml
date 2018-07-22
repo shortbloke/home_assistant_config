@@ -6,16 +6,16 @@
   devices:
 ### Flamerite Fire ###
     0b110008015b6eff03010f80:
-      name: Flamerite_Dimmer1
+      name: flamerite_dimmer1
     0b11000d015b6eff04010f80:
-      name: Flamerite_Dimmer2
+      name: flamerite_dimmer2
 ### Lightwave RF Dimmer Lights ###
     0a1400b303922201010060:
-      name: LWRF_DiningRoom_Main
+      name: lwrf_diningroom_main
     0a1400ac03922101010060:
-      name: LWRF_LivingRoom_Main
+      name: lwrf_livingroom_main
     0a14000a03922501010070:
-      name: LWRF_Morgan_Main
+      name: lwrf_morgan_main
 
 - platform: flux_led
   automatic_add: False

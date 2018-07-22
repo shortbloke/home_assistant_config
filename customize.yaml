@@ -11,45 +11,45 @@
       icon: mdi:lamp
     switch.lwrf_conservatory_3:
       hidden: true
-    switch.LWRF_Conservatory_4:
+    switch.lwrf_conservatory_4:
       hidden: true
-    switch.LWRF_LivingRoom_Standard_Lamp:
+    switch.lwrf_livingroom_standard_lamp:
       friendly_name: "Living Room - Standard Lamp"
       emulated_hue_name: "Living room lamp"
       icon: mdi:lamp
-    switch.LWRF_DisplayCabinetLight:
+    switch.lwrf_displaycabinetlight:
       friendly_name: "Display cabinet light"
       emulated_hue_name: "Display cabinet light"
       icon: mdi:lightbulb
-    switch.LWRF_DiningRoom_Rennie_Mac_Lamp:
+    switch.lwrf_diningroom_rennie_mac_lamp:
       friendly_name: "Dining Room - Rennie Mac Lamp"
       emulated_hue_name: "Rennie Mac Lamp"
       icon: mdi:lamp
-    switch.LWRF_WaxBurner:
+    switch.lwrf_waxburner:
       friendly_name: "Wax Burner"
       emulated_hue_name: "Wax Burner"
       icon: mdi:radiator
-    switch.LWRF_Hall_Socket_1:
+    switch.lwrf_hall_socket_1:
       friendly_name: "Twig Lights"
       emulated_hue_name: "Twig Lights"
       icon: mdi:lamp
-    switch.LWRF_Hall_Socket_2:
+    switch.lwrf_hall_socket_2:
       friendly_name: "Hall Air Freshener"
       emulated_hue_name: "Hall Air Freshener"
       icon: mdi:lamp
-    switch.LWRF_Morgan_AC:
+    switch.lwrf_morgan_ac:
       friendly_name: "Morgan A/C"
       emulated_hue_name: "Morgan AC"
       icon: mdi:fan
 
 #### Lightwave RF Dimmer Switches ####
-    light.LWRF_DiningRoom_Main:
+    light.lwrf_diningroom_main:
       friendly_name: "Dining Room - Over Table Lights"
       emulated_hue_name: "Dining room lights"
-    light.LWRF_LivingRoom_Main:
+    light.lwrf_livingroom_main:
       friendly_name: "Living Room - Downlights"
       emulated_hue_name: "Living room downlights"
-    light.LWRF_Morgan_Main:
+    light.lwrf_morgan_main:
       friendly_name: "Morgans Main Bedroom Light"
       emulated_hue_name: "Morgans Main Bedroom Light"
 
@@ -148,19 +148,19 @@
       hidden: true
 
 ### Portable Temperature and Humidity Sensors ###
-    sensor.Temp_Humid_1:
+    sensor.temp_humid_1:
       friendly_name: "Env. Conservatory"
       hidden: true
-    sensor.Temp_Humid_2:
+    sensor.temp_humid_2:
       friendly_name: "Env. Living Room"
       hidden: true
-    sensor.Temp_Humid_3:
+    sensor.temp_humid_3:
       friendly_name: "Env. Garage"
       hidden: true
-    sensor.Temp_Humid_4:
+    sensor.temp_humid_4:
       friendly_name: "Env. Frasers Room"
       hidden: true
-    sensor.Temp_Humid_5:
+    sensor.temp_humid_5:
       friendly_name: "Env. Morgans Room"
       hidden: true
     sensor.temp_humid_ext_1_temperature:
@@ -194,14 +194,6 @@
       friendly_name: "Humidity (Morgan)"  #Morgans Room
       icon: mdi:water-percent
 
-### Speed Test ###
-    sensor.speedtest_download:
-      icon: mdi:download
-    sensor.speedtest_upload:
-      icon: mdi:upload
-    sensor.speedtest_ping:
-      icon: mdi:clock
-
 ### travis sensors for automation only ###
     sensor.travis_build_label:
       hidden: true
@@ -209,31 +201,31 @@
       hidden: true
 
 ### TP Link Switches ###
-    switch.TP_HS110_1:
+    switch.tp_hs110_1:
       friendly_name: "Laurastar Iron"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_2:
+    switch.tp_hs110_2:
       friendly_name: "Irons (Left)"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_3:
+    switch.tp_hs110_3:
       friendly_name: "Irons (Right)"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_4:
+    switch.tp_hs110_4:
       friendly_name: "Ironing Table"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_5:
+    switch.tp_hs110_5:
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_6:
+    switch.tp_hs110_6:
       friendly_name: "Garage Fan"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_7:
+    switch.tp_hs110_7:
       friendly_name: "HP Z640"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_9:
+    switch.tp_hs110_9:
       friendly_name: "Miner01"
       icon: mdi:power-socket-uk
-    switch.TP_HS110_8:
+    switch.tp_hs110_8:
       friendly_name: "Miner02"
       icon: mdi:power-socket-uk
 
@@ -242,14 +234,6 @@
       friendly_name: "Loft 1 Temperature"
     sensor.loft_fan_humidity:
       friendly_name: "Loft 1 Humidity"
-
-### Fibaro Multi-Sensor
-    # binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor_2:
-    #   friendly_name: "Loft 2 Multi-Sensor"
-    # sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
-    #   friendly_name: "Loft 2 Rig Luminance"
-    # sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
-    #   friendly_name: "Loft 2 Rig Temperature"
 
 ### Aeotec Multi-Sensor
     binary_sensor.aeotec_zw100_multisensor_6_sensor:
