@@ -443,3 +443,28 @@
   action:
     - service: homeassistant.turn_off
       entity_id: switch.tp_hs110_6
+
+- id: a_weekly_snapshot
+  alias: HASSIO Weekly Snapshot (3am)
+  trigger:
+    - platform: time
+      at: '3:00:00'
+  condition:
+    condition: time
+    weekday:
+      - sun
+  action:
+  - service: hassio.snapshot_full
+    data_template:
+      name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+
+- id: a_weekly_snapshot_dropbox_sync
+  alias: Dropbox Snapshot Sync (4am)
+  trigger: 
+    - platform: time
+      at: '4:00:00'
+  action:
+    - service: hassio.addon_stdin
+      data_template:
+        addon: 7be23ff5_dropbox_sync
+        input: {"command":"upload"}

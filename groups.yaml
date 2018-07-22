@@ -379,6 +379,8 @@ automation_utilities:
     - automation.Have_I_Been_Pwned_Change
     - automation.sonos_tts_test
     - automation.hass_update_available_notifications
+    - automation.hassio_weekly_snapshot_3am
+    - automation.dropbox_snapshot_sync_4am
 
 automation_powercontrol:
   name: Power Control
