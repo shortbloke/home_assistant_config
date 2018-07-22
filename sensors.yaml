@@ -63,15 +63,6 @@
       data_type:
         - Humidity
         - Temperature
-    115a0102f7520000000f3700005b0077d779:
-      name: Energy_Sensor_A
-      data_type:
-       - Energy usage
-       - Total usage
-    135b010172000100910001000000000000000069:
-      name: Energy_Sensor_B
-      data_type:
-        - Total usage
 
 # MQTT Sensors
 - platform: mqtt

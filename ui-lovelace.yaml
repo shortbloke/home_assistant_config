@@ -289,8 +289,8 @@ views:
           - sensor.martins_iphone_battery_level
           - sensor.martins_iphone_battery_state
           - device_tracker.michelles_iphone
-          - sensor.michelles_iphone_battery_level
-          - sensor.michelles_iphone_battery_state
+          - sensor.iphone_battery_level
+          - sensor.iphone_battery_state
           - sensor.martins_ipad_battery_level
           - sensor.martins_ipad_battery_state
       - type: entities
