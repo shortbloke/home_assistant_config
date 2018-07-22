@@ -9,10 +9,6 @@
       friendly_name: "Conservatory - Window Lamp"
       emulated_hue_name: "Conservatory window lamp"
       icon: mdi:lamp
-    switch.lwrf_conservatory_3:
-      hidden: true
-    switch.lwrf_conservatory_4:
-      hidden: true
     switch.lwrf_livingroom_standard_lamp:
       friendly_name: "Living Room - Standard Lamp"
       emulated_hue_name: "Living room lamp"
