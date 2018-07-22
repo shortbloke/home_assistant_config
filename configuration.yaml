@@ -52,6 +52,11 @@ zwave:
   usb_path: /dev/ttyACM0
 
 ## Software  Components ##
+
+### MetOffice - Weather Plaform
+weather:
+  - platform: yweather
+
 climate:
   platform: nest
 

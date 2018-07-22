@@ -3,19 +3,107 @@ title: Hi I'm Lovelace
 background: center / cover no-repeat url("/background.png") fixed
 # Exclude entities from "Unused entities" view
 excluded_entities:
-  - weblink.router
+  # - weblink.router
+# views:
+#     # View tab title.
+#   - title: Example
+#     # Optional unique id for direct access /lovelace/${id}
+#     id: example
+#     # Optional background (overwrites the global background).
+#     background: radial-gradient(crimson, skyblue)
+#     # Each view can have a different theme applied. Theme should be defined in the frontend.
+#     theme: dark-mode
+#     # The cards to show on this view.
+#     cards:
+#         # The filter card will filter entities for their state
+#       - type: entity-filter
+#         entities:
+#           - device_tracker.martins_iphone
+#           - device_tracker.michelles_iphone
+#         state_filter:
+#           - 'home'
+#         card:
+#           type: glance
+#           title: People that are home
+
+#         # The picture entity card will represent an entity with a picture
+#       - type: picture-entity
+#         image: https://www.home-assistant.io/images/default-social.png
+#         entity: light.lwrf_diningroom_main
+
+#     # Specify a tab icon if you want the view tab to be an icon.
+#   - icon: mdi:home-assistant
+#     # Title of the view. Will be used as the tooltip for tab icon
+#     title: Second view
+#     cards:
+#         # Entities card will take a list of entities and show their state.
+#       - type: entities
+#         # Title of the entities card
+#         title: Example
+#         # The entities here will be shown in the same order as specified.
+#         # Each entry is an entity ID or a map with extra options.
+#         entities:
+#           - light.lwrf_livingroom_main
+#           - switch.lwrf_livingroom_standard_lamp
+#           - switch.lwrf_displaycabinetlight
+#           - switch.lwrf_waxburner
+#           - entity: light.lwrf_livingroom_main
+#             # Override the name to use
+#             name: LR Lights
+
+#         # The markdown card will render markdown text.
+#       - type: markdown
+#         title: Lovelace
+#         content: >
+#           Welcome to your **Lovelace UI**.
 views:
-    # View tab title.
-  - title: Example
-    # Optional unique id for direct access /lovelace/${id}
-    id: example
-    # Optional background (overwrites the global background).
-    background: radial-gradient(crimson, skyblue)
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
-    theme: dark-mode
-    # The cards to show on this view.
+  - title: Home
     cards:
-        # The filter card will filter entities for their state
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.hallway_thermostat_house_temperature
+          - sensor.nest_away_mode
+      - type: entities
+        title: Living Room Lights
+        entities:
+          - light.lwrf_livingroom_main
+          - switch.lwrf_livingroom_standard_lamp
+          - switch.lwrf_displaycabinetlight
+          - switch.lwrf_waxburner
+      - type: entities
+        title: Dining Room Lights
+        entities:
+          - light.lwrf_diningroom_main
+          - switch.lwrf_diningroom_rennie_mac_lamp
+      - type: entities
+        title: Conservatory Lights
+        entities:
+          - switch.lwrf_conservatory_1
+          - switch.lwrf_conservatory_2
+      - type: entities
+        title: Scenes Living Room
+        entities:
+          - scene.bright
+          - scene.comfortable
+          - scene.movie
+      - type: entities
+        title: Weather (local)
+        entities:
+          - sun.sun
+          - sensor.moon
+      - type: entities
+        title: Nest Thermostat
+        entities:
+          - sensor.hallway_thermostat_house_temperature
+          - sensor.nest_away_mode
+          - climate.hallway_house
+          - sensor.hallway_thermostat_house_hvac_state
+      - type: entities
+        title: Waze Journeys
+        entities:
+          - sensor.to_home
+          - sensor.to_work
       - type: entity-filter
         entities:
           - device_tracker.martins_iphone
@@ -25,34 +113,452 @@ views:
         card:
           type: glance
           title: People that are home
-
-        # The picture entity card will represent an entity with a picture
-      - type: picture-entity
-        image: https://www.home-assistant.io/images/default-social.png
-        entity: light.lwrf_diningroom_main
-
-    # Specify a tab icon if you want the view tab to be an icon.
-  - icon: mdi:home-assistant
-    # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
+  - title: Master Bedroom
     cards:
-        # Entities card will take a list of entities and show their state.
+      - type: media-control
+        entity: media_player.master_bedroom
+      - type: media-control
+        entity: media_player.bathroom
       - type: entities
-        # Title of the entities card
-        title: Example
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+        title: LauraStar Iron
+        entities:
+          - switch.tp_hs110_1
+          - sensor.tp_hs110_1_power
+  - title: Miners
+    cards:
+      - type: entities
+        title: Miner01
+        entities:
+          - switch.tp_hs110_9
+          - sensor.tp_hs110_9_power
+      - type: entities
+        title: Mining - Sensor
+        entities:
+          - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
+          - sensor.aeotec_zw100_multisensor_6_temperature_2
+          - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
+          - sensor.aeotec_zw100_multisensor_6_burglar_2
+          - sensor.aeotec_zw100_multisensor_6_luminance_2
+          - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
+          - sensor.aeotec_zw100_multisensor_6_dew_point_2
+      - type: entities
+        title: Miner02
+        entities:
+          - switch.tp_hs110_8
+          - sensor.tp_hs110_8_power
+      - type: entities
+        title: Crypto Mining Monitoring
+        entities:
+          - automation.miner01_power_watcher
+          - automation.miner01_low_power_reboot
+          - automation.miner02_power_watcher
+          - automation.miner02_low_power_reboot
+      - type: entities
+        title: Mining Rig Fans
+        entities:
+          - switch.tp_hs110_6
+          - sensor.tp_hs110_6_power
+  - title: Conservatory
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.portable_sensor_1_temperature
+          - sensor.temp_humid_1_humidity
+      - type: entities
+        title: Conservatory Lights
+        entities:
+          - switch.lwrf_conservatory_1
+          - switch.lwrf_conservatory_2
+      - type: entities
+        title: Conservatory Switches
+        entities:
+          - switch.tp_hs110_7
+          - sensor.tp_hs110_7_power
+      - type: media-control
+        entity: media_player.conservatory
+      - type: media-control
+        entity: media_player.kitchen
+  - title: Living Room
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.portable_sensor_2_temperature
+          - sensor.temp_humid_2_humidity
+      - type: entities
+        title: Living Room Lights
         entities:
           - light.lwrf_livingroom_main
           - switch.lwrf_livingroom_standard_lamp
           - switch.lwrf_displaycabinetlight
           - switch.lwrf_waxburner
-          - entity: light.lwrf_livingroom_main
-            # Override the name to use
-            name: LR Lights
+      - type: entities
+        title: Scenes Living Room
+        entities:
+          - scene.bright
+          - scene.comfortable
+          - scene.movie
+      - type: entities
+        title: Fireplace
+        entities:
+          - switch.flamerite_power
+          - switch.flamerite_heat
+          - light.flamerite_dimmer1
+          - light.flamerite_dimmer2
+      - type: entities
+        title: Dining Room Lights
+        entities:
+          - light.lwrf_diningroom_main
+          - switch.lwrf_diningroom_rennie_mac_lamp
+      - type: media-control
+        entity: media_player.living_room
+      - type: entities
+        title: Living Room Nest Camera
+        entities:
+          - binary_sensor.living_room_camera_online
+          - binary_sensor.living_room_camera_motion_detected
+          - binary_sensor.living_room_camera_person_detected
+          - binary_sensor.living_room_camera_sound_detected
+          - binary_sensor.living_room_camera__window_activity
+          - binary_sensor.living_room_camera__doorway_activity
+      - type: picture-entity
+        entity: camera.living_room
+  - title: Hall
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.hallway_thermostat_house_humidity
+          - sensor.hallway_thermostat_house_temperature
+      - type: entities
+        title: Hall Lights
+        entities:
+          - switch.lwrf_hall_socket_1
+          - switch.lwrf_hall_socket_2
+      - type: entities
+        title: Heating
+        entities:
+          - sensor.hallwayhousecondition
+          - climate.hallway_house
+          - sensor.hallway_thermostat_house_hvac_state
+          - binary_sensor.hallway_thermostat_house_has_leaf
+          - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
+          - sensor.nest_away_mode
+      - type: entities
+        title: Nest Protect
+        entities:
+          - binary_sensor.downstairs_nest_protect_online
+          - sensor.downstairs_nest_protect_smoke_status
+          - sensor.downstairs_nest_protect_co_status
+          - sensor.downstairs_nest_protect_battery_health
+          - binary_sensor.upstairs_nest_protect_online
+          - sensor.upstairs_nest_protect_smoke_status
+          - sensor.upstairs_nest_protect_co_status
+          - sensor.upstairs_nest_protect_battery_health
+  - title: Boys Room
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.portable_sensor_5_temperature
+          - sensor.temp_humid_5_humidity
+          - sensor.portable_sensor_4_temperature
+          - sensor.temp_humid_4_humidity
+      - type: entities
+        title: Morgans Lights
+        entities:
+          - light.lwrf_morgan_main
+          - light.wifi_ufo_1
+          - light.wifi_ufo_2
+          - light.wifi_ufo_3
+          - light.wifi_ufo_4
+      - type: entities
+        title: Morgans Sockets
+        entities:
+          - switch.lwrf_morgan_ac
+  - title: Family
+    tab_icon: mdi:account-multiple
+    cards:
+      - type: entities
+        title: Tracked Devices
+        entities:
+          - device_tracker.martins_iphone
+          - sensor.martins_iphone_battery_level
+          - sensor.martins_iphone_battery_state
+          - device_tracker.michelles_iphone
+          - sensor.michelles_iphone_battery_level
+          - sensor.michelles_iphone_battery_state
+          - sensor.martins_ipad_battery_level
+          - sensor.martins_ipad_battery_state
+      - type: entities
+        title: HaveIBeenPwned
+        entities:
+          - sensor.breaches_martinrowannetcouk
+          - sensor.breaches_michellerowannetcouk
+          - sensor.breaches_junerowannetcouk
+          - sensor.breaches_morganrowannetcouk
+          - sensor.breaches_fraserrowannetcouk
+          - sensor.breaches_robertrowannetcouk
+          - sensor.breaches_martinrowancitrixcom
+          - sensor.breaches_martinrowaneucitrixcom
+          - sensor.breaches_mrowanhighlightnet
+  - title: Outside
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.temp_humid_ext_1_temperature
+          - sensor.temp_humid_ext_1_humidity
+      - type: entities
+        title: Weather (local)
+        entities:
+          - sun.sun
+          - sensor.moon
+      - type: weather-forecast
+        entity: weather.yweather
+  - title: loft
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.loft_fan_temperature
+          - sensor.loft_fan_humidity
+      - type: entities
+        title: Loft
+        entities:
+          - switch.sonoff_loft_fan_power
+      - type: entities
+        title: Loft 2 - Multisensor
+        entities:
+          - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+          - binary_sensor.sensor
+          - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+          - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+          - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+  - title: Automation
+    tab_icon: mdi:home-automation
+    cards:
+      - type: entities
+        title: Utilities
+        entities:
+          - automation.ssl_expiry_notification
+          - automation.update_config_hass_if_travis_build_is_successfull
+          - automation.have_i_been_pwned_change
+          - automation.sonos_tts_test
+          - automation.hass_update_available_notifications
+          - automation.hassio_weekly_snapshot_3am
+          - automation.dropbox_snapshot_sync_4am
+      - type: entities
+        title: HAPi Resource Monitoring
+        entities:
+          - automation.hapi_high_load_alert
+          - automation.hapi_low_disk_space_alert
+          - automation.hapi_low_memory_alert
+      - type: entities
+        title: Power Control
+        entities:
+          - automation.turn_on_lights_in_the_morning_and_at_sunset
+          - automation.turn_off_morning_lights
+          - automation.ironing_room_motion_detected
+          - automation.ironing_room_timer_reset
+          - automation.ironing_room_no_motion_turn_off_irons_left
+          - automation.ironing_room_no_motion_turn_off_irons_right
+          - automation.ironing_room_no_motion_turn_off_ironing_table
+          - automation.ironing_room_no_motion_turn_off_magpie_iron
+          - automation.loft_fan_turn_on_when_hot
+          - automation.loft_fan_turn_off_when_not_hot
+          - automation.garage_fan_turn_on_when_hot
+          - automation.garage_fan_turn_off_when_not_hot
+          - automation.turn_on_air_freshener_socket_in_the_morning
+          - automation.turn_off_air_freshener_socket_at_night
+      - type: entities
+        title: Crypto Mining Monitoring
+        entities:
+          - automation.miner01_power_watcher
+          - automation.miner01_low_power_reboot
+          - automation.miner02_power_watcher
+          - automation.miner02_low_power_reboot
+      - type: entities
+        title: Alarm
+        entities:
+          - automation.sonos_burglar_alarm
+          - automation.sonos_restore_snapshot_state
+      - type: entities
+        title: Shell Scipts
+        entities:
+          - script.get_latest_config
+  - title: garage
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.portable_sensor_3_temperature
+          - sensor.temp_humid_3_humidity
+      - type: entities
+        title: Miner01
+        entities:
+          - switch.tp_hs110_9
+          - sensor.tp_hs110_9_power
+      - type: entities
+        title: Mining - Sensor
+        entities:
+          - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
+          - sensor.aeotec_zw100_multisensor_6_temperature_2
+          - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
+          - sensor.aeotec_zw100_multisensor_6_burglar_2
+          - sensor.aeotec_zw100_multisensor_6_luminance_2
+          - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
+          - sensor.aeotec_zw100_multisensor_6_dew_point_2
+      - type: entities
+        title: Miner02
+        entities:
+          - switch.tp_hs110_8
+          - sensor.tp_hs110_8_power
+      - type: entities
+        title: Garage Nest Camera
+        entities:
+          - binary_sensor.garage_camera_online
+          - binary_sensor.garage_camera_motion_detected
+          - binary_sensor.garage_camera_person_detected
+          - binary_sensor.garage_camera_sound_detected
+          - binary_sensor.garage_camera__garage_door_activity
+          - binary_sensor.garage_camera__hall_door_activity
+      - type: picture-entity
+        entity: camera.garage
+      - type: entities
+        title: garage fan
+        entities:
+          - switch.tp_hs110_6
+          - sensor.tp_hs110_6_power
+  - title: Security
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.nest_away_mode
+      - type: entities
+        title: Living Room Nest Camera
+        entities:
+          - binary_sensor.living_room_camera_online
+          - binary_sensor.living_room_camera_motion_detected
+          - binary_sensor.living_room_camera_person_detected
+          - binary_sensor.living_room_camera_sound_detected
+          - binary_sensor.living_room_camera__window_activity
+          - binary_sensor.living_room_camera__doorway_activity
+      - type: picture-entity
+        entity: camera.living_room
+      - type: entities
+        title: Garage Nest Camera
+        entities:
+          - binary_sensor.garage_camera_online
+          - binary_sensor.garage_camera_motion_detected
+          - binary_sensor.garage_camera_person_detected
+          - binary_sensor.garage_camera_sound_detected
+          - binary_sensor.garage_camera__garage_door_activity
+          - binary_sensor.garage_camera__hall_door_activity
+      - type: picture-entity
+        entity: camera.garage
+      - type: entities
+        title: Alarm
+        entities:
+          - automation.sonos_burglar_alarm
+          - automation.sonos_restore_snapshot_state
+      - type: entities
+        title: Motion Sensors
+        entities:
+          - sensor.aeotec_zw100_multisensor_6_burglar
+          - sensor.aeotec_zw100_multisensor_6_burglar_2
+          - sensor.alarm_level_2
+  - title: Ironing Room
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.aeotec_zw100_multisensor_6_temperature
+          - sensor.aeotec_zw100_multisensor_6_relative_humidity
+      - type: entities
+        title: Ironing Room Timers
+        entities:
+          - timer.ironing_room_motion_timer
+          - timer.ironing_room_motion_timer_reset_poll
+      - type: entities
+        title: Iron Sockets
+        entities:
+          - switch.tp_hs110_1
+          - sensor.tp_hs110_1_power
+          - switch.tp_hs110_2
+          - sensor.tp_hs110_2_power
+          - switch.tp_hs110_3
+          - sensor.tp_hs110_3_power
+          - switch.tp_hs110_4
+          - sensor.tp_hs110_4_power
+          - switch.tp_hs110_5
+          - sensor.tp_hs110_5_power
+      - type: entities
+        title: Aeotec Multisensor
+        entities:
+          - binary_sensor.aeotec_zw100_multisensor_6_sensor
+          - sensor.aeotec_zw100_multisensor_6_burglar
+          - sensor.aeotec_zw100_multisensor_6_luminance
+          - sensor.aeotec_zw100_multisensor_6_ultraviolet
+          - sensor.aeotec_zw100_multisensor_6_dew_point
 
-        # The markdown card will render markdown text.
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
+  - title: Systems
+    tab_icon: mdi:server-network
+    cards:
+      - type: entities
+        title: HAPi Server
+        entities:
+          - sensor.current_version
+          - sensor.processor_use
+          - sensor.disk_free_
+          - sensor.disk_use_percent_
+          - sensor.swap_free
+          - sensor.swap_use_percent
+          - sensor.memory_free
+          - sensor.memory_use_percent
+          - sensor.last_boot
+          - sensor.load_1m
+          - sensor.load_5m
+          - sensor.load_15m
+
+### FIXME - HP ILO current disabled
+      # - type: entities
+      #   title: HP Microserver G7
+      #   entities:
+      #     - sensor.nano_server_name
+      #     - sensor.nano_glance_power_supplies
+      #     - sensor.nano_glance_processor
+      #     - sensor.nano_glance_storage
+      #     - sensor.nano_glance_memory
+      #     - sensor.nano_glance_temperatures
+      #     - sensor.nano_glance_fans
+      #     - sensor.nano_glance_network
+      #     - sensor.nano_glance_bios
+      #     - sensor.nano_cpu_fanspeed
+      #     - sensor.nano_inlet_temperature
+      #     - sensor.nano_exhaust_temperature
+      #     - sensor.nano_cpu_temperature
+      #     - sensor.nano_pci_temperature
+      #     - sensor.nano_chipset_temperature
+      #     - sensor.nano_memory_temperature
+      - type: entities
+        title: Z Wave
+        entities:
+          - zwave.aeotec_zw090_zstick_gen5_eu
+          - zwave.aeotec_zw100_multisensor_6
+          - zwave.aeotec_zw100_multisensor_6_2
+          - zwave.fibaro_system_fgms001zw5_motion_sensor
+      - type: picture-entity
+        entity: camera.broadbandquality
+
+### Auto generated by python-lovelace migration tool. Doesn't work on 0.74.0
+  # - title: All Entities
+  #   tab_icon: mdi:settings
+  #   cards:
+  #     - type: entity-filter
+  #       filter:
+  #         - {}
+  #       card_config:
+  #         title: All Entities

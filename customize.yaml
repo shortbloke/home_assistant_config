@@ -217,7 +217,7 @@
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     switch.tp_hs110_6:
-      friendly_name: "Garage Fan"
+      friendly_name: "Minign Rig Fans"
       icon: mdi:power-socket-uk
     switch.tp_hs110_7:
       friendly_name: "HP Z640"
@@ -250,3 +250,13 @@
       friendly_name: "Temperature"
     sensor.aeotec_zw100_multisensor_6_relative_humidity:
       friendly_name: "Humidity"
+
+### iPhone Trackers
+    device_tracker.martins_iphone:
+      friendly_name: "Martin"
+    device_tracker.michelles_iphone:
+      friendly_name: "Michelle"
+
+### Weather
+    weather.yweather:
+      friendly_name: "Local Weather Forecast"

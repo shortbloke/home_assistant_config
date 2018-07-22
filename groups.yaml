@@ -109,6 +109,7 @@ outside_view:
     - sensor.temp_humid_ext_1_temperature
     - sensor.temp_humid_ext_1_humidity
     - group.climate
+    - weather.yweather
 
 loft_view:
   name: loft
@@ -475,7 +476,7 @@ zwave:
   entities:
     - zwave.aeotec_zw090_zstick_gen5_eu
     - zwave.aeotec_zw100_multisensor_6
-    - zwave.aeotec_zw100_multisensor_6__2
+    - zwave.aeotec_zw100_multisensor_6_2
     - zwave.fibaro_system_fgms001zw5_motion_sensor
 
 nest_living_room_camera:

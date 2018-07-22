@@ -22,6 +22,13 @@ exclude:
     - sensor.aeotec_zw100_multisensor_6_sourcenodeid
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
     - sensor.aeotec_zw100_multisensor_6_dew_point
+    - sensor.aeotec_zw100_multisensor_6_alarm_type_2
+    - sensor.aeotec_zw100_multisensor_6_alarm_level_2
+    # - sensor.aeotec_zw100_multisensor_6_burglar_2
+    - sensor.aeotec_zw100_multisensor_6_luminance_2
+    - sensor.aeotec_zw100_multisensor_6_sourcenodeid_2
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
+    - sensor.aeotec_zw100_multisensor_6_dew_point_2
     # Fibaro
     - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
     - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
