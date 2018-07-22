@@ -13,7 +13,6 @@ exclude:
     - sensor.date
     - sensor.sun
     - sensor.moon
-    - sensor.ssl_cert_expiry
     - sensor.current_version
     # Aeotec
     - sensor.aeotec_zw100_multisensor_6_alarm_type

@@ -7,7 +7,6 @@ default_view:
   name: Home
   view: yes
   entities:
-    - sensor.ssl_cert_expiry
     - sensor.hallway_thermostat_house_temperature
     - sensor.nest_away_mode
     - group.living_room_lights
@@ -374,7 +373,6 @@ hpilo:
 automation_utilities:
   name: Utilities
   entities:
-    - automation.SSL_expiry_notification
     - automation.update_config_hass_if_travis_build_is_successfull
     - automation.Have_I_Been_Pwned_Change
     - automation.sonos_tts_test

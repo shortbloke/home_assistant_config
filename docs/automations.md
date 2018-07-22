@@ -1,7 +1,6 @@
  
 # Automation Scripts
 ## Utilities
- * Trigger notification when SSL certificate used for Home Assistant site is expiry soon
  * Automatically sync latest configuration from github on a successful script validation via TravisCI. [Learn more](build_deploy.md)
 
 ## Power Control
