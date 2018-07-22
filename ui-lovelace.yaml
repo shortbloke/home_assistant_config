@@ -1,0 +1,58 @@
+title: Hi I'm Lovelace
+# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
+background: center / cover no-repeat url("/background.png") fixed
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - weblink.router
+views:
+    # View tab title.
+  - title: Example
+    # Optional unique id for direct access /lovelace/${id}
+    id: example
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+        # The filter card will filter entities for their state
+      - type: entity-filter
+        entities:
+          - device_tracker.martins_iphone
+          - device_tracker.michelles_iphone
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: People that are home
+
+        # The picture entity card will represent an entity with a picture
+      - type: picture-entity
+        image: https://www.home-assistant.io/images/default-social.png
+        entity: light.lwrf_diningroom_main
+
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:home-assistant
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Second view
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Example
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - light.lwrf_livingroom_main
+          - switch.lwrf_livingroom_standard_lamp
+          - switch.lwrf_displaycabinetlight
+          - switch.lwrf_waxburner
+          - entity: light.lwrf_livingroom_main
+            # Override the name to use
+            name: LR Lights
+
+        # The markdown card will render markdown text.
+      - type: markdown
+        title: Lovelace
+        content: >
+          Welcome to your **Lovelace UI**.
