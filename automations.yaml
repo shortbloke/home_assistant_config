@@ -184,14 +184,11 @@
       entity_id: sensor.shortblokehome_assistant_config_last_build_state
       state: 'passed'
   action:
-    - service: hassio.addon_stop
-      data: 
-        addon: "core_git_pull"
-    - service: hassio.addon_start
+    - service: hassio.addon_stop # Requires Git Pull is set to auto-start
       data: 
         addon: "core_git_pull"
     - delay: 0:01
-    - service: hassio.addon_stop
+    - service: hassio.addon_start
       data: 
         addon: "core_git_pull"
 
