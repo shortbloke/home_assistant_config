@@ -386,10 +386,6 @@ views:
         entities:
           - automation.sonos_burglar_alarm
           - automation.sonos_restore_snapshot_state
-      - type: entities
-        title: Shell Scipts
-        entities:
-          - script.get_latest_config
   - title: garage
     cards:
       - type: glance

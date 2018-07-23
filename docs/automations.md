@@ -21,17 +21,3 @@
     * High Load Average
     * Low Disk Space
     * Low Memory
-
- # Shell Scripts
- The following scripts are stored in the `bin` directory and defined in [`shell_command.yaml`](../shell_command.yaml):
-  * [`git_pull.sh`](../bin/git_pull.sh) - performs a git pull request of this repository
-  * [`hass_update.sh`](../bin/hass_update.sh) - performs an upgrade of Home Assistant in a venv
-  * [`os_update.sh`](../bin/os_update.sh) - runs apt-get commands to update OS
-  * [`reboot.sh`](../bin/reboot.sh) - issues reboot command
-
- # Home Assistant Scripts
- The [`scripts.yaml`](../scripts.yaml) defines how Home Assistant can call out to shell scripts. The following scripts are implemented:
-  * get_latest_config - Pulls the latest changes from github then restarts home assistant
-  * update_hass - Updates Home Assistant to the latest version (via `git_pull.sh`) and restarts it
-  * update_os - (Not working, insufficient permissions) Update OS and then reboot system
-  * update_all - (Not working, insufficient permissions) OS Update, Home Assistant Update followed by rebooting the system

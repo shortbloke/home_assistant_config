@@ -1,30 +1,5 @@
 #### Scripts.yaml ####
 
-get_latest_config:
-  alias: 'Update config and restart '
-  sequence:
-    - service: shell_command.git_pull
-    - service: homeassistant.restart
-
-update_hass:
-  alias: 'Update HASS and restart'
-  sequence:
-    - service: shell_command.hass_update
-    - service: homeassistant.restart
-
-update_os:
-  alias: 'Update Raspbian only and reboot'
-  sequence:
-    - service: shell_command.os_update
-    - service: shell_command.os_reboot
-
-update_all:
-  alias: 'Update OS and HASS then reboot'
-  sequence:
-    - service: shell_command.os_update    
-    - service: shell_command.hass_update    
-    - service: shell_command.os_reboot
-
 sonos_say:
   # Source: https://home-assistant.io/cookbook/sonos_say/
   alias: "Sonos TTS script"

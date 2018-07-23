@@ -1,5 +1,4 @@
 # Configuration Validation 
-A script `gitupdate.sh` is used to run a check of the configuration files ahead of a git submit of changed files. This ensures I validate the scripts ahead of submitting them. This check only validates against the current version installed. As Per [Keeping your repository up to date](https://home-assistant.io/docs/ecosystem/backup/backup_github/#step-6-keeping-your-repository-up-to-date)
 
 TravisCI is linked to this github repository, monitoring for changes and automatically validating changes against the latest version of Home Assistant. As per [Configuration file testing](https://home-assistant.io/docs/ecosystem/backup/backup_github/#step-7-configuration-file-testing)
 
@@ -11,4 +10,4 @@ The Travis configuration file [`.travis.yml`](../.travis.yml) defines the inform
  * What to install in to the test environment, i.e. homeassistant
  * Define the command to run which checks the configuration: `hass -c . --script check_config`
 
- Upon a successful Travis build I have automation which triggers a git pull request to update the current configuration, followed by restarting the home assistant service. Enabling changes to be made away from the the Pi/HASS Hub, uploaded to GitHub and directly applied to the running system.
+ There is an automation script which monitors for a successful Travis build to occur, then calls the [Git Pull](https://www.home-assistant.io/addons/git_pull/) Hassio Add-On, to update the current configuration, then restart Home Assistant. Enabling changes to be made away from the Pi/HASS Hub, uploaded to GitHub and directly applied to the running system.

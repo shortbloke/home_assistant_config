@@ -184,7 +184,16 @@
       entity_id: sensor.shortblokehome_assistant_config_last_build_state
       state: 'passed'
   action:
-    - service: script.get_latest_config
+    - service: hassio.addon_stop
+      data: 
+        addon: "core_git_pull"
+    - service: hassio.addon_start
+      data: 
+        addon: "core_git_pull"
+    - delay: 0:01
+    - service: hassio.addon_stop
+      data: 
+        addon: "core_git_pull"
 
 - id: a_Loft_Fan_On
   alias: Loft Fan Turn On When Hot

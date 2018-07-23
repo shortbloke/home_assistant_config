@@ -110,7 +110,7 @@ recorder: !include recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 sensor: !include sensors.yaml
-shell_command: !include shell_command.yaml
+# shell_command: !include shell_command.yaml
 switch: !include switches.yaml
 timer: !include timers.yaml
 

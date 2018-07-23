@@ -163,7 +163,6 @@ automation_view:
     - group.automation_powercontrol
     - group.automation_mining
     - group.alarm
-    - group.shell_scripts
 
 
 ######################## GROUPS (Cards) ########################
@@ -415,11 +414,6 @@ automation_mining:
     - automation.miner01_low_power_reboot
     - automation.miner02_power_watcher
     - automation.miner02_low_power_reboot
-
-shell_scripts:
-  name: Shell Scipts
-  entities:
-    - script.get_latest_config
 
 tracked_devices:
   name: Tracked Devices
