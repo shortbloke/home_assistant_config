@@ -11,8 +11,8 @@ homeassistant:
   time_zone: Europe/London
   temperature_unit: C
   unit_system: metric
-  customize: !include customize.yaml
-  customize_glob: !include customize_glob.yaml
+  customize: !include includes/customize.yaml
+  customize_glob: !include includes/customize_glob.yaml
 
 ###################################################
 #                                                 #
@@ -191,16 +191,16 @@ timer:
 #                     Includes                     #
 #                                                  #
 ####################################################
-automation: !include automations.yaml
-group: !include groups.yaml
-history: !include history.yaml
-light: !include lights.yaml
-logbook: !include logbook.yaml
-recorder: !include recorder.yaml
-scene: !include scenes.yaml
-script: !include scripts.yaml
-sensor: !include sensors.yaml
-switch: !include switches.yaml
-zone: !include zones.yaml
+automation: !include includes/automations.yaml
+group: !include includes/groups.yaml
+history: !include includes/history.yaml
+light: !include includes/lights.yaml
+logbook: !include includes/logbook.yaml
+recorder: !include includes/recorder.yaml
+scene: !include includes/scenes.yaml
+script: !include includes/scripts.yaml
+sensor: !include includes/sensors.yaml
+switch: !include includes/switches.yaml
+zone: !include includes/zones.yaml
 
 ####################################################
