@@ -4,7 +4,7 @@ This is my currently active set of configuration files for my [Home Assistant](h
 If you are intested in following my progress be sure ⭐️ Star this repository and check out [my blog](https://www.martinrowan.co.uk).
 
 ### Configuration File Status 
-Each commit triggers a deployement to the latest home assistant version with Python 3.4. This is done though TravisCI. If this sucessfully passes, then my Pi will update itself with the latest configuration automatically.
+Each commit triggers a deployement to the latest home assistant version with Python 3.6. This is done though TravisCI. If this sucessfully passes, then my Pi will update itself with the latest configuration automatically.
 
 ![My Home Assistant Default View](images/default_view.jpg)
 
@@ -19,6 +19,5 @@ Each commit triggers a deployement to the latest home assistant version with Pyt
 * [Devices Controlled and Sensors Monitored](devices.md)
 * [Automation and Shell Scripts](automations.md)
 * [Configuration validation and automatic deployment](build_deploy.md)
-* [Backup solution](backup.md)
 
 **Note: Private information is stored in secrets.yaml (not uploaded)**

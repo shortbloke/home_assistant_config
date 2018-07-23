@@ -3,6 +3,13 @@
 ## Utilities
  * Automatically sync latest configuration from github on a successful script validation via TravisCI. [Learn more](build_deploy.md)
 
+## Backup
+_Since moving to [Hass.IO](https://www.home-assistant.io/hassio/) this process has been simplified._
+
+ * HassIO provides a service which snapshots the configuration. 
+ * In combination with an [DropBox Sync add-on](https://github.com/danielwelch/hassio-dropbox-sync) and some automation scripts, it's possible to schedule regular snapshots and automatically upload these to DropBox.
+ * Automation is configured to perform a weekly snapshot, whilst checking for new snapshots to sync daily.
+
 ## Power Control
  * Turning on specific lights 1 hour before sunset
  * Turn on a Sonoff relay switch when loft temperatures get high and off again when they lower
