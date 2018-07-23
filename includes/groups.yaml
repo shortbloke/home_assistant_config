@@ -151,7 +151,7 @@ system_view:
     - group.HAPi
     - group.hpilo
     - group.zwave
-    - camera.broadbandquality
+    - group.internet
 
 automation_view:
   name: Automation
@@ -339,15 +339,12 @@ energy:
 HAPi:
   name: HAPi Server
   entities:
-    - sensor.current_version
     - sensor.processor_use
     - sensor.disk_free_
     - sensor.disk_use_percent_
-    - sensor.swap_free
     - sensor.swap_use_percent
     - sensor.memory_free
     - sensor.memory_use_percent
-    - sensor.last_boot
     - sensor.load_1m
     - sensor.load_5m
     - sensor.load_15m
@@ -468,7 +465,7 @@ scenes_living_room:
     - scene.movie
 
 zwave:
-  name: Z Wave 
+  name: Z-Wave 
   entities:
     - zwave.aeotec_zw090_zstick_gen5_eu
     - zwave.aeotec_zw100_multisensor_6
@@ -521,3 +518,11 @@ waze_travel:
   entities:
     - sensor.to_home
     - sensor.to_work
+
+internet:
+  name: Internet
+  entities: 
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - camera.broadbandquality

@@ -53,6 +53,7 @@ map:
 ####################################################
 frontend:
   javascript_version: auto
+  themes: !include includes/themes.yaml
 
 ####################################################
 #                                                  #

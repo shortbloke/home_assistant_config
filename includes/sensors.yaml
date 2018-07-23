@@ -23,10 +23,6 @@
     - type: load_1m
     - type: load_5m
     - type: load_15m
-    - type: last_boot
-
-# Hass Version
-- platform: version
 
 # RFXCOM 433 Sensors
 - platform: rfxtrx
@@ -265,3 +261,13 @@
   origin: !secret waze_work
   destination: !secret waze_home
   region: 'EU'
+
+### Speedtest.net
+- platform: speedtest
+  minute:
+    - 0
+    - 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
