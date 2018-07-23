@@ -1,5 +1,8 @@
-#### configuration.yaml ####
-## Core Config ##
+###################################################
+#                                                 #
+#     Home Assistant Main Configuration File      #
+#                                                 #
+###################################################
 homeassistant:
   name: Home Assistant
   latitude: !secret latitude_loc_home
@@ -11,55 +14,109 @@ homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
-## Hass Web Config ##
+###################################################
+#                                                 #
+#                     Panel                       #
+#                                                 #
+################################################### 
+panel_iframe:
+  windguru:
+    title: 'Windguru'
+    url: 'https://www.windguru.cz/470505'
+    icon: mdi:weather-windy
+
+####################################################
+#                                                  #
+#                     Enables                      #
+#                                                  #
+####################################################
 http:
   api_password: !secret http_api_password
   ssl_certificate: !secret http_ssl_certificate
   ssl_key: !secret http_ssl_key
   base_url: !secret http_base_url
+discovery:
+  ignore:
+    - samsung_tv
+    - apple_tv
+    - plex_mediaserver
+updater:
+  include_used_components: True
+config:
+ios:
+map:
 
-## Hass UI Config ##
+####################################################
+#                                                  #
+#                 Customisations                   #
+#                                                  #
+####################################################
 frontend:
   javascript_version: auto
 
-ios:
-  # iOS App Support
-config:
-  # Add Configutional Panel
+####################################################
+#                                                  #
+#                      Logger                      #
+#                                                  #
+####################################################
+logger:
+  default: warn
+  # logs:
+  # #   homeassistant.components.light: info
+  #   homeassistant.components.dyson: debug
+  #   homeassistant.components.sensor.dyson: debug
+  #   homeassistant.components.fan.dyson: debug
 
+####################################################
+#                                                  #
+#                      Cloud                       #
+#                                                  #
+####################################################
 #cloud:
   # Home Assistant Cloud allows use of the Alexa Skill
 
-## Hardware Components ##
+####################################################
+#                                                  #
+#                     Camera                       #
+#                                                  #
+####################################################
+camera:
+  - platform: generic
+    still_image_url: 'https://www.thinkbroadband.com/broadband/monitoring/quality/share/ae25a213af51ed64c2cdf601d17a934194317d36.png'
+    name: broadbandquality
+
+####################################################
+#                                                  #
+#            Heating, Cooling & Security           #
+#                                                  #
+####################################################
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-
 dyson:
   username: !secret dyson_username
   password: !secret dyson_password
   language: GB
-
 fan:
   - platform: dyson
 
+####################################################
+#                                                  #
+#            RFXtrx433 & Z-Wave Devices            #
+#                                                  #
+####################################################
 rfxtrx:
   device: /dev/ttyUSB0
   debug: False
   dummy: False
-
 zwave:
   usb_path: /dev/ttyACM0
 
-## Software  Components ##
-
-### MetOffice - Weather Plaform
-weather:
-  - platform: yweather
-
-climate:
-  platform: nest
-
+####################################################
+#                                                  #
+#                   Emulated Hue                   #
+#                                                  #
+####################################################
 emulated_hue:
   listen_port: 80
   expose_by_default: true
@@ -68,9 +125,42 @@ emulated_hue:
     - light
     - scene
 
-ifttt:
-  key: !secret ifttt_key
-  
+####################################################
+#                                                  #
+#                      MQTT                        #
+#                                                  #
+####################################################
+mqtt:
+  broker: core-mosquitto
+  username: !secret MQTT_username
+  password: !secret MQTT_password
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    qos: 1
+    retain: true
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    qos: 1
+    retain: true
+
+####################################################
+#                                                  #
+#                Climate & Weather                 #
+#                                                  #
+####################################################
+climate:
+  platform: nest
+weather:
+  - platform: yweather
+sun:
+
+####################################################
+#                                                  #
+#                  Text to Speech                  #
+#                                                  #
+####################################################
 tts:
   - platform: google
     cache: true
@@ -80,17 +170,21 @@ tts:
     api_key: !secret voicerss_api_key
     language: 'en-gb'
     format: '44khz_16bit_stereo'
-    
-## Misc ##
-discovery:
-  ignore:
-    - samsung_tv
-    - apple_tv
-    - plex_mediaserver
-    
-sun:
-updater:
-  include_used_components: True
+
+####################################################
+#                                                  #
+#                      Timers                      #
+#                                                  #
+####################################################
+timer:
+  ironing_room_motion_timer: 
+      name: "Ironing Room Motion Timer"
+      icon: mdi:close-circle
+      duration: '00:30:00'
+  ironing_room_motion_timer_reset_poll:
+      name: "Ironing Room Motion Timer Reset Poll"
+      icon: mdi:close-circle
+      duration: '00:05:00'
 
 ####################################################
 #                                                  #
@@ -98,23 +192,15 @@ updater:
 #                                                  #
 ####################################################
 automation: !include automations.yaml
-camera: !include camera.yaml
 group: !include groups.yaml
 history: !include history.yaml
 light: !include lights.yaml
 logbook: !include logbook.yaml
-logger: !include logger.yaml
-mqtt: !include mqtt.yaml
-panel_iframe: !include iframe.yaml
 recorder: !include recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 sensor: !include sensors.yaml
-# shell_command: !include shell_command.yaml
 switch: !include switches.yaml
-timer: !include timers.yaml
-
-### Include All files with specified directory ###
-zone: !include_dir_list zones/
+zone: !include zones.yaml
 
 ####################################################

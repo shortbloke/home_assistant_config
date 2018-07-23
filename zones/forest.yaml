@@ -1,6 +1,0 @@
-### forest.yaml ###
-name: Forest
-latitude: !secret latitude_loc_forest
-longitude: !secret longitude_loc_forest
-radius: 250
-icon: mdi:school

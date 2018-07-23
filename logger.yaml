@@ -1,7 +1,0 @@
-#### logger.yaml ####
-default: error
-# logs:
-# #   homeassistant.components.light: info
-#   homeassistant.components.dyson: debug
-#   homeassistant.components.sensor.dyson: debug
-#   homeassistant.components.fan.dyson: debug

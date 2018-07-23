@@ -1,6 +1,0 @@
-### work.yaml ###
-name: Work
-latitude: !secret latitude_loc_work
-longitude: !secret longitude_loc_work
-radius: 250
-icon: mdi:worker

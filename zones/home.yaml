@@ -1,6 +1,0 @@
-### home.yaml ###
-name: Home
-latitude: !secret latitude_loc_home
-longitude: !secret longitude_loc_home
-radius: 250
-icon: mdi:worker
