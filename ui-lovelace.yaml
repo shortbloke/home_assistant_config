@@ -50,7 +50,6 @@ title: Hass.io - Lovelace Experimental UI
 #           - entity: light.lwrf_livingroom_main
 #             # Override the name to use
 #             name: LR Lights
-
 #         # The markdown card will render markdown text.
 #       - type: markdown
 #         title: Lovelace
@@ -58,7 +57,6 @@ title: Hass.io - Lovelace Experimental UI
 #           Welcome to your **Lovelace UI**.
 views:
   - title: Home
-    theme: midnight
     cards:
       - type: glance
         show_name: true
@@ -114,17 +112,45 @@ views:
         card:
           type: glance
           title: People that are home
-  - title: Master Bedroom
+  - title: Security
     cards:
-      - type: media-control
-        entity: media_player.master_bedroom
-      - type: media-control
-        entity: media_player.bathroom
-      - type: entities
-        title: LauraStar Iron
+      - type: glance
+        show_name: true
         entities:
-          - switch.tp_hs110_1
-          - sensor.tp_hs110_1_power
+          - sensor.nest_away_mode
+      - type: entities
+        title: Living Room Nest Camera
+        entities:
+          - binary_sensor.living_room_camera_online
+          - binary_sensor.living_room_camera_motion_detected
+          - binary_sensor.living_room_camera_person_detected
+          - binary_sensor.living_room_camera_sound_detected
+          - binary_sensor.living_room_camera__window_activity
+          - binary_sensor.living_room_camera__doorway_activity
+      - type: picture-entity
+        entity: camera.living_room
+      - type: entities
+        title: Garage Nest Camera
+        entities:
+          - binary_sensor.garage_camera_online
+          - binary_sensor.garage_camera_motion_detected
+          - binary_sensor.garage_camera_person_detected
+          - binary_sensor.garage_camera_sound_detected
+          - binary_sensor.garage_camera__garage_door_activity
+          - binary_sensor.garage_camera__hall_door_activity
+      - type: picture-entity
+        entity: camera.garage
+      - type: entities
+        title: Alarm
+        entities:
+          - automation.sonos_burglar_alarm
+          - automation.sonos_restore_snapshot_state
+      - type: entities
+        title: Motion Sensors
+        entities:
+          - sensor.aeotec_zw100_multisensor_6_burglar
+          - sensor.aeotec_zw100_multisensor_6_burglar_2
+          - sensor.alarm_level_2
   - title: Miners
     cards:
       - type: entities
@@ -159,27 +185,22 @@ views:
         entities:
           - switch.tp_hs110_6
           - sensor.tp_hs110_6_power
-  - title: Conservatory
-    cards:
-      - type: glance
-        show_name: true
+      - type: history-graph
+        title: Power Usage
         entities:
-          - sensor.portable_sensor_1_temperature
-          - sensor.temp_humid_1_humidity
-      - type: entities
-        title: Conservatory Lights
+          - entity: sensor.tp_hs110_9_power
+            name: Miner01
+          - entity: sensor.tp_hs110_8_power
+            name: Miner02
+          - entity: sensor.tp_hs110_6_power
+            name: Fans
+      - type: history-graph
+        title: Temperatures
         entities:
-          - switch.lwrf_conservatory_1
-          - switch.lwrf_conservatory_2
-      - type: entities
-        title: Conservatory Switches
-        entities:
-          - switch.tp_hs110_7
-          - sensor.tp_hs110_7_power
-      - type: media-control
-        entity: media_player.conservatory
-      - type: media-control
-        entity: media_player.kitchen
+          - entity: sensor.aeotec_zw100_multisensor_6_temperature_2
+            name: Rig Area
+          - entity: sensor.portable_sensor_3_temperature
+            name: Room Temp
   - title: Living Room
     cards:
       - type: glance
@@ -225,6 +246,27 @@ views:
           - binary_sensor.living_room_camera__doorway_activity
       - type: picture-entity
         entity: camera.living_room
+  - title: Conservatory
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.portable_sensor_1_temperature
+          - sensor.temp_humid_1_humidity
+      - type: entities
+        title: Conservatory Lights
+        entities:
+          - switch.lwrf_conservatory_1
+          - switch.lwrf_conservatory_2
+      - type: entities
+        title: Conservatory Switches
+        entities:
+          - switch.tp_hs110_7
+          - sensor.tp_hs110_7_power
+      - type: media-control
+        entity: media_player.conservatory
+      - type: media-control
+        entity: media_player.kitchen
   - title: Hall
     cards:
       - type: glance
@@ -259,6 +301,74 @@ views:
           - sensor.upstairs_nest_protect_co_status
           - sensor.upstairs_nest_protect_battery_health
           - sensor.upstairs_nest_protect_color_status
+  - title: Master Bedroom
+    cards:
+      - type: media-control
+        entity: media_player.master_bedroom
+      - type: media-control
+        entity: media_player.bathroom
+      - type: entities
+        title: LauraStar Iron
+        entities:
+          - switch.tp_hs110_1
+          - sensor.tp_hs110_1_power
+  - title: Ironing Room
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.aeotec_zw100_multisensor_6_temperature
+          - sensor.aeotec_zw100_multisensor_6_relative_humidity
+      - type: entities
+        title: Ironing Room Timers
+        entities:
+          - timer.ironing_room_motion_timer
+          - timer.ironing_room_motion_timer_reset_poll
+      - type: entities
+        title: Iron Sockets
+        entities:
+          - switch.tp_hs110_1
+          - sensor.tp_hs110_1_power
+          - switch.tp_hs110_2
+          - sensor.tp_hs110_2_power
+          - switch.tp_hs110_3
+          - sensor.tp_hs110_3_power
+          - switch.tp_hs110_4
+          - sensor.tp_hs110_4_power
+          - switch.tp_hs110_5
+          - sensor.tp_hs110_5_power
+      - type: entities
+        title: Aeotec Multisensor
+        entities:
+          - binary_sensor.aeotec_zw100_multisensor_6_sensor
+          - sensor.aeotec_zw100_multisensor_6_burglar
+          - sensor.aeotec_zw100_multisensor_6_luminance
+          - sensor.aeotec_zw100_multisensor_6_ultraviolet
+          - sensor.aeotec_zw100_multisensor_6_dew_point
+      - type: history-graph
+        title: Power Usage
+        entities:
+          - entity: sensor.tp_hs110_1_power
+            name: 'Laurastar'
+          - entity: sensor.tp_hs110_2_power
+            name: 'Irons (LHS)'
+          - entity: sensor.tp_hs110_3_power
+            name: 'Irons (RHS)'
+          - entity: sensor.tp_hs110_4_power
+            name: Table
+          - entity: sensor.tp_hs110_5_power
+            name: 'Magpie'
+      - type: history-graph
+        title: Temperature
+        entities:
+          - entity: sensor.aeotec_zw100_multisensor_6_temperature
+            name: 'Temperature'
+      - type: history-graph
+        title: Humidity
+        entities:
+          - entity: sensor.aeotec_zw100_multisensor_6_relative_humidity
+            name: 'Humidity'
+
   - title: Boys Room
     cards:
       - type: glance
@@ -280,32 +390,6 @@ views:
         title: Morgans Sockets
         entities:
           - switch.lwrf_morgan_ac
-  - title: Family
-    icon: mdi:account-multiple
-    cards:
-      - type: entities
-        title: Tracked Devices
-        entities:
-          - device_tracker.martins_iphone
-          - sensor.martins_iphone_battery_level
-          - sensor.martins_iphone_battery_state
-          - device_tracker.michelles_iphone
-          - sensor.iphone_battery_level
-          - sensor.iphone_battery_state
-          - sensor.martins_ipad_battery_level
-          - sensor.martins_ipad_battery_state
-      - type: entities
-        title: HaveIBeenPwned
-        entities:
-          - sensor.breaches_martinrowannetcouk
-          - sensor.breaches_michellerowannetcouk
-          - sensor.breaches_junerowannetcouk
-          - sensor.breaches_morganrowannetcouk
-          - sensor.breaches_fraserrowannetcouk
-          - sensor.breaches_robertrowannetcouk
-          - sensor.breaches_martinrowancitrixcom
-          - sensor.breaches_martinrowaneucitrixcom
-          - sensor.breaches_mrowanhighlightnet
   - title: Outside
     cards:
       - type: glance
@@ -320,7 +404,7 @@ views:
           - sensor.moon
       - type: weather-forecast
         entity: weather.yweather
-  - title: loft
+  - title: Loft
     cards:
       - type: glance
         show_name: true
@@ -339,54 +423,6 @@ views:
           - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
           - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
           - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-  - title: Automation
-    icon: mdi:home-automation
-    cards:
-      - type: entities
-        title: Utilities
-        entities:
-          - automation.ssl_expiry_notification
-          - automation.update_config_hass_if_travis_build_is_successfull
-          - automation.have_i_been_pwned_change
-          - automation.sonos_tts_test
-          - automation.hass_update_available_notifications
-          - automation.hassio_weekly_snapshot_3am
-          - automation.dropbox_snapshot_sync_4am
-      - type: entities
-        title: HAPi Resource Monitoring
-        entities:
-          - automation.hapi_high_load_alert
-          - automation.hapi_low_disk_space_alert
-          - automation.hapi_low_memory_alert
-      - type: entities
-        title: Power Control
-        entities:
-          - automation.turn_on_lights_in_the_morning_and_at_sunset
-          - automation.turn_off_morning_lights
-          - automation.ironing_room_motion_detected
-          - automation.ironing_room_timer_reset
-          - automation.ironing_room_no_motion_turn_off_irons_left
-          - automation.ironing_room_no_motion_turn_off_irons_right
-          - automation.ironing_room_no_motion_turn_off_ironing_table
-          - automation.ironing_room_no_motion_turn_off_magpie_iron
-          - automation.loft_fan_turn_on_when_hot
-          - automation.loft_fan_turn_off_when_not_hot
-          - automation.garage_fan_turn_on_when_hot
-          - automation.garage_fan_turn_off_when_not_hot
-          - automation.turn_on_air_freshener_socket_in_the_morning
-          - automation.turn_off_air_freshener_socket_at_night
-      - type: entities
-        title: Crypto Mining Monitoring
-        entities:
-          - automation.miner01_power_watcher
-          - automation.miner01_low_power_reboot
-          - automation.miner02_power_watcher
-          - automation.miner02_low_power_reboot
-      - type: entities
-        title: Alarm
-        entities:
-          - automation.sonos_burglar_alarm
-          - automation.sonos_restore_snapshot_state
   - title: garage
     cards:
       - type: glance
@@ -430,79 +466,32 @@ views:
         entities:
           - switch.tp_hs110_6
           - sensor.tp_hs110_6_power
-  - title: Security
+  - title: Family
+    icon: mdi:account-multiple
     cards:
-      - type: glance
-        show_name: true
-        entities:
-          - sensor.nest_away_mode
       - type: entities
-        title: Living Room Nest Camera
+        title: Tracked Devices
         entities:
-          - binary_sensor.living_room_camera_online
-          - binary_sensor.living_room_camera_motion_detected
-          - binary_sensor.living_room_camera_person_detected
-          - binary_sensor.living_room_camera_sound_detected
-          - binary_sensor.living_room_camera__window_activity
-          - binary_sensor.living_room_camera__doorway_activity
-      - type: picture-entity
-        entity: camera.living_room
+          - device_tracker.martins_iphone
+          - sensor.martins_iphone_battery_level
+          - sensor.martins_iphone_battery_state
+          - device_tracker.michelles_iphone
+          - sensor.iphone_battery_level
+          - sensor.iphone_battery_state
+          - sensor.martins_ipad_battery_level
+          - sensor.martins_ipad_battery_state
       - type: entities
-        title: Garage Nest Camera
+        title: HaveIBeenPwned
         entities:
-          - binary_sensor.garage_camera_online
-          - binary_sensor.garage_camera_motion_detected
-          - binary_sensor.garage_camera_person_detected
-          - binary_sensor.garage_camera_sound_detected
-          - binary_sensor.garage_camera__garage_door_activity
-          - binary_sensor.garage_camera__hall_door_activity
-      - type: picture-entity
-        entity: camera.garage
-      - type: entities
-        title: Alarm
-        entities:
-          - automation.sonos_burglar_alarm
-          - automation.sonos_restore_snapshot_state
-      - type: entities
-        title: Motion Sensors
-        entities:
-          - sensor.aeotec_zw100_multisensor_6_burglar
-          - sensor.aeotec_zw100_multisensor_6_burglar_2
-          - sensor.alarm_level_2
-  - title: Ironing Room
-    cards:
-      - type: glance
-        show_name: true
-        entities:
-          - sensor.aeotec_zw100_multisensor_6_temperature
-          - sensor.aeotec_zw100_multisensor_6_relative_humidity
-      - type: entities
-        title: Ironing Room Timers
-        entities:
-          - timer.ironing_room_motion_timer
-          - timer.ironing_room_motion_timer_reset_poll
-      - type: entities
-        title: Iron Sockets
-        entities:
-          - switch.tp_hs110_1
-          - sensor.tp_hs110_1_power
-          - switch.tp_hs110_2
-          - sensor.tp_hs110_2_power
-          - switch.tp_hs110_3
-          - sensor.tp_hs110_3_power
-          - switch.tp_hs110_4
-          - sensor.tp_hs110_4_power
-          - switch.tp_hs110_5
-          - sensor.tp_hs110_5_power
-      - type: entities
-        title: Aeotec Multisensor
-        entities:
-          - binary_sensor.aeotec_zw100_multisensor_6_sensor
-          - sensor.aeotec_zw100_multisensor_6_burglar
-          - sensor.aeotec_zw100_multisensor_6_luminance
-          - sensor.aeotec_zw100_multisensor_6_ultraviolet
-          - sensor.aeotec_zw100_multisensor_6_dew_point
-
+          - sensor.breaches_martinrowannetcouk
+          - sensor.breaches_michellerowannetcouk
+          - sensor.breaches_junerowannetcouk
+          - sensor.breaches_morganrowannetcouk
+          - sensor.breaches_fraserrowannetcouk
+          - sensor.breaches_robertrowannetcouk
+          - sensor.breaches_martinrowancitrixcom
+          - sensor.breaches_martinrowaneucitrixcom
+          - sensor.breaches_mrowanhighlightnet
   - title: Systems
     icon: mdi:server-network
     cards:
@@ -580,7 +569,53 @@ views:
           - zwave.aeotec_zw100_multisensor_6
           - zwave.aeotec_zw100_multisensor_6_2
           - zwave.fibaro_system_fgms001zw5_motion_sensor
-
+  - title: Automation
+    icon: mdi:home-automation
+    cards:
+      - type: entities
+        title: Utilities
+        entities:
+          - automation.update_config_hass_if_travis_build_is_successfull
+          - automation.have_i_been_pwned_change
+          - automation.sonos_tts_test
+          - automation.hass_update_available_notifications
+          - automation.hassio_weekly_snapshot_3am
+          - automation.dropbox_snapshot_sync_4am
+      - type: entities
+        title: HAPi Resource Monitoring
+        entities:
+          - automation.hapi_high_load_alert
+          - automation.hapi_low_disk_space_alert
+          - automation.hapi_low_memory_alert
+      - type: entities
+        title: Power Control
+        entities:
+          - automation.turn_on_lights_in_the_morning_and_at_sunset
+          - automation.turn_off_morning_lights
+          - automation.ironing_room_motion_detected
+          - automation.ironing_room_timer_reset
+          - automation.ironing_room_no_motion_turn_off_irons_left
+          - automation.ironing_room_no_motion_turn_off_irons_right
+          - automation.ironing_room_no_motion_turn_off_ironing_table
+          - automation.ironing_room_no_motion_turn_off_magpie_iron
+          - automation.loft_fan_turn_on_when_hot
+          - automation.loft_fan_turn_off_when_not_hot
+          - automation.garage_fan_turn_on_when_hot
+          - automation.garage_fan_turn_off_when_not_hot
+          - automation.turn_on_air_freshener_socket_in_the_morning
+          - automation.turn_off_air_freshener_socket_at_night
+      - type: entities
+        title: Crypto Mining Monitoring
+        entities:
+          - automation.miner01_power_watcher
+          - automation.miner01_low_power_reboot
+          - automation.miner02_power_watcher
+          - automation.miner02_low_power_reboot
+      - type: entities
+        title: Alarm
+        entities:
+          - automation.sonos_burglar_alarm
+          - automation.sonos_restore_snapshot_state
 ### Auto generated by python-lovelace migration tool. Doesn't work on 0.74.0
   # - title: All Entities
   #   tab_icon: mdi:settings
