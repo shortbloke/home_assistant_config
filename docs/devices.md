@@ -41,7 +41,6 @@ The following devices are controlled via my Home Assistant configurations. They 
 | Component | Functionality |
 | --- | --- |
 | [Sun](https://home-assistant.io/components/sun/) | Sun position, enabling automation to be triggered, e.g. at dusk and dawn |
-| [Moon](https://home-assistant.io/components/sensor.moon/) | Phase of the moon |
 | [System Monitor](https://home-assistant.io/components/sensor.systemmonitor/) | System resource usage information on the host system Home Assistant is running on |
 | iOS App [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401) | With Home Assistant addon [ios](https://home-assistant.io/docs/ecosystem/ios/) enables location tracking plus complete control of HASS, iPhone battery monitoring and is able to receive notifications from Home Assistant |
 | [HaveIBeenPwned](https://home-assistant.io/components/sensor.haveibeenpwned/) | Checks for breached email accounts using [haveibeenpwned](https://haveibeenpwned.com/). Multiple email addresses are monitored which are specified in the secrets.yaml file. |
