@@ -1,4 +1,10 @@
 title: Hass.io - Lovelace Experimental UI
+###############################
+#         Custom Cards        #
+###############################
+# resources:
+#   - url: /local/lovelace/custom-cards/state-attribute-element.js?v=0
+#     type: js
 
 views:
 ###############################
@@ -7,10 +13,11 @@ views:
   - title: Home
     icon: mdi:home
     cards:
-### STACK: LIVINGROOM
+### STACK: LIVING ROOM, DINING ROOM & KITCHEN
       - type: vertical-stack
         cards:
         - type: picture-glance
+          title: Living Room
           image: /local/lovelace/living_room.png
           entities:
             - sensor.portable_sensor_2_temperature
@@ -19,6 +26,50 @@ views:
             - switch.lwrf_livingroom_standard_lamp
             - switch.lwrf_displaycabinetlight
             - switch.lwrf_waxburner
+        - type: picture-glance
+          title: Dining Room
+          image: /local/lovelace/dining_room.png
+          entities:
+            - light.lwrf_diningroom_main
+            - switch.lwrf_diningroom_rennie_mac_lamp
+        - type: picture-glance
+          title: Kitchen
+          image: /local/lovelace/kitchen.png
+          entities:
+            - media_player.kitchen
+
+### STACK CONSERVATORY, HALL & GARAGE
+      - type: vertical-stack
+        cards:
+        - type: picture-glance
+          title: Conservatory
+          image: /local/lovelace/conservatory.png
+          entities:
+            - sensor.portable_sensor_1_temperature
+            - sensor.temp_humid_1_humidity
+            - switch.lwrf_conservatory_1
+            - switch.lwrf_conservatory_2
+        - type: picture-glance
+          title: Hall
+          image: /local/lovelace/hallway.png
+          entities:
+            - climate.hallway_house
+            - climate.hallway_house
+            - switch.lwrf_hall_socket_1
+            - switch.lwrf_hall_socket_2
+        - type: picture-glance
+          title: Garage
+          image: /local/lovelace/garage.png
+          entities:
+            - sensor.portable_sensor_3_temperature
+            - sensor.temp_humid_3_humidity
+  - title: Sailing
+    icon: mdi:weather-windy
+    panel: true
+    cards:
+    - type: iframe
+      url: 'https://www.windguru.cz/470505'
+      # aspect_ratio: 500%
 
 ###############################
 #        Original Home        #

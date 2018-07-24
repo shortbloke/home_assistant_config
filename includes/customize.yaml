@@ -32,7 +32,7 @@
     switch.lwrf_hall_socket_2:
       friendly_name: "Hall Air Freshener"
       emulated_hue_name: "Hall Air Freshener"
-      icon: mdi:lamp
+      icon: mdi:radiator
     switch.lwrf_morgan_ac:
       friendly_name: "Morgan A/C"
       emulated_hue_name: "Morgan AC"
