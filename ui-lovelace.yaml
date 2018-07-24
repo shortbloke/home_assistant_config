@@ -141,14 +141,12 @@ views:
         entities:
           - sensor.nest_away_mode
       - type: entities
-        title: Living Room Nest Camera
+        title: Gnd Floor Nest Camera
         entities:
           - binary_sensor.living_room_camera_online
           - binary_sensor.living_room_camera_motion_detected
           - binary_sensor.living_room_camera_person_detected
           - binary_sensor.living_room_camera_sound_detected
-          - binary_sensor.living_room_camera__window_activity
-          - binary_sensor.living_room_camera__doorway_activity
       - type: picture-entity
         entity: camera.living_room
       - type: entities
@@ -476,7 +474,6 @@ views:
         title: Loft 2 - Multisensor
         entities:
           - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-          - binary_sensor.sensor
           - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
           - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
           - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
@@ -543,8 +540,6 @@ views:
           - device_tracker.michelles_iphone
           - sensor.iphone_battery_level
           - sensor.iphone_battery_state
-          - sensor.martins_ipad_battery_level
-          - sensor.martins_ipad_battery_state
       - type: entities
         title: HaveIBeenPwned
         entities:

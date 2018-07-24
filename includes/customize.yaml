@@ -2,15 +2,15 @@
 
 #### Lightwave RF Socket Switches ####
     switch.lwrf_conservatory_1:
-      friendly_name: "Conservatory - Ceiling Lights"
+      friendly_name: "Ceiling Lights"
       emulated_hue_name: "Conservatory ceiling lights"
       icon: mdi:lightbulb
     switch.lwrf_conservatory_2:
-      friendly_name: "Conservatory - Window Lamp"
+      friendly_name: "Window Lamp"
       emulated_hue_name: "Conservatory window lamp"
       icon: mdi:lamp
     switch.lwrf_livingroom_standard_lamp:
-      friendly_name: "Living Room - Standard Lamp"
+      friendly_name: "Standard Lamp"
       emulated_hue_name: "Living room lamp"
       icon: mdi:lamp
     switch.lwrf_displaycabinetlight:
@@ -18,7 +18,7 @@
       emulated_hue_name: "Display cabinet light"
       icon: mdi:lightbulb
     switch.lwrf_diningroom_rennie_mac_lamp:
-      friendly_name: "Dining Room - Rennie Mac Lamp"
+      friendly_name: "Rennie Mac Lamp"
       emulated_hue_name: "Rennie Mac Lamp"
       icon: mdi:lamp
     switch.lwrf_waxburner:
@@ -30,7 +30,7 @@
       emulated_hue_name: "Twig Lights"
       icon: mdi:lamp
     switch.lwrf_hall_socket_2:
-      friendly_name: "Hall Air Freshener"
+      friendly_name: "Air Freshener"
       emulated_hue_name: "Hall Air Freshener"
       icon: mdi:radiator
     switch.lwrf_morgan_ac:
@@ -40,13 +40,13 @@
 
 #### Lightwave RF Dimmer Switches ####
     light.lwrf_diningroom_main:
-      friendly_name: "Dining Room - Over Table Lights"
+      friendly_name: "Table Lights"
       emulated_hue_name: "Dining room lights"
     light.lwrf_livingroom_main:
-      friendly_name: "Living Room - Downlights"
+      friendly_name: "Downlights"
       emulated_hue_name: "Living room downlights"
     light.lwrf_morgan_main:
-      friendly_name: "Morgans Main Bedroom Light"
+      friendly_name: "Bedroom Lights"
       emulated_hue_name: "Morgans Main Bedroom Light"
 
 #### Flamerite Fire Switches ####
@@ -65,16 +65,16 @@
 
 #### Flux Lights
     light.wifi_ufo_1:
-      friendly_name: "Morgans Desk"
+      friendly_name: "Desk"
       emulated_hue_name: "Desk Lights"
     light.wifi_ufo_2:
-      friendly_name: "Morgans Window"
+      friendly_name: "Window"
       emulated_hue_name: "Window Lights"
     light.wifi_ufo_3:
-      friendly_name: "Morgans Rear Wall"
+      friendly_name: "Rear Wall"
       emulated_hue_name: "Rear wall lights"
     light.wifi_ufo_4:
-      friendly_name: "Morgans Bed"
+      friendly_name: "Bed"
       emulated_hue_name: "Bed Lights"
 #### Scenes ####
     scene.bright:
@@ -86,15 +86,15 @@
 
 ### CUSTOMIZE MEDIA PLAYERS ###
     media_player.living_room:
-      friendly_name: "Sonos - Living Room"
+      friendly_name: "Living Room"
     media_player.kitchen:
-      friendly_name: "Sonos - Kitchen"
+      friendly_name: "Kitchen"
     media_player.conservatory:
-      friendly_name: "Sonos - Conservatory"
+      friendly_name: "Conservatory"
     media_player.master_bedroom:
-      friendly_name: "Sonos - Master Bedroom"
+      friendly_name: "Master Bedroom"
     media_player.bathroom:
-      friendly_name: "Sonos - Ensuite"
+      friendly_name: "Ensuite"
 
 #### HP MicroServer ####
     sensor.server_server_power_state:
@@ -126,12 +126,12 @@
     sensor.hallwayhousehumidity_2:
       friendly_name: "Outside Humidity"
     binary_sensor.hallway_thermostat_house_is_using_emergency_heat:
-      friendly_name: "Nest Emergency Heat"
+      friendly_name: "Emergency Heat"
       hiddem: true
     sensor.hallway_thermostat_house_hvac_state:
       friendly_name: "Heating Status"
     binary_sensor.hallway_thermostat_house_has_leaf:
-      friendly_name: "Nest Energy Saving"
+      friendly_name: "Energy Saving"
     binary_sensor.hallway_thermostat_house_fan:
       hidden: true
     binary_sensor.hallway_thermostat_house_is_locked:
@@ -142,6 +142,55 @@
       hidden: true
     sensor.hallway_thermostat_house_target:
       hidden: true
+
+### Nest Protect ###
+    binary_sensor.hallway_nest_protect_online:
+      friendly_name: "Gnd Floor Protect Status"
+    sensor.hallway_nest_protect_battery_health:
+      hiden: true
+    sensor.hallway_nest_protect_co_status:
+      friendly_name: "Gnd Floor CO2 Status"
+    sensor.hallway_nest_protect_color_status:
+      friendly_name: "Gnd Floor Protect Colour"
+    sensor.hallway_nest_protect_smoke_status:
+      friendly_name: "Gnd Floor Smoke Status"
+    
+    binary_sensor.upstairs_nest_protect_online:
+      friendly_name: "1st Floor Protect Status"
+    sensor.upstairs_nest_protect_battery_health:
+      hidden: true
+    sensor.upstairs_nest_protect_co_status:
+      friendly_name: "1st Floor CO2 Status"
+    sensor.upstairs_nest_protect_color_status:
+      friendly_name: "1st Floor Protect Colour"
+    sensor.upstairs_nest_protect_smoke_status:
+      friendly_name: "1st Floor Smoke Status"
+
+### Nest IQ Cameras ###
+    camera.living_room:
+      friendly_name: "Gnd Floor"
+    binary_sensor.living_room_camera_online:
+      friendly_name: "Status"
+    binary_sensor.living_room_camera_motion_detected:
+      friendly_name: "Motion"
+    binary_sensor.living_room_camera_person_detected:
+      friendly_name: "Person"
+    binary_sensor.living_room_camera_sound_detected:
+      friendly_name: "Sound"
+    camera.garage:
+      friendly_name: "Garage"
+    binary_sensor.garage_camera_online:
+      friendly_name: "Status"
+    binary_sensor.garage_camera_motion_detected:
+      friendly_name: "Motion"
+    binary_sensor.garage_camera_person_detected:
+      friendly_name: "Person"
+    binary_sensor.garage_camera_sound_detected:
+      friendly_name: "Sound"
+    binary_sensor.garage_camera__garage_door_activity:
+      friendly_name: "Activity Zone - Garage Door"
+    binary_sensor.garage_camera__hall_door_activity:
+      friendly_name: "Activity Zone - Hall Door"
 
 ### Portable Temperature and Humidity Sensors ###
     sensor.temp_humid_1:
@@ -213,7 +262,7 @@
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     switch.tp_hs110_6:
-      friendly_name: "Minign Rig Fans"
+      friendly_name: "Mining Rig Fans"
       icon: mdi:power-socket-uk
     switch.tp_hs110_7:
       friendly_name: "HP Z640"
@@ -225,13 +274,19 @@
       friendly_name: "Miner02"
       icon: mdi:power-socket-uk
 
-### Sonoff MQTT switches
+### Sonoff MQTT switches ###
+    switch.sonoff_loft_fan_power:
+      friendly_name: "Server Cooling Fan"
     sensor.loft_fan_temperature:
       friendly_name: "Loft 1 Temperature"
     sensor.loft_fan_humidity:
       friendly_name: "Loft 1 Humidity"
 
-### Aeotec Multi-Sensor
+### Aeotec Stick ###
+    zwave.aeotec_zw090_zstick_gen5_eu:
+      friendly_name: "Z-Wave Stick"
+
+### Aeotec Multi-Sensor (Ironing Room) ###
     binary_sensor.aeotec_zw100_multisensor_6_sensor:
       friendly_name: "Ironing Room Multi-Sensor"
     sensor.aeotec_zw100_multisensor_6_burglar:
@@ -246,13 +301,37 @@
       friendly_name: "Temperature"
     sensor.aeotec_zw100_multisensor_6_relative_humidity:
       friendly_name: "Humidity"
+    binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
+      friendly_name: "Garage Multi-Sensor"
+    sensor.aeotec_zw100_multisensor_6_burglar_2:
+      friendly_name: "Garage Motion State"
+    sensor.aeotec_zw100_multisensor_6_luminance_2:
+      friendly_name: "Garage Luminance"
+    sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
+      friendly_name: "Garage UV Level"
+    sensor.aeotec_zw100_multisensor_6_dew_point_2:
+      friendly_name: "Garage Dew Point"
+    sensor.aeotec_zw100_multisensor_6_temperature_2:
+      friendly_name: "Temperature"
+    sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
+      friendly_name: "Humidity"
 
-### iPhone Trackers
+### Fibaro Multi-Sensor (Loft) ###
+    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
+      friendly_name: "Loft Multi-Sensor"
+    sensor.fibaro_system_fgms001zw5_motion_sensor_burglar:
+      friendly_name: "Loft Motion State"
+    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
+      friendly_name: "Loft Luminance"
+    sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity:
+      friendly_name: "Loft Seismic Intensity"
+
+### iPhone Trackers ###
     device_tracker.martins_iphone:
       friendly_name: "Martin"
     device_tracker.michelles_iphone:
       friendly_name: "Michelle"
 
-### Weather
+### Weather ###
     weather.yweather:
       friendly_name: "Local Weather Forecast"

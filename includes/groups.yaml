@@ -24,7 +24,7 @@ security_view:
   view: yes
   entities:
     - sensor.nest_away_mode
-    - group.nest_living_room_camera
+    - group.nest_camera_1
     - group.nest_garage_camera
     - group.alarm
     - group.motion_sensors
@@ -50,7 +50,6 @@ living_room_view:
     - group.flamerite_fire
     - group.dining_room_lights
     - media_player.living_room
-    - group.nest_living_room_camera
 
 conservatory_view:
   name: Conservatory
@@ -62,6 +61,7 @@ conservatory_view:
     - group.conservatory_sockets
     - media_player.conservatory
     - media_player.kitchen
+    - group.nest_camera_1
 
 hall_view:
   name: Hall
@@ -69,7 +69,7 @@ hall_view:
   entities:
     - sensor.hallway_thermostat_house_humidity
     - sensor.hallway_thermostat_house_temperature
-    - group.hall_lights
+    - group.hall_sockets
     - group.heating
     - group.nest_protect
 
@@ -193,10 +193,9 @@ miner02:
     - sensor.tp_hs110_8_power
 
 fibaro:
-  name: Loft 2 - Multisensor
+  name: Fibaro Multisensor
   entities:
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-    - binary_sensor.sensor
     - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
     - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
     - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
@@ -223,8 +222,8 @@ dining_room_lights:
     - light.lwrf_diningroom_main
     - switch.lwrf_diningroom_rennie_mac_lamp
 
-hall_lights:
-  name: Hall Lights
+hall_sockets:
+  name: Hall Sockets
   entities:
     - switch.lwrf_hall_socket_1
     - switch.lwrf_hall_socket_2
@@ -271,7 +270,7 @@ morgans_room_sockets:
     - switch.lwrf_morgan_ac
 
 loft:
-  name: Loft
+  name: Loft Power
   entities:
     - switch.sonoff_loft_fan_power
 
@@ -419,10 +418,8 @@ tracked_devices:
     - sensor.martins_iphone_battery_level
     - sensor.martins_iphone_battery_state
     - device_tracker.michelles_iphone
-    - sensor.michelles_iphone_battery_level
-    - sensor.michelles_iphone_battery_state
-    - sensor.martins_ipad_battery_level
-    - sensor.martins_ipad_battery_state
+    - sensor.iphone_battery_level
+    - sensor.iphone_battery_state
 
 have_i_been_pawned:
   name: HaveIBeenPwned
@@ -472,16 +469,14 @@ zwave:
     - zwave.aeotec_zw100_multisensor_6_2
     - zwave.fibaro_system_fgms001zw5_motion_sensor
 
-nest_living_room_camera:
-  name: Living Room Nest Camera
+nest_camera_1:
+  name: Gnd Floor Nest Camera
   entities:
     - camera.living_room
     - binary_sensor.living_room_camera_online
     - binary_sensor.living_room_camera_motion_detected
     - binary_sensor.living_room_camera_person_detected
     - binary_sensor.living_room_camera_sound_detected
-    - binary_sensor.living_room_camera__window_activity
-    - binary_sensor.living_room_camera__doorway_activity
 
 nest_garage_camera:
   name: Garage Nest Camera
@@ -505,10 +500,11 @@ motion_sensors:
   entities:
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_burglar_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_burgla
     - sensor.alarm_level_2
 
 garage_fan:
-  name: garage fan
+  name: Garage Fans
   entities:
     - switch.tp_hs110_6
     - sensor.tp_hs110_6_power

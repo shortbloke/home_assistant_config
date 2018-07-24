@@ -54,6 +54,7 @@ include:
     - sensor.aeotec_zw100_multisensor_6_temperature_2
     - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
     # HaveIBeenPwned
     - sensor.breaches_martinrowannetcouk
     - sensor.breaches_michellerowannetcouk
