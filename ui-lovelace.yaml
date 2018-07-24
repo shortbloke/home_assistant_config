@@ -1,61 +1,21 @@
 title: Hass.io - Lovelace Experimental UI
-# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
-# background: center / cover no-repeat url("/background.png") fixed
-# Exclude entities from "Unused entities" view
-# excluded_entities:
-  # - weblink.router
-# views:
-#     # View tab title.
-#   - title: Example
-#     # Optional unique id for direct access /lovelace/${id}
-#     id: example
-#     # Optional background (overwrites the global background).
-#     background: radial-gradient(crimson, skyblue)
-#     # Each view can have a different theme applied. Theme should be defined in the frontend.
-#     theme: dark-mode
-#     # The cards to show on this view.
-#     cards:
-#         # The filter card will filter entities for their state
-#       - type: entity-filter
-#         entities:
-#           - device_tracker.martins_iphone
-#           - device_tracker.michelles_iphone
-#         state_filter:
-#           - 'home'
-#         card:
-#           type: glance
-#           title: People that are home
 
-#         # The picture entity card will represent an entity with a picture
-#       - type: picture-entity
-#         image: https://www.home-assistant.io/images/default-social.png
-#         entity: light.lwrf_diningroom_main
-
-#     # Specify a tab icon if you want the view tab to be an icon.
-#   - icon: mdi:home-assistant
-#     # Title of the view. Will be used as the tooltip for tab icon
-#     title: Second view
-#     cards:
-#         # Entities card will take a list of entities and show their state.
-#       - type: entities
-#         # Title of the entities card
-#         title: Example
-#         # The entities here will be shown in the same order as specified.
-#         # Each entry is an entity ID or a map with extra options.
-#         entities:
-#           - light.lwrf_livingroom_main
-#           - switch.lwrf_livingroom_standard_lamp
-#           - switch.lwrf_displaycabinetlight
-#           - switch.lwrf_waxburner
-#           - entity: light.lwrf_livingroom_main
-#             # Override the name to use
-#             name: LR Lights
-#         # The markdown card will render markdown text.
-#       - type: markdown
-#         title: Lovelace
-#         content: >
-#           Welcome to your **Lovelace UI**.
 views:
+###############################
+#       Main View (Home)      #
+###############################
+  - title: Home
+    icon: mdi:home
+    cards:
+      - type: glance
+        show_name: true
+        entities:
+          - sensor.hallway_thermostat_house_temperature
+          - sensor.nest_away_mode
+
+###############################
+#        Original Home        #
+###############################
   - title: Home
     cards:
       - type: glance
@@ -112,6 +72,10 @@ views:
         card:
           type: glance
           title: People that are home
+
+###############################
+#           Security          #
+###############################
   - title: Security
     cards:
       - type: glance
@@ -151,6 +115,10 @@ views:
           - sensor.aeotec_zw100_multisensor_6_burglar
           - sensor.aeotec_zw100_multisensor_6_burglar_2
           - sensor.alarm_level_2
+
+###############################
+#            Miners           #
+###############################
   - title: Miners
     cards:
       - type: entities
@@ -201,6 +169,10 @@ views:
             name: Rig Area
           - entity: sensor.portable_sensor_3_temperature
             name: Room Temp
+
+###############################
+#         Living Room         #
+###############################
   - title: Living Room
     cards:
       - type: glance
@@ -246,6 +218,10 @@ views:
           - binary_sensor.living_room_camera__doorway_activity
       - type: picture-entity
         entity: camera.living_room
+
+###############################
+#         Conservatory        #
+###############################
   - title: Conservatory
     cards:
       - type: glance
@@ -267,6 +243,10 @@ views:
         entity: media_player.conservatory
       - type: media-control
         entity: media_player.kitchen
+
+###############################
+#            Hall             #
+###############################
   - title: Hall
     cards:
       - type: glance
@@ -301,6 +281,10 @@ views:
           - sensor.upstairs_nest_protect_co_status
           - sensor.upstairs_nest_protect_battery_health
           - sensor.upstairs_nest_protect_color_status
+
+###############################
+#        Master Bedroom       #
+###############################
   - title: Master Bedroom
     cards:
       - type: media-control
@@ -312,6 +296,10 @@ views:
         entities:
           - switch.tp_hs110_1
           - sensor.tp_hs110_1_power
+
+###############################
+#         Ironing Room        #
+###############################
   - title: Ironing Room
     cards:
       - type: glance
@@ -369,6 +357,9 @@ views:
           - entity: sensor.aeotec_zw100_multisensor_6_relative_humidity
             name: 'Humidity'
 
+###############################
+#          Boys Room          #
+###############################
   - title: Boys Room
     cards:
       - type: glance
@@ -390,6 +381,10 @@ views:
         title: Morgans Sockets
         entities:
           - switch.lwrf_morgan_ac
+
+###############################
+#           Outside           #
+###############################
   - title: Outside
     cards:
       - type: glance
@@ -404,6 +399,10 @@ views:
           - sensor.moon
       - type: weather-forecast
         entity: weather.yweather
+
+###############################
+#            Loft             #
+###############################
   - title: Loft
     cards:
       - type: glance
@@ -423,6 +422,10 @@ views:
           - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
           - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
           - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+
+###############################
+#           Garage            #
+###############################
   - title: garage
     cards:
       - type: glance
@@ -466,6 +469,10 @@ views:
         entities:
           - switch.tp_hs110_6
           - sensor.tp_hs110_6_power
+
+###############################
+#            Family           #
+###############################
   - title: Family
     icon: mdi:account-multiple
     cards:
@@ -492,6 +499,10 @@ views:
           - sensor.breaches_martinrowancitrixcom
           - sensor.breaches_martinrowaneucitrixcom
           - sensor.breaches_mrowanhighlightnet
+
+###############################
+#            Systems          #
+###############################
   - title: Systems
     icon: mdi:server-network
     cards:
@@ -569,6 +580,10 @@ views:
           - zwave.aeotec_zw100_multisensor_6
           - zwave.aeotec_zw100_multisensor_6_2
           - zwave.fibaro_system_fgms001zw5_motion_sensor
+
+###############################
+#          Automation         #
+###############################
   - title: Automation
     icon: mdi:home-automation
     cards:
