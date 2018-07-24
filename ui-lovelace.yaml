@@ -7,11 +7,18 @@ views:
   - title: Home
     icon: mdi:home
     cards:
-      - type: glance
-        show_name: true
-        entities:
-          - sensor.hallway_thermostat_house_temperature
-          - sensor.nest_away_mode
+### STACK: LIVINGROOM
+      - type: vertical-stack
+        cards:
+        - type: picture-glance
+          image: /local/lovelace/living_room.png
+          entities:
+            - sensor.portable_sensor_2_temperature
+            - sensor.temp_humid_2_humidity
+            - light.lwrf_livingroom_main
+            - switch.lwrf_livingroom_standard_lamp
+            - switch.lwrf_displaycabinetlight
+            - switch.lwrf_waxburner
 
 ###############################
 #        Original Home        #
