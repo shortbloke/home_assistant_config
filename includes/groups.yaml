@@ -302,12 +302,10 @@ nest_protect:
     - binary_sensor.hallway_nest_protect_online
     - sensor.hallway_nest_protect_smoke_status
     - sensor.hallway_nest_protect_co_status
-    - sensor.hallway_nest_protect_battery_health
     - sensor.hallway_nest_protect_color_status
     - binary_sensor.upstairs_nest_protect_online
     - sensor.upstairs_nest_protect_smoke_status
     - sensor.upstairs_nest_protect_co_status
-    - sensor.upstairs_nest_protect_battery_health
     - sensor.upstairs_nest_protect_color_status
 
 environment:

@@ -14,7 +14,7 @@
       emulated_hue_name: "Living room lamp"
       icon: mdi:lamp
     switch.lwrf_displaycabinetlight:
-      friendly_name: "Display cabinet light"
+      friendly_name: "Display Cabinet Light"
       emulated_hue_name: "Display cabinet light"
       icon: mdi:lightbulb
     switch.lwrf_diningroom_rennie_mac_lamp:
@@ -147,7 +147,7 @@
     binary_sensor.hallway_nest_protect_online:
       friendly_name: "Gnd Floor Protect Status"
     sensor.hallway_nest_protect_battery_health:
-      hiden: true
+      hidden: true
     sensor.hallway_nest_protect_co_status:
       friendly_name: "Gnd Floor CO2 Status"
     sensor.hallway_nest_protect_color_status:
