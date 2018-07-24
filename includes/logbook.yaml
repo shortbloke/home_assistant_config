@@ -1,34 +1,13 @@
 #### logbook.yaml ####
-exclude:
+# Note: All entries need to also be defined in recorder.yaml
+
+include:
+  domains: 
+    - device_tracker
+    - automation
   entities:
-    # Aeotec
-    - sensor.aeotec_zw100_multisensor_6_alarm_type
-    - sensor.aeotec_zw100_multisensor_6_alarm_level
-    # - sensor.aeotec_zw100_multisensor_6_burglar
-    - sensor.aeotec_zw100_multisensor_6_luminance
-    - sensor.aeotec_zw100_multisensor_6_sourcenodeid
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet
-    - sensor.aeotec_zw100_multisensor_6_dew_point
-    - sensor.aeotec_zw100_multisensor_6_alarm_type_2
-    - sensor.aeotec_zw100_multisensor_6_alarm_level_2
-    # - sensor.aeotec_zw100_multisensor_6_burglar_2
-    - sensor.aeotec_zw100_multisensor_6_luminance_2
-    - sensor.aeotec_zw100_multisensor_6_sourcenodeid_2
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-    - sensor.aeotec_zw100_multisensor_6_dew_point_2
-    # Fibaro
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-    #   - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_general
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    # systenm monitor
-    - sensor.average_load_1m
-    - sensor.average_load_5m
-    - sensor.average_load_15m
-    # Automation trigger on movement
-    - automation.ironing_room_motion_detected
-    - automation.ironing_room_timer_reset
+    # Travis CI
+    - sensor.shortblokehome_assistant_config_last_build_state
+    - sensor.shortblokehome_assistant_config_last_build_id
+    # Nest
+    - binary_sensor.northway_away

@@ -1,60 +1,83 @@
 #### recorder.yaml ####
 purge_interval: 1
 purge_keep_days: 7
-# db_url: !secret db_url
+
 include:
   domains: 
-    - sensor
     - device_tracker
     - automation
-exclude:
   entities:
-    - sensor.last_boot
-    - sensor.date
-    - sensor.sun
-    - sensor.moon
-    - sensor.current_version
-    # Aeotec
-    - sensor.aeotec_zw100_multisensor_6_alarm_type
-    - sensor.aeotec_zw100_multisensor_6_alarm_level
-    # - sensor.aeotec_zw100_multisensor_6_burglar
-    - sensor.aeotec_zw100_multisensor_6_luminance
-    - sensor.aeotec_zw100_multisensor_6_sourcenodeid
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet
-    - sensor.aeotec_zw100_multisensor_6_dew_point
-    - sensor.aeotec_zw100_multisensor_6_alarm_type_2
-    - sensor.aeotec_zw100_multisensor_6_alarm_level_2
-    # - sensor.aeotec_zw100_multisensor_6_burglar_2
-    - sensor.aeotec_zw100_multisensor_6_luminance_2
-    - sensor.aeotec_zw100_multisensor_6_sourcenodeid_2
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-    - sensor.aeotec_zw100_multisensor_6_dew_point_2
-    # Fibaro
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-    #   - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_general
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-    # IOS Devices
-    - sensor.martins_iphone_battery_level
-    - sensor.martins_iphone_battery_state
-    - sensor.michelles_iphone_battery_level
-    - sensor.michelles_iphone_battery_state
-    - sensor.martins_ipad_battery_level
-    - sensor.martins_ipad_battery_state
-    # HP MicroServer Gen 6 
-    - sensor.server_server_name
-    - sensor.server_glance_power_supplies
-    - sensor.server_glance_processor
-    - sensor.server_glance_storage
-    - sensor.server_glance_memory
-    - sensor.server_glance_temperatures
-    - sensor.server_glance_fans
-    - sensor.server_glance_network
-    - sensor.server_glance_bios
-    - sensor.server_cpu_fanspeed
-    # Travis custom sensors
-    - sensor.travis_build_label
-    - sensor.travis_status
+  ########################
+  # Used by history.yaml #
+  ########################
+    # Nest
+    - binary_sensor.northway_away # Away Mode
+    # Nest Thermostat
+    - sensor.hallway_thermostat_house_hvac_state # Heating Status
+    - sensor.hallway_thermostat_house_target # Target Temp
+    - sensor.hallway_thermostat_house_temperature # Current Temp
+    # Nest Smoke Detectors
+    - sensor.hallway_nest_protect_smoke_status
+    - sensor.hallway_nest_protect_co_status
+    - sensor.upstairs_nest_protect_smoke_status
+    - sensor.upstairs_nest_protect_co_status
+    # HS110 Smart Plug Power Usage
+    - sensor.tp_hs110_1_power
+    - sensor.tp_hs110_2_power
+    - sensor.tp_hs110_3_power
+    - sensor.tp_hs110_4_power
+    - sensor.tp_hs110_5_power
+    - sensor.tp_hs110_6_power
+    - sensor.tp_hs110_7_power
+    - sensor.tp_hs110_8_power
+    - sensor.tp_hs110_9_power
+    # RFX Environmental Sensors
+    - sensor.portable_sensor_1_temperature
+    - sensor.temp_humid_1_humidity
+    - sensor.portable_sensor_2_temperature
+    - sensor.temp_humid_2_humidity
+    - sensor.portable_sensor_3_temperature
+    - sensor.temp_humid_3_humidity
+    - sensor.portable_sensor_4_temperature
+    - sensor.temp_humid_4_humidity
+    - sensor.portable_sensor_5_temperature
+    - sensor.temp_humid_5_humidity
+    - sensor.temp_humid_ext_1_temperature
+    - sensor.temp_humid_ext_1_humidity
+    # MQTT Sensors
+    - sensor.loft_fan_temperature
+    - sensor.loft_fan_humidity
+    # Z-Wave Sensors
+    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity
+    - sensor.aeotec_zw100_multisensor_6_temperature_2
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    # HaveIBeenPwned
+    - sensor.breaches_martinrowannetcouk
+    - sensor.breaches_michellerowannetcouk
+    - sensor.breaches_junerowannetcouk
+    - sensor.breaches_morganrowannetcouk
+    - sensor.breaches_fraserrowannetcouk
+    - sensor.breaches_robertrowannetcouk
+    - sensor.breaches_martinrowancitrixcom
+    - sensor.breaches_martinrowaneucitrixcom
+    - sensor.breaches_mrowanhighlightnet
+    # Waze
+    - sensor.to_home
+    - sensor.to_work
+    # Raspberry Pi Resource Usage
+    - sensor.load_1m
+    - sensor.disk_use_percent_
+    - sensor.memory_use_percent
+    # SpeedTest
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+  ############################
+  # Used by logbook.yaml     #
+  # Not used in History.yaml #
+  ############################
+    # Travis CI
+    - sensor.shortblokehome_assistant_config_last_build_state
+    - sensor.shortblokehome_assistant_config_last_build_id
