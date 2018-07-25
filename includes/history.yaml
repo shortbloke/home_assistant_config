@@ -38,6 +38,8 @@ include:
     - sensor.temp_humid_5_humidity
     - sensor.temp_humid_ext_1_temperature
     - sensor.temp_humid_ext_1_humidity
+    - sensor.temp_humid_6_temperature
+    - sensor.temp_humid_6_humidity
     # MQTT Sensors
     - sensor.loft_fan_temperature
     - sensor.loft_fan_humidity
