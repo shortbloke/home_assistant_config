@@ -80,8 +80,7 @@ master_bedroom_view:
     - media_player.master_bedroom
     - media_player.bathroom
     - group.laurastar_iron
-    - sensor.temp_humid_6_temperature
-    - sensor.temp_humid_6_humidity
+    - sensor.temp_sensor_1_temperature
 
 ironing_room_view:
   name: Ironing Room

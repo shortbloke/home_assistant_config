@@ -208,8 +208,6 @@
     sensor.temp_humid_5:
       friendly_name: "Env. Morgans Room"
       hidden: true
-    sensor.temp_humid_6_temperature:
-      friendly_name: "Temperature"  #Master Bedroom
     sensor.temp_humid_ext_1_temperature:
       friendly_name: "Temperature"  #Outside
     sensor.temp_humid_ext_1_humidity:
@@ -240,9 +238,9 @@
     sensor.temp_humid_5_humidity:
       friendly_name: "Humidity (Morgan)"  #Morgans Room
       icon: mdi:water-percent
-    sensor.temp_humid_6_humidity:
-      friendly_name: "Humidity"  #Master Bedroom
-      icon: mdi:water-percent
+    # Temperature only
+    sensor.temp_sensor_1_temperature:
+      friendly_name: "Temperature"  #Master Bedroom
 
 ### travis sensors for automation only ###
     sensor.travis_build_label:
