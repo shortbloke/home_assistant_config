@@ -348,6 +348,8 @@ views:
       - type: entities
         title: LauraStar Iron
         entities:
+          - sensor.temp_humid_6_temperature
+          - sensor.temp_humid_6_humidity
           - switch.tp_hs110_1
           - sensor.tp_hs110_1_power
 

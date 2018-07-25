@@ -60,6 +60,11 @@
       data_type:
         - Humidity
         - Temperature
+    085002d47502013069: # Oregon THN132N - Master Bedroom
+      name: Temp_Humid_6
+      data_type:
+        - Humidity
+        - Temperature
 
 # MQTT Sensors
 - platform: mqtt
