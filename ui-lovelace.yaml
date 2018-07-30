@@ -13,7 +13,7 @@ views:
   - title: Home
     icon: mdi:home
     cards:
-### STACK: LIVING ROOM, DINING ROOM & KITCHEN
+### STACK: Column 1
       - type: vertical-stack
         cards:
         - type: picture-glance
@@ -38,7 +38,7 @@ views:
           entities:
             - media_player.kitchen
 
-### STACK CONSERVATORY, HALL & GARAGE
+### STACK: Column 2
       - type: vertical-stack
         cards:
         - type: picture-glance
@@ -63,6 +63,37 @@ views:
           entities:
             - sensor.portable_sensor_3_temperature
             - sensor.temp_humid_3_humidity
+
+### STACK: Column 3
+      - type: vertical-stack
+        cards:
+        - type: picture-glance
+          title: Master bedroom
+          image: /local/lovelace/master_bedroom.png
+          entities:
+            - sensor.temp_sensor_1_temperature
+            - media_player.master_bedroom
+            - media_player.bathroom
+            - switch.tp_hs110_1
+            - sensor.tp_hs110_1_power
+        - type: picture-glance
+          title: Morgans bedroom
+          image: /local/lovelace/morgan_bedroom.png
+          entities:
+            - sensor.portable_sensor_5_temperature
+            - sensor.temp_humid_5_humidity
+            # - sensor.portable_sensor_4_temperature
+            # - sensor.temp_humid_4_humidity
+            - light.lwrf_morgan_main
+            - light.wifi_ufo_1
+            - light.wifi_ufo_2
+            - light.wifi_ufo_3
+            - light.wifi_ufo_4
+            - switch.lwrf_morgan_ac
+
+###############################
+#     Windguru Panel View     #
+###############################
   - title: Sailing
     icon: mdi:weather-windy
     panel: true
