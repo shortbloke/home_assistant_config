@@ -5,3 +5,6 @@
 #### HP MicroServer ####        
     sensor.server_glance*:
       icon: mdi:check
+### haveIbeenPwned ###
+    sensor.breaches*:
+      icon: mdi:email-alert
