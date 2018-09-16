@@ -24,6 +24,10 @@ panel_iframe:
     title: 'Windguru'
     url: 'https://www.windguru.cz/470505'
     icon: mdi:weather-windy
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: !secret TasmoAdminURL
 
 ####################################################
 #                                                  #
@@ -31,7 +35,6 @@ panel_iframe:
 #                                                  #
 ####################################################
 http:
-  api_password: !secret http_api_password
   ssl_certificate: !secret http_ssl_certificate
   ssl_key: !secret http_ssl_key
   base_url: !secret http_base_url
@@ -63,6 +66,7 @@ frontend:
 logger:
   default: warn
   # logs:
+  #   homeassistant.components.mqtt: debug
   # #   homeassistant.components.light: info
   #   homeassistant.components.dyson: debug
   #   homeassistant.components.sensor.dyson: debug
