@@ -35,7 +35,6 @@ miners:
   entities:
     - group.miner01
     - group.Aeotec_Multi_2
-    - group.miner02
     - group.automation_mining
     - group.garage_fan
 
@@ -128,7 +127,6 @@ garage_view:
   entities:
     - group.miner01
     - group.Aeotec_Multi_2
-    - group.miner02
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
     - group.nest_garage_camera
@@ -186,12 +184,6 @@ miner01:
   entities:
     - switch.tp_hs110_9
     - sensor.tp_hs110_9_power
-
-miner02:
-  name: Miner02
-  entities:
-    - switch.tp_hs110_8
-    - sensor.tp_hs110_8_power
 
 fibaro:
   name: Fibaro Multisensor
@@ -407,8 +399,6 @@ automation_mining:
   entities:
     - automation.miner01_power_watcher
     - automation.miner01_low_power_reboot
-    - automation.miner02_power_watcher
-    - automation.miner02_low_power_reboot
 
 tracked_devices:
   name: Tracked Devices
