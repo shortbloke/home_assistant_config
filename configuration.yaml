@@ -66,7 +66,8 @@ frontend:
 ####################################################
 logger:
   default: warn
-  # logs:
+  logs:
+    homeassistant.components.dyson: info
   #   homeassistant.components.mqtt: debug
   # #   homeassistant.components.light: info
   #   homeassistant.components.dyson: debug
@@ -103,6 +104,9 @@ dyson:
   username: !secret dyson_username
   password: !secret dyson_password
   language: GB
+  devices: 
+    - device_id: !secret dyson_fan1_serial
+      device_ip: !secret dyson_fan1_ip_address
 fan:
   - platform: dyson
 
