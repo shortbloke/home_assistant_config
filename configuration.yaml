@@ -35,6 +35,7 @@ panel_iframe:
 #                                                  #
 ####################################################
 http:
+  api_password: !secret http_api_password # Used for IOS App
   ssl_certificate: !secret http_ssl_certificate
   ssl_key: !secret http_ssl_key
   base_url: !secret http_base_url
