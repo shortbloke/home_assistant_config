@@ -440,6 +440,14 @@ views:
         title: Morgans Sockets
         entities:
           - switch.lwrf_morgan_ac
+      - id: e102d87e5746495e87cc29736739f7f9  # Automatically created id
+        type: entities
+        title: Frasers Lights
+        entities:
+          - light.12204702807d3a1b7075
+          - light.12204702807d3a252d9b
+          - light.12204702807d3a252c69
+          - light.12204702ecfabc20a0a1
 
 ###############################
 #           Outside           #
