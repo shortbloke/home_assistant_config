@@ -10,177 +10,117 @@ views:
 ###############################
 #       Main View (Home)      #
 ###############################
-  - title: Home
+  - id: 0  # Automatically created id
+    title: Home
     icon: mdi:home
     cards:
 ### STACK: Column 1
-      - type: vertical-stack
+      - id: 618de671d64840bf8e2240c1440a40c0  # Automatically created id
+        type: vertical-stack
         cards:
-        - type: picture-glance
-          title: Living Room
-          image: /local/lovelace/living_room.png
-          entities:
-            - sensor.portable_sensor_2_temperature
-            - sensor.temp_humid_2_humidity
-            - light.lwrf_livingroom_main
-            - switch.lwrf_livingroom_standard_lamp
-            - switch.lwrf_displaycabinetlight
-            - switch.lwrf_waxburner
-        - type: picture-glance
-          title: Dining Room
-          image: /local/lovelace/dining_room.png
-          entities:
-            - light.lwrf_diningroom_main
-            - switch.lwrf_diningroom_rennie_mac_lamp
-        - type: picture-glance
-          title: Kitchen
-          image: /local/lovelace/kitchen.png
-          entities:
-            - media_player.kitchen
+          - type: picture-glance
+            title: Living Room
+            image: /local/lovelace/living_room.png
+            entities:
+              - sensor.portable_sensor_2_temperature
+              - sensor.temp_humid_2_humidity
+              - light.lwrf_livingroom_main
+              - switch.lwrf_livingroom_standard_lamp
+              - switch.lwrf_displaycabinetlight
+              - switch.lwrf_waxburner
+          - type: picture-glance
+            title: Dining Room
+            image: /local/lovelace/dining_room.png
+            entities:
+              - light.lwrf_diningroom_main
+              - switch.lwrf_diningroom_rennie_mac_lamp
+          - type: picture-glance
+            title: Kitchen
+            image: /local/lovelace/kitchen.png
+            entities:
+              - media_player.kitchen
+          - type: thermostat
+            entity: climate.hallway_house
 
 ### STACK: Column 2
-      - type: vertical-stack
+      - id: e60f607ceb7a424a87e4a9091c6cada5  # Automatically created id
+        type: vertical-stack
         cards:
-        - type: picture-glance
-          title: Conservatory
-          image: /local/lovelace/conservatory.png
-          entities:
-            - sensor.portable_sensor_1_temperature
-            - sensor.temp_humid_1_humidity
-            - switch.lwrf_conservatory_1
-            - switch.lwrf_conservatory_2
-        - type: picture-glance
-          title: Hall
-          image: /local/lovelace/hallway.png
-          entities:
-            - climate.hallway_house
-            - climate.hallway_house
-            - switch.lwrf_hall_socket_1
-            - switch.lwrf_hall_socket_2
-        - type: picture-glance
-          title: Garage
-          image: /local/lovelace/garage.png
-          entities:
-            - sensor.portable_sensor_3_temperature
-            - sensor.temp_humid_3_humidity
+          - type: picture-glance
+            title: Conservatory
+            image: /local/lovelace/conservatory.png
+            entities:
+              - sensor.portable_sensor_1_temperature
+              - sensor.temp_humid_1_humidity
+              - switch.lwrf_conservatory_1
+              - switch.lwrf_conservatory_2
+          - type: picture-glance
+            title: Hall
+            image: /local/lovelace/hallway.png
+            entities:
+              - climate.hallway_house
+              - climate.hallway_house
+              - switch.lwrf_hall_socket_1
+              - switch.lwrf_hall_socket_2
+          - type: picture-glance
+            title: Garage
+            image: /local/lovelace/garage.png
+            entities:
+              - sensor.portable_sensor_3_temperature
+              - sensor.temp_humid_3_humidity
 
 ### STACK: Column 3
-      - type: vertical-stack
+      - id: c5e5003b16e84e4da6bb120fd914200b  # Automatically created id
+        type: vertical-stack
         cards:
-        - type: picture-glance
-          title: Master bedroom
-          image: /local/lovelace/master_bedroom.png
-          entities:
-            - sensor.temp_sensor_1_temperature
-            - media_player.master_bedroom
-            - media_player.bathroom
-            - switch.tp_hs110_1
-            - sensor.tp_hs110_1_power
-        - type: picture-glance
-          title: Morgans bedroom
-          image: /local/lovelace/morgan_bedroom.png
-          entities:
-            - sensor.portable_sensor_5_temperature
-            - sensor.temp_humid_5_humidity
+          - type: picture-glance
+            title: Master bedroom
+            image: /local/lovelace/master_bedroom.png
+            entities:
+              - sensor.temp_sensor_1_temperature
+              - media_player.master_bedroom
+              - media_player.bathroom
+              - switch.tp_hs110_1
+              - sensor.tp_hs110_1_power
+          - type: picture-glance
+            title: Morgans bedroom
+            image: /local/lovelace/morgan_bedroom.png
+            entities:
+              - sensor.portable_sensor_5_temperature
+              - sensor.temp_humid_5_humidity
             # - sensor.portable_sensor_4_temperature
             # - sensor.temp_humid_4_humidity
-            - light.lwrf_morgan_main
-            - light.wifi_ufo_1
-            - light.wifi_ufo_2
-            - light.wifi_ufo_3
-            - light.wifi_ufo_4
-            - switch.lwrf_morgan_ac
-
-###############################
-#     Windguru Panel View     #
-###############################
-  - title: Sailing
-    icon: mdi:weather-windy
-    panel: true
-    cards:
-    - type: iframe
-      url: 'https://www.windguru.cz/470505'
-      # aspect_ratio: 500%
-
-###############################
-#        Original Home        #
-###############################
-  - title: Home
-    cards:
-      - type: glance
-        show_name: true
-        entities:
-          - sensor.hallway_thermostat_house_temperature
-          - sensor.nest_away_mode
-      - type: entities
-        title: Living Room Lights
-        entities:
-          - light.lwrf_livingroom_main
-          - switch.lwrf_livingroom_standard_lamp
-          - switch.lwrf_displaycabinetlight
-          - switch.lwrf_waxburner
-      - type: entities
-        title: Dining Room Lights
-        entities:
-          - light.lwrf_diningroom_main
-          - switch.lwrf_diningroom_rennie_mac_lamp
-      - type: entities
-        title: Conservatory Lights
-        entities:
-          - switch.lwrf_conservatory_1
-          - switch.lwrf_conservatory_2
-      - type: entities
-        title: Scenes Living Room
-        entities:
-          - scene.bright
-          - scene.comfortable
-          - scene.movie
-      - type: entities
-        title: Weather (local)
-        entities:
-          - sun.sun
-          - sensor.moon
-      - type: entities
-        title: Nest Thermostat
-        entities:
-          - sensor.hallway_thermostat_house_temperature
-          - sensor.nest_away_mode
-          - climate.hallway_house
-          - sensor.hallway_thermostat_house_hvac_state
-      - type: entities
-        title: Waze Journeys
-        entities:
-          - sensor.to_home
-          - sensor.to_work
-      - type: entity-filter
-        entities:
-          - device_tracker.martins_iphone
-          - device_tracker.michelles_iphone
-        state_filter:
-          - 'home'
-        card:
-          type: glance
-          title: People that are home
+              - light.lwrf_morgan_main
+              - light.wifi_ufo_1
+              - light.wifi_ufo_2
+              - light.wifi_ufo_3
+              - light.wifi_ufo_4
+              - switch.lwrf_morgan_ac
 
 ###############################
 #           Security          #
 ###############################
-  - title: Security
+  - id: 1  # Automatically created id
+    title: Security
     cards:
-      - type: glance
+      - id: 5fa8f6dc79314cde8b300a1ecf2627fe  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.nest_away_mode
-      - type: entities
+      - id: b3fa2e49f68148ae848141b3d4795171  # Automatically created id
+        type: entities
         title: Gnd Floor Nest Camera
         entities:
           - binary_sensor.living_room_camera_online
           - binary_sensor.living_room_camera_motion_detected
           - binary_sensor.living_room_camera_person_detected
           - binary_sensor.living_room_camera_sound_detected
-      - type: picture-entity
+      - id: c0249b6cf6ba444db391eaeed68d9de4  # Automatically created id
+        type: picture-entity
         entity: camera.living_room
-      - type: entities
+      - id: 03f97818386f45f7a21527c345167acc  # Automatically created id
+        type: entities
         title: Garage Nest Camera
         entities:
           - binary_sensor.garage_camera_online
@@ -189,31 +129,37 @@ views:
           - binary_sensor.garage_camera_sound_detected
           - binary_sensor.garage_camera__garage_door_activity
           - binary_sensor.garage_camera__hall_door_activity
-      - type: picture-entity
+      - id: a58a83c0e27847ed9d34e1242c042aab  # Automatically created id
+        type: picture-entity
         entity: camera.garage
-      - type: entities
+      - id: a709648f81a34a1d8fb98d4a9d70e02b  # Automatically created id
+        type: entities
         title: Alarm
         entities:
           - automation.sonos_burglar_alarm
           - automation.sonos_restore_snapshot_state
-      - type: entities
+      - id: 243204e47c374190b0be7cddb5aa8554  # Automatically created id
+        type: entities
         title: Motion Sensors
         entities:
           - sensor.aeotec_zw100_multisensor_6_burglar
           - sensor.aeotec_zw100_multisensor_6_burglar_2
-          - sensor.alarm_level_2
+          - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
 
 ###############################
 #            Miners           #
 ###############################
-  - title: Miners
+  - id: 2  # Automatically created id
+    title: Miners
     cards:
-      - type: entities
+      - id: 49d0ec2e235a47a4a81e3202c33f8ca4  # Automatically created id
+        type: entities
         title: Miner01
         entities:
           - switch.tp_hs110_9
           - sensor.tp_hs110_9_power
-      - type: entities
+      - id: 5a9818cdd1904fdaba1f0406687a7fce  # Automatically created id
+        type: entities
         title: Mining - Sensor
         entities:
           - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
@@ -222,34 +168,28 @@ views:
           - sensor.aeotec_zw100_multisensor_6_burglar_2
           - sensor.aeotec_zw100_multisensor_6_luminance_2
           - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-          - sensor.aeotec_zw100_multisensor_6_dew_point_2
-      - type: entities
-        title: Miner02
-        entities:
-          - switch.tp_hs110_8
-          - sensor.tp_hs110_8_power
-      - type: entities
+      - id: bad9cee8f1b546a08943f490a1aaf38e  # Automatically created id
+        type: entities
         title: Crypto Mining Monitoring
         entities:
           - automation.miner01_power_watcher
           - automation.miner01_low_power_reboot
-          - automation.miner02_power_watcher
-          - automation.miner02_low_power_reboot
-      - type: entities
+      - id: b28a2b434c704d09be36d114ce51ecf6  # Automatically created id
+        type: entities
         title: Mining Rig Fans
         entities:
           - switch.tp_hs110_6
           - sensor.tp_hs110_6_power
-      - type: history-graph
+      - id: e89d6046b3d849c0aa4dd22773bc62ae  # Automatically created id
+        type: history-graph
         title: Power Usage
         entities:
           - entity: sensor.tp_hs110_9_power
             name: Miner01
-          - entity: sensor.tp_hs110_8_power
-            name: Miner02
           - entity: sensor.tp_hs110_6_power
             name: Fans
-      - type: history-graph
+      - id: 2a36f4c72e0a43eda55e37630ca7167a  # Automatically created id
+        type: history-graph
         title: Temperatures
         entities:
           - entity: sensor.aeotec_zw100_multisensor_6_temperature_2
@@ -260,102 +200,119 @@ views:
 ###############################
 #         Living Room         #
 ###############################
-  - title: Living Room
+  - id: 3  # Automatically created id
+    title: Living Room
     cards:
-      - type: glance
+      - id: 56b332a2bce540b8920d9bbffcce45e6  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.portable_sensor_2_temperature
           - sensor.temp_humid_2_humidity
-      - type: entities
+      - id: c5d8a8f314c747b39f21a43df586812f  # Automatically created id
+        type: entities
         title: Living Room Lights
         entities:
           - light.lwrf_livingroom_main
           - switch.lwrf_livingroom_standard_lamp
           - switch.lwrf_displaycabinetlight
           - switch.lwrf_waxburner
-      - type: entities
+      - id: 64bb56db4eb14d4082cb0ccf458f127e  # Automatically created id
+        type: entities
         title: Scenes Living Room
         entities:
           - scene.bright
           - scene.comfortable
           - scene.movie
-      - type: entities
+      - id: 44189a1bdabc44d1825e0383ccf4ea2a  # Automatically created id
+        type: entities
         title: Fireplace
         entities:
           - switch.flamerite_power
           - switch.flamerite_heat
           - light.flamerite_dimmer1
           - light.flamerite_dimmer2
-      - type: entities
+      - id: b7c0835c1ad64c0c932b49ff2a5a8127  # Automatically created id
+        type: entities
         title: Dining Room Lights
         entities:
           - light.lwrf_diningroom_main
           - switch.lwrf_diningroom_rennie_mac_lamp
-      - type: media-control
+      - id: f0a6d81d650847d0965316f7664bdb65  # Automatically created id
+        type: media-control
         entity: media_player.living_room
-      - type: entities
+      - id: d04f8575a1df43338bdffd192f0aa0a5  # Automatically created id
+        type: entities
         title: Living Room Nest Camera
         entities:
           - binary_sensor.living_room_camera_online
           - binary_sensor.living_room_camera_motion_detected
           - binary_sensor.living_room_camera_person_detected
           - binary_sensor.living_room_camera_sound_detected
-          - binary_sensor.living_room_camera__window_activity
-          - binary_sensor.living_room_camera__doorway_activity
-      - type: picture-entity
+      - id: efaca719e56941058f6fe9b6a475831c  # Automatically created id
+        type: picture-entity
         entity: camera.living_room
 
 ###############################
 #         Conservatory        #
 ###############################
-  - title: Conservatory
+  - id: 4  # Automatically created id
+    title: Conservatory
     cards:
-      - type: glance
+      - id: 6dc3d2b18bb14244b9ffe638dd757370  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.portable_sensor_1_temperature
           - sensor.temp_humid_1_humidity
-      - type: entities
+      - id: eb21ea0555aa424c8ab6086631612fa9  # Automatically created id
+        type: entities
         title: Conservatory Lights
         entities:
           - switch.lwrf_conservatory_1
           - switch.lwrf_conservatory_2
-      - type: entities
+      - id: c13b8bf5832449eb8963b3927f4ee2f9  # Automatically created id
+        type: entities
         title: Conservatory Switches
         entities:
           - switch.tp_hs110_7
           - sensor.tp_hs110_7_power
-      - type: media-control
+      - id: 2847266aa51449a89c07cb991c5c54ca  # Automatically created id
+        type: media-control
         entity: media_player.conservatory
-      - type: media-control
+      - id: 3d372f0b706843549dd11d626ff9f549  # Automatically created id
+        type: media-control
         entity: media_player.kitchen
 
 ###############################
 #            Hall             #
 ###############################
-  - title: Hall
+  - id: 5  # Automatically created id
+    title: Hall
     cards:
-      - type: glance
+      - id: b2702d797cc64ded92ed33c7a65b32b1  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.hallway_thermostat_house_humidity
           - sensor.hallway_thermostat_house_temperature
-      - type: entities
+      - id: 63ccbcdc3f0e4404a21e91ed8a584b7a  # Automatically created id
+        type: entities
         title: Hall Lights
         entities:
           - switch.lwrf_hall_socket_1
           - switch.lwrf_hall_socket_2
-      - type: entities
+      - id: aa49b28a0ce943049223b82ecf6f8d54  # Automatically created id
+        type: entities
         title: Heating
         entities:
-          - sensor.hallwayhousecondition
           - climate.hallway_house
           - sensor.hallway_thermostat_house_hvac_state
           - binary_sensor.hallway_thermostat_house_has_leaf
           - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
           - sensor.nest_away_mode
-      - type: entities
+      - id: 8cbf43fcb83649849416796a77538efe  # Automatically created id
+        type: entities
         title: Nest Protect
         entities:
           - binary_sensor.hallway_nest_protect_online
@@ -370,13 +327,17 @@ views:
 ###############################
 #        Master Bedroom       #
 ###############################
-  - title: Master Bedroom
+  - id: 6  # Automatically created id
+    title: Master Bedroom
     cards:
-      - type: media-control
+      - id: 1b5ca02ce31540c9a7a3f2ab9af30960  # Automatically created id
+        type: media-control
         entity: media_player.master_bedroom
-      - type: media-control
+      - id: d38267b1a6f64a2b9e02a8d54fd373ee  # Automatically created id
+        type: media-control
         entity: media_player.bathroom
-      - type: entities
+      - id: 25f09099aedf45d7bbd9541f48e9c05b  # Automatically created id
+        type: entities
         title: LauraStar Iron
         entities:
           - sensor.temp_sensor_1_temperature
@@ -386,19 +347,23 @@ views:
 ###############################
 #         Ironing Room        #
 ###############################
-  - title: Ironing Room
+  - id: 7  # Automatically created id
+    title: Ironing Room
     cards:
-      - type: glance
+      - id: 570ebfa1b4bb41b8b4e31c18b8819a68  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.aeotec_zw100_multisensor_6_temperature
           - sensor.aeotec_zw100_multisensor_6_relative_humidity
-      - type: entities
+      - id: ae21fa83f8284779a84f6c21d021cb5a  # Automatically created id
+        type: entities
         title: Ironing Room Timers
         entities:
           - timer.ironing_room_motion_timer
           - timer.ironing_room_motion_timer_reset_poll
-      - type: entities
+      - id: b4edd30ed7c94564a329ca3945bd61d3  # Automatically created id
+        type: entities
         title: Iron Sockets
         entities:
           - switch.tp_hs110_1
@@ -411,51 +376,58 @@ views:
           - sensor.tp_hs110_4_power
           - switch.tp_hs110_5
           - sensor.tp_hs110_5_power
-      - type: entities
+      - id: f84e4a8fcc364f7da723518e946f53b4  # Automatically created id
+        type: entities
         title: Aeotec Multisensor
         entities:
           - binary_sensor.aeotec_zw100_multisensor_6_sensor
           - sensor.aeotec_zw100_multisensor_6_burglar
           - sensor.aeotec_zw100_multisensor_6_luminance
           - sensor.aeotec_zw100_multisensor_6_ultraviolet
-          - sensor.aeotec_zw100_multisensor_6_dew_point
-      - type: history-graph
+          - sensor.aeotec_zw100_multisensor_6_relative_humidity
+      - id: 360c826a0bfd4a0f893f2a60bc72d3af  # Automatically created id
+        type: history-graph
         title: Power Usage
         entities:
           - entity: sensor.tp_hs110_1_power
-            name: 'Laurastar'
+            name: Laurastar
           - entity: sensor.tp_hs110_2_power
-            name: 'Irons (LHS)'
+            name: Irons (LHS)
           - entity: sensor.tp_hs110_3_power
-            name: 'Irons (RHS)'
+            name: Irons (RHS)
           - entity: sensor.tp_hs110_4_power
             name: Table
           - entity: sensor.tp_hs110_5_power
-            name: 'Magpie'
-      - type: history-graph
+            name: Magpie
+      - id: d8ccb22b42e74b56bcbe6eeb4a77f5d6  # Automatically created id
+        type: history-graph
         title: Temperature
         entities:
           - entity: sensor.aeotec_zw100_multisensor_6_temperature
-            name: 'Temperature'
-      - type: history-graph
+            name: Temperature
+      - id: 554f5a283cd645159bc3a2c1a203d25f  # Automatically created id
+        type: history-graph
         title: Humidity
         entities:
           - entity: sensor.aeotec_zw100_multisensor_6_relative_humidity
-            name: 'Humidity'
+            name: Humidity
 
 ###############################
 #          Boys Room          #
 ###############################
-  - title: Boys Room
+  - id: 8  # Automatically created id
+    title: Boys Room
     cards:
-      - type: glance
+      - id: ab58cf744f974f8583741c0d2114e1a1  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.portable_sensor_5_temperature
           - sensor.temp_humid_5_humidity
           - sensor.portable_sensor_4_temperature
           - sensor.temp_humid_4_humidity
-      - type: entities
+      - id: 1ff2600f2a3c496b817ab562b59fe31c  # Automatically created id
+        type: entities
         title: Morgans Lights
         entities:
           - light.lwrf_morgan_main
@@ -463,7 +435,8 @@ views:
           - light.wifi_ufo_2
           - light.wifi_ufo_3
           - light.wifi_ufo_4
-      - type: entities
+      - id: 75344f0b424a430f9eb03af83c4eb275  # Automatically created id
+        type: entities
         title: Morgans Sockets
         entities:
           - switch.lwrf_morgan_ac
@@ -471,36 +444,44 @@ views:
 ###############################
 #           Outside           #
 ###############################
-  - title: Outside
+  - id: 9  # Automatically created id
+    title: Outside
     cards:
-      - type: glance
+      - id: 096cae5ff24f4e478e0afc60d6371b79  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.temp_humid_ext_1_temperature
           - sensor.temp_humid_ext_1_humidity
-      - type: entities
+      - id: ee29b5165b724ebc9ac81b58c58a8495  # Automatically created id
+        type: entities
         title: Weather (local)
         entities:
           - sun.sun
           - sensor.moon
-      - type: weather-forecast
+      - id: bef23b4bdeae4bae90d622266b1c6447  # Automatically created id
+        type: weather-forecast
         entity: weather.yweather
 
 ###############################
 #            Loft             #
 ###############################
-  - title: Loft
+  - id: 10  # Automatically created id
+    title: Loft
     cards:
-      - type: glance
+      - id: ca4f89fe3a8d4e06bafc7947e49b692a  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.loft_fan_temperature
           - sensor.loft_fan_humidity
-      - type: entities
+      - id: bad4b85ef5f042e18a4add49aacb0bd3  # Automatically created id
+        type: entities
         title: Loft
         entities:
           - switch.sonoff_loft_fan_power
-      - type: entities
+      - id: 8a1671bb602443f38e5ecaf787008e5f  # Automatically created id
+        type: entities
         title: Loft 2 - Multisensor
         entities:
           - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
@@ -511,19 +492,23 @@ views:
 ###############################
 #           Garage            #
 ###############################
-  - title: garage
+  - id: 11  # Automatically created id
+    title: garage
     cards:
-      - type: glance
+      - id: 5296c2cca33d4ee5b8d989632be08204  # Automatically created id
+        type: glance
         show_name: true
         entities:
           - sensor.portable_sensor_3_temperature
           - sensor.temp_humid_3_humidity
-      - type: entities
+      - id: fd461d422f494f7ebfc33b8b16964a64  # Automatically created id
+        type: entities
         title: Miner01
         entities:
           - switch.tp_hs110_9
           - sensor.tp_hs110_9_power
-      - type: entities
+      - id: 474664182d4d40c5a1c6981cd6e2306f  # Automatically created id
+        type: entities
         title: Mining - Sensor
         entities:
           - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
@@ -532,13 +517,8 @@ views:
           - sensor.aeotec_zw100_multisensor_6_burglar_2
           - sensor.aeotec_zw100_multisensor_6_luminance_2
           - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-          - sensor.aeotec_zw100_multisensor_6_dew_point_2
-      - type: entities
-        title: Miner02
-        entities:
-          - switch.tp_hs110_8
-          - sensor.tp_hs110_8_power
-      - type: entities
+      - id: f943eccf1b1b42b689cd52001c94c9fd  # Automatically created id
+        type: entities
         title: Garage Nest Camera
         entities:
           - binary_sensor.garage_camera_online
@@ -547,9 +527,11 @@ views:
           - binary_sensor.garage_camera_sound_detected
           - binary_sensor.garage_camera__garage_door_activity
           - binary_sensor.garage_camera__hall_door_activity
-      - type: picture-entity
+      - id: 4b14cabcfe69463c96d5883ee6d73e89  # Automatically created id
+        type: picture-entity
         entity: camera.garage
-      - type: entities
+      - id: 6faf580fba144c2394701b346ac4a875  # Automatically created id
+        type: entities
         title: garage fan
         entities:
           - switch.tp_hs110_6
@@ -558,10 +540,12 @@ views:
 ###############################
 #            Family           #
 ###############################
-  - title: Family
+  - id: 12  # Automatically created id
+    title: Family
     icon: mdi:account-multiple
     cards:
-      - type: entities
+      - id: 72245bb172b04c9f9694e7eec8d81639  # Automatically created id
+        type: entities
         title: Tracked Devices
         entities:
           - device_tracker.martins_iphone
@@ -570,7 +554,8 @@ views:
           - device_tracker.michelles_iphone
           - sensor.iphone_battery_level
           - sensor.iphone_battery_state
-      - type: entities
+      - id: afcbb9e813cc4d75b894473a0fc91ce1  # Automatically created id
+        type: entities
         title: HaveIBeenPwned
         entities:
           - sensor.breaches_martinrowannetcouk
@@ -586,10 +571,12 @@ views:
 ###############################
 #            Systems          #
 ###############################
-  - title: Systems
+  - id: 13  # Automatically created id
+    title: Systems
     icon: mdi:server-network
     cards:
-      - type: vertical-stack
+      - id: 140715b1ed8942feac11a4caf4a28bf4  # Automatically created id
+        type: vertical-stack
         cards:
           - type: glance
             title: Internet
@@ -608,7 +595,8 @@ views:
                 name: Upload
           - type: picture-entity
             entity: camera.broadbandquality
-      - type: vertical-stack
+      - id: 22b570ee896548a2b69ed6e122bd0733  # Automatically created id
+        type: vertical-stack
         cards:
           - type: glance
             title: Hass.io Raspberry Pi
@@ -656,7 +644,8 @@ views:
       #     - sensor.nano_pci_temperature
       #     - sensor.nano_chipset_temperature
       #     - sensor.nano_memory_temperature
-      - type: entities
+      - id: 38535890d27c412d90efa79532fedd29  # Automatically created id
+        type: entities
         title: Z-Wave Devices
         entities:
           - zwave.aeotec_zw090_zstick_gen5_eu
@@ -667,10 +656,12 @@ views:
 ###############################
 #          Automation         #
 ###############################
-  - title: Automation
+  - id: 14  # Automatically created id
+    title: Automation
     icon: mdi:home-automation
     cards:
-      - type: entities
+      - id: a6fbc159ec844274a6ae4d68fe157de1  # Automatically created id
+        type: entities
         title: Utilities
         entities:
           - automation.update_config_hass_if_travis_build_is_successfull
@@ -679,13 +670,15 @@ views:
           - automation.hass_update_available_notifications
           - automation.hassio_weekly_snapshot_3am
           - automation.dropbox_snapshot_sync_4am
-      - type: entities
+      - id: ab51754e3d13442098a825e13d0110b3  # Automatically created id
+        type: entities
         title: HAPi Resource Monitoring
         entities:
           - automation.hapi_high_load_alert
           - automation.hapi_low_disk_space_alert
           - automation.hapi_low_memory_alert
-      - type: entities
+      - id: 4b3c89b86c7c426287f1f8343628db57  # Automatically created id
+        type: entities
         title: Power Control
         entities:
           - automation.turn_on_lights_in_the_morning_and_at_sunset
@@ -702,14 +695,14 @@ views:
           - automation.garage_fan_turn_off_when_not_hot
           - automation.turn_on_air_freshener_socket_in_the_morning
           - automation.turn_off_air_freshener_socket_at_night
-      - type: entities
+      - id: cc3d9683224b47c0a3bb55a95d45a07c  # Automatically created id
+        type: entities
         title: Crypto Mining Monitoring
         entities:
           - automation.miner01_power_watcher
           - automation.miner01_low_power_reboot
-          - automation.miner02_power_watcher
-          - automation.miner02_low_power_reboot
-      - type: entities
+      - id: 5d11d16c527143a59a05310ff7e7e69b  # Automatically created id
+        type: entities
         title: Alarm
         entities:
           - automation.sonos_burglar_alarm
