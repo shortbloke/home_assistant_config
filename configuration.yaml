@@ -20,10 +20,6 @@ homeassistant:
 #                                                 #
 ################################################### 
 panel_iframe:
-  windguru:
-    title: 'Windguru'
-    url: 'https://www.windguru.cz/470505'
-    icon: mdi:weather-windy
   tasmoadmin:
     title: TasmoAdmin
     icon: mdi:lightbulb-on
