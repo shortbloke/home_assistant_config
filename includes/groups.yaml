@@ -276,7 +276,6 @@ climate:
 heating:
   name: Heating
   entities:
-    - sensor.hallwayhousecondition
     - climate.hallway_house
     - sensor.hallway_thermostat_house_hvac_state
     - binary_sensor.hallway_thermostat_house_has_leaf
@@ -430,7 +429,7 @@ Aeotec_Multi_1:
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_luminance
     - sensor.aeotec_zw100_multisensor_6_ultraviolet
-    - sensor.aeotec_zw100_multisensor_6_dew_point
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity
 
 Aeotec_Multi_2:
   name: Mining - Sensor
@@ -441,7 +440,7 @@ Aeotec_Multi_2:
     - sensor.aeotec_zw100_multisensor_6_burglar_2
     - sensor.aeotec_zw100_multisensor_6_luminance_2
     - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-    - sensor.aeotec_zw100_multisensor_6_dew_point_2
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
 
 scenes_living_room:
   name: Scenes Living Room
@@ -489,8 +488,7 @@ motion_sensors:
   entities:
     - sensor.aeotec_zw100_multisensor_6_burglar
     - sensor.aeotec_zw100_multisensor_6_burglar_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_burgla
-    - sensor.alarm_level_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
 
 garage_fan:
   name: Garage Fans
