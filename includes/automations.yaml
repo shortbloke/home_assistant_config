@@ -296,19 +296,19 @@
         - !secret sensor_hibp_email3
         - !secret sensor_hibp_email4
         - !secret sensor_hibp_email5
-        - !secret sensor_hibp_email9
     - platform: numeric_state
       above: 1
       entity_id:
         - !secret sensor_hibp_email2
+        - !secret sensor_hibp_email9
     - platform: numeric_state
       above: 2
       entity_id:
         - !secret sensor_hibp_email6
-        - !secret sensor_hibp_email7
     - platform: numeric_state
       above: 3
       entity_id:
+        - !secret sensor_hibp_email7
         - !secret sensor_hibp_email8
     - platform: numeric_state
       above: 4
