@@ -369,7 +369,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
-      above: 20
+      above: 25
       for:
         minutes: 10
   action:
@@ -381,7 +381,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
-      below: 20
+      below: 25
       for:
         minutes: 10
   action:
