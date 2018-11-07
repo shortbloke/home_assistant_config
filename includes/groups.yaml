@@ -37,6 +37,8 @@ miners:
     - group.Aeotec_Multi_2
     - group.automation_mining
     - group.garage_fan
+    - group.crypto
+    - group.bitcoin
 
 living_room_view:
   name: Living Room
@@ -518,3 +520,17 @@ internet:
     - sensor.speedtest_download
     - sensor.speedtest_upload
     - camera.broadbandquality
+
+crypto:
+  name: Crypto Currencies
+  entities:
+    - sensor.bitcoin
+    - sensor.bitcoin_gold
+    - sensor.binance_coin
+    - sensor.ethereum
+bitcoin:
+  name: Bitcoin
+  entities:
+    - sensor.market_price
+    - sensor.exchange_rate_1_btc
+    - sensor.trade_volume

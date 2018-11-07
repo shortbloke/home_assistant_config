@@ -41,3 +41,4 @@ deps
 .config_entries.json
 .cloud
 .storage/*
+emulated_hue_ids.json

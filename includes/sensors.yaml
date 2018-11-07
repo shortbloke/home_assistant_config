@@ -77,6 +77,31 @@
   value_template: "{{ value_json['SI7021'].Humidity }}"
   unit_of_measurement: "%"
 
+# Finance Sensors - Bitcoin
+- platform: bitcoin
+  display_options:
+    - exchangerate
+    - trade_volume_btc
+    - market_price_usd
+
+# Finance Sensors - CoinMarketCap
+## Bitcoin
+- platform: coinmarketcap
+  currency_id: 1
+  display_currency: GBP
+## Ethereum
+- platform: coinmarketcap
+  currency_id: 1027
+  display_currency: GBP
+## Bitcoin gold
+- platform: coinmarketcap
+  currency_id: 2083
+  display_currency: GBP
+## Binance Coin
+- platform: coinmarketcap
+  currency_id: 1839
+  display_currency: GBP
+
 
 ############################################################
 #

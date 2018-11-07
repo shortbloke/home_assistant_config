@@ -196,6 +196,19 @@ views:
             name: Rig Area
           - entity: sensor.portable_sensor_3_temperature
             name: Room Temp
+      - type: entities
+        title: Crypto Currencies
+        entities:
+          - sensor.bitcoin
+          - sensor.bitcoin_gold
+          - sensor.binance_coin
+          - sensor.ethereum
+      - type: entities
+        title: bitcoin
+        entities:
+          - sensor.market_price
+          - sensor.exchange_rate_1_btc
+          - sensor.trade_volume
 
 ###############################
 #         Living Room         #
