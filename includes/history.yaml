@@ -70,3 +70,12 @@ include:
     - sensor.speedtest_ping
     - sensor.speedtest_download
     - sensor.speedtest_upload
+    # Crypto 
+    - sensor.bitcoin
+    - sensor.bitcoin_gold
+    - sensor.binance_coin
+    - sensor.ethereum
+    # Bitcoin
+    - sensor.market_price
+    - sensor.exchange_rate_1_btc
+    - sensor.trade_volume
