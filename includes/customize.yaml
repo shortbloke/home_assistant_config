@@ -90,19 +90,19 @@
     light.12204702807d3a1b7075:
       friendly_name: "Spot Light 1"
       icon: mdi:spotlight-beam
-      hiiden: true
+      hidden: true
     light.12204702807d3a252d9b:
       friendly_name: "Spot Light 2"
       icon: mdi:spotlight-beam
-      hiiden: true
+      hidden: true
     light.12204702807d3a252c69:
       friendly_name: "Spot Light 3"
       icon: mdi:spotlight-beam
-      hiiden: true
+      hidden: true
     light.12204702ecfabc20a0a1:
       friendly_name: "Spot Light 4"
       icon: mdi:spotlight-beam
-      hiiden: true
+      hiden: true
 
 #### Scenes ####
     scene.bright:
