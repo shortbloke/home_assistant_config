@@ -63,7 +63,12 @@ frontend:
 logger:
   default: warn
   logs:
-    homeassistant.components.dyson: info
+    # homeassistant.components.dyson: info
+    homeassistant.components.zha: info
+    # bellows.ezsp: debug
+    # bellows.uart: debug
+    # zigpy.zdo: debug
+    # zigpy.application: debug
   #   homeassistant.components.mqtt: debug
   # #   homeassistant.components.light: info
   #   homeassistant.components.dyson: debug
@@ -108,7 +113,7 @@ fan:
 
 ####################################################
 #                                                  #
-#            RFXtrx433 & Z-Wave Devices            #
+#        RFXtrx433, Z-Wave Devices & ZigBee        #
 #                                                  #
 ####################################################
 rfxtrx:
@@ -117,6 +122,10 @@ rfxtrx:
   dummy: False
 zwave:
   usb_path: /dev/ttyACM0
+zha:
+  usb_path: /dev/ttyAMA0
+  database_path: zigbee.db
+  baudrate: 57600
 
 ####################################################
 #                                                  #
