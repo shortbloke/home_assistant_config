@@ -309,11 +309,11 @@
       above: 3
       entity_id:
         - !secret sensor_hibp_email7
-        - !secret sensor_hibp_email8
     - platform: numeric_state
       above: 4
       entity_id:
         - !secret sensor_hibp_email1
+        - !secret sensor_hibp_email8
   action:
     service: notify.ios_martins_iphone
     data_template:
