@@ -407,3 +407,19 @@
       icon: mdi:cloud-download
     sensor.speedtest_upload:
       icon: mdi:cloud-upload
+
+### ZigBee ###
+    binary_sensor.zha_025370bc_1_6:
+      icon: mdi:door
+      friendly_name: "Front Door"
+    sensor.lumi_lumisens_02378aca_1_1029:
+      icon: mdi:water-percent
+      friendly_name: "ZigBee TH1 - Humidty"
+    sensor.zha_02378aca_1_1026:
+      friendly_name: "ZigBee TH1 - Temperature"
+    zha.zha_lumi_lumisensor_ht_02378aca:
+      icon: mdi:cellphone-wireless
+      friendly_name: "ZigBee TH1"
+    zha.zha_lumi_lumisensor_magnetaq2_025370bc:
+      icon: mdi:cellphone-wireless
+      friendly_name: "Zigbee - Front Door"
