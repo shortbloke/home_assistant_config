@@ -24,7 +24,7 @@ _Since moving to [Hass.IO](https://www.home-assistant.io/hassio/) this process h
 ## Power Control of Mining Rigs
 
 - Monitoring power consumption of TP Link HS110 sockets with mining rigs connected. To act as final watchdog reset should mining software not recover the system or the system is locked up.
-  - Send a notification if power consuption lower than threshold for 20mins.
+  - Send a notification if power consumption lower than threshold for 20mins.
   - Power off socket, wait 1 min then power on again, if power consumption lower than threshold for 30mins. 
 
 ## Home Assistant Resource Usage Alerts

@@ -14,7 +14,8 @@ Each commit triggers a deployment to the latest home assistant version with Pyth
 - [Raspberry Pi 3 Model B+](https://amzn.to/2DabgWG) - Core control system, running on [Hass.io](https://www.home-assistant.io/hassio/).
 - [RFXCOM RFXtrx433E](http://www.rfxcom.com/store/Transceivers/14103) - Enables RX/TX of 433Mhz signals over a range of protocols.
   - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security, if you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
-- [Aeotec Z-Stick Gen5 (ZW090)](http://amzn.to/2wrrgwI) - Provides interface to Z-Wave Mesh Network devices.
+- [Aeotec Z-Stick Gen5 (ZW090)](https://amzn.to/2wrrgwI) - Provides interface to Z-Wave Mesh Network devices.
+- [Elelabs ZigBee Shield](https://elelabs.com/products/elelabs_zigbee_shield.html) - Provides support for Zigbee devices and sensors.
 
 ## More Information
 

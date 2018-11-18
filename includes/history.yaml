@@ -79,3 +79,7 @@ include:
     - sensor.market_price
     - sensor.exchange_rate_1_btc
     - sensor.trade_volume
+    # ZigBee
+    - binary_sensor.zha_025370bc_1_6 # Magnetic
+    - sensor.lumi_lumisens_02378aca_1_1029 # Humidity
+    - sensor.zha_02378aca_1_1026 # Temperature
