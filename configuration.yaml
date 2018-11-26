@@ -195,6 +195,19 @@ emulated_hue:
     scene.movie:
       name: "Mood movie"
       hidden: false
+    group.living_room_lights:
+      name: "Living room lights"
+      hidden: false
+    group.conservatory_lights:
+      name: "Conservatory lights"
+      hidden: false
+    group.morgans_room_lights:
+      name: "Morgans lights"
+      hidden: false
+    group.frasers_room_lights:
+      name: "Frasers lights"
+      hidden: false
+    
 
 ####################################################
 #                                                  #

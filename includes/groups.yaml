@@ -175,7 +175,6 @@ conservatory_lights:
     - switch.lwrf_conservatory_1
     - switch.lwrf_conservatory_2
     - switch.lwrf_conservatory_3
-    - light.flux_mini
 
 conservatory_sockets:
   name: Conservatory Switches
