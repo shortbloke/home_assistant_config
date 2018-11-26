@@ -4,30 +4,37 @@
     switch.lwrf_conservatory_1:
       friendly_name: "Ceiling Lights"
       emulated_hue_name: "Conservatory ceiling lights"
+      hidden: false
       icon: mdi:ceiling-light
     switch.lwrf_conservatory_2:
       friendly_name: "Window Lamp"
       emulated_hue_name: "Conservatory window lamp"
+      hidden: false
       icon: mdi:lamp
     switch.lwrf_livingroom_standard_lamp:
       friendly_name: "Standard Lamp"
       emulated_hue_name: "Living room lamp"
+      hidden: false
       icon: mdi:floor-lamp
     switch.lwrf_displaycabinetlight:
       friendly_name: "Display Cabinet Light"
       emulated_hue_name: "Display cabinet light"
+      hidden: false
       icon: mdi:lightbulb
     switch.lwrf_diningroom_rennie_mac_lamp:
       friendly_name: "Rennie Mac Lamp"
       emulated_hue_name: "Rennie Mac Lamp"
+      hidden: false
       icon: mdi:lamp
     switch.lwrf_waxburner:
       friendly_name: "Wax Burner"
       emulated_hue_name: "Wax Burner"
+      hidden: false
       icon: mdi:radiator
     switch.lwrf_hall_socket_1:
       friendly_name: "Twig Lights"
       emulated_hue_name: "Twig Lights"
+      hidden: false
       icon: mdi:lamp
     switch.lwrf_hall_socket_2:
       friendly_name: "Air Freshener"
@@ -55,9 +62,11 @@
 #### Flamerite Fire Switches ####
     switch.flamerite_power:
       friendly_name: "Fire"
+      hidden: false
       icon: mdi:power
     switch.flamerite_heat:
       friendly_name: "Fire Heat"
+      hidden: false
       icon: mdi:fire
     light.flamerite_dimmer1:
       friendly_name: "Dimmer 1"
