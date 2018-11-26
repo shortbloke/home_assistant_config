@@ -170,10 +170,10 @@ emulated_hue:
       name: "Morgans Main Bedroom Light"
       hidden: false
     switch.flamerite_power:
-      friendly_name: "Fire"
+      name: "Fire"
       hidden: false
     switch.flamerite_heat:
-      friendly_name: "Fire Heat"
+      name: "Fire Heat"
       hidden: false
     light.wifi_ufo_1:
       name: "Desk Lights"
