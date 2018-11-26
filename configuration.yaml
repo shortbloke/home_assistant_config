@@ -134,7 +134,7 @@ zha:
 ####################################################
 emulated_hue:
   listen_port: 80
-  expose_by_default: true
+  expose_by_default: false
   exposed_domains:
     - light
     - scene
