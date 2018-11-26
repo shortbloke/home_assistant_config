@@ -134,80 +134,58 @@ zha:
 ####################################################
 emulated_hue:
   listen_port: 80
-  expose_by_default: false
+  expose_by_default: true
   entities:
     switch.lwrf_conservatory_1:
       name: "Conservatory ceiling lights"
-      hidden: false
     switch.lwrf_conservatory_2:
       name: "Conservatory window lamp"
-      hidden: false
     switch.lwrf_livingroom_standard_lamp:
       name: "Living room lamp"
-      hidden: false
     switch.lwrf_displaycabinetlight:
       name: "Display cabinet light"
-      hidden: false
     switch.lwrf_diningroom_rennie_mac_lamp:
       name: "Rennie Mac Lamp"
-      hidden: false
     switch.lwrf_waxburner:
       name: "Wax Burner"
-      hidden: false
     switch.lwrf_hall_socket_1:
       name: "Twig Lights"
-      hidden: false
     switch.lwrf_hall_socket_2:
       name: "Hall Air Freshener"
-      hidden: false
     light.lwrf_diningroom_main:
-      name: "Dining room lights"
-      hidden: false
+      name: "Dining room table lights"
     light.lwrf_livingroom_main:
       name: "Living room downlights"
-      hidden: false
     light.lwrf_morgan_main:
       name: "Morgans Main Bedroom Light"
-      hidden: false
     switch.flamerite_power:
       name: "Fire"
-      hidden: false
     switch.flamerite_heat:
       name: "Fire Heat"
-      hidden: false
     light.wifi_ufo_1:
       name: "Desk Lights"
     light.wifi_ufo_2:
       name: "Window Lights"
-      hidden: false
     light.wifi_ufo_3:
       name: "Rear wall lights"
-      hidden: false
     light.wifi_ufo_4:
       name: "Bed Lights"
-      hidden: false
     scene.bright:
       name: "Mood bright"
-      hidden: false
     scene.comfortable:
       name: "Mood comfortable"
-      hidden: false
     scene.movie:
       name: "Mood movie"
-      hidden: false
     group.living_room_lights:
       name: "Living room lights"
-      hidden: false
+    group.dining_room_lights:
+      name: "Dining room lights"
     group.conservatory_lights:
       name: "Conservatory lights"
-      hidden: false
     group.morgans_room_lights:
       name: "Morgans lights"
-      hidden: false
     group.frasers_room_lights:
       name: "Frasers lights"
-      hidden: false
-    
 
 ####################################################
 #                                                  #
