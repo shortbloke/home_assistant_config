@@ -32,6 +32,3 @@
     192.168.200.34:
       name: wifi_ufo_4
       mode: "rgbw"
-    # 192.168.200.170:
-    #   name: flux_mini
-    #   mode: "rgbw"
