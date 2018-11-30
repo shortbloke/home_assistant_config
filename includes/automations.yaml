@@ -368,7 +368,7 @@
   alias: Garage Fan Turn On When Hot
   trigger:
     - platform: numeric_state
-      entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
+      entity_id: sensor.zha_02378aca_1_1026
       above: 25
       for:
         minutes: 10
@@ -380,7 +380,7 @@
   alias: Garage Fan Turn Off When Not Hot
   trigger:
     - platform: numeric_state
-      entity_id: sensor.aeotec_zw100_multisensor_6_temperature_2
+      entity_id: sensor.zha_02378aca_1_1026
       below: 25
       for:
         minutes: 10

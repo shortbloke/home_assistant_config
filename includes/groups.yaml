@@ -34,7 +34,7 @@ miners:
   view: yes
   entities:
     - group.miner01
-    - group.Aeotec_Multi_2
+    - sensor.zha_02378aca_1_1026 # Zigbee Temperature
     - group.automation_mining
     - group.garage_fan
     - group.crypto
@@ -130,6 +130,7 @@ garage_view:
   entities:
     - group.miner01
     - group.Aeotec_Multi_2
+    - sensor.zha_02378aca_1_1026 # Zigbee Temperature
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
     - group.nest_garage_camera
@@ -443,7 +444,7 @@ Aeotec_Multi_1:
     - sensor.aeotec_zw100_multisensor_6_relative_humidity
 
 Aeotec_Multi_2:
-  name: Mining - Sensor
+  name: Garage - Sensor
   entities:
     - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
     - sensor.aeotec_zw100_multisensor_6_temperature_2
