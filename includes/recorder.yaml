@@ -92,6 +92,8 @@ include:
     - binary_sensor.zha_025370bc_1_6 # Magnetic
     - sensor.lumi_lumisens_02378aca_1_1029 # Humidity
     - sensor.zha_02378aca_1_1026 # Temperature
+    - zha.zha_lumi_lumisensor_ht_02378aca # Temp/Humidity sensor online status
+    - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status
   ############################
   # Used by logbook.yaml     #
   # Not used in History.yaml #
