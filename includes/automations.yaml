@@ -444,7 +444,6 @@
 - id: a_garage_light_on_alert
   alias: Garage Light on Alert
   trigger:
-  trigger:
     - platform: event
       event_type: timer.finished
       event_data:
