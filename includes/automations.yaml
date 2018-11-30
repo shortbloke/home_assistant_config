@@ -419,7 +419,7 @@
   trigger:
     - platform: homeassistant
       event: start
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_luminance_2
       above: 200
   action:
