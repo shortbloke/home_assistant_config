@@ -443,7 +443,7 @@
     - platform: event
       event_type: timer.finished
       event_data:
-        entity_id: timer.timer.garage_light_on_timer
+        entity_id: timer.garage_light_on_timer
   condition:
     condition: and
     conditions:
