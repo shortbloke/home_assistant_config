@@ -53,11 +53,9 @@
       to: '8'
   action:
     - service: timer.start
-      data_template:
-        entity_id: timer.ironing_room_motion_timer
+      entity_id: timer.ironing_room_motion_timer
     - service: timer.start
-      data_template: 
-        entity_id: timer.ironing_room_motion_timer_reset_poll
+      entity_id: timer.ironing_room_motion_timer_reset_poll
 
 # Second watchdog, reset_poll timer expires and motion sensor state is still 8, then there has been constant movement and we should reset the timers
 - id: a_ironing_room_timer_reset
@@ -72,11 +70,9 @@
       value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','8') %}true{% endif %}"
   action:
     - service: timer.start
-      data_template:
-        entity_id: timer.ironing_room_motion_timer
+      entity_id: timer.ironing_room_motion_timer
     - service: timer.start
-      data_template:
-        entity_id: timer.ironing_room_motion_timer_reset_poll
+      entity_id: timer.ironing_room_motion_timer_reset_poll
 
 # Trigger: Change in any properties of the smart plug.
 # Condition 1: Only trigger if drawing more than 10W AND
@@ -426,8 +422,7 @@
       above: 200
   action:
     - service: timer.start
-      data_template:
-        entity_id: timer.garage_light_on_timer
+      entity_id: timer.garage_light_on_timer
 
 # Reset the garage light timer each time motion is detected. States goes to 8
 # If stays at 8, for duration of timer, alert will trigger.
@@ -439,8 +434,7 @@
       to: '8'
   action:
     - service: timer.start
-      data_template:
-        entity_id: timer.garage_light_on_timer
+      entity_id: timer.garage_light_on_timer
 
 # Send alert if timer expires, light is on, and no motion currently
 - id: a_garage_light_on_alert
