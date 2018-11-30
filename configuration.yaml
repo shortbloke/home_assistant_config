@@ -277,15 +277,15 @@ tts:
 timer:
   ironing_room_motion_timer: 
     name: "Ironing Room Motion Timer"
-    icon: mdi:close-circle
+    icon: mdi:timer
     duration: '00:30:00'
   ironing_room_motion_timer_reset_poll:
     name: "Ironing Room Motion Timer Reset Poll"
-    icon: mdi:close-circle
+    icon: mdi:timer
     duration: '00:05:00'
   garage_light_on_timer:
     name: "Garage Light on Timer"
-    icon: mdi:close-circle
+    icon: mdi:timer
     duration: '00:10:00'
 
 ####################################################

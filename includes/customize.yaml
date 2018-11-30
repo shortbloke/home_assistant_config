@@ -366,12 +366,6 @@
     weather.yweather:
       friendly_name: "Local Weather Forecast"
 
-### Timers ###
-    timer.ironing_room_motion_timer:
-      icon: mdi:timer
-    timer.ironing_room_motion_timer_reset_poll:
-      icon: mdi:timer
-
 ### Speedtest###
     sensor.speedtest_download:
       icon: mdi:cloud-download
