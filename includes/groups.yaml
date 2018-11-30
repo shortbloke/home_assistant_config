@@ -556,5 +556,4 @@ zigbee:
 garage_timers:
   name: Garage Room Timers
   entities:
-    - timer.garage_motion_timer
-    - timer.garage_motion_timer_reset_poll
+    - timer.garage_light_on_timer
