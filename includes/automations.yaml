@@ -459,3 +459,7 @@
       data:
         title: "Garage Alert!"
         message: "Light left on"
+    - service: notify.ios_michelles_iphone
+      data:
+        title: "Garage Alert!"
+        message: "Light left on"
