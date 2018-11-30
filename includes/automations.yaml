@@ -415,7 +415,7 @@
 
 # Start a timer when Garage Light goes on. Light level above 200 lux
 - id: a_garage_light_on_timer
-  alais: Garage Light On detected
+  alias: Garage Light On detected
   trigger:
     - platform: homeassistant
       event: start
@@ -442,7 +442,7 @@
 
 # Send alert if timer expires, light is on, and no motion currently
 - id: a_garage_light_on_alert
-  alais: Garage Light on Alert
+  alias: Garage Light on Alert
   trigger:
   trigger:
     - platform: event
