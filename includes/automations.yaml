@@ -80,7 +80,7 @@
 
 # Trigger: Change in any properties of the smart plug.
 # Condition 1: Only trigger if drawing more than 10W AND
-# Condition 2: Only triggered if no motion detected for 10 mins, using watchdog timer.
+# Condition 2: Only triggered if no motion detected for 30 mins, using watchdog timer.
 - id: a_IronOn_2
   alias: Ironing Room No Motion Turn off Irons Left
   trigger:
@@ -412,3 +412,55 @@
       data_template:
         addon: 7be23ff5_dropbox_sync
         input: {"command":"upload"}
+
+# Start a timer when Garage Light goes on. Light level above 200 lux
+- id: a_garage_light_on_timer
+  alais: Garage Light On detected
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_luminance_2
+      above: 200
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: timer.garage_light_on_timer
+
+# Reset the garage light timer each time motion is detected. States goes to 8
+# If stays at 8, for duration of timer, alert will trigger.
+- id: a_garage_motion_reset_light_on_timer
+  alias: Garage Light on Timer reset
+  trigger: 
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar_2
+      to: '8'
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: timer.garage_light_on_timer
+
+# Send alert if timer expires, light is on, and no motion currently
+- id: a_garage_light_on_alert
+  alais: Garage Light on Alert
+  trigger:
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.timer.garage_light_on_timer
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.aeotec_zw100_multisensor_6_luminance_2
+        above: 200
+      - condition: template
+        value_template: "{% if is_state('timer.garage_light_on_timer', 'idle') %}true{% endif %}"
+      - condition: template
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar_2','0') %}true{% endif %}"
+  action:
+    - service: notify.ios_martins_iphone
+      data:
+        title: "Garage Alert!"
+        message: "Light left on"

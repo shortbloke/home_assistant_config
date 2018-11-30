@@ -135,6 +135,7 @@ garage_view:
     - sensor.temp_humid_3_humidity
     - group.nest_garage_camera
     - group.garage_fan
+    - group.garage_timers
 
 family_view:
   name: Family
@@ -166,6 +167,7 @@ automation_view:
     - group.automation_system
     - group.automation_powercontrol
     - group.automation_mining
+    - group.automation_garage_light
     - group.alarm
 
 
@@ -393,8 +395,6 @@ automation_powercontrol:
     - automation.ironing_room_no_motion_turn_off_magpie_iron
     - automation.loft_fan_turn_on_when_hot
     - automation.loft_fan_turn_off_when_not_hot
-    - automation.garage_fan_turn_on_when_hot
-    - automation.garage_fan_turn_off_when_not_hot
     - automation.turn_on_air_freshener_socket_in_the_morning
     - automation.turn_off_air_freshener_socket_at_night
 
@@ -410,6 +410,14 @@ automation_mining:
   entities:
     - automation.miner01_power_watcher
     - automation.miner01_low_power_reboot
+    - automation.garage_fan_turn_on_when_hot
+    - automation.garage_fan_turn_off_when_not_hot
+
+automation_garage_light:
+  name: Garage Light
+  entities: 
+    - automation.garage_light_on_timer_reset
+    - automation.garage_light_on_alert
 
 tracked_devices:
   name: Tracked Devices
@@ -544,3 +552,9 @@ zigbee:
     - sensor.zha_02378aca_1_1026 # Temperature
     - zha.zha_lumi_lumisensor_ht_02378aca # Temp/Humidity sensor
     - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor
+
+garage_timers:
+  name: Garage Room Timers
+  entities:
+    - timer.garage_motion_timer
+    - timer.garage_motion_timer_reset_poll
