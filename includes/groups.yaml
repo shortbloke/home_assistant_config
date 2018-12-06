@@ -134,6 +134,7 @@ garage_view:
     - sensor.lumi_lumisens_02378aca_1_1029 # Zigbee TH1 Humidity
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
+    - switch.sonoff_garage_light
     - group.nest_garage_camera
     - group.garage_fan
     - group.garage_timers
