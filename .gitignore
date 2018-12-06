@@ -42,4 +42,4 @@ deps
 .cloud
 .storage/*
 emulated_hue_ids.json
-!/node-red
+node-red/*
