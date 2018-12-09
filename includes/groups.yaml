@@ -387,6 +387,7 @@ automation_utilities:
 automation_powercontrol:
   name: Power Control
   entities:
+    - automation.turn_on_christmas_lights_2_hours_before_sunset
     - automation.turn_on_lights_in_the_morning_and_at_sunset
     - automation.turn_off_morning_lights
     - automation.ironing_room_motion_detected

@@ -11,7 +11,8 @@
       friendly_name: "Standard Lamp"
       icon: mdi:floor-lamp
     switch.lwrf_displaycabinetlight:
-      friendly_name: "Display Cabinet Light"
+      # friendly_name: "Display Cabinet Light"
+      friendly_name: "Christmas Tree Lights"
       icon: mdi:lightbulb
     switch.lwrf_diningroom_rennie_mac_lamp:
       friendly_name: "Rennie Mac Lamp"
@@ -20,11 +21,14 @@
       friendly_name: "Wax Burner"
       icon: mdi:radiator
     switch.lwrf_hall_socket_1:
-      friendly_name: "Twig Lights"
+      # friendly_name: "Twig Lights"
+      friendly_name: "Outside Lights"
       icon: mdi:lamp
     switch.lwrf_hall_socket_2:
-      friendly_name: "Air Freshener"
-      icon: mdi:radiator
+      # friendly_name: "Air Freshener"
+      # icon: mdi:radiator
+      friendly_name: "Twig Lights"
+      icon: mdi:lamp
     switch.lwrf_morgan_ac:
       friendly_name: "Morgan A/C"
       icon: mdi:air-conditioner
