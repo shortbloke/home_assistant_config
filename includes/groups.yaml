@@ -58,6 +58,7 @@ conservatory_view:
   entities:
     - sensor.portable_sensor_1_temperature
     - sensor.temp_humid_1_humidity
+    - binary_sensor.zha_0275335b_1_6
     - group.conservatory_lights
     - group.conservatory_sockets
     - media_player.conservatory
@@ -132,6 +133,7 @@ garage_view:
     - group.Aeotec_Multi_2
     - sensor.zha_02378aca_1_1026 # Zigbee TH1 Temperature
     - sensor.lumi_lumisens_02378aca_1_1029 # Zigbee TH1 Humidity
+    - binary_sensor.zha_02753210_1_6 # Garage Interior Door Magetic Sensor
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
     - switch.sonoff_garage_light
@@ -550,11 +552,15 @@ bitcoin:
 zigbee:
   name: Zigbee Sensors
   entities:
-    - binary_sensor.zha_025370bc_1_6 # Magnetic
+    - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
+    - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
+    - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
     - sensor.lumi_lumisens_02378aca_1_1029 #Humidity
     - sensor.zha_02378aca_1_1026 # Temperature
     - zha.zha_lumi_lumisensor_ht_02378aca # Temp/Humidity sensor online status
-    - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status
+    - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status Front Door
+    - zha.zha_lumi_lumisensor_magnetaq2_0275335b # Magnetic sensor online status Back Door
+    - zha.zha_lumi_lumisensor_magnetaq2_02753210 # Magnetic sensor online status Garage Interior Door
 
 garage_timers:
   name: Garage Room Timers

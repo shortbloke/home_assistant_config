@@ -64,7 +64,7 @@ logger:
   default: warn
   logs:
     # homeassistant.components.dyson: info
-    homeassistant.components.zha: info
+    homeassistant.components.zha: debug
     # bellows.ezsp: debug
     # bellows.uart: debug
     # zigpy.zdo: debug
