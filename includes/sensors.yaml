@@ -6,9 +6,6 @@
 # Nest
 - platform: nest
 
-# Dyson
-- platform: dyson
-
 # Raspberry Pi System Information
 - platform: systemmonitor
   resources:
