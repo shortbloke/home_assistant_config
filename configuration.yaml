@@ -101,15 +101,15 @@ camera:
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-dyson:
-  username: !secret dyson_username
-  password: !secret dyson_password
-  language: GB
-  devices: 
-    - device_id: !secret dyson_fan1_serial
-      device_ip: !secret dyson_fan1_ip_address
-fan:
-  - platform: dyson
+# dyson:
+#   username: !secret dyson_username
+#   password: !secret dyson_password
+#   language: GB
+#   devices: 
+#     - device_id: !secret dyson_fan1_serial
+#       device_ip: !secret dyson_fan1_ip_address
+# fan:
+#   - platform: dyson
 
 ####################################################
 #                                                  #
