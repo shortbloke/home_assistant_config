@@ -73,7 +73,7 @@
       icon: mdi:led-strip
 
 #### Tuya Lights
-    light.12204702807d3a1b7075:
+    light.2424806784f3eb2103c8:
       friendly_name: "Spot Light 1"
       icon: mdi:spotlight-beam
     light.12204702807d3a252d9b:
