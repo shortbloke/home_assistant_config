@@ -8,8 +8,8 @@
       offset: '-01:00:00'
   action:
     - service: homeassistant.turn_on
-      # entity_id: switch.lwrf_hall_socket_1 # Twigs
-      entity_id: switch.lwrf_hall_socket_2 # Twigs
+      entity_id: switch.lwrf_hall_socket_1 # Twigs
+      # entity_id: switch.lwrf_hall_socket_2 # Twigs
 
 - id: a_morning_lights
   alias: Turn off morning lights
@@ -21,8 +21,8 @@
       above: 10.0
   action:
     - service: homeassistant.turn_off
-      # entity_id: switch.lwrf_hall_socket_1 # Twigs
-      entity_id: switch.lwrf_hall_socket_2 # Twigs
+      entity_id: switch.lwrf_hall_socket_1 # Twigs
+      # entity_id: switch.lwrf_hall_socket_2 # Twigs
 
 - id: a_xmas_lights
   alias: Turn on Christmas lights 2 hours before sunset
@@ -34,23 +34,23 @@
     - service: homeassistant.turn_on
       entity_id: switch.lwrf_hall_socket_1 # Outside Lights
 
-# - id: a_daytime_air_freshener_on
-#   alias: Turn on air freshener socket in the morning
-#   trigger:
-#     - platform: time
-#       at: "06:30:00"
-#   action:
-#     - service: homeassistant.turn_on
-#       entity_id: switch.lwrf_hall_socket_2 # Air Freshener
+- id: a_daytime_air_freshener_on
+  alias: Turn on air freshener socket in the morning
+  trigger:
+    - platform: time
+      at: "06:30:00"
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.lwrf_hall_socket_2 # Air Freshener
 
-# - id: a_daytime_air_freshener_off
-#   alias: Turn off air freshener socket at night
-#   trigger:
-#     - platform: time
-#       at: "23:00:00"
-#   action:
-#     - service: homeassistant.turn_off
-#       entity_id: switch.lwrf_hall_socket_2 # Air Freshener
+- id: a_daytime_air_freshener_off
+  alias: Turn off air freshener socket at night
+  trigger:
+    - platform: time
+      at: "23:00:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.lwrf_hall_socket_2 # Air Freshener
 
 # Watchdog timer for motion within ironing room. Uses 2 timers to ensure constant state is detected.
 # Trigger 1: Goes to idle after 30 mins from start of HA (if not reset)
@@ -423,7 +423,7 @@
         addon: 7be23ff5_dropbox_sync
         input: {"command":"upload"}
 
-# Start a timer when Garage Light goes on. Light level above 200 lux
+# Start a timer when Garage Light goes on i.e. Light level above 200 lux. And when HA starts up.
 - id: a_garage_light_on_timer
   alias: Garage Light On detected
   trigger:
@@ -440,7 +440,9 @@
 # If stays at 8, for duration of timer, alert will trigger.
 - id: a_garage_motion_reset_light_on_timer
   alias: Garage Light on Timer reset
-  trigger: 
+  trigger:
+    - platform: homeassistant
+      event: start
     - platform: state
       entity_id: sensor.aeotec_zw100_multisensor_6_burglar_2
       to: '8'
@@ -470,8 +472,17 @@
     - service: notify.ios_martins_iphone
       data:
         title: "Garage Alert!"
-        message: "Light left on"
-    - service: notify.ios_michelles_iphone
+        message: "Light left on. Turning off."
+    - service: homeassistant.turn_off
+      entity_id: switch.sonoff_garage_light
+
+- id: a_mqtt_state_sync
+  alias: "Sonoff MQTT State Sync"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
       data:
-        title: "Garage Alert!"
-        message: "Light left on"
+        topic: "sonoffs/cmnd/power"
+        payload: "" 
