@@ -101,7 +101,7 @@ boys_rooms_view:
     - sensor.portable_sensor_5_temperature
     - sensor.temp_humid_5_humidity
     - group.morgans_room_lights
-    - group.morgans_room_sockets
+    # - group.morgans_room_sockets
     - group.frasers_room_lights
     - sensor.portable_sensor_4_temperature
     - sensor.temp_humid_4_humidity
@@ -267,10 +267,10 @@ morgans_room_lights:
     - light.wifi_ufo_4
 
 
-morgans_room_sockets:
-  name: Morgans Sockets
-  entities:
-    - switch.lwrf_morgan_ac
+# morgans_room_sockets:
+#   name: Morgans Sockets
+#   entities:
+    # - switch.lwrf_morgan_ac
 
 frasers_room_lights:
   name: Frasers Lights

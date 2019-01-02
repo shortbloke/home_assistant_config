@@ -95,7 +95,7 @@ views:
               - light.wifi_ufo_2
               - light.wifi_ufo_3
               - light.wifi_ufo_4
-              - switch.lwrf_morgan_ac
+              # - switch.lwrf_morgan_ac
 
 ###############################
 #           Security          #

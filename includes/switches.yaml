@@ -15,8 +15,8 @@
       name: lwrf_waxburner
     0a14000df50db80d000070:
       name: lwrf_diningroom_rennie_mac_lamp
-    0a14000403922105010070:
-      name: lwrf_morgan_ac
+    # 0a14000403922105010070:
+    #   name: lwrf_morgan_ac
     0a14000803922301010080:
       name: lwrf_hall_socket_1
     0a14001303922302010080:
