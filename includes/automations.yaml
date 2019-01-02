@@ -9,7 +9,6 @@
   action:
     - service: homeassistant.turn_on
       entity_id: switch.lwrf_hall_socket_1 # Twigs
-      # entity_id: switch.lwrf_hall_socket_2 # Twigs
 
 - id: a_morning_lights
   alias: Turn off morning lights
@@ -22,17 +21,6 @@
   action:
     - service: homeassistant.turn_off
       entity_id: switch.lwrf_hall_socket_1 # Twigs
-      # entity_id: switch.lwrf_hall_socket_2 # Twigs
-
-- id: a_xmas_lights
-  alias: Turn on Christmas lights 2 hours before sunset
-  trigger:
-    - platform: sun
-      event: sunset
-      offset : '-02:00:00'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: switch.lwrf_hall_socket_1 # Outside Lights
 
 - id: a_daytime_air_freshener_on
   alias: Turn on air freshener socket in the morning
