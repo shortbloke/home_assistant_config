@@ -283,17 +283,16 @@
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     switch.tp_hs110_6:
-      friendly_name: "Mining Rig Fans"
-      #icon: mdi:power-socket-uk
-      icon: mdi:fan
+      friendly_name: "Unused-03"
+      icon: mdi:power-socket-uk
     switch.tp_hs110_7:
       friendly_name: "HP Z640"
       icon: mdi:power-socket-uk
     switch.tp_hs110_9:
-      friendly_name: "Miner01"
+      friendly_name: "Unused-01"
       icon: mdi:power-socket-uk
     switch.tp_hs110_8:
-      friendly_name: "Miner02"
+      friendly_name: "Unused-01"
       icon: mdi:power-socket-uk
 
 ### Sonoff MQTT switches ###

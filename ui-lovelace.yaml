@@ -147,70 +147,6 @@ views:
           - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
 
 ###############################
-#            Miners           #
-###############################
-  - id: 2  # Automatically created id
-    title: Miners
-    cards:
-      - id: 49d0ec2e235a47a4a81e3202c33f8ca4  # Automatically created id
-        type: entities
-        title: Miner01
-        entities:
-          - switch.tp_hs110_9
-          - sensor.tp_hs110_9_power
-      - id: 5a9818cdd1904fdaba1f0406687a7fce  # Automatically created id
-        type: entities
-        title: Mining - Sensor
-        entities:
-          - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
-          - sensor.aeotec_zw100_multisensor_6_temperature_2
-          - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
-          - sensor.aeotec_zw100_multisensor_6_burglar_2
-          - sensor.aeotec_zw100_multisensor_6_luminance_2
-          - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-      - id: bad9cee8f1b546a08943f490a1aaf38e  # Automatically created id
-        type: entities
-        title: Crypto Mining Monitoring
-        entities:
-          - automation.miner01_power_watcher
-          - automation.miner01_low_power_reboot
-      - id: b28a2b434c704d09be36d114ce51ecf6  # Automatically created id
-        type: entities
-        title: Mining Rig Fans
-        entities:
-          - switch.tp_hs110_6
-          - sensor.tp_hs110_6_power
-      - id: e89d6046b3d849c0aa4dd22773bc62ae  # Automatically created id
-        type: history-graph
-        title: Power Usage
-        entities:
-          - entity: sensor.tp_hs110_9_power
-            name: Miner01
-          - entity: sensor.tp_hs110_6_power
-            name: Fans
-      - id: 2a36f4c72e0a43eda55e37630ca7167a  # Automatically created id
-        type: history-graph
-        title: Temperatures
-        entities:
-          - entity: sensor.aeotec_zw100_multisensor_6_temperature_2
-            name: Rig Area
-          - entity: sensor.portable_sensor_3_temperature
-            name: Room Temp
-      - type: entities
-        title: Crypto Currencies
-        entities:
-          - sensor.bitcoin
-          - sensor.bitcoin_gold
-          - sensor.binance_coin
-          - sensor.ethereum
-      - type: entities
-        title: bitcoin
-        entities:
-          - sensor.market_price
-          - sensor.exchange_rate_1_btc
-          - sensor.trade_volume
-
-###############################
 #         Living Room         #
 ###############################
   - id: 3  # Automatically created id
@@ -522,22 +458,6 @@ views:
         entities:
           - sensor.portable_sensor_3_temperature
           - sensor.temp_humid_3_humidity
-      - id: fd461d422f494f7ebfc33b8b16964a64  # Automatically created id
-        type: entities
-        title: Miner01
-        entities:
-          - switch.tp_hs110_9
-          - sensor.tp_hs110_9_power
-      - id: 474664182d4d40c5a1c6981cd6e2306f  # Automatically created id
-        type: entities
-        title: Mining - Sensor
-        entities:
-          - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
-          - sensor.aeotec_zw100_multisensor_6_temperature_2
-          - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
-          - sensor.aeotec_zw100_multisensor_6_burglar_2
-          - sensor.aeotec_zw100_multisensor_6_luminance_2
-          - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
       - id: f943eccf1b1b42b689cd52001c94c9fd  # Automatically created id
         type: entities
         title: Garage Nest Camera
@@ -551,12 +471,6 @@ views:
       - id: 4b14cabcfe69463c96d5883ee6d73e89  # Automatically created id
         type: picture-entity
         entity: camera.garage
-      - id: 6faf580fba144c2394701b346ac4a875  # Automatically created id
-        type: entities
-        title: garage fan
-        entities:
-          - switch.tp_hs110_6
-          - sensor.tp_hs110_6_power
 
 ###############################
 #            Family           #
@@ -712,16 +626,8 @@ views:
           - automation.ironing_room_no_motion_turn_off_magpie_iron
           - automation.loft_fan_turn_on_when_hot
           - automation.loft_fan_turn_off_when_not_hot
-          - automation.garage_fan_turn_on_when_hot
-          - automation.garage_fan_turn_off_when_not_hot
           - automation.turn_on_air_freshener_socket_in_the_morning
           - automation.turn_off_air_freshener_socket_at_night
-      - id: cc3d9683224b47c0a3bb55a95d45a07c  # Automatically created id
-        type: entities
-        title: Crypto Mining Monitoring
-        entities:
-          - automation.miner01_power_watcher
-          - automation.miner01_low_power_reboot
       - id: 5d11d16c527143a59a05310ff7e7e69b  # Automatically created id
         type: entities
         title: Alarm

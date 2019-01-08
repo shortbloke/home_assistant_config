@@ -29,17 +29,6 @@ security_view:
     - group.alarm
     - group.motion_sensors
 
-miners:
-  name: Miners
-  view: yes
-  entities:
-    - group.miner01
-    - sensor.zha_02378aca_1_1026 # Zigbee Temperature
-    - group.automation_mining
-    - group.garage_fan
-    - group.crypto
-    - group.bitcoin
-
 living_room_view:
   name: Living Room
   view: yes
@@ -57,6 +46,8 @@ conservatory_view:
   view: yes
   entities:
     - sensor.portable_sensor_1_temperature
+    - sensor.zha_02378aca_1_1026 # Zigbee TH1 Temperature
+    - sensor.lumi_lumisens_02378aca_1_1029 # Zigbee TH1 Humidity
     - sensor.temp_humid_1_humidity
     - binary_sensor.zha_0275335b_1_6
     - group.conservatory_lights
@@ -129,16 +120,12 @@ garage_view:
   name: garage
   view: yes
   entities:
-    - group.miner01
     - group.Aeotec_Multi_2
-    - sensor.zha_02378aca_1_1026 # Zigbee TH1 Temperature
-    - sensor.lumi_lumisens_02378aca_1_1029 # Zigbee TH1 Humidity
     - binary_sensor.zha_02753210_1_6 # Garage Interior Door Magetic Sensor
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
     - switch.sonoff_garage_light
     - group.nest_garage_camera
-    - group.garage_fan
     - group.garage_timers
 
 family_view:
@@ -170,7 +157,6 @@ automation_view:
     - group.automation_utilities
     - group.automation_system
     - group.automation_powercontrol
-    - group.automation_mining
     - group.automation_garage_light
     - group.alarm
 
@@ -188,12 +174,6 @@ conservatory_sockets:
   entities:
     - switch.tp_hs110_7
     - sensor.tp_hs110_7_power
-
-miner01:
-  name: Miner01
-  entities:
-    - switch.tp_hs110_9
-    - sensor.tp_hs110_9_power
 
 fibaro:
   name: Fibaro Multisensor
@@ -410,14 +390,6 @@ automation_system:
     - automation.hapi_low_disk_space_alert
     - automation.hapi_low_memory_alert
 
-automation_mining:
-  name: Crypto Mining Monitoring
-  entities:
-    - automation.miner01_power_watcher
-    - automation.miner01_low_power_reboot
-    - automation.garage_fan_turn_on_when_hot
-    - automation.garage_fan_turn_off_when_not_hot
-
 automation_garage_light:
   name: Garage Light
   entities: 
@@ -515,12 +487,6 @@ motion_sensors:
     - sensor.aeotec_zw100_multisensor_6_burglar_2
     - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
 
-garage_fan:
-  name: Garage Fans
-  entities:
-    - switch.tp_hs110_6
-    - sensor.tp_hs110_6_power
-
 waze_travel:
   name: Waze Journeys
   entities:
@@ -534,20 +500,6 @@ internet:
     - sensor.speedtest_download
     - sensor.speedtest_upload
     - camera.broadbandquality
-
-crypto:
-  name: Crypto Currencies
-  entities:
-    - sensor.bitcoin
-    - sensor.bitcoin_gold
-    - sensor.binance_coin
-    - sensor.ethereum
-bitcoin:
-  name: Bitcoin
-  entities:
-    - sensor.market_price
-    - sensor.exchange_rate_1_btc
-    - sensor.trade_volume
 
 zigbee:
   name: Zigbee Sensors
