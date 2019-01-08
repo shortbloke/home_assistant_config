@@ -104,7 +104,7 @@ outside_view:
     - sensor.temp_humid_ext_1_temperature
     - sensor.temp_humid_ext_1_humidity
     - group.climate
-    - weather.yweather
+    - weather.dark_sky
 
 loft_view:
   name: loft

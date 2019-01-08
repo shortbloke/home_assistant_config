@@ -254,7 +254,8 @@ mqtt:
 climate:
   platform: nest
 weather:
-  - platform: yweather
+  - platform: darksky
+    api_key: !secret darksky_API_KEY
 sun:
 
 ####################################################
