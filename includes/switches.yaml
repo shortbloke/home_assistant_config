@@ -15,8 +15,6 @@
       name: lwrf_waxburner
     0a14000df50db80d000070:
       name: lwrf_diningroom_rennie_mac_lamp
-    # 0a14000403922105010070:
-    #   name: lwrf_morgan_ac
     0a14000803922301010080:
       name: lwrf_hall_socket_1
     0a14001303922302010080:
@@ -43,18 +41,6 @@
 - platform: tplink
   host: 192.168.200.25 # DHCP reservation
   name: tp_hs110_5
-- platform: tplink
-  host: 192.168.200.26 # DHCP reservation
-  name: tp_hs110_6
-- platform: tplink
-  host: 192.168.200.27 # DHCP reservation
-  name: tp_hs110_7
-- platform: tplink
-  host: 192.168.200.28 # DHCP reservation
-  name: tp_hs110_8
-- platform: tplink
-  host: 192.168.200.29 # DHCP reservation
-  name: tp_hs110_9
 
 - platform: mqtt
   name: "Sonoff Loft Fan Power"

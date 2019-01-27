@@ -51,7 +51,6 @@ conservatory_view:
     - sensor.temp_humid_1_humidity
     - binary_sensor.zha_0275335b_1_6
     - group.conservatory_lights
-    - group.conservatory_sockets
     - media_player.conservatory
     - media_player.kitchen
     - group.nest_camera_1
@@ -92,7 +91,6 @@ boys_rooms_view:
     - sensor.portable_sensor_5_temperature
     - sensor.temp_humid_5_humidity
     - group.morgans_room_lights
-    # - group.morgans_room_sockets
     - group.frasers_room_lights
     - sensor.portable_sensor_4_temperature
     - sensor.temp_humid_4_humidity
@@ -169,12 +167,6 @@ conservatory_lights:
     - switch.lwrf_conservatory_2
     - switch.lwrf_conservatory_3
 
-conservatory_sockets:
-  name: Conservatory Switches
-  entities:
-    - switch.tp_hs110_7
-    - sensor.tp_hs110_7_power
-
 fibaro:
   name: Fibaro Multisensor
   entities:
@@ -245,12 +237,6 @@ morgans_room_lights:
     - light.wifi_ufo_2
     - light.wifi_ufo_3
     - light.wifi_ufo_4
-
-
-# morgans_room_sockets:
-#   name: Morgans Sockets
-#   entities:
-    # - switch.lwrf_morgan_ac
 
 frasers_room_lights:
   name: Frasers Lights
@@ -369,7 +355,6 @@ automation_utilities:
 automation_powercontrol:
   name: Power Control
   entities:
-    - automation.turn_on_christmas_lights_2_hours_before_sunset
     - automation.turn_on_lights_in_the_morning_and_at_sunset
     - automation.turn_off_morning_lights
     - automation.ironing_room_motion_detected

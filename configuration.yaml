@@ -146,8 +146,7 @@ emulated_hue:
       name: "Living room lamp"
       hidden: false
     switch.lwrf_displaycabinetlight:
-      # name: "Display cabinet light"
-      name: "Christmas Tree Lights"
+      name: "Display cabinet light"
       hidden: false
     switch.lwrf_diningroom_rennie_mac_lamp:
       name: "Rennie Mac Lamp"
@@ -156,11 +155,9 @@ emulated_hue:
       name: "Wax Burner"
       hidden: false
     switch.lwrf_hall_socket_1:
-      # name: "Twig Lights"
       name: "Outside Lights"
       hidden: false
     switch.lwrf_hall_socket_2:
-      # name: "Hall Air Freshener"
       name: "Twig Lights"
       hidden: false
     light.lwrf_diningroom_main:

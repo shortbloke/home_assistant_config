@@ -28,10 +28,6 @@ include:
     - sensor.tp_hs110_3_power
     - sensor.tp_hs110_4_power
     - sensor.tp_hs110_5_power
-    - sensor.tp_hs110_6_power
-    - sensor.tp_hs110_7_power
-    - sensor.tp_hs110_8_power
-    - sensor.tp_hs110_9_power
     # RFX Environmental Sensors
     - sensor.portable_sensor_1_temperature
     - sensor.temp_humid_1_humidity
