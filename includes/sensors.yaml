@@ -46,12 +46,11 @@
       data_type:
         - Humidity
         - Temperature
-    0a5209efc0000258320189:  #Morgans Room
+    0a5209024d00026c2c0189:  #Morgans Room
       name: Temp_Humid_5
       data_type:
         - Humidity
         - Temperature
-    #0a52016dfc0400bd360079:  # On each battery replace it gets a new value
     0a520156c10400f93e0189:
       name: Temp_Humid_Ext_1
       data_type:
