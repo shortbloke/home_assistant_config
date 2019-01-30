@@ -41,6 +41,13 @@ living_room_view:
     - group.dining_room_lights
     - media_player.living_room
 
+kitchen_view:
+  name: Kitchen
+  view: yes
+  entities: 
+    - media_player.kitchen
+    - group.kitchen_sockets
+
 conservatory_view:
   name: Conservatory
   view: yes
@@ -52,7 +59,6 @@ conservatory_view:
     - binary_sensor.zha_0275335b_1_6
     - group.conservatory_lights
     - media_player.conservatory
-    - media_player.kitchen
     - group.nest_camera_1
 
 hall_view:
@@ -502,3 +508,13 @@ garage_timers:
   name: Garage Room Timers
   entities:
     - timer.garage_light_on_timer
+
+kitchen_sockets:
+  name: Kitchen Sockets
+  entities:
+    - switch.tp_hs110_6
+    - sensor.tp_hs110_6_power
+    - switch.tp_hs110_7
+    - sensor.tp_hs110_7_power
+    - switch.tp_hs110_8
+    - sensor.tp_hs110_8_power
