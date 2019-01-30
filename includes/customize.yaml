@@ -198,9 +198,9 @@
       icon: mdi:face
     binary_sensor.garage_camera_sound_detected:
       friendly_name: "Sound"
-    binary_sensor.garage_camera__garage_door_activity:
+    binary_sensor.garage_camera_garage_door_activity:
       friendly_name: "Activity Zone - Garage Door"
-    binary_sensor.garage_camera__hall_door_activity:
+    binary_sensor.garage_camera_hall_door_activity:
       friendly_name: "Activity Zone - Hall Door"
 
 ### Portable Temperature and Humidity Sensors ###

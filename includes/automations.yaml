@@ -212,7 +212,7 @@
   alias: HAPi Low Disk Space Alert
   trigger:
     - platform: numeric_state
-      entity_id: sensor.disk_use_percent_
+      entity_id: sensor.disk_use_percent
       above: 90
   action:
     - service: notify.ios_martins_iphone

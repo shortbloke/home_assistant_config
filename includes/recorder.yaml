@@ -72,7 +72,7 @@ include:
     - sensor.to_work
     # Raspberry Pi Resource Usage
     - sensor.load_1m
-    - sensor.disk_use_percent_
+    - sensor.disk_use_percent
     - sensor.memory_use_percent
     # SpeedTest
     - sensor.speedtest_ping
