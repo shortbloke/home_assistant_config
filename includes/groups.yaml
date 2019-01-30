@@ -455,8 +455,8 @@ nest_garage_camera:
     - binary_sensor.garage_camera_motion_detected
     - binary_sensor.garage_camera_person_detected
     - binary_sensor.garage_camera_sound_detected
-    - binary_sensor.garage_camera__garage_door_activity
-    - binary_sensor.garage_camera__hall_door_activity
+    - binary_sensor.garage_camera_garage_door_activity
+    - binary_sensor.garage_camera_hall_door_activity
 
 alarm:
   name: Alarm
