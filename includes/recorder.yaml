@@ -92,6 +92,7 @@ include:
     - sensor.dishwasher_status
     - sensor.washing_machine_status
     - sensor.dryer_status
+    - sensor.ironing_room_motion_status
 
   ############################
   # Used by logbook.yaml     #

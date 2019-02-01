@@ -36,6 +36,14 @@ homeassistant:
       friendly_name: "Humidity"
       icon: mdi:water-percent
 
+input_select:
+  ironing_room_motion_status:
+    name: Ironing Room Motion Status
+    options:
+      - Idle
+      - Motion
+    initial: Motion
+
 switch:
   # TP-Link HS110 Power Sockets
   - platform: tplink
@@ -78,14 +86,11 @@ sensor:
         value_template: '{{ states.switch.tp_hs110_5.attributes["current_power_w"].split(" ")[0]}}'
         unit_of_measurement: 'W'
         friendly_name: "Power - Magpie Iron"
-
-input_select:
-  ironing_room_motion_status:
-    name: Ironing Room Motion Status
-    options:
-      - Idle
-      - Motion
-    initial: Motion
+  - platform: template
+    sensors:
+      ironing_room_motion_status:
+        value_template: '{{ states.input_select.ironing_room_motion_status}}'
+        friendly_name: 'Ironing Room Motion Status'
 
 automation:
 # When we detect motion, set status to Motion
