@@ -34,7 +34,7 @@ sensor:
 automation:
 # When we detect power being drawn from the washing machine, above 5W,
 # mark the washing machine as using started
-  - alias: Set wawshing machine active when power detected
+  - alias: Set washing machine active when power detected
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_6_power
