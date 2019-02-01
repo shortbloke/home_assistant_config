@@ -275,9 +275,6 @@
     switch.tp_hs110_5:
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
-    switch.tp_hs110_6:
-      friendly_name: "Dishwasher"
-      icon: mdi:dishwasher
     switch.tp_hs110_7:
       friendly_name: "Washing Machine"
       icon: mdi:washing-machine

@@ -81,3 +81,6 @@ include:
     - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status Front Door
     - zha.zha_lumi_lumisensor_magnetaq2_0275335b # Magnetic sensor online status Back Door
     - zha.zha_lumi_lumisensor_magnetaq2_02753210 # Magnetic sensor online status Garage Interior Door
+    # Appliance state monitoring
+    - sensor.dishwasher_status
+  

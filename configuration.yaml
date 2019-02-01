@@ -13,6 +13,7 @@ homeassistant:
   unit_system: metric
   customize: !include includes/customize.yaml
   customize_glob: !include includes/customize_glob.yaml
+  packages: !include_dir_named packages
 
 ###################################################
 #                                                 #
