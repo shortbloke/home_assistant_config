@@ -259,23 +259,6 @@
     sensor.travis_status:
       hidden: true
 
-### TP Link Switches ###
-    switch.tp_hs110_1:
-      friendly_name: "Laurastar Iron"
-      icon: mdi:power-socket-uk
-    switch.tp_hs110_2:
-      friendly_name: "Irons (Left)"
-      icon: mdi:power-socket-uk
-    switch.tp_hs110_3:
-      friendly_name: "Irons (Right)"
-      icon: mdi:power-socket-uk
-    switch.tp_hs110_4:
-      friendly_name: "Ironing Table"
-      icon: mdi:power-socket-uk
-    switch.tp_hs110_5:
-      friendly_name: "Magpie Iron"
-      icon: mdi:power-socket-uk
-
 ### Sonoff MQTT switches ###
     switch.sonoff_loft_fan_power:
       friendly_name: "Server Cooling Fan"
@@ -290,25 +273,7 @@
     zwave.aeotec_zw090_zstick_gen5_eu:
       friendly_name: "Z-Wave Stick"
 
-### Aeotec Multi-Sensor (Ironing Room) ###
-    binary_sensor.aeotec_zw100_multisensor_6_sensor:
-      friendly_name: "Ironing Room Multi-Sensor"
-    sensor.aeotec_zw100_multisensor_6_burglar:
-      friendly_name: "Ironing Room Motion State"
-      icon: mdi:walk
-    sensor.aeotec_zw100_multisensor_6_luminance:
-      friendly_name: "Ironing Room Luminance"
-      icon: mdi:theme-light-dark
-    sensor.aeotec_zw100_multisensor_6_ultraviolet:
-      friendly_name: "Ironing Room UV Level"
-      icon: mdi:sunglasses
-    sensor.aeotec_zw100_multisensor_6_dew_point:
-      friendly_name: "Ironing Room Dew Point"
-    sensor.aeotec_zw100_multisensor_6_temperature:
-      friendly_name: "Temperature"
-    sensor.aeotec_zw100_multisensor_6_relative_humidity:
-      friendly_name: "Humidity"
-      icon: mdi:water-percent
+### Aeotec Multi-Sensor (Garage) ###
     binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
       friendly_name: "Garage Multi-Sensor"
     sensor.aeotec_zw100_multisensor_6_burglar_2:

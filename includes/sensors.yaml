@@ -151,32 +151,6 @@
 
 - platform: template
   sensors:
-    #### TP-Link HS110 Power Usage ####
-    tp_hs110_1_power:
-      value_template: '{{ states.switch.tp_hs110_1.attributes["current_power_w"].split(" ")[0]}}'
-      unit_of_measurement: 'W'
-      # entity_id: switch.tp_hs110_1
-      friendly_name: "Power - Laurastar Iron"
-    tp_hs110_2_power:
-      value_template: '{{ states.switch.tp_hs110_2.attributes["current_power_w"].split(" ")[0]}}'
-      unit_of_measurement: 'W'
-      # entity_id: switch.tp_hs110_2
-      friendly_name: "Power - Ironing Room Left"
-    tp_hs110_3_power:
-      value_template: '{{ states.switch.tp_hs110_3.attributes["current_power_w"].split(" ")[0]}}'
-      unit_of_measurement: 'W'
-      # entity_id: switch.tp_hs110_3
-      friendly_name: "Power - Ironing Room Right"
-    tp_hs110_4_power:
-      value_template: '{{ states.switch.tp_hs110_4.attributes["current_power_w"].split(" ")[0]}}'
-      unit_of_measurement: 'W'
-      # entity_id: switch.tp_hs110_4
-      friendly_name: "Power - Ironing Table"
-    tp_hs110_5_power:
-      value_template: '{{ states.switch.tp_hs110_5.attributes["current_power_w"].split(" ")[0]}}'
-      unit_of_measurement: 'W'
-      # entity_id: switch.tp_hs110_5
-      friendly_name: "Power - Magpie Iron"
     ### WH5 Portable Temperature and Humidity Sensors ###
     portable_sensor_1_temperature:
       value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'

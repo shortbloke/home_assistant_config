@@ -25,23 +25,6 @@
     0b11000f015b6eff02010f70:
       name: flamerite_heat
 
-### TP Link Switches ###
-- platform: tplink
-  host: 192.168.200.21 # DHCP reservation
-  name: tp_hs110_1
-- platform: tplink
-  host: 192.168.200.22 # DHCP reservation
-  name: tp_hs110_2
-- platform: tplink
-  host: 192.168.200.23 # DHCP reservation
-  name: tp_hs110_3
-- platform: tplink
-  host: 192.168.200.24 # DHCP reservation
-  name: tp_hs110_4
-- platform: tplink
-  host: 192.168.200.25 # DHCP reservation
-  name: tp_hs110_5
-
 - platform: mqtt
   name: "Sonoff Loft Fan Power"
   state_topic: "stat/sonoff_loft_fan/POWER"
