@@ -1,6 +1,6 @@
 #### recorder.yaml ####
 purge_interval: 1
-purge_keep_days: 14
+purge_keep_days: 10
 
 include:
   domains: 
