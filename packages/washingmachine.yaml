@@ -1,0 +1,99 @@
+homeassistant:
+  customize:
+    switch.tp_hs110_7:
+      friendly_name: "Washing Machine"
+      icon: mdi:washing-machine
+
+switch:
+  - platform: tplink
+    host: 192.168.200.27 # DHCP reservation
+    name: tp_hs110_7
+
+input_select:
+  washing_machine_status:
+    name: Washing Machine Status
+    options:
+      - Idle
+      - Washing
+      - Finished
+    initial: Idle
+
+sensor:
+  - platform: template
+    sensors:
+      tp_hs110_7_power:
+        value_template: '{{ states.switch.tp_hs110_7.attributes["current_power_w"].split(" ")[0]}}'
+        unit_of_measurement: 'W'
+        friendly_name: "Washing Machine Power"
+  - platform: template
+    sensors:
+      washing_machine_status:
+        value_template: '{{ states.input_select.washing_machine_status.state}}'
+        friendly_name: 'Washing Machine Status'
+
+automation:
+# When we detect power being drawn from the washing machine, above 5W,
+# mark the washing machine as using started
+  - alias: Set wawshing machine active when power detected
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_6_power
+        above: 5
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.washing_machine_status
+          state: Idle
+        - condition: state
+          entity_id: input_select.washing_machine_status
+          state: Finished
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.washing_machine_status
+          option: Washing
+
+# When the power level drops below 5W, and the washing machine is set to
+# the 'Running' state, mark the washing machine as Finished
+  - alias: Set washing machine to finished when power drops
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_6_power
+        below: 5
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_select.washing_machine_status
+          state: Washing
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.washing_machine_status
+          option: Finished
+
+# Once the washing machine status has been 'Finished' for 2 minutes, mark the
+# washing machine as idle
+  - alias: Set Washing Machine to idle
+    trigger:
+      - platform: state
+        entity_id: input_select.washing_machine_status
+        to: Finished
+        for:
+          minutes: 2
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_select.washing_machine_status
+          state: Finished
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.washing_machine_status
+          option: Idle
+      - service: notify.ios_martins_iphone
+        data:
+          message: 'The Washing Machine has finished!'
+          title: 'Washing Machine Update'

@@ -48,6 +48,7 @@ kitchen_view:
     - media_player.kitchen
     - group.kitchen_sockets
     - group.dishwasher
+    - group.washing_machine
 
 conservatory_view:
   name: Conservatory
@@ -513,8 +514,6 @@ garage_timers:
 kitchen_sockets:
   name: Kitchen Sockets
   entities:
-    - switch.tp_hs110_7
-    - sensor.tp_hs110_7_power
     - switch.tp_hs110_8
     - sensor.tp_hs110_8_power
   
@@ -524,3 +523,10 @@ dishwasher:
     - sensor.dishwasher_status
     - switch.tp_hs110_6
     - sensor.tp_hs110_6_power
+
+washing_machine:
+  name: Washing Machine
+  entities:
+    - sensor.washing_machine_status
+    - switch.tp_hs110_7
+    - sensor.tp_hs110_7_power
