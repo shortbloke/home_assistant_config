@@ -58,15 +58,15 @@ include:
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
     - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
     # HaveIBeenPwned
-    - sensor.breaches_martinrowannetcouk
-    - sensor.breaches_michellerowannetcouk
-    - sensor.breaches_junerowannetcouk
-    - sensor.breaches_morganrowannetcouk
-    - sensor.breaches_fraserrowannetcouk
-    - sensor.breaches_robertrowannetcouk
-    - sensor.breaches_martinrowancitrixcom
-    - sensor.breaches_martinrowaneucitrixcom
-    - sensor.breaches_mrowanhighlightnet
+    - !secret sensor_hibp_email1
+    - !secret sensor_hibp_email2
+    - !secret sensor_hibp_email3
+    - !secret sensor_hibp_email4
+    - !secret sensor_hibp_email5
+    - !secret sensor_hibp_email6
+    - !secret sensor_hibp_email7
+    - !secret sensor_hibp_email8
+    - !secret sensor_hibp_email9
     # Waze
     - sensor.to_home
     - sensor.to_work

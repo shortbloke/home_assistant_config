@@ -218,19 +218,6 @@
     - last_build_id
     - last_build_state
 
-### Component for HaveIBeenPwned Sensor
-- platform: haveibeenpwned
-  email:
-    - !secret hibp_email1
-    - !secret hibp_email2
-    - !secret hibp_email3
-    - !secret hibp_email4
-    - !secret hibp_email5
-    - !secret hibp_email6
-    - !secret hibp_email7
-    - !secret hibp_email8
-    - !secret hibp_email9
-
 ### Waze Time Travel
 - platform: waze_travel_time
   name: "To Work"
