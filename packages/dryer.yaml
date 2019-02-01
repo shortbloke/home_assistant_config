@@ -11,7 +11,7 @@ switch:
 
 input_select:
   dryer_status:
-    name: Tuble Dryer Status
+    name: Tumble Dryer Status
     options:
       - Idle
       - Drying
@@ -29,7 +29,7 @@ sensor:
     sensors:
       dryer_status:
         value_template: '{{ states.input_select.dryer_status.state}}'
-        friendly_name: 'Tuble Dryer Status'
+        friendly_name: 'Tumble Dryer Status'
 
 automation:
 # When we detect power being drawn from the dryer, above 250W,
