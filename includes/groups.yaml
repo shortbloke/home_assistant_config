@@ -526,7 +526,7 @@ washing_machine:
     - sensor.tp_hs110_7_power
 
 dryer:
-  name: Tuble Dryer
+  name: Tumble Dryer
   entities:
     - sensor.dryer_status
     - switch.tp_hs110_8
