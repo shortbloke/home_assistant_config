@@ -91,6 +91,7 @@ include:
     # Appliance state monitoring
     - sensor.dishwasher_status
     - sensor.washing_machine_status
+    - sensor.dryer_status
 
   ############################
   # Used by logbook.yaml     #

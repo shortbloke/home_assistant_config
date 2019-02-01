@@ -46,9 +46,9 @@ kitchen_view:
   view: yes
   entities: 
     - media_player.kitchen
-    - group.kitchen_sockets
     - group.dishwasher
     - group.washing_machine
+    - group.dryer
 
 conservatory_view:
   name: Conservatory
@@ -510,12 +510,6 @@ garage_timers:
   name: Garage Room Timers
   entities:
     - timer.garage_light_on_timer
-
-kitchen_sockets:
-  name: Kitchen Sockets
-  entities:
-    - switch.tp_hs110_8
-    - sensor.tp_hs110_8_power
   
 dishwasher:
   name: Dishwasher
@@ -530,3 +524,10 @@ washing_machine:
     - sensor.washing_machine_status
     - switch.tp_hs110_7
     - sensor.tp_hs110_7_power
+
+dryer:
+  name: Tuble Dryer
+  entities:
+    - sensor.dryer_status
+    - switch.tp_hs110_8
+    - sensor.tp_hs110_8_power
