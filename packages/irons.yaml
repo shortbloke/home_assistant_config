@@ -89,7 +89,7 @@ sensor:
   - platform: template
     sensors:
       ironing_room_motion_status:
-        value_template: '{{ states.input_select.ironing_room_motion_status}}'
+        value_template: '{{ states.input_select.ironing_room_motion_status.state}}'
         friendly_name: 'Ironing Room Motion Status'
 
 automation:
