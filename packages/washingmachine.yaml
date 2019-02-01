@@ -37,7 +37,7 @@ automation:
   - alias: Set washing machine active when power detected
     trigger:
       - platform: numeric_state
-        entity_id: sensor.tp_hs110_6_power
+        entity_id: sensor.tp_hs110_7_power
         above: 5
     condition:
       condition: or
@@ -59,7 +59,7 @@ automation:
   - alias: Set washing machine to finished when power drops
     trigger:
       - platform: numeric_state
-        entity_id: sensor.tp_hs110_6_power
+        entity_id: sensor.tp_hs110_7_power
         below: 5
     condition:
       condition: and
