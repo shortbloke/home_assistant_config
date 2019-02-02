@@ -1,6 +1,5 @@
 homeassistant:
-  customise:
-    # TP-Link HS110 Power Sockets
+  customize:
     switch.tp_hs110_1:
       friendly_name: "Laurastar Iron"
       icon: mdi:power-socket-uk
