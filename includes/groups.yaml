@@ -351,7 +351,7 @@ automation_package_kitchen_appliances:
   name: Kitchen Appliances
   entities:
     - automation.set_dishwasher_active_when_power_detected
-    - automation.set_dishwasher_drying_when_power_drops
+    - automation.set_dishwasher_finished_when_power_drops
     - automation.set_dishwasher_to_idle
     - automation.set_dryer_active_when_power_detected
     - automation.set_dryer_drying_when_power_drops

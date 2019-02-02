@@ -13,11 +13,10 @@ input_select:
   dishwasher_status:
     name: Dishwasher Status
     options:
-      - Idle
-      - Running
-      - Finishing
-      - Drying
-    initial: Idle
+      - idle
+      - running
+      - finished
+    initial: idle
 
 sensor:
   - platform: template
@@ -33,46 +32,46 @@ sensor:
         friendly_name: 'Dishwasher Status'
 
 automation:
-# When we detect power being drawn from the dishwasher, above 5W,
+# When we detect power being drawn from the dishwasher, above 10W,
 # mark the dishwasher as using started
   - alias: Set dishwasher active when power detected
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_6_power
-        above: 5
+        above: 10
     condition:
       condition: or
       conditions:
         - condition: state
           entity_id: input_select.dishwasher_status
-          state: Idle
+          state: 'idle'
         - condition: state
           entity_id: input_select.dishwasher_status
-          state: Drying
+          state: 'finished'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.dishwasher_status
-          option: Running
+          option: 'running'
 
-# When the power level drops below 5W, and the Dishwasher is set to
+# When the power level drops below 10W, and the Dishwasher is set to
 # the 'Running' state, mark the Dishwasher as Finished
-  - alias: Set dishwasher drying when power drops
+  - alias: Set dishwasher finished when power drops
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_6_power
-        below: 5
+        below: 10
+        for:
+          minutes: 5
     condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_select.dishwasher_status
-          state: Running
+      condition: state
+      entity_id: input_select.dishwasher_status
+      state: 'running'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.dishwasher_status
-          option: Drying
+          option: 'finished'
 
 # Once the dishwasher status has been 'Drying' for 15 minutes, mark the
 # dishwasher as clean
@@ -80,20 +79,14 @@ automation:
     trigger:
       - platform: state
         entity_id: input_select.dishwasher_status
-        to: Drying
+        to: 'finished'
         for:
           minutes: 15
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_select.dishwasher_status
-          state: Drying
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.dishwasher_status
-          option: Idle
+          option: 'idle'
       - service: notify.ios_martins_iphone
         data:
           message: 'The Dishwasher has finished and is ready to be emptied!'

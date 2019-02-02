@@ -13,10 +13,10 @@ input_select:
   dryer_status:
     name: Tumble Dryer Status
     options:
-      - Idle
-      - Drying
-      - Finishing
-    initial: Idle
+      - idle
+      - running
+      - finished
+    initial: idle
 
 sensor:
   - platform: template
@@ -44,54 +44,46 @@ automation:
       conditions:
         - condition: state
           entity_id: input_select.dryer_status
-          state: Idle
+          state: 'idle'
         - condition: state
           entity_id: input_select.dryer_status
-          state: Finishing
+          state: 'finished'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.dryer_status
-          option: Drying
+          option: 'running'
 
 # When the power level drops below 250W, and the dryer is set to
-# the 'Drying' state, mark the dryer as Finishing
+# the 'running' state, mark the dryer as finished
   - alias: Set dryer drying when power drops
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_8_power
         below: 250
     condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_select.dryer_status
-          state: Drying
+      condition: state
+      entity_id: input_select.dryer_status
+      state: 'running'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.dryer_status
-          option: Finishing
+          option: 'finished'
 
-# Once the dryer status has been 'Finishing' for 5 minutes, set to idle
+# Once the dryer status has been 'finished' for 5 minutes, set to idle
   - alias: Set Dryer to idle
     trigger:
       - platform: state
         entity_id: input_select.dryer_status
-        to: Finishing
+        to: 'finished'
         for:
           minutes: 5
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_select.dryer_status
-          state: Finishing
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.dryer_status
-          option: Idle
+          option: 'idle'
       - service: notify.ios_martins_iphone
         data:
           message: 'The Dryer has finished and is ready to be emptied!'

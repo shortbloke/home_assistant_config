@@ -13,10 +13,10 @@ input_select:
   washing_machine_status:
     name: Washing Machine Status
     options:
-      - Idle
-      - Washing
-      - Finished
-    initial: Idle
+      - idle
+      - running
+      - finished
+    initial: idle
 
 sensor:
   - platform: template
@@ -44,15 +44,15 @@ automation:
       conditions:
         - condition: state
           entity_id: input_select.washing_machine_status
-          state: Idle
+          state: 'idle'
         - condition: state
           entity_id: input_select.washing_machine_status
-          state: Finished
+          state: 'finished'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.washing_machine_status
-          option: Washing
+          option: 'running'
 
 # When the power level drops below 5W, and the washing machine is set to
 # the 'Running' state, mark the washing machine as Finished
@@ -62,16 +62,14 @@ automation:
         entity_id: sensor.tp_hs110_7_power
         below: 5
     condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_select.washing_machine_status
-          state: Washing
+      condition: state
+      entity_id: input_select.washing_machine_status
+      state: 'running'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.washing_machine_status
-          option: Finished
+          option: 'finished'
 
 # Once the washing machine status has been 'Finished' for 2 minutes, mark the
 # washing machine as idle
@@ -79,20 +77,14 @@ automation:
     trigger:
       - platform: state
         entity_id: input_select.washing_machine_status
-        to: Finished
+        to: 'finished'
         for:
           minutes: 2
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_select.washing_machine_status
-          state: Finished
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.washing_machine_status
-          option: Idle
+          option: 'idle'
       - service: notify.ios_martins_iphone
         data:
           message: 'The Washing Machine has finished!'
