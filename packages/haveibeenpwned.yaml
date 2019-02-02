@@ -1,5 +1,5 @@
 homeassistant:
-  customize:
+  customize_glob:
     sensor.breaches*:
       icon: mdi:email-alert
 
