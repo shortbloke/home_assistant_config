@@ -273,26 +273,6 @@
     zwave.aeotec_zw090_zstick_gen5_eu:
       friendly_name: "Z-Wave Stick"
 
-### Aeotec Multi-Sensor (Garage) ###
-    binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
-      friendly_name: "Garage Multi-Sensor"
-    sensor.aeotec_zw100_multisensor_6_burglar_2:
-      friendly_name: "Garage Motion State"
-      icon: mdi:walk
-    sensor.aeotec_zw100_multisensor_6_luminance_2:
-      friendly_name: "Garage Luminance"
-      icon: mdi:theme-light-dark
-    sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
-      friendly_name: "Garage UV Level"
-      icon: mdi:sunglasses
-    sensor.aeotec_zw100_multisensor_6_dew_point_2:
-      friendly_name: "Garage Dew Point"
-    sensor.aeotec_zw100_multisensor_6_temperature_2:
-      friendly_name: "Temperature"
-    sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
-      friendly_name: "Humidity"
-      icon: mdi:water-percent
-
 ### Fibaro Multi-Sensor (Loft) ###
     sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
       friendly_name: "Loft Temperature"

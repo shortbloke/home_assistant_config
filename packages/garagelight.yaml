@@ -1,0 +1,99 @@
+homeassistant:
+  customize:
+### Aeotec Multi-Sensor (Garage) ###
+    binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
+      friendly_name: "Garage Multi-Sensor"
+    sensor.aeotec_zw100_multisensor_6_burglar_2:
+      friendly_name: "Garage Motion State"
+      icon: mdi:walk
+    sensor.aeotec_zw100_multisensor_6_luminance_2:
+      friendly_name: "Garage Luminance"
+      icon: mdi:theme-light-dark
+    sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
+      friendly_name: "Garage UV Level"
+      icon: mdi:sunglasses
+    sensor.aeotec_zw100_multisensor_6_dew_point_2:
+      friendly_name: "Garage Dew Point"
+    sensor.aeotec_zw100_multisensor_6_temperature_2:
+      friendly_name: "Temperature"
+    sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
+      friendly_name: "Humidity"
+      icon: mdi:water-percent
+
+input_select:
+  garage_motion_status:
+    name: Garage Motion Status
+    options:
+      - idle
+      - motion
+    initial: motion
+
+switch:
+  - platform: mqtt
+    name: "Sonoff Garage Light"
+    state_topic: "stat/sonoff_garage_light/POWER"
+    command_topic: "cmnd/sonoff_garage_light/POWER"
+    availability_topic: "tele/sonoff_garage_light/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+sensor:
+  - platform: template
+    sensors:
+      garage_motion:
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar_2','8') %}yes{% else %}no{% endif %}"
+        friendly_name: "Garage Motion"
+      garage_motion_status:
+        value_template: '{{ states.input_select.garage_motion_status.state}}'
+        friendly_name: 'Garage Motion Status'
+
+automation:
+# When we detect motion, set status to Motion
+  - alias: Garage motion detected
+    trigger:
+      - platform: state
+        entity_id: sensor.garage_motion
+        to: 'yes'
+      - platform: state
+        entity_id: switch.sonoff_garage_light
+        to: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.garage_motion_status
+          option: 'motion'
+
+# No Motion for 15 minutes, set to idle
+  - alias: Garage no motion detected
+    trigger:
+      - platform: state
+        entity_id: sensor.garage_motion
+        to: 'no'
+        for:
+          minutes: 15
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.garage_motion_status
+          option: 'idle'
+
+  - alias: Garage light left on no motion
+    trigger:
+      - platform: state
+        entity_id: sensor.garage_motion_status
+        to: 'idle'
+    condition:
+      condition: state
+      entity_id: switch.sonoff_garage_light
+      state: 'on'
+    action:
+      - service: notify.ios_martins_iphone
+        data:
+          title: "Garage Alert!"
+          message: "Light left on. Turning off."
+      - service: homeassistant.turn_off
+        entity_id: switch.sonoff_garage_light

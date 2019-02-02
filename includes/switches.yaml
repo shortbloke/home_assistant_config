@@ -36,15 +36,3 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   retain: true
-
-- platform: mqtt
-  name: "Sonoff Garage Light"
-  state_topic: "stat/sonoff_garage_light/POWER"
-  command_topic: "cmnd/sonoff_garage_light/POWER"
-  availability_topic: "tele/sonoff_garage_light/LWT"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  payload_available: "Online"
-  payload_not_available: "Offline"
-  retain: true
