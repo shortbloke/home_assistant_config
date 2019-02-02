@@ -39,9 +39,9 @@ input_select:
   ironing_room_motion_status:
     name: Ironing Room Motion Status
     options:
-      - Idle
-      - Motion
-    initial: Motion
+      - idle
+      - motion
+    initial: motion
 
 switch:
   # TP-Link HS110 Power Sockets
@@ -85,9 +85,10 @@ sensor:
         value_template: '{{ states.switch.tp_hs110_5.attributes["current_power_w"].split(" ")[0]}}'
         unit_of_measurement: 'W'
         friendly_name: "Power - Magpie Iron"
-  - platform: template
-    sensors:
-      ironing_room_motion_status:
+      ironing_room_motion:
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','8') %}yes{% else %}no{% endif %}"
+        friendly_name: "Ironing Room Motion"
+      ironing_room_motion_status: 
         value_template: '{{ states.input_select.ironing_room_motion_status.state}}'
         friendly_name: 'Ironing Room Motion Status'
 
@@ -96,35 +97,27 @@ automation:
   - alias: Ironing room motion detected
     trigger:
       - platform: state
-        entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-        to: '8'
-    condition:
-      condition: state
-      entity_id: input_select.ironing_room_motion_status
-      state: Idle
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: ironing_room_motion_status
-          option: Motion
-
-# No Motion for 30 minutes, set to idle
-  - alias: Ironing rtoom no motion 30 mins
-    trigger:
-      - platform: state
-        entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-        to: '0'
-        for:
-          minutes: 30
-    condition:
-      condition: state
-      entity_id: input_select.ironing_room_motion_status
-      state: Motion
+        entity_id: sensor.ironing_room_motion
+        to: 'yes'
     action:
       - service: input_select.select_option
         data:
           entity_id: input_select.ironing_room_motion_status
-          option: Idle
+          option: 'motion'
+
+# No Motion for 30 minutes, set to idle
+  - alias: Ironing room no motion 30 mins
+    trigger:
+      - platform: state
+        entity_id: sensor.ironing_room_motion
+        to: 'no'
+        for:
+          minutes: 30
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ironing_room_motion_status
+          option: 'idle'
 
 # Switch off if drawing power and no motion in pending state
   - alias: Ironing Room No Motion Turn off Irons Left
@@ -138,8 +131,8 @@ automation:
           entity_id: sensor.tp_hs110_2_power
           above: 10
         - condition: state
-          entity_id: input_select.ironing_room_motion_status
-          state: Idle
+          entity_id: sensor.ironing_room_motion_status
+          state: 'idle'
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_2
@@ -164,7 +157,7 @@ automation:
           above: 10
         - condition: state
           entity_id: input_select.ironing_room_motion_status
-          state: Idle
+          state: 'idle'
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_3
@@ -189,7 +182,7 @@ automation:
           above: 10
         - condition: state
           entity_id: input_select.ironing_room_motion_status
-          state: Idle
+          state: 'idle'
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_4
@@ -215,7 +208,7 @@ automation:
           above: 10
         - condition: state
           entity_id: input_select.ironing_room_motion_status
-          state: Idle
+          state: 'idle'
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_5

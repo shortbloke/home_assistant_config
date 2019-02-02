@@ -88,7 +88,6 @@ ironing_room_view:
   entities:
     - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_relative_humidity
-    - sensor.ironing_room_motion_status
     - group.iron_sockets
     - group.Aeotec_Multi_1
 
@@ -160,6 +159,9 @@ automation_view:
   icon: mdi:home-automation
   view: yes
   entities:
+    - group.automation_package_kitchen_appliances
+    - group.automation_package_irons
+    - group.automation_package_haveibeenpwned
     - group.automation_utilities
     - group.automation_system
     - group.automation_powercontrol
@@ -213,6 +215,8 @@ hall_sockets:
 iron_sockets:
   name: Iron Sockets
   entities:
+    - sensor.ironing_room_motion
+    - sensor.ironing_room_motion_status
     - switch.tp_hs110_1
     - sensor.tp_hs110_1_power
     - switch.tp_hs110_2
@@ -343,6 +347,34 @@ hpilo:
     - sensor.nano_chipset_temperature
     - sensor.nano_memory_temperature
 
+automation_package_kitchen_appliances:
+  name: Kitchen Appliances
+  entities:
+    - automation.set_dishwasher_active_when_power_detected
+    - automation.set_dishwasher_drying_when_power_drops
+    - automation.set_dishwasher_to_idle
+    - automation.set_dryer_active_when_power_detected
+    - automation.set_dryer_drying_when_power_drops
+    - automation.set_dryer_to_idle
+    - automation.set_washing_machine_active_when_power_detected
+    - automation.set_washing_machine_to_finished_when_power_drops
+    - automation.set_washing_machine_to_idle
+
+automation_package_irons:
+  name: Irons
+  entities:
+    - automation.ironing_room_motion_detected
+    - automation.ironing_room_no_motion_30_mins
+    - automation.ironing_room_no_motion_turn_off_ironing_table
+    - automation.ironing_room_no_motion_turn_off_irons_left
+    - automation.ironing_room_no_motion_turn_off_irons_right
+    - automation.ironing_room_no_motion_turn_off_magpie_iron
+
+automation_package_haveibeenpwned:
+  name: Have I Been Pwned
+  entities:
+    - automation.have_i_been_pwned_change
+
 automation_utilities:
   name: Utilities
   entities:
@@ -358,12 +390,6 @@ automation_powercontrol:
   entities:
     - automation.turn_on_lights_in_the_morning_and_at_sunset
     - automation.turn_off_morning_lights
-    - automation.ironing_room_motion_detected
-    - automation.ironing_room_timer_reset
-    - automation.ironing_room_no_motion_turn_off_irons_left
-    - automation.ironing_room_no_motion_turn_off_irons_right
-    - automation.ironing_room_no_motion_turn_off_ironing_table
-    - automation.ironing_room_no_motion_turn_off_magpie_iron
     - automation.loft_fan_turn_on_when_hot
     - automation.loft_fan_turn_off_when_not_hot
     - automation.turn_on_air_freshener_socket_in_the_morning
