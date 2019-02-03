@@ -283,7 +283,6 @@ logbook: !include includes/logbook.yaml
 notify: !include includes/notifygroups.yaml
 recorder: !include includes/recorder.yaml
 scene: !include includes/scenes.yaml
-script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
 switch: !include includes/switches.yaml
 zone: !include includes/zones.yaml

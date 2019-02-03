@@ -253,12 +253,6 @@
     sensor.temp_sensor_1_temperature:
       friendly_name: "Temperature"  #Master Bedroom
 
-### travis sensors for automation only ###
-    sensor.travis_build_label:
-      hidden: true
-    sensor.travis_status:
-      hidden: true
-
 ### Aeotec Stick ###
     zwave.aeotec_zw090_zstick_gen5_eu:
       friendly_name: "Z-Wave Stick"

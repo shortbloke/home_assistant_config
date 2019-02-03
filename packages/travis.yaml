@@ -1,0 +1,34 @@
+homeassistant:
+  customize: 
+    ### travis sensors for automation only ###
+    sensor.travis_build_label:
+      hidden: true
+    sensor.travis_status:
+      hidden: true
+
+sensor:
+  - platform: travisci
+    api_key: !secret travisci_api_key
+    # scan_interval: 60
+    repository: "home_assistant_config"
+    monitored_conditions:
+      - last_build_id
+      - last_build_state
+
+automation:
+  - alias: Update config HASS on successful travis build
+    trigger:
+      - platform: state
+        entity_id: sensor.shortblokehome_assistant_config_last_build_id
+    condition:
+      - condition: state
+        entity_id: sensor.shortblokehome_assistant_config_last_build_state
+        state: 'passed'
+    action:
+      - service: hassio.addon_stop # Requires Git Pull is set to auto-start
+        data: 
+          addon: "core_git_pull"
+      - delay: 0:01
+      - service: hassio.addon_start
+        data: 
+          addon: "core_git_pull"

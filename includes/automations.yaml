@@ -1,93 +1,5 @@
-- id: a_config_update
-  alias: Update config HASS if travis build is successfull
-  trigger:
-    - platform: state
-      entity_id: sensor.shortblokehome_assistant_config_last_build_id
-  condition:
-    - condition: state
-      entity_id: sensor.shortblokehome_assistant_config_last_build_state
-      state: 'passed'
-  action:
-    - service: hassio.addon_stop # Requires Git Pull is set to auto-start
-      data: 
-        addon: "core_git_pull"
-    - delay: 0:01
-    - service: hassio.addon_start
-      data: 
-        addon: "core_git_pull"
-
-- id: a_sonos_tts_test
-  alias: Sonos TTS Test
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mytest
-  action:
-    - service: script.sonos_say
-      data:
-        sonos_entity: media_player.conservatory
-        volume: 0.5
-        message: 'This is a test of Sonos Text to Speech'
-        # Delay needs to be long enough to allow text to be read aloud
-        delay: '00:00:05'
-
-- id: a_hass_update_available
-  alias: 'HASS Update Available Notifications'
-  trigger:
-    platform: state
-    entity_id: updater.updater
-  action:
-    service: notify.martin
-    data:
-      message: 'Update for Home Assistant is available.'
-
-- id: a_sonos_burglar_alarm
-  alias: Sonos Burglar Alarm
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mytest
-  action:
-    - service: script.sonos_alarm
-      data:
-        # Maximum Volume
-        volume: 1.0
-        # Duration before stopping and restoring state
-        delay: '00:01:00'
-
-- id: a_sonos_restore_snapshot
-  alias: 'Sonos restore snapshot state'
-  trigger:
-    - platform: state
-      entity_id: input_boolean.mytest
-  action:
-    - service: media_player.sonos_restore
-
-- id: a_weekly_snapshot
-  alias: HASSIO Weekly Snapshot (3am)
-  trigger:
-    - platform: time
-      at: '3:00:00'
-  condition:
-    condition: time
-    weekday:
-      - sun
-  action:
-  - service: hassio.snapshot_full
-    data_template:
-      name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
-
-- id: a_weekly_snapshot_dropbox_sync
-  alias: Dropbox Snapshot Sync (4am)
-  trigger: 
-    - platform: time
-      at: '4:00:00'
-  action:
-    - service: hassio.addon_stdin
-      data_template:
-        addon: 7be23ff5_dropbox_sync
-        input: {"command":"upload"}
-
-- id: a_mqtt_state_sync
-  alias: "Sonoff MQTT State Sync"
+# Need to have at least one automation in this file, if being included.
+- alias: Sonoff MQTT State Sync
   trigger:
     platform: homeassistant
     event: start
@@ -95,4 +7,13 @@
     - service: mqtt.publish
       data:
         topic: "sonoffs/cmnd/power"
-        payload: "" 
+        payload: ""
+
+- alias: Update Available Notification
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.martin
+    data:
+      message: 'Update for Home Assistant is available.'
