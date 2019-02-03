@@ -1,0 +1,15 @@
+- name: adults
+  platform: group
+  services:
+    - service: ios_martins_iphone
+    - service: ios_michelles_iphone
+
+- name: martin
+  platform: group
+  services:
+    - service: ios_martins_iphone
+
+- name: michelle
+  platform: group
+  services:
+    - service: ios_michelles_iphone

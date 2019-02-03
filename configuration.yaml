@@ -280,6 +280,7 @@ group: !include includes/groups.yaml
 history: !include includes/history.yaml
 light: !include includes/lights.yaml
 logbook: !include includes/logbook.yaml
+notify: !include includes/notifygroups.yaml
 recorder: !include includes/recorder.yaml
 scene: !include includes/scenes.yaml
 script: !include includes/scripts.yaml

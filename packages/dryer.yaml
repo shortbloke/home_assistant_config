@@ -84,7 +84,7 @@ automation:
         data:
           entity_id: input_select.dryer_status
           option: 'idle'
-      - service: notify.ios_martins_iphone
+      - service: notify.adults
         data:
           message: 'The Dryer has finished and is ready to be emptied!'
           title: 'Tumble Dryer Update'

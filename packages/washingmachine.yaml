@@ -85,7 +85,7 @@ automation:
         data:
           entity_id: input_select.washing_machine_status
           option: 'idle'
-      - service: notify.ios_martins_iphone
+      - service: notify.adults
         data:
           message: 'The Washing Machine has finished!'
           title: 'Washing Machine Update'

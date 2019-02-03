@@ -136,11 +136,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_2
-      - service: notify.ios_michelles_iphone
-        data:
-          title: "Ironing Room Alert!"
-          message: "No Motion Detected - Turning off Ironing room Irons (Left)"
-      - service: notify.ios_martins_iphone
+      - service: notify.adults
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Ironing room Irons (Left)"
@@ -161,14 +157,10 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_3
-      - service: notify.ios_michelles_iphone
+      - service: notify.adults
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Ironing room Irons (Right)"
-      - service: notify.ios_martins_iphone
-        data:
-          title: "Ironing Room Alert!"
-          message: "No Motion Detected - Turning off Ironing room Irons (Left)"
 
   - alias: Ironing Room No Motion Turn off Ironing Table
     trigger:
@@ -186,14 +178,10 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_4
-      - service: notify.ios_michelles_iphone
+      - service: notify.adults
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Ironing Table"
-      - service: notify.ios_martins_iphone
-        data:
-          title: "Ironing Room Alert!"
-          message: "No Motion Detected - Turning off Ironing room Irons (Left)"
 
   - alias: Ironing Room No Motion Turn off Magpie Iron
     trigger:
@@ -212,11 +200,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.tp_hs110_5
-      - service: notify.ios_michelles_iphone
+      - service: notify.adults
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Magpie Iron"
-      - service: notify.ios_martins_iphone
-        data:
-          title: "Ironing Room Alert!"
-          message: "No Motion Detected - Turning off Ironing room Irons (Left)"
