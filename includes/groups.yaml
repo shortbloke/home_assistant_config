@@ -161,9 +161,9 @@ automation_view:
     - group.automation_package_loft_fan
     - group.automation_package_irons
     - group.automation_package_haveibeenpwned
+    - group.automation_package_routine_morning_night
     - group.automation_utilities
     - group.automation_system
-    - group.automation_powercontrol
     - group.alarm
 
 
@@ -388,6 +388,13 @@ automation_package_haveibeenpwned:
   entities:
     - automation.have_i_been_pwned_change
 
+automation_package_routine_morning_night:
+  name: Routines Morning and Night
+  entities:
+    - automation.turn_on_in_the_morning_and_sunset
+    - automation.turn_off_after_sunrise
+    - automation.turn_off_at_night
+
 automation_utilities:
   name: Utilities
   entities:
@@ -397,14 +404,6 @@ automation_utilities:
     - automation.hass_update_available_notifications
     - automation.hassio_weekly_snapshot_3am
     - automation.dropbox_snapshot_sync_4am
-
-automation_powercontrol:
-  name: Power Control
-  entities:
-    - automation.turn_on_lights_in_the_morning_and_at_sunset
-    - automation.turn_off_morning_lights
-    - automation.turn_on_air_freshener_socket_in_the_morning
-    - automation.turn_off_air_freshener_socket_at_night
 
 automation_system:
   name: HAPi Resource Monitoring

@@ -1,0 +1,31 @@
+automation:
+  - alias: Turn on in the morning and sunset
+    trigger:
+      - platform: time
+        at: "06:30:00"
+      - platform: sun
+        event: sunset
+        offset: '-01:00:00'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.lwrf_hall_socket_1 # Twigs
+      - service: homeassistant.turn_on
+        entity_id: switch.lwrf_hall_socket_2 # Air Freshener
+
+  - alias: Turn off after sunrise
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+        above: 10.0
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.lwrf_hall_socket_1 # Twigs
+
+  - alias: Turn off at night
+    trigger:
+      - platform: time
+        at: "23:00:00"
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.lwrf_hall_socket_2 # Air Freshener
