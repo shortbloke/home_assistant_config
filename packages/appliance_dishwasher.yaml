@@ -33,7 +33,7 @@ sensor:
 
 automation:
 # When we detect power being drawn from the dishwasher, above 10W,
-# mark the dishwasher as using started
+# mark the dishwasher as 'running'
   - alias: Set dishwasher active when power detected
     trigger:
       - platform: numeric_state
@@ -55,14 +55,14 @@ automation:
           option: 'running'
 
 # When the power level drops below 10W, and the Dishwasher is set to
-# the 'Running' state, mark the Dishwasher as Finished
+# the 'running' state, mark the Dishwasher as 'finished'
   - alias: Set dishwasher finished when power drops
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_6_power
         below: 50
         for:
-          minutes: 5
+          minutes: 30
     condition:
       condition: state
       entity_id: input_select.dishwasher_status
@@ -73,15 +73,15 @@ automation:
           entity_id: input_select.dishwasher_status
           option: 'finished'
 
-# Once the dishwasher status has been 'Drying' for 15 minutes, mark the
-# dishwasher as clean
+# Once the dishwasher status has been 'finished' for 30 minutes, mark the
+# dishwasher as idle
   - alias: Set dishwasher to idle
     trigger:
       - platform: state
         entity_id: input_select.dishwasher_status
         to: 'finished'
         for:
-          minutes: 15
+          minutes: 10
     action:
       - service: input_select.select_option
         data:
