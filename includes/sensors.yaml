@@ -156,25 +156,3 @@
       # entity_id: climate.hallway_house
       friendly_name: "Nest Away Mode"
 
-### Waze Time Travel
-- platform: waze_travel_time
-  name: "To Work"
-  origin: !secret waze_home
-  destination: !secret waze_work
-  region: 'EU'
-
-- platform: waze_travel_time
-  name: "To Home"
-  origin: !secret waze_work
-  destination: !secret waze_home
-  region: 'EU'
-
-### Speedtest.net
-- platform: speedtest
-  minute:
-    - 0
-    - 30
-  monitored_conditions:
-    - ping
-    - download
-    - upload

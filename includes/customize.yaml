@@ -279,12 +279,6 @@
     weather.yweather:
       friendly_name: "Local Weather Forecast"
 
-### Speedtest###
-    sensor.speedtest_download:
-      icon: mdi:cloud-download
-    sensor.speedtest_upload:
-      icon: mdi:cloud-upload
-
 ### ZigBee ###
     binary_sensor.zha_025370bc_1_6:
       icon: mdi:door
