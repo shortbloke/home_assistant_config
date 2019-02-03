@@ -1,3 +1,0 @@
-# TP Link HS110 Smart Energy Monitoring Switch
-    sensor.tp_hs110_*_power:
-      icon: mdi:chart-line

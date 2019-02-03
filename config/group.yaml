@@ -1,7 +1,7 @@
 # https://www.home-assistant.io/components/group/
 
 ######################## VIEWS (Tabs) ########################
-## DEFUALT VIEW - HOME##
+## DEFUALT VIEW - HOME saz##
 
 default_view:
   name: Home
@@ -16,7 +16,6 @@ default_view:
     - group.climate
     - group.heating_main_page
     - group.waze_travel
-
 
 ## OTHER TABS (VIEWS) ##
 security_view:
@@ -37,7 +36,7 @@ living_room_view:
     - sensor.temp_humid_2_humidity
     - group.living_room_lights
     - group.scenes_living_room
-    - group.flamerite_fire
+    - group.flamerite_fire # From package: fireplace
     - group.dining_room_lights
     - media_player.living_room
 
@@ -46,9 +45,9 @@ kitchen_view:
   view: yes
   entities: 
     - media_player.kitchen
-    - group.dishwasher
-    - group.washing_machine
-    - group.dryer
+    - group.dishwasher # From package: appliance_dishwasher
+    - group.washing_machine # From package: appliance_washingmachine
+    - group.dryer # From package: appliance_dryer
 
 conservatory_view:
   name: Conservatory
@@ -79,7 +78,7 @@ master_bedroom_view:
   entities:
     - media_player.master_bedroom
     - media_player.bathroom
-    - group.laurastar_iron
+    - group.laurastar_iron # From package: appliance_irons
     - sensor.temp_sensor_1_temperature
 
 ironing_room_view:
@@ -88,7 +87,7 @@ ironing_room_view:
   entities:
     - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_relative_humidity
-    - group.iron_sockets
+    - group.iron_sockets # From package: appliance_irons
     - group.Aeotec_Multi_1
 
 boys_rooms_view:
@@ -114,7 +113,7 @@ loft_view:
   name: loft
   view: yes
   entities:
-    # - group.hpilo
+    # - group.hpilo # From package: hp_ilo
     - group.loft_sever_cooling
     - group.fibaro
 
@@ -126,7 +125,7 @@ garage_view:
     - binary_sensor.zha_02753210_1_6 # Garage Interior Door Magetic Sensor
     - sensor.portable_sensor_3_temperature
     - sensor.temp_humid_3_humidity
-    - group.garage_lights
+    - group.garage_lights # From package: garage_light
     - group.nest_garage_camera
 
 family_view:
@@ -137,15 +136,15 @@ family_view:
     - device_tracker.martins_iphone
     - device_tracker.michelles_iphone
     - group.tracked_devices
-    - group.have_i_been_pawned
+    - group.have_i_been_pawned # From package: haveibeenpwnd
 
 system_view:
   name: Systems
   icon: mdi:server-network
   view: yes
   entities:
-    - group.HAPi
-    # - group.hpilo
+    - group.HAPi # From package: hassio_resource_monitor
+    # - group.hpilo # From package: hp_ilo
     - group.zwave
     - group.zigbee
     - group.internet # From Package: Internet
@@ -155,16 +154,16 @@ automation_view:
   icon: mdi:home-automation
   view: yes
   entities:
-    - group.automation_package_garage_light
+    - group.automation_package_garage_light # From package: garage_light
     - group.automation_package_kitchen_appliances
     - group.automation_package_loft_server_cooling
-    - group.automation_package_irons
-    - group.automation_package_haveibeenpwned
+    - group.automation_package_irons # From package: appliance_irons
+    - group.automation_package_haveibeenpwned # From package: haveibeenpwnd
     - group.automation_package_routine_morning_night
     - group.automation_package_hassio_maintenance
     - group.automation_package_travis
     - group.automation_package_sonos
-    - group.automation_package_hassio_resource_monitor
+    - group.automation_package_hassio_resource_monitor # From package: hassio_resource_monitor
     - group.automation_utilities
 
 ######################## GROUPS (Cards) ########################
@@ -181,14 +180,6 @@ fibaro:
     - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
     - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
     - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-
-flamerite_fire:
-  name: Fireplace
-  entities:
-    - switch.flamerite_power
-    - switch.flamerite_heat
-    - light.flamerite_dimmer1
-    - light.flamerite_dimmer2
 
 living_room_lights:
   name: Living Room Lights
@@ -209,28 +200,6 @@ hall_sockets:
   entities:
     - switch.lwrf_hall_socket_1
     - switch.lwrf_hall_socket_2
-
-iron_sockets:
-  name: Iron Sockets
-  entities:
-    - sensor.ironing_room_motion
-    - sensor.ironing_room_motion_status
-    - switch.tp_hs110_1
-    - sensor.tp_hs110_1_power
-    - switch.tp_hs110_2
-    - sensor.tp_hs110_2_power
-    - switch.tp_hs110_3
-    - sensor.tp_hs110_3_power
-    - switch.tp_hs110_4
-    - sensor.tp_hs110_4_power
-    - switch.tp_hs110_5
-    - sensor.tp_hs110_5_power
-
-laurastar_iron:
-  name: LauraStar Iron
-  entities:
-    - switch.tp_hs110_1
-    - sensor.tp_hs110_1_power
 
 morgans_room_lights:
   name: Morgans Lights
@@ -284,79 +253,18 @@ nest_protect:
     - sensor.upstairs_nest_protect_co_status
     - sensor.upstairs_nest_protect_color_status
 
-HAPi:
-  name: HAPi Server
-  entities:
-    - sensor.processor_use
-    - sensor.disk_free
-    - sensor.disk_use_percent
-    - sensor.swap_use_percent
-    - sensor.memory_free
-    - sensor.memory_use_percent
-    - sensor.load_1m
-    - sensor.load_5m
-    - sensor.load_15m
-
-hpilo:
-  name: HP Microserver G7
-  entities:
-    - sensor.nano_server_name
-    - sensor.nano_glance_power_supplies
-    - sensor.nano_glance_processor
-    - sensor.nano_glance_storage
-    - sensor.nano_glance_memory
-    - sensor.nano_glance_temperatures
-    - sensor.nano_glance_fans
-    - sensor.nano_glance_network
-    - sensor.nano_glance_bios
-    - sensor.nano_cpu_fanspeed
-    - sensor.nano_inlet_temperature
-    - sensor.nano_exhaust_temperature
-    - sensor.nano_cpu_temperature
-    - sensor.nano_pci_temperature
-    - sensor.nano_chipset_temperature
-    - sensor.nano_memory_temperature
-
-automation_package_garage_light:
-  name: Garage Light
-  entities:
-    - automation.garage_motion_detected
-    - automation.garage_no_motion_detected
-    - automation.garage_light_left_on_no_motion
-
 automation_package_kitchen_appliances:
   name: Kitchen Appliances
   entities:
-    - automation.set_dishwasher_active_when_power_detected
-    - automation.set_dishwasher_finished_when_power_drops
-    - automation.set_dishwasher_to_idle
-    - automation.set_dryer_active_when_power_detected
-    - automation.set_dryer_drying_when_power_drops
-    - automation.set_dryer_to_idle
-    - automation.set_washing_machine_active_when_power_detected
-    - automation.set_washing_machine_to_finished_when_power_drops
-    - automation.set_washing_machine_to_idle
+    - group.automation_package_dishwasher # From package: appliance_dishwasher
+    - group.automation_package_dryer # From package: appliance_dryer
+    - group.automation_package_washing_machine # From package: appliance_washingmachine
 
 automation_package_loft_server_cooling:
   name: Loft Server Cooling
   entities:
     - automation.loft_fan_turn_on_when_hot
     - automation.loft_fan_turn_off_when_not_hot
-
-automation_package_irons:
-  name: Irons
-  entities:
-    - automation.ironing_room_motion_detected
-    - automation.ironing_room_no_motion_30_mins
-    - automation.ironing_room_no_motion_turn_off_ironing_table
-    - automation.ironing_room_no_motion_turn_off_irons_left
-    - automation.ironing_room_no_motion_turn_off_irons_right
-    - automation.ironing_room_no_motion_turn_off_magpie_iron
-
-automation_package_haveibeenpwned:
-  name: Have I Been Pwned
-  entities:
-    - automation.have_i_been_pwned_change
 
 automation_package_routine_morning_night:
   name: Routines Morning and Night
@@ -389,13 +297,6 @@ automation_utilities:
     - automation.update_available_notification
     - automation.sonoff_mqtt_state_sync
 
-automation_package_hassio_resource_monitor:
-  name: HAPi Resource Monitoring
-  entities:
-    - automation.hapi_high_load_alert
-    - automation.hapi_low_disk_space_alert
-    - automation.hapi_low_memory_alert
-
 tracked_devices:
   name: Tracked Devices
   entities:
@@ -405,19 +306,6 @@ tracked_devices:
     - device_tracker.michelles_iphone
     - sensor.iphone_battery_level
     - sensor.iphone_battery_state
-
-have_i_been_pawned:
-  name: HaveIBeenPwned
-  entities:
-    - !secret sensor_hibp_email1
-    - !secret sensor_hibp_email2
-    - !secret sensor_hibp_email3
-    - !secret sensor_hibp_email4
-    - !secret sensor_hibp_email5
-    - !secret sensor_hibp_email6
-    - !secret sensor_hibp_email7
-    - !secret sensor_hibp_email8
-    - !secret sensor_hibp_email9
 
 Aeotec_Multi_1:
   name: Aeotec Multisensor
@@ -499,31 +387,3 @@ zigbee:
     - zha.zha_lumi_lumi_sensor_magnet_aq2_025370bc # Magnetic sensor online status Front Door
     - zha.zha_lumi_lumi_sensor_magnet_aq2_02753210 # Magnetic sensor online status Back Door
     - zha.zha_lumi_lumi_sensor_magnet_aq2_0275335b # Magnetic sensor online status Garage Interior Door
-  
-dishwasher:
-  name: Dishwasher
-  entities:
-    - sensor.dishwasher_status
-    - switch.tp_hs110_6
-    - sensor.tp_hs110_6_power
-
-washing_machine:
-  name: Washing Machine
-  entities:
-    - sensor.washing_machine_status
-    - switch.tp_hs110_7
-    - sensor.tp_hs110_7_power
-
-dryer:
-  name: Tumble Dryer
-  entities:
-    - sensor.dryer_status
-    - switch.tp_hs110_8
-    - sensor.tp_hs110_8_power
-
-garage_lights:
-  name: Garage Lights
-  entities:
-    - sensor.garage_motion_status
-    - sensor.garage_motion
-    - switch.sonoff_garage_light

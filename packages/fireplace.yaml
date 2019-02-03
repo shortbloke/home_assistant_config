@@ -1,3 +1,6 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     switch.flamerite_power:
@@ -13,6 +16,21 @@ homeassistant:
       friendly_name: "Dimmer 2"
       hidden: true
 
+##################################################
+## Groups
+##################################################
+group:
+  flamerite_fire:
+    name: Fireplace
+    entities:
+      - switch.flamerite_power
+      - switch.flamerite_heat
+      - light.flamerite_dimmer1
+      - light.flamerite_dimmer2
+
+##################################################
+## Components/Sensors
+##################################################
 light:
   - platform: rfxtrx
     automatic_add: false

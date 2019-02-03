@@ -1,3 +1,6 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     light.wifi_ufo_1:
@@ -13,6 +16,9 @@ homeassistant:
       friendly_name: "Bed"
       icon: mdi:led-strip
 
+##################################################
+## Components/Sensors
+##################################################
 light:
   - platform: flux_led
     automatic_add: False

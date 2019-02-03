@@ -1,9 +1,34 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     switch.tp_hs110_7:
       friendly_name: "Washing Machine"
       icon: mdi:washing-machine
+    sensor.tp_hs110_7_power:
+      icon: mdi:chart-line
 
+##################################################
+## Groups
+##################################################
+group:
+  washing_machine:
+    name: Washing Machine
+    entities:
+      - sensor.washing_machine_status
+      - switch.tp_hs110_7
+      - sensor.tp_hs110_7_power
+  automation_package_washing_machine:
+    name: Washing Machine Automation
+    entities:
+      - automation.set_washing_machine_active_when_power_detected
+      - automation.set_washing_machine_to_finished_when_power_drops
+      - automation.set_washing_machine_to_idle
+
+##################################################
+## Components/Sensors
+##################################################
 switch:
   - platform: tplink
     host: 192.168.200.27 # DHCP reservation
@@ -31,6 +56,9 @@ sensor:
         value_template: '{{ states.input_select.washing_machine_status.state}}'
         friendly_name: 'Washing Machine Status'
 
+##################################################
+## Automation
+##################################################
 automation:
 # When we detect power being drawn from the washing machine, above 5W,
 # mark the washing machine as using started

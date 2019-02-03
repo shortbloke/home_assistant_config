@@ -1,9 +1,33 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     switch.tp_hs110_8:
       friendly_name: "Tumble Dryer"
       icon: mdi:tumble-dryer
+    sensor.tp_hs110_8_power:
+      icon: mdi:chart-line
+##################################################
+## Groups
+##################################################
+group:
+  dryer:
+    name: Tumble Dryer
+    entities:
+      - sensor.dryer_status
+      - switch.tp_hs110_8
+      - sensor.tp_hs110_8_power
+  automation_package_dryer:
+    name: Dryer Automation
+    entities:
+      - automation.set_dryer_active_when_power_detected
+      - automation.set_dryer_drying_when_power_drops
+      - automation.set_dryer_to_idle
 
+##################################################
+## Components/Sensors
+##################################################
 switch:
   - platform: tplink
     host: 192.168.200.28 # DHCP reservation
@@ -31,6 +55,9 @@ sensor:
         value_template: '{{ states.input_select.dryer_status.state}}'
         friendly_name: 'Tumble Dryer Status'
 
+##################################################
+## Automation
+##################################################
 automation:
 # When we detect power being drawn from the dryer, above 250W,
 # mark the dryer as using started

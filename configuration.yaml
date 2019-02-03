@@ -10,7 +10,6 @@ homeassistant:
   temperature_unit: C
   unit_system: metric
   customize: !include config/customize.yaml
-  customize_glob: !include config/customize_glob.yaml
 
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
@@ -20,6 +19,7 @@ homeassistant:
 ####################################################
 automation: !include config/automation.yaml
 discovery: !include config/discovery.yaml
+dyson: !include config/dyson.yaml
 group: !include config/group.yaml
 http: !include config/http.yaml
 history: !include config/history.yaml

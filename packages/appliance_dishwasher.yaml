@@ -1,9 +1,34 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     switch.tp_hs110_6:
       friendly_name: "Dishwasher"
       icon: mdi:dishwasher
+    sensor.tp_hs110_6_power:
+      icon: mdi:chart-line
 
+##################################################
+## Groups
+##################################################
+group:
+  dishwasher:
+    name: Dishwasher
+    entities:
+      - sensor.dishwasher_status
+      - switch.tp_hs110_6
+      - sensor.tp_hs110_6_power
+  automation_package_dishwasher:
+    name: Dishwasher Automation
+    entities:
+      - automation.set_dishwasher_active_when_power_detected
+      - automation.set_dishwasher_finished_when_power_drops
+      - automation.set_dishwasher_to_idle
+
+##################################################
+## Components/Sensors
+##################################################
 switch:
   - platform: tplink
     host: 192.168.200.26 # DHCP reservation
@@ -31,6 +56,9 @@ sensor:
         value_template: '{{ states.input_select.dishwasher_status.state}}'
         friendly_name: 'Dishwasher Status'
 
+##################################################
+## Automation
+##################################################
 automation:
 # When we detect power being drawn from the dishwasher, above 10W,
 # mark the dishwasher as 'running'
