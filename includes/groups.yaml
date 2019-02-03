@@ -158,7 +158,7 @@ automation_view:
   entities:
     - group.automation_package_garage_light
     - group.automation_package_kitchen_appliances
-    - group.automation_package_loft_fan
+    - group.automation_package_loft_server_cooling
     - group.automation_package_irons
     - group.automation_package_haveibeenpwned
     - group.automation_package_routine_morning_night
@@ -367,8 +367,8 @@ automation_package_kitchen_appliances:
     - automation.set_washing_machine_to_finished_when_power_drops
     - automation.set_washing_machine_to_idle
 
-automation_package_loft_fan:
-  name: Loft Fan
+automation_package_loft_server_cooling:
+  name: Loft Server Cooling
   entities:
     - automation.loft_fan_turn_on_when_hot
     - automation.loft_fan_turn_off_when_not_hot
