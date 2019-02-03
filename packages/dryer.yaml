@@ -38,7 +38,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_8_power
-        above: 250
+        above: 100
     condition:
       condition: or
       conditions:
@@ -60,7 +60,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_8_power
-        below: 250
+        below: 100
     condition:
       condition: state
       entity_id: input_select.dryer_status
@@ -78,7 +78,7 @@ automation:
         entity_id: input_select.dryer_status
         to: 'finished'
         for:
-          minutes: 5
+          minutes: 3
     action:
       - service: input_select.select_option
         data:

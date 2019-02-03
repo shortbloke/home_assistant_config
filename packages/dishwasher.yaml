@@ -38,7 +38,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_6_power
-        above: 10
+        above: 100
     condition:
       condition: or
       conditions:
@@ -60,7 +60,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_6_power
-        below: 10
+        below: 50
         for:
           minutes: 5
     condition:
