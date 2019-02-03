@@ -9,230 +9,37 @@ homeassistant:
   time_zone: Europe/London
   temperature_unit: C
   unit_system: metric
-  customize: !include includes/customize.yaml
-  customize_glob: !include includes/customize_glob.yaml
+  customize: !include config/customize.yaml
+  customize_glob: !include config/customize_glob.yaml
+
+  # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
 
 ####################################################
-#                     Enables                      #
+#                    Components                    #
 ####################################################
-http:
-  ssl_certificate: !secret http_ssl_certificate
-  ssl_key: !secret http_ssl_key
-  base_url: !secret http_base_url
-discovery:
-  ignore:
-    - samsung_tv
-    - apple_tv
-    - plex_mediaserver
+automation: !include config/automation.yaml
+discovery: !include config/discovery.yaml
+group: !include config/group.yaml
+http: !include config/http.yaml
+history: !include config/history.yaml
+logbook: !include config/logbook.yaml
+logger: !include config/logger.yaml
+mqtt: !include config/mqtt.yaml
+notify: !include config/notify.yaml
+panel_iframe: !include config/iframe.yaml
+recorder: !include config/recorder.yaml
+rfxtrx: !include config/rfxtrx.yaml
+tts: !include config/tts.yaml
+zone: !include config/zone.yaml
+zha: !include config/zha.yaml
+zwave: !include config/zwave.yaml
+
+# https://www.home-assistant.io/components/updater/
 updater:
-  include_used_components: True
+# https://www.home-assistant.io/components/config/
 config:
+# https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
+# https://www.home-assistant.io/components/map/
 map:
-
-###################################################
-#                     Panel                       #
-################################################### 
-panel_iframe:
-  tasmoadmin:
-    title: TasmoAdmin
-    icon: mdi:lightbulb-on
-    url: !secret TasmoAdminURL
-
-####################################################
-#                 Customisations                   #
-####################################################
-frontend:
-  javascript_version: auto
-  themes: !include includes/themes.yaml
-
-####################################################
-#                      Logger                      #
-####################################################
-logger:
-  default: warn
-  logs:
-    homeassistant.components.zha: debug
-####################################################
-#                     Camera                       #
-####################################################
-camera:
-  - platform: generic
-    still_image_url: 'https://www.thinkbroadband.com/broadband/monitoring/quality/share/ae25a213af51ed64c2cdf601d17a934194317d36.png'
-    name: broadbandquality
-
-####################################################
-#                    Dyson fan                     #
-####################################################
-# dyson:
-#   username: !secret dyson_username
-#   password: !secret dyson_password
-#   language: GB
-#   devices: 
-#     - device_id: !secret dyson_fan1_serial
-#       device_ip: !secret dyson_fan1_ip_address
-# fan:
-#   - platform: dyson
-
-####################################################
-#        RFXtrx433, Z-Wave Devices & ZigBee        #
-####################################################
-rfxtrx:
-  device: /dev/ttyUSB0
-  debug: False
-  dummy: False
-zwave:
-  usb_path: /dev/ttyACM0
-zha:
-  usb_path: /dev/ttyAMA0
-  database_path: zigbee.db
-  baudrate: 57600
-
-####################################################
-#                   Emulated Hue                   #
-####################################################
-emulated_hue:
-  listen_port: 80
-  expose_by_default: false
-  entities:
-    switch.lwrf_conservatory_1:
-      name: "Conservatory ceiling lights"
-      hidden: false
-    switch.lwrf_conservatory_2:
-      name: "Conservatory window lamp"
-      hidden: false
-    switch.lwrf_livingroom_standard_lamp:
-      name: "Living room lamp"
-      hidden: false
-    switch.lwrf_displaycabinetlight:
-      name: "Display cabinet light"
-      hidden: false
-    switch.lwrf_diningroom_rennie_mac_lamp:
-      name: "Rennie Mac Lamp"
-      hidden: false
-    switch.lwrf_waxburner:
-      name: "Wax Burner"
-      hidden: false
-    switch.lwrf_hall_socket_1:
-      name: "Outside Lights"
-      hidden: false
-    switch.lwrf_hall_socket_2:
-      name: "Twig Lights"
-      hidden: false
-    light.lwrf_diningroom_main:
-      name: "Dining room table lights"
-      hidden: false
-    light.lwrf_livingroom_main:
-      name: "Living room downlights"
-      hidden: false
-    light.lwrf_morgan_main:
-      name: "Morgans Main Bedroom Light"
-      hidden: false
-    switch.flamerite_power:
-      name: "Fire"
-      hidden: false
-    switch.flamerite_heat:
-      name: "Fire Heat"
-      hidden: false
-    light.wifi_ufo_1:
-      name: "Desk Lights"
-      hidden: false
-    light.wifi_ufo_2:
-      name: "Window Lights"
-      hidden: false
-    light.wifi_ufo_3:
-      name: "Rear wall lights"
-      hidden: false
-    light.wifi_ufo_4:
-      name: "Bed Lights"
-      hidden: false
-    scene.bright:
-      name: "Mood bright"
-      hidden: false
-    scene.comfortable:
-      name: "Mood comfortable"
-      hidden: false
-    scene.movie:
-      name: "Mood movie"
-      hidden: false
-    group.living_room_lights:
-      name: "Living room lights"
-      hidden: false
-    group.dining_room_lights:
-      name: "Dining room lights"
-      hidden: false
-    group.conservatory_lights:
-      name: "Conservatory lights"
-      hidden: false
-    group.morgans_room_lights:
-      name: "Morgans lights"
-      hidden: false
-    group.frasers_room_lights:
-      name: "Frasers lights"
-      hidden: false
-
-####################################################
-#                 Tuya Component                   #
-####################################################
-tuya:
-  username: !secret tuya_username
-  password: !secret tuya_password
-  country_code: !secret tuya_country_code
-  platform: smart_life
-
-####################################################
-#                      MQTT                        #
-####################################################
-mqtt:
-  broker: core-mosquitto
-  username: !secret MQTT_username
-  password: !secret MQTT_password
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-    qos: 1
-    retain: true
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-    qos: 1
-    retain: true
-
-####################################################
-#                Climate & Weather                 #
-####################################################
-weather:
-  - platform: darksky
-    api_key: !secret darksky_API_KEY
-sun:
-
-####################################################
-#                  Text to Speech                  #
-####################################################
-tts:
-  - platform: google
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 300
-  - platform: voicerss
-    api_key: !secret voicerss_api_key
-    language: 'en-gb'
-    format: '44khz_16bit_stereo'
-
-####################################################
-#                     Includes                     #
-####################################################
-automation: !include includes/automations.yaml
-group: !include includes/groups.yaml
-history: !include includes/history.yaml
-light: !include includes/lights.yaml
-logbook: !include includes/logbook.yaml
-notify: !include includes/notifygroups.yaml
-recorder: !include includes/recorder.yaml
-scene: !include includes/scenes.yaml
-sensor: !include includes/sensors.yaml
-switch: !include includes/switches.yaml
-zone: !include includes/zones.yaml
-
-####################################################

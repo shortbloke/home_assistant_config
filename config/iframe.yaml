@@ -1,0 +1,6 @@
+# https://www.home-assistant.io/components/panel_iframe/
+
+tasmoadmin:
+  title: TasmoAdmin
+  icon: mdi:lightbulb-on
+  url: !secret TasmoAdminURL

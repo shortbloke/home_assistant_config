@@ -1,10 +1,18 @@
-#### history.yaml ####
-# Note: All entries need to also be defined in recorder.yaml
+# https://www.home-assistant.io/components/recorder/
+
+purge_interval: 1
+purge_keep_days: 10
 
 include:
+  domains: 
+    - device_tracker
+    - automation
   entities:
+  ########################
+  # Used by history.yaml #
+  ########################
     # Nest
-    - binary_sensor.northway_away # Away Mode 
+    - binary_sensor.northway_away # Away Mode
     # Nest Thermostat
     - climate.hallway_house # Aggregate information
     - sensor.hallway_thermostat_house_hvac_state # Heating Status
@@ -91,3 +99,11 @@ include:
     - !secret sensor_hibp_email7
     - !secret sensor_hibp_email8
     - !secret sensor_hibp_email9
+
+  ############################
+  # Used by logbook.yaml     #
+  # Not used in History.yaml #
+  ############################
+    # Travis CI
+    - sensor.shortblokehome_assistant_config_last_build_state
+    - sensor.shortblokehome_assistant_config_last_build_id

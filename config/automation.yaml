@@ -1,4 +1,5 @@
-# Need to have at least one automation in this file, if being included.
+# https://www.home-assistant.io/components/automation/
+
 - alias: Sonoff MQTT State Sync
   trigger:
     platform: homeassistant

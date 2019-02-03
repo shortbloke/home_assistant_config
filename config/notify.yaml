@@ -1,3 +1,7 @@
+# https://www.home-assistant.io/components/notify/
+# and
+# https://www.home-assistant.io/components/notify.group/
+
 - name: adults
   platform: group
   services:

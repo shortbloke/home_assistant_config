@@ -1,4 +1,4 @@
-#### groups.yaml ####
+# https://www.home-assistant.io/components/group/
 
 ######################## VIEWS (Tabs) ########################
 ## DEFUALT VIEW - HOME##
@@ -108,8 +108,7 @@ outside_view:
   entities:
     - sensor.temp_humid_ext_1_temperature
     - sensor.temp_humid_ext_1_humidity
-    - group.climate
-    - weather.dark_sky
+    - group.environment # From package: Environment
 
 loft_view:
   name: loft
@@ -149,7 +148,7 @@ system_view:
     # - group.hpilo
     - group.zwave
     - group.zigbee
-    - group.internet
+    - group.internet # From Package: Internet
 
 automation_view:
   name: Automation
@@ -257,11 +256,6 @@ loft_sever_cooling:
     - sensor.loft_fan_humidity
     - switch.sonoff_loft_fan_power
 
-climate:
-  name: Weather (local)
-  entities:
-    - sun.sun
-    - sensor.moon
 
 heating:
   name: Heating
@@ -289,31 +283,6 @@ nest_protect:
     - sensor.upstairs_nest_protect_smoke_status
     - sensor.upstairs_nest_protect_co_status
     - sensor.upstairs_nest_protect_color_status
-
-environment:
-  name: Environment
-  entities:
-    - sensor.temp_humid_ext_1_temperature
-    - sensor.temp_humid_ext_1_humidity
-    - sensor.portable_sensor_1_temperature
-    - sensor.temp_humid_1_humidity
-    - sensor.portable_sensor_2_temperature
-    - sensor.temp_humid_2_humidity
-    - sensor.portable_sensor_3_temperature
-    - sensor.temp_humid_3_humidity
-    - sensor.portable_sensor_4_temperature
-    - sensor.temp_humid_4_humidity
-    - sensor.portable_sensor_5_temperature
-    - sensor.temp_humid_5_humidity
-    - sensor.hallway_thermostat_house_temperature
-    - sensor.hallway_thermostat_house_humidity
-
-energy:
-  name: Home Monitor
-  entities:
-    - sensor.energy_sensor_a_energy_usage
-    - sensor.energy_sensor_a_total_usage
-    - sensor.energy_sensor_b_total_usage
 
 HAPi:
   name: HAPi Server
@@ -417,7 +386,8 @@ automation_package_sonos:
 automation_utilities:
   name: Utilities
   entities:
-    - automation.update_available_notifications
+    - automation.update_available_notification
+    - automation.sonoff_mqtt_state_sync
 
 automation_package_hassio_resource_monitor:
   name: HAPi Resource Monitoring
@@ -516,14 +486,6 @@ waze_travel:
   entities:
     - sensor.to_home
     - sensor.to_work
-
-internet:
-  name: Internet
-  entities: 
-    - sensor.speedtest_ping
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - camera.broadbandquality
 
 zigbee:
   name: Zigbee Sensors

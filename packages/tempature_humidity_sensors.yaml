@@ -49,10 +49,10 @@ homeassistant:
     sensor.temp_sensor_1_temperature:
       friendly_name: "Temperature"  #Master Bedroom
 
-sensors:
+sensor:
   # RFXCOM 433 Sensors
   - platform: rfxtrx
-    automatic_add: True
+    automatic_add: false
     devices:
       # 0a5209f6ad0002582f0189:
       0a52094f2c0002b3290179:  #Convervatory
