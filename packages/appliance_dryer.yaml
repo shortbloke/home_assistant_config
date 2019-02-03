@@ -38,7 +38,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_8_power
-        above: 100
+        above: 800
     condition:
       condition: or
       conditions:
