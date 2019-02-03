@@ -91,7 +91,7 @@ automation:
       entity_id: switch.sonoff_garage_light
       state: 'on'
     action:
-      - service: notify.ios_martins_iphone
+      - service: notify.martin
         data:
           title: "Garage Alert!"
           message: "Light left on. Turning off."

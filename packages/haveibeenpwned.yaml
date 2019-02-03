@@ -44,6 +44,6 @@ automation:
         - !secret sensor_hibp_email1
         - !secret sensor_hibp_email8
   action:
-    service: notify.ios_martins_iphone
+    service: notify.martin
     data_template:
       message: "Warning - HaveIbeenPwned detected {{trigger.to_state.attributes.friendly_name}}"

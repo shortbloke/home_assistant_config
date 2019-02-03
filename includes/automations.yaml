@@ -98,7 +98,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.ios_martins_iphone
+    service: notify.martin
     data:
       message: 'Update for Home Assistant is available.'
 

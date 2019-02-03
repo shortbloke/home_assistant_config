@@ -21,7 +21,7 @@ automation:
         entity_id: sensor.disk_use_percent
         above: 90
     action:
-      - service: notify.ios_martins_iphone
+      - service: notify.martin
         data: 
           title: "HAPi Low Resource Alert"
           message: "Low Disk Space > 90% Used"
@@ -32,7 +32,7 @@ automation:
         entity_id: sensor.memory_use_percent
         above: 90
     action:
-      - service: notify.ios_martins_iphone
+      - service: notify.martin
         data: 
           title: "HAPi Low Resource Alert"
           message: "Low Memory > 90% Used"
@@ -43,7 +43,7 @@ automation:
         entity_id: sensor.load_5m
         above: 2.8 # 4 Cores in RPi3 x 0.7 per core, for relatively high sustained load = 
     action:
-      - service: notify.ios_martins_iphone
+      - service: notify.martin
         data: 
           title: "HAPi Low Resource Alert"
           message: "System Load 5m Load Average > 2.8"
