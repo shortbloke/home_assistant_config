@@ -1,7 +1,5 @@
 ###################################################
-#                                                 #
 #     Home Assistant Main Configuration File      #
-#                                                 #
 ###################################################
 homeassistant:
   name: Home Assistant
@@ -15,21 +13,8 @@ homeassistant:
   customize_glob: !include includes/customize_glob.yaml
   packages: !include_dir_named packages
 
-###################################################
-#                                                 #
-#                     Panel                       #
-#                                                 #
-################################################### 
-panel_iframe:
-  tasmoadmin:
-    title: TasmoAdmin
-    icon: mdi:lightbulb-on
-    url: !secret TasmoAdminURL
-
 ####################################################
-#                                                  #
 #                     Enables                      #
-#                                                  #
 ####################################################
 http:
   ssl_certificate: !secret http_ssl_certificate
@@ -46,47 +31,31 @@ config:
 ios:
 map:
 
+###################################################
+#                     Panel                       #
+################################################### 
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: !secret TasmoAdminURL
+
 ####################################################
-#                                                  #
 #                 Customisations                   #
-#                                                  #
 ####################################################
 frontend:
   javascript_version: auto
   themes: !include includes/themes.yaml
 
 ####################################################
-#                                                  #
 #                      Logger                      #
-#                                                  #
 ####################################################
 logger:
   default: warn
   logs:
-    # homeassistant.components.dyson: info
     homeassistant.components.zha: debug
-    # bellows.ezsp: debug
-    # bellows.uart: debug
-    # zigpy.zdo: debug
-    # zigpy.application: debug
-  #   homeassistant.components.mqtt: debug
-  # #   homeassistant.components.light: info
-  #   homeassistant.components.dyson: debug
-  #   homeassistant.components.sensor.dyson: debug
-  #   homeassistant.components.fan.dyson: debug
-
 ####################################################
-#                                                  #
-#                      Cloud                       #
-#                                                  #
-####################################################
-#cloud:
-  # Home Assistant Cloud allows use of the Alexa Skill
-
-####################################################
-#                                                  #
 #                     Camera                       #
-#                                                  #
 ####################################################
 camera:
   - platform: generic
@@ -94,9 +63,7 @@ camera:
     name: broadbandquality
 
 ####################################################
-#                                                  #
-#            Heating, Cooling & Security           #
-#                                                  #
+#                    Dyson fan                     #
 ####################################################
 # dyson:
 #   username: !secret dyson_username
@@ -109,9 +76,7 @@ camera:
 #   - platform: dyson
 
 ####################################################
-#                                                  #
 #        RFXtrx433, Z-Wave Devices & ZigBee        #
-#                                                  #
 ####################################################
 rfxtrx:
   device: /dev/ttyUSB0
@@ -125,9 +90,7 @@ zha:
   baudrate: 57600
 
 ####################################################
-#                                                  #
 #                   Emulated Hue                   #
-#                                                  #
 ####################################################
 emulated_hue:
   listen_port: 80
@@ -210,9 +173,7 @@ emulated_hue:
       hidden: false
 
 ####################################################
-#                                                  #
 #                 Tuya Component                   #
-#                                                  #
 ####################################################
 tuya:
   username: !secret tuya_username
@@ -221,9 +182,7 @@ tuya:
   platform: smart_life
 
 ####################################################
-#                                                  #
 #                      MQTT                        #
-#                                                  #
 ####################################################
 mqtt:
   broker: core-mosquitto
@@ -241,9 +200,7 @@ mqtt:
     retain: true
 
 ####################################################
-#                                                  #
 #                Climate & Weather                 #
-#                                                  #
 ####################################################
 weather:
   - platform: darksky
@@ -251,9 +208,7 @@ weather:
 sun:
 
 ####################################################
-#                                                  #
 #                  Text to Speech                  #
-#                                                  #
 ####################################################
 tts:
   - platform: google
@@ -266,9 +221,7 @@ tts:
     format: '44khz_16bit_stereo'
 
 ####################################################
-#                                                  #
 #                     Includes                     #
-#                                                  #
 ####################################################
 automation: !include includes/automations.yaml
 group: !include includes/groups.yaml

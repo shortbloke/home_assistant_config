@@ -1,3 +1,16 @@
+homeassistant:
+  customize:
+    media_player.living_room:
+      friendly_name: "Living Room"
+    media_player.kitchen:
+      friendly_name: "Kitchen"
+    media_player.conservatory:
+      friendly_name: "Conservatory"
+    media_player.master_bedroom:
+      friendly_name: "Master Bedroom"
+    media_player.bathroom:
+      friendly_name: "Ensuite"
+
 script:
   sonos_say:
     # Source: https://home-assistant.io/cookbook/sonos_say/
