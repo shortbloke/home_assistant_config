@@ -116,10 +116,8 @@ loft_view:
   view: yes
   entities:
     # - group.hpilo
-    - group.loft
+    - group.loft_sever_cooling
     - group.fibaro
-    - sensor.loft_fan_temperature
-    - sensor.loft_fan_humidity
 
 garage_view:
   name: garage
@@ -160,6 +158,7 @@ automation_view:
   entities:
     - group.automation_package_garage_light
     - group.automation_package_kitchen_appliances
+    - group.automation_package_loft_fan
     - group.automation_package_irons
     - group.automation_package_haveibeenpwned
     - group.automation_utilities
@@ -250,9 +249,11 @@ frasers_room_lights:
     - light.12204702807d3a252c69
     - light.12204702ecfabc20a0a1
 
-loft:
-  name: Loft Power
+loft_sever_cooling:
+  name: Loft Sever Cooling
   entities:
+    - sensor.loft_fan_temperature
+    - sensor.loft_fan_humidity
     - switch.sonoff_loft_fan_power
 
 climate:
@@ -366,6 +367,12 @@ automation_package_kitchen_appliances:
     - automation.set_washing_machine_to_finished_when_power_drops
     - automation.set_washing_machine_to_idle
 
+automation_package_loft_fan:
+  name: Loft Fan
+  entities:
+    - automation.loft_fan_turn_on_when_hot
+    - automation.loft_fan_turn_off_when_not_hot
+
 automation_package_irons:
   name: Irons
   entities:
@@ -396,8 +403,6 @@ automation_powercontrol:
   entities:
     - automation.turn_on_lights_in_the_morning_and_at_sunset
     - automation.turn_off_morning_lights
-    - automation.loft_fan_turn_on_when_hot
-    - automation.loft_fan_turn_off_when_not_hot
     - automation.turn_on_air_freshener_socket_in_the_morning
     - automation.turn_off_air_freshener_socket_at_night
 

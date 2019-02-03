@@ -58,26 +58,6 @@
       data: 
         addon: "core_git_pull"
 
-- id: a_Loft_Fan_On
-  alias: Loft Fan Turn On When Hot
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.loft_fan_temperature
-      above: 30
-  action:
-    - service: homeassistant.turn_on
-      entity_id: switch.sonoff_loft_fan_power
-
-- id: a_Loft_Fan_Off
-  alias: Loft Fan Turn Off When Not Hot
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.loft_fan_temperature
-      below: 30
-  action:
-    - service: homeassistant.turn_off
-      entity_id: switch.sonoff_loft_fan_power
-
 - id: a_sonos_tts_test
   alias: Sonos TTS Test
   trigger:

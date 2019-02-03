@@ -24,15 +24,3 @@
       name: flamerite_power
     0b11000f015b6eff02010f70:
       name: flamerite_heat
-
-- platform: mqtt
-  name: "Sonoff Loft Fan Power"
-  state_topic: "stat/sonoff_loft_fan/POWER"
-  command_topic: "cmnd/sonoff_loft_fan/POWER"
-  availability_topic: "tele/sonoff_loft_fan/LWT"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  payload_available: "Online"
-  payload_not_available: "Offline"
-  retain: true

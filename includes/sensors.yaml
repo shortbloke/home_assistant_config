@@ -46,18 +46,6 @@
       data_type:
         - Temperature
 
-# MQTT Sensors
-- platform: mqtt
-  name: "Loft_Fan Temperature"
-  state_topic: "tele/sonoff_loft_fan/SENSOR"
-  value_template: "{{ value_json['SI7021'].Temperature }}"
-  unit_of_measurement: "°C"
-- platform: mqtt
-  name: "Loft_Fan Humidity"
-  state_topic: "tele/sonoff_loft_fan/SENSOR"
-  value_template: "{{ value_json['SI7021'].Humidity }}"
-  unit_of_measurement: "%"
-
 ############################################################
 #
 # HP Server Integrated Lights Out Monitoring 
