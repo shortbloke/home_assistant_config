@@ -98,9 +98,6 @@ camera:
 #            Heating, Cooling & Security           #
 #                                                  #
 ####################################################
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
 # dyson:
 #   username: !secret dyson_username
 #   password: !secret dyson_password
@@ -248,8 +245,6 @@ mqtt:
 #                Climate & Weather                 #
 #                                                  #
 ####################################################
-climate:
-  platform: nest
 weather:
   - platform: darksky
     api_key: !secret darksky_API_KEY

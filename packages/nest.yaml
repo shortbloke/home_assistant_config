@@ -1,0 +1,110 @@
+homeassistant:
+  customize:
+### Nest ###
+    sensor.nest_away_mode:
+      icon: mdi:home-minus
+
+### Nest Climate Information ###
+    sensor.hallway_thermostat_house_humidity:
+      friendly_name: "Humidity"
+    sensor.hallway_thermostat_house_temperature:
+      friendly_name: "Temperature"
+    sensor.hallwayhousetemperature_2:
+      friendly_name: "Outside Temperature"
+    sensor.hallwayhousecondition:
+      friendly_name: "Condition"  
+    sensor.hallwayhousehumidity_2:
+      friendly_name: "Outside Humidity"
+    binary_sensor.hallway_thermostat_house_is_using_emergency_heat:
+      friendly_name: "Emergency Heat"
+      hidden: true
+    sensor.hallway_thermostat_house_hvac_state:
+      friendly_name: "Heating Status"
+      icon: mdi:thermometer-lines
+    binary_sensor.hallway_thermostat_house_has_leaf:
+      friendly_name: "Energy Saving"
+      icon: mdi:leaf
+    binary_sensor.hallway_thermostat_house_fan:
+      hidden: true
+    binary_sensor.hallway_thermostat_house_is_locked:
+      hidden: true
+    sensor.hallway_thermostat_house_operation_mode:
+      hidden: true
+    binary_sensor.hallway_thermostat_house_online:
+      hidden: true
+    sensor.hallway_thermostat_house_target:
+      hidden: true
+
+### Nest Protect ###
+    binary_sensor.hallway_nest_protect_online:
+      friendly_name: "Gnd Floor Protect Status"
+      icon: mdi:smoke-detector
+    sensor.hallway_nest_protect_battery_health:
+      hidden: true
+    sensor.hallway_nest_protect_co_status:
+      friendly_name: "Gnd Floor CO2 Status"
+      icon: mdi:periodic-table-co2
+    sensor.hallway_nest_protect_color_status:
+      friendly_name: "Gnd Floor Protect Colour"
+    sensor.hallway_nest_protect_smoke_status:
+      friendly_name: "Gnd Floor Smoke Status"
+      icon: mdi:blur
+    
+    binary_sensor.upstairs_nest_protect_online:
+      friendly_name: "1st Floor Protect Status"
+      icon: mdi:smoke-detector
+    sensor.upstairs_nest_protect_battery_health:
+      hidden: true
+    sensor.upstairs_nest_protect_co_status:
+      friendly_name: "1st Floor CO2 Status"
+      icon: mdi:periodic-table-co2
+    sensor.upstairs_nest_protect_color_status:
+      friendly_name: "1st Floor Protect Colour"
+    sensor.upstairs_nest_protect_smoke_status:
+      friendly_name: "1st Floor Smoke Status"
+      icon: mdi:blur
+
+### Nest IQ Cameras ###
+    camera.living_room:
+      friendly_name: "Gnd Floor"
+    binary_sensor.living_room_camera_online:
+      friendly_name: "Status"
+      icon: mdi:cctv
+    binary_sensor.living_room_camera_motion_detected:
+      friendly_name: "Motion"
+    binary_sensor.living_room_camera_person_detected:
+      friendly_name: "Person"
+      icon: mdi:face
+    binary_sensor.living_room_camera_sound_detected:
+      friendly_name: "Sound"
+    camera.garage:
+      friendly_name: "Garage"
+    binary_sensor.garage_camera_online:
+      friendly_name: "Status"
+      icon: mdi:cctv
+    binary_sensor.garage_camera_motion_detected:
+      friendly_name: "Motion"
+    binary_sensor.garage_camera_person_detected:
+      friendly_name: "Person"
+      icon: mdi:face
+    binary_sensor.garage_camera_sound_detected:
+      friendly_name: "Sound"
+    binary_sensor.garage_camera_garage_door_activity:
+      friendly_name: "Activity Zone - Garage Door"
+    binary_sensor.garage_camera_hall_door_activity:
+      friendly_name: "Activity Zone - Hall Door"
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+climate:
+  platform: nest
+
+sensor:
+  - platform: nest
+  - platform: template
+    sensors:
+      nest_away_mode:
+        value_template: '{{ states.climate.hallway_house.attributes.away_mode }}'
+        friendly_name: "Nest Away Mode"
