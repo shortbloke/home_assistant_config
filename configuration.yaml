@@ -9,7 +9,7 @@ homeassistant:
   time_zone: Europe/London
   temperature_unit: C
   unit_system: metric
-  customize: !include config/customize_glob.yaml
+  customize_glob: !include config/customize_glob.yaml
   customize: !include config/customize.yaml
 
   # https://home-assistant.io/docs/configuration/packages/  
