@@ -6,8 +6,6 @@ homeassistant:
     switch.tp_hs110_7:
       friendly_name: "Washing Machine"
       icon: mdi:washing-machine
-    sensor.tp_hs110_7_power:
-      icon: mdi:chart-line
 
 ##################################################
 ## Groups

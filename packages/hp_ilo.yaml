@@ -2,9 +2,6 @@
 ## Customize
 ##################################################
 homeassistant:
-  customize_glob:
-    sensor.server_glance*:
-      icon: mdi:check
   customize:
     sensor.server_server_power_state:
       icon: mdi:power

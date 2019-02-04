@@ -6,8 +6,6 @@ homeassistant:
     switch.tp_hs110_6:
       friendly_name: "Dishwasher"
       icon: mdi:dishwasher
-    sensor.tp_hs110_6_power:
-      icon: mdi:chart-line
 
 ##################################################
 ## Groups

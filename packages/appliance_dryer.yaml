@@ -6,8 +6,7 @@ homeassistant:
     switch.tp_hs110_8:
       friendly_name: "Tumble Dryer"
       icon: mdi:tumble-dryer
-    sensor.tp_hs110_8_power:
-      icon: mdi:chart-line
+
 ##################################################
 ## Groups
 ##################################################

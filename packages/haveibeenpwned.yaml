@@ -1,11 +1,6 @@
 ##################################################
-## Customize
+## Groups
 ##################################################
-homeassistant:
-  customize_glob:
-    sensor.breaches*:
-      icon: mdi:email-alert
-
 group:
   have_i_been_pawned:
     name: HaveIBeenPwned
