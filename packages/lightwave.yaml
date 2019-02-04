@@ -1,3 +1,6 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     # Dimmer Lights
@@ -36,7 +39,44 @@ homeassistant:
       friendly_name: "Air Freshener"
       icon: mdi:radiator
 
+##################################################
+## Groups
+##################################################
+group:
+  living_room_lights:
+    name: Living Room Lights
+    entities:
+      - light.lwrf_livingroom_main
+      - switch.lwrf_livingroom_standard_lamp
+      - switch.lwrf_displaycabinetlight
+      - switch.lwrf_waxburner
+  scenes_living_room:
+    name: Scenes Living Room
+    entities:
+      - scene.bright
+      - scene.comfortable
+      - scene.movie
+  dining_room_lights:
+    name: Dining Room Lights
+    entities: 
+      - light.lwrf_diningroom_main
+      - switch.lwrf_diningroom_rennie_mac_lamp
+  conservatory_lights:
+    name: Conservatory Lights
+    entities:
+      - switch.lwrf_conservatory_1
+      - switch.lwrf_conservatory_2
+  hall_sockets:
+    name: Hall Sockets
+    entities:
+      - switch.lwrf_hall_socket_1
+      - switch.lwrf_hall_socket_2
+
+##################################################
+## Components/Sensors
+##################################################
 light:
+    # https://www.home-assistant.io/components/light.rfxtrx/
   - platform: rfxtrx
     automatic_add: false
     devices:
@@ -48,6 +88,7 @@ light:
         name: lwrf_morgan_main
 
 switch:
+    # https://www.home-assistant.io/components/switch.rfxtrx/
   - platform: rfxtrx
     automatic_add: false
     devices:
@@ -68,7 +109,11 @@ switch:
       0a14001303922302010080:
         name: lwrf_hall_socket_2
 
+##################################################
+## Scenes
+##################################################
 scene:
+    # https://www.home-assistant.io/components/scene/
   - name: Bright
     entities:
       switch.lwrf_livingroom_standard_lamp: on

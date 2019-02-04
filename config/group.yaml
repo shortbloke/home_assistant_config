@@ -1,50 +1,50 @@
 # https://www.home-assistant.io/components/group/
 
 ######################## VIEWS (Tabs) ########################
-## DEFUALT VIEW - HOME saz##
+## DEFUALT VIEW - HOME ##
 
 default_view:
   name: Home
   view: yes
   entities:
-    - sensor.hallway_thermostat_house_temperature
-    - sensor.nest_away_mode
-    - group.living_room_lights
-    - group.dining_room_lights
-    - group.conservatory_lights
-    - group.scenes_living_room
-    - group.climate
-    - group.heating_main_page
-    - group.waze_travel
+    - sensor.hallway_thermostat_house_temperature # From package: nest
+    - sensor.nest_away_mode # From package: nest
+    - group.living_room_lights # From package: lightwave
+    - group.dining_room_lights # From package: lightwave
+    - group.conservatory_lights # From package: lightwave
+    - group.scenes_living_room # From package: lightwave
+    - group.weather # From package: climate 
+    - group.heating_main_page # group.yaml
+    - group.waze_travel # From package: waze
 
 ## OTHER TABS (VIEWS) ##
 security_view:
   name: Security
   view: yes
   entities:
-    - sensor.nest_away_mode
-    - group.nest_camera_1
-    - group.nest_garage_camera
-    - group.sonos
-    - group.motion_sensors
+    - sensor.nest_away_mode # From package: nest
+    - group.nest_camera_1 # From package: nest
+    - group.nest_garage_camera # From package: nest
+    - group.automation_package_sonos # From package: sonos
+    - group.motion_sensors # group.yaml
 
 living_room_view:
   name: Living Room
   view: yes
   entities:
-    - sensor.portable_sensor_2_temperature
-    - sensor.temp_humid_2_humidity
-    - group.living_room_lights
-    - group.scenes_living_room
+    - sensor.portable_sensor_2_temperature # From package: temperature_humidity_sensors
+    - sensor.temp_humid_2_humidity # From package: temperature_humidity_sensors
+    - group.living_room_lights # From package: lightwave
+    - group.scenes_living_room # From package: lightwave
     - group.flamerite_fire # From package: fireplace
-    - group.dining_room_lights
-    - media_player.living_room
+    - group.dining_room_lights # From package: lightwave
+    - media_player.living_room # From pakage: sonos
 
 kitchen_view:
   name: Kitchen
   view: yes
   entities: 
-    - media_player.kitchen
+    - media_player.kitchen # From package: sonos
     - group.dishwasher # From package: appliance_dishwasher
     - group.washing_machine # From package: appliance_washingmachine
     - group.dryer # From package: appliance_dryer
@@ -53,80 +53,82 @@ conservatory_view:
   name: Conservatory
   view: yes
   entities:
-    - sensor.portable_sensor_1_temperature
-    - sensor.zha_02378aca_1_1026 # Zigbee TH1 Temperature
-    - sensor.lumi_lumisens_02378aca_1_1029 # Zigbee TH1 Humidity
-    - sensor.temp_humid_1_humidity
-    - binary_sensor.zha_0275335b_1_6
-    - group.conservatory_lights
-    - media_player.conservatory
-    - group.nest_camera_1
+    - sensor.portable_sensor_1_temperature # From package: temperature_humidity_sensors
+    - sensor.temp_humid_1_humidity # From package: temperature_humidity_sensors
+    - sensor.zha_02378aca_1_1026 # From packge: zigbee
+    - sensor.lumi_lumisens_02378aca_1_1029 # From packge: zigbee
+    - binary_sensor.zha_0275335b_1_6 # From packge: zigbee
+    - group.conservatory_lights # From package: lightwave
+    - media_player.conservatory # From package: sonos
+    - group.nest_camera_1 # From package: nest
 
 hall_view:
   name: Hall
   view: yes
   entities:
-    - sensor.hallway_thermostat_house_humidity
-    - sensor.hallway_thermostat_house_temperature
-    - group.hall_sockets
-    - group.heating
-    - group.nest_protect
+    - sensor.hallway_thermostat_house_humidity # From package: nest
+    - sensor.hallway_thermostat_house_temperature # From package: nest
+    - group.hall_sockets # From package: lightwave
+    - group.heating # From package: nest
+    - group.nest_protect # From package: nest
 
 master_bedroom_view:
   name: Master Bedroom
   view: yes
   entities:
-    - media_player.master_bedroom
-    - media_player.bathroom
+    - media_player.master_bedroom # From packge: sonos
+    - media_player.bathroom # From package: sonos
     - group.laurastar_iron # From package: appliance_irons
-    - sensor.temp_sensor_1_temperature
+    - sensor.temp_sensor_1_temperature # From package: temperature_humidity_sensors
 
 ironing_room_view:
   name: Ironing Room
   view: yes
   entities:
-    - sensor.aeotec_zw100_multisensor_6_temperature
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity
+    - sensor.aeotec_zw100_multisensor_6_temperature # From package: zwave
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity # From package: zwave
     - group.iron_sockets # From package: appliance_irons
-    - group.Aeotec_Multi_1
+    - group.Aeotec_Multi_1 # From package: zwave
 
 boys_rooms_view:
   name: Boys Room
   view: yes
   entities:
-    - sensor.portable_sensor_5_temperature
-    - sensor.temp_humid_5_humidity
-    - group.morgans_room_lights
-    - group.frasers_room_lights
-    - sensor.portable_sensor_4_temperature
-    - sensor.temp_humid_4_humidity
+    - sensor.portable_sensor_5_temperature # From package: temperature_humidity_sensors
+    - sensor.temp_humid_5_humidity # From package: temperature_humidity_sensors
+    - group.morgans_room_lights # group.yaml
+    - group.frasers_room_lights # From package: lights_tuya
+    - sensor.portable_sensor_4_temperature # From package: temperature_humidity_sensors
+    - sensor.temp_humid_4_humidity # From package: temperature_humidity_sensors
 
-outside_view:
-  name: Outside
+climate_view:
+  name: Climate
   view: yes
   entities:
-    - sensor.temp_humid_ext_1_temperature
-    - sensor.temp_humid_ext_1_humidity
-    - group.environment # From package: Environment
+    - sensor.hallway_thermostat_house_humidity # From package: nest
+    - sensor.hallway_thermostat_house_temperature # From package: nest
+    - group.weather # From package: climate
+    - group.temperature_sensors # From package: temperature_humidity_sensors
+    - group.humidity_sensors # From package: temperature_humidity_sensors
 
 loft_view:
   name: loft
   view: yes
   entities:
     # - group.hpilo # From package: hp_ilo
-    - group.loft_sever_cooling
-    - group.fibaro
+    - group.loft_sever_cooling # From package: loft_server_cooling
+    - group.fibaro # From package: zwave
 
 garage_view:
   name: garage
   view: yes
   entities:
-    - group.Aeotec_Multi_2
+    - group.Aeotec_Multi_2 # From package: zwave
     - binary_sensor.zha_02753210_1_6 # Garage Interior Door Magetic Sensor
-    - sensor.portable_sensor_3_temperature
-    - sensor.temp_humid_3_humidity
+    - sensor.portable_sensor_3_temperature # From package: temperature_humidity_sensors
+    - sensor.temp_humid_3_humidity # From package: temperature_humidity_sensors
     - group.garage_lights # From package: garage_light
-    - group.nest_garage_camera
+    - group.nest_garage_camera # From packge@: nest
 
 family_view:
   name: Family
@@ -135,6 +137,7 @@ family_view:
   entities:
     - device_tracker.martins_iphone
     - device_tracker.michelles_iphone
+    - device_tracker.morgans_iphone
     - group.tracked_devices
     - group.have_i_been_pawned # From package: haveibeenpwnd
 
@@ -145,8 +148,8 @@ system_view:
   entities:
     - group.HAPi # From package: hassio_resource_monitor
     # - group.hpilo # From package: hp_ilo
-    - group.zwave
-    - group.zigbee
+    - group.zwave # From package: zwave
+    - group.zigbee # From package: zigbee
     - group.internet # From Package: Internet
 
 automation_view:
@@ -155,103 +158,29 @@ automation_view:
   view: yes
   entities:
     - group.automation_package_garage_light # From package: garage_light
-    - group.automation_package_kitchen_appliances
-    - group.automation_package_loft_server_cooling
+    - group.automation_package_kitchen_appliances # group.yaml
+    - group.automation_package_loft_server_cooling # From package: loft_server_cooling
     - group.automation_package_irons # From package: appliance_irons
     - group.automation_package_haveibeenpwned # From package: haveibeenpwnd
-    - group.automation_package_routine_morning_night
-    - group.automation_package_hassio_maintenance
-    - group.automation_package_travis
-    - group.automation_package_sonos
+    - group.automation_package_routine_morning_night # From package: routine_morning_night
+    - group.automation_package_hassio_maintenance # From package: hassio_maintenance
+    - group.automation_package_travis # From package: travis
+    - group.automation_package_sonos # From package: sonos
     - group.automation_package_hassio_resource_monitor # From package: hassio_resource_monitor
-    - group.automation_utilities
+    - group.automation_utilities # group.yaml
 
 ######################## GROUPS (Cards) ########################
-conservatory_lights:
-  name: Conservatory Lights
-  entities:
-    - switch.lwrf_conservatory_1
-    - switch.lwrf_conservatory_2
-
-fibaro:
-  name: Fibaro Multisensor
-  entities:
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-
-living_room_lights:
-  name: Living Room Lights
-  entities:
-    - light.lwrf_livingroom_main
-    - switch.lwrf_livingroom_standard_lamp
-    - switch.lwrf_displaycabinetlight
-    - switch.lwrf_waxburner
-
-dining_room_lights:
-  name: Dining Room Lights
-  entities: 
-    - light.lwrf_diningroom_main
-    - switch.lwrf_diningroom_rennie_mac_lamp
-
-hall_sockets:
-  name: Hall Sockets
-  entities:
-    - switch.lwrf_hall_socket_1
-    - switch.lwrf_hall_socket_2
-
 morgans_room_lights:
   name: Morgans Lights
   entities:
-    - light.lwrf_morgan_main
-    - light.wifi_ufo_1
-    - light.wifi_ufo_2
-    - light.wifi_ufo_3
-    - light.wifi_ufo_4
-
-frasers_room_lights:
-  name: Frasers Lights
-  entities:
-    - light.2424806784f3eb2103c8
-    - light.12204702807d3a252d9b
-    - light.12204702807d3a252c69
-    - light.12204702ecfabc20a0a1
-
-loft_sever_cooling:
-  name: Loft Sever Cooling
-  entities:
-    - sensor.loft_fan_temperature
-    - sensor.loft_fan_humidity
-    - switch.sonoff_loft_fan_power
-
-
-heating:
-  name: Heating
-  entities:
-    - climate.hallway_house
-    - sensor.hallway_thermostat_house_hvac_state
-    - binary_sensor.hallway_thermostat_house_has_leaf
-    - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
-    - sensor.nest_away_mode
+    - light.lwrf_morgan_main # From package: lightwave
+    - group.morgans_strip_lights # From package: lights_fluxled
 
 heating_main_page:
   name: Heating
   entities:
-    - climate.hallway_house
-    - sensor.hallway_thermostat_house_hvac_state
-
-nest_protect:
-  name: Nest Protect
-  entities:
-    - binary_sensor.hallway_nest_protect_online
-    - sensor.hallway_nest_protect_smoke_status
-    - sensor.hallway_nest_protect_co_status
-    - sensor.hallway_nest_protect_color_status
-    - binary_sensor.upstairs_nest_protect_online
-    - sensor.upstairs_nest_protect_smoke_status
-    - sensor.upstairs_nest_protect_co_status
-    - sensor.upstairs_nest_protect_color_status
+    - climate.hallway_house # From package: nest
+    - sensor.hallway_thermostat_house_hvac_state # From package: nest
 
 automation_package_kitchen_appliances:
   name: Kitchen Appliances
@@ -259,37 +188,6 @@ automation_package_kitchen_appliances:
     - group.automation_package_dishwasher # From package: appliance_dishwasher
     - group.automation_package_dryer # From package: appliance_dryer
     - group.automation_package_washing_machine # From package: appliance_washingmachine
-
-automation_package_loft_server_cooling:
-  name: Loft Server Cooling
-  entities:
-    - automation.loft_fan_turn_on_when_hot
-    - automation.loft_fan_turn_off_when_not_hot
-
-automation_package_routine_morning_night:
-  name: Routines Morning and Night
-  entities:
-    - automation.turn_on_in_the_morning_and_sunset
-    - automation.turn_off_after_sunrise
-    - automation.turn_off_at_night
-
-automation_package_hassio_maintenance:
-  name: Hassio Maintenance
-  entities:
-    - automation.hassio_weekly_snapshot
-    - automation.hassio_Dropbox_Snapshot_Sync
-
-automation_package_travis:
-  name: Travis
-  entities:
-    - automation.update_config_hass_on_successful_travis_build
-
-automation_package_sonos:
-  name: Sonos
-  entities:
-    - automation.sonos_tts_test
-    - automation.sonos_burglar_alarm
-    - automation.sonos_restore_snapshot_state
 
 automation_utilities:
   name: Utilities
@@ -306,84 +204,3 @@ tracked_devices:
     - device_tracker.michelles_iphone
     - sensor.iphone_battery_level
     - sensor.iphone_battery_state
-
-Aeotec_Multi_1:
-  name: Aeotec Multisensor
-  entities:
-    - binary_sensor.aeotec_zw100_multisensor_6_sensor
-    - sensor.aeotec_zw100_multisensor_6_burglar
-    - sensor.aeotec_zw100_multisensor_6_luminance
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity
-
-Aeotec_Multi_2:
-  name: Garage - Sensor
-  entities:
-    - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
-    - sensor.aeotec_zw100_multisensor_6_temperature_2
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
-    - sensor.aeotec_zw100_multisensor_6_burglar_2
-    - sensor.aeotec_zw100_multisensor_6_luminance_2
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
-
-scenes_living_room:
-  name: Scenes Living Room
-  entities:
-    - scene.bright
-    - scene.comfortable
-    - scene.movie
-
-zwave:
-  name: Z-Wave 
-  entities:
-    - zwave.aeotec_zw090_zstick_gen5_eu
-    - zwave.aeotec_zw100_multisensor_6
-    - zwave.aeotec_zw100_multisensor_6_2
-    - zwave.fibaro_system_fgms001zw5_motion_sensor
-
-nest_camera_1:
-  name: Gnd Floor Nest Camera
-  entities:
-    - camera.living_room
-    - binary_sensor.living_room_camera_online
-    - binary_sensor.living_room_camera_motion_detected
-    - binary_sensor.living_room_camera_person_detected
-    - binary_sensor.living_room_camera_sound_detected
-
-nest_garage_camera:
-  name: Garage Nest Camera
-  entities:
-    - camera.garage
-    - binary_sensor.garage_camera_online
-    - binary_sensor.garage_camera_motion_detected
-    - binary_sensor.garage_camera_person_detected
-    - binary_sensor.garage_camera_sound_detected
-    - binary_sensor.garage_camera_garage_door_activity
-    - binary_sensor.garage_camera_hall_door_activity
-
-motion_sensors:
-  name: Motion Sensors
-  entities:
-    - sensor.aeotec_zw100_multisensor_6_burglar
-    - sensor.aeotec_zw100_multisensor_6_burglar_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-
-waze_travel:
-  name: Waze Journeys
-  entities:
-    - sensor.to_home
-    - sensor.to_work
-
-zigbee:
-  name: Zigbee Sensors
-  entities:
-    - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
-    - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
-    - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
-    - sensor.lumi_lumisens_02378aca_1_1029 #Humidity
-    - sensor.zha_02378aca_1_1026 # Temperature
-    - zha.zha_lumi_lumi_sensor_ht_02378aca # Temp/Humidity sensor online status
-    - zha.zha_lumi_lumi_sensor_magnet_aq2_025370bc # Magnetic sensor online status Front Door
-    - zha.zha_lumi_lumi_sensor_magnet_aq2_02753210 # Magnetic sensor online status Back Door
-    - zha.zha_lumi_lumi_sensor_magnet_aq2_0275335b # Magnetic sensor online status Garage Interior Door

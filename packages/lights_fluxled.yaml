@@ -17,9 +17,22 @@ homeassistant:
       icon: mdi:led-strip
 
 ##################################################
+## Groups
+##################################################
+group:
+  morgans_strip_lights:
+    name: Morgans Strip Lights
+    entities:
+      - light.wifi_ufo_1
+      - light.wifi_ufo_2
+      - light.wifi_ufo_3
+      - light.wifi_ufo_4
+
+##################################################
 ## Components/Sensors
 ##################################################
 light:
+    # https://www.home-assistant.io/components/light.flux_led/
   - platform: flux_led
     automatic_add: False
     devices:

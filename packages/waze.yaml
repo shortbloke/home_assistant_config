@@ -1,3 +1,16 @@
+##################################################
+## Groups
+##################################################
+group: 
+  waze_travel:
+    name: Waze Journeys
+    entities:
+      - sensor.to_home
+      - sensor.to_work
+
+##################################################
+## Components/Sensors
+##################################################
 sensor:
   - platform: waze_travel_time
     name: "To Work"

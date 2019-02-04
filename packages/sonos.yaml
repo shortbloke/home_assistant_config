@@ -1,3 +1,6 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     media_player.living_room:
@@ -11,6 +14,20 @@ homeassistant:
     media_player.bathroom:
       friendly_name: "Ensuite"
 
+##################################################
+## Groups
+##################################################
+group:
+  automation_package_sonos:
+    name: Sonos
+    entities:
+      - automation.sonos_tts_test
+      - automation.sonos_burglar_alarm
+      - automation.sonos_restore_snapshot_state
+
+##################################################
+## Scripts
+##################################################
 script:
   sonos_say:
     # Source: https://home-assistant.io/cookbook/sonos_say/
@@ -54,6 +71,9 @@ script:
       - delay: "{{ delay }}"
       - service: media_player.sonos_restore
 
+##################################################
+## Automation
+##################################################
 automation:
   - alias: Sonos TTS Test
     trigger:

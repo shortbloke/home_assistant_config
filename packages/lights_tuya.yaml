@@ -1,3 +1,6 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     light.2424806784f3eb2103c8:
@@ -13,7 +16,23 @@ homeassistant:
       friendly_name: "Spot Light 4"
       icon: mdi:spotlight-beam
 
+##################################################
+## Groups
+##################################################
+group:
+  frasers_room_lights:
+    name: Frasers Lights
+    entities:
+      - light.2424806784f3eb2103c8
+      - light.12204702807d3a252d9b
+      - light.12204702807d3a252c69
+      - light.12204702ecfabc20a0a1
+
+##################################################
+## Components/Sensors
+##################################################
 tuya:
+  # https://www.home-assistant.io/components/tuya/
   username: !secret tuya_username
   password: !secret tuya_password
   country_code: !secret tuya_country_code

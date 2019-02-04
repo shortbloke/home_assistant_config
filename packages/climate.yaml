@@ -23,8 +23,8 @@ homeassistant:
 ## Groups
 ##################################################
 group:
-  environment:
-    name: Environment
+  weather:
+    name: Weather
     entities:
       - sensor.sun_template
       - sensor.moon
@@ -38,7 +38,11 @@ group:
 ##################################################
 ## Components/Sensors
 ##################################################
-weather:
+# https://www.home-assistant.io/components/sun/
+sun:
+
+sensor:
+    # https://www.home-assistant.io/components/sensor.darksky/
   - platform: darksky
     api_key: !secret darksky_API_KEY
     monitored_conditions:
@@ -53,9 +57,7 @@ weather:
       - precip_probability
       - cloud_cover
 
-sun:
-
-sensor:
+    # https://www.home-assistant.io/components/sensor.moon/
   - platform: moon
 
   - platform: template

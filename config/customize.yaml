@@ -1,49 +1,7 @@
-### Aeotec Stick ###
-    zwave.aeotec_zw090_zstick_gen5_eu:
-      friendly_name: "Z-Wave Stick"
-
-### Fibaro Multi-Sensor (Loft) ###
-    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
-      friendly_name: "Loft Temperature"
-    sensor.fibaro_system_fgms001zw5_motion_sensor_burglar:
-      friendly_name: "Loft Motion State"
-      icon: mdi:walk
-    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
-      friendly_name: "Loft Luminance"
-      icon: mdi:theme-light-dark
-    sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity:
-      friendly_name: "Loft Seismic Intensity"
-
 ### iPhone Trackers ###
     device_tracker.martins_iphone:
       friendly_name: "Martin"
     device_tracker.michelles_iphone:
       friendly_name: "Michelle"
-
-### ZigBee ###
-    binary_sensor.zha_025370bc_1_6:
-      icon: mdi:door
-      friendly_name: "Front Door"
-    binary_sensor.zha_0275335b_1_6:
-      icon: mdi:door
-      friendly_name: "Back Door"
-    binary_sensor.zha_02753210_1_6:
-      icon: mdi:door
-      friendly_name: "Garage Interior Door"
-    sensor.lumi_lumisens_02378aca_1_1029:
-      icon: mdi:water-percent
-      friendly_name: "ZigBee TH1 - Humidty"
-    sensor.zha_02378aca_1_1026:
-      friendly_name: "ZigBee TH1 - Temperature"
-    zha.zha_lumi_lumisensor_ht_02378aca:
-      icon: mdi:cellphone-wireless
-      friendly_name: "ZigBee TH1"
-    zha.zha_lumi_lumisensor_magnetaq2_025370bc:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Front Door"
-    zha.zha_lumi_lumisensor_magnetaq2_0275335b:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Back Door"
-    zha.zha_lumi_lumisensor_magnetaq2_02753210:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Garage Interior Door"
+    device_tracker.morgans_iphone:
+      friendly_name: "Morgan"

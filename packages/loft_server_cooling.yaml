@@ -1,3 +1,6 @@
+##################################################
+## Customize
+##################################################
 homeassistant:
   customize:
     switch.sonoff_loft_fan_power:
@@ -9,6 +12,25 @@ homeassistant:
       friendly_name: "Loft 1 Humidity"
       icon: mdi:water-percent
 
+##################################################
+## Groups
+##################################################
+group:
+  loft_sever_cooling:
+    name: Loft Sever Cooling
+    entities:
+      - sensor.loft_fan_temperature
+      - sensor.loft_fan_humidity
+      - switch.sonoff_loft_fan_power
+  automation_package_loft_server_cooling:
+    name: Loft Server Cooling
+    entities:
+      - automation.loft_fan_turn_on_when_hot
+      - automation.loft_fan_turn_off_when_not_hot
+
+##################################################
+## Components/Sensors
+##################################################
 sensor:
   - platform: mqtt
     name: "Loft_Fan Temperature"
@@ -34,6 +56,9 @@ switch:
     payload_not_available: "Offline"
     retain: true
 
+##################################################
+## Automation
+##################################################
 automation:
   - alias: Loft Fan Turn On When Hot
     trigger:
