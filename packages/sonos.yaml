@@ -84,9 +84,9 @@ automation:
         data:
           sonos_entity: media_player.conservatory
           volume: 0.5
-          message: 'This is a test of Sonos Text to Speech'
+          message: "This is a test of Sonos Text to Speech"
           # Delay needs to be long enough to allow text to be read aloud
-          delay: '00:00:05'
+          delay: "00:00:05"
 
   - alias: Sonos Burglar Alarm
     trigger:
@@ -98,7 +98,7 @@ automation:
           # Maximum Volume
           volume: 1.0
           # Duration before stopping and restoring state
-          delay: '00:01:00'
+          delay: "00:01:00"
 
   - alias: Sonos restore snapshot state
     trigger:

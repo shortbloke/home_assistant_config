@@ -17,4 +17,4 @@
   action:
     service: notify.martin
     data:
-      message: 'Update for Home Assistant is available.'
+      message: "Update for Home Assistant is available."

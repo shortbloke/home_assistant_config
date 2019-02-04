@@ -155,5 +155,5 @@ sensor:
   - platform: template
     sensors:
       nest_away_mode:
-        value_template: '{{ states.climate.hallway_house.attributes.away_mode }}'
+        value_template: "{{ states.climate.hallway_house.attributes.away_mode }}"
         friendly_name: "Nest Away Mode"

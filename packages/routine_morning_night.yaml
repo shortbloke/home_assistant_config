@@ -19,7 +19,7 @@ automation:
         at: "06:30:00"
       - platform: sun
         event: sunset
-        offset: '-01:00:00'
+        offset: "-01:00:00"
     action:
       - service: homeassistant.turn_on
         entity_id: switch.lwrf_hall_socket_1 # Twigs

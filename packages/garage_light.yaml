@@ -71,8 +71,8 @@ sensor:
         value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar_2','8') %}yes{% else %}no{% endif %}"
         friendly_name: "Garage Motion"
       garage_motion_status:
-        value_template: '{{ states.input_select.garage_motion_status.state}}'
-        friendly_name: 'Garage Motion Status'
+        value_template: "{{ states.input_select.garage_motion_status.state }}"
+        friendly_name: "Garage Motion Status"
 
 ##################################################
 ## Automation

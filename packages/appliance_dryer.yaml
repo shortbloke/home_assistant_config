@@ -46,14 +46,14 @@ sensor:
   - platform: template
     sensors:
       tp_hs110_8_power:
-        value_template: '{{ states.switch.tp_hs110_8.attributes["current_power_w"].split(" ")[0]}}'
+        value_template: "{{ states.switch.tp_hs110_8.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Tumble Dryer Power"
   - platform: template
     sensors:
       dryer_status:
-        value_template: '{{ states.input_select.dryer_status.state}}'
-        friendly_name: 'Tumble Dryer Status'
+        value_template: "{{ states.input_select.dryer_status.state }}"
+        friendly_name: "Tumble Dryer Status"
 
 ##################################################
 ## Automation
@@ -113,5 +113,5 @@ automation:
           option: 'idle'
       - service: notify.adults
         data:
-          message: 'The Dryer has finished and is ready to be emptied!'
-          title: 'Tumble Dryer Update'
+          message: "The Dryer has finished and is ready to be emptied!"
+          title: "Tumble Dryer Update"

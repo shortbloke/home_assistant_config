@@ -204,3 +204,4 @@ tracked_devices:
     - device_tracker.michelles_iphone
     - sensor.iphone_battery_level
     - sensor.iphone_battery_state
+    - device_tracker.morgans_iphone

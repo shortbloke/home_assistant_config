@@ -6,5 +6,5 @@
   time_memory: 300
 - platform: voicerss
   api_key: !secret voicerss_api_key
-  language: 'en-gb'
-  format: '44khz_16bit_stereo'
+  language: "en-gb"
+  format: "44khz_16bit_stereo"

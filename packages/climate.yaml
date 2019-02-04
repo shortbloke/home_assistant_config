@@ -5,19 +5,19 @@
 homeassistant:
   customize:  
     sensor.dark_sky_temperature:  
-      friendly_name: 'Temp'  
+      friendly_name: "Temp"
     sensor.dark_sky_summary:
-      friendly_name: 'Weather'
+      friendly_name: "Weather"
     sensor.dark_sky_hourly_summary:
-      friendly_name: 'Weather next'
+      friendly_name: "Weather next"
       #custom_ui_state_card: value_only
     sensor.dark_sky_daily_summary:
-      friendly_name: 'Weather week'
+      friendly_name: "Weather week"
       #custom_ui_state_card: value_only
     sensor.dark_sky_wind_speed:
-      friendly_name: 'Wind speed'
+      friendly_name: "Wind speed"
     sensor.dark_sky_precip_intensity:
-      friendly_name: 'Precip intensity'
+      friendly_name: "Precip intensity"
 
 ##################################################
 ## Groups
@@ -69,6 +69,6 @@ sensor:
   - platform: template
     sensors:
       sun_template:
-        friendly_name: 'Sun'
+        friendly_name: "Sun"
         value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom('%H:%M', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom('%H:%M', True) }}"
         icon_template: "{% if is_state('sun.sun', 'above_horizon') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}"

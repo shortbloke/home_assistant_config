@@ -124,22 +124,22 @@ sensor:
     sensors:
       ### WH5 Portable Temperature and Humidity Sensors ###
       portable_sensor_1_temperature:
-        value_template: '{{ (states.sensor.temp_humid_1_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+        value_template: "{{ (states.sensor.temp_humid_1_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
         friendly_name: "Temperature (Conservatory)"
       portable_sensor_2_temperature:
-        value_template: '{{ (states.sensor.temp_humid_2_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+        value_template: "{{ (states.sensor.temp_humid_2_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
         friendly_name: "Temperature (Living Room)"
       portable_sensor_3_temperature:
-        value_template: '{{ (states.sensor.temp_humid_3_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+        value_template: "{{ (states.sensor.temp_humid_3_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
         friendly_name: "Temperature (Garage)"
       portable_sensor_4_temperature:
-        value_template: '{{ (states.sensor.temp_humid_4_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+        value_template: "{{ (states.sensor.temp_humid_4_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
         friendly_name: "Temperature (Fraser)"
       portable_sensor_5_temperature:
-        value_template: '{{ (states.sensor.temp_humid_5_temperature.attributes["Temperature"] | float - 40) | round(1) }}'
+        value_template: "{{ (states.sensor.temp_humid_5_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
         friendly_name: "Temperature (Morgan)"

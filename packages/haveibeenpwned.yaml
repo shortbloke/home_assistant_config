@@ -73,4 +73,4 @@ automation:
   action:
     service: notify.martin
     data_template:
-      message: "Warning - HaveIbeenPwned detected {{trigger.to_state.attributes.friendly_name}}"
+      message: "Warning - HaveIbeenPwned detected {{ trigger.to_state.attributes.friendly_name }}"
