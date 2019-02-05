@@ -1,0 +1,10 @@
+# https://www.home-assistant.io/components/tts/
+
+- platform: google
+  cache: true
+  cache_dir: /tmp/tts
+  time_memory: 300
+- platform: voicerss
+  api_key: !secret voicerss_api_key
+  language: "en-gb"
+  format: "44khz_16bit_stereo"

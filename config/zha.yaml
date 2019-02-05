@@ -1,0 +1,5 @@
+# https://www.home-assistant.io/components/zha/
+
+usb_path: /dev/ttyAMA0
+database_path: zigbee.db
+baudrate: 57600

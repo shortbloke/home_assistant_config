@@ -1,0 +1,51 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    switch.flamerite_power:
+      friendly_name: "Fire"
+      icon: mdi:power
+    switch.flamerite_heat:
+      friendly_name: "Fire Heat"
+      icon: mdi:fire
+    light.flamerite_dimmer1:
+      friendly_name: "Dimmer 1"
+      hidden: true
+    light.flamerite_dimmer2:
+      friendly_name: "Dimmer 2"
+      hidden: true
+
+##################################################
+## Groups
+##################################################
+group:
+  flamerite_fire:
+    name: Fireplace
+    entities:
+      - switch.flamerite_power
+      - switch.flamerite_heat
+      - light.flamerite_dimmer1
+      - light.flamerite_dimmer2
+
+##################################################
+## Components/Sensors
+##################################################
+light:
+  - platform: rfxtrx
+    automatic_add: false
+    devices:
+  ### Flamerite Fire ###
+      0b110008015b6eff03010f80:
+        name: flamerite_dimmer1
+      0b11000d015b6eff04010f80:
+        name: flamerite_dimmer2
+
+switch:
+  - platform: rfxtrx
+    automatic_add: false
+    devices:
+      0b11000a015b6eff01010f80:
+        name: flamerite_power
+      0b11000f015b6eff02010f70:
+        name: flamerite_heat

@@ -1,0 +1,65 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+    # Aeotec Stick
+    zwave.aeotec_zw090_zstick_gen5_eu:
+      friendly_name: "Z-Wave Stick"
+
+    # Fibaro Multi-Sensor (Loft)
+    sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
+      friendly_name: "Loft Temperature"
+    sensor.fibaro_system_fgms001zw5_motion_sensor_burglar:
+      friendly_name: "Loft Motion State"
+      icon: mdi:walk
+    sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
+      friendly_name: "Loft Luminance"
+      icon: mdi:theme-light-dark
+    sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity:
+      friendly_name: "Loft Seismic Intensity"
+
+##################################################
+## Groups
+##################################################
+group:
+  fibaro:
+    name: Fibaro Multisensor
+    entities:
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+  Aeotec_Multi_1:
+    name: Aeotec Multisensor
+    entities:
+      - binary_sensor.aeotec_zw100_multisensor_6_sensor
+      - sensor.aeotec_zw100_multisensor_6_burglar
+      - sensor.aeotec_zw100_multisensor_6_luminance
+      - sensor.aeotec_zw100_multisensor_6_ultraviolet
+      - sensor.aeotec_zw100_multisensor_6_relative_humidity
+
+  Aeotec_Multi_2:
+    name: Garage - Sensor
+    entities:
+      - binary_sensor.aeotec_zw100_multisensor_6_sensor_2
+      - sensor.aeotec_zw100_multisensor_6_temperature_2
+      - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
+      - sensor.aeotec_zw100_multisensor_6_burglar_2
+      - sensor.aeotec_zw100_multisensor_6_luminance_2
+      - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
+      - sensor.aeotec_zw100_multisensor_6_relative_humidity_2
+
+  zwave:
+    name: Z-Wave 
+    entities:
+      - zwave.aeotec_zw090_zstick_gen5_eu
+      - zwave.aeotec_zw100_multisensor_6
+      - zwave.aeotec_zw100_multisensor_6_2
+      - zwave.fibaro_system_fgms001zw5_motion_sensor
+
+  motion_sensors:
+    name: Motion Sensors
+    entities:
+      - sensor.aeotec_zw100_multisensor_6_burglar
+      - sensor.aeotec_zw100_multisensor_6_burglar_2
+      - sensor.fibaro_system_fgms001zw5_motion_sensor_burglar

@@ -1,0 +1,119 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    switch.tp_hs110_6:
+      friendly_name: "Dishwasher"
+      icon: mdi:dishwasher
+
+##################################################
+## Groups
+##################################################
+group:
+  dishwasher:
+    name: Dishwasher
+    entities:
+      - sensor.dishwasher_status
+      - switch.tp_hs110_6
+      - sensor.tp_hs110_6_power
+  automation_package_dishwasher:
+    name: Dishwasher Automation
+    entities:
+      - automation.set_dishwasher_active_when_power_detected
+      - automation.set_dishwasher_finished_when_power_drops
+      - automation.set_dishwasher_to_idle
+
+##################################################
+## Components/Sensors
+##################################################
+switch:
+  - platform: tplink
+    host: 192.168.200.26 # DHCP reservation
+    name: tp_hs110_6
+
+input_select:
+  dishwasher_status:
+    name: Dishwasher Status
+    options:
+      - idle
+      - running
+      - finished
+    initial: idle
+
+sensor:
+  - platform: template
+    sensors:
+      tp_hs110_6_power:
+        value_template: "{{ states.switch.tp_hs110_6.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Dishwasher Power"
+  - platform: template
+    sensors:
+      dishwasher_status:
+        value_template: "{{ states.input_select.dishwasher_status.state }}"
+        friendly_name: "Dishwasher Status"
+
+##################################################
+## Automation
+##################################################
+automation:
+# When we detect power being drawn from the dishwasher, above 10W,
+# mark the dishwasher as 'running'
+  - alias: Set dishwasher active when power detected
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_6_power
+        above: 100
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.dishwasher_status
+          state: 'idle'
+        - condition: state
+          entity_id: input_select.dishwasher_status
+          state: 'finished'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dishwasher_status
+          option: 'running'
+
+# When the power level drops below 10W, and the Dishwasher is set to
+# the 'running' state, mark the Dishwasher as 'finished'
+  - alias: Set dishwasher finished when power drops
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_6_power
+        below: 50
+        for:
+          minutes: 30
+    condition:
+      condition: state
+      entity_id: input_select.dishwasher_status
+      state: 'running'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dishwasher_status
+          option: 'finished'
+
+# Once the dishwasher status has been 'finished' for 30 minutes, mark the
+# dishwasher as idle
+  - alias: Set dishwasher to idle
+    trigger:
+      - platform: state
+        entity_id: input_select.dishwasher_status
+        to: 'finished'
+        for:
+          minutes: 10
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dishwasher_status
+          option: 'idle'
+      - service: notify.adults
+        data:
+          message: "The Dishwasher has finished and is ready to be emptied!"
+          title: "Dishwasher Update"

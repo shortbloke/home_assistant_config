@@ -1,0 +1,141 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    # Dimmer Lights
+    light.lwrf_diningroom_main:
+      friendly_name: "Table Lights"
+      icon: mdi:ceiling-light
+    light.lwrf_livingroom_main:
+      friendly_name: "Downlights"
+      icon: mdi:ceiling-light
+    light.lwrf_morgan_main:
+      friendly_name: "Bedroom Lights"
+      icon: mdi:ceiling-light
+    # Sockets 
+    switch.lwrf_conservatory_1:
+      friendly_name: "Ceiling Lights"
+      icon: mdi:ceiling-light
+    switch.lwrf_conservatory_2:
+      friendly_name: "Window Lamp"
+      icon: mdi:lamp
+    switch.lwrf_livingroom_standard_lamp:
+      friendly_name: "Standard Lamp"
+      icon: mdi:floor-lamp
+    switch.lwrf_displaycabinetlight:
+      friendly_name: "Display Cabinet Light"
+      icon: mdi:lightbulb
+    switch.lwrf_diningroom_rennie_mac_lamp:
+      friendly_name: "Rennie Mac Lamp"
+      icon: mdi:lamp
+    switch.lwrf_waxburner:
+      friendly_name: "Wax Burner"
+      icon: mdi:radiator
+    switch.lwrf_hall_socket_1:
+      friendly_name: "Twig Lights"
+      icon: mdi:lamp
+    switch.lwrf_hall_socket_2:
+      friendly_name: "Air Freshener"
+      icon: mdi:radiator
+
+##################################################
+## Groups
+##################################################
+group:
+  living_room_lights:
+    name: Living Room Lights
+    entities:
+      - light.lwrf_livingroom_main
+      - switch.lwrf_livingroom_standard_lamp
+      - switch.lwrf_displaycabinetlight
+      - switch.lwrf_waxburner
+  scenes_living_room:
+    name: Scenes Living Room
+    entities:
+      - scene.bright
+      - scene.comfortable
+      - scene.movie
+  dining_room_lights:
+    name: Dining Room Lights
+    entities: 
+      - light.lwrf_diningroom_main
+      - switch.lwrf_diningroom_rennie_mac_lamp
+  conservatory_lights:
+    name: Conservatory Lights
+    entities:
+      - switch.lwrf_conservatory_1
+      - switch.lwrf_conservatory_2
+  hall_sockets:
+    name: Hall Sockets
+    entities:
+      - switch.lwrf_hall_socket_1
+      - switch.lwrf_hall_socket_2
+
+##################################################
+## Components/Sensors
+##################################################
+light:
+    # https://www.home-assistant.io/components/light.rfxtrx/
+  - platform: rfxtrx
+    automatic_add: false
+    devices:
+      0a1400b303922201010060:
+        name: lwrf_diningroom_main
+      0a1400ac03922101010060:
+        name: lwrf_livingroom_main
+      0a14000a03922501010070:
+        name: lwrf_morgan_main
+
+switch:
+    # https://www.home-assistant.io/components/switch.rfxtrx/
+  - platform: rfxtrx
+    automatic_add: false
+    devices:
+      0a140000f4f6ad01000080:
+        name: lwrf_conservatory_1
+      0a140002f4f6ad02000080:
+        name: lwrf_conservatory_2
+      0a14001203922102000060:
+        name: lwrf_livingroom_standard_lamp
+      0a14000103922103010070:
+        name: lwrf_displaycabinetlight
+      0a14009503922104010060:
+        name: lwrf_waxburner
+      0a14000df50db80d000070:
+        name: lwrf_diningroom_rennie_mac_lamp
+      0a14000803922301010080:
+        name: lwrf_hall_socket_1
+      0a14001303922302010080:
+        name: lwrf_hall_socket_2
+
+##################################################
+## Scenes
+##################################################
+scene:
+    # https://www.home-assistant.io/components/scene/
+  - name: Bright
+    entities:
+      switch.lwrf_livingroom_standard_lamp: on
+      light.lwrf_livingroom_main:
+        state: on
+        brightness: 255
+      switch.lwrf_displaycabinetlight: on
+  - name: Comfortable
+    entities:
+      switch.lwrf_livingroom_standard_lamp: on
+      light.lwrf_livingroom_main:
+        state: on
+        brightness: 100
+      switch.lwrf_displaycabinetlight: on
+      switch.lwrf_waxburner: on
+  - name: Movie
+    entities:
+      switch.lwrf_livingroom_standard_lamp: off
+      light.lwrf_livingroom_main:
+        state: on
+        # Brightness below 27 doesn't appear to trigger tunning the lights on. Possible bug.
+        brightness: 27
+      switch.lwrf_displaycabinetlight: off
+      light.lwrf_diningroom_main: off
+      switch.lwrf_diningroom_rennie_mac_lamp: off

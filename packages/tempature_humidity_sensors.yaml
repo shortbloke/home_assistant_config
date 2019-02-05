@@ -1,0 +1,145 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    sensor.temp_humid_1:
+      friendly_name: "Env. Conservatory"
+      hidden: true
+    sensor.temp_humid_2:
+      friendly_name: "Env. Living Room"
+      hidden: true
+    sensor.temp_humid_3:
+      friendly_name: "Env. Garage"
+      hidden: true
+    sensor.temp_humid_4:
+      friendly_name: "Env. Frasers Room"
+      hidden: true
+    sensor.temp_humid_5:
+      friendly_name: "Env. Morgans Room"
+      hidden: true
+    sensor.temp_humid_ext_1_temperature:
+      friendly_name: "Temperature (Outside)"
+    sensor.temp_humid_ext_1_humidity:
+      friendly_name: "Humidity (Outside)"
+      icon: mdi:water-percent
+    sensor.temp_humid_1_temperature:
+      hidden: true
+    sensor.temp_humid_1_humidity:
+      friendly_name: "Humidity (Conservatory)"
+      icon: mdi:water-percent
+    sensor.temp_humid_2_temperature:
+      hidden: true
+    sensor.temp_humid_2_humidity:
+      friendly_name: "Humidity (Living Room)"
+      icon: mdi:water-percent
+    sensor.temp_humid_3_temperature:
+      hidden: true
+    sensor.temp_humid_3_humidity:
+      friendly_name: "Humidity (Garage)"
+      icon: mdi:water-percent
+    sensor.temp_humid_4_temperature:
+      hidden: true
+    sensor.temp_humid_4_humidity:
+      friendly_name: "Humidity (Fraser)"
+      icon: mdi:water-percent
+    sensor.temp_humid_5_temperature:
+      hidden: true
+    sensor.temp_humid_5_humidity:
+      friendly_name: "Humidity (Morgan)"
+      icon: mdi:water-percent
+    # Temperature only
+    sensor.temp_sensor_1_temperature:
+      friendly_name: "Temperature (Master Bedroom)"
+
+##################################################
+## Groups
+##################################################
+group:
+  temperature_sensors:
+    name: Temperature Sensors
+    entities:
+      - sensor.portable_sensor_1_temperature
+      - sensor.portable_sensor_2_temperature
+      - sensor.portable_sensor_3_temperature
+      - sensor.portable_sensor_4_temperature
+      - sensor.portable_sensor_5_temperature
+      - sensor.temp_sensor_1_temperature
+      - sensor.temp_humid_ext_1_temperature
+  humidity_sensors:
+    name: Humidity Sensors
+    entities:
+      - sensor.temp_humid_1_humidity
+      - sensor.temp_humid_2_humidity
+      - sensor.temp_humid_3_humidity
+      - sensor.temp_humid_4_humidity
+      - sensor.temp_humid_5_humidity
+      - sensor.temp_humid_ext_1_humidity
+
+##################################################
+## Components/Sensors
+##################################################
+sensor:
+  # RFXCOM 433 Sensors
+  - platform: rfxtrx
+    automatic_add: false
+    devices:
+      # 0a5209f6ad0002582f0189:
+      0a52094f2c0002b3290179:  #Convervatory
+        name: Temp_Humid_1
+        data_type:
+          - Humidity
+          - Temperature
+      0a52097df600026c330189:  #Living Room
+        name: Temp_Humid_2
+        data_type:  
+          - Humidity
+          - Temperature
+      0a520976cd0002f0120289:  #Garage
+        name: Temp_Humid_3
+        data_type:
+          - Humidity
+          - Temperature
+      0a52091cf900026f3d0189:  #Frasers Room
+        name: Temp_Humid_4
+        data_type:
+          - Humidity
+          - Temperature
+      0a5209024d00026c2c0189:  #Morgans Room
+        name: Temp_Humid_5
+        data_type:
+          - Humidity
+          - Temperature
+      0a520156c10400f93e0189:
+        name: Temp_Humid_Ext_1
+        data_type:
+          - Humidity
+          - Temperature
+      085002d47502013069: # Oregon THN132N Temperature - Master Bedroom
+        name: Temp_sensor_1
+        data_type:
+          - Temperature
+
+  - platform: template
+    sensors:
+      ### WH5 Portable Temperature and Humidity Sensors ###
+      portable_sensor_1_temperature:
+        value_template: "{{ (states.sensor.temp_humid_1_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
+        unit_of_measurement: '°C'
+        friendly_name: "Temperature (Conservatory)"
+      portable_sensor_2_temperature:
+        value_template: "{{ (states.sensor.temp_humid_2_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
+        unit_of_measurement: '°C'
+        friendly_name: "Temperature (Living Room)"
+      portable_sensor_3_temperature:
+        value_template: "{{ (states.sensor.temp_humid_3_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
+        unit_of_measurement: '°C'
+        friendly_name: "Temperature (Garage)"
+      portable_sensor_4_temperature:
+        value_template: "{{ (states.sensor.temp_humid_4_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
+        unit_of_measurement: '°C'
+        friendly_name: "Temperature (Fraser)"
+      portable_sensor_5_temperature:
+        value_template: "{{ (states.sensor.temp_humid_5_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
+        unit_of_measurement: '°C'
+        friendly_name: "Temperature (Morgan)"
