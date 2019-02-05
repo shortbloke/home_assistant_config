@@ -1,0 +1,3 @@
+# https://www.home-assistant.io/components/zwave/
+
+usb_path: /dev/ttyACM0

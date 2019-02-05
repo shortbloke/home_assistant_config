@@ -1,4 +1,5 @@
-#### logbook.yaml ####
+# https://www.home-assistant.io/components/logbook/
+
 # Note: All entries need to also be defined in recorder.yaml
 
 include:

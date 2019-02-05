@@ -1,6 +1,7 @@
-#### recorder.yaml ####
+# https://www.home-assistant.io/components/recorder/
+
 purge_interval: 1
-purge_keep_days: 7
+purge_keep_days: 10
 
 include:
   domains: 
@@ -57,16 +58,6 @@ include:
     - sensor.aeotec_zw100_multisensor_6_burglar_2
     - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
     - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-    # HaveIBeenPwned
-    - sensor.breaches_martinrowannetcouk
-    - sensor.breaches_michellerowannetcouk
-    - sensor.breaches_junerowannetcouk
-    - sensor.breaches_morganrowannetcouk
-    - sensor.breaches_fraserrowannetcouk
-    - sensor.breaches_robertrowannetcouk
-    - sensor.breaches_martinrowancitrixcom
-    - sensor.breaches_martinrowaneucitrixcom
-    - sensor.breaches_mrowanhighlightnet
     # Waze
     - sensor.to_home
     - sensor.to_work
@@ -88,6 +79,26 @@ include:
     - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status Front Door
     - zha.zha_lumi_lumisensor_magnetaq2_0275335b # Magnetic sensor online status Back Door
     - zha.zha_lumi_lumisensor_magnetaq2_02753210 # Magnetic sensor online status Garage Interior Door
+    # Packages - Dryer, WashingMachine, Dishwasher
+    - sensor.dishwasher_status
+    - sensor.washing_machine_status
+    - sensor.dryer_status
+    # Package - Irons
+    - sensor.ironing_room_motion_status
+    - sensor.ironing_room_motion
+    # Package - GarageLight
+    - sensor.garage_motion_status
+    - sensor.garage_motion
+    # Package - HaveIBeenPwned
+    - !secret sensor_hibp_email1
+    - !secret sensor_hibp_email2
+    - !secret sensor_hibp_email3
+    - !secret sensor_hibp_email4
+    - !secret sensor_hibp_email5
+    - !secret sensor_hibp_email6
+    - !secret sensor_hibp_email7
+    - !secret sensor_hibp_email8
+    - !secret sensor_hibp_email9
 
   ############################
   # Used by logbook.yaml     #

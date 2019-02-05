@@ -1,0 +1,250 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    switch.tp_hs110_1:
+      friendly_name: "Laurastar Iron"
+      icon: mdi:power-socket-uk
+    switch.tp_hs110_2:
+      friendly_name: "Irons (Left)"
+      icon: mdi:power-socket-uk
+    switch.tp_hs110_3:
+      friendly_name: "Irons (Right)"
+      icon: mdi:power-socket-uk
+    switch.tp_hs110_4:
+      friendly_name: "Ironing Table"
+      icon: mdi:power-socket-uk
+    switch.tp_hs110_5:
+      friendly_name: "Magpie Iron"
+      icon: mdi:power-socket-uk
+    # Multi-sensor
+    binary_sensor.aeotec_zw100_multisensor_6_sensor:
+      friendly_name: "Ironing Room Multi-Sensor"
+    sensor.aeotec_zw100_multisensor_6_burglar:
+      friendly_name: "Ironing Room Motion State"
+      icon: mdi:walk
+    sensor.aeotec_zw100_multisensor_6_luminance:
+      friendly_name: "Ironing Room Luminance"
+      icon: mdi:theme-light-dark
+    sensor.aeotec_zw100_multisensor_6_ultraviolet:
+      friendly_name: "Ironing Room UV Level"
+      icon: mdi:sunglasses
+    sensor.aeotec_zw100_multisensor_6_dew_point:
+      friendly_name: "Ironing Room Dew Point"
+    sensor.aeotec_zw100_multisensor_6_temperature:
+      friendly_name: "Temperature"
+    sensor.aeotec_zw100_multisensor_6_relative_humidity:
+      friendly_name: "Humidity"
+      icon: mdi:water-percent
+
+##################################################
+## Groups
+##################################################
+group:
+  iron_sockets:
+    name: Iron Sockets
+    entities:
+      - sensor.ironing_room_motion
+      - sensor.ironing_room_motion_status
+      - switch.tp_hs110_1
+      - sensor.tp_hs110_1_power
+      - switch.tp_hs110_2
+      - sensor.tp_hs110_2_power
+      - switch.tp_hs110_3
+      - sensor.tp_hs110_3_power
+      - switch.tp_hs110_4
+      - sensor.tp_hs110_4_power
+      - switch.tp_hs110_5
+      - sensor.tp_hs110_5_power
+
+  laurastar_iron:
+    name: LauraStar Iron
+    entities:
+      - switch.tp_hs110_1
+      - sensor.tp_hs110_1_power
+  automation_package_irons:
+    name: Irons
+    entities:
+      - automation.ironing_room_motion_detected
+      - automation.ironing_room_no_motion_30_mins
+      - automation.ironing_room_no_motion_turn_off_ironing_table
+      - automation.ironing_room_no_motion_turn_off_irons_left
+      - automation.ironing_room_no_motion_turn_off_irons_right
+      - automation.ironing_room_no_motion_turn_off_magpie_iron
+
+##################################################
+## Components/Sensors
+##################################################
+input_select:
+  ironing_room_motion_status:
+    name: Ironing Room Motion Status
+    options:
+      - idle
+      - motion
+    initial: motion
+
+switch:
+  # TP-Link HS110 Power Sockets
+  - platform: tplink
+    host: 192.168.200.21 # DHCP reservation
+    name: tp_hs110_1
+  - platform: tplink
+    host: 192.168.200.22 # DHCP reservation
+    name: tp_hs110_2
+  - platform: tplink
+    host: 192.168.200.23 # DHCP reservation
+    name: tp_hs110_3
+  - platform: tplink
+    host: 192.168.200.24 # DHCP reservation
+    name: tp_hs110_4
+  - platform: tplink
+    host: 192.168.200.25 # DHCP reservation
+    name: tp_hs110_5
+
+sensor:
+  - platform: template
+    sensors:
+      # TP-Link HS110 Power Sockets Power Usage
+      tp_hs110_1_power:
+        value_template: "{{ states.switch.tp_hs110_1.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Power - Laurastar Iron"
+      tp_hs110_2_power:
+        value_template: "{{ states.switch.tp_hs110_2.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Power - Ironing Room Left"
+      tp_hs110_3_power:
+        value_template: "{{ states.switch.tp_hs110_3.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Power - Ironing Room Right"
+      tp_hs110_4_power:
+        value_template: "{{ states.switch.tp_hs110_4.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Power - Ironing Table"
+      tp_hs110_5_power:
+        value_template: "{{ states.switch.tp_hs110_5.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Power - Magpie Iron"
+      ironing_room_motion:
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','8') %}yes{% else %}no{% endif %}"
+        friendly_name: "Ironing Room Motion"
+      ironing_room_motion_status: 
+        value_template: "{{ states.input_select.ironing_room_motion_status.state }}"
+        friendly_name: "Ironing Room Motion Status"
+
+##################################################
+## Automation
+##################################################
+automation:
+# When we detect motion, set status to Motion
+  - alias: Ironing room motion detected
+    trigger:
+      - platform: state
+        entity_id: sensor.ironing_room_motion
+        to: 'yes'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ironing_room_motion_status
+          option: 'motion'
+
+# No Motion for 30 minutes, set to idle
+  - alias: Ironing room no motion 30 mins
+    trigger:
+      - platform: state
+        entity_id: sensor.ironing_room_motion
+        to: 'no'
+        for:
+          minutes: 30
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.ironing_room_motion_status
+          option: 'idle'
+
+# Switch off if drawing power and no motion in pending state
+  - alias: Ironing Room No Motion Turn off Irons Left
+    trigger:
+      - platform: state
+        entity_id: sensor.tp_hs110_2_power
+    condition:
+      condition: and
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.tp_hs110_2_power
+          above: 10
+        - condition: state
+          entity_id: sensor.ironing_room_motion_status
+          state: 'idle'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.tp_hs110_2
+      - service: notify.adults
+        data:
+          title: "Ironing Room Alert!"
+          message: "No Motion Detected - Turning off Ironing room Irons (Left)"
+
+  - alias: Ironing Room No Motion Turn off Irons Right
+    trigger:
+      - platform: state
+        entity_id: sensor.tp_hs110_3_power
+    condition:
+      condition: and
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.tp_hs110_3_power
+          above: 10
+        - condition: state
+          entity_id: input_select.ironing_room_motion_status
+          state: 'idle'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.tp_hs110_3
+      - service: notify.adults
+        data:
+          title: "Ironing Room Alert!"
+          message: "No Motion Detected - Turning off Ironing room Irons (Right)"
+
+  - alias: Ironing Room No Motion Turn off Ironing Table
+    trigger:
+      - platform: state
+        entity_id: sensor.tp_hs110_4_power
+    condition:
+      condition: and
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.tp_hs110_4_power
+          above: 10
+        - condition: state
+          entity_id: input_select.ironing_room_motion_status
+          state: 'idle'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.tp_hs110_4
+      - service: notify.adults
+        data:
+          title: "Ironing Room Alert!"
+          message: "No Motion Detected - Turning off Ironing Table"
+
+  - alias: Ironing Room No Motion Turn off Magpie Iron
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_5_power
+        above: 10
+    condition:
+      condition: and
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.tp_hs110_5_power
+          above: 10
+        - condition: state
+          entity_id: input_select.ironing_room_motion_status
+          state: 'idle'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.tp_hs110_5
+      - service: notify.adults
+        data:
+          title: "Ironing Room Alert!"
+          message: "No Motion Detected - Turning off Magpie Iron"

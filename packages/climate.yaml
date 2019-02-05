@@ -1,0 +1,74 @@
+
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:  
+    sensor.dark_sky_temperature:  
+      friendly_name: "Temp"
+    sensor.dark_sky_summary:
+      friendly_name: "Weather"
+    sensor.dark_sky_hourly_summary:
+      friendly_name: "Weather next"
+      #custom_ui_state_card: value_only
+    sensor.dark_sky_daily_summary:
+      friendly_name: "Weather week"
+      #custom_ui_state_card: value_only
+    sensor.dark_sky_wind_speed:
+      friendly_name: "Wind speed"
+    sensor.dark_sky_precip_intensity:
+      friendly_name: "Precip intensity"
+
+##################################################
+## Groups
+##################################################
+group:
+  weather:
+    name: Weather
+    entities:
+      - sensor.sun_template
+      - sensor.moon
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_daily_summary
+
+##################################################
+## Components/Sensors
+##################################################
+# https://www.home-assistant.io/components/sun/
+sun:
+
+sensor:
+    # https://www.home-assistant.io/components/sensor.darksky/
+  - platform: darksky
+    api_key: !secret darksky_API_KEY
+    monitored_conditions:
+      - icon
+      - temperature
+      - apparent_temperature
+      - summary
+      - daily_summary
+      - hourly_summary
+      - wind_speed
+      - precip_intensity
+      - precip_probability
+      - cloud_cover
+
+    # https://www.home-assistant.io/components/sensor.moon/
+  - platform: moon
+
+  - platform: template
+    sensors:
+      dark_sky_template:
+        value_template: "{{ states('sensor.dark_sky_summary') }}"
+        #icon_template: https://community.home-assistant.io/t/map-device-state-to-an-icon/4085/6
+
+  - platform: template
+    sensors:
+      sun_template:
+        friendly_name: "Sun"
+        value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom('%H:%M', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom('%H:%M', True) }}"
+        icon_template: "{% if is_state('sun.sun', 'above_horizon') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}"

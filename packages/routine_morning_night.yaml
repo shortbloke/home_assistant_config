@@ -1,0 +1,45 @@
+##################################################
+## Groups
+##################################################
+group:
+  automation_package_routine_morning_night:
+    name: Routines Morning and Night
+    entities:
+      - automation.turn_on_in_the_morning_and_sunset
+      - automation.turn_off_after_sunrise
+      - automation.turn_off_at_night
+
+##################################################
+## Automation
+##################################################
+automation:
+  - alias: Turn on in the morning and sunset
+    trigger:
+      - platform: time
+        at: "06:30:00"
+      - platform: sun
+        event: sunset
+        offset: "-01:00:00"
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.lwrf_hall_socket_1 # Twigs
+      - service: homeassistant.turn_on
+        entity_id: switch.lwrf_hall_socket_2 # Air Freshener
+
+  - alias: Turn off after sunrise
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+        above: 10.0
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.lwrf_hall_socket_1 # Twigs
+
+  - alias: Turn off at night
+    trigger:
+      - platform: time
+        at: "23:00:00"
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.lwrf_hall_socket_2 # Air Freshener

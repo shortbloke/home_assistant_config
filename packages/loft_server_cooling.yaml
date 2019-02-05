@@ -1,0 +1,83 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    switch.sonoff_loft_fan_power:
+      friendly_name: "Server Cooling Fan"
+      icon: mdi:fan
+    sensor.loft_fan_temperature:
+      friendly_name: "Loft 1 Temperature"
+    sensor.loft_fan_humidity:
+      friendly_name: "Loft 1 Humidity"
+      icon: mdi:water-percent
+
+##################################################
+## Groups
+##################################################
+group:
+  loft_sever_cooling:
+    name: Loft Sever Cooling
+    entities:
+      - sensor.loft_fan_temperature
+      - sensor.loft_fan_humidity
+      - switch.sonoff_loft_fan_power
+  automation_package_loft_server_cooling:
+    name: Loft Server Cooling
+    entities:
+      - automation.loft_fan_turn_on_when_hot
+      - automation.loft_fan_turn_off_when_not_hot
+
+##################################################
+## Components/Sensors
+##################################################
+sensor:
+  - platform: mqtt
+    name: "Loft_Fan Temperature"
+    state_topic: "tele/sonoff_loft_fan/SENSOR"
+    value_template: "{{ value_json['SI7021'].Temperature }}"
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: "Loft_Fan Humidity"
+    state_topic: "tele/sonoff_loft_fan/SENSOR"
+    value_template: "{{ value_json['SI7021'].Humidity }}"
+    unit_of_measurement: '%'
+
+switch:
+  - platform: mqtt
+    name: "Sonoff Loft Fan Power"
+    state_topic: "stat/sonoff_loft_fan/POWER"
+    command_topic: "cmnd/sonoff_loft_fan/POWER"
+    availability_topic: "tele/sonoff_loft_fan/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+##################################################
+## Automation
+##################################################
+automation:
+  - alias: Loft Fan Turn On When Hot
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.loft_fan_temperature
+        above: 30
+        for:
+          minutes: 5
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.sonoff_loft_fan_power
+
+  - alias: Loft Fan Turn Off When Not Hot
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.loft_fan_temperature
+        below: 30
+        for:
+          minutes: 5
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.sonoff_loft_fan_power

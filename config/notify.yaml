@@ -1,0 +1,19 @@
+# https://www.home-assistant.io/components/notify/
+# and
+# https://www.home-assistant.io/components/notify.group/
+
+- name: adults
+  platform: group
+  services:
+    - service: ios_martins_iphone
+    - service: ios_michelles_iphone
+
+- name: martin
+  platform: group
+  services:
+    - service: ios_martins_iphone
+
+- name: michelle
+  platform: group
+  services:
+    - service: ios_michelles_iphone

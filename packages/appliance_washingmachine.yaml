@@ -1,0 +1,117 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    switch.tp_hs110_7:
+      friendly_name: "Washing Machine"
+      icon: mdi:washing-machine
+
+##################################################
+## Groups
+##################################################
+group:
+  washing_machine:
+    name: Washing Machine
+    entities:
+      - sensor.washing_machine_status
+      - switch.tp_hs110_7
+      - sensor.tp_hs110_7_power
+  automation_package_washing_machine:
+    name: Washing Machine Automation
+    entities:
+      - automation.set_washing_machine_active_when_power_detected
+      - automation.set_washing_machine_to_finished_when_power_drops
+      - automation.set_washing_machine_to_idle
+
+##################################################
+## Components/Sensors
+##################################################
+switch:
+  - platform: tplink
+    host: 192.168.200.27 # DHCP reservation
+    name: tp_hs110_7
+
+input_select:
+  washing_machine_status:
+    name: Washing Machine Status
+    options:
+      - idle
+      - running
+      - finished
+    initial: idle
+
+sensor:
+  - platform: template
+    sensors:
+      tp_hs110_7_power:
+        value_template: "{{ states.switch.tp_hs110_7.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Washing Machine Power"
+  - platform: template
+    sensors:
+      washing_machine_status:
+        value_template: "{{ states.input_select.washing_machine_status.state }}"
+        friendly_name: "Washing Machine Status"
+
+##################################################
+## Automation
+##################################################
+automation:
+# When we detect power being drawn from the washing machine, above 5W,
+# mark the washing machine as using started
+  - alias: Set washing machine active when power detected
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_7_power
+        above: 5
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.washing_machine_status
+          state: 'idle'
+        - condition: state
+          entity_id: input_select.washing_machine_status
+          state: 'finished'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.washing_machine_status
+          option: 'running'
+
+# When the power level drops below 5W, and the washing machine is set to
+# the 'running' state, mark the washing machine as Finished
+  - alias: Set washing machine to finished when power drops
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_7_power
+        below: 5
+    condition:
+      condition: state
+      entity_id: input_select.washing_machine_status
+      state: 'running'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.washing_machine_status
+          option: 'finished'
+
+# Once the washing machine status has been 'finished' for 2 minutes, mark the
+# washing machine as idle
+  - alias: Set Washing Machine to idle
+    trigger:
+      - platform: state
+        entity_id: input_select.washing_machine_status
+        to: 'finished'
+        for:
+          minutes: 2
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.washing_machine_status
+          option: 'idle'
+      - service: notify.adults
+        data:
+          message: "The Washing Machine has finished!"
+          title: "Washing Machine Update"

@@ -1,0 +1,54 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    sensor.speedtest_ping:
+      icon: mdi:clock-fast
+      friendly_name: "Ping"
+    sensor.speedtest_download:
+      icon: mdi:cloud-download
+      friendly_name: "Download"
+    sensor.speedtest_upload:
+      icon: mdi:cloud-upload
+      friendly_name: "Upload"
+    sensor.external_ip:
+      show_last_changed: true
+
+##################################################
+## Groups
+##################################################
+group:
+  internet:
+    name: Internet
+    entities: 
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.external_ip
+      - camera.broadbandquality
+
+##################################################
+## Components/Sensors
+##################################################
+camera:
+  - platform: generic
+    still_image_url: "https://www.thinkbroadband.com/broadband/monitoring/quality/share/ae25a213af51ed64c2cdf601d17a934194317d36.png"
+    name: broadbandquality
+
+sensor:
+# https://home-assistant.io/components/sensor.speedtest/
+  - platform: speedtest
+    minute:
+      - 0
+      - 30
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+# https://home-assistant.io/components/sensor.rest/
+  - platform: rest
+    resource: http://ip.jsontest.com
+    name: External IP
+    value_template: "{{ value_json.ip }}"

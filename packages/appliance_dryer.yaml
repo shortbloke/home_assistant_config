@@ -1,0 +1,116 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    switch.tp_hs110_8:
+      friendly_name: "Tumble Dryer"
+      icon: mdi:tumble-dryer
+
+##################################################
+## Groups
+##################################################
+group:
+  dryer:
+    name: Tumble Dryer
+    entities:
+      - sensor.dryer_status
+      - switch.tp_hs110_8
+      - sensor.tp_hs110_8_power
+  automation_package_dryer:
+    name: Dryer Automation
+    entities:
+      - automation.set_dryer_active_when_power_detected
+      - automation.set_dryer_drying_when_power_drops
+      - automation.set_dryer_to_idle
+
+##################################################
+## Components/Sensors
+##################################################
+switch:
+  - platform: tplink
+    host: 192.168.200.28 # DHCP reservation
+    name: tp_hs110_8
+
+input_select:
+  dryer_status:
+    name: Tumble Dryer Status
+    options:
+      - idle
+      - running
+      - finished
+    initial: idle
+
+sensor:
+  - platform: template
+    sensors:
+      tp_hs110_8_power:
+        value_template: "{{ states.switch.tp_hs110_8.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Tumble Dryer Power"
+  - platform: template
+    sensors:
+      dryer_status:
+        value_template: "{{ states.input_select.dryer_status.state }}"
+        friendly_name: "Tumble Dryer Status"
+
+##################################################
+## Automation
+##################################################
+automation:
+# When we detect power being drawn from the dryer, above 250W,
+# mark the dryer as using started
+  - alias: Set dryer active when power detected
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_8_power
+        above: 800
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.dryer_status
+          state: 'idle'
+        - condition: state
+          entity_id: input_select.dryer_status
+          state: 'finished'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dryer_status
+          option: 'running'
+
+# When the power level drops below 250W, and the dryer is set to
+# the 'running' state, mark the dryer as finished
+  - alias: Set dryer drying when power drops
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tp_hs110_8_power
+        below: 100
+    condition:
+      condition: state
+      entity_id: input_select.dryer_status
+      state: 'running'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dryer_status
+          option: 'finished'
+
+# Once the dryer status has been 'finished' for 5 minutes, set to idle
+  - alias: Set Dryer to idle
+    trigger:
+      - platform: state
+        entity_id: input_select.dryer_status
+        to: 'finished'
+        for:
+          minutes: 3
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.dryer_status
+          option: 'idle'
+      - service: notify.adults
+        data:
+          message: "The Dryer has finished and is ready to be emptied!"
+          title: "Tumble Dryer Update"
