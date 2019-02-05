@@ -6,13 +6,13 @@ homeassistant:
     light.2424806784f3eb2103c8:
       friendly_name: "Spot Light 1"
       icon: mdi:spotlight-beam
-    light.12204702807d3a252d9b:
+    light.12204702ecfabc20a0a1:
       friendly_name: "Spot Light 2"
       icon: mdi:spotlight-beam
-    light.12204702807d3a252c69:
+    light.12204702807d3a252d9b:
       friendly_name: "Spot Light 3"
       icon: mdi:spotlight-beam
-    light.12204702ecfabc20a0a1:
+    light.01802003cc50e3501f3e:
       friendly_name: "Spot Light 4"
       icon: mdi:spotlight-beam
 
@@ -24,9 +24,9 @@ group:
     name: Frasers Lights
     entities:
       - light.2424806784f3eb2103c8
-      - light.12204702807d3a252d9b
-      - light.12204702807d3a252c69
       - light.12204702ecfabc20a0a1
+      - light.12204702807d3a252d9b
+      - light.01802003cc50e3501f3e
 
 ##################################################
 ## Components/Sensors
