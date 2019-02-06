@@ -45,6 +45,10 @@ group:
       - sensor.dark_sky_summary
       - sensor.dark_sky_hourly_summary
       - sensor.dark_sky_daily_summary
+  weather_forcast:
+    name: Forecast
+    entities:
+      - weather.dark_sky
 
 ##################################################
 ## Components/Sensors

@@ -108,6 +108,7 @@ climate_view:
     - sensor.hallway_thermostat_house_humidity # From package: nest
     - sensor.hallway_thermostat_house_temperature # From package: nest
     - group.weather # From package: climate
+    - group.weather_forcast # From package: climate
     - group.temperature_sensors # From package: temperature_humidity_sensors
     - group.humidity_sensors # From package: temperature_humidity_sensors
 
