@@ -12,14 +12,16 @@ homeassistant:
       friendly_name: "Weather"
     sensor.dark_sky_hourly_summary:
       friendly_name: "Weather next"
-      #custom_ui_state_card: value_only
     sensor.dark_sky_daily_summary:
       friendly_name: "Weather week"
-      #custom_ui_state_card: value_only
     sensor.dark_sky_wind_speed:
       friendly_name: "Wind speed"
     sensor.dark_sky_precip_intensity:
       friendly_name: "Precip intensity"
+    sensor.dark_sky_precip_probability:
+      friendly_name: "Precip probability"
+    sensor.dark_sky_cloud_coverage:
+      friendly_name: "Cloud coverage"
 
 ##################################################
 ## Groups
@@ -37,6 +39,7 @@ group:
       - sensor.dark_sky_precip_intensity
       - sensor.dark_sky_precip_probability
       - sensor.dark_sky_cloud_coverage
+      - sensor.dark_sky_uv_index
       - sensor.dark_sky_summary
       - sensor.dark_sky_hourly_summary
       - sensor.dark_sky_daily_summary
@@ -63,6 +66,7 @@ sensor:
       - precip_intensity
       - precip_probability
       - cloud_cover
+      - uv_index
 
     # https://www.home-assistant.io/components/sensor.moon/
   - platform: moon
