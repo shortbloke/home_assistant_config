@@ -22,6 +22,8 @@ homeassistant:
       friendly_name: "Precip probability"
     sensor.dark_sky_cloud_coverage:
       friendly_name: "Cloud coverage"
+    sensor.dark_sky_uv_index:
+      friendly_name: "UV"
 
 ##################################################
 ## Groups
@@ -49,6 +51,11 @@ group:
 ##################################################
 # https://www.home-assistant.io/components/sun/
 sun:
+
+weather:
+    # https://www.home-assistant.io/components/weather.darksky/
+  - platform: darksky
+    api_key: !secret darksky_API_KEY
 
 sensor:
     # https://www.home-assistant.io/components/sensor.darksky/
