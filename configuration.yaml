@@ -44,3 +44,5 @@ config:
 ios:
 # https://www.home-assistant.io/components/map/
 map:
+# https://www.home-assistant.io/components/system_health/
+system_health:
