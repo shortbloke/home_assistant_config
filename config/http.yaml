@@ -3,5 +3,5 @@
 ssl_certificate: !secret http_ssl_certificate
 ssl_key: !secret http_ssl_key
 base_url: !secret http_base_url
-ip_ban_enabled: True
+ip_ban_enabled: False
 login_attempts_threshold: 5
