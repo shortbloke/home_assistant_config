@@ -45,6 +45,7 @@ speedtestdotnet:
     - download
     - upload
 
+sensor:
 # https://home-assistant.io/components/sensor.rest/
   - platform: rest
     resource: http://ip.jsontest.com
