@@ -17,6 +17,7 @@ group:
       - sensor.dishwasher_status
       - switch.tp_hs110_6
       - sensor.tp_hs110_6_power
+      - sensor.tp_hs110_6_power_today
       - sensor.dishwasher_uses_today
       - sensor.dishwasher_uses_this_week
   automation_package_dishwasher:
@@ -50,6 +51,10 @@ sensor:
         value_template: "{{ states.switch.tp_hs110_6.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Dishwasher Power"
+      tp_hs110_6_power_today:
+        value_template: "{{ states.switch.tp_hs110_6.attributes['today_energy_kwh'] | float }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Dishwasher Power Today"
   - platform: template
     sensors:
       dishwasher_status:

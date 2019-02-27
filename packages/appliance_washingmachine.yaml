@@ -17,6 +17,7 @@ group:
       - sensor.washing_machine_status
       - switch.tp_hs110_7
       - sensor.tp_hs110_7_power
+      - sensor.tp_hs110_7_power_today
       - sensor.washing_machine_uses_today
       - sensor.washing_machine_uses_this_week
   automation_package_washing_machine:
@@ -50,6 +51,10 @@ sensor:
         value_template: "{{ states.switch.tp_hs110_7.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Washing Machine Power"
+      tp_hs110_7_power_today:
+        value_template: "{{ states.switch.tp_hs110_7.attributes['today_energy_kwh'] | float }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Washing Machine Power Today"
   - platform: template
     sensors:
       washing_machine_status:
