@@ -102,7 +102,7 @@ automation:
           entity_id: input_select.dishwasher_status
           option: 'running'
 
-# When the power level drops below 10W, and the Dishwasher is set to
+# When the power level drops below 10W for 30 minutes and the Dishwasher is set to
 # the 'running' state, mark the Dishwasher as 'finished'
   - alias: Set dishwasher finished when power drops
     trigger:
@@ -121,7 +121,7 @@ automation:
           entity_id: input_select.dishwasher_status
           option: 'finished'
 
-# Once the dishwasher status has been 'finished' for 30 minutes, mark the
+# Once the dishwasher status has been 'finished' for 10 minutes, mark the
 # dishwasher as idle
   - alias: Set dishwasher to idle
     trigger:

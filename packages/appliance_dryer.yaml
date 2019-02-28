@@ -125,14 +125,14 @@ automation:
           message: "The Dryer has finished and is ready to be emptied!"
           title: "Tumble Dryer Update"
 
-# Once the dryer status has been 'finished' for 5 minutes, set to idle
+# Once the dryer status has been 'finished' for 2 minutes, set to idle
   - alias: Set Dryer to idle
     trigger:
       - platform: state
         entity_id: input_select.dryer_status
         to: 'finished'
         for:
-          minutes: 3
+          minutes: 2
     action:
       - service: input_select.select_option
         data:
