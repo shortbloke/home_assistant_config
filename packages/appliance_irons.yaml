@@ -116,7 +116,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Laurastar Iron"
       tp_hs110_1_power_today:
-        value_template: "{{ states.switch.tp_hs110_1.attributes['today_energy_kwh'] | float }}"
+        value_template: "{{ states.switch.tp_hs110_1.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Laurastar Iron"
       tp_hs110_2_power:
@@ -124,7 +124,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Left"
       tp_hs110_2_power_today:
-        value_template: "{{ states.switch.tp_hs110_2.attributes['today_energy_kwh'] | float }}"
+        value_template: "{{ states.switch.tp_hs110_2.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Left"
       tp_hs110_3_power:
@@ -132,7 +132,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Right"
       tp_hs110_3_power_today:
-        value_template: "{{ states.switch.tp_hs110_3.attributes['today_energy_kwh'] | float }}"
+        value_template: "{{ states.switch.tp_hs110_3.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Right"
       tp_hs110_4_power:
@@ -140,7 +140,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Table"
       tp_hs110_4_power_today:
-        value_template: "{{ states.switch.tp_hs110_4.attributes['today_energy_kwh'] | float }}"
+        value_template: "{{ states.switch.tp_hs110_4.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Table"
       tp_hs110_5_power:
@@ -148,7 +148,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Magpie Iron"
       tp_hs110_5_power_today:
-        value_template: "{{ states.switch.tp_hs110_5.attributes['today_energy_kwh'] | float }}"
+        value_template: "{{ states.switch.tp_hs110_5.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Magpie Iron"
       ironing_room_motion:
