@@ -102,13 +102,15 @@ automation:
           entity_id: input_select.dryer_status
           option: 'running'
 
-# When the power level drops below 250W, and the dryer is set to
-# the 'running' state, mark the dryer as finished
+# When the power level drops below 100W for 3 minutes, and the dryer is set to
+# the 'running' state, mark the dryer as finished and send notification.
   - alias: Set dryer drying when power drops
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_8_power
         below: 100
+        for:
+          minutes: 3
     condition:
       condition: state
       entity_id: input_select.dryer_status
@@ -118,6 +120,10 @@ automation:
         data:
           entity_id: input_select.dryer_status
           option: 'finished'
+      - service: notify.adults
+        data:
+          message: "The Dryer has finished and is ready to be emptied!"
+          title: "Tumble Dryer Update"
 
 # Once the dryer status has been 'finished' for 5 minutes, set to idle
   - alias: Set Dryer to idle
@@ -132,7 +138,4 @@ automation:
         data:
           entity_id: input_select.dryer_status
           option: 'idle'
-      - service: notify.adults
-        data:
-          message: "The Dryer has finished and is ready to be emptied!"
-          title: "Tumble Dryer Update"
+

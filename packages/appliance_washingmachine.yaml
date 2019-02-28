@@ -103,13 +103,15 @@ automation:
           entity_id: input_select.washing_machine_status
           option: 'running'
 
-# When the power level drops below 5W, and the washing machine is set to
-# the 'running' state, mark the washing machine as Finished
+# When the power level drops below 50W, for 2 minutes and the washing machine is set to
+# the 'running' state, mark the washing machine as Finished and send notification.
   - alias: Set washing machine to finished when power drops
     trigger:
       - platform: numeric_state
         entity_id: sensor.tp_hs110_7_power
-        below: 5
+        below: 50
+        for:
+          minutes: 2
     condition:
       condition: state
       entity_id: input_select.washing_machine_status
@@ -119,6 +121,10 @@ automation:
         data:
           entity_id: input_select.washing_machine_status
           option: 'finished'
+      - service: notify.adults
+        data:
+          message: "The Washing Machine has finished!"
+          title: "Washing Machine Update"
 
 # Once the washing machine status has been 'finished' for 2 minutes, mark the
 # washing machine as idle
@@ -134,7 +140,4 @@ automation:
         data:
           entity_id: input_select.washing_machine_status
           option: 'idle'
-      - service: notify.adults
-        data:
-          message: "The Washing Machine has finished!"
-          title: "Washing Machine Update"
+
