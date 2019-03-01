@@ -13,22 +13,6 @@ homeassistant:
       icon: mdi:water-percent
 
 ##################################################
-## Groups
-##################################################
-group:
-  loft_sever_cooling:
-    name: Loft Sever Cooling
-    entities:
-      - sensor.loft_fan_temperature
-      - sensor.loft_fan_humidity
-      - switch.sonoff_loft_fan_power
-  automation_package_loft_server_cooling:
-    name: Loft Server Cooling
-    entities:
-      - automation.loft_fan_turn_on_when_hot
-      - automation.loft_fan_turn_off_when_not_hot
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:
@@ -81,3 +65,18 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.sonoff_loft_fan_power
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.loft_fan_temperature
+      - sensor.loft_fan_humidity
+
+history:
+  include:
+    entities:
+      - sensor.loft_fan_temperature
+      - sensor.loft_fan_humidity

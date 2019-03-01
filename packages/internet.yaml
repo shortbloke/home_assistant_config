@@ -16,19 +16,6 @@ homeassistant:
       show_last_changed: true
 
 ##################################################
-## Groups
-##################################################
-group:
-  internet:
-    name: Internet
-    entities: 
-      - sensor.speedtest_ping
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.external_ip
-      - camera.broadbandquality
-
-##################################################
 ## Components/Sensors
 ##################################################
 camera:
@@ -51,3 +38,20 @@ sensor:
     resource: http://ip.jsontest.com
     name: External IP
     value_template: '{{ value_json.ip }}'
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+
+history:
+  include:
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload

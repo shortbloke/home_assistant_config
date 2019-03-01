@@ -1,15 +1,4 @@
 ##################################################
-## Groups
-##################################################
-group:
-  automation_package_routine_morning_night:
-    name: Routines Morning and Night
-    entities:
-      - automation.turn_on_in_the_morning_and_sunset
-      - automation.turn_off_after_sunrise
-      - automation.turn_off_at_night
-
-##################################################
 ## Automation
 ##################################################
 automation:

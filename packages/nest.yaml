@@ -95,49 +95,6 @@ homeassistant:
       friendly_name: "Activity Zone - Hall Door"
 
 ##################################################
-## Groups
-##################################################
-group:
-  heating:
-    name: Heating
-    entities:
-      - climate.hallway_house
-      - sensor.hallway_thermostat_house_hvac_state
-      - binary_sensor.hallway_thermostat_house_has_leaf
-      - binary_sensor.hallway_thermostat_house_is_using_emergency_heat
-      - sensor.nest_away_mode
-  nest_protect:
-    name: Nest Protect
-    entities:
-      - binary_sensor.hallway_nest_protect_online
-      - sensor.hallway_nest_protect_smoke_status
-      - sensor.hallway_nest_protect_co_status
-      - sensor.hallway_nest_protect_color_status
-      - binary_sensor.upstairs_nest_protect_online
-      - sensor.upstairs_nest_protect_smoke_status
-      - sensor.upstairs_nest_protect_co_status
-      - sensor.upstairs_nest_protect_color_status
-  nest_camera_1:
-    name: Gnd Floor Nest Camera
-    entities:
-      - camera.living_room
-      - binary_sensor.living_room_camera_online
-      - binary_sensor.living_room_camera_motion_detected
-      - binary_sensor.living_room_camera_person_detected
-      - binary_sensor.living_room_camera_sound_detected
-
-  nest_garage_camera:
-    name: Garage Nest Camera
-    entities:
-      - camera.garage
-      - binary_sensor.garage_camera_online
-      - binary_sensor.garage_camera_motion_detected
-      - binary_sensor.garage_camera_person_detected
-      - binary_sensor.garage_camera_sound_detected
-      - binary_sensor.garage_camera_garage_door_activity
-      - binary_sensor.garage_camera_hall_door_activity
-
-##################################################
 ## Components/Sensors
 ##################################################
 #
@@ -157,3 +114,43 @@ sensor:
       nest_away_mode:
         value_template: "{{ states.climate.hallway_house.attributes.away_mode }}"
         friendly_name: "Nest Away Mode"
+
+##################################################
+## Recorder/History/Logbook
+##################################################
+recorder:
+  include:
+    entities:
+      # Nest
+      - binary_sensor.northway_away # Away Mode
+      # Nest Thermostat
+      - climate.hallway_house # Aggregate information
+      - sensor.hallway_thermostat_house_hvac_state # Heating Status
+      - sensor.hallway_thermostat_house_target # Target Temp
+      - sensor.hallway_thermostat_house_temperature # Current Temp
+      # Nest Smoke Detectors
+      - sensor.hallway_nest_protect_smoke_status
+      - sensor.hallway_nest_protect_co_status
+      - sensor.upstairs_nest_protect_smoke_status
+      - sensor.upstairs_nest_protect_co_status
+
+history:
+  include:
+      entities:
+      # Nest
+      - binary_sensor.northway_away # Away Mode 
+      # Nest Thermostat
+      - climate.hallway_house # Aggregate information
+      - sensor.hallway_thermostat_house_hvac_state # Heating Status
+      - sensor.hallway_thermostat_house_target # Target Temp
+      - sensor.hallway_thermostat_house_temperature # Current Temp
+      # Nest Smoke Detectors
+      - sensor.hallway_nest_protect_smoke_status
+      - sensor.hallway_nest_protect_co_status
+      - sensor.upstairs_nest_protect_smoke_status
+      - sensor.upstairs_nest_protect_co_status
+
+logbook:
+  include:
+    entities:
+      - binary_sensor.northway_away

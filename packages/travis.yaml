@@ -9,15 +9,6 @@ homeassistant:
       hidden: true
 
 ##################################################
-## Groups
-##################################################
-group:
-  automation_package_travis:
-    name: Travis
-    entities:
-      - automation.update_config_hass_on_successful_travis_build
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:
@@ -48,3 +39,18 @@ automation:
       - service: hassio.addon_start
         data: 
           addon: "core_git_pull"
+
+##################################################
+## Recorder/History/Logbook
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.shortblokehome_assistant_config_last_build_state
+      - sensor.shortblokehome_assistant_config_last_build_id
+
+logbook:
+  include:
+    entities:
+      - sensor.shortblokehome_assistant_config_last_build_state
+      - sensor.shortblokehome_assistant_config_last_build_id

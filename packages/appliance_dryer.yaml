@@ -8,26 +8,6 @@ homeassistant:
       icon: mdi:tumble-dryer
 
 ##################################################
-## Groups
-##################################################
-group:
-  dryer:
-    name: Tumble Dryer
-    entities:
-      - sensor.dryer_status
-      - switch.tp_hs110_8
-      - sensor.tp_hs110_8_power
-      - sensor.tp_hs110_8_power_today
-      - sensor.dryer_uses_today
-      - sensor.dryer_uses_this_week
-  automation_package_dryer:
-    name: Dryer Automation
-    entities:
-      - automation.set_dryer_active_when_power_detected
-      - automation.set_dryer_drying_when_power_drops
-      - automation.set_dryer_to_idle
-
-##################################################
 ## Components/Sensors
 ##################################################
 switch:
@@ -139,3 +119,19 @@ automation:
           entity_id: input_select.dryer_status
           option: 'idle'
 
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.dryer_status
+      - sensor.tp_hs110_8_power
+      - sensor.tp_hs110_8_power_today
+
+history:
+  include:
+    entities:
+      - sensor.dryer_status
+      - sensor.tp_hs110_8_power
+      - sensor.tp_hs110_8_power_today

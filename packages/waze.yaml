@@ -1,14 +1,4 @@
 ##################################################
-## Groups
-##################################################
-group: 
-  waze_travel:
-    name: Waze Journeys
-    entities:
-      - sensor.to_home
-      - sensor.to_work
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:
@@ -23,3 +13,18 @@ sensor:
     origin: !secret waze_work
     destination: !secret waze_home
     region: "EU"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.to_home
+      - sensor.to_work
+
+history:
+  include:
+    entities:
+      - sensor.to_home
+      - sensor.to_work

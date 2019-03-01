@@ -21,9 +21,7 @@ homeassistant:
 automation: !include config/automation.yaml
 discovery: !include config/discovery.yaml
 dyson: !include config/dyson.yaml
-group: !include config/group.yaml
 http: !include config/http.yaml
-history: !include config/history.yaml
 logbook: !include config/logbook.yaml
 logger: !include config/logger.yaml
 mqtt: !include config/mqtt.yaml

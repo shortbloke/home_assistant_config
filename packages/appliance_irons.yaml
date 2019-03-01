@@ -39,46 +39,6 @@ homeassistant:
       icon: mdi:water-percent
 
 ##################################################
-## Groups
-##################################################
-group:
-  iron_sockets:
-    name: Iron Sockets
-    entities:
-      - sensor.ironing_room_motion
-      - sensor.ironing_room_motion_status
-      - switch.tp_hs110_1
-      - sensor.tp_hs110_1_power
-      - sensor.tp_hs110_1_power_day
-      - switch.tp_hs110_2
-      - sensor.tp_hs110_2_power
-      - sensor.tp_hs110_2_power_today
-      - switch.tp_hs110_3
-      - sensor.tp_hs110_3_power
-      - sensor.tp_hs110_3_power_today
-      - switch.tp_hs110_4
-      - sensor.tp_hs110_4_power
-      - sensor.tp_hs110_4_power_today
-      - switch.tp_hs110_5
-      - sensor.tp_hs110_5_power
-      - sensor.tp_hs110_5_power_today
-
-  laurastar_iron:
-    name: LauraStar Iron
-    entities:
-      - switch.tp_hs110_1
-      - sensor.tp_hs110_1_power
-  automation_package_irons:
-    name: Irons
-    entities:
-      - automation.ironing_room_motion_detected
-      - automation.ironing_room_no_motion_30_mins
-      - automation.ironing_room_no_motion_turn_off_ironing_table
-      - automation.ironing_room_no_motion_turn_off_irons_left
-      - automation.ironing_room_no_motion_turn_off_irons_right
-      - automation.ironing_room_no_motion_turn_off_magpie_iron
-
-##################################################
 ## Components/Sensors
 ##################################################
 input_select:
@@ -264,3 +224,38 @@ automation:
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Magpie Iron"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.ironing_room_motion_status
+      - sensor.ironing_room_motion
+      - sensor.tp_hs110_1_power
+      - sensor.tp_hs110_1_power_today
+      - sensor.tp_hs110_2_power
+      - sensor.tp_hs110_2_power_today
+      - sensor.tp_hs110_3_power
+      - sensor.tp_hs110_3_power_today
+      - sensor.tp_hs110_4_power
+      - sensor.tp_hs110_4_power_today
+      - sensor.tp_hs110_5_power
+      - sensor.tp_hs110_5_power_today
+
+history:
+  include:
+    entities:
+      - sensor.ironing_room_motion_status
+      - sensor.ironing_room_motion
+      - sensor.tp_hs110_1_power
+      - sensor.tp_hs110_1_power_today
+      - sensor.tp_hs110_2_power
+      - sensor.tp_hs110_2_power_today
+      - sensor.tp_hs110_3_power
+      - sensor.tp_hs110_3_power_today
+      - sensor.tp_hs110_4_power
+      - sensor.tp_hs110_4_power_today
+      - sensor.tp_hs110_5_power
+      - sensor.tp_hs110_5_power_today

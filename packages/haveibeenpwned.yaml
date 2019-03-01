@@ -1,25 +1,4 @@
 ##################################################
-## Groups
-##################################################
-group:
-  have_i_been_pawned:
-    name: HaveIBeenPwned
-    entities:
-      - !secret sensor_hibp_email1
-      - !secret sensor_hibp_email2
-      - !secret sensor_hibp_email3
-      - !secret sensor_hibp_email4
-      - !secret sensor_hibp_email5
-      - !secret sensor_hibp_email6
-      - !secret sensor_hibp_email7
-      - !secret sensor_hibp_email8
-      - !secret sensor_hibp_email9
-  automation_package_haveibeenpwned:
-    name: Have I Been Pwned
-    entities:
-      - automation.have_i_been_pwned_change
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:
@@ -69,3 +48,32 @@ automation:
     service: notify.martin
     data_template:
       message: "Warning - HaveIbeenPwned detected {{ trigger.to_state.attributes.friendly_name }}"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - !secret sensor_hibp_email1
+      - !secret sensor_hibp_email2
+      - !secret sensor_hibp_email3
+      - !secret sensor_hibp_email4
+      - !secret sensor_hibp_email5
+      - !secret sensor_hibp_email6
+      - !secret sensor_hibp_email7
+      - !secret sensor_hibp_email8
+      - !secret sensor_hibp_email9
+
+history:
+  include:
+    entities:
+      - !secret sensor_hibp_email1
+      - !secret sensor_hibp_email2
+      - !secret sensor_hibp_email3
+      - !secret sensor_hibp_email4
+      - !secret sensor_hibp_email5
+      - !secret sensor_hibp_email6
+      - !secret sensor_hibp_email7
+      - !secret sensor_hibp_email8
+      - !secret sensor_hibp_email9

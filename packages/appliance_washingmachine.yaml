@@ -8,26 +8,6 @@ homeassistant:
       icon: mdi:washing-machine
 
 ##################################################
-## Groups
-##################################################
-group:
-  washing_machine:
-    name: Washing Machine
-    entities:
-      - sensor.washing_machine_status
-      - switch.tp_hs110_7
-      - sensor.tp_hs110_7_power
-      - sensor.tp_hs110_7_power_today
-      - sensor.washing_machine_uses_today
-      - sensor.washing_machine_uses_this_week
-  automation_package_washing_machine:
-    name: Washing Machine Automation
-    entities:
-      - automation.set_washing_machine_active_when_power_detected
-      - automation.set_washing_machine_to_finished_when_power_drops
-      - automation.set_washing_machine_to_idle
-
-##################################################
 ## Components/Sensors
 ##################################################
 switch:
@@ -141,3 +121,19 @@ automation:
           entity_id: input_select.washing_machine_status
           option: 'idle'
 
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.washing_machine_status
+      - sensor.tp_hs110_7_power
+      - sensor.tp_hs110_7_power_today
+
+history:
+  include:
+    entities:
+      - sensor.washing_machine_status
+      - sensor.tp_hs110_7_power
+      - sensor.tp_hs110_7_power_today
