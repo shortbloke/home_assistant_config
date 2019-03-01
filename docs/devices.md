@@ -9,6 +9,12 @@ The following devices are controlled via my Home Assistant configurations. They 
 | [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free)</li><li>Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.</li></ul> |
 | [Nest Cam IQ Indoor](https://nest.com/uk/cameras/nest-cam-iq-indoor/overview/) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Camera with motion detection, person detection and sound detection.<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free) (this is a single Nest account regardless of the number of Nest devices)</li></ul> |
 
+## Electricity and Solar Generation Monitoring
+
+| Device |  Functionality |
+| ---| --- |
+| [Owl Intuition PV](https://amzn.to/2Ufm6Q6) | Component: [Custom Component : Owl Intuition](https://github.com/custom-components/sensor.owlintuition)<br>Captures electricity usage from multiple current sensors attached to power cable near the electricity meter, in order to detect total power usage, electricity being generated and also what is being exported back to the grid.<br><br>Limitations:<ul><li>Requires active Owl Intuition Subscription in order to use the Owl Web Portal to configure the IP address on the LAN to send packets to, e.g. The HomeAssistant machine. It is also required to enter the cost per unit of electricity which is then sent back down to the Network Owl</li><li>The Network OWL supports a UDP broadcast of the data, which would negate the need for the Owl Subscription, however this doesn't appear to be supported.</li></ul> |
+
 ## Power and Lighting control
 
 | Device |  Functionality |

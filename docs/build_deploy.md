@@ -4,7 +4,7 @@ TravisCI is linked to this github repository, monitoring for changes and automat
 
 The Travis configuration file [`.travis.yml`](../.travis.yml) defines the information needed by TravisCI. 
 
-- Specifically the version of Python to use, currently 3.4
+- Specifically the version of Python to use
 - The steps to perform ahead of the test such as copying files that are needed, but aren't part of the repository:
   - `travis/travis_secrets.yaml` - Contains dummy values for the secrets used in the configuration files
   - `travis/travis.fake_ssl_key` and `travis.fake_ssl_crt` - Are dummy files needed for a Home Assistant configuration setup to use SSL. Copying a fake `secrets.yanl` and some fake file for the SSL keys.
