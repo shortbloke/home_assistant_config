@@ -6,9 +6,3 @@ include:
   domains: 
     - device_tracker
     - automation
-  entities:
-    # Travis CI
-    - sensor.shortblokehome_assistant_config_last_build_state
-    - sensor.shortblokehome_assistant_config_last_build_id
-    # Nest
-    - binary_sensor.northway_away

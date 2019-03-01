@@ -16,19 +16,6 @@ homeassistant:
       show_last_changed: true
 
 ##################################################
-## Groups
-##################################################
-group:
-  internet:
-    name: Internet
-    entities: 
-      - sensor.speedtest_ping
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.external_ip
-      - camera.broadbandquality
-
-##################################################
 ## Components/Sensors
 ##################################################
 camera:
@@ -36,19 +23,35 @@ camera:
     still_image_url: "https://www.thinkbroadband.com/broadband/monitoring/quality/share/ae25a213af51ed64c2cdf601d17a934194317d36.png"
     name: broadbandquality
 
-sensor:
-# https://home-assistant.io/components/sensor.speedtest/
-  - platform: speedtest
-    minute:
-      - 0
-      - 30
-    monitored_conditions:
-      - ping
-      - download
-      - upload
+speedtestdotnet:
+# https://www.home-assistant.io/components/speedtestdotnet/
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
 
+sensor:
 # https://home-assistant.io/components/sensor.rest/
   - platform: rest
     resource: http://ip.jsontest.com
     name: External IP
-    value_template: "{{ value_json.ip }}"
+    value_template: '{{ value_json.ip }}'
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+
+history:
+  include:
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload

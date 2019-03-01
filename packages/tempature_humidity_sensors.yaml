@@ -53,30 +53,6 @@ homeassistant:
       friendly_name: "Temperature (Master Bedroom)"
 
 ##################################################
-## Groups
-##################################################
-group:
-  temperature_sensors:
-    name: Temperature Sensors
-    entities:
-      - sensor.portable_sensor_1_temperature
-      - sensor.portable_sensor_2_temperature
-      - sensor.portable_sensor_3_temperature
-      - sensor.portable_sensor_4_temperature
-      - sensor.portable_sensor_5_temperature
-      - sensor.temp_sensor_1_temperature
-      - sensor.temp_humid_ext_1_temperature
-  humidity_sensors:
-    name: Humidity Sensors
-    entities:
-      - sensor.temp_humid_1_humidity
-      - sensor.temp_humid_2_humidity
-      - sensor.temp_humid_3_humidity
-      - sensor.temp_humid_4_humidity
-      - sensor.temp_humid_5_humidity
-      - sensor.temp_humid_ext_1_humidity
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:
@@ -143,3 +119,40 @@ sensor:
         value_template: "{{ (states.sensor.temp_humid_5_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
         friendly_name: "Temperature (Morgan)"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.portable_sensor_1_temperature
+      - sensor.temp_humid_1_humidity
+      - sensor.portable_sensor_2_temperature
+      - sensor.temp_humid_2_humidity
+      - sensor.portable_sensor_3_temperature
+      - sensor.temp_humid_3_humidity
+      - sensor.portable_sensor_4_temperature
+      - sensor.temp_humid_4_humidity
+      - sensor.portable_sensor_5_temperature
+      - sensor.temp_humid_5_humidity
+      - sensor.temp_humid_ext_1_temperature
+      - sensor.temp_humid_ext_1_humidity
+      - sensor.temp_sensor_1_temperature
+
+history:
+  include:
+    entities:
+      - sensor.portable_sensor_1_temperature
+      - sensor.temp_humid_1_humidity
+      - sensor.portable_sensor_2_temperature
+      - sensor.temp_humid_2_humidity
+      - sensor.portable_sensor_3_temperature
+      - sensor.temp_humid_3_humidity
+      - sensor.portable_sensor_4_temperature
+      - sensor.temp_humid_4_humidity
+      - sensor.portable_sensor_5_temperature
+      - sensor.temp_humid_5_humidity
+      - sensor.temp_humid_ext_1_temperature
+      - sensor.temp_humid_ext_1_humidity
+      - sensor.temp_sensor_1_temperature

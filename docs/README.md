@@ -9,6 +9,12 @@ Each commit triggers a deployment to the latest home assistant version with Pyth
 
 ![My Home Assistant Default View](images/default_view.jpg)
 
+## Configuration Organisation
+
+I've used a combination of [file splitting using !includes](https://www.home-assistant.io/docs/configuration/splitting_configuration) and [packages](https://www.home-assistant.io/docs/configuration/packages/) in order to try and provide some structure to the configuration. 
+
+Packages provide an simple way to encapsulate all the different configuration elements for a adding support for a given component or device. Rather than needing to update many different files the changes are kept contained in a single file per package.
+
 ## Core Hardware of Home Assistant Hub
 
 - [Raspberry Pi 3 Model B+](https://amzn.to/2DabgWG) - Core control system, running on [Hass.io](https://www.home-assistant.io/hassio/).

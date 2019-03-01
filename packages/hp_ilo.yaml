@@ -13,30 +13,6 @@ homeassistant:
       hidden: true
 
 ##################################################
-## Groups
-##################################################
-group:
-  hpilo:
-    name: HP Microserver G7
-    entities:
-      - sensor.nano_server_name
-      - sensor.nano_glance_power_supplies
-      - sensor.nano_glance_processor
-      - sensor.nano_glance_storage
-      - sensor.nano_glance_memory
-      - sensor.nano_glance_temperatures
-      - sensor.nano_glance_fans
-      - sensor.nano_glance_network
-      - sensor.nano_glance_bios
-      - sensor.nano_cpu_fanspeed
-      - sensor.nano_inlet_temperature
-      - sensor.nano_exhaust_temperature
-      - sensor.nano_cpu_temperature
-      - sensor.nano_pci_temperature
-      - sensor.nano_chipset_temperature
-      - sensor.nano_memory_temperature
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:

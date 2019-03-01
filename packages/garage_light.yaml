@@ -24,23 +24,6 @@ homeassistant:
       icon: mdi:water-percent
 
 ##################################################
-## Groups
-##################################################
-group:
-  garage_lights:
-    name: Garage Lights
-    entities:
-      - sensor.garage_motion_status
-      - sensor.garage_motion
-      - switch.sonoff_garage_light
-  automation_package_garage_light:
-    name: Garage Light
-    entities:
-      - automation.garage_motion_detected
-      - automation.garage_no_motion_detected
-      - automation.garage_light_left_on_no_motion
-
-##################################################
 ## Components/Sensors
 ##################################################
 input_select:
@@ -123,3 +106,18 @@ automation:
           message: "Light left on. Turning off."
       - service: homeassistant.turn_off
         entity_id: switch.sonoff_garage_light
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.garage_motion_status
+      - sensor.garage_motion
+
+history:
+  include:
+    entities:
+      - sensor.garage_motion_status
+      - sensor.garage_motion

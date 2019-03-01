@@ -1,14 +1,4 @@
 ##################################################
-## Groups
-##################################################
-group:
-  automation_package_hassio_maintenance:
-    name: Hassio Maintenance
-    entities:
-      - automation.hassio_weekly_snapshot
-      - automation.hassio_Dropbox_Snapshot_Sync
-
-##################################################
 ## Automation
 ##################################################
 automation:

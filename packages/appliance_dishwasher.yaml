@@ -8,23 +8,6 @@ homeassistant:
       icon: mdi:dishwasher
 
 ##################################################
-## Groups
-##################################################
-group:
-  dishwasher:
-    name: Dishwasher
-    entities:
-      - sensor.dishwasher_status
-      - switch.tp_hs110_6
-      - sensor.tp_hs110_6_power
-  automation_package_dishwasher:
-    name: Dishwasher Automation
-    entities:
-      - automation.set_dishwasher_active_when_power_detected
-      - automation.set_dishwasher_finished_when_power_drops
-      - automation.set_dishwasher_to_idle
-
-##################################################
 ## Components/Sensors
 ##################################################
 switch:
@@ -48,11 +31,30 @@ sensor:
         value_template: "{{ states.switch.tp_hs110_6.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Dishwasher Power"
+      tp_hs110_6_power_today:
+        value_template: "{{ states.switch.tp_hs110_6.attributes['today_energy_kwh'] | float | round(2) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Dishwasher Power Today"
   - platform: template
     sensors:
       dishwasher_status:
         value_template: "{{ states.input_select.dishwasher_status.state }}"
         friendly_name: "Dishwasher Status"
+
+  - platform: history_stats
+    name: Dishwasher uses today
+    entity_id: sensor.dishwasher_status
+    type: count
+    state: 'finished'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Dishwasher uses this week
+    entity_id: sensor.dishwasher_status
+    type: count
+    state: 'finished'
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
 
 ##################################################
 ## Automation
@@ -80,7 +82,7 @@ automation:
           entity_id: input_select.dishwasher_status
           option: 'running'
 
-# When the power level drops below 10W, and the Dishwasher is set to
+# When the power level drops below 10W for 30 minutes and the Dishwasher is set to
 # the 'running' state, mark the Dishwasher as 'finished'
   - alias: Set dishwasher finished when power drops
     trigger:
@@ -99,7 +101,7 @@ automation:
           entity_id: input_select.dishwasher_status
           option: 'finished'
 
-# Once the dishwasher status has been 'finished' for 30 minutes, mark the
+# Once the dishwasher status has been 'finished' for 10 minutes, mark the
 # dishwasher as idle
   - alias: Set dishwasher to idle
     trigger:
@@ -117,3 +119,20 @@ automation:
         data:
           message: "The Dishwasher has finished and is ready to be emptied!"
           title: "Dishwasher Update"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.dishwasher_status
+      - sensor.tp_hs110_6_power
+      - sensor.tp_hs110_6_power_today
+
+history:
+  include:
+    entities:
+      - sensor.dishwasher_status
+      - sensor.tp_hs110_6_power
+      - sensor.tp_hs110_6_power_today

@@ -15,17 +15,6 @@ homeassistant:
       friendly_name: "Ensuite"
 
 ##################################################
-## Groups
-##################################################
-group:
-  automation_package_sonos:
-    name: Sonos
-    entities:
-      - automation.sonos_tts_test
-      - automation.sonos_burglar_alarm
-      - automation.sonos_restore_snapshot_state
-
-##################################################
 ## Scripts
 ##################################################
 script:

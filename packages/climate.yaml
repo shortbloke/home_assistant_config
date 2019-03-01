@@ -6,40 +6,35 @@ homeassistant:
   customize:  
     sensor.dark_sky_temperature:  
       friendly_name: "Temp"
+    sensor.dark_sky_apparent_temperature:
+      friendly_name: "Feels like"
     sensor.dark_sky_summary:
       friendly_name: "Weather"
     sensor.dark_sky_hourly_summary:
       friendly_name: "Weather next"
-      #custom_ui_state_card: value_only
     sensor.dark_sky_daily_summary:
       friendly_name: "Weather week"
-      #custom_ui_state_card: value_only
     sensor.dark_sky_wind_speed:
       friendly_name: "Wind speed"
     sensor.dark_sky_precip_intensity:
       friendly_name: "Precip intensity"
-
-##################################################
-## Groups
-##################################################
-group:
-  weather:
-    name: Weather
-    entities:
-      - sensor.sun_template
-      - sensor.moon
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_wind_speed
-      - sensor.dark_sky_precip_intensity
-      - sensor.dark_sky_summary
-      - sensor.dark_sky_hourly_summary
-      - sensor.dark_sky_daily_summary
+    sensor.dark_sky_precip_probability:
+      friendly_name: "Precip probability"
+    sensor.dark_sky_cloud_coverage:
+      friendly_name: "Cloud coverage"
+    sensor.dark_sky_uv_index:
+      friendly_name: "UV"
 
 ##################################################
 ## Components/Sensors
 ##################################################
 # https://www.home-assistant.io/components/sun/
 sun:
+
+weather:
+    # https://www.home-assistant.io/components/weather.darksky/
+  - platform: darksky
+    api_key: !secret darksky_API_KEY
 
 sensor:
     # https://www.home-assistant.io/components/sensor.darksky/
@@ -53,9 +48,11 @@ sensor:
       - daily_summary
       - hourly_summary
       - wind_speed
+      - wind_gust
       - precip_intensity
       - precip_probability
       - cloud_cover
+      - uv_index
 
     # https://www.home-assistant.io/components/sensor.moon/
   - platform: moon

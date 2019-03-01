@@ -1,27 +1,4 @@
 ##################################################
-## Groups
-##################################################
-group:
-  HAPi:
-    name: HAPi Server
-    entities:
-      - sensor.processor_use
-      - sensor.disk_free
-      - sensor.disk_use_percent
-      - sensor.swap_use_percent
-      - sensor.memory_free
-      - sensor.memory_use_percent
-      - sensor.load_1m
-      - sensor.load_5m
-      - sensor.load_15m
-  automation_package_hassio_resource_monitor:
-    name: HAPi Resource Monitoring
-    entities:
-      - automation.hapi_high_load_alert
-      - automation.hapi_low_disk_space_alert
-      - automation.hapi_low_memory_alert
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:
@@ -76,3 +53,20 @@ automation:
         data: 
           title: "HAPi Low Resource Alert"
           message: "System Load 5m Load Average > 2.8"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.load_1m
+      - sensor.disk_use_percent
+      - sensor.memory_use_percent
+
+history:
+  include:
+    entities:
+      - sensor.load_1m
+      - sensor.disk_use_percent
+      - sensor.memory_use_percent
