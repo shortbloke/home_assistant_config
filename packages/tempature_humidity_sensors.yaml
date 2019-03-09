@@ -58,7 +58,7 @@ homeassistant:
 sensor:
   # RFXCOM 433 Sensors
   - platform: rfxtrx
-    automatic_add: false
+    automatic_add: true
     devices:
       # 0a5209f6ad0002582f0189:
       0a52094f2c0002b3290179:  #Convervatory
@@ -66,7 +66,7 @@ sensor:
         data_type:
           - Humidity
           - Temperature
-      0a52097df600026c330189:  #Living Room
+      0a5209070e00026c290189:  #Living Room
         name: Temp_Humid_2
         data_type:  
           - Humidity
