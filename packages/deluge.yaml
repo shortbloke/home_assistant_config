@@ -1,0 +1,27 @@
+##################################################
+## Components/Sensors
+##################################################
+sensor:
+  - platform: deluge
+    host: !secret deluge_host
+    username: !secret deluge_username
+    password: !secret deluge_password
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.deluge_up_speed
+      - sensor.deluge_down_speed
+
+history:
+  include:
+    entities:
+      - sensor.deluge_up_speed
+      - sensor.deluge_down_speed
