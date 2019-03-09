@@ -3,19 +3,19 @@
 ##################################################
 homeassistant:
   customize:
-    switch.tp_hs110_1:
+    switch.laurastar_iron:
       friendly_name: "Laurastar Iron"
       icon: mdi:power-socket-uk
-    switch.tp_hs110_2:
+    switch.irons_left:
       friendly_name: "Irons (Left)"
       icon: mdi:power-socket-uk
-    switch.tp_hs110_3:
+    switch.irons_right:
       friendly_name: "Irons (Right)"
       icon: mdi:power-socket-uk
-    switch.tp_hs110_4:
+    switch.ironing_table:
       friendly_name: "Ironing Table"
       icon: mdi:power-socket-uk
-    switch.tp_hs110_5:
+    switch.magpie_iron:
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
     # Multi-sensor
@@ -49,66 +49,56 @@ input_select:
       - motion
     initial: motion
 
-switch:
-  # TP-Link HS110 Power Sockets
-  - platform: tplink
-    host: 192.168.200.21 # DHCP reservation
-    name: tp_hs110_1
-  - platform: tplink
-    host: 192.168.200.22 # DHCP reservation
-    name: tp_hs110_2
-  - platform: tplink
-    host: 192.168.200.23 # DHCP reservation
-    name: tp_hs110_3
-  - platform: tplink
-    host: 192.168.200.24 # DHCP reservation
-    name: tp_hs110_4
-  - platform: tplink
-    host: 192.168.200.25 # DHCP reservation
-    name: tp_hs110_5
+tplink:
+  switch:
+    - host: 192.168.200.21 # DHCP reservation
+    - host: 192.168.200.22 # DHCP reservation
+    - host: 192.168.200.23 # DHCP reservation
+    - host: 192.168.200.24 # DHCP reservation
+    - host: 192.168.200.25 # DHCP reservation
 
 sensor:
   - platform: template
     sensors:
       # TP-Link HS110 Power Sockets Power Usage
-      tp_hs110_1_power:
-        value_template: "{{ states.switch.tp_hs110_1.attributes['current_power_w'].split(' ')[0] }}"
+      laurastar_iron_power:
+        value_template: "{{ states.switch.laurastar_iron.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Power - Laurastar Iron"
-      tp_hs110_1_power_today:
-        value_template: "{{ states.switch.tp_hs110_1.attributes['today_energy_kwh'] | float | round(2) }}"
+      laurastar_iron_power_today:
+        value_template: "{{ states.switch.laurastar_iron.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Laurastar Iron"
-      tp_hs110_2_power:
-        value_template: "{{ states.switch.tp_hs110_2.attributes['current_power_w'].split(' ')[0] }}"
+      irons_left_power:
+        value_template: "{{ states.switch.irons_left.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Left"
-      tp_hs110_2_power_today:
-        value_template: "{{ states.switch.tp_hs110_2.attributes['today_energy_kwh'] | float | round(2) }}"
+      irons_left_power_today:
+        value_template: "{{ states.switch.irons_left.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Left"
-      tp_hs110_3_power:
-        value_template: "{{ states.switch.tp_hs110_3.attributes['current_power_w'].split(' ')[0] }}"
+      irons_right_power:
+        value_template: "{{ states.switch.irons_right.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Right"
-      tp_hs110_3_power_today:
-        value_template: "{{ states.switch.tp_hs110_3.attributes['today_energy_kwh'] | float | round(2) }}"
+      irons_right_power_today:
+        value_template: "{{ states.switch.irons_right.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Right"
-      tp_hs110_4_power:
-        value_template: "{{ states.switch.tp_hs110_4.attributes['current_power_w'].split(' ')[0] }}"
+      ironing_table_power:
+        value_template: "{{ states.switch.ironing_table.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Table"
-      tp_hs110_4_power_today:
-        value_template: "{{ states.switch.tp_hs110_4.attributes['today_energy_kwh'] | float | round(2) }}"
+      ironing_table_power_today:
+        value_template: "{{ states.switch.ironing_table.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Table"
-      tp_hs110_5_power:
-        value_template: "{{ states.switch.tp_hs110_5.attributes['current_power_w'].split(' ')[0] }}"
+      magpie_iron_power:
+        value_template: "{{ states.switch.magpie_iron.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
         friendly_name: "Power - Magpie Iron"
-      tp_hs110_5_power_today:
-        value_template: "{{ states.switch.tp_hs110_5.attributes['today_energy_kwh'] | float | round(2) }}"
+      magpie_iron_power_today:
+        value_template: "{{ states.switch.magpie_iron.attributes['today_energy_kwh'] | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Magpie Iron"
       ironing_room_motion:
@@ -152,7 +142,7 @@ automation:
   - alias: Ironing Room No Motion Turn off Irons Left
     trigger:
       - platform: numeric_state
-        entity_id: sensor.tp_hs110_2_power
+        entity_id: sensor.irons_left_power
         above: 10
         for: 
           seconds: 10
@@ -162,7 +152,7 @@ automation:
         state: 'idle'
     action:
       - service: homeassistant.turn_off
-        entity_id: switch.tp_hs110_2
+        entity_id: switch.irons_left
       - service: notify.adults
         data:
           title: "Ironing Room Alert!"
@@ -171,7 +161,7 @@ automation:
   - alias: Ironing Room No Motion Turn off Irons Right
     trigger:
       - platform: numeric_state
-        entity_id: sensor.tp_hs110_3_power
+        entity_id: sensor.irons_right_power
         above: 10
         for:
           seconds: 10
@@ -181,7 +171,7 @@ automation:
         state: 'idle'
     action:
       - service: homeassistant.turn_off
-        entity_id: switch.tp_hs110_3
+        entity_id: switch.irons_right
       - service: notify.adults
         data:
           title: "Ironing Room Alert!"
@@ -190,7 +180,7 @@ automation:
   - alias: Ironing Room No Motion Turn off Ironing Table
     trigger:
       - platform: numeric_state
-        entity_id: sensor.tp_hs110_4_power
+        entity_id: sensor.ironing_table_power
         above: 10
         for:
           seconds: 10
@@ -200,7 +190,7 @@ automation:
         state: 'idle'
     action:
       - service: homeassistant.turn_off
-        entity_id: switch.tp_hs110_4
+        entity_id: switch.ironing_table
       - service: notify.adults
         data:
           title: "Ironing Room Alert!"
@@ -209,7 +199,7 @@ automation:
   - alias: Ironing Room No Motion Turn off Magpie Iron
     trigger:
       - platform: numeric_state
-        entity_id: sensor.tp_hs110_5_power
+        entity_id: sensor.magpie_iron_power
         above: 10
         for: 
           seconds: 10
@@ -219,7 +209,7 @@ automation:
         state: 'idle'
     action:
       - service: homeassistant.turn_off
-        entity_id: switch.tp_hs110_5
+        entity_id: switch.magpie_iron
       - service: notify.adults
         data:
           title: "Ironing Room Alert!"
@@ -233,29 +223,29 @@ recorder:
     entities:
       - sensor.ironing_room_motion_status
       - sensor.ironing_room_motion
-      - sensor.tp_hs110_1_power
-      - sensor.tp_hs110_1_power_today
-      - sensor.tp_hs110_2_power
-      - sensor.tp_hs110_2_power_today
-      - sensor.tp_hs110_3_power
-      - sensor.tp_hs110_3_power_today
-      - sensor.tp_hs110_4_power
-      - sensor.tp_hs110_4_power_today
-      - sensor.tp_hs110_5_power
-      - sensor.tp_hs110_5_power_today
+      - sensor.laurastar_iron_power
+      - sensor.laurastar_iron_power_today
+      - sensor.irons_left_power
+      - sensor.irons_left_power_today
+      - sensor.irons_right_power
+      - sensor.irons_right_power_today
+      - sensor.ironing_table_power
+      - sensor.ironing_table_power_today
+      - sensor.magpie_iron_power
+      - sensor.magpie_iron_power_today
 
 history:
   include:
     entities:
       - sensor.ironing_room_motion_status
       - sensor.ironing_room_motion
-      - sensor.tp_hs110_1_power
-      - sensor.tp_hs110_1_power_today
-      - sensor.tp_hs110_2_power
-      - sensor.tp_hs110_2_power_today
-      - sensor.tp_hs110_3_power
-      - sensor.tp_hs110_3_power_today
-      - sensor.tp_hs110_4_power
-      - sensor.tp_hs110_4_power_today
-      - sensor.tp_hs110_5_power
-      - sensor.tp_hs110_5_power_today
+      - sensor.laurastar_iron_power
+      - sensor.laurastar_iron_power_today
+      - sensor.irons_left_power
+      - sensor.irons_left_power_today
+      - sensor.irons_right_power
+      - sensor.irons_right_power_today
+      - sensor.ironing_table_power
+      - sensor.ironing_table_power_today
+      - sensor.magpie_iron_power
+      - sensor.magpie_iron_power_today
