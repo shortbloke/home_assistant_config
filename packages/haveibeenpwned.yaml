@@ -29,7 +29,6 @@ automation:
     - platform: numeric_state
       above: 1
       entity_id:
-        - !secret sensor_hibp_email2
         - !secret sensor_hibp_email9
     - platform: numeric_state
       above: 2
@@ -38,9 +37,13 @@ automation:
     - platform: numeric_state
       above: 3
       entity_id:
-        - !secret sensor_hibp_email7
+        - !secret sensor_hibp_email2
     - platform: numeric_state
       above: 4
+      entity_id:
+        - !secret sensor_hibp_email7
+    - platform: numeric_state
+      above: 5
       entity_id:
         - !secret sensor_hibp_email1
         - !secret sensor_hibp_email8
