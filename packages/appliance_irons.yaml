@@ -102,7 +102,7 @@ sensor:
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Magpie Iron"
       ironing_room_motion:
-        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','8') %}yes{% else %}no{% endif %}"
+        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar','8') %}yes{% elif is_state('sensor.aeotec_zw100_multisensor_6_burglar','3') %}yes{% else %}no{% endif %}"
         friendly_name: "Ironing Room Motion"
       ironing_room_motion_status: 
         value_template: "{{ states.input_select.ironing_room_motion_status.state }}"
