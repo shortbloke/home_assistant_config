@@ -2,6 +2,7 @@
 ## Customize
 ##################################################
 homeassistant:
+  customize:
     # Aeotec Stick
     zwave.aeotec_zw090_zstick_gen5_eu:
       friendly_name: "Z-Wave Stick"
