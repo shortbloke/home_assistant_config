@@ -11,6 +11,10 @@
 - In combination with an [DropBox Sync add-on](https://github.com/danielwelch/hassio-dropbox-sync) and some automation scripts, it's possible to schedule regular snapshots and automatically upload these to DropBox.
 - Automation is configured to perform a weekly snapshot, whilst checking for new snapshots to sync daily.
 
+## Heating Control
+
+- When the back door (ZigBee sensor) is left open, then Nest Heating Operation Mode is set to Eco. Once the door is closed it's returned to it's previous state (off, heat or eco)
+
 ## Power Control
 
 - Turning on specific lights in the morning and 1 hour before sunset

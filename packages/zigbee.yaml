@@ -31,6 +31,55 @@ homeassistant:
       friendly_name: "Zigbee - Garage Interior Door"
 
 ##################################################
+## Components/Sensors
+##################################################
+input_select:
+  heating_previous_state:
+    name: Heating Previous State
+    options:
+      - 'off'
+      - 'eco'
+      - 'heat'
+
+##################################################
+## Automation
+##################################################
+
+# If back door open set heating mode to Eco, reset state when closed.
+# To reduce the chance of hitting Nest API rate limits,
+# door needs to be in open or closed state for 2 mins before a change made.
+automation:
+  - alias: Door Open - Set heating mode to eco
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.zha_0275335b_1_6  # Back door
+        to: 'on'
+        for:
+          minutes: 2
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.heating_previous_state
+          option: '{{states.climate.hallway_house.state}}'
+      - service: climate.set_operation_mode
+        data:
+          entity_id: climate.hallway_house
+          operation_mode: 'eco'
+  
+  - alias: Door Closed - Reset heating mode
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.zha_0275335b_1_6 # Back door
+        to: 'off'
+        for:
+          minutes: 2
+    action:
+      - service: climate.set_operation_mode
+        data_template:
+          entity_id: climate.hallway_house
+          operation_mode: '{{ states("input_select.heating_previous_state") }}'
+
+##################################################
 ## Recorder/History
 ##################################################
 recorder:

@@ -3,3 +3,6 @@
 default: warn
 logs:
   homeassistant.components.zha: debug
+  # homeassistant.components.nest: debug
+  # homeassistant.components.binary_sensor.nest: debug
+  # nest: debug
