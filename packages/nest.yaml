@@ -28,8 +28,6 @@ homeassistant:
       hidden: true
     binary_sensor.hallway_thermostat_house_is_locked:
       hidden: true
-    sensor.hallway_thermostat_house_operation_mode:
-      hidden: true
     binary_sensor.hallway_thermostat_house_online:
       hidden: true
     sensor.hallway_thermostat_house_target:
