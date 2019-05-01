@@ -128,6 +128,7 @@ recorder:
       - sensor.hallway_thermostat_house_hvac_state # Heating Status
       - sensor.hallway_thermostat_house_target # Target Temp
       - sensor.hallway_thermostat_house_temperature # Current Temp
+      - sensor.hallway_thermostat_house_operation_mode # Mode (off/heat/eco)
       # Nest Smoke Detectors
       - sensor.hallway_nest_protect_smoke_status
       - sensor.hallway_nest_protect_co_status
@@ -144,6 +145,7 @@ history:
       - sensor.hallway_thermostat_house_hvac_state # Heating Status
       - sensor.hallway_thermostat_house_target # Target Temp
       - sensor.hallway_thermostat_house_temperature # Current Temp
+      - sensor.hallway_thermostat_house_operation_mode # Mode (off/heat/eco)
       # Nest Smoke Detectors
       - sensor.hallway_nest_protect_smoke_status
       - sensor.hallway_nest_protect_co_status
