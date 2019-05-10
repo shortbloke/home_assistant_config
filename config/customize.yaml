@@ -5,3 +5,5 @@
       friendly_name: "Michelle"
     device_tracker.morgans_iphone:
       friendly_name: "Morgan"
+    device_tracker.frasers_iphone:
+      friendly_name: "Fraser"  
