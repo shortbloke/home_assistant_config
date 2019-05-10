@@ -58,9 +58,11 @@ The following devices are controlled via my Home Assistant configurations. They 
 
 | Component | Functionality |
 | --- | --- |
+| [Darksky Weather](https://www.home-assistant.io/components/weather.darksky/) | Uses the [Darksky](https://darksky.net) platform to provide weather information.
+| [HaveIBeenPwned](https://home-assistant.io/components/sensor.haveibeenpwned/) | Checks for breached email accounts using [haveibeenpwned](https://haveibeenpwned.com/). Multiple email addresses are monitored which are specified in the secrets.yaml file. |
+| iOS App [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401) | With Home Assistant addon [ios](https://home-assistant.io/docs/ecosystem/ios/) enables location tracking plus complete control of HASS, iPhone battery monitoring and is able to receive notifications from Home Assistant |
+| [Nmap](https://www.home-assistant.io/components/nmap_tracker/) | LAN Network scanning for assisting with device tracking. Used in conjunction with tracking information from the iOS App.|
 | [Sun](https://home-assistant.io/components/sun/) | Sun position, enabling automation to be triggered, e.g. at dusk and dawn |
 | [System Monitor](https://home-assistant.io/components/sensor.systemmonitor/) | System resource usage information on the host system Home Assistant is running on |
-| iOS App [Home Assistant App](https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401) | With Home Assistant addon [ios](https://home-assistant.io/docs/ecosystem/ios/) enables location tracking plus complete control of HASS, iPhone battery monitoring and is able to receive notifications from Home Assistant |
-| [HaveIBeenPwned](https://home-assistant.io/components/sensor.haveibeenpwned/) | Checks for breached email accounts using [haveibeenpwned](https://haveibeenpwned.com/). Multiple email addresses are monitored which are specified in the secrets.yaml file. |
-| [Travis-CI](https://home-assistant.io/components/sensor.travisci/) | Integrated test results from [Travis-CI](https://travis-ci.org/), providing the capability of automatically updating and restarting Home Assistant when files updated on github pass configuration checks in Travis CI.
-| [Darksky Weather](https://www.home-assistant.io/components/weather.darksky/) | Uses the [Darksky](https://darksky.net) platform to provide weather information.
+| [Travis-CI](https://home-assistant.io/components/sensor.travisci/) | Integrated test results from [Travis-CI](https://travis-ci.org/), providing the capability of automatically updating and restarting Home Assistant when files updated on github pass configuration checks in Travis CI. |
+
