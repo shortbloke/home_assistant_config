@@ -4,5 +4,5 @@
 
 include:
   domains: 
-    - device_tracker
+    # - device_tracker
     - automation
