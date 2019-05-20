@@ -22,10 +22,10 @@ script:
     # Source: https://home-assistant.io/cookbook/sonos_say/
     alias: Sonos TTS script
     sequence:
-      - service: media_player.sonos_snapshot
+      - service: sonos.snapshot
         data_template:
           entity_id: "{{ sonos_entity }}"
-      - service: media_player.sonos_unjoin
+      - service: sonos.unjoin
         data_template:
           entity_id: "{{ sonos_entity }}"
       - service: media_player.volume_set
@@ -33,20 +33,20 @@ script:
           entity_id: "{{ sonos_entity }}"
           volume_level: "{{ volume }}"
       # - service: tts.voicerss_say
-      - service: tts.google_say
+      - service: tts.google_translate_say
         data_template:
           entity_id: "{{ sonos_entity }}"
           message: "{{ message }}"
       - delay: "{{ delay }}"
-      - service: media_player.sonos_restore
+      - service: sonos.restore
         data_template:
           entity_id: "{{ sonos_entity }}"
 
   sonos_alarm:
     alias: Sonos Burglar Alarm Siren
     sequence:
-      - service: media_player.sonos_snapshot
-      - service: media_player.sonos_unjoin
+      - service: sonos.snapshot
+      - service: sonos.unjoin
       - service: media_player.volume_mute
         data_template:
           is_volume_muted: false
@@ -58,7 +58,7 @@ script:
           media_content_id: !secret siren_wav_url
           media_content_type: "audio/mp3"
       - delay: "{{ delay }}"
-      - service: media_player.sonos_restore
+      - service: sonos.restore
 
 ##################################################
 ## Automation
@@ -94,4 +94,4 @@ automation:
       - platform: state
         entity_id: input_boolean.mytest
     action:
-      - service: media_player.sonos_restore
+      - service: sonos.restore
