@@ -153,7 +153,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.irons_left
-      - service: notify.adults
+      - service: notify.michelle
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Ironing room Irons (Left)"
@@ -172,7 +172,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.irons_right
-      - service: notify.adults
+      - service: notify.michelle
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Ironing room Irons (Right)"
@@ -191,7 +191,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.ironing_table
-      - service: notify.adults
+      - service: notify.michelle
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Ironing Table"
@@ -210,7 +210,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.magpie_iron
-      - service: notify.adults
+      - service: notify.michelle
         data:
           title: "Ironing Room Alert!"
           message: "No Motion Detected - Turning off Magpie Iron"

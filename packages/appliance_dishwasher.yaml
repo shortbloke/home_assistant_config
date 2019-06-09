@@ -116,8 +116,8 @@ automation:
           option: 'idle'
       - service: notify.adults
         data:
-          message: "The Dishwasher has finished and is ready to be emptied!"
-          title: "Dishwasher Update"
+          title: "Dishwasher"
+          message: "Finished!"
 
 ##################################################
 ## Recorder/History

@@ -100,10 +100,10 @@ automation:
         data:
           entity_id: input_select.washing_machine_status
           option: 'finished'
-      - service: notify.adults
+      - service: notify.michelle
         data:
-          message: "The Washing Machine has finished!"
-          title: "Washing Machine Update"
+          message: "Finished!"
+          title: "Washing Machine"
 
 # Once the washing machine status has been 'finished' for 2 minutes, mark the
 # washing machine as idle
