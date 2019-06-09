@@ -23,9 +23,8 @@ from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 from homeassistant.util import Throttle
 
+VERSION = '1.4.0'
 _LOGGER = logging.getLogger(__name__)
-
-VERSION = '1.2.1'
 
 DEFAULT_NAME = 'OWL Intuition'
 MODE_MONO = 'monophase'
