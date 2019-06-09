@@ -2,23 +2,22 @@
 - name: Home
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
-  radius: 250
+  radius: 50
   icon: mdi:worker
 
 - name: Forest
   latitude: !secret latitude_loc_forest
   longitude: !secret longitude_loc_forest
-  radius: 250
+  radius: 150
   icon: mdi:school
 
 - name: Work
   latitude: !secret latitude_loc_work
   longitude: !secret longitude_loc_work
-  radius: 250
   icon: mdi:worker
 
 - name: College
   latitude: !secret latitude_loc_college
   longitude: !secret longitude_loc_college
-  radius: 250
+  radius: 150
   icon: mdi:school
