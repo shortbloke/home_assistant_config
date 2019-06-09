@@ -7,7 +7,6 @@ homeassistant:
   longitude: !secret longitude_loc_home
   elevation: !secret evelation_loc_home
   time_zone: Europe/London
-  temperature_unit: C
   unit_system: metric
   customize_glob: !include config/customize_glob.yaml
   customize: !include config/customize.yaml
@@ -44,3 +43,5 @@ ios:
 map:
 # https://www.home-assistant.io/components/system_health/
 system_health:
+# https://www.home-assistant.io/components/person/
+person:
