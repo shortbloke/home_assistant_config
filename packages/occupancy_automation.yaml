@@ -1,0 +1,238 @@
+##################################################
+## Customize
+##################################################
+# homeassistant:
+#   customize:
+
+##################################################
+## Groups
+##################################################
+group:
+  adult_home:
+    name: Adults at home
+    entities:
+      - person.june
+      - person.martin
+      - person.michelle
+  children_home:
+    name: Children at home
+    entities:
+      - person.morgan
+      - person.fraser
+  anyone_home:
+    name: anyone at home
+    entities:
+      - person.june
+      - person.martin
+      - person.michelle
+      - person.morgan
+      - person.fraser
+
+##################################################
+## Components/Sensors
+##################################################
+input_boolean:
+  guest_mode:
+    name: Guest Mode
+
+##################################################
+## Automation
+##################################################
+automation:
+  - alias: House occupied
+    trigger: 
+      platform: state
+      entity_id: group.anyone_home
+      to: 'home'
+    condition:
+      condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    action:
+      - service: notify.martin
+        data:
+          message: "House Occupied"
+          title: "DEBUG Routine"
+      - service: climate.set_operation_mode
+        data_template:
+          entity_id: climate.hallway_house
+          operation_mode: 'heat'
+
+  - alias: House unoccupied
+    trigger: 
+      platform: state
+      entity_id: group.anyone_home
+      from: 'home'
+    condition:
+      condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    action:
+      - service: notify.martin
+        data:
+          message: "House Unoccupied"
+          title: "DEBUG Routine"
+      - service: climate.set_operation_mode
+        data_template:
+          entity_id: climate.hallway_house
+          operation_mode: 'eco'
+      - service: homeassistant.turn_on
+        entity_id:
+          - script.everyone_away
+
+  - alias: Adults home
+    trigger: 
+      platform: state
+      entity_id: group.adults_home
+      to: 'home'
+    action:
+      - service: notify.martin
+        data:
+          message: "Adults home"
+          title: "DEBUG Routine"
+      - service: camera.turn_off
+        entity_id: camera.living_room
+
+
+  - alias: Adults away
+    trigger: 
+      platform: state
+      entity_id: group.adults_home
+      from: 'home'
+    condition:
+      condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    action:
+      - service: notify.martin
+        data:
+          message: "No Adults in the house"
+          title: "DEBUG Routine"
+      - service: camera.turn_on
+        entity_id: camera.living_room
+      - service: camera.turn_on
+        entity_id: camera.garage
+
+  - alias: Morgan away
+    trigger: 
+      platform: state
+      entity_id: person.morgan
+      from: 'home'
+    condition:
+      condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    action:
+      - service: notify.martin
+        data:
+          message: "Morgan Away"
+          title: "DEBUG Routine"
+      - service: homeassistant.turn_on
+        entity_id:
+          - script.morgan_away
+
+  - alias: Fraser away
+    trigger: 
+      platform: state
+      entity_id: person.fraser
+      from: 'home'
+    condition:
+      condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    action:
+      - service: notify.martin
+        data:
+          message: "Fraser Away"
+          title: "DEBUG Routine"
+      - service: homeassistant.turn_on
+        entity_id:
+          - script.fraser_away
+
+  - alias: House unoccupied things left open
+    trigger: 
+      platform: state
+      entity_id: group.anyone_home
+      from: 'home'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.zha_025370bc_1_6 # Front Door
+              state: 'on'
+            - condition: state
+              entity_id: binary_sensor.zha_02753210_1_6 # Garage Door
+              state: 'on'
+            - condition: state
+              entity_id: binary_sensor.zha_0275335b_1_6 # Back Door
+              state: 'on'
+    action:
+      - service: notify.martin
+        data_template:
+          title: "House Unoccupied - Things left open"
+          message: "{{ states.binary_sensor.zha_025370bc_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_025370bc_1_6.state }}], {{ states.binary_sensor.zha_02753210_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_02753210_1_6.state }}], {{ states.binary_sensor.zha_0275335b_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_0275335b_1_6.state }}]"
+
+##################################################
+## Scripts
+##################################################
+script:
+  morgan_away:
+    alias: Morgan away
+    sequence:
+      - service: homeassistant.turn_off
+        entity_id:
+          - light.lwrf_morgan_main
+          - group.morgans_strip_lights
+  
+  fraser_away:
+    alias: Fraser away
+    sequence:
+      - service: homeassistant.turn_off
+        entity_id:
+          - group.frasers_room_lights
+  
+  everyone_away:
+    alias: everyone_away
+    sequence:
+      - service: homeassistant.turn_off
+        entity_id:
+          - script.morgan_away
+          - script.fraser_away
+          - group.conservatory_lights
+          - group.dining_room_lights
+          - group.living_room_lights
+          - switch.sonoff_garage_light
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - person.fraser
+      - person.june
+      - person.martin
+      - person.michelle
+      - person.morgan
+      - group.adult_home
+      - group.children_home
+      - group.anyone_home
+      - input_boolean.guest_mode
+
+history:
+  include:
+    entities:
+      - person.fraser
+      - person.june
+      - person.martin
+      - person.michelle
+      - person.morgan
+      - group.adult_home
+      - group.children_home
+      - group.anyone_home
+      - input_boolean.guest_mode
