@@ -15,6 +15,13 @@ homeassistant:
       friendly_name: "Ensuite"
 
 ##################################################
+## Components/Sensors
+##################################################
+input_boolean:
+  sonos_alarm_enabled:
+    name: Sonos alarm enabled
+
+##################################################
 ## Scripts
 ##################################################
 script:
@@ -95,3 +102,14 @@ automation:
         entity_id: input_boolean.mytest
     action:
       - service: sonos.restore
+
+  - alias: Update Sonos alarm clock state
+    trigger: 
+      platform: state
+      entity_id: input_boolean.sonos_alarm_enabled
+    action:
+      - service: sonos.update_alarm
+        data_template:
+          entity_id: media_player.master_bedroom
+          alarm_id: '1'
+          enabled: '{{ trigger.to_state.state }}'
