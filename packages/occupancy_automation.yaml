@@ -8,7 +8,7 @@
 ## Groups
 ##################################################
 group:
-  adult_home:
+  adults_home:
     name: Adults at home
     entities:
       - person.june
@@ -49,10 +49,6 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: notify.martin
-        data:
-          message: "House Occupied"
-          title: "DEBUG Routine"
       - service: climate.set_operation_mode
         data_template:
           entity_id: climate.hallway_house
@@ -68,10 +64,6 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: notify.martin
-        data:
-          message: "House Unoccupied"
-          title: "DEBUG Routine"
       - service: climate.set_operation_mode
         data_template:
           entity_id: climate.hallway_house
@@ -86,10 +78,6 @@ automation:
       entity_id: group.adults_home
       to: 'home'
     action:
-      - service: notify.martin
-        data:
-          message: "Adults home"
-          title: "DEBUG Routine"
       - service: camera.turn_off
         entity_id: camera.living_room
 
@@ -104,14 +92,8 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: notify.martin
-        data:
-          message: "No Adults in the house"
-          title: "DEBUG Routine"
       - service: camera.turn_on
         entity_id: camera.living_room
-      - service: camera.turn_on
-        entity_id: camera.garage
 
   - alias: Morgan away
     trigger: 
@@ -123,10 +105,6 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: notify.martin
-        data:
-          message: "Morgan Away"
-          title: "DEBUG Routine"
       - service: homeassistant.turn_on
         entity_id:
           - script.morgan_away
@@ -141,10 +119,6 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: notify.martin
-        data:
-          message: "Fraser Away"
-          title: "DEBUG Routine"
       - service: homeassistant.turn_on
         entity_id:
           - script.fraser_away
@@ -219,7 +193,7 @@ recorder:
       - person.martin
       - person.michelle
       - person.morgan
-      - group.adult_home
+      - group.adults_home
       - group.children_home
       - group.anyone_home
       - input_boolean.guest_mode
@@ -232,7 +206,7 @@ history:
       - person.martin
       - person.michelle
       - person.morgan
-      - group.adult_home
+      - group.adults_home
       - group.children_home
       - group.anyone_home
       - input_boolean.guest_mode
