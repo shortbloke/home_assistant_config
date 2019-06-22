@@ -1,5 +1,4 @@
 # https://www.home-assistant.io/components/mqtt/
-
 broker: core-mosquitto
 username: !secret MQTT_username
 password: !secret MQTT_password

@@ -1,0 +1,95 @@
+##################################################
+## Customize
+##################################################
+# homeassistant:
+#   customize:
+
+##################################################
+## Components/Sensors
+##################################################
+plant:
+  chilli_plant:
+    sensors:
+      moisture: sensor.chilli_plant_moisture
+      battery: sensor.chilli_plant_battery
+      temperature: sensor.chilli_plant_temperature
+      conductivity: sensor.chilli_plant_conductivity
+      brightness: sensor.chilli_plant_light
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 17
+    min_conductivity: 500
+    min_temperature: 15
+  herbs:
+    sensors:
+      moisture: sensor.herbs_moisture
+      battery: sensor.herbs_battery
+      temperature: sensor.herbs_temperature
+      conductivity: sensor.herbs_conductivity
+      brightness: sensor.herbs_light
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 17
+    min_conductivity: 500
+    min_temperature: 15
+
+sensor:
+  - platform: mqtt
+    name: chilli_plant_moisture
+    state_topic: "homeassistant/sensor/chilli/state"
+    value_template: '{{ value_json.moisture | int }}'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: chilli_plant_battery
+    state_topic: "homeassistant/sensor/chilli/state"
+    value_template: '{{ value_json.battery | int }}'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: chilli_plant_temperature
+    state_topic: "homeassistant/sensor/chilli/state"
+    value_template: '{{ value_json.temperature | float }}'
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: chilli_plant_conductivity
+    state_topic: "homeassistant/sensor/chilli/state"
+    value_template: '{{ value_json.conductivity | int }}'
+    unit_of_measurement: 'µS/cm'
+  - platform: mqtt
+    name: chilli_plant_light
+    state_topic: "homeassistant/sensor/chilli/state"
+    value_template: '{{ value_json.light | int }}'
+    unit_of_measurement: 'Lux'
+
+  - platform: mqtt
+    name: herbs_moisture
+    state_topic: "homeassistant/sensor/herbs/state"
+    value_template: '{{ value_json.moisture | int }}'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: herbs_battery
+    state_topic: "homeassistant/sensor/herbs/state"
+    value_template: '{{ value_json.battery | int }}'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: herbs_temperature
+    state_topic: "homeassistant/sensor/herbs/state"
+    value_template: '{{ value_json.temperature | float }}'
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: herbs_conductivity
+    state_topic: "homeassistant/sensor/herbs/state"
+    value_template: '{{ value_json.conductivity | int }}'
+    unit_of_measurement: 'µS/cm'
+  - platform: mqtt
+    name: herbs_light
+    state_topic: "homeassistant/sensor/herbs/state"
+    value_template: '{{ value_json.light | int }}'
+    unit_of_measurement: 'Lux'
+
+##################################################
+## Automation
+##################################################
+
+##################################################
+## Recorder/History
+##################################################
