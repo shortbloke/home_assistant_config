@@ -5,7 +5,7 @@ If you are interested in following my progress be sure ⭐️ Star this reposito
 
 ## Configuration File Status
 
-Each commit triggers a deployment to the latest home assistant version with Python 3.6. This is done though TravisCI. If this successfully passes, then my Pi will update itself with the latest configuration automatically.
+Each commit triggers a deployment to the latest home assistant version with Python 3.6 and 3.7. This is done though TravisCI. If this successfully passes, then my Pi will update itself with the latest configuration automatically.
 
 ![My Home Assistant Default View](images/default_view.jpg)
 
@@ -18,10 +18,11 @@ Packages provide an simple way to encapsulate all the different configuration el
 ## Core Hardware of Home Assistant Hub
 
 - [Raspberry Pi 3 Model B+](https://amzn.to/2DabgWG) - Core control system, running on [Hass.io](https://www.home-assistant.io/hassio/).
+- [Raspberry Pi Zero W](https://amzn.to/2ZLhm7d) - Hosting [Xiaomi Mi Flora to MQTT Gateway](https://github.com/ThomDietrich/miflora-mqtt-daemon). Mi Flora Bluetooth LE range was limited, the Pi Zero is positioned nearer the plants, and sends status over WiFi via MQTT.
 - [RFXCOM RFXtrx433E](http://www.rfxcom.com/store/Transceivers/14103) - Enables RX/TX of 433Mhz signals over a range of protocols.
   - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security, if you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
 - [Aeotec Z-Stick Gen5 (ZW090)](https://amzn.to/2wrrgwI) - Provides interface to Z-Wave Mesh Network devices.
-- [Elelabs ZigBee Shield](https://elelabs.com/products/elelabs_zigbee_shield.html) - Provides support for Zigbee devices and sensors.
+- [Elelabs ZigBee Shield](https://elelabs.com/products/elelabs_zigbee_shield.html) - Provides support for Zigbee devices and sensors. Though requires Bluetooth be disabled. USB versions do not have this limitation.
 
 ## More Information
 
