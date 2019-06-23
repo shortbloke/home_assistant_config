@@ -2,7 +2,7 @@
 
 ## Utilities
 
-- Automatically sync latest configuration from github on a successful script validation via TravisCI. [Learn more](build_deploy.md)
+- Automatically sync latest configuration from GitHub on a successful script validation via TravisCI. [Learn more](build_deploy.md)
 - Send a notification when a new version of Home Assistant is made available.
 
 ## Backup
@@ -10,6 +10,10 @@
 - HassIO provides a service which snapshots the configuration. 
 - In combination with an [DropBox Sync add-on](https://github.com/danielwelch/hassio-dropbox-sync) and some automation scripts, it's possible to schedule regular snapshots and automatically upload these to DropBox.
 - Automation is configured to perform a weekly snapshot, whilst checking for new snapshots to sync daily.
+
+## Presence/Occupancy
+
+- Control the heating, lights and cameras, depending on who is at home. 
 
 ## Heating Control
 
@@ -27,6 +31,10 @@
 ## Kitchen Appliance Monitoring
 
 - Track power usage of kitchen appliances to determine when they have been turned on, and when they complete their cycle. Sending a notification when they finish.
+
+## Plant monitoring
+
+- Send notification when plants soil falls below specified minimum for each plant type.
 
 ## Home Assistant Resource Usage Alerts
 

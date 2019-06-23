@@ -1,8 +1,12 @@
 ##################################################
 ## Customize
 ##################################################
-# homeassistant:
-#   customize:
+homeassistant:
+  customize:  
+    sensor.chilli_plant_moisture:  
+      friendly_name: "Chilli"
+    sensor.herbs_moisture:
+      friendly_name: "Garden Herbs"
 
 ##################################################
 ## Components/Sensors
@@ -16,10 +20,10 @@ plant:
       conductivity: sensor.chilli_plant_conductivity
       brightness: sensor.chilli_plant_light
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 65
     min_battery: 17
-    min_conductivity: 500
-    min_temperature: 15
+    min_conductivity: 150
+    min_temperature: 10
   herbs:
     sensors:
       moisture: sensor.herbs_moisture
@@ -27,11 +31,11 @@ plant:
       temperature: sensor.herbs_temperature
       conductivity: sensor.herbs_conductivity
       brightness: sensor.herbs_light
-    min_moisture: 20
+    min_moisture: 15
     max_moisture: 60
     min_battery: 17
-    min_conductivity: 500
-    min_temperature: 15
+    min_conductivity: 350
+    min_temperature: 8
 
 sensor:
   - platform: mqtt
@@ -89,7 +93,39 @@ sensor:
 ##################################################
 ## Automation
 ##################################################
+automation:
+# Notify when plants need watering
+  - alias: water plants
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.chilli_plant_moisture
+        below: 20
+      - platform: numeric_state
+        entity_id: sensor.herbs_moisture
+        below: 15
+    action:
+      - service: notify.martin
+        data_template:
+          title: "Plant Sensor"
+          message: > 
+            {{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time to water
+
 
 ##################################################
 ## Recorder/History
 ##################################################
+recorder:
+  include:
+    entities:
+      - sensor.chilli_plant_moisture
+      - sensor.chilli_plant_conductivity
+      - sensor.herbs_moisture
+      - sensor.herbs_conductivity
+
+history:
+  include:
+    entities:
+      - sensor.chilli_plant_moisture
+      - sensor.chilli_plant_conductivity
+      - sensor.herbs_moisture
+      - sensor.herbs_conductivity
