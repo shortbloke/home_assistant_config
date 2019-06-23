@@ -9,6 +9,6 @@ before_install:
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
   - sudo apt-get install -y libudev-dev
 install:
-  - pip3 install homeassistant
+  - pip3 install git+git://github.com/home-assistant/home-assistant.git@dev
 script:
   - hass -c . --script check_config
