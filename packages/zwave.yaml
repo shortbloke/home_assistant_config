@@ -9,15 +9,15 @@ homeassistant:
     
     # Aeotec Multisensor (Ironing Room)
     sensor.aeotec_zw100_multisensor_6_temperature:
-      friendly_name: "Temperature (Ironing Room)
+      friendly_name: "Temperature (Ironing Room)"
     sensor.aeotec_zw100_multisensor_6_relative_humidity:
-      friendly_name: "Humidity (Ironing Room)
+      friendly_name: "Humidity (Ironing Room)"
 
     # Aeotec Multisensor (Ironing Room)
     sensor.aeotec_zw100_multisensor_6_temperature_2:
-      friendly_name: "Temperature (Garage)
+      friendly_name: "Temperature (Garage)"
     sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
-      friendly_name: "Humidity (Garage)
+      friendly_name: "Humidity (Garage)"
 
     # Fibaro Multi-Sensor (Loft)
     sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
