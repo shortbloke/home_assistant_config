@@ -6,10 +6,22 @@ homeassistant:
     # Aeotec Stick
     zwave.aeotec_zw090_zstick_gen5_eu:
       friendly_name: "Z-Wave Stick"
+    
+    # Aeotec Multisensor (Ironing Room)
+    sensor.aeotec_zw100_multisensor_6_temperature:
+      friendly_name: "Temperature (Ironing Room)
+    sensor.aeotec_zw100_multisensor_6_relative_humidity:
+      friendly_name: "Humidity (Ironing Room)
+
+    # Aeotec Multisensor (Ironing Room)
+    sensor.aeotec_zw100_multisensor_6_temperature_2:
+      friendly_name: "Temperature (Garage)
+    sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
+      friendly_name: "Humidity (Garage)
 
     # Fibaro Multi-Sensor (Loft)
     sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
-      friendly_name: "Loft Temperature"
+      friendly_name: "Temperature (Loft)"
     sensor.fibaro_system_fgms001zw5_motion_sensor_burglar:
       friendly_name: "Loft Motion State"
       icon: mdi:walk
