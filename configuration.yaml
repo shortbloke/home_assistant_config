@@ -19,7 +19,6 @@ homeassistant:
 ####################################################
 automation: !include config/automation.yaml
 discovery: !include config/discovery.yaml
-dyson: !include config/dyson.yaml
 http: !include config/http.yaml
 logbook: !include config/logbook.yaml
 logger: !include config/logger.yaml
