@@ -17,14 +17,14 @@ sensor:
 ##################################################
 ## Recorder/History
 ##################################################
-recorder:
-  include:
-    entities:
-      - sensor.to_home
-      - sensor.to_work
+# recorder:
+#   include:
+#     entities:
+#       - sensor.to_home
+#       - sensor.to_work
 
-history:
-  include:
-    entities:
-      - sensor.to_home
-      - sensor.to_work
+# history:
+#   include:
+#     entities:
+#       - sensor.to_home
+#       - sensor.to_work
