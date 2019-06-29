@@ -13,7 +13,7 @@ homeassistant:
       icon: mdi:door
       friendly_name: "Garage Interior Door"
     binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6:
-      icon: mdi:dwindow-open
+      icon: mdi:window-open
       friendly_name: "Morgan - Window"
     sensor.lumi_lumisens_02378aca_1_1029:
       icon: mdi:water-percent
