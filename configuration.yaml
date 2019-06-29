@@ -8,39 +8,188 @@ homeassistant:
   elevation: !secret evelation_loc_home
   time_zone: Europe/London
   unit_system: metric
-  customize_glob: !include config/customize_glob.yaml
-  customize: !include config/customize.yaml
-
+  customize_glob: !include customize_glob.yaml
+  customize: !include customize.yaml
+  
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
 
 ####################################################
-#                    Components                    #
+#                       Zones                      #
 ####################################################
-automation: !include config/automation.yaml
-discovery: !include config/discovery.yaml
-http: !include config/http.yaml
-logbook: !include config/logbook.yaml
-logger: !include config/logger.yaml
-mqtt: !include config/mqtt.yaml
-notify: !include config/notify.yaml
-panel_iframe: !include config/iframe.yaml
-recorder: !include config/recorder.yaml
-rfxtrx: !include config/rfxtrx.yaml
-tts: !include config/tts.yaml
-zone: !include config/zone.yaml
-zha: !include config/zha.yaml
-zwave: !include config/zwave.yaml
+# https://www.home-assistant.io/components/zone/
+zone:
+  - name: Home
+    latitude: !secret latitude_loc_home
+    longitude: !secret longitude_loc_home
+    radius: 50
+    icon: mdi:worker
 
-# https://www.home-assistant.io/components/updater/
-updater:
+  - name: Forest
+    latitude: !secret latitude_loc_forest
+    longitude: !secret longitude_loc_forest
+    radius: 150
+    icon: mdi:school
+
+  - name: Work
+    latitude: !secret latitude_loc_work
+    longitude: !secret longitude_loc_work
+    icon: mdi:worker
+
+  - name: College
+    latitude: !secret latitude_loc_college
+    longitude: !secret longitude_loc_college
+    radius: 150
+    icon: mdi:school
+
+####################################################
+#                     Discovery                    #
+####################################################
+# https://www.home-assistant.io/components/discovery/
+discovery:
+  ignore:
+    - samsung_tv
+    - apple_tv
+    - plex_mediaserver
+
+####################################################
+#        Home Assistant Components Enabled         #
+####################################################
 # https://www.home-assistant.io/components/config/
 config:
+# https://home-assistant.io/components/http/
+http:
+  login_attempts_threshold: 5
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/map/
 map:
-# https://www.home-assistant.io/components/system_health/
-system_health:
 # https://www.home-assistant.io/components/person/
 person:
+# https://www.home-assistant.io/components/system_health/
+system_health:
+# https://www.home-assistant.io/components/updater/
+updater:
+
+####################################################
+#      Home Assistant Core Components Global       #
+####################################################
+# https://www.home-assistant.io/components/logbook/
+logbook:
+  include:
+    domains: 
+      - automation
+
+# https://www.home-assistant.io/components/logger/
+logger:
+  default: warn
+  logs:
+    homeassistant.components.zha: debug
+    # homeassistant.components.nest: debug
+    # homeassistant.components.binary_sensor.nest: debug
+    # nest: debug
+
+# https://www.home-assistant.io/components/recorder/
+recorder:
+  include:
+    domains: 
+      - device_tracker
+      - automation
+
+####################################################
+#                     Components                   #
+####################################################
+
+# https://www.home-assistant.io/components/panel_iframe/
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: !secret TasmoAdminURL
+
+# https://www.home-assistant.io/components/notify/
+# and
+# https://www.home-assistant.io/components/notify.group/
+notify:
+  - name: adults
+    platform: group
+    services:
+      - service: ios_martins_iphone
+      - service: ios_michelles_iphone
+
+  - name: martin
+    platform: group
+    services:
+      - service: ios_martins_iphone
+
+  - name: michelle
+    platform: group
+    services:
+      - service: ios_michelles_iphone
+
+# https://www.home-assistant.io/components/tts/
+tts:
+  - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+  - platform: voicerss
+    api_key: !secret voicerss_api_key
+    language: "en-gb"
+    format: "44khz_16bit_stereo"
+
+####################################################
+#                     Hardware                     #
+####################################################
+# https://www.home-assistant.io/components/mqtt/
+mqtt:
+  broker: core-mosquitto
+  username: !secret MQTT_username
+  password: !secret MQTT_password
+  birth_message:
+    topic: "hass/status"
+    payload: "online"
+    qos: 1
+    retain: true
+  will_message:
+    topic: "hass/status"
+    payload: "offline"
+    qos: 1
+    retain: true
+# https://www.home-assistant.io/components/rfxtrx/
+rfxtrx:
+  device: /dev/ttyUSB0
+  debug: False
+  dummy: False
+# https://www.home-assistant.io/components/zha/
+zha:
+  usb_path: /dev/ttyAMA0
+  database_path: zigbee.db
+  baudrate: 57600
+# https://www.home-assistant.io/components/zwave/
+zwave:
+  usb_path: /dev/ttyACM0
+
+####################################################
+#                General Automation                #
+####################################################
+# https://www.home-assistant.io/components/automation/
+automation:
+  - alias: Sonoff MQTT State Sync
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "sonoffs/cmnd/power"
+          payload: ""
+
+  - alias: Update Available Notification
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      service: notify.martin
+      data:
+        message: "Update for Home Assistant is available."

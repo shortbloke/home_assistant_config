@@ -1,5 +1,0 @@
-# https://www.home-assistant.io/components/rfxtrx/
-
-device: /dev/ttyUSB0
-debug: False
-dummy: False

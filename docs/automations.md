@@ -14,6 +14,7 @@
 ## Presence/Occupancy
 
 - Control the heating, lights and cameras, depending on who is at home. 
+- Send notifications when ooors or windows aren't closed.
 
 ## Heating Control
 

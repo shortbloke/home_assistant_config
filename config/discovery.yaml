@@ -1,6 +1,0 @@
-# https://www.home-assistant.io/components/discovery/
-  
-ignore:
-  - samsung_tv
-  - apple_tv
-  - plex_mediaserver
