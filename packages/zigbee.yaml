@@ -12,23 +12,29 @@ homeassistant:
     binary_sensor.zha_02753210_1_6:
       icon: mdi:door
       friendly_name: "Garage Interior Door"
+    binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6:
+      icon: mdi:window-open
+      friendly_name: "Morgan - Window"
     sensor.lumi_lumisens_02378aca_1_1029:
       icon: mdi:water-percent
       friendly_name: "ZigBee TH1 - Humidty"
     sensor.zha_02378aca_1_1026:
       friendly_name: "ZigBee TH1 - Temperature"
-    zha.zha_lumi_lumisensor_ht_02378aca:
+    zha.zha_lumi_lumi_sensor_ht_02378aca:
       icon: mdi:cellphone-wireless
       friendly_name: "ZigBee TH1"
-    zha.zha_lumi_lumisensor_magnetaq2_025370bc:
+    zha.zha_lumi_lumi_sensor_magnet_aq2_025370bc:
       icon: mdi:cellphone-wireless
       friendly_name: "Zigbee - Front Door"
-    zha.zha_lumi_lumisensor_magnetaq2_0275335b:
+    zha.zha_lumi_lumi_sensor_magnet_aq2_0275335b:
       icon: mdi:cellphone-wireless
       friendly_name: "Zigbee - Back Door"
-    zha.zha_lumi_lumisensor_magnetaq2_02753210:
+    zha.zha_lumi_lumi_sensor_magnet_aq2_02753210:
       icon: mdi:cellphone-wireless
       friendly_name: "Zigbee - Garage Interior Door"
+    zha.lumi_lumi_sensor_magnet:
+      icon: mdi:cellphone-wireless
+      friendly_name: "Zigbee - Morgan Window"
 
 
 ##################################################
@@ -75,9 +81,7 @@ recorder:
       - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
       - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
       - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
-      - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status Front Door
-      - zha.zha_lumi_lumisensor_magnetaq2_0275335b # Magnetic sensor online status Back Door
-      - zha.zha_lumi_lumisensor_magnetaq2_02753210 # Magnetic sensor online status Garage Interior Door
+      - binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6 # Morgan Window
 
 history:
   include:
@@ -88,6 +92,4 @@ history:
       - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
       - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
       - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
-      - zha.zha_lumi_lumisensor_magnetaq2_025370bc # Magnetic sensor online status Front Door
-      - zha.zha_lumi_lumisensor_magnetaq2_0275335b # Magnetic sensor online status Back Door
-      - zha.zha_lumi_lumisensor_magnetaq2_02753210 # Magnetic sensor online status Garage Interior Door
+      - binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6 # Morgan Window
