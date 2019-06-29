@@ -109,6 +109,30 @@ automation:
         entity_id:
           - script.morgan_away
 
+  - alias: Morgan away window open
+    trigger: 
+      platform: state
+      entity_id: person.morgan
+      from: 'home'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6
+          state: 'on'
+    action:
+      - service: notify.morgan
+        data:
+          title: "Home Assistant: ALERT!"
+          message: "Bedroom Window Left Open"
+      - service: notify.michelle
+        data:
+          title: "Home Assistant: ALERT!"
+          message: "Morgans window has been left open"
+
   - alias: Fraser away
     trigger: 
       platform: state
@@ -145,11 +169,14 @@ automation:
             - condition: state
               entity_id: binary_sensor.zha_0275335b_1_6 # Back Door
               state: 'on'
+            - condition: state
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6 # Morgan window
+              state: 'on'
     action:
       - service: notify.martin
         data_template:
           title: "House Unoccupied - Things left open"
-          message: "{{ states.binary_sensor.zha_025370bc_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_025370bc_1_6.state }}], {{ states.binary_sensor.zha_02753210_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_02753210_1_6.state }}], {{ states.binary_sensor.zha_0275335b_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_0275335b_1_6.state }}]"
+          message: "{{ states.binary_sensor.zha_025370bc_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_025370bc_1_6.state }}], {{ states.binary_sensor.zha_02753210_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_02753210_1_6.state }}], {{ states.binary_sensor.zha_0275335b_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_0275335b_1_6.state }}, {{ states.binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6.state }}]"
 
 ##################################################
 ## Scripts
