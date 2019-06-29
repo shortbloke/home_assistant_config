@@ -26,24 +26,29 @@ sensor:
   - platform: template
     sensors:
       dyson_air_quality_index:
-        value_template: "{{ states.air_quality.bedroom.attributes.air_quality_index }}"
+        value_template: "{{ states.air_quality.bedroom.attributes.air_quality_index | int }}"
         friendly_name: "AQI"
+        # unit_of_measurement: "Dyson Index"
         icon_template: mdi:air-filter
       dyson_nitrogen_dioxide:
-        value_template: "{{ states.air_quality.bedroom.attributes.nitrogen_dioxide }}"
+        value_template: "{{ states.air_quality.bedroom.attributes.nitrogen_dioxide | int }}"
         friendly_name: "NO2"
+        # unit_of_measurement: "Dyson Index"
         icon_template: mdi:car-convertible
       dyson_particulate_matter_10:
         value_template: "{{ states.air_quality.bedroom.attributes.particulate_matter_10 }}"
         friendly_name: "PM10"
+        unit_of_measurement: "µg/m³"
         icon_template: mdi:flower-outline
       dyson_particulate_matter_2_5:
         value_template: "{{ states.air_quality.bedroom.attributes.particulate_matter_2_5 }}"
         friendly_name: "PM2.5"
+        unit_of_measurement: "µg/m³"
         icon_template: mdi:blur-radial
       dyson_volatile_organic_compounds:
-        value_template: "{{ states.air_quality.bedroom.attributes.volatile_organic_compounds }}"
+        value_template: "{{ states.air_quality.bedroom.attributes.volatile_organic_compounds | int }}"
         friendly_name: "VOC"
+        # unit_of_measurement: "Dyson Index"
         icon_template: mdi:flask-outline
       dyson_speed:
         value_template: "{{ states.fan.bedroom.attributes.speed }}"
@@ -64,10 +69,12 @@ sensor:
       dyson_angle_low:
         value_template: "{{ states.fan.bedroom.attributes.angle_low }}"
         friendly_name: "Angle Low"
+        unit_of_measurement: "°"
         icon_template: mdi:arrow-bottom-right
       dyson_angle_high:
         value_template: "{{ states.fan.bedroom.attributes.angle_high }}"
         friendly_name: "Angle High"
+        unit_of_measurement: "°"
         icon_template: mdi:arrow-top-right
       dyson_flow_direction_front:
         value_template: "{{ states.fan.bedroom.attributes.flow_direction_front }}"
@@ -80,10 +87,12 @@ sensor:
       dyson_hepa_filter:
         value_template: "{{ states.fan.bedroom.attributes.hepa_filter }}"
         friendly_name: "Hepa %"
+        unit_of_measurement: "%"
         icon_template: mdi:blur
       dyson_carbon_filer:
         value_template: "{{ states.fan.bedroom.attributes.carbon_filter }}"
         friendly_name: "Carbon %"
+        unit_of_measurement: "%"
         icon_template: mdi:blur-radial
       dyson_dyson_speed:
         value_template: "{{ states.fan.bedroom.attributes.dyson_speed }}"
