@@ -7,9 +7,9 @@ homeassistant:
       friendly_name: "Server Cooling Fan"
       icon: mdi:fan
     sensor.loft_fan_temperature:
-      friendly_name: "Loft 1 Temperature"
+      friendly_name: "Temperature (Loft Fan)"
     sensor.loft_fan_humidity:
-      friendly_name: "Loft 1 Humidity"
+      friendly_name: "Humidity (Loft Fan)"
       icon: mdi:water-percent
 
 ##################################################

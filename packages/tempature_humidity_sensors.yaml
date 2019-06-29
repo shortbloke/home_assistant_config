@@ -36,11 +36,6 @@ homeassistant:
     sensor.temp_humid_3_temperature:
       hidden: true
     sensor.temp_humid_3_humidity:
-      friendly_name: "Humidity (Garage)"
-      icon: mdi:water-percent
-    sensor.temp_humid_4_temperature:
-      hidden: true
-    sensor.temp_humid_4_humidity:
       friendly_name: "Humidity (Fraser)"
       icon: mdi:water-percent
     sensor.temp_humid_5_temperature:
@@ -71,13 +66,8 @@ sensor:
         data_type:  
           - Humidity
           - Temperature
-      0a520976cd0002f0120289:  #Garage
+      0a520976cd0002f0120289:  #Frasers Room
         name: Temp_Humid_3
-        data_type:
-          - Humidity
-          - Temperature
-      0a52091cf900026f3d0189:  #Frasers Room
-        name: Temp_Humid_4
         data_type:
           - Humidity
           - Temperature
@@ -110,10 +100,6 @@ sensor:
       portable_sensor_3_temperature:
         value_template: "{{ (states.sensor.temp_humid_3_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
         unit_of_measurement: '°C'
-        friendly_name: "Temperature (Garage)"
-      portable_sensor_4_temperature:
-        value_template: "{{ (states.sensor.temp_humid_4_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
-        unit_of_measurement: '°C'
         friendly_name: "Temperature (Fraser)"
       portable_sensor_5_temperature:
         value_template: "{{ (states.sensor.temp_humid_5_temperature.attributes['Temperature'] | float - 40) | round(1) }}"
@@ -132,8 +118,6 @@ recorder:
       - sensor.temp_humid_2_humidity
       - sensor.portable_sensor_3_temperature
       - sensor.temp_humid_3_humidity
-      - sensor.portable_sensor_4_temperature
-      - sensor.temp_humid_4_humidity
       - sensor.portable_sensor_5_temperature
       - sensor.temp_humid_5_humidity
       - sensor.temp_humid_ext_1_temperature
@@ -149,8 +133,6 @@ history:
       - sensor.temp_humid_2_humidity
       - sensor.portable_sensor_3_temperature
       - sensor.temp_humid_3_humidity
-      - sensor.portable_sensor_4_temperature
-      - sensor.temp_humid_4_humidity
       - sensor.portable_sensor_5_temperature
       - sensor.temp_humid_5_humidity
       - sensor.temp_humid_ext_1_temperature
