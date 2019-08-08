@@ -41,12 +41,12 @@ automation:
     - platform: numeric_state
       above: 4
       entity_id:
-        - !secret sensor_hibp_email2
         - !secret sensor_hibp_email7
     - platform: numeric_state
       above: 5
       entity_id:
         - !secret sensor_hibp_email1
+        - !secret sensor_hibp_email2
         - !secret sensor_hibp_email8
   action:
     service: notify.martin
