@@ -3,6 +3,7 @@
 ##################################################
 sensor:
   - platform: haveibeenpwned
+    api_key: !secret hibp_api_key
     email:
       - !secret hibp_email1
       - !secret hibp_email2
