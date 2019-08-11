@@ -113,28 +113,18 @@ recorder:
   include:
     entities:
       - sensor.portable_sensor_1_temperature
-      - sensor.temp_humid_1_humidity
       - sensor.portable_sensor_2_temperature
-      - sensor.temp_humid_2_humidity
       - sensor.portable_sensor_3_temperature
-      - sensor.temp_humid_3_humidity
       - sensor.portable_sensor_5_temperature
-      - sensor.temp_humid_5_humidity
       - sensor.temp_humid_ext_1_temperature
-      - sensor.temp_humid_ext_1_humidity
       - sensor.temp_sensor_1_temperature
 
 history:
   include:
     entities:
       - sensor.portable_sensor_1_temperature
-      - sensor.temp_humid_1_humidity
       - sensor.portable_sensor_2_temperature
-      - sensor.temp_humid_2_humidity
       - sensor.portable_sensor_3_temperature
-      - sensor.temp_humid_3_humidity
       - sensor.portable_sensor_5_temperature
-      - sensor.temp_humid_5_humidity
       - sensor.temp_humid_ext_1_temperature
-      - sensor.temp_humid_ext_1_humidity
       - sensor.temp_sensor_1_temperature
