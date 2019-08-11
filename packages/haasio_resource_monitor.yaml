@@ -60,13 +60,11 @@ automation:
 recorder:
   include:
     entities:
-      - sensor.load_1m
       - sensor.disk_use_percent
       - sensor.memory_use_percent
 
 history:
   include:
     entities:
-      - sensor.load_1m
       - sensor.disk_use_percent
       - sensor.memory_use_percent
