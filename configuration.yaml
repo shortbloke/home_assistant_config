@@ -93,7 +93,6 @@ logger:
 recorder:
   include:
     domains: 
-      - device_tracker
       - automation
 
 ####################################################

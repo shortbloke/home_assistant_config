@@ -112,7 +112,6 @@ recorder:
     entities:
       - sensor.bedroom_temperature
       - sensor.bedroom_humidity
-      - sensor.dyson_air_quality_index
       - sensor.dyson_particulate_matter_2_5
       - sensor.dyson_particulate_matter_10
       - sensor.dyson_nitrogen_dioxide
@@ -125,7 +124,6 @@ history:
     entities:
       - sensor.bedroom_temperature
       - sensor.bedroom_humidity
-      - sensor.dyson_air_quality_index
       - sensor.dyson_particulate_matter_2_5
       - sensor.dyson_particulate_matter_10
       - sensor.dyson_nitrogen_dioxide
