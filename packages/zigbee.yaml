@@ -15,10 +15,10 @@ homeassistant:
     binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6:
       icon: mdi:window-open
       friendly_name: "Morgan - Window"
-    sensor.lumi_lumisens_02378aca_1_1029:
+    sensor.lumi_lumi_sensor_ht_02378aca_1_1029:
       icon: mdi:water-percent
       friendly_name: "ZigBee TH1 - Humidty"
-    sensor.zha_02378aca_1_1026:
+    sensor.lumi_lumi_sensor_ht_02378aca_1_1026:
       friendly_name: "ZigBee TH1 - Temperature"
     zha.zha_lumi_lumi_sensor_ht_02378aca:
       icon: mdi:cellphone-wireless
@@ -75,8 +75,8 @@ automation:
 recorder:
   include:
     entities:
-      - sensor.lumi_lumisens_02378aca_1_1029 # Humidity
-      - sensor.zha_02378aca_1_1026 # Temperature
+      - sensor.lumi_lumi_sensor_ht_02378aca_1_1029 # Humidity
+      - sensor.lumi_lumi_sensor_ht_02378aca_1_1026 # Temperature
       - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
       - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
       - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
@@ -85,8 +85,8 @@ recorder:
 history:
   include:
     entities:
-      - sensor.lumi_lumisens_02378aca_1_1029 # Humidity
-      - sensor.zha_02378aca_1_1026 # Temperature
+      - sensor.lumi_lumi_sensor_ht_02378aca_1_1029 # Humidity
+      - sensor.lumi_lumi_sensor_ht_02378aca_1_1026 # Temperature
       - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
       - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
       - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
