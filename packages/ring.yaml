@@ -1,0 +1,48 @@
+##################################################
+## Customize
+##################################################
+# homeassistant:
+#   customize:
+
+
+##################################################
+## Components/Sensors
+##################################################
+#
+ring:
+  # https://www.home-assistant.io/components/ring/
+  username: !secret ring_username
+  password: !secret ring_password
+
+camera:
+  - platform: ring
+
+sensor:
+  - platform: ring
+
+switch:
+  - platform: ring
+
+light:
+  - platform: ring
+
+##################################################
+## Recorder/History/Logbook
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.ring_front_last_activity
+      - sensor.ring_front_last_motion
+      - sensor.ring_front_wifi_signal_strength
+history:
+  include:
+      entities:
+      - sensor.ring_front_last_activity
+      - sensor.ring_front_last_motion
+      - sensor.ring_front_wifi_signal_strength
+
+# logbook:
+#   include:
+#     entities:
+

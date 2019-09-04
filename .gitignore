@@ -43,3 +43,5 @@ deps
 .storage/*
 emulated_hue_ids.json
 node-red/*
+
+*.pickle
