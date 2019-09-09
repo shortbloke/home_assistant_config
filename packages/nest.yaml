@@ -62,36 +62,6 @@ homeassistant:
       friendly_name: "1st Floor Smoke Status"
       icon: mdi:blur
 
-    # Nest IQ Cameras #
-    camera.living_room:
-      friendly_name: "Gnd Floor"
-    binary_sensor.living_room_camera_online:
-      friendly_name: "Status"
-      icon: mdi:cctv
-    binary_sensor.living_room_camera_motion_detected:
-      friendly_name: "Motion"
-    binary_sensor.living_room_camera_person_detected:
-      friendly_name: "Person"
-      icon: mdi:face
-    binary_sensor.living_room_camera_sound_detected:
-      friendly_name: "Sound"
-    camera.garage:
-      friendly_name: "Garage"
-    binary_sensor.garage_camera_online:
-      friendly_name: "Status"
-      icon: mdi:cctv
-    binary_sensor.garage_camera_motion_detected:
-      friendly_name: "Motion"
-    binary_sensor.garage_camera_person_detected:
-      friendly_name: "Person"
-      icon: mdi:face
-    binary_sensor.garage_camera_sound_detected:
-      friendly_name: "Sound"
-    binary_sensor.garage_camera_garage_door_activity:
-      friendly_name: "Activity Zone - Garage Door"
-    binary_sensor.garage_camera_hall_door_activity:
-      friendly_name: "Activity Zone - Hall Door"
-
 ##################################################
 ## Components/Sensors
 ##################################################
@@ -105,14 +75,6 @@ climate:
   # https://www.home-assistant.io/components/climate/
   platform: nest
 
-sensor:
-  - platform: nest
-  - platform: template
-    sensors:
-      nest_away_mode:
-        value_template: "{{ states.climate.hallway_house.attributes.away_mode }}"
-        friendly_name: "Nest Away Mode"
-
 ##################################################
 ## Recorder/History/Logbook
 ##################################################
@@ -123,10 +85,11 @@ recorder:
       - binary_sensor.northway_away # Away Mode
       # Nest Thermostat
       - climate.hallway_house # Aggregate information
-      - sensor.hallway_thermostat_house_hvac_state # Heating Status
+      - sensor.hallway_thermostat_house_hvac_action # Heating Status
       - sensor.hallway_thermostat_house_target # Target Temp
       - sensor.hallway_thermostat_house_temperature # Current Temp
-      - sensor.hallway_thermostat_house_operation_mode # Mode (off/heat/eco)
+      - sensor.hallway_thermostat_house_hvac_mode # Mode (off/heat)
+      - sensor.hallway_thermostat_house_preset_mode # Away, Eco
       # Nest Smoke Detectors
       - sensor.hallway_nest_protect_smoke_status
       - sensor.hallway_nest_protect_co_status
@@ -140,10 +103,11 @@ history:
       - binary_sensor.northway_away # Away Mode 
       # Nest Thermostat
       - climate.hallway_house # Aggregate information
-      - sensor.hallway_thermostat_house_hvac_state # Heating Status
+      - sensor.hallway_thermostat_house_hvac_action # Heating Status
       - sensor.hallway_thermostat_house_target # Target Temp
       - sensor.hallway_thermostat_house_temperature # Current Temp
-      - sensor.hallway_thermostat_house_operation_mode # Mode (off/heat/eco)
+      - sensor.hallway_thermostat_house_hvac_mode # Mode (off/heat)
+      - sensor.hallway_thermostat_house_preset_mode # Away, Eco
       # Nest Smoke Detectors
       - sensor.hallway_nest_protect_smoke_status
       - sensor.hallway_nest_protect_co_status

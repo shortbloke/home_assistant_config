@@ -49,10 +49,10 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_preset_mode
         data_template:
           entity_id: climate.hallway_house
-          operation_mode: 'heat'
+          operation_mode: 'none'
 
   - alias: House unoccupied
     trigger: 
@@ -64,36 +64,13 @@ automation:
       entity_id: input_boolean.guest_mode
       state: 'off'
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_preset_mode
         data_template:
           entity_id: climate.hallway_house
           operation_mode: 'eco'
       - service: homeassistant.turn_on
         entity_id:
           - script.everyone_away
-
-  - alias: Adults home
-    trigger: 
-      platform: state
-      entity_id: group.adults_home
-      to: 'home'
-    action:
-      - service: camera.turn_off
-        entity_id: camera.living_room
-
-
-  - alias: Adults away
-    trigger: 
-      platform: state
-      entity_id: group.adults_home
-      from: 'home'
-    condition:
-      condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    action:
-      - service: camera.turn_on
-        entity_id: camera.living_room
 
   - alias: Morgan away
     trigger: 

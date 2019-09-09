@@ -12,7 +12,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 
 | Device | Functionality |
 | ---| --- |
-| [Nest Cam IQ Indoor](https://nest.com/uk/cameras/nest-cam-iq-indoor/overview/) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Camera with motion detection, person detection and sound detection.<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free) (this is a single Nest account regardless of the number of Nest devices)</li></ul> |
+| [Ring Floodlight Cam](https://en-uk.ring.com/products/floodlight-cam) | Component: [Ring](https://www.home-assistant.io/components/ring/)<br>Floodlight with motion activated camera.<br><br>Limitations:<ul><li>No live view of video via HomeAssistant</li><li>Unable to trigger the camera to start recording</li></ul> |
 
 ## Electricity and Solar Generation Monitoring
 
