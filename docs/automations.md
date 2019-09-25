@@ -14,7 +14,7 @@
 ## Presence/Occupancy
 
 - Control the heating and lights, depending on who is at home.
-- Send notifications when ooors or windows aren't closed.
+- Send notifications when doors or windows aren't closed.
 
 ## Heating Control
 
