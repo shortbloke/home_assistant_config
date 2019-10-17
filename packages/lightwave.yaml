@@ -43,34 +43,12 @@ homeassistant:
 ## Groups
 ##################################################
 group:
-  living_room_lights:
-    name: Living Room Lights
-    entities:
-      - light.lwrf_livingroom_main
-      - switch.lwrf_livingroom_standard_lamp
-      - switch.lwrf_displaycabinetlight
-      - switch.lwrf_waxburner
   scenes_living_room:
     name: Scenes Living Room
     entities:
       - scene.bright
       - scene.comfortable
       - scene.movie
-  dining_room_lights:
-    name: Dining Room Lights
-    entities: 
-      - light.lwrf_diningroom_main
-      - switch.lwrf_diningroom_rennie_mac_lamp
-  conservatory_lights:
-    name: Conservatory Lights
-    entities:
-      - switch.lwrf_conservatory_1
-      - switch.lwrf_conservatory_2
-  hall_sockets:
-    name: Hall Sockets
-    entities:
-      - switch.lwrf_hall_socket_1
-      - switch.lwrf_hall_socket_2
 
 ##################################################
 ## Components/Sensors
@@ -86,6 +64,30 @@ light:
         name: lwrf_livingroom_main
       0a14000a03922501010070:
         name: lwrf_morgan_main
+  - platform: switch
+    name: Conservatory ceiling lights
+    entity_id: switch.lwrf_conservatory_1
+  - platform: switch
+    name: Conservatory window lamp
+    entity_id: switch.lwrf_conservatory_2
+  - platform: switch
+    name: Living room lamp
+    entity_id: switch.lwrf_livingroom_standard_lamp
+  - platform: switch
+    name: Display cabinet light
+    entity_id: switch.lwrf_displaycabinetlight
+  - platform: switch
+    name: Rennie Mac lamp
+    entity_id: switch.lwrf_diningroom_rennie_mac_lamp
+  - platform: switch
+    name: Wax burner
+    entity_id: switch.lwrf_waxburner
+  - platform: switch
+    name: Twig lights
+    entity_id: switch.lwrf_hall_socket_1
+  - platform: switch
+    name: Air freshener
+    entity_id: switch.lwrf_hall_socket_2
 
 switch:
     # https://www.home-assistant.io/components/switch.rfxtrx/
@@ -116,26 +118,26 @@ scene:
     # https://www.home-assistant.io/components/scene/
   - name: Bright
     entities:
-      switch.lwrf_livingroom_standard_lamp: on
       light.lwrf_livingroom_main:
         state: on
         brightness: 255
+      switch.lwrf_livingroom_standard_lamp: on
       switch.lwrf_displaycabinetlight: on
   - name: Comfortable
     entities:
-      switch.lwrf_livingroom_standard_lamp: on
       light.lwrf_livingroom_main:
         state: on
         brightness: 100
+      switch.lwrf_livingroom_standard_lamp: on
       switch.lwrf_displaycabinetlight: on
       switch.lwrf_waxburner: on
   - name: Movie
     entities:
-      switch.lwrf_livingroom_standard_lamp: off
       light.lwrf_livingroom_main:
         state: on
         # Brightness below 27 doesn't appear to trigger tunning the lights on. Possible bug.
         brightness: 27
-      switch.lwrf_displaycabinetlight: off
       light.lwrf_diningroom_main: off
+      switch.lwrf_livingroom_standard_lamp: off
+      switch.lwrf_displaycabinetlight: off
       switch.lwrf_diningroom_rennie_mac_lamp: off
