@@ -49,14 +49,3 @@ emulated_hue:
     light.wifi_ufo_4:
       name: "Bed Lights"
       hidden: false
-
-  # Scenes
-    scene.bright:
-      name: "Mood bright"
-      hidden: false
-    scene.comfortable:
-      name: "Mood comfortable"
-      hidden: false
-    scene.movie:
-      name: "Mood movie"
-      hidden: false
