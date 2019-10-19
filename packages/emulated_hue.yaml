@@ -49,6 +49,9 @@ emulated_hue:
     light.wifi_ufo_4:
       name: "Bed Lights"
       hidden: false
+    light.desk_rgb_strip:
+      name: "Desk Strip"
+      hidden: false
 
   # Scenes
     light.mood_comfortable:
