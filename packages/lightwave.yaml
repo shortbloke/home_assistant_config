@@ -40,17 +40,6 @@ homeassistant:
       icon: mdi:radiator
 
 ##################################################
-## Groups
-##################################################
-group:
-  scenes_living_room:
-    name: Scenes Living Room
-    entities:
-      - scene.bright
-      - scene.comfortable
-      - scene.movie
-
-##################################################
 ## Components/Sensors
 ##################################################
 light:
@@ -88,6 +77,40 @@ light:
   - platform: switch
     name: Air freshener
     entity_id: switch.lwrf_hall_socket_2
+
+  # Scenes as a light for Alexa/EmulatedHue fix value out of range
+  - platform: template
+    lights:
+      mood_comfortable:
+        friendly_name: "Mood comfortable light"
+        turn_on:
+          - service: scene.turn_on
+            entity_id: scene.comfortable
+          - delay: 5    # 5 seconds
+          - service: light.turn_off
+            entity_id: light.mood_comfortable
+        turn_off:
+        set_level:
+      mood_bright:
+        friendly_name: "Mood bright light"
+        turn_on:
+          - service: scene.turn_on
+            entity_id: scene.bright
+          - delay: 5    # 5 seconds
+          - service: light.turn_off
+            entity_id: light.mood_bright
+        turn_off:
+        set_level:
+      mood_movie:
+        friendly_name: "Mood movie light"
+        turn_on:
+          - service: scene.turn_on
+            entity_id: scene.movie
+          - delay: 5    # 5 seconds
+          - service: light.turn_off
+            entity_id: light.mood_movie
+        turn_off:
+        set_level:
 
 switch:
     # https://www.home-assistant.io/components/switch.rfxtrx/
@@ -135,7 +158,7 @@ scene:
     entities:
       light.lwrf_livingroom_main:
         state: on
-        # Brightness below 27 doesn't appear to trigger tunning the lights on. Possible bug.
+        # Brightness below 27 (~10%) isn't sufficient to turn the light bulbs on
         brightness: 27
       light.lwrf_diningroom_main: off
       switch.lwrf_livingroom_standard_lamp: off
