@@ -15,7 +15,7 @@ homeassistant:
     light.wifi_ufo_4:
       friendly_name: "Bed"
       icon: mdi:led-strip
-    light.desk_tgb_strip:
+    light.desk_rgb_strip:
       friendly_name: "Desk strip"
       icon: mdi:led-strip
 
