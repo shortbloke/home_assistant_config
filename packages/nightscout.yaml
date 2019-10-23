@@ -1,0 +1,37 @@
+########################################################################
+# Dexcom CGM Interface
+# https://community.home-assistant.io/t/rest-question/98222/19
+# https://community.home-assistant.io/t/help-with-json-dexcom-cgm-data/143564
+########################################################################
+
+sensor:
+  - platform: rest
+    name: martingay_cgm
+    resource: !secret nightscout_url
+    value_template: >
+      sgv:{{value_json[0].sgv}}, direction:{{value_json[0].direction}}
+
+  - platform: template
+    sensors:
+      martingay_cgm_sgv:
+        value_template: >
+          {{ (states('sensor.martingay_cgm') | regex_findall_index("sgv:(\d+)") | float / 18) | round(1) }}
+        unit_of_measurement: "mmol/L"
+      martingay_cgm_direction:
+        value_template: >
+          {{ states('sensor.martingay_cgm') | regex_findall_index("direction:(\w+)") }}
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.martingay_cgm_sgv
+      - sensor.martingay_cgm_direction
+
+history:
+  include:
+    entities:
+      - sensor.martingay_cgm_sgv
+      - sensor.martingay_cgm_direction
