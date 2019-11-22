@@ -47,20 +47,19 @@ automation:
       above: 5
       entity_id:
         - !secret sensor_hibp_email7
+    - platform: numeric_state
+      above: 6
+      entity_id:
         - !secret sensor_hibp_email8
     # - platform: numeric_state
-    #   above: 6
+    #   above: 7
     #   entity_id:
     #     - 
     - platform: numeric_state
-      above: 7
+      above: 8
       entity_id:
         - !secret sensor_hibp_email1
         - !secret sensor_hibp_email2
-    # - platform: numeric_state
-    #   above: 8
-    #   entity_id:
-    #     - 
   action:
     service: notify.martin
     data_template:
