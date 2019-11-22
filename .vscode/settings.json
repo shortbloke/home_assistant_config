@@ -1,6 +1,6 @@
 {
     "files.eol": "\n",
     "files.associations": {
-        "*.yaml": "home-assistant"
+        "*.yaml": "yaml"
     }
 }

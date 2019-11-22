@@ -39,13 +39,14 @@ automation:
     #   above: 3
     #   entity_id:
     #     - 
-    - platform: numeric_state
-      above: 4
-      entity_id:
-        - !secret sensor_hibp_email7
+    # - platform: numeric_state
+    #   above: 4
+    #   entity_id:
+    #     - 
     - platform: numeric_state
       above: 5
       entity_id:
+        - !secret sensor_hibp_email7
         - !secret sensor_hibp_email8
     # - platform: numeric_state
     #   above: 6
