@@ -1,13 +1,25 @@
+sudo: false
 dist: xenial   # required for Python >= 3.7
 language: python
+addons:
+  apt:
+    sources:
+      - sourceline: "ppa:jonathonf/ffmpeg-4"
+    packages:
+      - libudev-dev
+      - libavformat-dev
+      - libavcodec-dev
+      - libavdevice-dev
+      - libavutil-dev
+      - libswscale-dev
+      - libswresample-dev
+      - libavfilter-dev
 python:
-  - "3.6"
   - "3.7"
 before_install:
   - mv travis/travis_secrets.yaml secrets.yaml
   - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
-  - sudo apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
 install:
   - pip3 install homeassistant
 script:
