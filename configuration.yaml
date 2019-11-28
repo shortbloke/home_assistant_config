@@ -64,6 +64,8 @@ http:
 ios:
 # https://www.home-assistant.io/components/map/
 map:
+# https://www.home-assistant.io/integrations/mobile_app/
+mobile_app:
 # https://www.home-assistant.io/components/person/
 person:
 # https://www.home-assistant.io/components/system_health/
