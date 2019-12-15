@@ -17,6 +17,7 @@ addons:
       - libavresample-dev
       - libswresample-dev
       - libavfilter-dev
+      - ffmpeg
 python:
   - "3.7"
 before_install:
