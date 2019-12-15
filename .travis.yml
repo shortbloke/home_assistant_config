@@ -6,12 +6,15 @@ addons:
     sources:
       - sourceline: "ppa:jonathonf/ffmpeg-4"
     packages:
+      - python-dev
+      - pkg-config
       - libudev-dev
       - libavformat-dev
       - libavcodec-dev
       - libavdevice-dev
       - libavutil-dev
       - libswscale-dev
+      - libavresample-dev
       - libswresample-dev
       - libavfilter-dev
 python:
