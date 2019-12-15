@@ -3,8 +3,8 @@ dist: xenial   # required for Python >= 3.7
 language: python
 addons:
   apt:
-    sources:
-      - sourceline: "ppa:jonathonf/ffmpeg-4"
+    # sources:
+    #   - sourceline: "ppa:jonathonf/ffmpeg-4"
     packages:
       - python-dev
       - pkg-config
@@ -17,14 +17,12 @@ addons:
       - libavresample-dev
       - libswresample-dev
       - libavfilter-dev
-      - ffmpeg
 python:
   - "3.7"
 before_install:
   - mv travis/travis_secrets.yaml secrets.yaml
   - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
-  - pip3 install av==6.1.2 --upgrade
 install:
   - pip3 install homeassistant
 script:
