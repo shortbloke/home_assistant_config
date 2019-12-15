@@ -1,5 +1,5 @@
 sudo: false
-dist: xenial   # required for Python >= 3.7
+dist: bionic
 language: python
 addons:
   apt:
