@@ -4,15 +4,16 @@ language: python
 addons:
   apt:
     packages:
-      - python-dev
-      - pkg-config
-      - libavformat-dev
-      - libavcodec-dev
-      - libavdevice-dev
-      - libavutil-dev
-      - libswscale-dev
-      - libavresample-dev
-      - libavfilter-dev
+      - libudev-dev       # Zwave
+      - python-dev        # Stream
+      - pkg-config        # Stream
+      - libavformat-dev   # Stream
+      - libavcodec-dev    # Stream
+      - libavdevice-dev   # Stream
+      - libavutil-dev     # Stream
+      - libswscale-dev    # Stream
+      - libavresample-dev # Stream
+      - libavfilter-dev   # Stream
 python:
   - "3.7"
 before_install:
@@ -23,3 +24,4 @@ install:
   - pip3 install homeassistant
 script:
   - hass -c . --script check_config
+  
