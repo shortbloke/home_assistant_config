@@ -23,6 +23,7 @@ before_install:
   - mv travis/travis_secrets.yaml secrets.yaml
   - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
+  - pip3 install av==6.1.2 --upgrade
 install:
   - pip3 install homeassistant
 script:
