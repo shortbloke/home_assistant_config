@@ -3,8 +3,8 @@
 ##################################################
 homeassistant:
   customize:  
-    sensor.chilli_plant_moisture:  
-      friendly_name: "Chilli"
+    sensor.orchid_plant_moisture:  
+      friendly_name: "Orchid"
     sensor.herbs_moisture:
       friendly_name: "Garden Herbs"
 
@@ -12,13 +12,13 @@ homeassistant:
 ## Components/Sensors
 ##################################################
 plant:
-  chilli_plant:
+  orchid_plant:
     sensors:
-      moisture: sensor.chilli_plant_moisture
-      battery: sensor.chilli_plant_battery
-      temperature: sensor.chilli_plant_temperature
-      conductivity: sensor.chilli_plant_conductivity
-      brightness: sensor.chilli_plant_light
+      moisture: sensor.orchid_plant_moisture
+      battery: sensor.orchid_plant_battery
+      temperature: sensor.orchid_plant_temperature
+      conductivity: sensor.orchid_plant_conductivity
+      brightness: sensor.orchid_plant_light
     min_moisture: 20
     max_moisture: 65
     min_battery: 17
@@ -39,28 +39,28 @@ plant:
 
 sensor:
   - platform: mqtt
-    name: chilli_plant_moisture
-    state_topic: "homeassistant/sensor/chilli/state"
+    name: orchid_plant_moisture
+    state_topic: "homeassistant/sensor/orchid/state"
     value_template: '{{ value_json.moisture | int }}'
     unit_of_measurement: '%'
   - platform: mqtt
-    name: chilli_plant_battery
-    state_topic: "homeassistant/sensor/chilli/state"
+    name: orchid_plant_battery
+    state_topic: "homeassistant/sensor/orchid/state"
     value_template: '{{ value_json.battery | int }}'
     unit_of_measurement: '%'
   - platform: mqtt
-    name: chilli_plant_temperature
-    state_topic: "homeassistant/sensor/chilli/state"
+    name: orchid_plant_temperature
+    state_topic: "homeassistant/sensor/orchid/state"
     value_template: '{{ value_json.temperature | float }}'
     unit_of_measurement: '°C'
   - platform: mqtt
-    name: chilli_plant_conductivity
-    state_topic: "homeassistant/sensor/chilli/state"
+    name: orchid_plant_conductivity
+    state_topic: "homeassistant/sensor/orchid/state"
     value_template: '{{ value_json.conductivity | int }}'
     unit_of_measurement: 'µS/cm'
   - platform: mqtt
-    name: chilli_plant_light
-    state_topic: "homeassistant/sensor/chilli/state"
+    name: orchid_plant_light
+    state_topic: "homeassistant/sensor/orchid/state"
     value_template: '{{ value_json.light | int }}'
     unit_of_measurement: 'Lux'
 
@@ -98,7 +98,7 @@ automation:
   - alias: water plants
     trigger:
       - platform: numeric_state
-        entity_id: sensor.chilli_plant_moisture
+        entity_id: sensor.orchid_plant_moisture
         below: 20
       - platform: numeric_state
         entity_id: sensor.herbs_moisture
@@ -117,15 +117,15 @@ automation:
 recorder:
   include:
     entities:
-      - sensor.chilli_plant_moisture
-      - sensor.chilli_plant_conductivity
+      - sensor.orchid_plant_moisture
+      - sensor.orchid_plant_conductivity
       - sensor.herbs_moisture
       - sensor.herbs_conductivity
 
 history:
   include:
     entities:
-      - sensor.chilli_plant_moisture
-      - sensor.chilli_plant_conductivity
+      - sensor.orchid_plant_moisture
+      - sensor.orchid_plant_conductivity
       - sensor.herbs_moisture
       - sensor.herbs_conductivity
