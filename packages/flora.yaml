@@ -19,11 +19,11 @@ plant:
       temperature: sensor.orchid_plant_temperature
       conductivity: sensor.orchid_plant_conductivity
       brightness: sensor.orchid_plant_light
-    min_moisture: 20
+    min_moisture: 15
     max_moisture: 65
     min_battery: 17
-    min_conductivity: 150
-    min_temperature: 10
+    min_conductivity: 350
+    min_temperature: 15
   herbs:
     sensors:
       moisture: sensor.herbs_moisture
