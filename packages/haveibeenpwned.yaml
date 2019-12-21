@@ -25,11 +25,11 @@ automation:
       above: 0
       entity_id: 
         - !secret sensor_hibp_email3
-        - !secret sensor_hibp_email5
     - platform: numeric_state
       above: 1
       entity_id:
         - !secret sensor_hibp_email9
+        - !secret sensor_hibp_email5
     - platform: numeric_state
       above: 2
       entity_id:
