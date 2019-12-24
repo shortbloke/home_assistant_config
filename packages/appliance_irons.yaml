@@ -66,7 +66,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Laurastar Iron"
       laurastar_iron_power_today:
-        value_template: "{{ states.switch.laurastar_iron.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ states.switch.laurastar_iron.attributes['today_energy_kwh'] | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Laurastar Iron"
       irons_left_power:
@@ -74,7 +74,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Left"
       irons_left_power_today:
-        value_template: "{{ states.switch.irons_left.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ states.switch.irons_left.attributes['today_energy_kwh'] | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Left"
       irons_right_power:
@@ -82,7 +82,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Right"
       irons_right_power_today:
-        value_template: "{{ states.switch.irons_right.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ states.switch.irons_right.attributes['today_energy_kwh'] | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Right"
       ironing_table_power:
@@ -90,7 +90,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Table"
       ironing_table_power_today:
-        value_template: "{{ states.switch.ironing_table.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ states.switch.ironing_table.attributes['today_energy_kwh'] | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Table"
       magpie_iron_power:
@@ -98,7 +98,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Magpie Iron"
       magpie_iron_power_today:
-        value_template: "{{ states.switch.magpie_iron.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ states.switch.magpie_iron.attributes['today_energy_kwh'] | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Magpie Iron"
       ironing_room_motion:
@@ -107,6 +107,7 @@ sensor:
       ironing_room_motion_status: 
         value_template: "{{ states.input_select.ironing_room_motion_status.state }}"
         friendly_name: "Ironing Room Motion Status"
+  
 
 ##################################################
 ## Automation
