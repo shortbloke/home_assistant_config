@@ -1,0 +1,20 @@
+influxdb:
+  host: !secret influx_host
+  include:
+    entities:
+      - sensor.ironing_room_total_power_today
+      - sensor.ironing_table_power_today
+      - sensor.irons_left_power_today
+      - sensor.irons_right_power_today
+      - sensor.laurastar_iron_power_today
+      - sensor.magpie_iron_power_today
+      - sensor.kitchen_total_power_today
+      - sensor.tumble_dryer_power_today
+      - sensor.washing_machine_power_today
+      - sensor.dishwasher_power_today
+      - sensor.dishwasher_uses_today
+      - sensor.dryer_uses_today
+      - sensor.washing_machine_uses_today
+      - sensor.owl_intuition_electricity_today_p1
+      - sensor.owl_intuition_solar_exported_today
+      - sensor.owl_intuition_solar_generated_today
