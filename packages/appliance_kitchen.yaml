@@ -8,3 +8,16 @@ sensor:
             value_template: "{{ states('sensor.dishwasher_power_today') | float + states('sensor.tumble_dryer_power_today') | float + states('sensor.washing_machine_power_today') | float | round(3) }}"
             unit_of_measurement: 'kWh'
             friendly_name: "Power Today - Kitchen"
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.kitchen_total_power_today
+
+history:
+  include:
+    entities:
+      - sensor.kitchen_total_power_today

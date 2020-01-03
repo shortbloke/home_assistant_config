@@ -237,6 +237,7 @@ recorder:
       - sensor.ironing_table_power_today
       - sensor.magpie_iron_power
       - sensor.magpie_iron_power_today
+      - sensor.ironing_room_total_power_today
 
 history:
   include:
@@ -253,3 +254,4 @@ history:
       - sensor.ironing_table_power_today
       - sensor.magpie_iron_power
       - sensor.magpie_iron_power_today
+      - sensor.ironing_room_total_power_today
