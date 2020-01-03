@@ -47,10 +47,6 @@ zone:
 ####################################################
 # https://www.home-assistant.io/components/discovery/
 discovery:
-  ignore:
-    - samsung_tv
-    - apple_tv
-    - plex_mediaserver
 
 ####################################################
 #        Home Assistant Components Enabled         #
@@ -84,18 +80,32 @@ logbook:
 
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: warn
+  default: error
   logs:
-    homeassistant.components.zha: debug
-    # homeassistant.components.nest: debug
-    # homeassistant.components.binary_sensor.nest: debug
-    # nest: debug
+    homeassistant.components.mqtt: debug
+    # homeassistant.components.zha: info
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
+  db_url: !secret mariaDbUrl
   include:
     domains: 
       - automation
+# Exclusion based on: https://community.home-assistant.io/t/allow-services-to-be-excluded-from-recorder-and-the-database/115237
+  exclude:
+    event_types:
+      - service_removed
+      - service_executed
+      - platform_discovered
+      - homeassistant_start
+      - homeassistant_stop
+      - feedreader
+      - service_registered
+      - call_service
+      - component_loaded
+      - logbook_entry
+      - system_log_event
+      - timer_out_of_sync
 
 ####################################################
 #                     Components                   #
@@ -198,4 +208,5 @@ automation:
 ####################################################
 #             HACS: Custom Components              #
 ####################################################
+# https://github.com/custom-components/breaking_changes
 breaking_changes:
