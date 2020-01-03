@@ -80,7 +80,7 @@ logbook:
 
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: error
+  default: fatal
   logs:
     homeassistant.components.mqtt: debug
     # homeassistant.components.zha: info
