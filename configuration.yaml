@@ -194,3 +194,8 @@ automation:
       service: notify.martin
       data:
         message: "Update for Home Assistant is available."
+
+####################################################
+#             HACS: Custom Components              #
+####################################################
+breaking_changes:
