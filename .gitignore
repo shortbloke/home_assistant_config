@@ -45,3 +45,6 @@ emulated_hue_ids.json
 node-red/*
 
 *.pickle
+
+# Compressed Lovelace components
+*.js.gz
