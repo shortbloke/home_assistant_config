@@ -1,0 +1,69 @@
+##################################################
+## Components/Sensors
+##################################################
+media_player:
+  # Frasers TV
+  - platform: samsungtv
+    name: Fraser TV
+    host: 192.168.200.52
+    mac: 28:39:5E:1D:68:52
+  - platform: samsungtv
+    name: Ironing Room TV
+    host: 192.168.200.53
+    mac: 8C:C8:CD:D3:84:F3
+  - platform: samsungtv
+    name: Living Room TV
+    host: 192.168.200.54
+    mac: 84:A4:66:B4:91:49
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - media_player.fraser_tv
+      - media_player.ironing_room_tv
+      - media_player.living_room_tv
+history:
+  include:
+      entities:
+      - media_player.fraser_tv
+      - media_player.ironing_room_tv
+      - media_player.living_room_tv
+
+##################################################
+## Automation
+##################################################
+automation:
+  - alias: Late night tv alert
+    trigger:
+      platform: state
+      entity_id: media_player.fraser_tv
+      to: 'on'
+    condition:
+      condition: time
+      after: '22:00:00'
+      before: '06:00:00'
+    action:
+      service: notify.mobile_app_martin_iphonexs
+      data:
+        message: "Fraser's TV Turned On!"
+        data: 
+          push:
+            category: TVALARM
+
+  - alias: Sonos TTS Warning Late TV
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: PLAY_LATE_TV_MESSAGE
+    action:
+      service: script.sonos_say
+      data:
+        sonos_entity: media_player.frasers_room
+        volume: 0.5
+        message: "Turn off your TV and go to sleep"
+        # Delay needs to be long enough to allow text to be read aloud
+        delay: "00:00:05"
