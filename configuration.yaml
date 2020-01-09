@@ -10,6 +10,10 @@ homeassistant:
   unit_system: metric
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.200.0/24
   
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
@@ -55,7 +59,7 @@ discovery:
 config:
 # https://home-assistant.io/components/http/
 http:
-  login_attempts_threshold: 5
+  login_attempts_threshold: 20
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/map/
@@ -81,8 +85,10 @@ logbook:
 # https://www.home-assistant.io/components/logger/
 logger:
   default: fatal
-  logs:
-    homeassistant.components.mqtt: debug
+  # logs:
+    # homeassistant.components.mobile_app: debug
+    # homeassistant.components.mqtt: debug
+    # homeassistant.components.samsungtv: info
     # homeassistant.components.zha: info
 
 # https://www.home-assistant.io/components/recorder/
