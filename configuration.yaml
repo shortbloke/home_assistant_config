@@ -10,10 +10,6 @@ homeassistant:
   unit_system: metric
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
-  auth_providers:
-    - type: trusted_networks
-      trusted_networks:
-        - 192.168.200.0/24
   
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
@@ -84,7 +80,7 @@ logbook:
 
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: fatal
+  default: warn
   # logs:
     # homeassistant.components.mobile_app: debug
     # homeassistant.components.mqtt: debug
@@ -158,34 +154,15 @@ tts:
 ####################################################
 #                     Hardware                     #
 ####################################################
-# https://www.home-assistant.io/components/mqtt/
-mqtt:
-  broker: core-mosquitto
-  username: !secret MQTT_username
-  password: !secret MQTT_password
-  birth_message:
-    topic: "hass/status"
-    payload: "online"
-    qos: 1
-    retain: true
-  will_message:
-    topic: "hass/status"
-    payload: "offline"
-    qos: 1
-    retain: true
+# Integrations used for: 
+#  MQTT
+#  ZHA (Zigbee)
+
 # https://www.home-assistant.io/components/rfxtrx/
 rfxtrx:
-  device: /dev/ttyUSB0
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
   debug: False
   dummy: False
-# https://www.home-assistant.io/components/zha/
-zha:
-  usb_path: /dev/ttyAMA0
-  database_path: zigbee.db
-  baudrate: 57600
-# https://www.home-assistant.io/components/zwave/
-zwave:
-  usb_path: /dev/ttyACM0
 
 ####################################################
 #                General Automation                #
