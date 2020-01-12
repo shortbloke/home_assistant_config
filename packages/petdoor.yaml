@@ -1,0 +1,31 @@
+##################################################
+## Components/Sensors
+##################################################
+cover:
+  - platform: mqtt
+    name: "PetDoor"
+    command_topic: "homeassistant/cover/petdoor/set"
+    state_topic: "homeassistant/cover/petdoor/state"
+    # availability_topic: "homeassistant/cover/petdoor/availability"
+    qos: 0
+    retain: true
+    payload_open: "OPEN"
+    payload_close: "CLOSE"
+    state_open: "OPEN"
+    state_closed: "CLOSED"
+    payload_available: "online"
+    payload_not_available: "offline"
+    optimistic: false
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - cover.petdoor
+
+history:
+  include:
+    entities:
+      - cover.petdoor
