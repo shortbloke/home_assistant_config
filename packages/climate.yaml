@@ -1,67 +1,8 @@
-
-##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:  
-    sensor.dark_sky_temperature:  
-      friendly_name: "Temp"
-    sensor.dark_sky_apparent_temperature:
-      friendly_name: "Feels like"
-    sensor.dark_sky_summary:
-      friendly_name: "Weather"
-    sensor.dark_sky_hourly_summary:
-      friendly_name: "Weather next"
-    sensor.dark_sky_daily_summary:
-      friendly_name: "Weather week"
-    sensor.dark_sky_wind_speed:
-      friendly_name: "Wind speed"
-    sensor.dark_sky_precip_intensity:
-      friendly_name: "Precip intensity"
-    sensor.dark_sky_precip_probability:
-      friendly_name: "Precip probability"
-    sensor.dark_sky_cloud_coverage:
-      friendly_name: "Cloud coverage"
-    sensor.dark_sky_uv_index:
-      friendly_name: "UV"
-
 ##################################################
 ## Components/Sensors
 ##################################################
 # https://www.home-assistant.io/components/sun/
 sun:
-
-weather:
-    # https://www.home-assistant.io/components/weather.darksky/
-  - platform: darksky
-    api_key: !secret darksky_API_KEY
-
-sensor:
-    # https://www.home-assistant.io/components/sensor.darksky/
-  - platform: darksky
-    api_key: !secret darksky_API_KEY
-    monitored_conditions:
-      - icon
-      - temperature
-      - apparent_temperature
-      - summary
-      - daily_summary
-      - hourly_summary
-      - wind_speed
-      - wind_gust
-      - precip_intensity
-      - precip_probability
-      - cloud_cover
-      - uv_index
-
-    # https://www.home-assistant.io/components/sensor.moon/
-  - platform: moon
-
-  - platform: template
-    sensors:
-      dark_sky_template:
-        value_template: "{{ states('sensor.dark_sky_summary') }}"
-        #icon_template: https://community.home-assistant.io/t/map-device-state-to-an-icon/4085/6
 
   - platform: template
     sensors:
