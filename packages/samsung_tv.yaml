@@ -15,6 +15,18 @@ media_player:
     name: Living Room TV
     host: 192.168.200.54
     mac: 84:A4:66:B4:91:49
+ios:
+  push:
+    categories:
+      - name: late_night_tv_alert
+        identifier: 'TVALARM'
+        actions:
+          - identifier: PLAY_LATE_TV_MESSAGE
+            title: 'Play Message?'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
 
 ##################################################
 ## Recorder/History
@@ -41,6 +53,8 @@ automation:
       platform: state
       entity_id: media_player.fraser_tv
       to: 'on'
+      for:
+        minutes: 5
     condition:
       condition: time
       after: '22:00:00'
@@ -51,7 +65,7 @@ automation:
         message: "Fraser's TV Turned On!"
         data: 
           push:
-            category: TVALARM
+            category: tvalarm
 
   - alias: Sonos TTS Warning Late TV
     trigger:
