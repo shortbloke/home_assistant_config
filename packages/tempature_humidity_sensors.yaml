@@ -66,7 +66,7 @@ sensor:
         data_type:  
           - Humidity
           - Temperature
-      0a520976cd0002f0120289:  #Frasers Room
+      0a5209a82f000265370189:  #Frasers Room
         name: Temp_Humid_3
         data_type:
           - Humidity
