@@ -98,7 +98,7 @@ automation:
           entity_id: input_boolean.guest_mode
           state: 'off'
         - condition: state
-          entity_id: binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6
+          entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off
           state: 'on'
     action:
       - service: notify.morgan
@@ -138,22 +138,29 @@ automation:
         - condition: or
           conditions:
             - condition: state
-              entity_id: binary_sensor.zha_025370bc_1_6 # Front Door
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off # Front Door
               state: 'on'
             - condition: state
-              entity_id: binary_sensor.zha_02753210_1_6 # Garage Door
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off # Garage Door
               state: 'on'
             - condition: state
-              entity_id: binary_sensor.zha_0275335b_1_6 # Back Door
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off # Back Door
               state: 'on'
             - condition: state
-              entity_id: binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6 # Morgan window
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off # Ironing Room window
+              state: 'on'
+            - condition: state
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off # Morgan window
               state: 'on'
     action:
       - service: notify.martin
         data_template:
           title: "House Unoccupied - Things left open"
-          message: "{{ states.binary_sensor.zha_025370bc_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_025370bc_1_6.state }}], {{ states.binary_sensor.zha_02753210_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_02753210_1_6.state }}], {{ states.binary_sensor.zha_0275335b_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.zha_0275335b_1_6.state }}, {{ states.binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6.state }}]"
+          message: "{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off.state }}], 
+                    {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off.state }}], 
+                    {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off.state }}], 
+                    {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off.state }}], 
+                    {{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.state }}]"
 
 ##################################################
 ## Scripts

@@ -3,38 +3,38 @@
 ##################################################
 homeassistant:
   customize:
-    binary_sensor.zha_025370bc_1_6:
+    binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off:
       icon: mdi:door
       friendly_name: "Front Door"
-    binary_sensor.zha_0275335b_1_6:
+    sensor.lumi_lumi_sensor_magnet_aq2_5b337502_power:
+      friendly_name: "Front Door - Battery"
+    binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off:
       icon: mdi:door
       friendly_name: "Back Door"
-    binary_sensor.zha_02753210_1_6:
+    sensor.lumi_lumi_sensor_magnet_aq2_643f6703_power:
+      friendly_name: "Back Door - Battery"
+    binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off:
       icon: mdi:door
       friendly_name: "Garage Interior Door"
-    binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6:
+    sensor.lumi_lumi_sensor_magnet_aq2_bc705302_power:
+      friendly_name: "Garage Interior Door - Battery"
+    binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off:
+      icon: mdi:window-open
+      friendly_name: "Ironing Room - Window"
+    sensor.lumi_lumi_sensor_magnet_aq2_10327502_power:
+      friendly_name: "Ironing Room - Windows - Battery"
+    binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off:
       icon: mdi:window-open
       friendly_name: "Morgan - Window"
-    sensor.lumi_lumi_sensor_ht_02378aca_1_1029:
+    sensor.lumi_lumi_sensor_magnet_993d0303_power:
+      friendly_name: "Morgan - Windows - Battery"
+    sensor.lumi_lumi_sens_ca8a3702_humidity:
       icon: mdi:water-percent
       friendly_name: "ZigBee TH1 - Humidty"
-    sensor.lumi_lumi_sensor_ht_02378aca_1_1026:
+    sensor.lumi_lumi_sens_ca8a3702_temperature:
       friendly_name: "ZigBee TH1 - Temperature"
-    zha.zha_lumi_lumi_sensor_ht_02378aca:
-      icon: mdi:cellphone-wireless
-      friendly_name: "ZigBee TH1"
-    zha.zha_lumi_lumi_sensor_magnet_aq2_025370bc:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Front Door"
-    zha.zha_lumi_lumi_sensor_magnet_aq2_0275335b:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Back Door"
-    zha.zha_lumi_lumi_sensor_magnet_aq2_02753210:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Garage Interior Door"
-    zha.lumi_lumi_sensor_magnet:
-      icon: mdi:cellphone-wireless
-      friendly_name: "Zigbee - Morgan Window"
+    sensor.lumi_lumi_sens_ca8a3702_power:
+      friendly_name: "ZigBee TH1 - Battery"
 
 
 ##################################################
@@ -48,7 +48,7 @@ automation:
   - alias: Door Open - Set heating mode to eco
     trigger:
       - platform: state
-        entity_id: binary_sensor.zha_0275335b_1_6  # Back door
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off  # Back door
         to: 'on'
         for:
           minutes: 2
@@ -61,7 +61,7 @@ automation:
   - alias: Door Closed - Reset heating mode
     trigger:
       - platform: state
-        entity_id: binary_sensor.zha_0275335b_1_6 # Back door
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off # Back door
         to: 'off'
     action:
       - service: climate.set_operation_mode
@@ -75,19 +75,21 @@ automation:
 recorder:
   include:
     entities:
-      - sensor.lumi_lumi_sensor_ht_02378aca_1_1029 # Humidity
-      - sensor.lumi_lumi_sensor_ht_02378aca_1_1026 # Temperature
-      - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
-      - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
-      - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
-      - binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6 # Morgan Window
+      - sensor.lumi_lumi_sens_ca8a3702_humidity # Humidity
+      - sensor.lumi_lumi_sens_ca8a3702_temperature # Temperature
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off # Magnetic Front Door
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off # Magnetic Back Door
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off # Magnetic Garage Interior Door
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off # Magnetic Ironing Room Window
+      - binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off # Magnetic Morgan Window
 
 history:
   include:
     entities:
-      - sensor.lumi_lumi_sensor_ht_02378aca_1_1029 # Humidity
-      - sensor.lumi_lumi_sensor_ht_02378aca_1_1026 # Temperature
-      - binary_sensor.zha_025370bc_1_6 # Magnetic Front Door
-      - binary_sensor.zha_0275335b_1_6 # Magnetic Back Door
-      - binary_sensor.zha_02753210_1_6 # Magnetic Garage Interior Door
-      - binary_sensor.lumi_lumi_sensor_magnet_03033d99_1_6 # Morgan Window
+      - sensor.lumi_lumi_sens_ca8a3702_humidity # Humidity
+      - sensor.lumi_lumi_sens_ca8a3702_temperature # Temperature
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off # Magnetic Front Door
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off # Magnetic Back Door
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off # Magnetic Garage Interior Door
+      - binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off # Magnetic Ironing Room Window
+      - binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off # Magnetic Morgan Window
