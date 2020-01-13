@@ -52,7 +52,7 @@ automation:
       - service: climate.set_preset_mode
         data_template:
           entity_id: climate.hallway_house
-          operation_mode: 'none'
+          preset_mode: none
 
   - alias: House unoccupied
     trigger: 
@@ -67,7 +67,7 @@ automation:
       - service: climate.set_preset_mode
         data_template:
           entity_id: climate.hallway_house
-          operation_mode: 'eco'
+          preset_mode: eco
       - service: homeassistant.turn_on
         entity_id:
           - script.everyone_away

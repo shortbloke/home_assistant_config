@@ -53,10 +53,10 @@ automation:
         for:
           minutes: 2
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_preset_mode
         data:
           entity_id: climate.hallway_house
-          operation_mode: 'eco'
+          preset_mode: eco
   
   - alias: Door Closed - Reset heating mode
     trigger:
@@ -64,10 +64,10 @@ automation:
         entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off # Back door
         to: 'off'
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_preset_mode
         data_template:
           entity_id: climate.hallway_house
-          operation_mode: 'heat'
+          preset_mode: none
 
 ##################################################
 ## Recorder/History
