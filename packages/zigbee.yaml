@@ -35,6 +35,12 @@ homeassistant:
       friendly_name: "ZigBee TH1 - Temperature"
     sensor.lumi_lumi_sens_ca8a3702_power:
       friendly_name: "ZigBee TH1 - Battery"
+    binary_sensor.motion_sensor_garage:
+      icon: mdi:motion-sensor
+      device_class: motion
+    binary_sensor.motion_sensor_ironing_room:
+      icon: mdi:motion-sensor
+      device_class: motion
 
 
 ##################################################
@@ -82,6 +88,8 @@ recorder:
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off # Magnetic Garage Interior Door
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off # Magnetic Ironing Room Window
       - binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off # Magnetic Morgan Window
+      - binary_sensor.motion_sensor_garage
+      - binary_sensor.motion_sensor_ironing_room
 
 history:
   include:
@@ -93,3 +101,5 @@ history:
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off # Magnetic Garage Interior Door
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off # Magnetic Ironing Room Window
       - binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off # Magnetic Morgan Window
+      - binary_sensor.motion_sensor_garage
+      - binary_sensor.motion_sensor_ironing_room

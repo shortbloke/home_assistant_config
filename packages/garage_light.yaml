@@ -1,29 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:
-### Aeotec Multi-Sensor (Garage) ###
-    binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
-      friendly_name: "Garage Multi-Sensor"
-    sensor.aeotec_zw100_multisensor_6_burglar_2:
-      friendly_name: "Garage Motion State"
-      icon: mdi:walk
-    sensor.aeotec_zw100_multisensor_6_luminance_2:
-      friendly_name: "Garage Luminance"
-      icon: mdi:theme-light-dark
-    sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
-      friendly_name: "Garage UV Level"
-      icon: mdi:sunglasses
-    sensor.aeotec_zw100_multisensor_6_dew_point_2:
-      friendly_name: "Garage Dew Point"
-    sensor.aeotec_zw100_multisensor_6_temperature_2:
-      friendly_name: "Temperature"
-    sensor.aeotec_zw100_multisensor_6_relative_humidity_2:
-      friendly_name: "Humidity"
-      icon: mdi:water-percent
-
-##################################################
 ## Components/Sensors
 ##################################################
 input_select:
@@ -50,9 +25,6 @@ switch:
 sensor:
   - platform: template
     sensors:
-      garage_motion:
-        value_template: "{% if is_state('sensor.aeotec_zw100_multisensor_6_burglar_2','8') %}yes{% else %}no{% endif %}"
-        friendly_name: "Garage Motion"
       garage_motion_status:
         value_template: "{{ states.input_select.garage_motion_status.state }}"
         friendly_name: "Garage Motion Status"
@@ -65,8 +37,8 @@ automation:
   - alias: Garage motion detected
     trigger:
       - platform: state
-        entity_id: sensor.garage_motion
-        to: 'yes'
+        entity_id: binary_sensor.motion_sensor_garage
+        to: 'on'
       - platform: state
         entity_id: switch.sonoff_garage_light
         to: 'on'
@@ -80,8 +52,8 @@ automation:
   - alias: Garage no motion detected
     trigger:
       - platform: state
-        entity_id: sensor.garage_motion
-        to: 'no'
+        entity_id: binary_sensor.motion_sensor_garage
+        to: 'off'
         for:
           minutes: 15
     action:
@@ -114,10 +86,8 @@ recorder:
   include:
     entities:
       - sensor.garage_motion_status
-      - sensor.garage_motion
 
 history:
   include:
     entities:
       - sensor.garage_motion_status
-      - sensor.garage_motion

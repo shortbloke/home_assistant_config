@@ -18,25 +18,6 @@ homeassistant:
     switch.magpie_iron:
       friendly_name: "Magpie Iron"
       icon: mdi:power-socket-uk
-    # Multi-sensor
-    binary_sensor.aeotec_zw100_multisensor_6_sensor:
-      friendly_name: "Ironing Room Multi-Sensor"
-    sensor.aeotec_zw100_multisensor_6_burglar:
-      friendly_name: "Ironing Room Motion State"
-      icon: mdi:walk
-    sensor.aeotec_zw100_multisensor_6_luminance:
-      friendly_name: "Ironing Room Luminance"
-      icon: mdi:theme-light-dark
-    sensor.aeotec_zw100_multisensor_6_ultraviolet:
-      friendly_name: "Ironing Room UV Level"
-      icon: mdi:sunglasses
-    sensor.aeotec_zw100_multisensor_6_dew_point:
-      friendly_name: "Ironing Room Dew Point"
-    sensor.aeotec_zw100_multisensor_6_temperature:
-      friendly_name: "Temperature"
-    sensor.aeotec_zw100_multisensor_6_relative_humidity:
-      friendly_name: "Humidity"
-      icon: mdi:water-percent
 
 ##################################################
 ## Components/Sensors
