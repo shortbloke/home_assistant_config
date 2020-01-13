@@ -43,8 +43,3 @@
   - High Load Average
   - Low Disk Space
   - Low Memory
-
-## Have I Been Pwned Alerts
-
-- Track all my email addresses and those of close family members. Triggering an alert notification to be sent when the number of breeches increases.
-  - This requires the automation script be updated with a new value each time it increases. (I need to look at how/where I can persist this value)

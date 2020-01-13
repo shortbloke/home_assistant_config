@@ -11,18 +11,17 @@ Each commit triggers a deployment to the latest home assistant version with Pyth
 
 ## Configuration Organisation
 
-I've limited the contents of configuration.yaml and utilised [packages](https://www.home-assistant.io/docs/configuration/packages/) to provide some grouping, in order to make it easier to understand and maintain. 
+I've limited the contents of configuration.yaml and utilised [packages](https://www.home-assistant.io/docs/configuration/packages/) to provide some grouping, in order to make it easier to understand and maintain.
 
 Packages provide an simple way to encapsulate all the different configuration elements for a adding support for a given component or device. Rather than needing to update many different files the changes are kept contained in a single file per package.
 
 ## Core Hardware of Home Assistant Hub
 
-- [Raspberry Pi 3 Model B+](https://amzn.to/2DabgWG) - Core control system, running on [Hass.io](https://www.home-assistant.io/hassio/).
+- [Raspberry Pi 4 Model B 4GB RAM](https://amzn.to/3a4gGQc) - Core control system, running on [Hass.io](https://www.home-assistant.io/hassio/).
 - [Raspberry Pi Zero W](https://amzn.to/2ZLhm7d) - Hosting [Xiaomi Mi Flora to MQTT Gateway](https://github.com/ThomDietrich/miflora-mqtt-daemon). Mi Flora Bluetooth LE range was limited, the Pi Zero is positioned nearer the plants, and sends status over WiFi via MQTT.
 - [RFXCOM RFXtrx433E](http://www.rfxcom.com/store/Transceivers/14103) - Enables RX/TX of 433Mhz signals over a range of protocols.
   - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security, if you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
-- [Aeotec Z-Stick Gen5 (ZW090)](https://amzn.to/2wrrgwI) - Provides interface to Z-Wave Mesh Network devices.
-- [Elelabs ZigBee Shield](https://elelabs.com/products/elelabs_zigbee_shield.html) - Provides support for Zigbee devices and sensors. Though requires Bluetooth be disabled. USB versions do not have this limitation.
+- [Nortek GoControl HUSBZB-1](https://www.nortekcontrol.com/products/2gig/husbzb-1-gocontrol-quickstick-combo/) - Provides support for Zigbee and I had hoped for Z-Wave too, but this doesn't support EU/UK frequencies!
 
 ## More Information
 
