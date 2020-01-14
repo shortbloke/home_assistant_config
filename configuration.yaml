@@ -82,10 +82,17 @@ logbook:
 logger:
   default: warn
   # logs:
+    # homeassistant.components.zha: debug
+    # zigpy.zdo: debug
+    # zigpy.application: debug
+    # zigpy.device: debug
+    # bellows.zigbee.application: debug
+    # bellows.api: debug
+    # custom_components.owlintuition: debug
     # homeassistant.components.mobile_app: debug
     # homeassistant.components.mqtt: debug
     # homeassistant.components.samsungtv: info
-    # homeassistant.components.zha: info
+    # homeassistant.components.zha: debug
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
