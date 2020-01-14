@@ -106,7 +106,7 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.ironing_room_motion
-        to: 'yes'
+        to: 'on'
     action:
       - service: input_select.select_option
         data:
@@ -118,7 +118,7 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.ironing_room_motion
-        to: 'no'
+        to: 'off'
         for:
           minutes: 30
     action:
