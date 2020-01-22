@@ -48,3 +48,6 @@ node-red/*
 
 # Compressed Lovelace components
 *.js.gz
+
+# ignore custom_components
+custom_components/*
