@@ -46,7 +46,7 @@ zone:
 #                     Discovery                    #
 ####################################################
 # https://www.home-assistant.io/components/discovery/
-discovery:
+# discovery:
 
 ####################################################
 #        Home Assistant Components Enabled         #
@@ -198,5 +198,3 @@ automation:
 ####################################################
 #             HACS: Custom Components              #
 ####################################################
-# https://github.com/custom-components/breaking_changes
-breaking_changes:
