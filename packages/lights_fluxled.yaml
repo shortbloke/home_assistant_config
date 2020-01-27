@@ -15,8 +15,14 @@ homeassistant:
     light.wifi_ufo_4:
       friendly_name: "Bed"
       icon: mdi:led-strip
-    light.desk_rgb_strip:
-      friendly_name: "Desk strip"
+    light.conservatory_desk:
+      friendly_name: "Conservatory Desk Strip"
+      icon: mdi:led-strip
+    light.conservatory_left:
+      friendly_name: "Conservatory Ceiling Left"
+      icon: mdi:led-strip
+    light.conservatory_right:
+      friendly_name: "Conservatory Ceiling Right"
       icon: mdi:led-strip
 
 ##################################################
@@ -52,5 +58,11 @@ light:
         name: wifi_ufo_4
         mode: "rgbw"
       192.168.200.35:
-        name: desk_rgb_strip
+        name: conservatory_desk
         mode: "rgb"
+      192.168.200.36:
+        name: conservatory_left
+        mode: "w"
+      192.168.200.37:
+        name: conservatory_right
+        mode: "w"

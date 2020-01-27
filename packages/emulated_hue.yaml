@@ -49,8 +49,14 @@ emulated_hue:
     light.wifi_ufo_4:
       name: "Bed Lights"
       hidden: false
-    light.desk_rgb_strip:
-      name: "Desk Strip"
+    light.conservatory_desk:
+      name: "Conservatory Desk Strip"
+      hidden: false
+    light.conservatory_left:
+      name: "Conservatory Ceiling Left"
+      hidden: false
+    light.conservatory_right:
+      name: "Conservatory Ceiling Right"
       hidden: false
 
   # Scenes
