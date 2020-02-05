@@ -2,51 +2,11 @@
 #     Home Assistant Main Configuration File      #
 ###################################################
 homeassistant:
-  name: Home Assistant
-  latitude: !secret latitude_loc_home
-  longitude: !secret longitude_loc_home
-  elevation: !secret evelation_loc_home
-  time_zone: Europe/London
-  unit_system: metric
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
-  
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
 
-####################################################
-#                       Zones                      #
-####################################################
-# https://www.home-assistant.io/components/zone/
-zone:
-  - name: Home
-    latitude: !secret latitude_loc_home
-    longitude: !secret longitude_loc_home
-    radius: 50
-    icon: mdi:worker
-
-  - name: Forest
-    latitude: !secret latitude_loc_forest
-    longitude: !secret longitude_loc_forest
-    radius: 150
-    icon: mdi:school
-
-  - name: Work
-    latitude: !secret latitude_loc_work
-    longitude: !secret longitude_loc_work
-    icon: mdi:worker
-
-  - name: College
-    latitude: !secret latitude_loc_college
-    longitude: !secret longitude_loc_college
-    radius: 150
-    icon: mdi:school
-
-####################################################
-#                     Discovery                    #
-####################################################
-# https://www.home-assistant.io/components/discovery/
-# discovery:
 
 ####################################################
 #        Home Assistant Components Enabled         #
