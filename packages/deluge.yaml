@@ -1,4 +1,16 @@
 ##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    sensor.deluge_down_speed:
+      icon: mdi:cloud-download
+      friendly_name: "Download Speed"
+    sensor.deluge_up_speed:
+      icon: mdi:cloud-upload
+      friendly_name: "Upload Speed"
+
+##################################################
 ## Components/Sensors
 ##################################################
 sensor:

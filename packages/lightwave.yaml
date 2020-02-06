@@ -6,38 +6,56 @@ homeassistant:
     # Dimmer Lights
     light.lwrf_diningroom_main:
       friendly_name: "Table Lights"
-      icon: mdi:ceiling-light
+      icon: mdi:vanity-light
+      assumed_state: false
     light.lwrf_livingroom_main:
       friendly_name: "Downlights"
       icon: mdi:ceiling-light
+      assumed_state: false
     light.lwrf_morgan_main:
       friendly_name: "Bedroom Lights"
-      icon: mdi:ceiling-light
+      icon: mdi:track-light
+      assumed_state: false
     # Sockets 
     switch.lwrf_conservatory_1:
       friendly_name: "Ceiling Lights"
-      icon: mdi:ceiling-light
+      icon: mdi:led-strip-variant
+      assumed_state: false
     switch.lwrf_conservatory_2:
       friendly_name: "Window Lamp"
       icon: mdi:lamp
+      assumed_state: false
     switch.lwrf_livingroom_standard_lamp:
       friendly_name: "Standard Lamp"
       icon: mdi:floor-lamp
+      assumed_state: false
     switch.lwrf_displaycabinetlight:
       friendly_name: "Display Cabinet Light"
-      icon: mdi:lightbulb
+      icon: mdi:track-light
+      assumed_state: false
     switch.lwrf_diningroom_rennie_mac_lamp:
       friendly_name: "Rennie Mac Lamp"
       icon: mdi:lamp
+      assumed_state: false
     switch.lwrf_waxburner:
       friendly_name: "Wax Burner"
       icon: mdi:radiator
+      assumed_state: false
     switch.lwrf_hall_socket_1:
       friendly_name: "Twig Lights"
       icon: mdi:lamp
+      assumed_state: false
     switch.lwrf_hall_socket_2:
       friendly_name: "Air Freshener"
       icon: mdi:radiator
+      assumed_state: false
+    # Scenes
+    scene.bright:
+      icon: mdi:lightbulb-on-outline
+    scene.comfortable:
+      icon: mdi:lightbulb
+    scene.movie:
+      icon: mdi:movie
 
 ##################################################
 ## Components/Sensors

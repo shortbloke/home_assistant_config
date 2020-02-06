@@ -3,16 +3,8 @@
 ##################################################
 homeassistant:
   customize:
-    sensor.speedtest_ping:
-      icon: mdi:clock-fast
-      friendly_name: "Ping"
-    sensor.speedtest_download:
-      icon: mdi:cloud-download
-      friendly_name: "Download"
-    sensor.speedtest_upload:
-      icon: mdi:cloud-upload
-      friendly_name: "Upload"
     sensor.external_ip:
+      icon: mdi:ip-network-outline
       show_last_changed: true
 
 ##################################################
@@ -23,15 +15,6 @@ camera:
     still_image_url: "https://www.thinkbroadband.com/broadband/monitoring/quality/share/ae25a213af51ed64c2cdf601d17a934194317d36.png"
     name: broadbandquality
 
-# speedtestdotnet:
-# # https://www.home-assistant.io/components/speedtestdotnet/
-#   scan_interval:
-#     minutes: 30
-#   monitored_conditions:
-#     - ping
-#     - download
-#     - upload
-
 sensor:
 # https://home-assistant.io/components/sensor.rest/
   - platform: rest
@@ -39,19 +22,3 @@ sensor:
     name: External IP
     value_template: '{{ value_json.ip }}'
 
-##################################################
-## Recorder/History
-##################################################
-# recorder:
-#   include:
-#     entities:
-#       - sensor.speedtest_ping
-#       - sensor.speedtest_download
-#       - sensor.speedtest_upload
-
-# history:
-#   include:
-#     entities:
-#       - sensor.speedtest_ping
-#       - sensor.speedtest_download
-#       - sensor.speedtest_upload

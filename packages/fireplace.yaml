@@ -6,15 +6,19 @@ homeassistant:
     switch.flamerite_power:
       friendly_name: "Fire"
       icon: mdi:power
+      assumed_state: false
     switch.flamerite_heat:
       friendly_name: "Fire Heat"
       icon: mdi:fire
+      assumed_state: false
     light.flamerite_dimmer1:
       friendly_name: "Dimmer 1"
       hidden: true
+      assumed_state: false
     light.flamerite_dimmer2:
       friendly_name: "Dimmer 2"
       hidden: true
+      assumed_state: false
 
 ##################################################
 ## Components/Sensors

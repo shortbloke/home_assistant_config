@@ -6,6 +6,12 @@ homeassistant:
     switch.tumble_dryer:
       friendly_name: "Tumble Dryer"
       icon: mdi:tumble-dryer
+    sensor.tumble_dryer_power:
+      icon: mdi:flash
+    sensor.tumble_dryer_power_today:
+      icon: mdi:flash
+    sensor.dryer_status:
+      icon: mdi:state-machine
 
 ##################################################
 ## Components/Sensors

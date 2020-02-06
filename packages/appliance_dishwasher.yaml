@@ -6,6 +6,12 @@ homeassistant:
     switch.dishwasher:
       friendly_name: "Dishwasher"
       icon: mdi:dishwasher
+    sensor.dishwasher_power:
+      icon: mdi:flash 
+    sensor.dishwasher_power_today:
+      icon: mdi:counter
+    sensor.dishwasher_status:
+      icon: mdi:state-machine
 
 ##################################################
 ## Components/Sensors

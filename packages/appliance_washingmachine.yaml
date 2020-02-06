@@ -6,6 +6,12 @@ homeassistant:
     switch.washing_machine:
       friendly_name: "Washing Machine"
       icon: mdi:washing-machine
+    sensor.washing_machine_power:
+      icon: mdi:flash
+    sensor.washing_machine_power_today:
+      icon: mdi:counter
+    sensor.washing_machine_status:
+      icon: mdi:state-machine
 
 ##################################################
 ## Components/Sensors

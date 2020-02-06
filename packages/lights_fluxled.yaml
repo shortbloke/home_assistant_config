@@ -20,10 +20,10 @@ homeassistant:
       icon: mdi:led-strip
     light.conservatory_left:
       friendly_name: "Conservatory Ceiling Left"
-      icon: mdi:led-strip
+      icon: mdi:led-strip-variant
     light.conservatory_right:
       friendly_name: "Conservatory Ceiling Right"
-      icon: mdi:led-strip
+      icon: mdi:led-strip-variant
 
 ##################################################
 ## Groups
@@ -36,6 +36,7 @@ group:
       - light.wifi_ufo_2
       - light.wifi_ufo_3
       - light.wifi_ufo_4
+    icon: mdi:led-strip-variant
 
 ##################################################
 ## Components/Sensors
