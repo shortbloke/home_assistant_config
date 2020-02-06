@@ -1,10 +1,2 @@
-device_tracker.martins_iphone:
-  friendly_name: Martin
-device_tracker.michelles_iphone:
-  friendly_name: Michelle
-device_tracker.morgans_iphone:
-  friendly_name: Morgan
-device_tracker.frasers_iphone:
-  friendly_name: Fraser
 zone.home:
   radius: 25

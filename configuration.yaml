@@ -2,8 +2,8 @@
 #     Home Assistant Main Configuration File      #
 ###################################################
 homeassistant:
-  customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
+
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
 
