@@ -55,8 +55,7 @@ sensor:
   - platform: rfxtrx
     automatic_add: true
     devices:
-      # 0a5209f6ad0002582f0189:
-      0a52094f2c0002b3290179:  #Convervatory
+      0a5209e22d000263330179:  #Convervatory
         name: Temp_Humid_1
         data_type:
           - Humidity
