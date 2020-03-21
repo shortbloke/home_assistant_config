@@ -1,20 +1,6 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-media_player:
-  # Frasers TV
-  - platform: samsungtv
-    name: Fraser TV
-    host: 192.168.200.52
-    mac: 28:39:5E:1D:68:52
-  - platform: samsungtv
-    name: Ironing Room TV
-    host: 192.168.200.53
-    mac: 8C:C8:CD:D3:84:F3
-  - platform: samsungtv
-    name: Living Room TV
-    host: 192.168.200.54
-    mac: 84:A4:66:B4:91:49
 ios:
   push:
     categories:
@@ -34,13 +20,13 @@ ios:
 recorder:
   include:
     entities:
-      - media_player.fraser_tv
+      - media_player.frasertv
       - media_player.ironing_room_tv
       - media_player.living_room_tv
 history:
   include:
       entities:
-      - media_player.fraser_tv
+      - media_player.frasertv
       - media_player.ironing_room_tv
       - media_player.living_room_tv
 
@@ -51,7 +37,7 @@ automation:
   - alias: Late night tv alert
     trigger:
       platform: state
-      entity_id: media_player.fraser_tv
+      entity_id: media_player.frasertv
       to: 'on'
       for:
         minutes: 5
