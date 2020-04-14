@@ -19,6 +19,12 @@ group:
       entities:
         - group.living_room_lights
         - group.dining_room_lights
+    living_room_lamps:
+      name: Living Room Lamps
+      entities:
+        - switch.lwrf_livingroom_standard_lamp
+        - switch.lwrf_displaycabinetlight
+        - switch.lwrf_waxburner
     kitchen_lights:
       name: Kitchen Lights
       entities:

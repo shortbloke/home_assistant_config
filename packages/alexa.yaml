@@ -1,0 +1,107 @@
+# https://www.home-assistant.io/integrations/alexa/
+alexa:
+  smart_home:
+    filter:
+      include_domains:
+        - light
+        - scene
+      exclude_entities:
+      # Lights
+        # Unknown location
+        - light.12204702807d3a1b7075
+        - light.12204702807d3a252c69
+        # Living Room
+        - light.flamerite_dimmer1
+        - light.flamerite_dimmer2
+        # Outside Front
+        - light.driveway_light
+      include_entities:
+        - switch.lwrf_display_cabinetlight
+        - switch.lwrf_livingroom_standard_lamp
+        - switch.lwrf_waxburner
+        - switch.flamerite_heat
+        - switch.flamerite_power
+        - switch.lwrf_diningroom_rennie_mac_lamp
+        - switch.lwrf_hall_socket_1
+        - switch.lwrf_hall_socket_2
+        - switch.lwrf_conservatory_1
+        - switch.lwrf_conservatory_2
+        - switch.sonoff_garage_light
+        - media_player.frasertv
+    entity_config:
+      switch.sonoff_garage_light:
+        name: "Garage Light"
+      scene.mood_bright:
+        name: "Mood bright"
+        display_categories: SCENE_TRIGGER
+      scene.mood_comfortable:
+        name: "Mood comfortable"
+        display_categories: SCENE_TRIGGER
+      scene.mood_movie:
+        name: "Mood movie"
+        display_categories: SCENE_TRIGGER
+
+# This section relies upon the Alexa Media Player custom component to be installed and configured
+# https://github.com/custom-components/alexa_media_player
+
+light:
+  - platform: template
+    lights:
+      lamp_group:
+        friendly_name: "lamp group"
+        icon_template: mdi:amazon-alexa
+        turn_on:
+          service: script.alexa_turn_on_the_lamps_based_on_device
+        turn_off:
+          service: script.alexa_turn_off_the_lamps_based_on_device
+      lamps_group:
+        friendly_name: "lamps group"
+        icon_template: mdi:amazon-alexa
+        turn_on:
+          service: script.alexa_turn_on_the_lamps_based_on_device
+        turn_off:
+          service: script.alexa_turn_off_the_lamps_based_on_device
+
+sensor:
+  - platform: template
+    sensors:
+      last_alexa:
+        entity_id:
+          - media_player.living_room_echo_dot
+          - media_player.kitchen_echo_dot
+          - media_player.conservatory_echo_dot
+          - media_player.fraser
+          - media_player.morgan
+        value_template: >
+          {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+
+script:
+  # "Alexa, turn on the lamp"
+  alexa_turn_on_the_lamps_based_on_device:
+    sequence:
+      - service: homeassistant.turn_on
+        data_template:
+          entity_id: >-
+            {# Use the name of each Echo to determine which room the command likely came from. #}
+            {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+
+            {%- if room == "living_room_echo_dot" -%}
+              group.living_room_lamps
+            {%- elif room == "conservatory_echo_dot" -%}
+              switch.lwrf_conservatory_2
+            {%- endif -%}
+
+  # "Alexa, turn off the lamp"
+  alexa_turn_off_the_lamps_based_on_device:
+    sequence:
+      - service: homeassistant.turn_off
+        data_template:
+          entity_id: >-
+            {# Use the name of each Echo to determine which room the command likely came from. #}
+            {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+
+            {%- if room == "living_room_echo_dot" -%}
+              group.living_room_lamps
+            {%- elif room == "conservatory_echo_dot" -%}
+              switch.lwrf_conservatory_2
+            {%- endif -%}

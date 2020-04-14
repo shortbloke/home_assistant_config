@@ -32,12 +32,6 @@ light:
         name: flamerite_dimmer1
       0b11000d015b6eff04010f80:
         name: flamerite_dimmer2
-  - platform: switch
-    name: Fire
-    entity_id: switch.flamerite_power
-  - platform: switch
-    name: Fire heat
-    entity_id: switch.flamerite_heat
 
 switch:
   - platform: rfxtrx

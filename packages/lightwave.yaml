@@ -71,64 +71,6 @@ light:
         name: lwrf_livingroom_main
       0a14000a03922501010070:
         name: lwrf_morgan_main
-  - platform: switch
-    name: Conservatory ceiling lights
-    entity_id: switch.lwrf_conservatory_1
-  - platform: switch
-    name: Conservatory window lamp
-    entity_id: switch.lwrf_conservatory_2
-  - platform: switch
-    name: Living room lamp
-    entity_id: switch.lwrf_livingroom_standard_lamp
-  - platform: switch
-    name: Display cabinet light
-    entity_id: switch.lwrf_displaycabinetlight
-  - platform: switch
-    name: Rennie Mac lamp
-    entity_id: switch.lwrf_diningroom_rennie_mac_lamp
-  - platform: switch
-    name: Wax burner
-    entity_id: switch.lwrf_waxburner
-  - platform: switch
-    name: Twig lights
-    entity_id: switch.lwrf_hall_socket_1
-  - platform: switch
-    name: Air freshener
-    entity_id: switch.lwrf_hall_socket_2
-
-  # Scenes as a light for Alexa/EmulatedHue fix value out of range
-  - platform: template
-    lights:
-      mood_comfortable:
-        friendly_name: "Mood comfortable light"
-        turn_on:
-          - service: scene.turn_on
-            entity_id: scene.comfortable
-          - delay: 5    # 5 seconds
-          - service: light.turn_off
-            entity_id: light.mood_comfortable
-        turn_off:
-        set_level:
-      mood_bright:
-        friendly_name: "Mood bright light"
-        turn_on:
-          - service: scene.turn_on
-            entity_id: scene.bright
-          - delay: 5    # 5 seconds
-          - service: light.turn_off
-            entity_id: light.mood_bright
-        turn_off:
-        set_level:
-      mood_movie:
-        friendly_name: "Mood movie light"
-        turn_on:
-          - service: scene.turn_on
-            entity_id: scene.movie
-          - delay: 5    # 5 seconds
-          - service: light.turn_off
-            entity_id: light.mood_movie
-        turn_off:
-        set_level:
 
 switch:
     # https://www.home-assistant.io/components/switch.rfxtrx/
