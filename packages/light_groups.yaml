@@ -1,0 +1,50 @@
+##################################################
+## Groups
+##################################################
+group:
+    living_room_lights:
+      name: Living Room Lights
+      entities:
+        - light.lwrf_diningroom_main
+        - switch.lwrf_livingroom_standard_lamp
+        - switch.lwrf_displaycabinetlight
+        - switch.lwrf_waxburner
+    dining_room_lights:
+      name: Dining Room Lights
+      entities:
+        - light.lwrf_diningroom_main
+        - switch.lwrf_diningroom_rennie_mac_lamp
+    living_area_lights:
+      name: Living Area Lights
+      entities:
+        - group.living_room_lights
+        - group.dining_room_lights
+    kitchen_lights:
+      name: Kitchen Lights
+      entities:
+        # - No entities yet 
+    conservatory_lights:
+      name: Conservatory Lights
+      entities:
+        - switch.lwrf_conservatory_1
+        - switch.lwrf_conservatory_2
+    frasers_room_lights:
+      name: Frasers Lights
+      entities:
+        - light.2424806784f3eb2103c8
+        - light.12204702ecfabc20a0a1
+        - light.12204702807d3a252d9b
+        - light.01802003cc50e3501f3e
+    morgans_strip_lights:
+      name: Morgans Strip Lights
+      entities:
+        - light.wifi_ufo_1
+        - light.wifi_ufo_2
+        - light.wifi_ufo_3
+        - light.wifi_ufo_4
+      icon: mdi:led-strip-variant
+    morgans_room_lights:
+      name: Morgans Lights
+      entities:
+        - group.morgans_strip_lights
+        - light.lwrf_morgan_main
