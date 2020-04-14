@@ -52,3 +52,6 @@ node-red/*
 # ignore custom_components
 custom_components/*
 www/community/*
+
+# Ignore sonoff config backups
+sonoff-config-backup
