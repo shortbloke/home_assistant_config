@@ -51,16 +51,20 @@ light:
         friendly_name: "lamp group"
         icon_template: mdi:amazon-alexa
         turn_on:
-          service: script.alexa_turn_on_the_lamps_based_on_device
+          service: script.turn_on
+          entity_id: script.alexa_turn_on_the_lamps_based_on_device
         turn_off:
-          service: script.alexa_turn_off_the_lamps_based_on_device
+          service: script.turn_on
+          entity_id: script.alexa_turn_off_the_lamps_based_on_device
       lamps_group:
         friendly_name: "lamps group"
         icon_template: mdi:amazon-alexa
         turn_on:
-          service: script.alexa_turn_on_the_lamps_based_on_device
+          service: script.turn_on
+          entity_id: script.alexa_turn_on_the_lamps_based_on_device
         turn_off:
-          service: script.alexa_turn_off_the_lamps_based_on_device
+          service: script.turn_on
+          entity_id: script.alexa_turn_off_the_lamps_based_on_device
 
 sensor:
   - platform: template
