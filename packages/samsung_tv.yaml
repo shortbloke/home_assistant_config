@@ -46,12 +46,14 @@ automation:
       after: '22:00:00'
       before: '06:00:00'
     action:
-      service: notify.mobile_app_martin_iphonexs
-      data:
-        message: "Fraser's TV Turned On!"
-        data: 
-          push:
-            category: tvalarm
+      - service: notify.mobile_app_martin_iphonexs
+        data:
+          message: "Fraser's TV Turned On!"
+          data: 
+            push:
+              category: tvalarm
+      - service: homeassistant.turn_off
+        entity_id: media_player.frasertv
 
   - alias: Sonos TTS Warning Late TV
     trigger:
