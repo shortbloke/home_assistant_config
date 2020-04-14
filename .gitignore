@@ -51,3 +51,4 @@ node-red/*
 
 # ignore custom_components
 custom_components/*
+www/community/*
