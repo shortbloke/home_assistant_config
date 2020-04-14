@@ -11,11 +11,13 @@ homeassistant:
 ####################################################
 #        Home Assistant Components Enabled         #
 ####################################################
+# https://www.home-assistant.io/integrations/api/
+api:
 # https://www.home-assistant.io/components/config/
 config:
 # https://home-assistant.io/components/http/
 http:
-  login_attempts_threshold: 20
+  login_attempts_threshold: 100
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/map/
@@ -40,8 +42,12 @@ logbook:
 
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: warn
+  default: warning
   # logs:
+  #   homeassistant.components.alexa: debug
+  #   homeassistant.components.samsungtv: debug
+  #   samsungctl: debug
+  #   custom_components.samsungtv: debug
     # homeassistant.components.zha: debug
     # zigpy.zdo: debug
     # zigpy.application: debug
@@ -158,3 +164,4 @@ automation:
 ####################################################
 #             HACS: Custom Components              #
 ####################################################
+zha_map:
