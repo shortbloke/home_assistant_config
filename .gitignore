@@ -50,7 +50,7 @@ node-red/*
 *.js.gz
 
 # ignore custom_components
-custom_components/*
+custom_components/hacs
 www/community/*
 
 # Ignore sonoff config backups
