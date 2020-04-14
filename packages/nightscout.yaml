@@ -22,6 +22,31 @@ sensor:
           {{ states('sensor.martingay_cgm') | regex_findall_index("direction:(\w+)") }}
 
 ##################################################
+## Automation
+##################################################
+automation:
+  alias: Martin Sugar Level
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.martingay_cgm_sgv
+      above: 8
+      for:
+        minutes: 10
+    - platform: numeric_state
+      entity_id: sensor.martingay_cgm_sgv
+      below: 3
+      for:
+        minutes: 10
+  action:
+    service: notify.alexa_media
+    data_template:
+      data:
+        type: announce
+      target: media_player.conservatory_echo_dot
+      message: 'Hello Martin. Your blood sugar level is {{ states("sensor.martingay_cgm_sgv") }}. You need to {% if (states("sensor.martingay_cgm_sgv") | float) <= 3.0 %}take some sugar.{% elif (states("sensor.martingay_cgm_sgv") | float) > 8.0 %}take some insulin.{% endif %}'
+
+
+##################################################
 ## Recorder/History
 ##################################################
 recorder:
