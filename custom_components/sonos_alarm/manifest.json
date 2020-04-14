@@ -1,0 +1,16 @@
+{
+  "domain": "sonos_alarm",
+  "name": "Sonos Alarm",
+  "config_flow": true,
+  "documentation": "https://github.com/AaronDavidSchneider/SonosAlarm/blob/master/README.md",
+  "requirements": [
+    "pysonos==0.0.24"
+  ],
+  "dependencies": [],
+  "ssdp": [
+    {
+      "st": "urn:schemas-upnp-org:device:ZonePlayer:1"
+    }
+  ],
+  "codeowners": []
+}
