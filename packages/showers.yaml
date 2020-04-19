@@ -1,0 +1,137 @@
+##################################################
+## Customize
+##################################################
+homeassistant:
+  customize:
+    sensor.ensuite_shower_uses_today:
+      icon: mdi:counter
+    sensor.family_bathroom_shower_uses_today:
+      icon: mdi:counter
+    sensor.ensuite_shower_time_today:
+      icon: mdi:clock-outline
+    sensor.family_bathroom_shower_time_today:
+      icon: mdi:clock-outline
+
+##################################################
+## Components/Sensors
+##################################################
+switch:
+  - platform: mqtt
+    name: "Ensuite Shower"
+    icon: mdi:shower-head
+    state_topic: "stat/sonoff_shower_1/POWER"
+    command_topic: "cmnd/sonoff_shower_1/POWER"
+    availability_topic: "tele/sonoff_shower_1/LWT"
+    json_attributes_topic: "tele/sonoff_shower_1/SENSOR"
+    json_attributes_template: "{{ value_json['ENERGY'] | tojson }}"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt
+    name: "Family Bathroom Shower"
+    icon: mdi:shower
+    state_topic: "stat/sonoff_shower_2/POWER"
+    command_topic: "cmnd/sonoff_shower_2/POWER"
+    availability_topic: "tele/sonoff_shower_2/LWT"
+    json_attributes_topic: "tele/sonoff_shower_2/SENSOR"
+    json_attributes_template: "{{ value_json['ENERGY'] | tojson }}"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+binary_sensor:
+  - platform: template
+    sensors:
+      ensuite_shower_active:
+        friendly_name: "Ensuite Shower Active"
+        value_template: "{{ state_attr('switch.ensuite_shower', 'Power')| float > 4 }}"
+      family_bathroom_shower_active:
+        friendly_name: "Familiy Bathroom Shower Active"
+        value_template: "{{ state_attr('switch.family_bathroom_shower', 'Power')| float > 4 }}"
+
+sensor:
+  - platform: template
+    sensors:
+      ensuite_shower_power:
+        friendly_name: "Ensuite Shower Power (W)"
+        value_template: "{{ state_attr('switch.ensuite_shower', 'Power')| float }}"
+        unit_of_measurement: 'W'
+      family_bathroom_shower_power:
+        friendly_name: "Familiy Bathroom Shower Power (W)"
+        value_template: "{{ state_attr('switch.family_bathroom_shower', 'Power')| float }}"
+        unit_of_measurement: 'W'
+
+  - platform: history_stats
+    name: Ensuite Shower Uses Today
+    entity_id: binary_sensor.ensuite_shower_active
+    type: count
+    state: 'On'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Family Bathroom Shower Uses Today
+    entity_id: binary_sensor.family_bathroom_shower_active
+    type: count
+    state: 'On'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Ensuite Shower Time Today
+    entity_id: binary_sensor.ensuite_shower_active
+    type: time
+    state: 'On'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Family Bathroom Shower Time Today
+    entity_id: binary_sensor.family_bathroom_shower_active
+    type: time
+    state: 'On'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+##################################################
+## Automation
+##################################################
+# automation:
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - switch.ensuite_shower
+      - switch.family_bathroom_shower
+      - sensor.ensuite_shower_power
+      - sensor.family_bathroom_shower_power
+      - sensor.ensuite_shower_uses_today
+      - sensor.family_bathroom_shower_uses_today
+      - sensor.ensuite_shower_time_today
+      - sensor.family_bathroom_shower_time_today
+      - binary_sensor.ensuite_shower_active
+      - binary_sensor.family_bathroom_shower_active
+
+history:
+  include:
+    entities:
+      - switch.ensuite_shower
+      - switch.family_bathroom_shower
+      - sensor.ensuite_shower_power
+      - sensor.family_bathroom_shower_power
+      - sensor.ensuite_shower_uses_today
+      - sensor.family_bathroom_shower_uses_today
+      - sensor.ensuite_shower_time_today
+      - sensor.family_bathroom_shower_time_today
+      - binary_sensor.ensuite_shower_active
+      - binary_sensor.family_bathroom_shower_active
