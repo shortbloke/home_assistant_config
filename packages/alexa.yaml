@@ -16,7 +16,7 @@ alexa:
         # Outside Front
         - light.driveway_light
       include_entities:
-        - switch.lwrf_display_cabinetlight
+        - switch.lwrf_displaycabinetlight
         - switch.lwrf_livingroom_standard_lamp
         - switch.lwrf_waxburner
         - switch.flamerite_heat
