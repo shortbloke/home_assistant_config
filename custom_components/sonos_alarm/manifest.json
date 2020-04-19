@@ -4,7 +4,7 @@
   "config_flow": true,
   "documentation": "https://github.com/AaronDavidSchneider/SonosAlarm/blob/master/README.md",
   "requirements": [
-    "pysonos==0.0.24"
+    "pysonos"
   ],
   "dependencies": [],
   "ssdp": [
