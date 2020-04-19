@@ -34,13 +34,13 @@ history:
 ## Automation
 ##################################################
 automation:
-  - alias: Late night tv alert
+  - alias: Turn off Frasers TV if on after curfew
     trigger:
       platform: state
       entity_id: media_player.frasertv
       to: 'on'
       for:
-        minutes: 5
+        minutes: 4
     condition:
       condition: time
       after: '22:00:00'
@@ -48,7 +48,7 @@ automation:
     action:
       - service: notify.mobile_app_martin_iphonexs
         data:
-          message: "Fraser's TV Turned On!"
+          message: "Turning off Farsers TV"
           data: 
             push:
               category: tvalarm
@@ -69,3 +69,36 @@ automation:
         message: "Turn off your TV and go to sleep"
         # Delay needs to be long enough to allow text to be read aloud
         delay: "00:00:05"
+
+  - alias: Turn off power to Frasers TV if on 1hr after curfew
+    trigger:
+      platform: state
+      entity_id: media_player.frasertv
+      to: 'on'
+      for:
+        minutes: 3
+    condition:
+      condition: time
+      after: '23:00:00'
+      before: '06:00:00'
+    action:
+      - service: notify.mobile_app_martin_iphonexs
+        data:
+          message: "Cutting power to Fraser's TV"
+          data: 
+            push:
+              category: tvalarm
+      - service: homeassistant.turn_off
+        entity_id: switch.lwrf_loft_fraser_tv
+
+  - alias: Restore power to Frasers TV
+    trigger:
+      - platform: time
+        at: "06:00:00"
+    condition:
+      condition: state
+      entity_id: switch.lwrf_loft_fraser_tv
+      state: 'off'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.lwrf_loft_fraser_tv
