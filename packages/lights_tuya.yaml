@@ -6,7 +6,7 @@ homeassistant:
     light.2424806784f3eb2103c8:
       friendly_name: "Spot Light 1"
       icon: mdi:spotlight-beam
-    light.12204702ecfabc20a0a1:
+    light.10140877d8bfc0decb09:
       friendly_name: "Spot Light 2"
       icon: mdi:spotlight-beam
     light.12204702807d3a252d9b:
