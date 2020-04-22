@@ -81,21 +81,21 @@ switch:
   - platform: rfxtrx
     automatic_add: false
     devices:
-      0a140000f4f6ad01000080:
+      0a14000d03922005010080:
         name: lwrf_conservatory_1
-      0a140002f4f6ad02000080:
+      0a14002703922004010080:
         name: lwrf_conservatory_2
-      0a14001203922102000060:
+      0a14001303922102010080:
         name: lwrf_livingroom_standard_lamp
-      0a14000103922103010070:
+      0a14001a03922103010080:
         name: lwrf_displaycabinetlight
-      0a14009503922104010060:
+      0a14001f03922104010080:
         name: lwrf_waxburner
-      0a14000df50db80d000070:
+      0a14002403922202010080:
         name: lwrf_diningroom_rennie_mac_lamp
-      0a14000803922301010080:
+      0a14002903922301010080:
         name: lwrf_hall_socket_1
-      0a14001303922302010080:
+      0a14002d03922302010080:
         name: lwrf_hall_socket_2
       0a14003e03922401000080:
         name: lwrf_loft_fraser_tv
