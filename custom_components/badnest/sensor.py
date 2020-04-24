@@ -32,14 +32,7 @@ async def async_setup_platform(hass,
         _LOGGER.info(f"Adding nest temp sensor uuid: {sensor}")
         temperature_sensors.append(NestTemperatureSensor(sensor, api))
 
-    hw_sensors = []
-    _LOGGER.info("Adding hot water sensors")
-    for hotwater in api['hotwatercontrollers']:
-        _LOGGER.info(f"Adding nest hot water sensor uuid: {hotwater}")
-        hw_sensors.append(NestHWSensor(hotwater, api))
-
     async_add_entities(temperature_sensors)
-    async_add_entities(hw_sensors)
 
     protect_sensors = []
     _LOGGER.info("Adding protect sensors")
@@ -97,43 +90,6 @@ class NestTemperatureSensor(Entity):
             ATTR_BATTERY_LEVEL:
                 self.device.device_data[self.device_id]['battery_level']
         }
-
-
-class NestHWSensor(Entity):
-    """Implementation of the Nest Hot Water sensor."""
-
-    def __init__(self, device_id, api):
-        """Initialize the sensor."""
-        self._name = "Nest Hot Water Sensor"
-        self.device_id = device_id
-        self.device = api
-
-    @property
-    def unique_id(self):
-        """Return an unique ID."""
-        return self.device_id + '_hw'
-
-    @property
-    def name(self):
-        """Return the name of the sensor."""
-        return "{0} Hot Water".format(self.device.device_data[self.device_id]['name'])
-
-    @property
-    def icon(self):
-        """Return the icon to use in the frontend."""
-        return "mdi:water"
-
-    @property
-    def state(self):
-        """Return the state of the sensor."""
-        if self.device.device_data[self.device_id]['hot_water_active']:
-            return 'On'
-        else:
-            return 'Off'
-
-    def update(self):
-        """Get the latest data from the Protect and updates the states."""
-        self.device.update()
 
 
 class NestProtectSensor(Entity):

@@ -1,0 +1,54 @@
+####################################################
+#             HACS: Custom Components              #
+####################################################
+# https://github.com/USA-RedDragon/badnest
+badnest:
+  user_id: !secret badnest_userid
+  access_token: !secret badnest_token
+  region: eu
+
+##################################################
+## Components/Sensors
+##################################################
+climate:
+  - platform: badnest
+    scan_interval: 10
+
+sensor:
+  # - platform: badnest
+
+  - platform: mqtt
+    name: "Hot Water Tank Temperature"
+    icon: mdi:thermometer
+    state_topic: "tele/sonoff_hotwater/SENSOR"
+    value_template: "{{ value_json['DS18B20'].Temperature }}"
+    unit_of_measurement: '°C'
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+  - platform: template
+    sensors:
+      hot_water_boost_status:
+        friendly_name: "Hot Water Boost Status"
+        value_template: "{{ state_attr('water_heater.hallway_thermostat_hot_water', 'boost_mode_status') }}"
+
+water_heater:
+  - platform: badnest
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.hot_water_tank_temperature
+      - sensor.hot_water_boost_status
+      - water_heater.hallway_thermostat_hot_water
+
+history:
+  include:
+    entities:
+      - sensor.hot_water_tank_temperature
+      - sensor.hot_water_boost_status
+      - water_heater.hallway_thermostat_hot_water

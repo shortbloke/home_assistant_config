@@ -1,11 +1,12 @@
 boost_hot_water:
-  description:
-    "Set the boost mode ON or OFF defining the period of time for the boost."
+  description: Turn boost mode on for the period of time specified, or off."
   fields:
     entity_id:
-      {
-        description: Enter the entity_id for the device reuired to set the boost mode.,
-        example: "water_heater.hot_water",
-      }
-    time_period: { description: Set the time period in minutes for the boost., example: 30}
-    on_off: { description: Set the boost function on or off., example: "on" }
+      description: Name(s) of entites to change.
+      example: "water_heater.hot_water"
+    time_period:
+      description: Time period in minutes for the boost.
+      example: 30
+    boost_mode:
+      description: Enable boost funcion.
+      example: True

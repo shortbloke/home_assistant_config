@@ -116,10 +116,7 @@ class NestClimate(ClimateDevice):
 
         if self.device.device_data[device_id]['target_humidity_enabled']:
             self._support_flags = self._support_flags | SUPPORT_TARGET_HUMIDITY
-
-    async def async_added_to_hass(self):
-        """When entity is added to Home Assistant."""
-        self.hass.data[self.entity_id] = self.device_id
+            
 
     @property
     def unique_id(self):
@@ -160,7 +157,7 @@ class NestClimate(ClimateDevice):
     def target_humidity(self):
         """Return the target humidity."""
         return self.device.device_data[self.device_id]['target_humidity']
-
+        
     @property
     def min_humidity(self):
         """Return the min target humidity."""
