@@ -190,9 +190,12 @@ class NestWaterHeater(WaterHeaterDevice):
         # heating_active - true if hot water is currently being heated.
         # So it is either on via schedule or boost and currently firing
         # (demand on) the boiler
-        if self.device.device_data[self.device_id]['hot_water_actively_heating']:
-            boiler_firing = self.device.device_data[self.device_id]['hot_water_actively_heating']
-            data[ATTR_HEATING_ACTIVE] = boiler_firing
+        if self.device.device_data[self.device_id]['hot_water_status']:
+            if self.device.device_data[self.device_id]['hot_water_actively_heating']:
+                boiler_firing = self.device.device_data[self.device_id]['hot_water_actively_heating']
+                data[ATTR_HEATING_ACTIVE] = boiler_firing
+            else:
+                data[ATTR_HEATING_ACTIVE] = False
         else:
             data[ATTR_HEATING_ACTIVE] = False
 
