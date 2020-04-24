@@ -72,7 +72,7 @@ sensor:
     name: Ensuite Shower Uses Today
     entity_id: binary_sensor.ensuite_shower_active
     type: count
-    state: 'On'
+    state: 'on'
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
 
@@ -80,7 +80,7 @@ sensor:
     name: Family Bathroom Shower Uses Today
     entity_id: binary_sensor.family_bathroom_shower_active
     type: count
-    state: 'On'
+    state: 'on'
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
 
@@ -88,7 +88,7 @@ sensor:
     name: Ensuite Shower Time Today
     entity_id: binary_sensor.ensuite_shower_active
     type: time
-    state: 'On'
+    state: 'on'
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
 
@@ -96,7 +96,7 @@ sensor:
     name: Family Bathroom Shower Time Today
     entity_id: binary_sensor.family_bathroom_shower_active
     type: time
-    state: 'On'
+    state: 'on'
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
 
