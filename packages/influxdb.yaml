@@ -36,6 +36,7 @@ influxdb:
       - sensor.owl_intuition_solar_exported_today
       - sensor.owl_intuition_solar_generated_today
       # Showers and Hot Water
+      - water_heater.hallway_thermostat_hot_water
       - sensor.hot_water_tank_temperature
       - sensor.ensuite_shower_power
       - sensor.family_bathroom_shower_power
