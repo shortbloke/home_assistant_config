@@ -51,10 +51,18 @@ binary_sensor:
     sensors:
       ensuite_shower_active:
         friendly_name: "Ensuite Shower Active"
-        value_template: "{{ state_attr('switch.ensuite_shower', 'Power')| float > 4.2 }}"
+        value_template: "{{ state_attr('switch.ensuite_shower', 'Power')| float > 4.0 }}"
+        delay_on:
+          seconds: 20
+        delay_off:
+          seconds: 20
       family_bathroom_shower_active:
         friendly_name: "Familiy Bathroom Shower Active"
-        value_template: "{{ state_attr('switch.family_bathroom_shower', 'Power')| float > 4.2 }}"
+        value_template: "{{ state_attr('switch.family_bathroom_shower', 'Power')| float > 4.0 }}"
+        delay_on:
+          seconds: 20
+        delay_off:
+          seconds: 20
 
 sensor:
   - platform: template
