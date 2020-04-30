@@ -42,7 +42,7 @@ logbook:
 
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: warning
+  default: error
   # logs:
   #   homeassistant.components.alexa: debug
   #   homeassistant.components.samsungtv: debug
