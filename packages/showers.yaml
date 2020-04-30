@@ -7,9 +7,9 @@ homeassistant:
       icon: mdi:counter
     sensor.family_bathroom_shower_uses_today:
       icon: mdi:counter
-    sensor.ensuite_shower_time_today:
+    sensor.ensuite_shower_minutes:
       icon: mdi:clock-outline
-    sensor.family_bathroom_shower_time_today:
+    sensor.family_bathroom_shower_minutes:
       icon: mdi:clock-outline
 
 ##################################################
@@ -75,6 +75,12 @@ sensor:
         friendly_name: "Familiy Bathroom Shower Power (W)"
         value_template: "{{ state_attr('switch.family_bathroom_shower', 'Power')| float }}"
         unit_of_measurement: 'W'
+      ensuite_shower_minutes:
+        friendly_name: "Ensuite Shower Time"
+        value_template: "{{ state_attr('sensor.ensuite_shower_time_today', 'value') }}"
+      family_bathroom_shower_minutes:
+        friendly_name: "Family Bathroom Shower Time"
+        value_template: "{{ state_attr('sensor.family_bathroom_shower_time_today', 'value') }}"
 
   - platform: history_stats
     name: Ensuite Shower Uses Today
