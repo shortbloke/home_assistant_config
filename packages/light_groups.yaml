@@ -34,23 +34,27 @@ group:
       entities:
         - switch.lwrf_conservatory_1
         - switch.lwrf_conservatory_2
-    frasers_room_lights:
-      name: Frasers Lights
-      entities:
-        - light.2424806784f3eb2103c8
-        - light.12204702ecfabc20a0a1
-        - light.12204702807d3a252d9b
-        - light.01802003cc50e3501f3e
-    morgans_strip_lights:
-      name: Morgans Strip Lights
-      entities:
-        - light.wifi_ufo_1
-        - light.wifi_ufo_2
-        - light.wifi_ufo_3
-        - light.wifi_ufo_4
-      icon: mdi:led-strip-variant
-    morgans_room_lights:
-      name: Morgans Lights
-      entities:
-        - group.morgans_strip_lights
-        - light.lwrf_morgan_main
+
+##################################################
+## Light Groups
+##################################################
+light:
+  - platform: group
+    name: Morgans Strip Lights
+    entities:
+      - light.wifi_ufo_1
+      - light.wifi_ufo_2
+      - light.wifi_ufo_3
+      - light.wifi_ufo_4
+  - platform: group
+    name: Morgans Lights
+    entities:
+      - light.morgans_strip_lights
+      - light.lwrf_morgan_main
+  - platform: group
+    name: Frasers Lights
+    entities:
+      - light.2424806784f3eb2103c8
+      - light.12204702ecfabc20a0a1
+      - light.12204702807d3a252d9b
+      - light.01802003cc50e3501f3e
