@@ -16,6 +16,7 @@ homeassistant:
 sensor:
   - platform: deluge
     host: !secret deluge_host
+    port: 58846
     username: !secret deluge_username
     password: !secret deluge_password
     monitored_variables:
