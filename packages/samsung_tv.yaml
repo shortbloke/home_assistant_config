@@ -23,12 +23,14 @@ recorder:
       - media_player.frasertv
       - media_player.ironing_room_tv
       - media_player.living_room_tv
+      - switch.lwrf_loft_fraser_tv
 history:
   include:
       entities:
       - media_player.frasertv
       - media_player.ironing_room_tv
       - media_player.living_room_tv
+      - switch.lwrf_loft_fraser_tv
 
 ##################################################
 ## Automation
@@ -40,15 +42,15 @@ automation:
       entity_id: media_player.frasertv
       to: 'on'
       for:
-        minutes: 4
+        minutes: 6
     condition:
       condition: time
       after: '22:00:00'
-      before: '06:00:00'
+      before: '06:59:00'
     action:
       - service: notify.mobile_app_martin_iphonexs
         data:
-          message: "Turning off Farsers TV"
+          message: "Turning off Frasers TV"
           data: 
             push:
               category: tvalarm
@@ -76,11 +78,11 @@ automation:
       entity_id: media_player.frasertv
       to: 'on'
       for:
-        minutes: 3
+        minutes: 5
     condition:
       condition: time
-      after: '23:00:00'
-      before: '06:00:00'
+      after: '22:30:00'
+      before: '06:59:00'
     action:
       - service: notify.mobile_app_martin_iphonexs
         data:
@@ -94,11 +96,7 @@ automation:
   - alias: Restore power to Frasers TV
     trigger:
       - platform: time
-        at: "06:00:00"
-    condition:
-      condition: state
-      entity_id: switch.lwrf_loft_fraser_tv
-      state: 'off'
+        at: "07:00:00"
     action:
       - service: homeassistant.turn_on
         entity_id: switch.lwrf_loft_fraser_tv
