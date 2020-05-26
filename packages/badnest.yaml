@@ -15,18 +15,6 @@ climate:
     scan_interval: 10
 
 sensor:
-  # - platform: badnest
-
-  - platform: mqtt
-    name: "Hot Water Tank Temperature"
-    icon: mdi:thermometer
-    state_topic: "tele/sonoff_hotwater/SENSOR"
-    value_template: "{{ value_json['DS18B20'].Temperature }}"
-    unit_of_measurement: '°C'
-    qos: 1
-    payload_available: "Online"
-    payload_not_available: "Offline"
-
   - platform: template
     sensors:
       hot_water_boost_status:

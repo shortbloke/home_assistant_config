@@ -1,0 +1,137 @@
+##################################################
+## Components/Sensors
+##################################################
+input_select:
+  garage_multi_motion_status:
+    name: Garage Multi Motion Status
+    options:
+      - idle
+      - motion
+    initial: motion
+
+switch:
+  - platform: mqtt
+    name: "Sonoff Garage Light"
+    state_topic: "stat/sonoff_garage_light/POWER"
+    command_topic: "cmnd/sonoff_garage_light/POWER"
+    availability_topic: "tele/sonoff_garage_light/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+binary_sensor:
+  - platform: mqtt
+    name: "Garage Multi Motion Sensor"
+    state_topic: "stat/garage_multisensor/PIR1"
+    device_class: motion
+    payload_on: "ON"
+    payload_off: "OFF"
+
+sensor:
+  - platform: mqtt
+    name: "Hot Water Tank Temperature"
+    icon: mdi:thermometer
+    state_topic: "tele/garage_multisensor/SENSOR"
+    value_template: "{{ value_json['DS18B20'].Temperature }}"
+    unit_of_measurement: '°C'
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+  - platform: mqtt
+    name: "Water Softner Salt Level"
+    icon: mdi:water-pump
+    state_topic: "tele/garage_multisensor/SENSOR"
+    value_template: "{{ value_json['SR04'].Distance }}"
+    unit_of_measurement: 'cm'
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+  - platform: template
+    sensors:
+      garage_motion_status:
+        value_template: "{{ states.input_select.garage_multi_motion_status.state }}"
+        friendly_name: "Garage Motion Status"
+
+##################################################
+## Automation
+##################################################
+automation:
+  - alias: Alert on low salt Level
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.water_softner_salt_level
+        above: 42
+    action:
+      - service: notify.martin
+        data_template:
+          title: "Water Softner"
+          message: "Check Salt Level"
+# When we detect motion, set status to Motion
+  - alias: Garage multisensor motion detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.garage_multi_motion_sensor
+        to: 'on'
+      - platform: state
+        entity_id: switch.sonoff_garage_light
+        to: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.garage_multi_motion_status
+          option: 'motion'
+
+# No Motion for 15 minutes, set to idle
+  - alias: Garage multisensor no motion detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.garage_multi_motion_sensor
+        to: 'off'
+        for:
+          minutes: 15
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.garage_multi_motion_status
+          option: 'idle'
+
+  - alias: Garage multisensor light left on no motion
+    trigger:
+      - platform: state
+        entity_id: sensor.garage_multisensor_motion_status
+        to: 'idle'
+    condition:
+      condition: state
+      entity_id: switch.sonoff_garage_light
+      state: 'on'
+    action:
+      - service: notify.martin
+        data:
+          title: "Garage Alert!"
+          message: "Light left on. Turning off."
+      - service: homeassistant.turn_off
+        entity_id: switch.sonoff_garage_light
+
+##################################################
+## Recorder/History
+##################################################
+recorder:
+  include:
+    entities:
+      - sensor.garage_multi_motion_status
+      - sensor.garage_multisensor_motion_status
+      - sensor.hot_water_tank_temperature
+      - sensor.water_softner_salt_level
+
+history:
+  include:
+    entities:
+      - sensor.garage_multi_motion_status
+      - sensor.garage_multisensor_motion_status
+      - sensor.hot_water_tank_temperature
+      - sensor.water_softner_salt_level
