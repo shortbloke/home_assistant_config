@@ -7,7 +7,7 @@ import pysonos
 from pysonos import alarms
 from pysonos.exceptions import SoCoException
 
-from homeassistant.components.switch import ENTITY_ID_FORMAT, SwitchDevice
+from homeassistant.components.switch import ENTITY_ID_FORMAT, SwitchEntity
 from homeassistant.util import slugify
 
 from . import (
@@ -96,7 +96,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     hass.async_add_executor_job(_discovery)
 
 
-class SonosAlarmSwitch(SwitchDevice):
+class SonosAlarmSwitch(SwitchEntity):
     """Switch class for Sonos alarms."""
 
     def __init__(self, soco, alarm):
