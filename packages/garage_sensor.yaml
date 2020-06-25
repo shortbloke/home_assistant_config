@@ -65,7 +65,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.water_softner_salt_level
-        above: 42
+        above: 50
     action:
       - service: notify.martin
         data_template:
