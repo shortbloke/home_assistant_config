@@ -144,6 +144,9 @@ def _catch_login_errors(func) -> Callable:
 
     @functools.wraps(func)
     async def wrapper(*args, **kwargs) -> Any:
+        instance = args[0]
+        if hasattr(instance, "check_login_changes"):
+            instance.check_login_changes()
         try:
             result = await func(*args, **kwargs)
         except AlexapyLoginError as ex:  # pylint: disable=broad-except
@@ -180,12 +183,10 @@ def _catch_login_errors(func) -> Callable:
                         "%s: Alexa API disconnected; attempting to relogin",
                         hide_email(email),
                     )
-                    if login.status and not await test_login_status(
-                        hass, config_entry, login, setup_alexa
-                    ):
-                        login.status = {}
+                    if login.status:
                         await login.reset()
                         await login.login()
+                        await test_login_status(hass, config_entry, login, setup_alexa)
             return None
         return result
 
