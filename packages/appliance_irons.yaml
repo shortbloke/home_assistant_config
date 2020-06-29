@@ -134,7 +134,7 @@ automation:
   - alias: Ironing room motion detected
     trigger:
       - platform: state
-        entity_id: sensor.ironing_room_motion
+        entity_id: binary_sensor.motion_sensor_ironing_room
         to: 'on'
     action:
       - service: input_select.select_option
@@ -146,7 +146,7 @@ automation:
   - alias: Ironing room no motion 30 mins
     trigger:
       - platform: state
-        entity_id: sensor.ironing_room_motion
+        entity_id: binary_sensor.motion_sensor_ironing_room
         to: 'off'
         for:
           minutes: 30
