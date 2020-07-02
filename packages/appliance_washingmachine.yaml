@@ -3,9 +3,6 @@
 ##################################################
 homeassistant:
   customize:
-    switch.washing_machine:
-      friendly_name: "Washing Machine"
-      icon: mdi:washing-machine
     sensor.washing_machine_power:
       icon: mdi:flash
     sensor.washing_machine_power_today:

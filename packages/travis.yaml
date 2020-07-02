@@ -1,14 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize: 
-    sensor.travis_build_label:
-      hidden: true
-    sensor.travis_status:
-      hidden: true
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:

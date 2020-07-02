@@ -5,37 +5,22 @@ homeassistant:
   customize:
     sensor.ironing_room_motion_status:
       icon: mdi-motion-sensor
-    switch.laurastar_iron:
-      friendly_name: "Laurastar Iron"
-      icon: mdi:power-socket-uk
     sensor.laurastar_iron_power:
       icon: mdi:flash
     sensor.laurastar_iron_power_today:
       icon: mdi:counter
-    switch.irons_left:
-      friendly_name: "Irons (Left)"
-      icon: mdi:power-socket-uk
     sensor.irons_left_power:
       icon: mdi:flash
     sensor.irons_left_power_today:
       icon: mdi:counter
-    switch.irons_right:
-      friendly_name: "Irons (Right)"
-      icon: mdi:power-socket-uk
     sensor.irons_right_power:
       icon: mdi:flash
     sensor.irons_right_power_today:
       icon: mdi:counter
-    switch.ironing_table:
-      friendly_name: "Ironing Table"
-      icon: mdi:power-socket-uk
     sensor.ironing_table_power:
       icon: mdi:flash
     sensor.ironing_table_power_today:
       icon: mdi:counter
-    switch.magpie_iron:
-      friendly_name: "Magpie Iron"
-      icon: mdi:power-socket-uk
     sensor.magpie_iron_power:
       icon: mdi:flash
     sensor.magpie_iron_power_today:

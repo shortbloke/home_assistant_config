@@ -3,9 +3,6 @@
 ##################################################
 homeassistant:
   customize:
-    switch.dishwasher:
-      friendly_name: "Dishwasher"
-      icon: mdi:dishwasher
     sensor.dishwasher_power:
       icon: mdi:flash 
     sensor.dishwasher_power_today:
