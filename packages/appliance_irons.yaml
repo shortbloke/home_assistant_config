@@ -104,7 +104,7 @@ sensor:
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room"
       ironing_room_power_cost_today:
-        value_template: "{{ (states('sensor.ironing_room_total_power_today') |float * 0.10624 ) | round(2) }}"
+        value_template: "{{ (states('sensor.ironing_room_total_power_today') |float * 0.107415 ) | round(2) }}"
         unit_of_measurement: 'GBP'
         friendly_name: "Power Cost Today - Ironing Room"
       ironing_room_motion_status: 
