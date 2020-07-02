@@ -10,9 +10,9 @@ homeassistant:
     sensor.owl_intuition_electricity_radio:
       friendly_name: Owl Signal
 
-    sensor.owl_intuition_electricity_power_p1:
+    sensor.owl_intuition_electricity_power:
       friendly_name: Electricity Using
-    sensor.owl_intuition_electricity_today_p1:
+    sensor.owl_intuition_electricity_today:
       friendly_name: Electricity Used Today
     sensor.owl_intuition_cost_today:
       friendly_name: Electricity Cost Today
@@ -46,8 +46,8 @@ sensor:
 recorder:
   include:
     entities:
-      - sensor.owl_intuition_electricity_power_p1
-      - sensor.owl_intuition_electricity_today_p1
+      - sensor.owl_intuition_electricity_power
+      - sensor.owl_intuition_electricity_today
       - sensor.owl_intuition_cost_today
       - sensor.owl_intuition_solar_generating
       - sensor.owl_intuition_solar_exporting
@@ -57,8 +57,8 @@ recorder:
 history:
   include:
     entities:
-      - sensor.owl_intuition_electricity_power_p1
-      - sensor.owl_intuition_electricity_today_p1
+      - sensor.owl_intuition_electricity_power
+      - sensor.owl_intuition_electricity_today
       - sensor.owl_intuition_cost_today
       - sensor.owl_intuition_solar_generating
       - sensor.owl_intuition_solar_exporting
