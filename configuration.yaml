@@ -44,10 +44,10 @@ logbook:
 logger:
   default: error
   # logs:
-  #   homeassistant.components.alexa: debug
-  #   homeassistant.components.samsungtv: debug
-  #   samsungctl: debug
-  #   custom_components.samsungtv: debug
+    # homeassistant.components.alexa: debug
+    # homeassistant.components.samsungtv: debug
+    # samsungctl: debug
+    # custom_components.samsungtv: debug
     # homeassistant.components.zha: debug
     # zigpy.zdo: debug
     # zigpy.application: debug
