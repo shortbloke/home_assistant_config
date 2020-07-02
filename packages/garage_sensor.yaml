@@ -103,7 +103,7 @@ automation:
   - alias: Garage multisensor light left on no motion
     trigger:
       - platform: state
-        entity_id: sensor.garage_multisensor_motion_status
+        entity_id: sensor.garage_motion_status
         to: 'idle'
     condition:
       condition: state
@@ -124,7 +124,7 @@ recorder:
   include:
     entities:
       - sensor.garage_multi_motion_status
-      - sensor.garage_multisensor_motion_status
+      - binary_sensor.garage_multi_motion_sensor
       - sensor.hot_water_tank_temperature
       - sensor.water_softner_salt_level
 
@@ -132,6 +132,6 @@ history:
   include:
     entities:
       - sensor.garage_multi_motion_status
-      - sensor.garage_multisensor_motion_status
+      - binary_sensor.garage_multi_motion_sensor
       - sensor.hot_water_tank_temperature
       - sensor.water_softner_salt_level
