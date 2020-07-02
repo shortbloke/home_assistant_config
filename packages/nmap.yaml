@@ -1,8 +1,0 @@
-##################################################
-## Components/Sensors
-##################################################
-device_tracker:
-    # https://www.home-assistant.io/components/nmap_tracker/
-  - platform: nmap_tracker
-    hosts: 192.168.200.180-254
-    
