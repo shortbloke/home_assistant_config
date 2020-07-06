@@ -100,18 +100,23 @@ notify:
   - name: adults
     platform: group
     services:
-      - service: ios_martins_iphone
-      - service: ios_michelles_iphone
+      - service: mobile_app_martin_iphonexs
+      - service: mobile_app_michelles_iphone
 
   - name: martin
     platform: group
     services:
-      - service: ios_martins_iphone
+      - service: mobile_app_martin_iphonexs
 
   - name: michelle
     platform: group
     services:
-      - service: ios_michelles_iphone
+      - service: mobile_app_michelles_iphone
+
+  - name: morgan
+    platform: group
+    services:
+      - service: mobile_app_morgans_iphone_7
 
 # https://www.home-assistant.io/components/tts/
 tts:
