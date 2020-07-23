@@ -140,7 +140,6 @@ tts:
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
   debug: False
-  dummy: False
 
 ####################################################
 #                General Automation                #
