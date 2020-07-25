@@ -1,80 +1,80 @@
-########################################################################
-# Dexcom CGM Interface
-# https://community.home-assistant.io/t/rest-question/98222/19
-# https://community.home-assistant.io/t/help-with-json-dexcom-cgm-data/143564
-########################################################################
+# ########################################################################
+# # Dexcom CGM Interface
+# # https://community.home-assistant.io/t/rest-question/98222/19
+# # https://community.home-assistant.io/t/help-with-json-dexcom-cgm-data/143564
+# ########################################################################
 
-sensor:
-  - platform: rest
-    name: martingay_cgm
-    resource: !secret nightscout_url
-    value_template: >
-      sgv:{{value_json[0].sgv}}, direction:{{value_json[0].direction}}
+# sensor:
+#   - platform: rest
+#     name: martingay_cgm
+#     resource: !secret nightscout_url
+#     value_template: >
+#       sgv:{{value_json[0].sgv}}, direction:{{value_json[0].direction}}
 
-  - platform: template
-    sensors:
-      martingay_cgm_sgv:
-        value_template: >
-          {{ (states('sensor.martingay_cgm') | regex_findall_index("sgv:(\d+)") | float / 18) | round(1) }}
-        unit_of_measurement: "mmol/L"
-      martingay_cgm_direction:
-        value_template: >
-          {{ states('sensor.martingay_cgm') | regex_findall_index("direction:(\w+)") }}
+#   - platform: template
+#     sensors:
+#       martingay_cgm_sgv:
+#         value_template: >
+#           {{ (states('sensor.martingay_cgm') | regex_findall_index("sgv:(\d+)") | float / 18) | round(1) }}
+#         unit_of_measurement: "mmol/L"
+#       martingay_cgm_direction:
+#         value_template: >
+#           {{ states('sensor.martingay_cgm') | regex_findall_index("direction:(\w+)") }}
 
-##################################################
-## Automation
-##################################################
-automation:
-  alias: Martin Sugar Level
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.martingay_cgm_sgv
-      above: 8
-      for:
-        minutes: 10
-    - platform: numeric_state
-      entity_id: sensor.martingay_cgm_sgv
-      below: 3
-      for:
-        minutes: 10
-  action:
-    service: notify.alexa_media
-    data_template:
-      data:
-        type: announce
-      target: media_player.conservatory_echo_dot
-      message: >
-        Hello Martin. Your blood sugar level is {{ states("sensor.martingay_cgm_sgv") }}.
-        {% if (states("sensor.martingay_cgm_sgv") | float) <= 3.0 %}
-        {{ [
-          "You're having a low!",
-          "Hypo Time!",
-          "I don't think a diabetic coma would be fun, do you?",
-          "Only diabetics get to eat sweets throughout the day and night.",
-          "Better work out what you did wrong this time."
-        ] | random }}
-        {% elif (states("sensor.martingay_cgm_sgv") | float) > 8.0 %}
-        {{ [
-          "Your sugar levels are creeping up!",
-          "Did you take your insulin? You may need to take some more.",
-          "You'd think with all this technology you'd be able to keep your levels in check!",
-          "Have you been eating something you shouldn't",
-          "High sugar levels kill you slowly, is that what you want?"
-        ] | random }}
-        {% endif %}
+# ##################################################
+# ## Automation
+# ##################################################
+# automation:
+#   alias: Martin Sugar Level
+#   trigger:
+#     - platform: numeric_state
+#       entity_id: sensor.martingay_cgm_sgv
+#       above: 8
+#       for:
+#         minutes: 10
+#     - platform: numeric_state
+#       entity_id: sensor.martingay_cgm_sgv
+#       below: 3
+#       for:
+#         minutes: 10
+#   action:
+#     service: notify.alexa_media
+#     data_template:
+#       data:
+#         type: announce
+#       target: media_player.conservatory_echo_dot
+#       message: >
+#         Hello Martin. Your blood sugar level is {{ states("sensor.martingay_cgm_sgv") }}.
+#         {% if (states("sensor.martingay_cgm_sgv") | float) <= 3.0 %}
+#         {{ [
+#           "You're having a low!",
+#           "Hypo Time!",
+#           "I don't think a diabetic coma would be fun, do you?",
+#           "Only diabetics get to eat sweets throughout the day and night.",
+#           "Better work out what you did wrong this time."
+#         ] | random }}
+#         {% elif (states("sensor.martingay_cgm_sgv") | float) > 8.0 %}
+#         {{ [
+#           "Your sugar levels are creeping up!",
+#           "Did you take your insulin? You may need to take some more.",
+#           "You'd think with all this technology you'd be able to keep your levels in check!",
+#           "Have you been eating something you shouldn't",
+#           "High sugar levels kill you slowly, is that what you want?"
+#         ] | random }}
+#         {% endif %}
 
 
-##################################################
-## Recorder/History
-##################################################
-recorder:
-  include:
-    entities:
-      - sensor.martingay_cgm_sgv
-      - sensor.martingay_cgm_direction
+# ##################################################
+# ## Recorder/History
+# ##################################################
+# recorder:
+#   include:
+#     entities:
+#       - sensor.martingay_cgm_sgv
+#       - sensor.martingay_cgm_direction
 
-history:
-  include:
-    entities:
-      - sensor.martingay_cgm_sgv
-      - sensor.martingay_cgm_direction
+# history:
+#   include:
+#     entities:
+#       - sensor.martingay_cgm_sgv
+#       - sensor.martingay_cgm_direction
