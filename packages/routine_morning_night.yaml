@@ -19,7 +19,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sun.sun
-        value_template: "{{ state.attributes.elevation }}"
+        value_template: "{{ state_attr('sun.sun', 'elevation') }}"
         above: 10.0
     action:
       - service: homeassistant.turn_off
