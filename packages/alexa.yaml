@@ -15,9 +15,6 @@ alexa:
         # Unknown location
         - light.12204702807d3a1b7075
         - light.12204702807d3a252c69
-        # Living Room
-        - light.flamerite_dimmer1
-        - light.flamerite_dimmer2
         # Outside Front
         - light.driveway_light
       include_entities:

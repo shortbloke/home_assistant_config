@@ -3,56 +3,6 @@
 ##################################################
 homeassistant:
   customize:
-    # Dimmer Lights
-    light.lwrf_diningroom_main:
-      friendly_name: "Table Lights"
-      icon: mdi:vanity-light
-      assumed_state: false
-    light.lwrf_livingroom_main:
-      friendly_name: "Downlights"
-      icon: mdi:ceiling-light
-      assumed_state: false
-    light.lwrf_morgan_main:
-      friendly_name: "Bedroom Lights"
-      icon: mdi:track-light
-      assumed_state: false
-    # Sockets 
-    switch.lwrf_conservatory_1:
-      friendly_name: "Ceiling Lights"
-      icon: mdi:led-strip-variant
-      assumed_state: false
-    switch.lwrf_conservatory_2:
-      friendly_name: "Window Lamp"
-      icon: mdi:lamp
-      assumed_state: false
-    switch.lwrf_livingroom_standard_lamp:
-      friendly_name: "Standard Lamp"
-      icon: mdi:floor-lamp
-      assumed_state: false
-    switch.lwrf_displaycabinetlight:
-      friendly_name: "Display Cabinet Light"
-      icon: mdi:track-light
-      assumed_state: false
-    switch.lwrf_diningroom_rennie_mac_lamp:
-      friendly_name: "Rennie Mac Lamp"
-      icon: mdi:lamp
-      assumed_state: false
-    switch.lwrf_waxburner:
-      friendly_name: "Wax Burner"
-      icon: mdi:radiator
-      assumed_state: false
-    switch.lwrf_hall_socket_1:
-      friendly_name: "Twig Lights"
-      icon: mdi:lamp
-      assumed_state: false
-    switch.lwrf_hall_socket_2:
-      friendly_name: "Air Freshener"
-      icon: mdi:radiator
-      assumed_state: false
-    switch.lwrf_loft_fraser_tv:
-      friendly_name: "Frasers TV Power"
-      icon: mdi:television-classic-off
-      assumed_state: true
     # Scenes
     scene.bright:
       icon: mdi:lightbulb-on-outline
@@ -61,44 +11,22 @@ homeassistant:
     scene.movie:
       icon: mdi:movie
 
-##################################################
-## Components/Sensors
-##################################################
-light:
-    # https://www.home-assistant.io/components/light.rfxtrx/
-  - platform: rfxtrx
-    automatic_add: false
-    devices:
-      0a1400b303922201010060:
-        name: lwrf_diningroom_main
-      0a1400ac03922101010060:
-        name: lwrf_livingroom_main
-      0a14000a03922501010070:
-        name: lwrf_morgan_main
-
-switch:
-    # https://www.home-assistant.io/components/switch.rfxtrx/
-  - platform: rfxtrx
-    automatic_add: false
-    devices:
-      0a14000d03922005010080:
-        name: lwrf_conservatory_1
-      0a14002703922004010080:
-        name: lwrf_conservatory_2
-      0a14001303922102010080:
-        name: lwrf_livingroom_standard_lamp
-      0a14001a03922103010080:
-        name: lwrf_displaycabinetlight
-      0a14001f03922104010080:
-        name: lwrf_waxburner
-      0a14002403922202010080:
-        name: lwrf_diningroom_rennie_mac_lamp
-      0a14002903922301010080:
-        name: lwrf_hall_socket_1
-      0a14002d03922302010080:
-        name: lwrf_hall_socket_2
-      0a14003e03922401000080:
-        name: lwrf_loft_fraser_tv
+rfxtrx:
+  devices:
+    # Lights
+    0a1400b303922201100060: # lwrf_diningroom_main
+    0a1400ac03922101100060: # lwrf_livingroom_main
+    0a14000a03922501100070: # lwrf_morgan_main
+    # Switches/Sockets
+    0a14000d03922005010080: # lwrf_conservatory_1
+    0a14002703922004010080: # lwrf_conservatory_2
+    0a14001303922102010080: # lwrf_livingroom_standard_lamp
+    0a14001a03922103010080: # lwrf_displaycabinetlight
+    0a14001f03922104010080: # lwrf_waxburner
+    0a14002403922202010080: # lwrf_diningroom_rennie_mac_lamp
+    0a14002903922301010080: # lwrf_hall_socket_1
+    0a14002d03922302010080: # lwrf_hall_socket_2
+    0a14003e03922401000080: # lwrf_loft_fraser_tv
 
 ##################################################
 ## Scenes
