@@ -5,10 +5,10 @@ homeassistant:
   customize:
     sensor.ironing_room_motion_status:
       icon: mdi-motion-sensor
-    sensor.laurastar_iron_power:
-      icon: mdi:flash
-    sensor.laurastar_iron_power_today:
-      icon: mdi:counter
+    # sensor.laurastar_iron_power:
+    #   icon: mdi:flash
+    # sensor.laurastar_iron_power_today:
+    #   icon: mdi:counter
     sensor.irons_left_power:
       icon: mdi:flash
     sensor.irons_left_power_today:
@@ -49,20 +49,20 @@ tplink:
     - host: 192.168.200.22 # DHCP reservation
     - host: 192.168.200.23 # DHCP reservation
     - host: 192.168.200.24 # DHCP reservation
-    - host: 192.168.200.25 # DHCP reservation
+    # - host: 192.168.200.25 # DHCP reservation
 
 sensor:
   - platform: template
     sensors:
       # TP-Link HS110 Power Sockets Power Usage
-      laurastar_iron_power:
-        value_template: "{{ states.switch.laurastar_iron.attributes['current_power_w'].split(' ')[0] }}"
-        unit_of_measurement: 'W'
-        friendly_name: "Power - Laurastar Iron"
-      laurastar_iron_power_today:
-        value_template: "{{ states.switch.laurastar_iron.attributes['today_energy_kwh'] | float | round(3) }}"
-        unit_of_measurement: 'kWh'
-        friendly_name: "Power Today - Laurastar Iron"
+      # laurastar_iron_power:
+      #   value_template: "{{ states.switch.laurastar_iron.attributes['current_power_w'].split(' ')[0] }}"
+      #   unit_of_measurement: 'W'
+      #   friendly_name: "Power - Laurastar Iron"
+      # laurastar_iron_power_today:
+      #   value_template: "{{ states.switch.laurastar_iron.attributes['today_energy_kwh'] | float | round(3) }}"
+      #   unit_of_measurement: 'kWh'
+      #   friendly_name: "Power Today - Laurastar Iron"
       irons_left_power:
         value_template: "{{ states.switch.irons_left.attributes['current_power_w'].split(' ')[0] }}"
         unit_of_measurement: 'W'
@@ -95,12 +95,20 @@ sensor:
         value_template: "{{ states.switch.magpie_iron.attributes['today_energy_kwh'] | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Magpie Iron"
+      # ironing_room_total_power_now:
+      #   value_template: "{{ (states('sensor.laurastar_iron_power') | float + states('sensor.irons_left_power') | float + states('sensor.irons_right_power') | float + states('sensor.ironing_table_power') | float + states('sensor.magpie_iron_power') | float) | round(3) }}"
+      #   unit_of_measurement: 'W'
+      #   friendly_name: "Power Now - Ironing Room"
+      # ironing_room_total_power_today:
+      #   value_template: "{{ (states('sensor.laurastar_iron_power_today') | float + states('sensor.irons_left_power_today') | float + states('sensor.irons_right_power_today') | float + states('sensor.ironing_table_power_today') | float + states('sensor.magpie_iron_power_today') | float) | round(3) }}"
+      #   unit_of_measurement: 'kWh'
+      #   friendly_name: "Power Today - Ironing Room"
       ironing_room_total_power_now:
-        value_template: "{{ (states('sensor.laurastar_iron_power') | float + states('sensor.irons_left_power') | float + states('sensor.irons_right_power') | float + states('sensor.ironing_table_power') | float + states('sensor.magpie_iron_power') | float) | round(3) }}"
+        value_template: "{{ (states('sensor.irons_left_power') | float + states('sensor.irons_right_power') | float + states('sensor.ironing_table_power') | float + states('sensor.magpie_iron_power') | float) | round(3) }}"
         unit_of_measurement: 'W'
         friendly_name: "Power Now - Ironing Room"
       ironing_room_total_power_today:
-        value_template: "{{ (states('sensor.laurastar_iron_power_today') | float + states('sensor.irons_left_power_today') | float + states('sensor.irons_right_power_today') | float + states('sensor.ironing_table_power_today') | float + states('sensor.magpie_iron_power_today') | float) | round(3) }}"
+        value_template: "{{ (states('sensor.irons_left_power_today') | float + states('sensor.irons_right_power_today') | float + states('sensor.ironing_table_power_today') | float + states('sensor.magpie_iron_power_today') | float) | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room"
       ironing_room_power_cost_today:
@@ -226,8 +234,8 @@ recorder:
     entities:
       - sensor.ironing_room_motion_status
       - sensor.ironing_room_motion
-      - sensor.laurastar_iron_power
-      - sensor.laurastar_iron_power_today
+      # - sensor.laurastar_iron_power
+      # - sensor.laurastar_iron_power_today
       - sensor.irons_left_power
       - sensor.irons_left_power_today
       - sensor.irons_right_power
@@ -245,8 +253,8 @@ history:
     entities:
       - sensor.ironing_room_motion_status
       - sensor.ironing_room_motion
-      - sensor.laurastar_iron_power
-      - sensor.laurastar_iron_power_today
+      # - sensor.laurastar_iron_power
+      # - sensor.laurastar_iron_power_today
       - sensor.irons_left_power
       - sensor.irons_left_power_today
       - sensor.irons_right_power
