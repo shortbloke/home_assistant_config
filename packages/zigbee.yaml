@@ -71,7 +71,7 @@ automation:
         to: 'off'
     action:
       - service: climate.set_preset_mode
-        data_template:
+        data:
           entity_id: climate.hallway_house
           preset_mode: none
 

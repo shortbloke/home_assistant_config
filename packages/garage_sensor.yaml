@@ -93,7 +93,7 @@ automation:
         to: 'on'
     action:
       - service: notify.martin
-        data_template:
+        data:
           title: "Water Softner"
           message: "Check Salt Level"
 

@@ -86,7 +86,7 @@ script:
   alexa_turn_on_the_lamps_based_on_device:
     sequence:
       - service: homeassistant.turn_on
-        data_template:
+        data:
           entity_id: >-
             {# Use the name of each Echo to determine which room the command likely came from. #}
             {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
@@ -101,7 +101,7 @@ script:
   alexa_turn_off_the_lamps_based_on_device:
     sequence:
       - service: homeassistant.turn_off
-        data_template:
+        data:
           entity_id: >-
             {# Use the name of each Echo to determine which room the command likely came from. #}
             {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}

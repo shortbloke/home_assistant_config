@@ -12,7 +12,7 @@ automation:
         - sun
     action:
     - service: hassio.snapshot_full
-      data_template:
+      data:
         name: "Automated Backup {{ now().strftime('%Y-%m-%d') }}"
 
   - alias: HASSIO Dropbox Snapshot Sync
@@ -21,6 +21,6 @@ automation:
         at: "4:00:00"
     action:
       - service: hassio.addon_stdin
-        data_template:
+        data:
           addon: 7be23ff5_dropbox_sync
           input: {"command":"upload"}

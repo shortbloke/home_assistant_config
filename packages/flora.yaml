@@ -105,10 +105,9 @@ automation:
         below: 15
     action:
       - service: notify.martin
-        data_template:
+        data:
           title: "Plant Sensor"
-          message: > 
-            {{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time to water
+          message: "{{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time to water"
 
 
 ##################################################

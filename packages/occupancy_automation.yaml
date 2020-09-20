@@ -44,7 +44,7 @@ automation:
       state: 'off'
     action:
       - service: climate.set_preset_mode
-        data_template:
+        data:
           entity_id: climate.hallway_house
           preset_mode: none
 
@@ -59,7 +59,7 @@ automation:
       state: 'off'
     action:
       - service: climate.set_preset_mode
-        data_template:
+        data:
           entity_id: climate.hallway_house
           preset_mode: eco
       - service: homeassistant.turn_on
@@ -148,7 +148,7 @@ automation:
               state: 'on'
     action:
       - service: notify.martin
-        data_template:
+        data:
           title: "House Unoccupied - Things left open"
           message: "{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off.state }}], 
                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off.attributes['friendly_name']}} [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off.state }}], 

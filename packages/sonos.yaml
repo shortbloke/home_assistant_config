@@ -7,23 +7,23 @@ script:
     alias: Sonos TTS script
     sequence:
       - service: sonos.snapshot
-        data_template:
+        data:
           entity_id: "{{ sonos_entity }}"
       - service: sonos.unjoin
-        data_template:
+        data:
           entity_id: "{{ sonos_entity }}"
       - service: media_player.volume_set
-        data_template:
+        data:
           entity_id: "{{ sonos_entity }}"
           volume_level: "{{ volume }}"
       # - service: tts.voicerss_say
       - service: tts.google_translate_say
-        data_template:
+        data:
           entity_id: "{{ sonos_entity }}"
           message: "{{ message }}"
       - delay: "{{ delay }}"
       - service: sonos.restore
-        data_template:
+        data:
           entity_id: "{{ sonos_entity }}"
 
   sonos_alarm:
@@ -32,13 +32,13 @@ script:
       - service: sonos.snapshot
       - service: sonos.unjoin
       - service: media_player.volume_mute
-        data_template:
+        data:
           is_volume_muted: false
       - service: media_player.volume_set
-        data_template:
+        data:
           volume_level: "{{ volume }}"
       - service: media_player.play_media
-        data_template:
+        data:
           media_content_id: !secret siren_wav_url
           media_content_type: "audio/mp3"
       - delay: "{{ delay }}"
