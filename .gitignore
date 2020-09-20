@@ -58,3 +58,6 @@ sonoff-config-backup
 
 # Ignore contents of .vscode directory
 .vscode/*
+
+# Ignore *.ignore when temp disabling files
+*.ignore
