@@ -11,25 +11,16 @@ homeassistant:
 ####################################################
 #        Home Assistant Components Enabled         #
 ####################################################
+# https://www.home-assistant.io/integrations/default_config/
+default_config:
 # https://www.home-assistant.io/integrations/api/
 api:
-# https://www.home-assistant.io/components/config/
-config:
 # https://home-assistant.io/components/http/
 http:
   login_attempts_threshold: 100
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
-# https://www.home-assistant.io/components/map/
-map:
-# https://www.home-assistant.io/integrations/mobile_app/
-mobile_app:
-# https://www.home-assistant.io/components/person/
-person:
-# https://www.home-assistant.io/components/system_health/
-system_health:
-# https://www.home-assistant.io/components/updater/
-updater:
+
 
 ####################################################
 #      Home Assistant Core Components Global       #
@@ -44,21 +35,7 @@ logbook:
 logger:
   default: error
   # logs:
-    # homeassistant.components.alexa: debug
-    # homeassistant.components.samsungtv: debug
-    # samsungctl: debug
-    # custom_components.samsungtv: debug
-    # homeassistant.components.zha: debug
-    # zigpy.zdo: debug
-    # zigpy.application: debug
-    # zigpy.device: debug
-    # bellows.zigbee.application: debug
-    # bellows.api: debug
-    # custom_components.owlintuition: debug
-    # homeassistant.components.mobile_app: debug
-    # homeassistant.components.mqtt: debug
-    # homeassistant.components.samsungtv: info
-    # homeassistant.components.zha: debug
+    # homeassistant.components.rfxtrx: debug
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
@@ -132,14 +109,11 @@ tts:
 ####################################################
 #                     Hardware                     #
 ####################################################
-# Integrations used for: 
-#  MQTT
-#  ZHA (Zigbee)
-
 # https://www.home-assistant.io/components/rfxtrx/
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
-  debug: False
+  automatic_add: true
+  debug: true
 
 ####################################################
 #                General Automation                #
