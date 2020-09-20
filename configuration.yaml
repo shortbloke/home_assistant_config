@@ -44,20 +44,20 @@ recorder:
     domains: 
       - automation
 # Exclusion based on: https://community.home-assistant.io/t/allow-services-to-be-excluded-from-recorder-and-the-database/115237
-  exclude:
-    event_types:
-      - service_removed
-      - service_executed
-      - platform_discovered
-      - homeassistant_start
-      - homeassistant_stop
-      - feedreader
-      - service_registered
-      - call_service
-      - component_loaded
-      - logbook_entry
-      - system_log_event
-      - timer_out_of_sync
+  # exclude:
+  #   event_types:
+  #     - service_removed
+  #     - service_executed
+  #     - platform_discovered
+  #     - homeassistant_start
+  #     - homeassistant_stop
+  #     - feedreader
+  #     - service_registered
+  #     - call_service
+  #     - component_loaded
+  #     - logbook_entry
+  #     - system_log_event
+  #     - timer_out_of_sync
 
 ####################################################
 #                     Components                   #
