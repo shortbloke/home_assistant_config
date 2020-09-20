@@ -45,11 +45,11 @@ input_select:
 
 tplink:
   switch:
-    - host: 192.168.200.21 # DHCP reservation
-    - host: 192.168.200.22 # DHCP reservation
-    - host: 192.168.200.23 # DHCP reservation
-    - host: 192.168.200.24 # DHCP reservation
-    # - host: 192.168.200.25 # DHCP reservation
+    - host: 192.168.170.21 # DHCP reservation
+    - host: 192.168.170.22 # DHCP reservation
+    - host: 192.168.170.23 # DHCP reservation
+    - host: 192.168.170.24 # DHCP reservation
+    # - host: 192.168.170.25 # DHCP reservation
 
 sensor:
   - platform: template

@@ -15,7 +15,7 @@ homeassistant:
 ##################################################
 tplink:
   switch:
-    - host: 192.168.200.26 # DHCP reservation
+    - host: 192.168.170.26 # DHCP reservation
 
 input_select:
   dishwasher_status:

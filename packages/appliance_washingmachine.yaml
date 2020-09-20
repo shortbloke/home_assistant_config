@@ -15,7 +15,7 @@ homeassistant:
 ##################################################
 tplink:
   switch:
-    - host: 192.168.200.27 # DHCP reservation
+    - host: 192.168.170.27 # DHCP reservation
 
 input_select:
   washing_machine_status:

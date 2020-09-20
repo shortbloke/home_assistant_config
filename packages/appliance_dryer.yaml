@@ -15,7 +15,7 @@ homeassistant:
 ##################################################
 tplink:
   switch:
-    - host: 192.168.200.28 # DHCP reservation
+    - host: 192.168.170.28 # DHCP reservation
 
 input_select:
   dryer_status:

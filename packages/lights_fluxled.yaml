@@ -33,24 +33,24 @@ light:
   - platform: flux_led
     automatic_add: False
     devices:
-      192.168.200.31:
+      192.168.107.20:
         name: wifi_ufo_1
         mode: "rgbw"
-      192.168.200.32:
+      192.168.107.21:
         name: wifi_ufo_2
         mode: "rgbw"
-      192.168.200.33:
+      192.168.107.22:
         name: wifi_ufo_3
         mode: "rgbw"
-      192.168.200.34:
+      192.168.107.23:
         name: wifi_ufo_4
         mode: "rgbw"
-      192.168.200.35:
+      192.168.107.24:
         name: conservatory_desk
         mode: "rgb"
-      192.168.200.36:
+      192.168.107.25:
         name: conservatory_left
         mode: "w"
-      192.168.200.37:
+      192.168.107.26:
         name: conservatory_right
         mode: "w"
