@@ -55,3 +55,6 @@ www/community/*
 
 # Ignore sonoff config backups
 sonoff-config-backup
+
+# Ignore contents of .vscode directory
+.vscode/*
