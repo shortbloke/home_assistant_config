@@ -52,6 +52,7 @@ node-red/*
 # ignore custom_components
 custom_components/hacs
 www/community/*
+www/upcoming-media-card-images/*
 
 # Ignore sonoff config backups
 sonoff-config-backup

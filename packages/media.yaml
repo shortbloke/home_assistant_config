@@ -1,0 +1,36 @@
+##################################################
+## Components/Sensors
+##################################################
+sensor:
+  - platform: plex_recently_added
+    name: Recently added movies # will create sensor.plex_recently_added_
+    token: !secret plex_token
+    host: !secret plex_host
+    port: 32400
+    section_types:
+      - movie
+
+  - platform: plex_recently_added
+    name: Recently added tv # will create sensor.recently_added_tv
+    token: !secret plex_token
+    host: !secret plex_host
+    port: 32400
+    section_types:
+      - show
+
+  - platform: radarr_upcoming_media
+    api_key: !secret radarr_token
+    host: !secret radarr_host
+    port: 7878
+    days: 7
+    ssl: false
+    theaters: false
+    max: 10
+
+  - platform: sonarr_upcoming_media
+    api_key: !secret sonarr_token
+    host: !secret sonarr_host
+    port: 8989
+    days: 7
+    ssl: false
+    max: 10
