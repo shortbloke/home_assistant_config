@@ -1,0 +1,16 @@
+{
+    "config": {
+      "title": "Sonos Alarm",
+      "step": {
+        "confirm": {
+          "title": "Sonos Alarm",
+          "description": "Da li želite podesiti Sonos Alarm?"
+        }
+      },
+      "abort": {
+        "single_instance_allowed": "Samo je potrebna jedna konfiguracija Sonos Alarma.",
+        "no_devices_found": "Nije pronađen niti jedan Sonos uređaj na mreži."
+      }
+    }
+  }
+  
