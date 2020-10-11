@@ -35,7 +35,7 @@ logbook:
 logger:
   default: error
   # logs:
-    # homeassistant.components.rfxtrx: debug
+  # homeassistant.components.rfxtrx: debug
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
@@ -113,7 +113,7 @@ tts:
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
   automatic_add: true
-  debug: true
+  debug: false
 
 ####################################################
 #                General Automation                #
