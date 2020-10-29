@@ -11,23 +11,6 @@ homeassistant:
     scene.movie:
       icon: mdi:movie
 
-rfxtrx:
-  devices:
-    # Lights
-    0a1400b303922201100060: # lwrf_diningroom_main
-    0a1400ac03922101100060: # lwrf_livingroom_main
-    0a14000a03922501100070: # lwrf_morgan_main
-    # Switches/Sockets
-    0a14000d03922005010080: # lwrf_conservatory_1
-    0a14002703922004010080: # lwrf_conservatory_2
-    0a14001303922102010080: # lwrf_livingroom_standard_lamp
-    0a14001a03922103010080: # lwrf_displaycabinetlight
-    0a14001f03922104010080: # lwrf_waxburner
-    0a14002403922202010080: # lwrf_diningroom_rennie_mac_lamp
-    0a14002903922301010080: # lwrf_hall_socket_1
-    0a14002d03922302010080: # lwrf_hall_socket_2
-    0a14003e03922401000080: # lwrf_loft_fraser_tv
-
 ##################################################
 ## Scenes
 ##################################################

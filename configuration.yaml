@@ -35,7 +35,7 @@ logbook:
 logger:
   default: error
   # logs:
-  # homeassistant.components.rfxtrx: debug
+  #   RFXtrx: debug
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
@@ -105,15 +105,6 @@ tts:
     api_key: !secret voicerss_api_key
     language: "en-gb"
     format: "44khz_16bit_stereo"
-
-####################################################
-#                     Hardware                     #
-####################################################
-# https://www.home-assistant.io/components/rfxtrx/
-rfxtrx:
-  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1K5ML2-if00-port0
-  automatic_add: true
-  debug: false
 
 ####################################################
 #                General Automation                #
