@@ -55,6 +55,12 @@ class NestCamera(Camera):
 
     @property
     def should_poll(self):
+        """
+        Returns true if the poll should be run.
+
+        Args:
+            self: (todo): write your description
+        """
         return True
 
     @property
@@ -74,10 +80,22 @@ class NestCamera(Camera):
         return self._device.device_data[self._uuid]['is_streaming']
 
     def turn_off(self):
+        """
+        Turn off off off off of the timer.
+
+        Args:
+            self: (todo): write your description
+        """
         self._device.camera_turn_off(self._uuid)
         self.schedule_update_ha_state()
 
     def turn_on(self):
+        """
+        Turn on on or off.
+
+        Args:
+            self: (todo): write your description
+        """
         self._device.camera_turn_on(self._uuid)
         self.schedule_update_ha_state()
 
@@ -96,6 +114,13 @@ class NestCamera(Camera):
         return self._device.device_data[self._uuid]['name']
 
     def _ready_for_snapshot(self, now):
+        """
+        Returns a snapshot of this : attr : attr :.
+
+        Args:
+            self: (todo): write your description
+            now: (todo): write your description
+        """
         return self._next_snapshot_at is None or now > self._next_snapshot_at
 
     def camera_image(self):

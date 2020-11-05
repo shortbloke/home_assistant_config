@@ -25,6 +25,16 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def fetch(session, url, self, ssl, content):
+      """
+      Perform an http get request.
+
+      Args:
+          session: (todo): write your description
+          url: (str): write your description
+          self: (todo): write your description
+          ssl: (str): write your description
+          content: (str): write your description
+      """
     try:
         with async_timeout.timeout(8):
             async with session.get(
@@ -40,6 +50,15 @@ async def fetch(session, url, self, ssl, content):
 
 
 async def request(url, self, content=False, ssl=False):
+      """
+      Make a http request.
+
+      Args:
+          url: (str): write your description
+          self: (todo): write your description
+          content: (str): write your description
+          ssl: (todo): write your description
+      """
     async with aiohttp.ClientSession() as session:
         return await fetch(session, url, self, ssl, content)
 
@@ -78,6 +97,15 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
+    """
+    Initialize the android platform.
+
+    Args:
+        hass: (todo): write your description
+        config: (todo): write your description
+        add_devices: (list): write your description
+        discovery_info: (bool): write your description
+    """
     name = config.get(CONF_NAME)
     add_devices([PlexRecentlyAddedSensor(hass, config, name)], True)
 
@@ -85,6 +113,15 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
 class PlexRecentlyAddedSensor(Entity):
 
     def __init__(self, hass, conf, name):
+        """
+        Initialize hass configuration.
+
+        Args:
+            self: (todo): write your description
+            hass: (todo): write your description
+            conf: (dict): write your description
+            name: (str): write your description
+        """
         from pytz import timezone
         self._name = name
         self.conf_dir = str(hass.config.path()) + '/'
@@ -123,16 +160,34 @@ class PlexRecentlyAddedSensor(Entity):
 
     @property
     def name(self):
+        """
+        The name of the name
+
+        Args:
+            self: (todo): write your description
+        """
         return self._name
 
     @property
     def state(self):
+        """
+        Return the state of the server.
+
+        Args:
+            self: (todo): write your description
+        """
         if self.server_name:
             return "server_name is no longer an option, use host and port."
         return self._state
 
     @property
     def device_state_attributes(self):
+        """
+        Return a dict of device
+
+        Args:
+            self: (todo): write your description
+        """
         if self.server_name:
             return
         import math
@@ -363,6 +418,13 @@ def image_url(self, cert_check, img, resolution=200):
 
 
 def days_since(date, tz):
+    """
+    Returns the number of days since the given date.
+
+    Args:
+        date: (str): write your description
+        tz: (array): write your description
+    """
     import time
     from pytz import utc
     date = datetime.utcfromtimestamp(date).isoformat() + 'Z'
@@ -377,6 +439,13 @@ def days_since(date, tz):
 
 
 def media_ids(data, remote):
+    """
+    Get media ids. media
+
+    Args:
+        data: (array): write your description
+        remote: (todo): write your description
+    """
     ids = []
     for media in data:
         if 'ratingKey' in media:
@@ -391,6 +460,12 @@ def media_ids(data, remote):
 
 
 def view_count(data):
+    """
+    Return the number of media.
+
+    Args:
+        data: (array): write your description
+    """
     ids = []
     for media in data:
         if 'ratingKey' in media:

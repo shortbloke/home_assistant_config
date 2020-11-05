@@ -64,6 +64,14 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
     CONNECTION_CLASS = config_entries.CONN_CLASS_CLOUD_POLL
 
     def _update_ord_dict(self, old_dict: OrderedDict, new_dict: dict) -> OrderedDict:
+        """
+        Recursively from old_dict.
+
+        Args:
+            self: (todo): write your description
+            old_dict: (dict): write your description
+            new_dict: (dict): write your description
+        """
         result: OrderedDict = OrderedDict()
         for k, v in old_dict.items():
             for key, value in new_dict.items():
@@ -274,6 +282,12 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
         )
 
     async def _test_login(self):
+          """
+          Perform login.
+
+          Args:
+              self: (todo): write your description
+          """
         login = self.login
         email = login.email
         _LOGGER.debug("Testing login status: %s", login.status)
@@ -512,6 +526,12 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
             self.config[CONF_COOKIES_TXT] = fixed_cookies_txt
 
     def _update_schema_defaults(self) -> Any:
+        """
+        Updates the default schema.
+
+        Args:
+            self: (todo): write your description
+        """
         new_schema = self._update_ord_dict(
             self.data_schema,
             {

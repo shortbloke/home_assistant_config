@@ -182,6 +182,13 @@ class AlexaMediaSwitch(SwitchDevice, AlexaMedia):
 
     @_catch_login_errors
     async def _set_switch(self, state, **kwargs):
+          """
+          Set switch state.
+
+          Args:
+              self: (todo): write your description
+              state: (todo): write your description
+          """
         try:
             if not self.enabled:
                 return
@@ -285,6 +292,14 @@ class AlexaMediaSwitch(SwitchDevice, AlexaMedia):
         return self._icon()
 
     def _icon(self, on=None, off=None):
+        """
+        Return the icon of this : class.
+
+        Args:
+            self: (todo): write your description
+            on: (todo): write your description
+            off: (int): write your description
+        """
         return on if self.is_on else off
 
 

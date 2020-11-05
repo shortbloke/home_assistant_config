@@ -38,12 +38,29 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
+    """
+    Initialize a hassignMedia.
+
+    Args:
+        hass: (todo): write your description
+        config: (todo): write your description
+        add_devices: (list): write your description
+        discovery_info: (bool): write your description
+    """
     add_devices([SonarrUpcomingMediaSensor(hass, config)], True)
 
 
 class SonarrUpcomingMediaSensor(Entity):
 
     def __init__(self, hass, conf):
+        """
+        Initialize hass configuration.
+
+        Args:
+            self: (todo): write your description
+            hass: (todo): write your description
+            conf: (dict): write your description
+        """
         from pytz import timezone
         self.host = conf.get(CONF_HOST)
         self.port = conf.get(CONF_PORT)
@@ -60,10 +77,22 @@ class SonarrUpcomingMediaSensor(Entity):
 
     @property
     def name(self):
+        """
+        Return the name for this node.
+
+        Args:
+            self: (todo): write your description
+        """
         return 'Sonarr_Upcoming_Media'
 
     @property
     def state(self):
+        """
+        : return : class : ~.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._state
 
     @property
@@ -136,6 +165,12 @@ class SonarrUpcomingMediaSensor(Entity):
         return attributes
 
     def update(self):
+        """
+        Updates the date information.
+
+        Args:
+            self: (todo): write your description
+        """
         start = get_date(self._tz)
         end = get_date(self._tz, self.days)
         try:
@@ -167,6 +202,13 @@ def get_date(zone, offset=0):
 
 
 def days_until(date, tz):
+    """
+    Returns the number of days since the given date.
+
+    Args:
+        date: (str): write your description
+        tz: (array): write your description
+    """
     from pytz import utc
     date = datetime.strptime(date, '%Y-%m-%dT%H:%M:%SZ')
     date = str(date.replace(tzinfo=utc).astimezone(tz))[:10]

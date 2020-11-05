@@ -249,6 +249,12 @@ class AlexaClient(MediaPlayerDevice, AlexaMedia):
         """
 
         async def _refresh_if_no_audiopush(already_refreshed=False):
+              """
+              Refresh the hassociush if necessary.
+
+              Args:
+                  already_refreshed: (todo): write your description
+              """
             email = self._login.email
             seen_commands = (
                 self.hass.data[DATA_ALEXAMEDIA]["accounts"][email][
@@ -663,6 +669,12 @@ class AlexaClient(MediaPlayerDevice, AlexaMedia):
             await self.async_update()
 
     def _get_source(self):
+        """
+        Get the source of the device.
+
+        Args:
+            self: (todo): write your description
+        """
         source = "Local Speaker"
         if self._bluetooth_state.get("pairedDeviceList"):
             for device in self._bluetooth_state["pairedDeviceList"]:
@@ -674,6 +686,12 @@ class AlexaClient(MediaPlayerDevice, AlexaMedia):
         return source
 
     def _get_source_list(self):
+        """
+        Return a list of sources.
+
+        Args:
+            self: (todo): write your description
+        """
         sources = []
         if self._bluetooth_state.get("pairedDeviceList"):
             for devices in self._bluetooth_state["pairedDeviceList"]:
@@ -682,6 +700,12 @@ class AlexaClient(MediaPlayerDevice, AlexaMedia):
         return ["Local Speaker"] + sources
 
     def _get_connected_bluetooth(self):
+        """
+        Get the bluetooth bluetooth devices.
+
+        Args:
+            self: (todo): write your description
+        """
         source = None
         if self._bluetooth_state.get("pairedDeviceList"):
             for device in self._bluetooth_state["pairedDeviceList"]:
@@ -690,6 +714,12 @@ class AlexaClient(MediaPlayerDevice, AlexaMedia):
         return source
 
     def _get_bluetooth_list(self):
+        """
+        Return a list of bluetooth devices.
+
+        Args:
+            self: (todo): write your description
+        """
         sources = []
         if self._bluetooth_state.get("pairedDeviceList"):
             for devices in self._bluetooth_state["pairedDeviceList"]:
@@ -697,6 +727,12 @@ class AlexaClient(MediaPlayerDevice, AlexaMedia):
         return sources
 
     def _get_last_called(self):
+        """
+        Get the last serial number of last serial number.
+
+        Args:
+            self: (todo): write your description
+        """
         try:
             last_called_serial = (
                 None

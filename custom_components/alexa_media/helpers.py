@@ -95,11 +95,22 @@ def retry_async(
     """
 
     def wrap(func) -> Callable:
+        """
+        Wrap a function as a function.
+
+        Args:
+            func: (callable): write your description
+        """
         import functools
         import asyncio
 
         @functools.wraps(func)
         async def wrapper(*args, **kwargs) -> Any:
+              """
+              Execute a function that function.
+
+              Args:
+              """
             _LOGGER.debug(
                 "%s.%s: Trying with limit %s delay %s catch_exceptions %s",
                 func.__module__[func.__module__.find(".") + 1 :],
@@ -219,6 +230,13 @@ def report_relogin_required(hass, login, email) -> bool:
 
 
 def _existing_serials(hass, login_obj) -> List:
+    """
+    Returns a list of hassials.
+
+    Args:
+        hass: (todo): write your description
+        login_obj: (todo): write your description
+    """
     email: Text = login_obj.email
     existing_serials = (
         list(

@@ -165,6 +165,12 @@ class AlexaMediaNotificationSensor(Entity):
         self._state: Optional[datetime.datetime] = None
 
     def _process_raw_notifications(self):
+        """
+        Process all sensor notifications.
+
+        Args:
+            self: (todo): write your description
+        """
         self._all = (
             list(map(self._fix_alarm_date_time, self._n_dict.items()))
             if self._n_dict
@@ -200,6 +206,13 @@ class AlexaMediaNotificationSensor(Entity):
                 )
 
     def _trigger_event(self, time_date) -> None:
+        """
+        Trigger an event.
+
+        Args:
+            self: (todo): write your description
+            time_date: (todo): write your description
+        """
         _LOGGER.debug(
             "%s:Firing %s at %s",
             self,
@@ -212,6 +225,13 @@ class AlexaMediaNotificationSensor(Entity):
         )
 
     def _fix_alarm_date_time(self, value):
+        """
+        Fix datetime. datetime.
+
+        Args:
+            self: (todo): write your description
+            value: (str): write your description
+        """
         if (
             self._sensor_property != "date_time"
             or not value
@@ -248,6 +268,13 @@ class AlexaMediaNotificationSensor(Entity):
         return value
 
     def _update_recurring_alarm(self, value):
+        """
+        Update sensor alarms.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         _LOGGER.debug("Sensor value %s", value)
         alarm = value[1][self._sensor_property]
         reminder = None
@@ -282,6 +309,14 @@ class AlexaMediaNotificationSensor(Entity):
 
     @staticmethod
     def _round_time(value: datetime.datetime) -> datetime.datetime:
+        """
+        Round a datetime.
+
+        Args:
+            value: (float): write your description
+            datetime: (todo): write your description
+            datetime: (todo): write your description
+        """
         precision = datetime.timedelta(seconds=1).total_seconds()
         seconds = (value - value.min.replace(tzinfo=value.tzinfo)).seconds
         rounding = (seconds + precision / 2) // precision * precision
@@ -367,6 +402,13 @@ class AlexaMediaNotificationSensor(Entity):
         return self._state
 
     def _process_state(self, value):
+        """
+        Process a state value.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         return (
             value[self._sensor_property].replace(tzinfo=LOCAL_TIMEZONE).isoformat()
             if value
@@ -474,6 +516,13 @@ class TimerSensor(AlexaMediaNotificationSensor):
         )
 
     def _process_state(self, value):
+        """
+        Process the state.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         return (
             dt.as_local(
                 super()._round_time(
@@ -515,6 +564,13 @@ class ReminderSensor(AlexaMediaNotificationSensor):
         )
 
     def _process_state(self, value):
+        """
+        Process a datetime.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         return (
             dt.as_local(
                 super()._round_time(

@@ -32,6 +32,17 @@ class NestAPI():
                  issue_token,
                  cookie,
                  region):
+        """
+        Initialize the device.
+
+        Args:
+            self: (todo): write your description
+            user_id: (str): write your description
+            access_token: (str): write your description
+            issue_token: (str): write your description
+            cookie: (todo): write your description
+            region: (str): write your description
+        """
         self.device_data = {}
         self._wheres = {}
         self._user_id = user_id
@@ -55,23 +66,66 @@ class NestAPI():
         self.update()
 
     def __getitem__(self, name):
+        """
+        Get an attribute by name.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+        """
         return getattr(self, name)
 
     def __setitem__(self, name, value):
+        """
+        Sets an item.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+            value: (str): write your description
+        """
         return setattr(self, name, value)
 
     def __delitem__(self, name):
+        """
+        Removes an item from the cache.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+        """
         return delattr(self, name)
 
     def __contains__(self, name):
+        """
+        Return true if the given name contains a given name.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+        """
         return hasattr(self, name)
 
     def login(self):
+        """
+        Perform a github login.
+
+        Args:
+            self: (todo): write your description
+        """
         if self._issue_token and self._cookie:
             self._login_google(self._issue_token, self._cookie)
         self._login_dropcam()
 
     def _login_google(self, issue_token, cookie):
+        """
+        Login to github.
+
+        Args:
+            self: (todo): write your description
+            issue_token: (str): write your description
+            cookie: (todo): write your description
+        """
         headers = {
             'User-Agent': USER_AGENT,
             'Sec-Fetch-Mode': 'cors',
@@ -99,12 +153,24 @@ class NestAPI():
         self._access_token = r.json()['jwt']
 
     def _login_dropcam(self):
+        """
+        Login to the session.
+
+        Args:
+            self: (todo): write your description
+        """
         self._session.post(
             f"{API_URL}/dropcam/api/login",
             data={"access_token": self._access_token}
         )
 
     def _get_cameras(self):
+        """
+        Return a list of camera addresses.
+
+        Args:
+            self: (todo): write your description
+        """
         cameras = []
 
         try:
@@ -128,6 +194,12 @@ class NestAPI():
             return self._get_cameras()
 
     def _get_devices(self):
+        """
+        Get devices.
+
+        Args:
+            self: (todo): write your description
+        """
         try:
             r = self._session.post(
                 f"{API_URL}/api/0.1/user/{self._user_id}/app_launch",
@@ -170,6 +242,13 @@ class NestAPI():
 
 
     def _map_nest_protect_state(self, value):
+        """
+        Return the nest_protect_protect_state to the nest - 2. 0 - 1.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         if value == 0:
             return "Ok"
         elif value == 1 or value == 2:
@@ -180,6 +259,12 @@ class NestAPI():
             return "Unknown"
 
     def update(self):
+        """
+        Updates the device.
+
+        Args:
+            self: (todo): write your description
+        """
         try:
             # To get friendly names
             r = self._session.post(
@@ -352,6 +437,15 @@ class NestAPI():
             self.update()
 
     def thermostat_set_temperature(self, device_id, temp, temp_high=None):
+        """
+        Set the thermostat temperature.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            temp: (todo): write your description
+            temp_high: (todo): write your description
+        """
         if device_id not in self.thermostats:
             return
 
@@ -397,6 +491,14 @@ class NestAPI():
             self.thermostat_set_temperature(device_id, temp, temp_high)
 
     def thermostat_set_target_humidity(self, device_id, humidity):
+        """
+        : param humidity_id to target.
+
+        Args:
+            self: (todo): write your description
+            device_id: (str): write your description
+            humidity: (str): write your description
+        """
         if device_id not in self.thermostats:
             return
 
@@ -424,6 +526,14 @@ class NestAPI():
             self.thermostat_set_target_humidity(device_id, humidity)
 
     def thermostat_set_mode(self, device_id, mode):
+        """
+        Change the thermostat mode.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            mode: (todo): write your description
+        """
         if device_id not in self.thermostats:
             return
 
@@ -451,6 +561,14 @@ class NestAPI():
             self.thermostat_set_mode(device_id, mode)
 
     def thermostat_set_fan(self, device_id, date):
+        """
+        Sets the fan fan.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            date: (todo): write your description
+        """
         if device_id not in self.thermostats:
             return
 
@@ -478,6 +596,14 @@ class NestAPI():
             self.thermostat_set_fan(device_id, date)
 
     def thermostat_set_eco_mode(self, device_id, state):
+        """
+        : param thermostmost mode.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            state: (todo): write your description
+        """
         if device_id not in self.thermostats:
             return
 
@@ -506,6 +632,14 @@ class NestAPI():
             self.thermostat_set_eco_mode(device_id, state)
 
     def hotwater_set_boost(self, device_id, time):
+        """
+        : param device_boost.
+
+        Args:
+            self: (todo): write your description
+            device_id: (str): write your description
+            time: (todo): write your description
+        """
         if device_id not in self.hotwatercontrollers:
             return
 
@@ -533,6 +667,14 @@ class NestAPI():
             self.hotwater_set_boost(device_id, time)
 
     def hotwater_set_away_mode(self, device_id, away_mode):
+        """
+        : param device_id : param hotwater.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            away_mode: (str): write your description
+        """
         if device_id not in self.hotwatercontrollers:
             return
 
@@ -561,6 +703,14 @@ class NestAPI():
             self.hotwater_set_away_mode(device_id, away_mode)
 
     def hotwater_set_mode(self, device_id, mode):
+        """
+        Set the hotwater mode.
+
+        Args:
+            self: (todo): write your description
+            device_id: (str): write your description
+            mode: (str): write your description
+        """
         if device_id not in self.hotwatercontrollers:
             return
 
@@ -589,6 +739,15 @@ class NestAPI():
             self.hotwater_set_boost(device_id, mode)
 
     def _camera_set_properties(self, device_id, property, value):
+        """
+        Set camera properties.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            property: (str): write your description
+            value: (todo): write your description
+        """
         if device_id not in self.cameras:
             return
 
@@ -610,18 +769,40 @@ class NestAPI():
             return self._camera_set_properties(device_id, property, value)
 
     def camera_turn_off(self, device_id):
+        """
+        Turn a camera.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+        """
         if device_id not in self.cameras:
             return
 
         return self._set_properties(device_id, "streaming.enabled", "false")
 
     def camera_turn_on(self, device_id):
+        """
+        Turn camera camera camera.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+        """
         if device_id not in self.cameras:
             return
 
         return self._set_properties(device_id, "streaming.enabled", "true")
 
     def camera_get_image(self, device_id, now):
+        """
+        Retrieve a camera.
+
+        Args:
+            self: (todo): write your description
+            device_id: (int): write your description
+            now: (todo): write your description
+        """
         if device_id not in self.cameras:
             return
 

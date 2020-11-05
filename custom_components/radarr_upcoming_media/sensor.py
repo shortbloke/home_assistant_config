@@ -39,12 +39,29 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
+    """
+    Initialize the hassMedia device.
+
+    Args:
+        hass: (todo): write your description
+        config: (todo): write your description
+        add_devices: (list): write your description
+        discovery_info: (bool): write your description
+    """
     add_devices([RadarrUpcomingMediaSensor(hass, config)], True)
 
 
 class RadarrUpcomingMediaSensor(Entity):
 
     def __init__(self, hass, conf):
+        """
+        Initialize hass configuration
+
+        Args:
+            self: (todo): write your description
+            hass: (todo): write your description
+            conf: (dict): write your description
+        """
         from pytz import timezone
         self._tz = timezone(str(hass.config.time_zone))
         self.now = str(get_date(self._tz))
@@ -66,10 +83,22 @@ class RadarrUpcomingMediaSensor(Entity):
 
     @property
     def name(self):
+        """
+        Return the name for this node.
+
+        Args:
+            self: (todo): write your description
+        """
         return 'Radarr_Upcoming_Media'
 
     @property
     def state(self):
+        """
+        : return : class : ~.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._state
 
     @property
@@ -130,6 +159,12 @@ class RadarrUpcomingMediaSensor(Entity):
         return attributes
 
     def update(self):
+        """
+        Updates movie information.
+
+        Args:
+            self: (todo): write your description
+        """
         import requests
         radarr = requests.Session()
         start = get_date(self._tz)
@@ -207,6 +242,13 @@ def get_date(zone, offset=0):
 
 
 def days_until(date, tz):
+    """
+    Returns the number of days since the given date.
+
+    Args:
+        date: (str): write your description
+        tz: (array): write your description
+    """
     from pytz import utc
     date = datetime.strptime(date, '%Y-%m-%dT%H:%M:%SZ')
     date = str(date.replace(tzinfo=utc).astimezone(tz))[:10]
@@ -219,6 +261,12 @@ def days_until(date, tz):
 
 
 def media_ids(data):
+    """
+    Get media ids.
+
+    Args:
+        data: (array): write your description
+    """
     ids = []
     for media in data:
         if 'tmdbId' in media:
@@ -230,6 +278,12 @@ def media_ids(data):
 
 
 def view_count(data):
+    """
+    Return the number of media pages.
+
+    Args:
+        data: (array): write your description
+    """
     ids = []
     for media in data:
         if 'tmdbId' in media:
