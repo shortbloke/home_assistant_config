@@ -8,7 +8,7 @@ nest:
 
 climate:
   # https://www.home-assistant.io/components/climate/
-  platform: nest
+  # platform: nest
 
 ##################################################
 ## Recorder/History/Logbook

@@ -12,6 +12,8 @@ alexa:
         - light.10140877d8bfc0decb09
         - light.12204702807d3a252d9b
         - light.01802003cc50e3501f3e
+        # Fraser WLED Panel
+        - light.wled_panel_fraser
         # Unknown location
         - light.12204702807d3a1b7075
         - light.12204702807d3a252c69
@@ -46,68 +48,68 @@ alexa:
 # This section relies upon the Alexa Media Player custom component to be installed and configured
 # https://github.com/custom-components/alexa_media_player
 
-light:
-  - platform: template
-    lights:
-      lamp_group:
-        friendly_name: "lamp group"
-        icon_template: mdi:amazon-alexa
-        turn_on:
-          service: script.turn_on
-          entity_id: script.alexa_turn_on_the_lamps_based_on_device
-        turn_off:
-          service: script.turn_on
-          entity_id: script.alexa_turn_off_the_lamps_based_on_device
-      lamps_group:
-        friendly_name: "lamps group"
-        icon_template: mdi:amazon-alexa
-        turn_on:
-          service: script.turn_on
-          entity_id: script.alexa_turn_on_the_lamps_based_on_device
-        turn_off:
-          service: script.turn_on
-          entity_id: script.alexa_turn_off_the_lamps_based_on_device
+# light:
+#   - platform: template
+#     lights:
+#       lamp_group:
+#         friendly_name: "lamp group"
+#         icon_template: mdi:amazon-alexa
+#         turn_on:
+#           service: script.turn_on
+#           entity_id: script.alexa_turn_on_the_lamps_based_on_device
+#         turn_off:
+#           service: script.turn_on
+#           entity_id: script.alexa_turn_off_the_lamps_based_on_device
+#       lamps_group:
+#         friendly_name: "lamps group"
+#         icon_template: mdi:amazon-alexa
+#         turn_on:
+#           service: script.turn_on
+#           entity_id: script.alexa_turn_on_the_lamps_based_on_device
+#         turn_off:
+#           service: script.turn_on
+#           entity_id: script.alexa_turn_off_the_lamps_based_on_device
 
-sensor:
-  - platform: template
-    sensors:
-      last_alexa:
-        entity_id:
-          - media_player.living_room_echo_dot
-          - media_player.kitchen_echo_dot
-          - media_player.conservatory_echo_dot
-          - media_player.fraser
-          - media_player.morgan
-        value_template: >
-          {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+# sensor:
+#   - platform: template
+#     sensors:
+#       last_alexa:
+#         entity_id:
+#           - media_player.living_room_echo_dot
+#           - media_player.kitchen_echo_dot
+#           - media_player.conservatory_echo_dot
+#           - media_player.fraser
+#           - media_player.morgan
+#         value_template: >
+#           {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
 
-script:
-  # "Alexa, turn on the lamp"
-  alexa_turn_on_the_lamps_based_on_device:
-    sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: >-
-            {# Use the name of each Echo to determine which room the command likely came from. #}
-            {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+# script:
+#   # "Alexa, turn on the lamp"
+#   alexa_turn_on_the_lamps_based_on_device:
+#     sequence:
+#       - service: homeassistant.turn_on
+#         data:
+#           entity_id: >-
+#             {# Use the name of each Echo to determine which room the command likely came from. #}
+#             {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
 
-            {%- if room == "living_room_echo_dot" -%}
-              group.living_room_lamps
-            {%- elif room == "conservatory_echo_dot" -%}
-              switch.lwrf_conservatory_2
-            {%- endif -%}
+#             {%- if room == "living_room_echo_dot" -%}
+#               group.living_room_lamps
+#             {%- elif room == "conservatory_echo_dot" -%}
+#               switch.lwrf_conservatory_2
+#             {%- endif -%}
 
-  # "Alexa, turn off the lamp"
-  alexa_turn_off_the_lamps_based_on_device:
-    sequence:
-      - service: homeassistant.turn_off
-        data:
-          entity_id: >-
-            {# Use the name of each Echo to determine which room the command likely came from. #}
-            {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+#   # "Alexa, turn off the lamp"
+#   alexa_turn_off_the_lamps_based_on_device:
+#     sequence:
+#       - service: homeassistant.turn_off
+#         data:
+#           entity_id: >-
+#             {# Use the name of each Echo to determine which room the command likely came from. #}
+#             {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
 
-            {%- if room == "living_room_echo_dot" -%}
-              group.living_room_lamps
-            {%- elif room == "conservatory_echo_dot" -%}
-              switch.lwrf_conservatory_2
-            {%- endif -%}
+#             {%- if room == "living_room_echo_dot" -%}
+#               group.living_room_lamps
+#             {%- elif room == "conservatory_echo_dot" -%}
+#               switch.lwrf_conservatory_2
+#             {%- endif -%}

@@ -1,15 +1,6 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-# Moved to integrations?
-# rfxtrx:
-#   # RFXCOM 433 Sensors
-#   devices:
-#     0a5209e22d000263330179: # Convervatory - Temp_Humid_1
-#     0a520928f50002922a0179: # Living Room - Temp_Humid_2
-#     0a5209a82f000265370189: # Frasers Room - Temp_Humid_3
-#     0a520156c10400f93e0189: # Garden - Temp_Humid_Ext_1
-#     085002d47502013069:     # Oregon THN132N Temperature - Master Bedroom - Temp_sensor_1
 
 sensor:
   - platform: template

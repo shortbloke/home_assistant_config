@@ -22,3 +22,25 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.lwrf_hall_socket_2 # Twigs
+
+  - id: '1610821473649'
+    alias: Wake up Fraser Light
+    description: 15min Sunrise from 7am weekdays
+    trigger:
+    - platform: time
+      at: '7:00'
+    condition:
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    action:
+    - service: wled.effect
+      data:
+        effect: Sunrise
+        speed: 15
+      entity_id: light.wled_panel_fraser
+    mode: single
