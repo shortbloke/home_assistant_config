@@ -40,7 +40,47 @@ automation:
     action:
     - service: wled.effect
       data:
+        effect: solid # Need to turn off the previous effect, otherwise it doesn't apply.
+      entity_id: light.wled_panel_fraser
+    - service: wled.effect
+      data:
         effect: Sunrise
+        intensity: 25
+        palette: Default
         speed: 15
       entity_id: light.wled_panel_fraser
+    - service: light.turn_on
+      entity_id: light.wled_panel_fraser
+    mode: single
+
+  - id: '1610821473650'
+    alias: Wake up Test Light
+    description: 15min Sunrise from 7am weekdays
+    trigger:
+    - platform: time
+      at: '7:00'
+    condition:
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+    action:
+    - service: wled.effect
+      data:
+        effect: solid # Need to turn off the previous effect, otherwise it doesn't apply.
+      entity_id: light.wled_test2
+    - service: wled.effect
+      data:
+        effect: Sunrise
+        intensity: 25
+        palette: Default
+        speed: 15
+      entity_id: light.wled_test2
+    - service: light.turn_on
+      entity_id: light.wled_test2
     mode: single
