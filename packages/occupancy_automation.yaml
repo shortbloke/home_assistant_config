@@ -165,15 +165,14 @@ script:
     sequence:
       - service: homeassistant.turn_off
         entity_id:
-          - light.lwrf_morgan_main
-          - group.morgans_strip_lights
+          - light.morgans_lights
   
   fraser_away:
     alias: Fraser away
     sequence:
       - service: homeassistant.turn_off
         entity_id:
-          - group.frasers_room_lights
+          - light.frasers_lights
   
   everyone_away:
     alias: everyone_away
