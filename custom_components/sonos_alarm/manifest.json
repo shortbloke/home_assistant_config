@@ -12,5 +12,6 @@
       "st": "urn:schemas-upnp-org:device:ZonePlayer:1"
     }
   ],
-  "codeowners": []
+  "codeowners": [],
+  "version": "1.1.1"
 }

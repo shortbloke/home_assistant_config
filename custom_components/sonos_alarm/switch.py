@@ -1,5 +1,6 @@
 """Switch for Sonos alarms."""
 from datetime import timedelta
+from datetime import datetime
 import logging
 
 import socket
@@ -28,6 +29,7 @@ DISCOVERY_INTERVAL = 60
 ATTR_DURATION = "duration"
 ATTR_PLAY_MODE = "play_mode"
 ATTR_RECURRENCE = "recurrence"
+ATTR_SCHEDULED_TODAY = "scheduled_today"
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
@@ -95,11 +97,11 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     _LOGGER.debug("Adding discovery job")
     hass.async_add_executor_job(_discovery)
 
-
 class SonosAlarmSwitch(SwitchEntity):
     """Switch class for Sonos alarms."""
 
     def __init__(self, soco, alarm):
+        _LOGGER.debug("Init Sonos alarms switch.")
         """Init Sonos alarms switch."""
         self._icon = "mdi:alarm"
         self._soco = soco
@@ -119,7 +121,6 @@ class SonosAlarmSwitch(SwitchEntity):
             # pylint: disable=protected-access
             if one_alarm._alarm_id == self._id:
                 self.alarm = one_alarm
-
         self._is_on = self.alarm.enabled
         self._attributes = {
             ATTR_TIME: str(self.alarm.start_time),
@@ -128,8 +129,11 @@ class SonosAlarmSwitch(SwitchEntity):
             ATTR_INCLUDE_LINKED_ZONES: self.alarm.include_linked_zones,
             ATTR_RECURRENCE: str(self.alarm.recurrence),
             ATTR_PLAY_MODE: str(self.alarm.play_mode),
+            ATTR_SCHEDULED_TODAY: self._is_today
         }
+        _LOGGER.debug(self.alarm.recurrence)
         super().__init__()
+        _LOGGER.debug("reached end of init")
 
     def update(self, now=None):
         """Retrieve latest state."""
@@ -142,6 +146,7 @@ class SonosAlarmSwitch(SwitchEntity):
             self._attributes[ATTR_RECURRENCE] = str(self.alarm.recurrence)
             self._attributes[ATTR_VOLUME] = self.alarm.volume / 100
             self._attributes[ATTR_PLAY_MODE] = str(self.alarm.play_mode)
+            self._attributes[ATTR_SCHEDULED_TODAY] = self._is_today
             self._attributes[
                 ATTR_INCLUDE_LINKED_ZONES
             ] = self.alarm.include_linked_zones
@@ -154,6 +159,27 @@ class SonosAlarmSwitch(SwitchEntity):
                 exc_info=True,
             )
             self._is_available = False
+
+    @property
+    def _is_today(self):
+        recurrance = self.alarm.recurrence
+        timestr = int(datetime.today().strftime('%w'))
+        if recurrance[:2] == "ON":
+            if str(timestr) in recurrance:
+                return True
+            else:
+                return False
+        else:
+            if recurrance == "DAILY":
+                return True
+            elif recurrance == "ONCE":
+                return True
+            elif recurrance == "WEEKDAYS" and int(timestr) not in [0, 7]:
+                return True
+            elif recurrance == "WEEKENDS" and int(timestr) not in range(1, 7):
+                return True
+            else:
+                return False
 
     @property
     def name(self):
