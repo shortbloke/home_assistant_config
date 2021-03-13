@@ -37,7 +37,7 @@ influxdb:
       - sensor.owl_intuition_solar_generated_today
       # Showers and Hot Water
       - water_heater.hallway_thermostat_hot_water
-      - sensor.hot_water_tank_temperature
+      - sensor.garage_monitor_water_temperature
       - sensor.ensuite_shower_power
       - sensor.family_bathroom_shower_power
       - sensor.ensuite_shower_uses_today
@@ -62,4 +62,4 @@ influxdb:
       - sensor.hallway_thermostat_house_humidity
       - sensor.lumi_lumi_sens_ca8a3702_humidity
       # Salt level sensor
-      - sensor.water_softner_salt_level
+      - sensor.garage_monitor_salt_level

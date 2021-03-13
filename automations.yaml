@@ -1,0 +1,136 @@
+- id: '1615638107644'
+  alias: Low Salt Level Alert
+  description: ''
+  trigger:
+  - type: value
+    platform: device
+    device_id: f93fcb10f5467ec5d73867e8e7bfb88c
+    entity_id: sensor.garage_monitor_salt_level
+    domain: sensor
+    below: 43
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.low_salt
+  - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
+    domain: mobile_app
+    type: notify
+    title: Water Softener
+    message: Check Salt Level
+  mode: single
+- id: '1615638220241'
+  alias: Reset Salt Level Input Boolean
+  description: ''
+  trigger:
+  - type: value
+    platform: device
+    device_id: f93fcb10f5467ec5d73867e8e7bfb88c
+    entity_id: sensor.garage_monitor_salt_level
+    domain: sensor
+    above: 41
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.low_salt
+  mode: single
+- id: '1615638959118'
+  alias: Update Available Notification
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+  condition: []
+  action:
+  - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: Update for Home Assistant is available
+  mode: single
+- id: '1615639267650'
+  alias: Turn off Garage light when no motion for some time
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: f93fcb10f5467ec5d73867e8e7bfb88c
+    entity_id: binary_sensor.garage_monitor_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 222f36208319b30db3a981f7388b13d9
+    entity_id: light.sonoff_garage_light
+    domain: light
+  action:
+  - type: turn_off
+    device_id: 222f36208319b30db3a981f7388b13d9
+    entity_id: light.sonoff_garage_light
+    domain: light
+  - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
+    domain: mobile_app
+    type: notify
+    title: Garage Alert!
+    message: Light left on. Turning off.
+  mode: single
+- id: '1615640713545'
+  alias: Loft Fan Turn On When Hot
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: 11f3b2cca347d360c859eb46718cc34c
+    entity_id: sensor.loft_fan_temperature
+    domain: sensor
+    above: 30
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 11f3b2cca347d360c859eb46718cc34c
+    entity_id: switch.sonoff_loft_fan
+    domain: switch
+  mode: single
+- id: '1615640737825'
+  alias: Loft Fan Turn Off When Not Hot
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: 11f3b2cca347d360c859eb46718cc34c
+    entity_id: sensor.loft_fan_temperature
+    domain: sensor
+    below: 30
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 11f3b2cca347d360c859eb46718cc34c
+    entity_id: switch.sonoff_loft_fan
+    domain: switch
+  mode: single

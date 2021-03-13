@@ -30,7 +30,6 @@ alexa:
         - switch.lwrf_hall_socket_2
         - switch.lwrf_conservatory_1
         - switch.lwrf_conservatory_2
-        - switch.sonoff_garage_light
         - media_player.frasertv
     entity_config:
       switch.sonoff_garage_light:

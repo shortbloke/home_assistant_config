@@ -7,10 +7,11 @@ homeassistant:
   # https://home-assistant.io/docs/configuration/packages/  
   packages: !include_dir_named packages
 
-
 ####################################################
 #        Home Assistant Components Enabled         #
 ####################################################
+# https://www.home-assistant.io/components/automation/
+automation: !include automations.yaml
 # https://www.home-assistant.io/integrations/default_config/
 default_config:
 # https://www.home-assistant.io/integrations/api/
@@ -21,10 +22,16 @@ http:
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 
-
 ####################################################
 #      Home Assistant Core Components Global       #
 ####################################################
+# https://www.home-assistant.io/integrations/history
+history:
+  include:
+    entities:
+      - sensor.loft_fan_temperature
+      - sensor.loft_fan_humidity
+
 # https://www.home-assistant.io/components/logbook/
 logbook:
   include:
@@ -43,6 +50,9 @@ recorder:
   include:
     domains: 
       - automation
+    entities:
+      - sensor.loft_fan_temperature
+      - sensor.loft_fan_humidity
 
 ####################################################
 #                     Components                   #
@@ -90,27 +100,3 @@ tts:
     api_key: !secret voicerss_api_key
     language: "en-gb"
     format: "44khz_16bit_stereo"
-
-####################################################
-#                General Automation                #
-####################################################
-# https://www.home-assistant.io/components/automation/
-automation:
-  - alias: Sonoff MQTT State Sync
-    trigger:
-      platform: homeassistant
-      event: start
-    action:
-      - service: mqtt.publish
-        data:
-          topic: "sonoffs/cmnd/power"
-          payload: ""
-
-  - alias: Update Available Notification
-    trigger:
-      platform: state
-      entity_id: updater.updater
-    action:
-      service: notify.martin
-      data:
-        message: "Update for Home Assistant is available."
