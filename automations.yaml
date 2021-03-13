@@ -525,3 +525,118 @@
     target:
       entity_id: input_select.dishwasher_status
   mode: single
+- id: '1615653930854'
+  alias: Ironing room motion detected
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_sensor_ironing_room
+    to: 'on'
+  condition: []
+  action:
+  - service: input_select.select_option
+    data:
+      option: motion
+    target:
+      entity_id: input_select.ironing_room_motion_status
+  mode: single
+- id: '1615654076969'
+  alias: Ironing room no motion 30 mins
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_sensor_ironing_room
+    to: 'off'
+    for: 00:30:00
+  condition: []
+  action:
+  - service: input_select.select_option
+    data:
+      option: idle
+    target:
+      entity_id: input_select.ironing_room_motion_status
+  mode: single
+- id: '1615654313811'
+  alias: Ironing Room No Motion Turn off Irons Left
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.irons_left_power
+    above: '10'
+    for: 00:00:10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: homeassistant.turn_off
+    target:
+      entity_id: switch.irons_left
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Ironing room Irons (Left)
+  mode: single
+- id: '1615654418022'
+  alias: Ironing Room No Motion Turn off Irons Right
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.irons_right_power
+    above: '10'
+    for: 00:00:10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: homeassistant.turn_off
+    target:
+      entity_id: switch.irons_right
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Ironing room Irons (Right)
+  mode: single
+- id: '1615654485950'
+  alias: Ironing Room No Motion Turn off Ironing Table
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ironing_table_power
+    above: '10'
+    for: 00:00:10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: homeassistant.turn_off
+    target:
+      entity_id: switch.ironing_table
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Ironing Table
+  mode: single
+- id: '1615654527691'
+  alias: Ironing Room No Motion Turn off Magpie Iron
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.magpie_iron_power
+    above: '10'
+    for: 00:00:10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: homeassistant.turn_off
+    target:
+      entity_id: switch.magpie_iron
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Magpie Iron
+  mode: single

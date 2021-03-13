@@ -30,3 +30,27 @@ sensor.dishwasher_power:
   icon: mdi:counter
 sensor.dishwasher_power_today:
   icon: mdi:counter
+sensor.ironing_room_motion_status:
+  icon: mdi:motion-sensor
+sensor.irons_left_power:
+  icon: mdi:flash
+sensor.irons_right_power:
+  icon: mdi:flash
+sensor.ironing_table_power:
+  icon: mdi:flash
+sensor.magpie_iron_power:
+  icon: mdi:flash
+sensor.ironing_room_total_power_now:
+  icon: mdi:flash
+sensor.irons_left_power_today:
+  icon: mdi:counter
+sensor.irons_right_power_today:
+  icon: mdi:counter
+sensor.ironing_table_power_today:
+  icon: mdi:counter
+sensor.magpie_iron_power_today:
+  icon: mdi:counter
+sensor.ironing_room_total_power_today:
+  icon: mdi:counter
+sensor.ironing_room_power_cost_today:
+  icon: mdi:currency-gbp
