@@ -99,7 +99,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.orchid_plant_moisture
-        below: 20
+        below: 10
       - platform: numeric_state
         entity_id: sensor.herbs_moisture
         below: 15
