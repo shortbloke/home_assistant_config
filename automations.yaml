@@ -297,3 +297,45 @@
       input:
         command: upload
   mode: single
+- id: '1615649323516'
+  alias: HASS Low Disk Space Alert
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.disk_use_percent
+    above: '90'
+  condition: []
+  action:
+  - service: notify.martin
+    data:
+      message: Low disk space > 90% used
+      title: HASS Low Resource Alert
+  mode: single
+- id: '1615649356820'
+  alias: HASS Low Memory Alert
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.memory_use_percent
+    above: '90'
+  condition: []
+  action:
+  - service: notify.martin
+    data:
+      message: Low memory > 90% used
+      title: HASS Low Resource Alert
+  mode: single
+- id: '1615649413577'
+  alias: HASS High Load Alert
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.load_5m
+    above: '2.8'
+  condition: []
+  action:
+  - service: notify.martin
+    data:
+      message: System Load 5m Load Average > 2.8
+      title: HASS Low Resource Alert
+  mode: single

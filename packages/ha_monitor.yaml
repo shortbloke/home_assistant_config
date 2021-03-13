@@ -25,43 +25,6 @@ sensor:
     value_template: '{{ value | multiply(0.001) | round(1) }}'
 
 ##################################################
-## Automation
-##################################################
-automation:
-  - alias: HAPi Low Disk Space Alert
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.disk_use_percent
-        above: 90
-    action:
-      - service: notify.martin
-        data: 
-          title: "HAPi Low Resource Alert"
-          message: "Low Disk Space > 90% Used"
-
-  - alias: HAPi Low Memory Alert
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.memory_use_percent
-        above: 90
-    action:
-      - service: notify.martin
-        data: 
-          title: "HAPi Low Resource Alert"
-          message: "Low Memory > 90% Used"
-
-  - alias: HAPi High Load Alert
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.load_5m
-        above: 2.8 # 4 Cores in RPi3 x 0.7 per core, for relatively high sustained load = 
-    action:
-      - service: notify.martin
-        data: 
-          title: "HAPi Low Resource Alert"
-          message: "System Load 5m Load Average > 2.8"
-
-##################################################
 ## Recorder/History
 ##################################################
 recorder:
