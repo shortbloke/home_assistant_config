@@ -1,16 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:
-    sensor.dishwasher_power:
-      icon: mdi:flash 
-    sensor.dishwasher_power_today:
-      icon: mdi:counter
-    sensor.dishwasher_status:
-      icon: mdi:state-machine
-
-##################################################
 ## Components/Sensors
 ##################################################
 tplink:
@@ -57,70 +45,6 @@ sensor:
     state: 'finished'
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
     end: '{{ now() }}'
-
-##################################################
-## Automation
-##################################################
-automation:
-# When we detect power being drawn from the dishwasher, above 100W,
-# mark the dishwasher as 'running'
-  - alias: Set dishwasher active when power detected
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.dishwasher_power
-        above: 100
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.dishwasher_status
-          state: 'idle'
-        - condition: state
-          entity_id: input_select.dishwasher_status
-          state: 'finished'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.dishwasher_status
-          option: 'running'
-
-# When the power level drops below 1W for 2 minutes and the Dishwasher is set to
-# the 'running' state, mark the Dishwasher as 'finished'
-  - alias: Set dishwasher finished when power drops
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.dishwasher_power
-        below: 1
-        for:
-          minutes: 2
-    condition:
-      condition: state
-      entity_id: input_select.dishwasher_status
-      state: 'running'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.dishwasher_status
-          option: 'finished'
-
-# Once the dishwasher status has been 'finished' for 3 minutes, mark the
-# dishwasher as idle
-  - alias: Set dishwasher to idle
-    trigger:
-      - platform: state
-        entity_id: input_select.dishwasher_status
-        to: 'finished'
-        for:
-          minutes: 3
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.dishwasher_status
-          option: 'idle'
-      - service: notify.adults
-        data:
-          title: "Dishwasher"
-          message: "Finished!"
 
 ##################################################
 ## Recorder/History

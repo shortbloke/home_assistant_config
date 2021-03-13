@@ -1,16 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:
-    sensor.tumble_dryer_power:
-      icon: mdi:flash
-    sensor.tumble_dryer_power_today:
-      icon: mdi:flash
-    sensor.dryer_status:
-      icon: mdi:state-machine
-
-##################################################
 ## Components/Sensors
 ##################################################
 tplink:
@@ -57,69 +45,6 @@ sensor:
     state: 'finished'
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
     end: '{{ now() }}'
-
-##################################################
-## Automation
-##################################################
-automation:
-# When we detect power being drawn from the dryer, above 800W,
-# mark the dryer as using started
-  - alias: Set dryer active when power detected
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.tumble_dryer_power
-        above: 800
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.dryer_status
-          state: 'idle'
-        - condition: state
-          entity_id: input_select.dryer_status
-          state: 'finished'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.dryer_status
-          option: 'running'
-
-# When the power level drops below 100W for 3 minutes, and the dryer is set to
-# the 'running' state, mark the dryer as finished and send notification.
-  - alias: Set dryer drying when power drops
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.tumble_dryer_power
-        below: 100
-        for:
-          minutes: 3
-    condition:
-      condition: state
-      entity_id: input_select.dryer_status
-      state: 'running'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.dryer_status
-          option: 'finished'
-      - service: notify.michelle
-        data:
-          message: "Finished!"
-          title: "Tumble Dryer"
-
-# Once the dryer status has been 'finished' for 2 minutes, set to idle
-  - alias: Set Dryer to idle
-    trigger:
-      - platform: state
-        entity_id: input_select.dryer_status
-        to: 'finished'
-        for:
-          minutes: 2
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.dryer_status
-          option: 'idle'
 
 ##################################################
 ## Recorder/History

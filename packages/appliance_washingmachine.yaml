@@ -1,16 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:
-    sensor.washing_machine_power:
-      icon: mdi:flash
-    sensor.washing_machine_power_today:
-      icon: mdi:counter
-    sensor.washing_machine_status:
-      icon: mdi:state-machine
-
-##################################################
 ## Components/Sensors
 ##################################################
 tplink:
@@ -58,70 +46,6 @@ sensor:
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
     end: '{{ now() }}'
 
-
-##################################################
-## Automation
-##################################################
-automation:
-# When we detect power being drawn from the washing machine, above 5W,
-# mark the washing machine as using started
-  - alias: Set washing machine active when power detected
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.washing_machine_power
-        above: 5
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.washing_machine_status
-          state: 'idle'
-        - condition: state
-          entity_id: input_select.washing_machine_status
-          state: 'finished'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.washing_machine_status
-          option: 'running'
-
-# When the power level drops below 5W, for 2 minutes and the washing machine is set to
-# the 'running' state, mark the washing machine as Finished and send notification.
-  - alias: Set washing machine to finished when power drops
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.washing_machine_power
-        below: 5
-        for:
-          minutes: 2
-    condition:
-      condition: state
-      entity_id: input_select.washing_machine_status
-      state: 'running'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.washing_machine_status
-          option: 'finished'
-      - service: notify.michelle
-        data:
-          message: "Finished!"
-          title: "Washing Machine"
-
-# Once the washing machine status has been 'finished' for 2 minutes, mark the
-# washing machine as idle
-  - alias: Set Washing Machine to idle
-    trigger:
-      - platform: state
-        entity_id: input_select.washing_machine_status
-        to: 'finished'
-        for:
-          minutes: 2
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.washing_machine_status
-          option: 'idle'
 
 ##################################################
 ## Recorder/History

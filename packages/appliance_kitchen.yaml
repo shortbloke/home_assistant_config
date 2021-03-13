@@ -1,16 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:
-    sensor.kitchen_total_power_now:
-      icon: mdi:flash
-    sensor.kitchen_total_power_today:
-      icon: mdi:counter 
-    sensor.kitchen_total_power_cost_today:
-      icon: mdi:currency-gbp
-
-##################################################
 ## Components/Sensors
 ##################################################
 sensor:

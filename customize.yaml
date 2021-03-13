@@ -1,2 +1,32 @@
 zone.home:
   radius: 25
+sensor.deluge_down_speed:
+  friendly_name: Download Speed
+  icon: mdi:cloud-download
+sensor.deluge_up_speed:
+  friendly_name: Upload Speed
+  icon: mdi:cloud-upload
+sensor.washing_machine_power:
+  icon: mdi:flash
+sensor.washing_machine_power_today:
+  icon: mdi:counter
+sensor.washing_machine_status:
+  icon: mdi:state-machine
+sensor.kitchen_total_power_now:
+  icon: mdi:flash
+sensor.kitchen_total_power_today:
+  icon: mdi:counter
+sensor.kitchen_total_power_cost_today:
+  icon: mdi:currency-gbp
+sensor.tumble_dryer_power:
+  icon: mdi:flash
+sensor.tumble_dryer_power_today:
+  icon: mdi:counter
+sensor.dryer_status:
+  icon: mdi:state-machine
+sensor.dishwasher_status:
+  icon: mdi:state-machine
+sensor.dishwasher_power:
+  icon: mdi:counter
+sensor.dishwasher_power_today:
+  icon: mdi:counter

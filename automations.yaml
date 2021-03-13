@@ -357,3 +357,171 @@
       message: '{{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time
         to water'
   mode: single
+- id: '1615651874014'
+  alias: Set washing machine active when power detected
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.washing_machine_power
+    above: '5'
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.washing_machine_status
+      state: idle
+    - condition: state
+      entity_id: input_select.washing_machine_status
+      state: finished
+  action:
+  - service: input_select.select_option
+    data:
+      option: running
+    target:
+      entity_id: input_select.washing_machine_status
+  mode: single
+- id: '1615652115472'
+  alias: Set washing machine to finished when power drops
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.washing_machine_power
+    below: '5'
+    for: 00:02:00
+  condition:
+  - condition: state
+    entity_id: input_select.washing_machine_status
+    state: running
+  action:
+  - service: input_select.select_option
+    data:
+      option: finished
+    target:
+      entity_id: input_select.washing_machine_status
+  - service: notify.michelle
+    data:
+      title: Washing Machine
+      message: Finished!
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - service: input_select.select_option
+    data:
+      option: idle
+    target:
+      entity_id: input_select.washing_machine_status
+  mode: single
+- id: '1615653075229'
+  alias: Set dryer active when power detected
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tumble_dryer_power
+    above: '800'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.dryer_status
+      state: idle
+    - condition: state
+      entity_id: input_select.dryer_status
+      state: finished
+  action:
+  - service: input_select.select_option
+    data:
+      option: running
+    target:
+      entity_id: input_select.dryer_status
+  mode: single
+- id: '1615653218617'
+  alias: Set dryer to finished when power drops
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tumble_dryer_power
+    below: '100'
+    for: 00:03:00
+  condition:
+  - condition: state
+    entity_id: input_select.dryer_status
+    state: running
+  action:
+  - service: input_select.select_option
+    data:
+      option: finished
+    target:
+      entity_id: input_select.dryer_status
+  - service: notify.michelle
+    data:
+      title: Tumble Dryer
+      message: Finished!
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - service: input_select.select_option
+    data:
+      option: idle
+    target:
+      entity_id: input_select.dryer_status
+  mode: single
+- id: '1615653304715'
+  alias: Set dishwasher active when power detected
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dishwasher_power
+    above: '100'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: idle
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: finished
+  action:
+  - service: input_select.select_option
+    data:
+      option: running
+    target:
+      entity_id: input_select.dishwasher_status
+  mode: single
+- id: '1615653473188'
+  alias: Set dishwasher to finished when power drops
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dishwasher_power
+    below: '1'
+    for: 00:02:00
+  condition:
+  - condition: state
+    entity_id: input_select.dishwasher_status
+    state: running
+  action:
+  - service: input_select.select_option
+    data:
+      option: finished
+    target:
+      entity_id: input_select.dishwasher_status
+  - service: notify.adults
+    data:
+      message: Finished!
+      title: Dishwasher
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - service: input_select.select_option
+    data:
+      option: idle
+    target:
+      entity_id: input_select.dishwasher_status
+  mode: single
