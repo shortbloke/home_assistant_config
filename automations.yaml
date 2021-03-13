@@ -134,3 +134,63 @@
     entity_id: switch.sonoff_loft_fan
     domain: switch
   mode: single
+- id: '1615646609604'
+  alias: Turn on in the morning and sunset
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:30:00
+  - platform: sun
+    event: sunset
+    offset: -01:00:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 0b953119e29d4d2cb3c99048226eefd9
+    entity_id: switch.lwrf_hall_socket_2
+    domain: switch
+  mode: single
+- id: '1615646860464'
+  alias: Turn off after sunset
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    above: '10'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 0b953119e29d4d2cb3c99048226eefd9
+    entity_id: switch.lwrf_hall_socket_2
+    domain: switch
+  mode: single
+- id: '1615647376188'
+  alias: Wake up Fraser Light
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: wled.effect
+    data:
+      effect: solid
+  - service: wled.effect
+    data:
+      effect: sunrise
+      intensity: 25
+      palette: Default
+      speed: 15
+  - type: turn_on
+    device_id: 1ae4ff86c169d23150699d8751cb50b4
+    entity_id: light.wled_panel_fraser
+    domain: light
+  mode: single
