@@ -1,14 +1,6 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-input_select:
-  ironing_room_motion_status:
-    name: Ironing Room Motion Status
-    options:
-      - idle
-      - motion
-    initial: motion
-
 tplink:
   switch:
     - host: 192.168.170.21 # DHCP reservation
@@ -66,40 +58,3 @@ sensor:
       ironing_room_motion_status: 
         value_template: "{{ states.input_select.ironing_room_motion_status.state }}"
         friendly_name: "Ironing Room Motion Status"
-
-##################################################
-## Recorder/History
-##################################################
-recorder:
-  include:
-    entities:
-      - sensor.ironing_room_motion_status
-      - sensor.ironing_room_motion
-      - sensor.irons_left_power
-      - sensor.irons_left_power_today
-      - sensor.irons_right_power
-      - sensor.irons_right_power_today
-      - sensor.ironing_table_power
-      - sensor.ironing_table_power_today
-      - sensor.magpie_iron_power
-      - sensor.magpie_iron_power_today
-      - sensor.ironing_room_total_power_now
-      - sensor.ironing_room_total_power_today
-      - sensor.ironing_room_power_cost_today
-
-history:
-  include:
-    entities:
-      - sensor.ironing_room_motion_status
-      - sensor.ironing_room_motion
-      - sensor.irons_left_power
-      - sensor.irons_left_power_today
-      - sensor.irons_right_power
-      - sensor.irons_right_power_today
-      - sensor.ironing_table_power
-      - sensor.ironing_table_power_today
-      - sensor.magpie_iron_power
-      - sensor.magpie_iron_power_today
-      - sensor.ironing_room_total_power_now
-      - sensor.ironing_room_total_power_today
-      - sensor.ironing_room_power_cost_today

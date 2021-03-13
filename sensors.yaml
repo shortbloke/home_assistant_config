@@ -1,0 +1,119 @@
+####################################################
+#                Template Sensors                  #
+####################################################
+- platform: template
+  sensors:
+    sun_template:
+      friendly_name: "Sun"
+      value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom('%H:%M', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom('%H:%M', True) }}"
+      icon_template: "{% if is_state('sun.sun', 'above_horizon') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}"
+
+- platform: template
+  sensors:
+    ### WH5 Portable Temperature and Humidity Sensors ###
+    portable_sensor_1_temperature:
+      value_template: "{{ (states('sensor.temp_humid_1_temperature') | float - 40) | round(1) }}"
+      unit_of_measurement: '°C'
+      friendly_name: "Temperature (Conservatory)"
+    portable_sensor_2_temperature:
+      value_template: "{{ (states('sensor.temp_humid_2_temperature') | float - 40) | round(1) }}"
+      unit_of_measurement: '°C'
+      friendly_name: "Temperature (Living Room)"
+    portable_sensor_3_temperature:
+      value_template: "{{ (states('sensor.temp_humid_3_temperature') | float - 40) | round(1) }}"
+      unit_of_measurement: '°C'
+      friendly_name: "Temperature (Fraser)"
+    portable_sensor_5_temperature:
+      value_template: "{{ (states('sensor.temp_humid_5_temperature') | float - 40) | round(1) }}"
+      unit_of_measurement: '°C'
+      friendly_name: "Temperature (Morgan)"
+
+####################################################
+#                  Command Line                    #
+####################################################
+# Pi Temperature
+- platform: command_line
+  name: HA CPU Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) | round(1) }}'
+
+####################################################
+#                Component Sensors                 #
+####################################################
+# Raspberry Pi System Information
+- platform: systemmonitor
+  resources:
+    - type: disk_free
+      arg: /
+    - type: disk_use_percent
+      arg: /
+    - type: swap_use_percent
+    - type: memory_free
+    - type: memory_use_percent
+    - type: processor_use
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+
+# Internet IP Address via REST sensor
+- platform: rest
+  resource: http://ip.jsontest.com
+  name: External IP
+  value_template: '{{ value_json.ip }}'
+
+# Deluge Activity sensor
+- platform: deluge
+  host: !secret deluge_host
+  port: 58846
+  username: !secret deluge_username
+  password: !secret deluge_password
+  monitored_variables:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'
+
+# Media Sensors
+- platform: plex_recently_added
+  name: Recently added movies # will create sensor.plex_recently_added_
+  token: !secret plex_token
+  host: !secret plex_host
+  port: 32400
+  section_types:
+    - movie
+
+- platform: plex_recently_added
+  name: Recently added tv # will create sensor.recently_added_tv
+  token: !secret plex_token
+  host: !secret plex_host
+  port: 32400
+  section_types:
+    - show
+
+- platform: radarr_upcoming_media
+  api_key: !secret radarr_token
+  host: !secret radarr_host
+  port: 7878
+  days: 7
+  ssl: false
+  theaters: false
+  max: 10
+
+- platform: sonarr_upcoming_media
+  api_key: !secret sonarr_token
+  host: !secret sonarr_host
+  port: 8989
+  days: 7
+  ssl: false
+  max: 10
+
+# Owl Energy Monitor
+- platform: owlintuition
+  host: 192.168.200.45
+  port: 32000
+  mode: triphase
+  cost_icon: 'mdi:currency-gbp'
+  cost_unit_of_measurement: GBP
+  monitored_conditions:
+    - electricity
+    - solar

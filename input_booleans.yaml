@@ -1,0 +1,6 @@
+low_salt:
+  name: Low Salt
+  icon: mdi:hydraulic-oil-level
+
+guest_mode:
+  name: Guest Mode

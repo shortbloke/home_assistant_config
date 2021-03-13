@@ -1,0 +1,73 @@
+##################################################
+## Scripts
+##################################################
+
+# Occupancy
+morgan_away:
+  alias: Morgan away
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id:
+        - light.morgans_lights
+
+fraser_away:
+  alias: Fraser away
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id:
+        - light.frasers_lights
+
+everyone_away:
+  alias: everyone_away
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id:
+        - script.morgan_away
+        - script.fraser_away
+        - group.conservatory_lights
+        - group.dining_room_lights
+        - group.living_room_lights
+        - switch.sonoff_garage_light
+
+# Sonos
+sonos_say:
+  # Source: https://home-assistant.io/cookbook/sonos_say/
+  alias: Sonos TTS script
+  sequence:
+    - service: sonos.snapshot
+      data:
+        entity_id: "{{ sonos_entity }}"
+    - service: sonos.unjoin
+      data:
+        entity_id: "{{ sonos_entity }}"
+    - service: media_player.volume_set
+      data:
+        entity_id: "{{ sonos_entity }}"
+        volume_level: "{{ volume }}"
+    # - service: tts.voicerss_say
+    - service: tts.google_translate_say
+      data:
+        entity_id: "{{ sonos_entity }}"
+        message: "{{ message }}"
+    - delay: "{{ delay }}"
+    - service: sonos.restore
+      data:
+        entity_id: "{{ sonos_entity }}"
+
+sonos_alarm:
+  alias: Sonos Burglar Alarm Siren
+  sequence:
+    - service: sonos.snapshot
+    - service: sonos.unjoin
+    - service: media_player.volume_mute
+      data:
+        is_volume_muted: false
+    - service: media_player.volume_set
+      data:
+        volume_level: "{{ volume }}"
+    - service: media_player.play_media
+      data:
+        media_content_id: !secret siren_wav_url
+        media_content_type: "audio/mp3"
+    - delay: "{{ delay }}"
+    - service: sonos.restore

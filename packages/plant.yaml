@@ -26,22 +26,3 @@ plant:
     min_battery: 17
     min_conductivity: 350
     min_temperature: 8
-
-##################################################
-## Recorder/History
-##################################################
-recorder:
-  include:
-    entities:
-      - sensor.orchid_moisture_2
-      - sensor.orchid_conductivity_2
-      - sensor.herbs_moisture_2
-      - sensor.herbs_conductivity_2
-
-history:
-  include:
-    entities:
-      - sensor.orchid_moisture_2
-      - sensor.orchid_conductivity_2
-      - sensor.herbs_moisture_2
-      - sensor.herbs_conductivity_2

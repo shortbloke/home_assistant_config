@@ -1,0 +1,30 @@
+ironing_room_motion_status:
+  name: Ironing Room Motion Status
+  options:
+    - idle
+    - motion
+  initial: motion
+
+dishwasher_status:
+  name: Dishwasher Status
+  options:
+    - idle
+    - running
+    - finished
+  initial: idle
+
+washing_machine_status:
+  name: Washing Machine Status
+  options:
+    - idle
+    - running
+    - finished
+  initial: idle
+
+dryer_status:
+  name: Tumble Dryer Status
+  options:
+    - idle
+    - running
+    - finished
+  initial: idle

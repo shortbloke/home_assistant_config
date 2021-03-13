@@ -19,18 +19,3 @@ sensor:
     state: 'open'
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
-
-##################################################
-## Recorder/History
-##################################################
-recorder:
-  include:
-    entities:
-      - cover.petdoor
-      - sensor.petdoor_opened_today_count
-
-history:
-  include:
-    entities:
-      - cover.petdoor
-      - sensor.petdoor_opened_today_count

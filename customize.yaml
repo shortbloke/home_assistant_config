@@ -54,3 +54,89 @@ sensor.ironing_room_total_power_today:
   icon: mdi:counter
 sensor.ironing_room_power_cost_today:
   icon: mdi:currency-gbp
+binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off:
+  friendly_name: Front Door
+  icon: mdi:door
+sensor.lumi_lumi_sensor_magnet_aq2_5b337502_power:
+  friendly_name: Front Door - Battery
+binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off:
+  friendly_name: Back Door
+  icon: mdi:door
+sensor.lumi_lumi_sensor_magnet_aq2_643f6703_power:
+  friendly_name: Back Door - Battery
+binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off:
+  friendly_name: Garage Interior Door
+  icon: mdi:door
+sensor.lumi_lumi_sensor_magnet_aq2_bc705302_power:
+  friendly_name: Garage Interior Door - Battery
+binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off:
+  friendly_name: Ironing Room - Window
+  icon: mdi:window-open
+binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off:
+  icon: mdi:window-open
+  friendly_name: Morgan - Window
+sensor.lumi_lumi_sensor_magnet_993d0303_power:
+  friendly_name: Morgan - Windows - Battery
+sensor.lumi_lumi_sens_ca8a3702_humidity:
+  icon: mdi:water-percent
+  friendly_name: ZigBee TH1 - Humidty
+sensor.lumi_lumi_sens_ca8a3702_temperature:
+  friendly_name: ZigBee TH1 - Temperature
+sensor.lumi_lumi_sens_ca8a3702_power:
+  friendly_name: ZigBee TH1 - Battery
+binary_sensor.motion_sensor_garage:
+  icon: mdi:motion-sensor
+binary_sensor.motion_sensor_ironing_room:
+  icon: mdi:motion-sensor
+sensor.ensuite_shower_uses_today:
+  icon: mdi:counter
+sensor.family_bathroom_shower_uses_today:
+  icon: mdi:counter
+sensor.ensuite_shower_minutes:
+  icon: mdi:clock-outline
+sensor.family_bathroom_shower_minutes:
+  icon: mdi:clock-outline
+sensor.owl_intuition_electricity_battery:
+  friendly_name: Owl Battery
+sensor.owl_intuition_electricity_battery_level:
+  friendly_name: Owl Battery Level
+sensor.owl_intuition_electricity_radio:
+  friendly_name: Owl Signal
+sensor.owl_intuition_electricity_power:
+  friendly_name: Electricity Using
+sensor.owl_intuition_electricity_today:
+  friendly_name: Electricity Used Today
+sensor.owl_intuition_cost_today:
+  friendly_name: Electricity Cost Today
+sensor.owl_intuition_solar_generating:
+  friendly_name: Solar Generating
+sensor.owl_intuition_solar_exporting:
+  friendly_name: Solar Exporting
+sensor.owl_intuition_solar_generated_today:
+  friendly_name: Solar Generated Today
+sensor.owl_intuition_solar_exported_today:
+  friendly_name: Solar Exported Today
+light.wifi_ufo_1:
+  friendly_name: "Desk"
+  icon: mdi:led-strip
+light.wifi_ufo_2:
+  friendly_name: "Window"
+  icon: mdi:led-strip
+light.wifi_ufo_3:
+  friendly_name: "Rear Wall"
+  icon: mdi:led-strip
+light.wifi_ufo_4:
+  friendly_name: "Bed"
+  icon: mdi:led-strip
+light.conservatory_desk:
+  friendly_name: "Conservatory Desk Strip"
+  icon: mdi:led-strip
+light.conservatory_left:
+  friendly_name: "Conservatory Ceiling Left"
+  icon: mdi:led-strip-variant
+light.conservatory_right:
+  friendly_name: "Conservatory Ceiling Right"
+  icon: mdi:led-strip-variant
+sensor.external_ip:
+  icon: mdi:ip-network-outline
+  show_last_changed: true

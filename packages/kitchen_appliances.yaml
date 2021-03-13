@@ -1,0 +1,117 @@
+##################################################
+## Components/Sensors
+##################################################
+tplink:
+  switch:
+    - host: 192.168.170.26 # Dishwasher
+    - host: 192.168.170.27 # Washing Machine
+    - host: 192.168.170.28 # Tumble Dryer
+
+sensor:
+  - platform: template
+    sensors:
+      dishwasher_power:
+        value_template: "{{ states.switch.dishwasher.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Dishwasher Power"
+      dishwasher_power_today:
+        value_template: "{{ states.switch.dishwasher.attributes['today_energy_kwh'] | float | round(2) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Dishwasher Power Today"
+  - platform: template
+    sensors:
+      dishwasher_status:
+        value_template: "{{ states.input_select.dishwasher_status.state }}"
+        friendly_name: "Dishwasher Status"
+
+  - platform: template
+    sensors:
+      tumble_dryer_power:
+        value_template: "{{ states.switch.tumble_dryer.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Tumble Dryer Power"
+      tumble_dryer_power_today:
+        value_template: "{{ states.switch.tumble_dryer.attributes['today_energy_kwh'] | float | round(2) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Tumble Dryer Power Today"
+  - platform: template
+    sensors:
+      dryer_status:
+        value_template: "{{ states.input_select.dryer_status.state }}"
+        friendly_name: "Tumble Dryer Status"
+
+  - platform: template
+    sensors:
+      washing_machine_power:
+        value_template: "{{ states.switch.washing_machine.attributes['current_power_w'].split(' ')[0] }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Washing Machine Power"
+      washing_machine_power_today:
+        value_template: "{{ states.switch.washing_machine.attributes['today_energy_kwh'] | float | round(2) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Washing Machine Power Today"
+  - platform: template
+    sensors:
+      washing_machine_status:
+        value_template: "{{ states.input_select.washing_machine_status.state }}"
+        friendly_name: "Washing Machine Status"
+
+  - platform: history_stats
+    name: Dishwasher uses today
+    entity_id: sensor.dishwasher_status
+    type: count
+    state: 'finished'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Dishwasher uses this week
+    entity_id: sensor.dishwasher_status
+    type: count
+    state: 'finished'
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Dryer uses today
+    entity_id: sensor.dryer_status
+    type: count
+    state: 'finished'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Dryer uses this week
+    entity_id: sensor.dryer_status
+    type: count
+    state: 'finished'
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Washing machine uses today
+    entity_id: sensor.washing_machine_status
+    type: count
+    state: 'finished'
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Washing machine uses this week
+    entity_id: sensor.washing_machine_status
+    type: count
+    state: 'finished'
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
+
+  - platform: template
+    sensors:
+      kitchen_total_power_now:
+        value_template: "{{ (states('sensor.dishwasher_power') | float + states('sensor.tumble_dryer_power') | float + states('sensor.washing_machine_power') | float) | round(3) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Power Now - Kitchen"
+      kitchen_total_power_today:
+        value_template: "{{ (states('sensor.dishwasher_power_today') | float + states('sensor.tumble_dryer_power_today') | float + states('sensor.washing_machine_power_today') | float) | round(3) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Power Today - Kitchen"
+      kitchen_total_power_cost_today:
+        value_template: "{{ (states('sensor.kitchen_total_power_today') |float * 0.14284 ) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Power Cost Today - Kitchen"

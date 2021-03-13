@@ -640,3 +640,176 @@
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Magpie Iron
   mode: single
+- id: '1615656237892'
+  alias: Door Open - Set heating mode to eco
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off
+    to: 'on'
+    for: 00:02:00
+  condition: []
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: eco
+    target:
+      entity_id: climate.hallway_house
+  mode: single
+- id: '1615656264115'
+  alias: Door Closed - Reset heating mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off
+    to: 'off'
+  condition: []
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id: climate.hallway_house
+  mode: single
+- id: '1615662841415'
+  alias: House occupied
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.anyone_home
+    to: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id: climate.hallway_house
+  mode: single
+- id: '1615662905589'
+  alias: House unoccupied
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.anyone_home
+    from: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: eco
+    target:
+      entity_id: climate.hallway_house
+  - service: script.turn_on
+    target:
+      entity_id: script.everyone_away
+  mode: single
+- id: '1615662965997'
+  alias: Morgan away
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.morgan
+    from: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.morgan_away
+  mode: single
+- id: '1615663102226'
+  alias: Morgan away window open
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.morgan
+    from: home
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off
+      state: 'on'
+  action:
+  - service: notify.morgan
+    data:
+      title: 'Home Assistant: ALERT!'
+      message: Bedroom Window Left Open
+  - service: notify.michelle
+    data:
+      title: 'Home Assistant: ALERT!'
+      message: Morgan's window has been left open
+  mode: single
+- id: '1615663191504'
+  alias: Fraser away
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.fraser
+    from: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.fraser_away
+  mode: single
+- id: '1615663371546'
+  alias: House unoccupied things left open
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.anyone_home
+    from: home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off
+        state: 'on'
+  action:
+  - service: notify.adults
+    data:
+      title: House Unoccupied - Things left open
+      message: '{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off.attributes[''friendly_name'']}}
+        [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off.state
+        }}],  #                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off.attributes[''friendly_name'']}}
+        [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off.state
+        }}],  #                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off.attributes[''friendly_name'']}}
+        [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off.state
+        }}],  #                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off.attributes[''friendly_name'']}}
+        [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off.state
+        }}],  #                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.attributes[''friendly_name'']}}
+        [{{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.state }}]'
+  mode: single

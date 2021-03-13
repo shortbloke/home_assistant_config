@@ -3,68 +3,57 @@
 ###################################################
 homeassistant:
   customize: !include customize.yaml
-
-  # https://home-assistant.io/docs/configuration/packages/  
+  # https://home-assistant.io/docs/configuration/packages/
   packages: !include_dir_named packages
 
-####################################################
-#        Home Assistant Components Enabled         #
-####################################################
-# https://www.home-assistant.io/components/automation/
+# Include Files
 automation: !include automations.yaml
-# https://www.home-assistant.io/integrations/default_config/
-default_config:
+camera: !include cameras.yaml
+group: !include groups.yaml
+input_boolean: !include input_booleans.yaml
+input_select: !include input_selects.yaml
+light: !include lights.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+
+####################################################
+#            Home Assistant Components             #
+####################################################
 # https://www.home-assistant.io/integrations/api/
 api:
+# https://www.home-assistant.io/integrations/default_config/
+default_config:
+# https://www.home-assistant.io/integrations/history
+history:
 # https://home-assistant.io/components/http/
 http:
   login_attempts_threshold: 100
-# https://www.home-assistant.io/docs/ecosystem/ios/
-ios:
-
-####################################################
-#      Home Assistant Core Components Global       #
-####################################################
-# https://www.home-assistant.io/integrations/history
-history:
-  include:
-    entities:
-      - sensor.loft_fan_temperature
-      - sensor.loft_fan_humidity
-
 # https://www.home-assistant.io/components/logbook/
 logbook:
   include:
     domains: 
       - automation
-
+    entities:
+      - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/
 logger:
   default: error
   # logs:
   #   RFXtrx: debug
-
-# https://www.home-assistant.io/components/recorder/
-recorder:
-  db_url: !secret mariaDbUrl
-  include:
-    domains: 
-      - automation
-    entities:
-      - sensor.loft_fan_temperature
-      - sensor.loft_fan_humidity
-
-####################################################
-#                     Components                   #
-####################################################
-
-# https://www.home-assistant.io/components/panel_iframe/
-panel_iframe:
-  tasmoadmin:
-    title: TasmoAdmin
-    icon: mdi:lightbulb-on
-    url: !secret TasmoAdminURL
-
+# https://www.home-assistant.io/docs/ecosystem/ios/
+ios:
+  push:
+    categories:
+      - name: late_night_tv_alert
+        identifier: 'TVALARM'
+        actions:
+          - identifier: PLAY_LATE_TV_MESSAGE
+            title: 'Play Message?'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
 # https://www.home-assistant.io/components/notify/
 # and
 # https://www.home-assistant.io/components/notify.group/
@@ -89,7 +78,17 @@ notify:
     platform: group
     services:
       - service: mobile_app_morgans_iphone_7
-
+# https://www.home-assistant.io/components/panel_iframe/
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: !secret TasmoAdminURL
+# https://www.home-assistant.io/components/recorder/
+recorder:
+  db_url: !secret mariaDbUrl
+# https://www.home-assistant.io/components/sun/
+sun:
 # https://www.home-assistant.io/components/tts/
 tts:
   - platform: google_translate

@@ -1,0 +1,52 @@
+##################################################
+## Lights
+##################################################
+# https://www.home-assistant.io/components/light.flux_led/
+- platform: flux_led
+  automatic_add: False
+  devices:
+    192.168.107.20:
+      name: wifi_ufo_1
+      mode: "rgbw"
+    192.168.107.21:
+      name: wifi_ufo_2
+      mode: "rgbw"
+    192.168.107.22:
+      name: wifi_ufo_3
+      mode: "rgbw"
+    192.168.107.23:
+      name: wifi_ufo_4
+      mode: "rgbw"
+    192.168.107.24:
+      name: conservatory_desk
+      mode: "rgb"
+    192.168.107.25:
+      name: conservatory_left
+      mode: "w"
+    192.168.107.26:
+      name: conservatory_right
+      mode: "w"
+
+##################################################
+## Lights Groups
+##################################################
+- platform: group
+  name: Morgans Strip Lights
+  entities:
+    - light.wifi_ufo_1
+    - light.wifi_ufo_2
+    - light.wifi_ufo_3
+    - light.wifi_ufo_4
+- platform: group
+  name: Morgans Lights
+  entities:
+    - light.morgans_strip_lights
+    - light.lwrf_morgan_main
+- platform: group
+  name: Frasers Lights
+  entities:
+    - light.2424806784f3eb2103c8
+    - light.12204702ecfabc20a0a1
+    - light.12204702807d3a252d9b
+    - light.01802003cc50e3501f3e
+    - light.wled_panel_fraser

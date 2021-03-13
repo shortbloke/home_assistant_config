@@ -1,0 +1,56 @@
+##################################################
+## Groups
+##################################################
+living_room_lights:
+  name: Living Room Lights
+  entities:
+    - light.lwrf_diningroom_main
+    - switch.lwrf_livingroom_standard_lamp
+    - switch.lwrf_displaycabinetlight
+    - switch.lwrf_waxburner
+dining_room_lights:
+  name: Dining Room Lights
+  entities:
+    - light.lwrf_diningroom_main
+    - switch.lwrf_diningroom_rennie_mac_lamp
+living_area_lights:
+  name: Living Area Lights
+  entities:
+    - group.living_room_lights
+    - group.dining_room_lights
+living_room_lamps:
+  name: Living Room Lamps
+  entities:
+    - switch.lwrf_livingroom_standard_lamp
+    - switch.lwrf_displaycabinetlight
+    - switch.lwrf_waxburner
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    # - No entities yet 
+conservatory_lights:
+  name: Conservatory Lights
+  entities:
+    - switch.lwrf_conservatory_1
+    - switch.lwrf_conservatory_2
+
+# Occupancy Groups
+adults_home:
+  name: Adults at home
+  entities:
+    - person.june
+    - person.martin
+    - person.michelle
+children_home:
+  name: Children at home
+  entities:
+    - person.morgan
+    - person.fraser
+anyone_home:
+  name: anyone at home
+  entities:
+    - person.june
+    - person.martin
+    - person.michelle
+    - person.morgan
+    - person.fraser

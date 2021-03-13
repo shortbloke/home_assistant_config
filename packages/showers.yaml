@@ -1,18 +1,4 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:
-    sensor.ensuite_shower_uses_today:
-      icon: mdi:counter
-    sensor.family_bathroom_shower_uses_today:
-      icon: mdi:counter
-    sensor.ensuite_shower_minutes:
-      icon: mdi:clock-outline
-    sensor.family_bathroom_shower_minutes:
-      icon: mdi:clock-outline
-
-##################################################
 ## Components/Sensors
 ##################################################
 binary_sensor:
@@ -74,34 +60,3 @@ sensor:
     state: 'on'
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
-
-# ##################################################
-# ## Recorder/History
-# ##################################################
-recorder:
-  include:
-    entities:
-      - switch.ensuite_shower
-      - sensor.ensuite_shower_power
-      - sensor.ensuite_shower_uses_today
-      - sensor.ensuite_shower_time_today
-      - binary_sensor.ensuite_shower_active
-      - switch.family_bathroom_shower
-      - sensor.family_bathroom_shower_power
-      - sensor.family_bathroom_shower_uses_today
-      - sensor.family_bathroom_shower_time_today
-      - binary_sensor.family_bathroom_shower_active
-
-history:
-  include:
-    entities:
-      - switch.ensuite_shower
-      - sensor.ensuite_shower_power
-      - sensor.ensuite_shower_uses_today
-      - sensor.ensuite_shower_time_today
-      - binary_sensor.ensuite_shower_active
-      - switch.family_bathroom_shower
-      - sensor.family_bathroom_shower_power
-      - sensor.family_bathroom_shower_uses_today
-      - sensor.family_bathroom_shower_time_today
-      - binary_sensor.family_bathroom_shower_active

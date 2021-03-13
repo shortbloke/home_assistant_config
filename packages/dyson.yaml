@@ -99,34 +99,3 @@
 #         friendly_name: "Speed Mode"
 #         icon_template: mdi:speedometer
 
-
-# ##################################################
-# ## Automation
-# ##################################################
-
-# ##################################################
-# ## Recorder/History
-# ##################################################
-# recorder:
-#   include:
-#     entities:
-#       - sensor.bedroom_temperature
-#       - sensor.bedroom_humidity
-#       - sensor.dyson_particulate_matter_2_5
-#       - sensor.dyson_particulate_matter_10
-#       - sensor.dyson_nitrogen_dioxide
-#       - sensor.dyson_volatile_organic_compounds
-#       - sensor.dyson_hepa_filter
-#       - sensor.dyson_carbon_filer
-
-# history:
-#   include:
-#     entities:
-#       - sensor.bedroom_temperature
-#       - sensor.bedroom_humidity
-#       - sensor.dyson_particulate_matter_2_5
-#       - sensor.dyson_particulate_matter_10
-#       - sensor.dyson_nitrogen_dioxide
-#       - sensor.dyson_volatile_organic_compounds
-#       - sensor.dyson_hepa_filter
-#       - sensor.dyson_carbon_filer
