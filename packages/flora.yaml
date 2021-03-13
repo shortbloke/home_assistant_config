@@ -1,24 +1,14 @@
 ##################################################
-## Customize
-##################################################
-homeassistant:
-  customize:  
-    sensor.orchid_plant_moisture:  
-      friendly_name: "Orchid"
-    sensor.herbs_moisture:
-      friendly_name: "Garden Herbs"
-
-##################################################
 ## Components/Sensors
 ##################################################
 plant:
   orchid_plant:
     sensors:
-      moisture: sensor.orchid_plant_moisture
-      battery: sensor.orchid_plant_battery
-      temperature: sensor.orchid_plant_temperature
-      conductivity: sensor.orchid_plant_conductivity
-      brightness: sensor.orchid_plant_light
+      moisture: sensor.orchid_moisture_2
+      battery: sensor.orchid_battery_2
+      temperature: sensor.orchid_temperature_2
+      conductivity: sensor.orchid_conductivity_2
+      brightness: sensor.orchid_light_2
     min_moisture: 15
     max_moisture: 65
     min_battery: 17
@@ -26,89 +16,16 @@ plant:
     min_temperature: 15
   herbs:
     sensors:
-      moisture: sensor.herbs_moisture
-      battery: sensor.herbs_battery
-      temperature: sensor.herbs_temperature
-      conductivity: sensor.herbs_conductivity
-      brightness: sensor.herbs_light
+      moisture: sensor.herbs_moisture_2
+      battery: sensor.herbs_battery_2
+      temperature: sensor.herbs_temperature_2
+      conductivity: sensor.herbs_conductivity_2
+      brightness: sensor.herbs_light_2
     min_moisture: 15
     max_moisture: 60
     min_battery: 17
     min_conductivity: 350
     min_temperature: 8
-
-sensor:
-  - platform: mqtt
-    name: orchid_plant_moisture
-    state_topic: "homeassistant/sensor/orchid/state"
-    value_template: '{{ value_json.moisture | int }}'
-    unit_of_measurement: '%'
-  - platform: mqtt
-    name: orchid_plant_battery
-    state_topic: "homeassistant/sensor/orchid/state"
-    value_template: '{{ value_json.battery | int }}'
-    unit_of_measurement: '%'
-  - platform: mqtt
-    name: orchid_plant_temperature
-    state_topic: "homeassistant/sensor/orchid/state"
-    value_template: '{{ value_json.temperature | float }}'
-    unit_of_measurement: '°C'
-  - platform: mqtt
-    name: orchid_plant_conductivity
-    state_topic: "homeassistant/sensor/orchid/state"
-    value_template: '{{ value_json.conductivity | int }}'
-    unit_of_measurement: 'µS/cm'
-  - platform: mqtt
-    name: orchid_plant_light
-    state_topic: "homeassistant/sensor/orchid/state"
-    value_template: '{{ value_json.light | int }}'
-    unit_of_measurement: 'Lux'
-
-  - platform: mqtt
-    name: herbs_moisture
-    state_topic: "homeassistant/sensor/herbs/state"
-    value_template: '{{ value_json.moisture | int }}'
-    unit_of_measurement: '%'
-  - platform: mqtt
-    name: herbs_battery
-    state_topic: "homeassistant/sensor/herbs/state"
-    value_template: '{{ value_json.battery | int }}'
-    unit_of_measurement: '%'
-  - platform: mqtt
-    name: herbs_temperature
-    state_topic: "homeassistant/sensor/herbs/state"
-    value_template: '{{ value_json.temperature | float }}'
-    unit_of_measurement: '°C'
-  - platform: mqtt
-    name: herbs_conductivity
-    state_topic: "homeassistant/sensor/herbs/state"
-    value_template: '{{ value_json.conductivity | int }}'
-    unit_of_measurement: 'µS/cm'
-  - platform: mqtt
-    name: herbs_light
-    state_topic: "homeassistant/sensor/herbs/state"
-    value_template: '{{ value_json.light | int }}'
-    unit_of_measurement: 'Lux'
-
-##################################################
-## Automation
-##################################################
-automation:
-# Notify when plants need watering
-  - alias: water plants
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.orchid_plant_moisture
-        below: 10
-      - platform: numeric_state
-        entity_id: sensor.herbs_moisture
-        below: 15
-    action:
-      - service: notify.martin
-        data:
-          title: "Plant Sensor"
-          message: "{{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time to water"
-
 
 ##################################################
 ## Recorder/History
@@ -116,15 +33,15 @@ automation:
 recorder:
   include:
     entities:
-      - sensor.orchid_plant_moisture
-      - sensor.orchid_plant_conductivity
-      - sensor.herbs_moisture
-      - sensor.herbs_conductivity
+      - sensor.orchid_moisture_2
+      - sensor.orchid_conductivity_2
+      - sensor.herbs_moisture_2
+      - sensor.herbs_conductivity_2
 
 history:
   include:
     entities:
-      - sensor.orchid_plant_moisture
-      - sensor.orchid_plant_conductivity
-      - sensor.herbs_moisture
-      - sensor.herbs_conductivity
+      - sensor.orchid_moisture_2
+      - sensor.orchid_conductivity_2
+      - sensor.herbs_moisture_2
+      - sensor.herbs_conductivity_2

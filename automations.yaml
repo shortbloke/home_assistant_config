@@ -339,3 +339,21 @@
       message: System Load 5m Load Average > 2.8
       title: HASS Low Resource Alert
   mode: single
+- id: '1615650481773'
+  alias: Water Plants
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.orchid_moisture
+    below: '10'
+  - platform: numeric_state
+    entity_id: sensor.herbs_moisture_2
+    below: '15'
+  condition: []
+  action:
+  - service: notify.martin
+    data:
+      title: Plant Sensor
+      message: '{{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time
+        to water'
+  mode: single
