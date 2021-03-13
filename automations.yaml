@@ -194,3 +194,106 @@
     entity_id: light.wled_panel_fraser
     domain: light
   mode: single
+- id: '1615647990496'
+  alias: Turn off Frasers TV if on after curfew
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.frasertv
+    to: 'on'
+    for: 00:06:00
+  condition:
+  - condition: time
+    after: '22:00:00'
+    before: 06:59:00
+  action:
+  - service: notify.mobile_app_martin_iphonexs
+    data:
+      message: Turning off Frasers TV
+      data:
+        push:
+          category: tvalarm
+  - service: homeassistant.turn_off
+    target:
+      entity_id: media_player.frasertv
+  mode: single
+- id: '1615648232369'
+  alias: Sonos TTS Warning Late TV
+  description: ''
+  trigger:
+  - platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: PLAY_LATE_TV_MESSAGE
+  condition: []
+  action:
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.frasers_room
+      volume: 0.5
+      message: Turn off your TV and go to sleep
+      delay: 00:00:05
+  mode: single
+- id: '1615648465209'
+  alias: Turn off power to Frasers TV if on 1hr after curfew
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.frasertv
+    to: 'on'
+    for: 00:05:00
+  condition:
+  - condition: time
+    after: '22:30:00'
+    before: 06:59:00
+  action:
+  - service: notify.mobile_app_martin_iphonexs
+    data:
+      message: Cutting power to Fraser's TV
+      data:
+        push:
+          category: tvalarm
+  - service: homeassistant.turn_off
+    target:
+      entity_id: switch.lwrf_loft_fraser_tv
+  mode: single
+- id: '1615648558972'
+  alias: Restore power to Frasers TV
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    target:
+      entity_id: switch.lwrf_loft_fraser_tv
+  mode: single
+- id: '1615648875231'
+  alias: HASSIO Weekly Snapshot
+  description: ''
+  trigger:
+  - platform: time
+    at: 03:00:00
+  condition:
+  - condition: time
+    weekday:
+    - sun
+  action:
+  - service: hassio.snapshot_full
+    data: {}
+  mode: single
+- id: '1615648950399'
+  alias: HASSIO Dropbox Snapshot Sync
+  description: ''
+  trigger:
+  - platform: time
+    at: 04:00:00
+  condition: []
+  action:
+  - service: hassio.addon_stdin
+    data:
+      addon: 7be23ff5_dropbox_sync
+      input:
+        command: upload
+  mode: single
