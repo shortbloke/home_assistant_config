@@ -8,9 +8,7 @@
       value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom('%H:%M', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom('%H:%M', True) }}"
       icon_template: "{% if is_state('sun.sun', 'above_horizon') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}"
 
-- platform: template
-  sensors:
-    ### WH5 Portable Temperature and Humidity Sensors ###
+# WH5 Portable Temperature and Humidity Sensors
     portable_sensor_1_temperature:
       value_template: "{{ (states('sensor.temp_humid_1_temperature') | float - 40) | round(1) }}"
       unit_of_measurement: '°C'
@@ -27,6 +25,15 @@
       value_template: "{{ (states('sensor.temp_humid_5_temperature') | float - 40) | round(1) }}"
       unit_of_measurement: '°C'
       friendly_name: "Temperature (Morgan)"
+
+# Sonoff Shower Monitor
+    ensuite_shower_minutes:
+      friendly_name: "Ensuite Shower Time"
+      value_template: "{{ state_attr('sensor.ensuite_shower_time_today', 'value') }}"
+    family_bathroom_shower_minutes:
+      friendly_name: "Family Bathroom Shower Time"
+      value_template: "{{ state_attr('sensor.family_bathroom_shower_time_today', 'value') }}"
+
 
 ####################################################
 #                  Command Line                    #
@@ -117,3 +124,38 @@
   monitored_conditions:
     - electricity
     - solar
+
+####################################################
+#               History Statistics                 #
+####################################################
+- platform: history_stats
+  name: Ensuite Shower Uses Today
+  entity_id: binary_sensor.ensuite_shower_active
+  type: count
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Family Bathroom Shower Uses Today
+  entity_id: binary_sensor.family_bathroom_shower_active
+  type: count
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Ensuite Shower Time Today
+  entity_id: binary_sensor.ensuite_shower_active
+  type: time
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Family Bathroom Shower Time Today
+  entity_id: binary_sensor.family_bathroom_shower_active
+  type: time
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'

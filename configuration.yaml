@@ -8,6 +8,7 @@ homeassistant:
 
 # Include Files
 automation: !include automations.yaml
+binary_sensor: !include binary_sensors.yaml
 camera: !include cameras.yaml
 group: !include groups.yaml
 input_boolean: !include input_booleans.yaml
