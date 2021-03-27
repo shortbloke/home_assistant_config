@@ -183,12 +183,14 @@
   - service: wled.effect
     data:
       effect: solid
+    entity_id: light.wled_panel_fraser
   - service: wled.effect
     data:
-      effect: sunrise
+      effect: Sunrise
       intensity: 25
       palette: Default
       speed: 15
+    entity_id: light.wled_panel_fraser
   - type: turn_on
     device_id: 1ae4ff86c169d23150699d8751cb50b4
     entity_id: light.wled_panel_fraser
