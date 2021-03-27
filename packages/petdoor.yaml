@@ -6,10 +6,9 @@ cover:
     name: "PetDoor"
     command_topic: "homeassistant/cover/petdoor/set"
     state_topic: "homeassistant/cover/petdoor/state"
-    # availability_topic: "homeassistant/cover/petdoor/availability"
-    qos: 0
-    retain: true
-    optimistic: false
+    availability:
+      - topic: "homeassistant/cover/petdoor/availability"
+    retain: false
 
 sensor:
   - platform: history_stats
