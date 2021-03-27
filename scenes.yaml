@@ -62,9 +62,9 @@
       brightness: 27
       friendly_name: Downlights
       icon: mdi:ceiling-light
-      assumed_state: false
+      assumed_state: true
       supported_features: 1
-      state: 'off'
+      state: 'on'
     light.lwrf_diningroom_main:
       friendly_name: Table Lights
       icon: mdi:vanity-light

@@ -34,13 +34,13 @@ alexa:
     entity_config:
       switch.sonoff_garage_light:
         name: "Garage Light"
-      scene.mood_bright:
+      scene.bright:
         name: "Mood bright"
         display_categories: SCENE_TRIGGER
-      scene.mood_comfortable:
+      scene.comfortable:
         name: "Mood comfortable"
         display_categories: SCENE_TRIGGER
-      scene.mood_movie:
+      scene.movie:
         name: "Mood movie"
         display_categories: SCENE_TRIGGER
 
