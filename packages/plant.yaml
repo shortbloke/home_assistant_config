@@ -2,13 +2,49 @@
 ## Components/Sensors
 ##################################################
 plant:
-  orchid_plant:
+  phal_burgundy:
     sensors:
-      moisture: sensor.orchid_moisture_2
-      battery: sensor.orchid_battery_2
-      temperature: sensor.orchid_temperature_2
-      conductivity: sensor.orchid_conductivity_2
-      brightness: sensor.orchid_light_2
+      moisture: sensor.phalburgundy_moisture
+      battery: sensor.phalburgundy_battery
+      temperature: sensor.phalburgundy_temperature
+      conductivity: sensor.phalburgundy_conductivity
+      brightness: sensor.phalburgundy_light
+    min_moisture: 15
+    max_moisture: 65
+    min_battery: 17
+    min_conductivity: 350
+    min_temperature: 15
+  phal_basel:
+    sensors:
+      moisture: sensor.phalbasel_moisture
+      battery: sensor.phalbasel_battery
+      temperature: sensor.phalbasel_temperature
+      conductivity: sensor.phalbasel_conductivity
+      brightness: sensor.phalbasel_light
+    min_moisture: 15
+    max_moisture: 65
+    min_battery: 17
+    min_conductivity: 350
+    min_temperature: 15
+  phal_phalpulsation:
+    sensors:
+      moisture: sensor.phalpulsation_moisture
+      battery: sensor.phalpulsation_battery
+      temperature: sensor.phalpulsation_temperature
+      conductivity: sensor.phalpulsation_conductivity
+      brightness: sensor.phalpulsation_light
+    min_moisture: 15
+    max_moisture: 65
+    min_battery: 17
+    min_conductivity: 350
+    min_temperature: 15
+  phal_phalwhite:
+    sensors:
+      moisture: sensor.phalwhite_moisture
+      battery: sensor.phalwhite_battery
+      temperature: sensor.phalwhite_temperature
+      conductivity: sensor.phalwhite_conductivity
+      brightness: sensor.phalwhite_light
     min_moisture: 15
     max_moisture: 65
     min_battery: 17
@@ -25,4 +61,28 @@ plant:
     max_moisture: 60
     min_battery: 17
     min_conductivity: 350
+    min_temperature: 8
+  flytrap:
+    sensors:
+      moisture: sensor.flytrap_moisture
+      battery: sensor.flytrap_battery
+      temperature: sensor.flytrap_temperature
+      conductivity: sensor.flytrap_conductivity
+      brightness: sensor.flytrap_light
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 17
+    min_conductivity: 50
+    min_temperature: 8
+  minaturerose:
+    sensors:
+      moisture: sensor.minaturerose_moisture
+      battery: sensor.minaturerose_battery
+      temperature: sensor.minaturerose_temperature
+      conductivity: sensor.minaturerose_conductivity
+      brightness: sensor.minaturerose_light
+    min_moisture: 16
+    max_moisture: 60
+    min_battery: 17
+    min_conductivity: 425
     min_temperature: 8
