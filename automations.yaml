@@ -7,7 +7,7 @@
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: sensor.garage_monitor_salt_level
     domain: sensor
-    below: 43
+    above: 43
     for:
       hours: 1
       minutes: 0
@@ -33,9 +33,9 @@
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: sensor.garage_monitor_salt_level
     domain: sensor
-    above: 41
+    below: 41
     for:
-      hours: 0
+      hours: 1
       minutes: 0
       seconds: 0
       milliseconds: 0
