@@ -45,6 +45,7 @@ async def async_setup_platform(hass,
 
 
 class NestTemperatureSensor(Entity):
+
     """Implementation of the Nest Temperature Sensor."""
 
     def __init__(self, device_id, api):
@@ -93,6 +94,7 @@ class NestTemperatureSensor(Entity):
 
 
 class NestProtectSensor(Entity):
+
     """Implementation of the Nest Protect sensor."""
 
     def __init__(self, device_id, sensor_type, api):

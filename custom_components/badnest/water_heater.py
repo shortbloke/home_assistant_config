@@ -4,17 +4,13 @@ import voluptuous as vol
 
 from datetime import datetime
 from homeassistant.util.dt import utcnow
-from homeassistant.helpers.entity import Entity
-from homeassistant.helpers.entity_component import EntityComponent
 from homeassistant.helpers import config_validation as cv
 from homeassistant.const import (
     ATTR_ENTITY_ID,
 )
 from homeassistant.components.water_heater import (
-    SCAN_INTERVAL,
     STATE_OFF,
     STATE_ON,
-    STATE_ECO,
     SUPPORT_OPERATION_MODE,
     SUPPORT_AWAY_MODE,
     ATTR_AWAY_MODE,
@@ -74,8 +70,6 @@ async def async_setup_platform(hass,
 
     def hot_water_boost(service):
         """Handle the service call."""
-        all_waterheaters = api['hotwatercontrollers']
-
         entity_ids = service.data[ATTR_ENTITY_ID]
         minutes = service.data[ATTR_TIME_PERIOD]
         timeToEnd = int(time.mktime(datetime.timetuple(utcnow()))+(minutes*60))
@@ -101,6 +95,7 @@ async def async_setup_platform(hass,
 
 
 class NestWaterHeater(WaterHeaterEntity):
+
     """Representation of a Nest water heater device."""
 
     def __init__(self, device_id, api):
@@ -137,7 +132,7 @@ class NestWaterHeater(WaterHeaterEntity):
 
     @property
     def state(self):
-        """ Return the (master) state of the water heater."""
+        """Return the (master) state of the water heater."""
         state = STATE_OFF
         if self.device.device_data[self.device_id]['hot_water_status']:
             state = NEST_TO_HASS_STATE[self.device.device_data[self.device_id]['hot_water_status']]

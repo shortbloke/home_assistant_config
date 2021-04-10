@@ -80,7 +80,9 @@ async def async_setup_platform(hass,
 
     async_add_entities(thermostats)
 
+
 class NestClimate(ClimateEntity):
+
     """Representation of a Nest climate entity."""
 
     def __init__(self, device_id, api):
@@ -118,7 +120,6 @@ class NestClimate(ClimateEntity):
 
         if self.device.device_data[device_id]['target_humidity_enabled']:
             self._support_flags = self._support_flags | SUPPORT_TARGET_HUMIDITY
-            
 
     @property
     def unique_id(self):
@@ -159,7 +160,7 @@ class NestClimate(ClimateEntity):
     def target_humidity(self):
         """Return the target humidity."""
         return self.device.device_data[self.device_id]['target_humidity']
-        
+
     @property
     def min_humidity(self):
         """Return the min target humidity."""
@@ -323,5 +324,5 @@ class NestClimate(ClimateEntity):
             )
 
     def update(self):
-        """Updates data"""
+        """Updates data."""
         self.device.update()
