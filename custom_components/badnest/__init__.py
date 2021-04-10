@@ -33,8 +33,6 @@ def setup(hass, config):
         cookie = config[DOMAIN].get(CONF_COOKIE)
         region = config[DOMAIN].get(CONF_REGION)
     else:
-        email = None
-        password = None
         issue_token = None
         cookie = None
         region = None

@@ -1,4 +1,4 @@
-"""This component provides basic support for Foscam IP cameras."""
+"""Provides support for Nest cameras."""
 import logging
 from datetime import timedelta
 
@@ -12,6 +12,8 @@ from .const import (
     DOMAIN
 )
 
+SUPPORT_CHIME = 4
+
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -23,7 +25,7 @@ async def async_setup_platform(hass,
     api = hass.data[DOMAIN]['api']
 
     cameras = []
-    _LOGGER.info("Adding temperature sensors")
+    _LOGGER.info("Adding camera sensors")
     for camera in api['cameras']:
         _LOGGER.info(f"Adding nest camera uuid: {camera}")
         cameras.append(NestCamera(camera, api))
@@ -32,6 +34,7 @@ async def async_setup_platform(hass,
 
 
 class NestCamera(Camera):
+
     """An implementation of a Nest camera."""
 
     def __init__(self, uuid, api):
@@ -50,7 +53,7 @@ class NestCamera(Camera):
             "identifiers": {(DOMAIN, self._uuid)},
             "name": self._device.device_data[self._uuid]['name'],
             "manufacturer": "Nest Labs",
-            "model": "Camera",
+            "model": self._device.device_data[self._uuid]['model'],
         }
 
     @property
@@ -65,13 +68,26 @@ class NestCamera(Camera):
     @property
     def is_on(self):
         """Return true if on."""
-        return self._device.device_data[self._uuid]['is_online']
+        return True if self._device.device_data[self._uuid]['streaming_state'] == \
+            'streaming-enabled' or \
+            self._device.device_data[self._uuid]['streaming_state'] == \
+            'online-disabled' else False
 
     @property
     def is_recording(self):
-        return True
         """Return true if the device is recording."""
-        return self._device.device_data[self._uuid]['is_streaming']
+        return True if self._device.device_data[self._uuid]['streaming_state'] == \
+            'streaming-enabled' else False
+
+    @property
+    def brand(self):
+        """Return the camera brand."""
+        return "Nest Labs"
+
+    @property
+    def model(self):
+        """Return the camera model."""
+        return self._device.device_data[self._uuid]['model']
 
     def turn_off(self):
         self._device.camera_turn_off(self._uuid)
@@ -84,7 +100,15 @@ class NestCamera(Camera):
     @property
     def supported_features(self):
         """Return supported features."""
-        return SUPPORT_ON_OFF
+        if self.supports_doorbell_chime:
+            return SUPPORT_ON_OFF + SUPPORT_CHIME
+        else:
+            return SUPPORT_ON_OFF
+
+    @property
+    def supports_doorbell_chime(self):
+        """Return if camera supports doorbell chime."""
+        return self._device.device_data[self._uuid]['indoor_chime']
 
     def update(self):
         """Cache value from Python-nest."""
@@ -94,6 +118,25 @@ class NestCamera(Camera):
     def name(self):
         """Return the name of this camera."""
         return self._device.device_data[self._uuid]['name']
+
+    @property
+    def state_attributes(self):
+        """Return the camera state attributes."""
+        attrs = {"access_token": self.access_tokens[-1]}
+
+        if self.model:
+            attrs["model_name"] = self.model
+
+        if self.brand:
+            attrs["brand"] = self.brand
+
+        if self.motion_detection_enabled:
+            attrs["motion_detection"] = self.motion_detection_enabled
+
+        if self.supports_doorbell_chime:
+            attrs["doorbell_chime"] = self.supports_doorbell_chime
+
+        return attrs
 
     def _ready_for_snapshot(self, now):
         return self._next_snapshot_at is None or now > self._next_snapshot_at
