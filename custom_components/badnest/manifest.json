@@ -6,6 +6,6 @@
   "codeowners": [
     "@badguy99"
   ],
-  "requirements": [],
+  "requirements": ["simplejson"],
   "version": "5.0.0"
 }
