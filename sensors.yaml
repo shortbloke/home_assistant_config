@@ -67,7 +67,7 @@
 - platform: rest
   resource: http://ip.jsontest.com
   name: External IP
-  value_template: '{{ value_json.ip }}'
+  value_template: '{{ value_json.ip | default }}'
 
 # Deluge Activity sensor
 - platform: deluge
