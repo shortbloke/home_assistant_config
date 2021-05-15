@@ -3,6 +3,7 @@
   "name": "Sonos Alarm",
   "config_flow": true,
   "documentation": "https://github.com/AaronDavidSchneider/SonosAlarm/blob/master/README.md",
+  "issue_tracker": "https://github.com/AaronDavidSchneider/SonosAlarm/issues",
   "requirements": [
     "pysonos"
   ],

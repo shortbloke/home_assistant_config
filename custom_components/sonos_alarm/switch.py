@@ -6,9 +6,10 @@ import logging
 import socket
 import pysonos
 from pysonos import alarms
-from pysonos.exceptions import SoCoException
+from pysonos.exceptions import SoCoUPnPException
 
 from homeassistant.components.switch import ENTITY_ID_FORMAT, SwitchEntity
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.util import slugify
 
 from . import (
@@ -27,6 +28,7 @@ SCAN_INTERVAL = timedelta(seconds=30)
 DISCOVERY_INTERVAL = 60
 
 ATTR_DURATION = "duration"
+ATTR_ID = "alarm_id"
 ATTR_PLAY_MODE = "play_mode"
 ATTR_RECURRENCE = "recurrence"
 ATTR_SCHEDULED_TODAY = "scheduled_today"
@@ -42,7 +44,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up Sonos from a config entry."""
 
-    config = hass.data[SONOS_DOMAIN].get("media_player", {})
+    config = hass.data[SONOS_DOMAIN].get("switch", {})
     _LOGGER.debug("Reached async_setup_entry of alarm, config=%s", config)
 
     advertise_addr = config.get(CONF_ADVERTISE_ADDR)
@@ -64,9 +66,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                         _LOGGER.debug("Adding new alarm")
                         alarm_list.append(one_alarm)
                         hass.add_job(
-                            async_add_entities, [SonosAlarmSwitch(soco, one_alarm)],
+                            async_add_entities, [SonosAlarmSwitch(one_alarm)],
                         )
-            except SoCoException as ex:
+            except SoCoUPnPException as ex:
                 _LOGGER.debug("SoCoException, ex=%s", ex)
 
         if hosts:
@@ -79,7 +81,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                         _ = player.volume
 
                         _discovered_alarm(player)
-                except (OSError, SoCoException) as ex:
+                except (OSError, SoCoUPnPException) as ex:
                     _LOGGER.debug("Exception %s", ex)
                     if now is None:
                         _LOGGER.warning("Failed to initialize '%s'", host)
@@ -100,29 +102,29 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 class SonosAlarmSwitch(SwitchEntity):
     """Switch class for Sonos alarms."""
 
-    def __init__(self, soco, alarm):
+    def __init__(self, alarm):
         _LOGGER.debug("Init Sonos alarms switch.")
         """Init Sonos alarms switch."""
         self._icon = "mdi:alarm"
-        self._soco = soco
-        self._id = alarm._alarm_id
+        self.alarm = alarm
+        self._id = self.alarm._alarm_id
         self._is_available = True
-        speaker_info = self._soco.get_speaker_info(True)
-        self._unique_id = "{}-{}".format(soco.uid, self._id)
-        self._name = "Sonos {} Alarm (id: {})".format(
-            speaker_info["zone_name"], self._id
-        )
+        self._unique_id = "{}-{}".format(SONOS_DOMAIN,self._id)
         _entity_id = slugify("sonos_alarm_{}".format(self._id))
         self.entity_id = ENTITY_ID_FORMAT.format(_entity_id)
-        self._model = speaker_info["model_name"]
 
-        self.alarm = None
-        for one_alarm in alarms.get_alarms(self._soco):
-            # pylint: disable=protected-access
-            if one_alarm._alarm_id == self._id:
-                self.alarm = one_alarm
+        speaker_info = self.alarm.zone.get_speaker_info(True)
+        self._speaker_name: str = speaker_info["zone_name"]
+        self._model: str = speaker_info["model_name"]
+        self._sw_version: str = speaker_info["software_version"]
+        self._mac_address: str = speaker_info["mac_address"]
+        self._unique_player_id: str = self.alarm.zone.uid
+
+        self._get_current_alarm_instance()
+
         self._is_on = self.alarm.enabled
         self._attributes = {
+            ATTR_ID: str(self._id),
             ATTR_TIME: str(self.alarm.start_time),
             ATTR_VOLUME: self.alarm.volume / 100,
             ATTR_DURATION: str(self.alarm.duration),
@@ -131,16 +133,74 @@ class SonosAlarmSwitch(SwitchEntity):
             ATTR_PLAY_MODE: str(self.alarm.play_mode),
             ATTR_SCHEDULED_TODAY: self._is_today
         }
-        _LOGGER.debug(self.alarm.recurrence)
+
+        self._name = "Sonos Alarm {} {} {}".format(
+            self._speaker_name,
+            self.alarm.recurrence.title(),
+            str(self.alarm.start_time)[0:5]
+        )
+
         super().__init__()
         _LOGGER.debug("reached end of init")
 
-    def update(self, now=None):
+    def _get_current_alarm_instance(self):
+        """Function that retrieves the current alarms and returns if the alarm is available or not."""
+        current_alarms = alarms.get_alarms(self.alarm.zone)
+
+        if self.alarm in current_alarms:
+            return True
+        else:
+            return False
+
+    async def async_update(self, now=None):
         """Retrieve latest state."""
         _LOGGER.debug("updating alarms")
+
+        async def _async_remove():
+            """remove this entity as it is not available anymore"""
+            entity_registry = er.async_get(self.hass)
+            entity_registry.async_remove(self.entity_id)
+
+        def _update_device():
+            """update the device, since this alarm moved to a different player"""
+            device_registry = dr.async_get(self.hass)
+            entity_registry = er.async_get(self.hass)
+            entry_id = entity_registry.async_get(self.entity_id).config_entry_id
+
+            new_device = device_registry.async_get_or_create(config_entry_id=entry_id,
+                                                             identifiers={(SONOS_DOMAIN, self._unique_player_id)},
+                                                             connections={
+                                                                 (dr.CONNECTION_NETWORK_MAC, self._mac_address)})
+            if not entity_registry.async_get(self.entity_id).device_id == new_device.id:
+                entity_registry._async_update_entity(self.entity_id, device_id=new_device.id)
+
+
         try:
-            alarms.get_alarms(self._soco)
+            is_available = await self.hass.async_add_executor_job(self._get_current_alarm_instance)
+
+            if not is_available:
+                self.hass.async_create_task(_async_remove())
+                return
+
             self._is_on = self.alarm.enabled
+
+            if self._unique_player_id != self.alarm.zone.uid:
+                speaker_info = await self.hass.async_add_executor_job(lambda: self.alarm.zone.get_speaker_info(True))
+                self._speaker_name: str = speaker_info["zone_name"]
+                self._model: str = speaker_info["model_name"]
+                self._sw_version: str = speaker_info["software_version"]
+                self._mac_address: str = speaker_info["mac_address"]
+                self._unique_player_id: str = self.alarm.zone.uid
+                _update_device()
+
+
+            self._name = "Sonos Alarm {} {} {}".format(
+                self._speaker_name,
+                self.alarm.recurrence.title(),
+                str(self.alarm.start_time)[0:5]
+            )
+
+            self._attributes[ATTR_ID] = str(self._id)
             self._attributes[ATTR_TIME] = str(self.alarm.start_time)
             self._attributes[ATTR_DURATION] = str(self.alarm.duration)
             self._attributes[ATTR_RECURRENCE] = str(self.alarm.recurrence)
@@ -150,11 +210,13 @@ class SonosAlarmSwitch(SwitchEntity):
             self._attributes[
                 ATTR_INCLUDE_LINKED_ZONES
             ] = self.alarm.include_linked_zones
+
             self._is_available = True
+
             _LOGGER.debug("successfully updated alarms")
-        except SoCoException as exc:
-            _LOGGER.error(
-                "Home Assistant couldnt update the state of the alarm %s",
+        except SoCoUPnPException as exc:
+            _LOGGER.warning(
+                "Home Assistant couldn't update the state of the alarm %s",
                 exc,
                 exc_info=True,
             )
@@ -207,13 +269,16 @@ class SonosAlarmSwitch(SwitchEntity):
         return self._unique_id
 
     @property
-    def device_info(self):
+    def device_info(self) -> dict:
         """Return information about the device."""
         return {
-            "identifiers": {(SONOS_DOMAIN, self._unique_id)},
-            "name": self._name,
+            "identifiers": {(SONOS_DOMAIN, self._unique_player_id)},
+            "name": self._speaker_name,
             "model": self._model.replace("Sonos ", ""),
+            "sw_version": self._sw_version,
+            "connections": {(dr.CONNECTION_NETWORK_MAC, self._mac_address)},
             "manufacturer": "Sonos",
+            "suggested_area": self._speaker_name,
         }
 
     @property
@@ -221,26 +286,28 @@ class SonosAlarmSwitch(SwitchEntity):
         """Return unavailability of alarm switch."""
         return self._is_available
 
-    def turn_on(self, **kwargs) -> None:
+    async def async_turn_on(self, **kwargs) -> None:
         """Turn alarm switch on."""
-        if self.handle_switch_on_off(turn_on=True):
+        sucess = await self.async_handle_switch_on_off(turn_on=True)
+        if sucess:
             self._is_on = True
 
-    def turn_off(self, **kwargs) -> None:
+    async def async_turn_off(self, **kwargs) -> None:
         """Turn alarm switch off."""
-        if self.handle_switch_on_off(turn_on=False):
+        sucess = await self.async_handle_switch_on_off(turn_on=False)
+        if sucess:
             self._is_on = False
 
-    def handle_switch_on_off(self, turn_on: bool) -> bool:
+    async def async_handle_switch_on_off(self, turn_on: bool) -> bool:
         """Handle turn on/off of alarm switch."""
         # pylint: disable=import-error
         try:
             self.alarm.enabled = turn_on
-            self.alarm.save()
+            await self.hass.async_add_executor_job(self.alarm.save)
             self._is_available = True
             return True
-        except SoCoException as exc:
-            _LOGGER.error(
+        except SoCoUPnPException as exc:
+            _LOGGER.warning(
                 "Home Assistant couldnt switch the alarm %s", exc, exc_info=True
             )
             self._is_available = False
