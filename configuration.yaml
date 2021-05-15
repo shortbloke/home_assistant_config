@@ -35,6 +35,7 @@ logbook:
   include:
     domains: 
       - automation
+      - script
     entities:
       - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/

@@ -4,3 +4,7 @@ low_salt:
 
 guest_mode:
   name: Guest Mode
+
+security_alarm:
+  name: Sound whole house alarm
+  icon: mdi:shield-home

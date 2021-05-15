@@ -54,20 +54,32 @@ sonos_say:
       data:
         entity_id: "{{ sonos_entity }}"
 
-sonos_alarm:
-  alias: Sonos Burglar Alarm Siren
+burglar_alarm:
+  alias: Burglar Alarm Siren
   sequence:
     - service: sonos.snapshot
+      target:
+        entity_id: all
     - service: sonos.unjoin
+      target:
+        entity_id: all
     - service: media_player.volume_mute
       data:
+        entity_id: all
         is_volume_muted: false
     - service: media_player.volume_set
       data:
-        volume_level: "{{ volume }}"
+        entity_id: all
+        volume_level: 1  # Max volume
     - service: media_player.play_media
       data:
+        entity_id: all
         media_content_id: !secret siren_wav_url
-        media_content_type: "audio/mp3"
-    - delay: "{{ delay }}"
+        media_content_type: "music"
+    - service: homeassistant.turn_on  # Turns on Ring Floodlight camera siren (stops automatically after 30 seconds)
+      target:
+        entity_id: switch.driveway_siren
+    - delay: '00:00:30'  # Play siren 
     - service: sonos.restore
+      target:
+        entity_id: all
