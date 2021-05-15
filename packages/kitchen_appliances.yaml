@@ -11,7 +11,7 @@ sensor:
   - platform: template
     sensors:
       dishwasher_power:
-        value_template: "{{ states.switch.dishwasher.attributes['current_power_w'].split(' ')[0] }}"
+        value_template: "{{ states.switch.dishwasher.attributes['current_power_w'] }}"
         unit_of_measurement: 'W'
         friendly_name: "Dishwasher Power"
       dishwasher_power_today:
@@ -27,7 +27,7 @@ sensor:
   - platform: template
     sensors:
       tumble_dryer_power:
-        value_template: "{{ states.switch.tumble_dryer.attributes['current_power_w'].split(' ')[0] }}"
+        value_template: "{{ states.switch.tumble_dryer.attributes['current_power_w'] }}"
         unit_of_measurement: 'W'
         friendly_name: "Tumble Dryer Power"
       tumble_dryer_power_today:
@@ -43,7 +43,7 @@ sensor:
   - platform: template
     sensors:
       washing_machine_power:
-        value_template: "{{ states.switch.washing_machine.attributes['current_power_w'].split(' ')[0] }}"
+        value_template: "{{ states.switch.washing_machine.attributes['current_power_w'] }}"
         unit_of_measurement: 'W'
         friendly_name: "Washing Machine Power"
       washing_machine_power_today:
