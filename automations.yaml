@@ -213,8 +213,13 @@
     data:
       message: Turning off Frasers TV
       data:
-        push:
-          category: tvalarm
+        actions:
+        - action: PLAY_LATE_TV_MESSAGE
+          title: Play Message?
+          activationMode: background
+          authenticationRequired: false
+          destructive: false
+          behavior: default
   - service: homeassistant.turn_off
     target:
       entity_id: media_player.frasertv
@@ -224,9 +229,9 @@
   description: ''
   trigger:
   - platform: event
-    event_type: ios.notification_action_fired
     event_data:
-      actionName: PLAY_LATE_TV_MESSAGE
+      action: PLAY_LATE_TV_MESSAGE
+    event_type: mobile_app_notification_action
   condition: []
   action:
   - service: script.sonos_say
@@ -237,7 +242,7 @@
       delay: 00:00:05
   mode: single
 - id: '1615648465209'
-  alias: Turn off power to Frasers TV if on 1hr after curfew
+  alias: Turn off power to Frasers TV if on 30mins after curfew
   description: ''
   trigger:
   - platform: state
@@ -253,8 +258,13 @@
     data:
       message: Cutting power to Fraser's TV
       data:
-        push:
-          category: tvalarm
+        actions:
+        - action: PLAY_LATE_TV_MESSAGE
+          title: Play Message?
+          activationMode: background
+          authenticationRequired: false
+          destructive: false
+          behavior: default
   - service: homeassistant.turn_off
     target:
       entity_id: switch.lwrf_loft_fraser_tv
@@ -845,4 +855,17 @@
         [{{ states.binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off.state
         }}],  #                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.attributes[''friendly_name'']}}
         [{{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.state }}]'
+  mode: single
+- id: '1619355836677'
+  alias: Turn off Fraser Panel light at 10pm
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 1ae4ff86c169d23150699d8751cb50b4
+    entity_id: light.wled_panel_fraser
+    domain: light
   mode: single

@@ -44,17 +44,6 @@ logger:
   #   RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
-  push:
-    categories:
-      - name: late_night_tv_alert
-        identifier: 'TVALARM'
-        actions:
-          - identifier: PLAY_LATE_TV_MESSAGE
-            title: 'Play Message?'
-            activationMode: 'background'
-            authenticationRequired: false
-            destructive: false
-            behavior: 'default'
 # https://www.home-assistant.io/components/notify/
 # and
 # https://www.home-assistant.io/components/notify.group/
