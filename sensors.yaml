@@ -34,6 +34,11 @@
       friendly_name: "Family Bathroom Shower Time"
       value_template: "{{ state_attr('sensor.family_bathroom_shower_time_today', 'value') }}"
 
+# Tera PC State
+    tera_powered_on:
+      friendly_name: "PC Tera Powered On"
+      value_template: "{{ not(is_state('switch.shutdown', 'unavailable')) }}"
+
 
 ####################################################
 #                  Command Line                    #

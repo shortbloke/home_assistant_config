@@ -869,3 +869,23 @@
     entity_id: light.wled_panel_fraser
     domain: light
   mode: single
+- id: '1621091408356'
+  alias: Shutdown Tera if Fraser not home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.fraser
+    from: home
+  condition:
+  - condition: state
+    entity_id: sensor.tera_powered_on
+    state: 'True'
+  action:
+  - service: homeassistant.turn_on
+    target:
+      entity_id: switch.shutdown
+  - service: notify.martin
+    data:
+      message: Fraser no longer at home
+      title: PC Shutdown
+  mode: single
