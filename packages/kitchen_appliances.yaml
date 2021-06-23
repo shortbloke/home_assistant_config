@@ -11,49 +11,49 @@ sensor:
   - platform: template
     sensors:
       dishwasher_power:
-        value_template: "{{ states.switch.dishwasher.attributes['current_power_w'] }}"
+        value_template: "{{ state_attr('switch.dishwasher','current_power_w') }}"
         unit_of_measurement: 'W'
         friendly_name: "Dishwasher Power"
       dishwasher_power_today:
-        value_template: "{{ states.switch.dishwasher.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ state_attr('switch.dishwasher','today_energy_kwh') | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Dishwasher Power Today"
   - platform: template
     sensors:
       dishwasher_status:
-        value_template: "{{ states.input_select.dishwasher_status.state }}"
+        value_template: "{{ states('input_select.dishwasher_status') }}"
         friendly_name: "Dishwasher Status"
 
   - platform: template
     sensors:
       tumble_dryer_power:
-        value_template: "{{ states.switch.tumble_dryer.attributes['current_power_w'] }}"
+        value_template: "{{ state_attr('switch.tumble_dryer','current_power_w') }}"
         unit_of_measurement: 'W'
         friendly_name: "Tumble Dryer Power"
       tumble_dryer_power_today:
-        value_template: "{{ states.switch.tumble_dryer.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ state_attr('switch.tumble_dryer','today_energy_kwh') | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Tumble Dryer Power Today"
   - platform: template
     sensors:
       dryer_status:
-        value_template: "{{ states.input_select.dryer_status.state }}"
+        value_template: "{{ states('input_select.dryer_status') }}"
         friendly_name: "Tumble Dryer Status"
 
   - platform: template
     sensors:
       washing_machine_power:
-        value_template: "{{ states.switch.washing_machine.attributes['current_power_w'] }}"
+        value_template: "{{ state_attr('switch.washing_machine','current_power_w') }}"
         unit_of_measurement: 'W'
         friendly_name: "Washing Machine Power"
       washing_machine_power_today:
-        value_template: "{{ states.switch.washing_machine.attributes['today_energy_kwh'] | float | round(2) }}"
+        value_template: "{{ state_attr('switch.washing_machine','today_energy_kwh') | float | round(2) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Washing Machine Power Today"
   - platform: template
     sensors:
       washing_machine_status:
-        value_template: "{{ states.input_select.washing_machine_status.state }}"
+        value_template: "{{ states('input_select.washing_machine_status') }}"
         friendly_name: "Washing Machine Status"
 
   - platform: history_stats
