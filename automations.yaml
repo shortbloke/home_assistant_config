@@ -1,5 +1,5 @@
 - id: '1615638107644'
-  alias: Low Salt Level Alert
+  alias: 'Alert: Low salt level'
   description: ''
   trigger:
   - type: value
@@ -25,7 +25,7 @@
     message: Check Salt Level
   mode: single
 - id: '1615638220241'
-  alias: Reset Salt Level Input Boolean
+  alias: 'State Change: Reset Salt Level Input Boolean'
   description: ''
   trigger:
   - type: value
@@ -46,7 +46,7 @@
       entity_id: input_boolean.low_salt
   mode: single
 - id: '1615638959118'
-  alias: Update Available Notification
+  alias: 'Alert: Update Available Notification'
   description: ''
   trigger:
   - platform: state
@@ -60,7 +60,7 @@
     message: Update for Home Assistant is available
   mode: single
 - id: '1615639267650'
-  alias: Turn off Garage light when no motion for some time
+  alias: 'Action: Turn off Garage light no motion for 15mins'
   description: ''
   trigger:
   - type: no_motion
@@ -84,14 +84,9 @@
     device_id: 222f36208319b30db3a981f7388b13d9
     entity_id: light.sonoff_garage_light
     domain: light
-  - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
-    domain: mobile_app
-    type: notify
-    title: Garage Alert!
-    message: Light left on. Turning off.
   mode: single
 - id: '1615640713545'
-  alias: Loft Fan Turn On When Hot
+  alias: 'Action: Turn on Loft Fan above 30'
   description: ''
   trigger:
   - type: temperature
@@ -113,7 +108,7 @@
     domain: switch
   mode: single
 - id: '1615640737825'
-  alias: Loft Fan Turn Off When Not Hot
+  alias: 'Action: Turn off Loft Fan below 30'
   description: ''
   trigger:
   - type: temperature
@@ -135,7 +130,7 @@
     domain: switch
   mode: single
 - id: '1615646609604'
-  alias: Turn on in the morning and sunset
+  alias: 'Schedule: Turn on in the morning and sunset'
   description: ''
   trigger:
   - platform: time
@@ -151,7 +146,7 @@
     domain: switch
   mode: single
 - id: '1615646860464'
-  alias: Turn off after sunset
+  alias: 'Action: Turn off twig lights after sunrise'
   description: ''
   trigger:
   - platform: numeric_state
@@ -166,7 +161,7 @@
     domain: switch
   mode: single
 - id: '1615647376188'
-  alias: Wake up Fraser Light
+  alias: 'Schedule: Wake up Fraser light mode'
   description: ''
   trigger:
   - platform: time
@@ -197,7 +192,7 @@
     domain: light
   mode: single
 - id: '1615647990496'
-  alias: Turn off Frasers TV if on after curfew
+  alias: 'Action & Alert: Turn off Frasers TV if on after curfew'
   description: ''
   trigger:
   - platform: state
@@ -225,7 +220,7 @@
       entity_id: media_player.frasertv
   mode: single
 - id: '1615648232369'
-  alias: Sonos TTS Warning Late TV
+  alias: 'Notify: Late TV message (TTS)'
   description: ''
   trigger:
   - platform: event
@@ -242,7 +237,7 @@
       delay: 00:00:05
   mode: single
 - id: '1615648465209'
-  alias: Turn off power to Frasers TV if on 30mins after curfew
+  alias: 'Action & Alert: Turn off power to Frasers TV if on 30mins after curfew'
   description: ''
   trigger:
   - platform: state
@@ -270,7 +265,7 @@
       entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615648558972'
-  alias: Restore power to Frasers TV
+  alias: 'Schedule: Restore power to Frasers TV'
   description: ''
   trigger:
   - platform: time
@@ -282,7 +277,7 @@
       entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615648875231'
-  alias: HASSIO Weekly Snapshot
+  alias: 'Schedule: HASS Weekly Snapshot'
   description: ''
   trigger:
   - platform: time
@@ -296,7 +291,7 @@
     data: {}
   mode: single
 - id: '1615648950399'
-  alias: HASSIO Dropbox Snapshot Sync
+  alias: 'Schedule: HASS Dropbox Snapshot Sync'
   description: ''
   trigger:
   - platform: time
@@ -310,7 +305,7 @@
         command: upload
   mode: single
 - id: '1615649323516'
-  alias: HASS Low Disk Space Alert
+  alias: 'Alert: HASS Low Disk Space'
   description: ''
   trigger:
   - platform: numeric_state
@@ -324,7 +319,7 @@
       title: HASS Low Resource Alert
   mode: single
 - id: '1615649356820'
-  alias: HASS Low Memory Alert
+  alias: 'Alert: HASS Low Memory'
   description: ''
   trigger:
   - platform: numeric_state
@@ -338,7 +333,7 @@
       title: HASS Low Resource Alert
   mode: single
 - id: '1615649413577'
-  alias: HASS High Load Alert
+  alias: 'Alert: HASS High Load'
   description: ''
   trigger:
   - platform: numeric_state
@@ -352,7 +347,7 @@
       title: HASS Low Resource Alert
   mode: single
 - id: '1615650481773'
-  alias: Water Plants
+  alias: 'Alert: Water Plants'
   description: ''
   trigger:
   - platform: numeric_state
@@ -401,14 +396,14 @@
         to water'
   mode: single
 - id: '1615651874014'
-  alias: Set washing machine active when power detected
+  alias: 'State Change: Set washing machine active when power detected'
   description: ''
   trigger:
   - platform: numeric_state
     entity_id: sensor.washing_machine_power
     above: '5'
   condition:
-    condition: or
+  - condition: or
     conditions:
     - condition: state
       entity_id: input_select.washing_machine_status
@@ -424,7 +419,7 @@
       entity_id: input_select.washing_machine_status
   mode: single
 - id: '1615652115472'
-  alias: Set washing machine to finished when power drops
+  alias: 'State Change: Set washing machine to finished when power drops'
   description: ''
   trigger:
   - platform: numeric_state
@@ -457,7 +452,7 @@
       entity_id: input_select.washing_machine_status
   mode: single
 - id: '1615653075229'
-  alias: Set dryer active when power detected
+  alias: 'State Change: Set dryer active when power detected'
   description: ''
   trigger:
   - platform: numeric_state
@@ -480,7 +475,7 @@
       entity_id: input_select.dryer_status
   mode: single
 - id: '1615653218617'
-  alias: Set dryer to finished when power drops
+  alias: 'State Change: Set dryer to finished when power drops'
   description: ''
   trigger:
   - platform: numeric_state
@@ -513,7 +508,7 @@
       entity_id: input_select.dryer_status
   mode: single
 - id: '1615653304715'
-  alias: Set dishwasher active when power detected
+  alias: 'State Change: Set dishwasher active when power detected'
   description: ''
   trigger:
   - platform: numeric_state
@@ -536,7 +531,7 @@
       entity_id: input_select.dishwasher_status
   mode: single
 - id: '1615653473188'
-  alias: Set dishwasher to finished when power drops
+  alias: 'State Change: Set dishwasher to finished when power drops'
   description: ''
   trigger:
   - platform: numeric_state
@@ -569,7 +564,7 @@
       entity_id: input_select.dishwasher_status
   mode: single
 - id: '1615653930854'
-  alias: Ironing room motion detected
+  alias: 'State Change: Ironing room motion detected'
   description: ''
   trigger:
   - platform: state
@@ -584,7 +579,7 @@
       entity_id: input_select.ironing_room_motion_status
   mode: single
 - id: '1615654076969'
-  alias: Ironing room no motion 30 mins
+  alias: 'State Change: Ironing room no motion 30 mins'
   description: ''
   trigger:
   - platform: state
@@ -600,7 +595,7 @@
       entity_id: input_select.ironing_room_motion_status
   mode: single
 - id: '1615654313811'
-  alias: Ironing Room No Motion Turn off Irons Left
+  alias: 'Action & Alert: Ironing Room No Motion Turn off Irons Left'
   description: ''
   trigger:
   - platform: numeric_state
@@ -621,7 +616,7 @@
       message: No Motion Detected - Turning off Ironing room Irons (Left)
   mode: single
 - id: '1615654418022'
-  alias: Ironing Room No Motion Turn off Irons Right
+  alias: 'Action & Alert: Ironing Room No Motion Turn off Irons Right'
   description: ''
   trigger:
   - platform: numeric_state
@@ -642,7 +637,7 @@
       message: No Motion Detected - Turning off Ironing room Irons (Right)
   mode: single
 - id: '1615654485950'
-  alias: Ironing Room No Motion Turn off Ironing Table
+  alias: 'Action & Alert: Ironing Room No Motion Turn off Ironing Table'
   description: ''
   trigger:
   - platform: numeric_state
@@ -663,7 +658,7 @@
       message: No Motion Detected - Turning off Ironing Table
   mode: single
 - id: '1615654527691'
-  alias: Ironing Room No Motion Turn off Magpie Iron
+  alias: 'Action & Alert: Ironing Room No Motion Turn off Magpie Iron'
   description: ''
   trigger:
   - platform: numeric_state
@@ -682,9 +677,12 @@
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Magpie Iron
+  - service: homeassistant.turn_off
+    target:
+      device_id: 75c2b12fab4f575404cb2e5f583c64df
   mode: single
 - id: '1615656237892'
-  alias: Door Open - Set heating mode to eco
+  alias: 'State Change: Door Open - Set heating mode to eco'
   description: ''
   trigger:
   - platform: state
@@ -700,7 +698,7 @@
       entity_id: climate.hallway_house
   mode: single
 - id: '1615656264115'
-  alias: Door Closed - Reset heating mode
+  alias: 'State Change: Door Closed - Reset heating mode'
   description: ''
   trigger:
   - platform: state
@@ -715,7 +713,7 @@
       entity_id: climate.hallway_house
   mode: single
 - id: '1615662841415'
-  alias: House occupied
+  alias: 'State Change: House occupied'
   description: ''
   trigger:
   - platform: state
@@ -733,7 +731,7 @@
       entity_id: climate.hallway_house
   mode: single
 - id: '1615662905589'
-  alias: House unoccupied
+  alias: 'State Change: House unoccupied'
   description: ''
   trigger:
   - platform: state
@@ -754,7 +752,7 @@
       entity_id: script.everyone_away
   mode: single
 - id: '1615662965997'
-  alias: Morgan away
+  alias: 'State Change: Morgan presence changed from home'
   description: ''
   trigger:
   - platform: state
@@ -770,14 +768,14 @@
       entity_id: script.morgan_away
   mode: single
 - id: '1615663102226'
-  alias: Morgan away window open
+  alias: 'Alert: Morgan away window open'
   description: ''
   trigger:
   - platform: state
     entity_id: person.morgan
     from: home
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
       entity_id: input_boolean.guest_mode
@@ -796,7 +794,7 @@
       message: Morgan's window has been left open
   mode: single
 - id: '1615663191504'
-  alias: Fraser away
+  alias: 'State Change: Fraser presence changed from home'
   description: ''
   trigger:
   - platform: state
@@ -812,7 +810,7 @@
       entity_id: script.fraser_away
   mode: single
 - id: '1615663371546'
-  alias: House unoccupied things left open
+  alias: 'Alert: House unoccupied things left open'
   description: ''
   trigger:
   - platform: state
@@ -857,7 +855,7 @@
         [{{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.state }}]'
   mode: single
 - id: '1619355836677'
-  alias: Turn off Fraser Panel light at 10pm
+  alias: 'Schedule: Turn off Fraser Panel light at 10pm'
   description: ''
   trigger:
   - platform: time
@@ -870,7 +868,7 @@
     domain: light
   mode: single
 - id: '1621091408356'
-  alias: Shutdown Tera if Fraser not home
+  alias: 'Action & Alert: Shutdown PC - Tera if Fraser not home'
   description: ''
   trigger:
   - platform: state
