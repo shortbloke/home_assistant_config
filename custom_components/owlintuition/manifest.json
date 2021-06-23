@@ -1,6 +1,7 @@
 {
         "domain": "owlintuition",
         "name": "OWL Intuition",
+        "version": "1.4.0",
         "documentation": "https://github.com/custom-components/sensor.owlintuition",
         "requirements": [],
         "dependencies": [],
