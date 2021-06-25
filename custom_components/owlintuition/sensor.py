@@ -234,6 +234,10 @@ class OwlData:
             xml = ET.fromstring(xmldata)
             self.data[xml.tag] = xml
             _LOGGER.debug("Datagram received for type %s", xml.tag)
+            payload = ""
+            for e in xml.iter():
+                payload += f"{e.tag}: {e.text}\n"
+            _LOGGER.debug("Datagram payload %s", payload)
 
         except ET.ParseError as pe:
             _LOGGER.error("Unable to parse received data: %s", pe)
