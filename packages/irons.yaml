@@ -3,21 +3,20 @@
 ##################################################
 tplink:
   switch:
-    - host: 192.168.170.21 # DHCP reservation
-    - host: 192.168.170.22 # DHCP reservation
-    - host: 192.168.170.23 # DHCP reservation
-    - host: 192.168.170.24 # DHCP reservation
-    - host: 192.168.170.29 # DCHP reservation
+    - host: 192.168.170.20 # DHCP reservation - KP115_2 - Irons Left
+    - host: 192.168.170.23 # DHCP reservation - HS110_3 - Irons Right
+    - host: 192.168.170.24 # DHCP reservation - HS110_4 - Table
+    - host: 192.168.170.29 # DCHP reservation - KP115_1 - Magpie Iron
 
 sensor:
   - platform: template
     sensors:
       irons_left_power:
-        value_template: "{{ state_attr('switch.irons_left','current_power_w') }}"
+        value_template: "{{ state_attr('switch.irons_left2','current_power_w') }}"
         unit_of_measurement: 'W'
         friendly_name: "Power - Ironing Room Left"
       irons_left_power_today:
-        value_template: "{{ state_attr('switch.irons_left','today_energy_kwh') | float | round(3) }}"
+        value_template: "{{ state_attr('switch.irons_left2','today_energy_kwh') | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room Left"
       irons_right_power:
@@ -41,7 +40,7 @@ sensor:
         unit_of_measurement: 'W'
         friendly_name: "Power - Magpie Iron"
       magpie_iron_power_today:
-        value_template: "{{ state_attr('switch.magpie_iron_kp115','total_energy_kwh') | float | round(3) }}"
+        value_template: "{{ state_attr('switch.magpie_iron_kp115','today_energy_kwh') | float | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Magpie Iron"
       ironing_room_total_power_now:
