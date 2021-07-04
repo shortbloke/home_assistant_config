@@ -609,7 +609,7 @@
   action:
   - service: homeassistant.turn_off
     target:
-      entity_id: switch.irons_left
+      entity_id: switch.irons_left2
   - service: notify.michelle
     data:
       title: Ironing Room Alert!
@@ -672,14 +672,11 @@
   action:
   - service: homeassistant.turn_off
     target:
-      entity_id: switch.magpie_iron
+      device_id: 75c2b12fab4f575404cb2e5f583c64df
   - service: notify.michelle
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Magpie Iron
-  - service: homeassistant.turn_off
-    target:
-      device_id: 75c2b12fab4f575404cb2e5f583c64df
   mode: single
 - id: '1615656237892'
   alias: 'State Change: Door Open - Set heating mode to eco'
@@ -886,4 +883,20 @@
     data:
       message: Fraser no longer at home
       title: PC Shutdown
+  mode: single
+- id: '1625411008610'
+  alias: 'Action: Set Argon Fan Speed based on CPU Temp'
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '*'
+  condition: []
+  action:
+  - service: argon40.set_fan_speed
+    data:
+      speed: '{% set temp = states(''sensor.ha_cpu_temperature'')|float %} {% if temp
+        <= 50 %} 0 {% elif temp <= 55 %} 5 {% elif temp <= 60 %} 25 {% elif temp <=
+        70 %} 50  {% elif temp <= 80 %} 90 {% else %} 100 {% endif %}
+
+        '
   mode: single

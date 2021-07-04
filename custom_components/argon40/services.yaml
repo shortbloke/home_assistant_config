@@ -1,0 +1,14 @@
+# Describes the format for available fan services
+set_fan_speed:
+  description: Set the fan speed.
+  fields:
+    speed:
+      description: Speed
+      example: 50
+
+set_mode:
+  description: Enable or disable the Always ON mode.
+  fields:
+    always_on:
+      description: "true to enable Always ON mode, false to set the default"
+      example: true

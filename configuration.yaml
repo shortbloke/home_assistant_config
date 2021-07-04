@@ -23,6 +23,8 @@ sensor: !include sensors.yaml
 ####################################################
 # https://www.home-assistant.io/integrations/api/
 api:
+# https://github.com/Misiu/argon40
+argon40:
 # https://www.home-assistant.io/integrations/default_config/
 default_config:
 # https://www.home-assistant.io/integrations/history
@@ -43,6 +45,8 @@ logger:
   default: error
   # logs:
   #   RFXtrx: debug
+    # custom_components.sensor.owlintuition: debug
+    # custom_components.owlintuition: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/notify/
@@ -77,7 +81,9 @@ panel_iframe:
     url: !secret TasmoAdminURL
 # https://www.home-assistant.io/components/recorder/
 recorder:
-  db_url: !secret mariaDbUrl
+  purge_keep_days: 3
+  commit_interval: 60
+  # db_url: !secret mariaDbUrl
 # https://www.home-assistant.io/components/sun/
 sun:
 # https://www.home-assistant.io/components/tts/
