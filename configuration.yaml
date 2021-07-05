@@ -57,7 +57,7 @@ notify:
     platform: group
     services:
       - service: mobile_app_martin_iphonexs
-      - service: mobile_app_michelles_iphone
+      - service: mobile_app_michelle_iphone_se
 
   - name: martin
     platform: group
@@ -67,7 +67,7 @@ notify:
   - name: michelle
     platform: group
     services:
-      - service: mobile_app_michelles_iphone
+      - service: mobile_app_michelle_iphone_se
 
   - name: morgan
     platform: group
