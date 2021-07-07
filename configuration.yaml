@@ -23,8 +23,6 @@ sensor: !include sensors.yaml
 ####################################################
 # https://www.home-assistant.io/integrations/api/
 api:
-# https://github.com/Misiu/argon40
-argon40:
 # https://www.home-assistant.io/integrations/default_config/
 default_config:
 # https://www.home-assistant.io/integrations/history

@@ -884,19 +884,3 @@
       message: Fraser no longer at home
       title: PC Shutdown
   mode: single
-- id: '1625411008610'
-  alias: 'Action: Set Argon Fan Speed based on CPU Temp'
-  description: ''
-  trigger:
-  - platform: time_pattern
-    minutes: '*'
-  condition: []
-  action:
-  - service: argon40.set_fan_speed
-    data:
-      speed: '{% set temp = states(''sensor.ha_cpu_temperature'')|float %} {% if temp
-        <= 50 %} 0 {% elif temp <= 55 %} 5 {% elif temp <= 60 %} 25 {% elif temp <=
-        70 %} 50  {% elif temp <= 80 %} 90 {% else %} 100 {% endif %}
-
-        '
-  mode: single
