@@ -68,12 +68,6 @@
     - type: load_5m
     - type: load_15m
 
-# Internet IP Address via REST sensor
-- platform: rest
-  resource: http://ip.jsontest.com
-  name: External IP
-  value_template: '{{ value_json.ip }}'
-
 # Deluge Activity sensor
 - platform: deluge
   host: !secret deluge_host
@@ -84,6 +78,9 @@
     - 'current_status'
     - 'download_speed'
     - 'upload_speed'
+
+# DNSIP https://www.home-assistant.io/integrations/dnsip/
+- platform: dnsip
 
 # Media Sensors
 - platform: plex_recently_added
@@ -129,6 +126,11 @@
   monitored_conditions:
     - electricity
     - solar
+# REST Sensors - https://www.home-assistant.io/integrations/sensor.rest/
+# - platform: rest
+#   resource: http://localhost:8123/homeassistant/api/states/sensor.argon_one_addon_fan_speed
+#   methodd: POST
+#   payload: {}
 
 ####################################################
 #               History Statistics                 #
