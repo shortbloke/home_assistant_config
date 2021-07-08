@@ -30,6 +30,9 @@ history:
 # https://home-assistant.io/components/http/
 http:
   login_attempts_threshold: 100
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.200.11  # Add the IP address of the proxy server
 # https://www.home-assistant.io/components/logbook/
 logbook:
   include:
