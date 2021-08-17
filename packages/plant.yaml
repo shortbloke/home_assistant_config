@@ -62,18 +62,6 @@ plant:
     min_battery: 17
     min_conductivity: 350
     min_temperature: 8
-  flytrap:
-    sensors:
-      moisture: sensor.flytrap_moisture
-      battery: sensor.flytrap_battery
-      temperature: sensor.flytrap_temperature
-      conductivity: sensor.flytrap_conductivity
-      brightness: sensor.flytrap_light
-    min_moisture: 15
-    max_moisture: 60
-    min_battery: 17
-    min_conductivity: 50
-    min_temperature: 8
   minaturerose:
     sensors:
       moisture: sensor.minaturerose_moisture
@@ -81,8 +69,21 @@ plant:
       temperature: sensor.minaturerose_temperature
       conductivity: sensor.minaturerose_conductivity
       brightness: sensor.minaturerose_light
-    min_moisture: 16
+    min_moisture: 15
     max_moisture: 60
     min_battery: 17
     min_conductivity: 425
     min_temperature: 8
+
+  ananascomosus:
+    sensors:
+      moisture: sensor.ananascomosus_moisture
+      battery: sensor.ananascomosus_battery
+      temperature: sensor.ananascomosus_temperature
+      conductivity: sensor.ananascomosus_conductivity
+      brightness: sensor.ananascomosus_light    
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 17
+    min_conductivity: 360
+    min_temperature: 10
