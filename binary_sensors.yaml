@@ -17,3 +17,8 @@
         seconds: 20
       delay_off:
         seconds: 20
+# Ping Fraser TV every 5 mins to see if it's on.
+- platform: ping
+  host: 192.168.200.75
+  name: "Frasers TV"
+  count: 2
