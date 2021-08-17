@@ -32,24 +32,6 @@ sensor.dishwasher_power_today:
   icon: mdi:counter
 sensor.ironing_room_motion_status:
   icon: mdi:motion-sensor
-sensor.irons_left_power:
-  icon: mdi:flash
-sensor.irons_right_power:
-  icon: mdi:flash
-sensor.ironing_table_power:
-  icon: mdi:flash
-sensor.magpie_iron_power:
-  icon: mdi:flash
-sensor.ironing_room_total_power_now:
-  icon: mdi:flash
-sensor.irons_left_power_today:
-  icon: mdi:counter
-sensor.irons_right_power_today:
-  icon: mdi:counter
-sensor.ironing_table_power_today:
-  icon: mdi:counter
-sensor.magpie_iron_power_today:
-  icon: mdi:counter
 sensor.ironing_room_total_power_today:
   icon: mdi:counter
 sensor.ironing_room_power_cost_today:
@@ -77,13 +59,6 @@ binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off:
   friendly_name: Morgan - Window
 sensor.lumi_lumi_sensor_magnet_993d0303_power:
   friendly_name: Morgan - Windows - Battery
-sensor.lumi_lumi_sens_ca8a3702_humidity:
-  icon: mdi:water-percent
-  friendly_name: ZigBee TH1 - Humidty
-sensor.lumi_lumi_sens_ca8a3702_temperature:
-  friendly_name: ZigBee TH1 - Temperature
-sensor.lumi_lumi_sens_ca8a3702_power:
-  friendly_name: ZigBee TH1 - Battery
 binary_sensor.motion_sensor_garage:
   icon: mdi:motion-sensor
 binary_sensor.motion_sensor_ironing_room:

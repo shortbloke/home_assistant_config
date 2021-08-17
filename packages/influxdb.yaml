@@ -3,26 +3,22 @@ influxdb:
   include:
     entities:
       # Ironing Room
-      - sensor.ironing_room_total_power_now
-      - sensor.ironing_room_total_power_today
-      - sensor.ironing_table_power
+      - sensor.ironing_table_current_consumption
       - sensor.ironing_table_power_today
-      - sensor.irons_left_power
-      - sensor.irons_left_power_today
-      - sensor.irons_right_power
-      - sensor.irons_right_power_today
-      - sensor.laurastar_iron_power
-      - sensor.laurastar_iron_power_today
-      - sensor.magpie_iron_power
-      - sensor.magpie_iron_power_today
-      - sensor.kitchen_total_power_today
+      - sensor.irons_left_2_current_consumption
+      - sensor.irons_left_2_today_s_consumption
+      - sensor.irons_right_today_s_consumption
+      - sensor.irons_right_today_s_consumption
+      - sensor.magpie2_current_consumption
+      - sensor.magpie2_today_s_consumption
+      - sensor.ironing_room_total_power_today
       # Kitchen
-      - sensor.tumble_dryer_power
-      - sensor.tumble_dryer_power_today
-      - sensor.washing_machine_power
-      - sensor.washing_machine_power_today
-      - sensor.dishwasher_power
-      - sensor.dishwasher_power_today
+      - sensor.tumble_dryer_current_consumption
+      - sensor.tumble_dryer_today_s_consumption
+      - sensor.washing_machine_current_consumption
+      - sensor.washing_machine_today_s_consumption
+      - sensor.dishwasher_current_consumption
+      - sensor.dishwasher_today_s_consumption
       - sensor.dishwasher_uses_today
       - sensor.dryer_uses_today
       - sensor.washing_machine_uses_today

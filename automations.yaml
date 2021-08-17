@@ -192,11 +192,11 @@
     domain: light
   mode: single
 - id: '1615647990496'
-  alias: 'Action & Alert: Turn off Frasers TV if on after curfew'
+  alias: 'Action & Alert: Frasers TV tuned on after curfew'
   description: ''
   trigger:
   - platform: state
-    entity_id: media_player.frasertv
+    entity_id: binary_sensor.frasers_tv
     to: 'on'
     for: 00:06:00
   condition:
@@ -206,7 +206,7 @@
   action:
   - service: notify.mobile_app_martin_iphonexs
     data:
-      message: Turning off Frasers TV
+      message: Turning off Frasers TV Power
       data:
         actions:
         - action: PLAY_LATE_TV_MESSAGE
@@ -217,7 +217,7 @@
           behavior: default
   - service: homeassistant.turn_off
     target:
-      entity_id: media_player.frasertv
+      entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615648232369'
   alias: 'Notify: Late TV message (TTS)'
@@ -240,14 +240,12 @@
   alias: 'Action & Alert: Turn off power to Frasers TV if on 30mins after curfew'
   description: ''
   trigger:
-  - platform: state
-    entity_id: media_player.frasertv
-    to: 'on'
-    for: 00:05:00
+  - platform: time
+    at: '22:30:00'
   condition:
-  - condition: time
-    after: '22:30:00'
-    before: 06:59:00
+  - condition: state
+    entity_id: binary_sensor.frasers_tv
+    state: 'on'
   action:
   - service: notify.mobile_app_martin_iphonexs
     data:
@@ -400,7 +398,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.washing_machine_power
+    entity_id: sensor.washing_machine_current_consumption
     above: '5'
   condition:
   - condition: or
@@ -423,7 +421,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.washing_machine_power
+    entity_id: sensor.washing_machine_current_consumption
     below: '5'
     for: 00:02:00
   condition:
@@ -456,7 +454,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.tumble_dryer_power
+    entity_id: sensor.tumble_dryer_current_consumption
     above: '800'
   condition:
   - condition: or
@@ -479,7 +477,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.tumble_dryer_power
+    entity_id: sensor.tumble_dryer_current_consumption
     below: '100'
     for: 00:03:00
   condition:
@@ -512,7 +510,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.dishwasher_power
+    entity_id: sensor.dishwasher_current_consumption
     above: '100'
   condition:
   - condition: or
@@ -535,7 +533,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.dishwasher_power
+    entity_id: sensor.dishwasher_current_consumption
     below: '1'
     for: 00:02:00
   condition:
@@ -599,7 +597,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.irons_left_power
+    entity_id: sensor.irons_left_2_current_consumption
     above: '10'
     for: 00:00:10
   condition:
@@ -620,7 +618,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.irons_right_power
+    entity_id: sensor.irons_right_current_consumption
     above: '10'
     for: 00:00:10
   condition:
@@ -641,7 +639,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.ironing_table_power
+    entity_id: sensor.ironing_table_current_consumption
     above: '10'
     for: 00:00:10
   condition:
@@ -662,7 +660,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.magpie_iron_power
+    entity_id: sensor.magpie2_current_consumption
     above: '10'
     for: 00:00:10
   condition:
@@ -871,16 +869,36 @@
   - platform: state
     entity_id: person.fraser
     from: home
+    for: 0:05:00
   condition:
   - condition: state
     entity_id: sensor.tera_powered_on
     state: 'True'
   action:
+  - service: notify.martin
+    data:
+      message: Fraser no longer at home but PC On. Turn off?
+      title: PC Shutdown
+      data:
+        actions:
+        - action: FRASER_PC_SHUTDOWN
+          title: Shutdown Frasers PC?
+          activationMode: background
+          authenticationRequired: false
+          destructive: false
+          behavior: default
+  mode: single
+- id: '1628523215496'
+  alias: 'Notify: Shutdown Frasers PC'
+  description: ''
+  trigger:
+  - platform: event
+    event_data:
+      action: FRASER_PC_SHUTDOWN
+    event_type: mobile_app_notification_action
+  condition: []
+  action:
   - service: homeassistant.turn_on
     target:
       entity_id: switch.shutdown
-  - service: notify.martin
-    data:
-      message: Fraser no longer at home
-      title: PC Shutdown
   mode: single

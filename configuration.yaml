@@ -46,8 +46,8 @@ logger:
   default: error
   # logs:
   #   RFXtrx: debug
-    # custom_components.sensor.owlintuition: debug
-    # custom_components.owlintuition: debug
+  #   custom_components.sensor.owlintuition: debug
+  #   custom_components.owlintuition: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/notify/
@@ -85,6 +85,7 @@ recorder:
   purge_keep_days: 3
   commit_interval: 60
   # db_url: !secret mariaDbUrl
+
 # https://www.home-assistant.io/components/sun/
 sun:
 # https://www.home-assistant.io/components/tts/
