@@ -7,30 +7,36 @@ https://github.com/custom-components/sensor.owlintuition/blob/master/sensor.owli
 import asyncio
 import socket
 from xml.etree import ElementTree as ET
-from datetime import timedelta
+from datetime import datetime, timedelta
 from select import select
 from functools import reduce
 
 import logging
 import voluptuous as vol
 
-from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import (CONF_NAME, CONF_PORT,
-    CONF_MONITORED_CONDITIONS, CONF_MODE, CONF_HOST,
-    ATTR_ATTRIBUTION)
+from homeassistant.components.sensor import (
+    PLATFORM_SCHEMA,
+    STATE_CLASS_MEASUREMENT,
+)
+import homeassistant.const as c
 from homeassistant.exceptions import TemplateError
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 from homeassistant.util import Throttle
 
-VERSION = '1.4.0'
-_LOGGER = logging.getLogger(__name__)
+# these should be part of e.g. homeassistant.component.sensor
+CONF_COST_UNIT_OF_MEASUREMENT = 'cost_unit_of_measurement'
+CONF_COST_ICON = 'cost_icon'
+ATTR_LAST_UPDATE = 'last_update'
+ATTR_LAST_RESET = 'last_reset'
+ATTR_DEVICE_CLASS = 'device_class'
+ATTR_STATE_CLASS = 'state_class'
 
+# OWL-specific constants
+VERSION = '1.5.0'
 DEFAULT_NAME = 'OWL Intuition'
 MODE_MONO = 'monophase'
 MODE_TRI = 'triphase'
-CONF_COST_UNIT_OF_MEASUREMENT = 'cost_unit_of_measurement'
-CONF_COST_ICON = 'cost_icon'
 
 SENSOR_ELECTRICITY_BATTERY = 'electricity_battery'
 SENSOR_ELECTRICITY_BATTERY_LVL = 'electricity_battery_lvl'
@@ -58,8 +64,6 @@ SENSOR_HEATING_REQUIRED = 'heating_required'
 SENSOR_HEATING_STATE = 'heating_state'
 SENSOR_RELAYS_RADIO = 'relays_radio'
 
-ATTR_LAST_UPDATE = 'last_update'
-
 #
 # Sensors selected by defining which classes to monitor
 #
@@ -86,30 +90,30 @@ RADIO_SENSORS = [ SENSOR_ELECTRICITY_RADIO,
                   SENSOR_RELAYS_RADIO ]
 
 SENSOR_TYPES = {
-    SENSOR_ELECTRICITY_BATTERY: ['Electricity Battery', None, 'mdi:battery', OWLCLASS_ELECTRICITY],
-    SENSOR_ELECTRICITY_BATTERY_LVL: ['Electricity Battery Level', None, 'mdi:battery', OWLCLASS_ELECTRICITY],
-    SENSOR_ELECTRICITY_RADIO: ['Electricity Radio', 'dBm', 'mdi:signal', OWLCLASS_ELECTRICITY],
-    SENSOR_ELECTRICITY_POWER: ['Electricity Power', 'W', 'mdi:flash', OWLCLASS_ELECTRICITY],
-    SENSOR_ELECTRICITY_ENERGY_TODAY: ['Electricity Today', 'kWh', 'mdi:flash', OWLCLASS_ELECTRICITY],
-    SENSOR_ELECTRICITY_COST_TODAY: ['Cost Today', None, 'mdi:coin', OWLCLASS_ELECTRICITY],
-    SENSOR_SOLAR_GPOWER: ['Solar Generating', 'W', 'mdi:flash', OWLCLASS_SOLAR],
-    SENSOR_SOLAR_GENERGY_TODAY: ['Solar Generated Today', 'kWh', 'mdi:flash', OWLCLASS_SOLAR],
-    SENSOR_SOLAR_EPOWER: ['Solar Exporting', 'W', 'mdi:flash', OWLCLASS_SOLAR],
-    SENSOR_SOLAR_EENERGY_TODAY: ['Solar Exported Today', 'kWh', 'mdi:flash', OWLCLASS_SOLAR],
-    SENSOR_HOTWATER_BATTERY: ['Hotwater Battery', None, 'mdi:battery', OWLCLASS_HOTWATER],
-    SENSOR_HOTWATER_BATTERY_LVL: ['Hotwater Battery Level', 'V', 'mdi:battery', OWLCLASS_HOTWATER],
-    SENSOR_HOTWATER_RADIO: ['Hotwater Radio', 'dBm', 'mdi:signal', OWLCLASS_HOTWATER],
-    SENSOR_HOTWATER_CURRENT: ['Hotwater Temperature', '°C', 'mdi:thermometer', OWLCLASS_HOTWATER],
-    SENSOR_HOTWATER_REQUIRED: ['Hotwater Required', '°C', 'mdi:thermostat', OWLCLASS_HOTWATER],
-    SENSOR_HOTWATER_AMBIENT: ['Hotwater Ambient', '°C', 'mdi:thermometer', OWLCLASS_HOTWATER],
-    SENSOR_HOTWATER_STATE: ['Hotwater State', '', 'mdi:information-outline', OWLCLASS_HOTWATER],
-    SENSOR_HEATING_BATTERY: ['Heating Battery', None, 'mdi:battery', OWLCLASS_HEATING],
-    SENSOR_HEATING_BATTERY_LVL: ['Heating Battery Level', 'V', 'mdi:battery', OWLCLASS_HEATING],
-    SENSOR_HEATING_RADIO: ['Heating Radio', 'dBm', 'mdi:signal', OWLCLASS_HEATING],
-    SENSOR_HEATING_CURRENT: ['Heating Temperature', '°C', 'mdi:thermometer', OWLCLASS_HEATING],
-    SENSOR_HEATING_REQUIRED: ['Heating Required', '°C', 'mdi:thermostat', OWLCLASS_HEATING],
-    SENSOR_HEATING_STATE: ['Heating State', None, 'mdi:information-outline', OWLCLASS_HEATING],
-    SENSOR_RELAYS_RADIO: ['Relays Radio', 'dBm', 'mdi:signal', OWLCLASS_RELAYS],
+    SENSOR_ELECTRICITY_BATTERY: ['Electricity Battery', None, 'mdi:battery', OWLCLASS_ELECTRICITY, None],
+    SENSOR_ELECTRICITY_BATTERY_LVL: ['Electricity Battery Level', '%', 'mdi:battery', OWLCLASS_ELECTRICITY, c.DEVICE_CLASS_BATTERY],
+    SENSOR_ELECTRICITY_RADIO: ['Electricity Radio', 'dBm', 'mdi:signal', OWLCLASS_ELECTRICITY, c.DEVICE_CLASS_SIGNAL_STRENGTH],
+    SENSOR_ELECTRICITY_POWER: ['Electricity Power', 'W', 'mdi:flash', OWLCLASS_ELECTRICITY, c.DEVICE_CLASS_POWER],
+    SENSOR_ELECTRICITY_ENERGY_TODAY: ['Electricity Today', 'kWh', 'mdi:flash', OWLCLASS_ELECTRICITY, c.DEVICE_CLASS_ENERGY],
+    SENSOR_ELECTRICITY_COST_TODAY: ['Cost Today', None, 'mdi:coin', OWLCLASS_ELECTRICITY, None],
+    SENSOR_SOLAR_GPOWER: ['Solar Generating', 'W', 'mdi:flash', OWLCLASS_SOLAR, c.DEVICE_CLASS_POWER],
+    SENSOR_SOLAR_GENERGY_TODAY: ['Solar Generated Today', 'kWh', 'mdi:flash', OWLCLASS_SOLAR, c.DEVICE_CLASS_ENERGY],
+    SENSOR_SOLAR_EPOWER: ['Solar Exporting', 'W', 'mdi:flash', OWLCLASS_SOLAR, c.DEVICE_CLASS_POWER],
+    SENSOR_SOLAR_EENERGY_TODAY: ['Solar Exported Today', 'kWh', 'mdi:flash', OWLCLASS_SOLAR, c.DEVICE_CLASS_ENERGY],
+    SENSOR_HOTWATER_BATTERY: ['Hotwater Battery', None, 'mdi:battery', OWLCLASS_HOTWATER, None],
+    SENSOR_HOTWATER_BATTERY_LVL: ['Hotwater Battery Level', 'V', 'mdi:battery', OWLCLASS_HOTWATER, c.DEVICE_CLASS_VOLTAGE],
+    SENSOR_HOTWATER_RADIO: ['Hotwater Radio', 'dBm', 'mdi:signal', OWLCLASS_HOTWATER, c.DEVICE_CLASS_SIGNAL_STRENGTH],
+    SENSOR_HOTWATER_CURRENT: ['Hotwater Temperature', '°C', 'mdi:thermometer', OWLCLASS_HOTWATER, c.DEVICE_CLASS_TEMPERATURE],
+    SENSOR_HOTWATER_REQUIRED: ['Hotwater Required', '°C', 'mdi:thermostat', OWLCLASS_HOTWATER, c.DEVICE_CLASS_TEMPERATURE],
+    SENSOR_HOTWATER_AMBIENT: ['Hotwater Ambient', '°C', 'mdi:thermometer', OWLCLASS_HOTWATER, c.DEVICE_CLASS_TEMPERATURE],
+    SENSOR_HOTWATER_STATE: ['Hotwater State', '', 'mdi:information-outline', OWLCLASS_HOTWATER, None],
+    SENSOR_HEATING_BATTERY: ['Heating Battery', None, 'mdi:battery', OWLCLASS_HEATING, None],
+    SENSOR_HEATING_BATTERY_LVL: ['Heating Battery Level', 'V', 'mdi:battery', OWLCLASS_HEATING, c.DEVICE_CLASS_VOLTAGE],
+    SENSOR_HEATING_RADIO: ['Heating Radio', 'dBm', 'mdi:signal', OWLCLASS_HEATING, c.DEVICE_CLASS_SIGNAL_STRENGTH],
+    SENSOR_HEATING_CURRENT: ['Heating Temperature', '°C', 'mdi:thermometer', OWLCLASS_HEATING, c.DEVICE_CLASS_TEMPERATURE],
+    SENSOR_HEATING_REQUIRED: ['Heating Required', '°C', 'mdi:thermostat', OWLCLASS_HEATING, None],
+    SENSOR_HEATING_STATE: ['Heating State', None, 'mdi:information-outline', OWLCLASS_HEATING, None],
+    SENSOR_RELAYS_RADIO: ['Relays Radio', 'dBm', 'mdi:signal', OWLCLASS_RELAYS, c.DEVICE_CLASS_SIGNAL_STRENGTH],
 }
 
 HEATING_STATE = [   'Standby',                      # 0
@@ -132,12 +136,12 @@ HOTWATER_STATE = [  'Standby',                      # 0
 DEFAULT_MONITORED = [ OWLCLASS_ELECTRICITY ]
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-    vol.Required(CONF_PORT): cv.port,
-    vol.Optional(CONF_HOST, default='localhost'): cv.string,
-    vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
-    vol.Optional(CONF_MODE, default=MODE_MONO):
+    vol.Required(c.CONF_PORT): cv.port,
+    vol.Optional(c.CONF_HOST, default='localhost'): cv.string,
+    vol.Optional(c.CONF_NAME, default=DEFAULT_NAME): cv.string,
+    vol.Optional(c.CONF_MODE, default=MODE_MONO):
         vol.In([MODE_MONO, MODE_TRI]),
-    vol.Optional(CONF_MONITORED_CONDITIONS, default=DEFAULT_MONITORED):
+    vol.Optional(c.CONF_MONITORED_CONDITIONS, default=DEFAULT_MONITORED):
         vol.All(cv.ensure_list, [vol.In(OWL_CLASSES)]),
     vol.Optional(CONF_COST_ICON, default='mdi:coin'): cv.string,
     vol.Optional(CONF_COST_UNIT_OF_MEASUREMENT): cv.string,
@@ -145,11 +149,13 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 SOCK_TIMEOUT = 60
 
+_LOGGER = logging.getLogger(__name__)
+
 
 @asyncio.coroutine
 def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     """Set up the OWL Intuition Sensors."""
-    hostname = config.get(CONF_HOST)
+    hostname = config.get(c.CONF_HOST)
     if hostname == 'localhost':
         # Perform a reverse lookup to make sure we listen to the correct IP
         hostname = socket.gethostbyname(socket.getfqdn())
@@ -158,10 +164,10 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     # is refreshed every 60 seconds.
     # All of this won't be needed with an async listener...
     try:
-        secs = 60/len(config.get(CONF_MONITORED_CONDITIONS))
+        secs = 60/len(config.get(c.CONF_MONITORED_CONDITIONS))
     except ZeroDivisionError:
         secs = 60
-    owldata = OwlData((hostname, config.get(CONF_PORT)), \
+    owldata = OwlData((hostname, config.get(c.CONF_PORT)), \
                       timedelta(seconds=(secs)))
 
     # Ideally an async listener loop as follows would be a better solution,
@@ -180,17 +186,17 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     dev = []
     # Iterate through the possible sensors and add if class is monitored
     for sensor in SENSOR_TYPES:
-        if SENSOR_TYPES[sensor][3] in config.get(CONF_MONITORED_CONDITIONS):
-            dev.append(OwlIntuitionSensor(owldata, config.get(CONF_NAME), sensor))
+        if SENSOR_TYPES[sensor][3] in config.get(c.CONF_MONITORED_CONDITIONS):
+            dev.append(OwlIntuitionSensor(owldata, config.get(c.CONF_NAME), sensor))
             _LOGGER.debug("Adding sensor %s", sensor)
     
     # In case of electricity sensors, handle triphase mode
-    if config.get(CONF_MODE) == MODE_TRI and \
-       OWLCLASS_ELECTRICITY in config.get(CONF_MONITORED_CONDITIONS):
+    if config.get(c.CONF_MODE) == MODE_TRI and \
+       OWLCLASS_ELECTRICITY in config.get(c.CONF_MONITORED_CONDITIONS):
         for phase in range(1, 4):
-            dev.append(OwlIntuitionSensor(owldata, config.get(CONF_NAME),
+            dev.append(OwlIntuitionSensor(owldata, config.get(c.CONF_NAME),
                                           SENSOR_ELECTRICITY_POWER, phase))
-            dev.append(OwlIntuitionSensor(owldata, config.get(CONF_NAME),
+            dev.append(OwlIntuitionSensor(owldata, config.get(c.CONF_NAME),
                                           SENSOR_ELECTRICITY_ENERGY_TODAY, phase))
     async_add_devices(dev, True)
 
@@ -234,10 +240,6 @@ class OwlData:
             xml = ET.fromstring(xmldata)
             self.data[xml.tag] = xml
             _LOGGER.debug("Datagram received for type %s", xml.tag)
-            payload = ""
-            for e in xml.iter():
-                payload += f"{e.tag}: {e.text}\n"
-            _LOGGER.debug("Datagram payload %s", payload)
 
         except ET.ParseError as pe:
             _LOGGER.error("Unable to parse received data: %s", pe)
@@ -268,13 +270,21 @@ class OwlIntuitionSensor(Entity):
         self._state = None
         self._attrs = {
             ATTR_LAST_UPDATE: None,
-            ATTR_ATTRIBUTION: 'Powered by OWL Intuition'
+            ATTR_LAST_RESET: None,
+            ATTR_DEVICE_CLASS: SENSOR_TYPES[sensor_type][4],
+            ATTR_STATE_CLASS: STATE_CLASS_MEASUREMENT if SENSOR_TYPES[sensor_type][4] else None,
+            c.ATTR_ATTRIBUTION: 'Powered by OWL Intuition'
             }
 
     @property
     def name(self):
         """Return the name of this sensor."""
         return self._name
+
+    @property
+    def state(self):
+        """Return the current value for this sensor."""
+        return self._state
 
     @property
     def unit_of_measurement(self):
@@ -285,11 +295,6 @@ class OwlIntuitionSensor(Entity):
     def icon(self):
         """Return the icon for this entity."""
         return SENSOR_TYPES[self._sensor_type][2]
-
-    @property
-    def state(self):
-        """Return the current value for this sensor."""
-        return self._state
 
     @property
     def device_state_attributes(self):
@@ -304,6 +309,8 @@ class OwlIntuitionSensor(Entity):
             return
         xml_ver = xml.attrib.get('ver')
         self._attrs[ATTR_LAST_UPDATE] = int(xml.find('timestamp').text)
+        if self._attrs[ATTR_DEVICE_CLASS] == c.DEVICE_CLASS_ENERGY:
+            self._attrs[ATTR_LAST_RESET] = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
 
         if (xml.tag == OWLCLASS_HEATING or xml.tag == OWLCLASS_HOTWATER or xml.tag == OWLCLASS_RELAYS):        
             # Only supports first zone currently
