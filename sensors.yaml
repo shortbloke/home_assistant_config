@@ -68,6 +68,10 @@
     - type: load_5m
     - type: load_15m
 
+- platform: filesize
+  file_paths:
+    - /config/home-assistant_v2.db
+
 # Deluge Activity sensor
 - platform: deluge
   host: !secret deluge_host
@@ -99,23 +103,6 @@
   section_types:
     - show
 
-- platform: radarr_upcoming_media
-  api_key: !secret radarr_token
-  host: !secret radarr_host
-  port: 7878
-  days: 7
-  ssl: false
-  theaters: false
-  max: 10
-
-- platform: sonarr_upcoming_media
-  api_key: !secret sonarr_token
-  host: !secret sonarr_host
-  port: 8989
-  days: 7
-  ssl: false
-  max: 10
-
 # Owl Energy Monitor
 - platform: owlintuition
   host: 192.168.200.45
@@ -126,6 +113,7 @@
   monitored_conditions:
     - electricity
     - solar
+
 # REST Sensors - https://www.home-assistant.io/integrations/sensor.rest/
 # - platform: rest
 #   resource: http://localhost:8123/homeassistant/api/states/sensor.argon_one_addon_fan_speed

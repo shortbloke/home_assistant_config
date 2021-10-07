@@ -5,6 +5,9 @@ homeassistant:
   customize: !include customize.yaml
   # https://home-assistant.io/docs/configuration/packages/
   packages: !include_dir_named packages
+  # Allow access to config dir, in order to have a sensor to monitor DB size.
+  allowlist_external_dirs:
+    - /config
 
 # Include Files
 automation: !include automations.yaml
@@ -27,6 +30,46 @@ api:
 default_config:
 # https://www.home-assistant.io/integrations/history
 history:
+  exclude:
+    domains:
+      - automation
+      - media_player
+      - updater
+    entity_globs:
+      - sensor.*_activity*
+      - sensor.*_ascended*
+      - sensor.*_average_active_pace*
+      - sensor.*_battery_state*
+      - sensor.*_bssid*
+      - sensor.*_connection_type*
+      - sensor.*_current
+      - sensor.*_current_consumption
+      - sensor.*_descended*
+      - sensor.*_distance*
+      - sensor.*_last_update_trigger*
+      - sensor.*_sim*
+      - sensor.*_ssid*
+      - sensor.*_steps*
+      - sensor.*_storage*
+      - sensor.*_voltage
+    entities:
+      - sensor.ensuite_shower_energy_today
+      - sensor.ensuite_shower_power
+      - sensor.family_bathroom_shower_energy_today
+      - sensor.family_bathroom_shower_power
+      - sensor.frasers_iphone_battery_level
+      - sensor.hacs
+      - sensor.martin_iphonexs_battery_level
+      - sensor.michelle_iphone_se_battery_level
+      - sensor.michelles_iphone_battery_level
+      - sensor.morgans_iphone_7_battery_level_2
+      - sensor.northway_eta
+      - sensor.plex_nanoplex
+      - switch.wled_panel_fraser_sync_receive
+      - switch.wled_panel_fraser_sync_send
+      - select.wled_panel_fraser_playlist
+      - select.wled_panel_fraser_preset
+
 # https://home-assistant.io/components/http/
 http:
   login_attempts_threshold: 100
@@ -45,9 +88,9 @@ logbook:
 logger:
   default: error
   # logs:
-  #   RFXtrx: debug
   #   custom_components.sensor.owlintuition: debug
   #   custom_components.owlintuition: debug
+    # RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/notify/
@@ -82,7 +125,7 @@ panel_iframe:
     url: !secret TasmoAdminURL
 # https://www.home-assistant.io/components/recorder/
 recorder:
-  purge_keep_days: 3
+  purge_keep_days: 10
   commit_interval: 60
   # db_url: !secret mariaDbUrl
 
