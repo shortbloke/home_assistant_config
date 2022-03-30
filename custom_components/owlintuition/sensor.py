@@ -231,7 +231,6 @@ class OwlData:
         try:
             xml = ET.fromstring(xmldata)
             self.data[xml.tag] = xml
-            _LOGGER.debug("Packet: %s", xmldata)
             _LOGGER.debug("Datagram received for type %s", xml.tag)
 
         except ET.ParseError as pe:

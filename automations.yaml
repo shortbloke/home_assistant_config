@@ -73,17 +73,12 @@
       minutes: 15
       seconds: 0
       milliseconds: 0
-  condition:
-  - condition: device
-    type: is_on
-    device_id: 222f36208319b30db3a981f7388b13d9
-    entity_id: light.sonoff_garage_light
-    domain: light
+  condition: []
   action:
   - type: turn_off
     device_id: 222f36208319b30db3a981f7388b13d9
-    entity_id: light.sonoff_garage_light
-    domain: light
+    entity_id: switch.sonoff_garage_light
+    domain: switch
   mode: single
 - id: '1615640713545'
   alias: 'Action: Turn on Loft Fan above 30'
@@ -160,37 +155,6 @@
     entity_id: switch.lwrf_hall_socket_2
     domain: switch
   mode: single
-- id: '1615647376188'
-  alias: 'Schedule: Wake up Fraser light mode'
-  description: ''
-  trigger:
-  - platform: time
-    at: 07:00:00
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  action:
-  - service: wled.effect
-    data:
-      effect: solid
-    entity_id: light.wled_panel_fraser
-  - service: wled.effect
-    data:
-      effect: Sunrise
-      intensity: 25
-      palette: Default
-      speed: 15
-    entity_id: light.wled_panel_fraser
-  - type: turn_on
-    device_id: 1ae4ff86c169d23150699d8751cb50b4
-    entity_id: light.wled_panel_fraser
-    domain: light
-  mode: single
 - id: '1615647990496'
   alias: 'Action & Alert: Frasers TV tuned on after curfew'
   description: ''
@@ -201,8 +165,8 @@
     for: 00:06:00
   condition:
   - condition: time
-    after: '22:00:00'
-    before: 06:59:00
+    after: '23:00'
+    before: 06:59
   action:
   - service: notify.mobile_app_martin_iphonexs
     data:
@@ -241,7 +205,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '22:30:00'
+    at: '23:30'
   condition:
   - condition: state
     entity_id: binary_sensor.frasers_tv
@@ -273,34 +237,6 @@
   - service: homeassistant.turn_on
     target:
       entity_id: switch.lwrf_loft_fraser_tv
-  mode: single
-- id: '1615648875231'
-  alias: 'Schedule: HASS Weekly Snapshot'
-  description: ''
-  trigger:
-  - platform: time
-    at: 03:00:00
-  condition:
-  - condition: time
-    weekday:
-    - sun
-  action:
-  - service: hassio.snapshot_full
-    data: {}
-  mode: single
-- id: '1615648950399'
-  alias: 'Schedule: HASS Dropbox Snapshot Sync'
-  description: ''
-  trigger:
-  - platform: time
-    at: 04:00:00
-  condition: []
-  action:
-  - service: hassio.addon_stdin
-    data:
-      addon: 7be23ff5_dropbox_sync
-      input:
-        command: upload
   mode: single
 - id: '1615649323516'
   alias: 'Alert: HASS Low Disk Space'
@@ -690,7 +626,7 @@
     data:
       preset_mode: eco
     target:
-      entity_id: climate.hallway_house
+      entity_id: climate.hallway_thermostat
   mode: single
 - id: '1615656264115'
   alias: 'State Change: Door Closed - Reset heating mode'
@@ -705,7 +641,7 @@
     data:
       preset_mode: none
     target:
-      entity_id: climate.hallway_house
+      entity_id: climate.hallway_thermostat
   mode: single
 - id: '1615662841415'
   alias: 'State Change: House occupied'
@@ -849,19 +785,6 @@
         }}],  #                     {{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.attributes[''friendly_name'']}}
         [{{ states.binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off.state }}]'
   mode: single
-- id: '1619355836677'
-  alias: 'Schedule: Turn off Fraser Panel light at 10pm'
-  description: ''
-  trigger:
-  - platform: time
-    at: '22:00:00'
-  condition: []
-  action:
-  - type: turn_off
-    device_id: 1ae4ff86c169d23150699d8751cb50b4
-    entity_id: light.wled_panel_fraser
-    domain: light
-  mode: single
 - id: '1621091408356'
   alias: 'Action & Alert: Shutdown PC - Tera if Fraser not home'
   description: ''
@@ -901,4 +824,56 @@
   - service: homeassistant.turn_on
     target:
       entity_id: switch.shutdown
+  mode: single
+- id: '1636214471227'
+  alias: 'Action: Turn off hall air freshener at night'
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:00'
+  condition: []
+  action:
+  - device_id: caa90b0edf23497cb73f5e5362b092b1
+    domain: rfxtrx
+    type: send_command
+    subtype: 'Off'
+  mode: single
+- id: '1636214504954'
+  alias: 'Action: Turn on hall air freshener in the morning'
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00
+  condition: []
+  action:
+  - device_id: caa90b0edf23497cb73f5e5362b092b1
+    domain: rfxtrx
+    type: send_command
+    subtype: 'On'
+  mode: single
+- id: '1639848261833'
+  alias: Turn on outdoor xmas lights at 3pm
+  description: ''
+  trigger:
+  - platform: time
+    at: '15:00'
+  condition: []
+  action:
+  - device_id: caa90b0edf23497cb73f5e5362b092b1
+    domain: rfxtrx
+    type: send_command
+    subtype: 'On'
+  mode: single
+- id: '1639848286991'
+  alias: Turn off outdoor xmas lights at midnight
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00
+  condition: []
+  action:
+  - device_id: caa90b0edf23497cb73f5e5362b092b1
+    domain: rfxtrx
+    type: send_command
+    subtype: 'Off'
   mode: single

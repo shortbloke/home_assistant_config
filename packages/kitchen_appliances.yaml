@@ -76,6 +76,6 @@ sensor:
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Kitchen"
       kitchen_total_power_cost_today:
-        value_template: "{{ (states('sensor.kitchen_total_power_today') |float * 0.17902 ) | round(2) }}"
+        value_template: "{{ (states('sensor.kitchen_total_power_today') |float * 0.2869 ) | round(2) }}"
         unit_of_measurement: 'GBP'
         friendly_name: "Power Cost Today - Kitchen"

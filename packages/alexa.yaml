@@ -7,13 +7,6 @@ alexa:
         - scene
       exclude_entities:
       # Lights
-        # Fraser Spot Lights, integrated directly with Alexa
-        - light.2424806784f3eb2103c8
-        - light.10140877d8bfc0decb09
-        - light.12204702807d3a252d9b
-        - light.01802003cc50e3501f3e
-        # Fraser WLED Panel
-        - light.wled_panel_fraser
         # Unknown location
         - light.12204702807d3a1b7075
         - light.12204702807d3a252c69

@@ -1,31 +1,6 @@
 ##################################################
 ## Lights
 ##################################################
-# https://www.home-assistant.io/components/light.flux_led/
-- platform: flux_led
-  automatic_add: False
-  devices:
-    192.168.107.20:
-      name: wifi_ufo_1
-      mode: "rgbw"
-    192.168.107.21:
-      name: wifi_ufo_2
-      mode: "rgbw"
-    192.168.107.22:
-      name: wifi_ufo_3
-      mode: "rgbw"
-    192.168.107.23:
-      name: wifi_ufo_4
-      mode: "rgbw"
-    192.168.107.24:
-      name: conservatory_desk
-      mode: "rgb"
-    192.168.107.25:
-      name: conservatory_left
-      mode: "w"
-    192.168.107.26:
-      name: conservatory_right
-      mode: "w"
 
 ##################################################
 ## Lights Groups
@@ -45,8 +20,6 @@
 - platform: group
   name: Frasers Lights
   entities:
-    - light.2424806784f3eb2103c8
-    - light.12204702ecfabc20a0a1
-    - light.12204702807d3a252d9b
-    - light.01802003cc50e3501f3e
-    - light.wled_panel_fraser
+    - light.fraser_downlights
+    - light.fraser_spotlights
+    - light.fraser_nanoleaf
