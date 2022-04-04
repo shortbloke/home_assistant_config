@@ -72,17 +72,6 @@
   file_paths:
     - /config/home-assistant_v2.db
 
-# Deluge Activity sensor
-- platform: deluge
-  host: !secret deluge_host
-  port: 58846
-  username: !secret deluge_username
-  password: !secret deluge_password
-  monitored_variables:
-    - 'current_status'
-    - 'download_speed'
-    - 'upload_speed'
-
 # DNSIP https://www.home-assistant.io/integrations/dnsip/
 - platform: dnsip
 

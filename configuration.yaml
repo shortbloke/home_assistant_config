@@ -65,10 +65,6 @@ history:
       - sensor.morgans_iphone_7_battery_level_2
       - sensor.northway_eta
       - sensor.plex_nanoplex
-      - switch.wled_panel_fraser_sync_receive
-      - switch.wled_panel_fraser_sync_send
-      - select.wled_panel_fraser_playlist
-      - select.wled_panel_fraser_preset
 
 # https://home-assistant.io/components/http/
 http:

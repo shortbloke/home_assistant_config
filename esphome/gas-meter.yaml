@@ -1,0 +1,43 @@
+esphome:
+  name: gas-meter
+  platform: ESP8266
+  board: d1_mini_pro
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "41b54347263fd218be4c5cdf2d61d420"
+
+wifi:
+  ssid: "Rowan-NoT-Downstairs"
+  password: "ScotlandTheBrave"
+  # For hidden SSID need to set fast_connect: true
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Gas-Meter Fallback Hotspot"
+    password: "1LE8IkenNSXi"
+
+captive_portal:
+
+# Example configuration entry
+sensor:
+  - platform: pulse_meter
+    pin: D1
+    name: "Gas Meter"
+    internal_filter: 100ms
+    unit_of_measurement: "m³"
+    state_class: "measurement"
+    device_class: "gas"
+    filters:
+        - multiply: 0.01
+    total:
+      name: "Gas Meter Total"
+      unit_of_measurement: "m³"
+      state_class: "total_increasing"
+      device_class: "gas"

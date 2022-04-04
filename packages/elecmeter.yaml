@@ -1,0 +1,20 @@
+input_number:
+  energy_elec_unit:
+    name: Elec unit price (GBP/kwh)
+    min: 0
+    max: 999999
+    step: 0.0001
+    unit_of_measurement: "GBP/kWh"
+    mode: box
+  energy_elec_standing:
+    name: Elec daily standing charge
+    min: 0
+    max: 999999
+    step: 0.0001
+    unit_of_measurement: "GBP/kWh"
+    mode: box
+
+tplink:
+  switch:
+    - host: 192.168.170.21 # DHCP reservation - C-Desk-Left
+    - host: 192.168.170.22 # DHCP reservation - C-Desk-Right

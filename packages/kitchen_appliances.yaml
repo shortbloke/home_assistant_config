@@ -75,7 +75,19 @@ sensor:
         value_template: "{{ (states('sensor.dishwasher_today_s_consumption') | float + states('sensor.tumble_dryer_today_s_consumption') | float + states('sensor.washing_machine_today_s_consumption') | float) | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Kitchen"
+      dishwasher_total_power_cost_today:
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.dishwasher_today_s_consumption') | float) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Dishwasher Cost Today"
+      tumble_dryer_total_power_cost_today:
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.tumble_dryer_today_s_consumption') | float) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Tumble Dryer Cost Today"
+      washing_machine_total_power_cost_today:
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.washing_machine_today_s_consumption') | float) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Washing Machine Cost Today"
       kitchen_total_power_cost_today:
-        value_template: "{{ (states('sensor.kitchen_total_power_today') |float * 0.2869 ) | round(2) }}"
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.kitchen_total_power_today') | float) | round(2) }}"
         unit_of_measurement: 'GBP'
         friendly_name: "Power Cost Today - Kitchen"

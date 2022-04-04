@@ -1,11 +1,5 @@
 zone.home:
   radius: 25
-sensor.deluge_down_speed:
-  friendly_name: Download Speed
-  icon: mdi:cloud-download
-sensor.deluge_up_speed:
-  friendly_name: Upload Speed
-  icon: mdi:cloud-upload
 sensor.washing_machine_power:
   icon: mdi:flash
 sensor.washing_machine_power_today:

@@ -1,0 +1,113 @@
+input_number:
+  energy_gas_unit:
+    name: Gas unit price (p/kwh)
+    min: 0
+    max: 999999
+    step: 0.0001
+    unit_of_measurement: p
+    mode: box
+  energy_gas_standing:
+    name: Gas daily standing charge
+    min: 0
+    max: 999999
+    step: 0.001
+    unit_of_measurement: p
+    mode: box
+  gas_meter_m3:
+    name: Gas Meter Reading
+    min: 0
+    max: 999999
+    step: 0.001
+    unit_of_measurement: m/3
+    mode: box
+
+utility_meter:
+  utility_meter_gas_hourly:
+    source: sensor.gas_meter_kwh
+    cycle: hourly
+  utility_meter_gas_daily:
+    source: sensor.gas_meter_kwh
+    cycle: daily  
+  utility_meter_gas_weekly:
+    source: sensor.gas_meter_kwh
+    cycle: weekly
+  utility_meter_gas_monthly:
+    source: sensor.gas_meter_kwh
+    cycle: monthly
+  utility_meter_gas_yearly:
+    source: sensor.gas_meter_kwh
+    cycle: yearly
+
+automation:
+  id: energy_gas_pulse_received
+  alias: Energy - Gas - Pulse Received
+  trigger: 
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+  condition: 
+  - condition: state
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+    state: 'off'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.gas_meter_m3
+      value: "{{ (states.input_number.gas_meter_m3.state | float ) + 0.010 }}"
+
+template:
+  - sensor:
+    - name: "Gas Meter m3 Total"
+      unit_of_measurement: "m³"
+      state_class: "total_increasing"
+      device_class: "gas"
+      state: "{{ (states.input_number.gas_meter_m3.state | float ) }}"
+
+sensor:
+  - platform: template
+    sensors:
+      gas_meter_price_gbp_m3:
+        unit_of_measurement: "GBP/m³"
+        value_template: "{{ states.input_number.energy_gas_unit.state | float * 1.02264 * 39.4 / 3.6/ 100}}"
+      gas_meter_kwh:
+        unit_of_measurement: "kWh"
+        value_template: "{{ states.input_number.gas_meter_m3.state | float * 1.02264 * 39.4 / 3.6 }}"
+      gas_price_hour:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_hourly.state | float * states.input_number.energy_gas_unit.state | float)  + (states.input_number.energy_gas_standing.state | float /24)) /100) | round(2) }}"
+      gas_price_hour_last:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_hourly.attributes.last_period | float * states.input_number.energy_gas_unit.state | float) + (states.input_number.energy_gas_standing.state | float /24 )) /100) | round(2) }}"
+      gas_price_hour_display:
+        value_template: "£{{ states.sensor.gas_price_hour.state }}"
+      gas_price_hour_last_display:
+        value_template: "£{{ states.sensor.gas_price_hour_last.state }}"
+      gas_price_day:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_daily.state | float * states.input_number.energy_gas_unit.state | float)  + (states.input_number.energy_gas_standing.state | float )) /100) | round(2) }}"
+      gas_price_day_last:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_daily.attributes.last_period | float * states.input_number.energy_gas_unit.state | float) + (states.input_number.energy_gas_standing.state | float )) /100) | round(2) }}"
+      gas_price_day_display:
+        value_template: "£{{ states.sensor.gas_price_day.state }}"
+      gas_price_day_last_display:
+        value_template: "£{{ states.sensor.gas_price_day_last.state }}"
+      gas_price_week:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_weekly.state | float * states.input_number.energy_gas_unit.state | float)  + (states.input_number.energy_gas_standing.state | float * 7 )) /100) | round(2) }}"
+      gas_price_week_last:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_weekly.attributes.last_period | float * states.input_number.energy_gas_unit.state | float) + (states.input_number.energy_gas_standing.state | float * 7 )) /100) | round(2) }}"
+      gas_price_week_display:
+        value_template: "£{{ states.sensor.gas_price_week.state }}"
+      gas_price_week_last_display:
+        value_template: "£{{ states.sensor.gas_price_week_last.state }}"
+      gas_price_month:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_monthly.state | float * states.input_number.energy_gas_unit.state | float)  + (states.input_number.energy_gas_standing.state | float * 28 )) /100) | round(2) }}"
+      gas_price_month_last:
+        unit_of_measurement: 'GBP'
+        value_template: "{{ (((states.sensor.utility_meter_gas_monthly.attributes.last_period | float * states.input_number.energy_gas_unit.state | float) + (states.input_number.energy_gas_standing.state | float * 28 )) /100) | round(2) }}"
+      gas_price_month_display:
+        value_template: "£{{ states.sensor.gas_price_month.state }}"
+      gas_price_month_last_display:
+        value_template: "£{{ states.sensor.gas_price_month_last.state }}"
