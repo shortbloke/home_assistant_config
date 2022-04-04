@@ -1,13 +1,6 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-tplink:
-  switch:
-    - host: 192.168.170.20 # DHCP reservation - KP115_2 - Irons Left
-    - host: 192.168.170.23 # DHCP reservation - HS110_3 - Irons Right
-    - host: 192.168.170.24 # DHCP reservation - HS110_4 - Table
-    - host: 192.168.170.29 # DCHP reservation - KP115_1 - Magpie Iron
-
 sensor:
   - platform: template
     sensors:

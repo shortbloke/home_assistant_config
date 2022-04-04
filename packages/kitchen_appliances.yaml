@@ -1,12 +1,6 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-tplink:
-  switch:
-    - host: 192.168.170.26 # Dishwasher
-    - host: 192.168.170.27 # Washing Machine
-    - host: 192.168.170.28 # Tumble Dryer
-
 sensor:
   - platform: template
     sensors:
