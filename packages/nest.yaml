@@ -1,10 +1,10 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-nest:
-  # https://www.home-assistant.io/components/nest/
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
+# nest:
+#   # https://www.home-assistant.io/components/nest/
+#   client_id: !secret nest_client_id
+#   client_secret: !secret nest_client_secret
 
 # HACS: Custom Component
 # https://github.com/badguy99/badnest
@@ -18,11 +18,25 @@ climate:
     scan_interval: 10
 
 sensor:
+  - platform: badnest
+
   - platform: template
     sensors:
       hot_water_boost_status:
         friendly_name: "Hot Water Boost Status"
         value_template: "{{ state_attr('water_heater.hallway_thermostat_hot_water', 'boost_mode_status') }}"
+      nest_heating_status:
+        friendly_name: "Heating Status"
+        value_template: "{{ state_attr('climate.hallway_thermostat', 'hvac_action') }}"
+      nest_heating_present_mode:
+        friendly_name: "Heating Preset"
+        value_template: "{{ state_attr('climate.hallway_thermostat', 'preset_mode') }}"
+      nest_current_humidity:
+        friendly_name: "Hallway Humidity"
+        value_template: "{{ state_attr('climate.hallway_thermostat', 'current_humidity') }}"
+      nest_current_temperature:
+        friendly_name: "Hallway Temperature"
+        value_template: "{{ state_attr('climate.hallway_thermostat', 'current_temperature') }}"
 
 water_heater:
   - platform: badnest

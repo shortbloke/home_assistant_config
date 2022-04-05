@@ -109,3 +109,4 @@ light.conservatory_right:
 sensor.external_ip:
   icon: mdi:ip-network-outline
   show_last_changed: true
+  

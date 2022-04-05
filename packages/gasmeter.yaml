@@ -67,10 +67,10 @@ sensor:
     sensors:
       gas_meter_price_gbp_m3:
         unit_of_measurement: "GBP/m³"
-        value_template: "{{ states.input_number.energy_gas_unit.state | float * 1.02264 * 39.4 / 3.6/ 100}}"
+        value_template: "{{ (states.input_number.energy_gas_unit.state | float * 1.02264 * 39.4 / 3.6/ 100) | round(4)}}"
       gas_meter_kwh:
         unit_of_measurement: "kWh"
-        value_template: "{{ states.input_number.gas_meter_m3.state | float * 1.02264 * 39.4 / 3.6 }}"
+        value_template: "{{ (states.input_number.gas_meter_m3.state | float * 1.02264 * 39.4 / 3.6) | round(2)}}"
       gas_price_hour:
         unit_of_measurement: 'GBP'
         value_template: "{{ (((states.sensor.utility_meter_gas_hourly.state | float * states.input_number.energy_gas_unit.state | float)  + (states.input_number.energy_gas_standing.state | float /24)) /100) | round(2) }}"

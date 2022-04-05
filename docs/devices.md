@@ -6,7 +6,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 
 | Device | Functionality |
 | ---| --- |
-| [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Temperature sensors and heating status information along with target temperature being able to be controlled via Home Assistant<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free)</li><li>Whilst 3rd gen Nest Thermostat in the UK provides the ability to control the hot water system. This isn't exposed via current implementation in Home Assistant.</li></ul> |
+| [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | Component: [BadNest](https://github.com/badguy99/badnest)<br>Temperature, heating, hot water and protect control and monitoring<br><br>Limitations:<ul><li>Unofficial intergration. May stop working once Google kill "Works with Nest" API.</li></ul> |
 
 ## Security
 
@@ -51,7 +51,6 @@ The following devices are controlled via my Home Assistant configurations. They 
 
 | Device | Functionality |
 | ---| --- |
-| [Nest Protect (2nd generation) Smoke and Carbon monoxide detectors](http://amzn.to/2wFGOw4) | Component: [Nest](https://home-assistant.io/components/nest/)<br>Monitoring of Smoke and CO2 alarms and system health<br><br>Limitations:<ul><li>Requires setup of a Nest Developer account (free)</li></ul> |
 | ZigBee: [Xiaomi Aqara Temperature Humidity Sensor ](https://www.ebay.co.uk/itm/Aqara-Smart-Temperature-Humidity-Sensor-ZigBee-Wifi-Wireless-Work-With-Xiaomi-UO/283185308376) | Component: [ZigBee Home Automation](https://www.home-assistant.io/components/zha/)<br>A compact wireless battery powered temperature and humidity sensor.<br><br>Limitations:<ul><li>None yet.</li></ul> |
 | ZigBee: [Xiaomi Aqara Window or Door Magnetic Sensor ](https://www.ebay.co.uk/itm/Xiaomi-Aqara-ZigBee-Wireless-Smart-Window-Door-Sensor-Home-Security-App-Control/292555002431) | Component: [ZigBee Home Automation](https://www.home-assistant.io/components/zha/)<br>A compact battery powered magnetic sensor for use on doors and windows.<br><br>Limitations:<ul><li>None yet.</li></ul> |
 | BLE: [Xiaomi Mi Flora Plant Sensor](https://www.ebay.co.uk/itm/Xiaomi-Mi-Battery-Bluetooth-APP-Flora-Monitor-Digital-Plant-Water-Care-Tester-UK/183834628232) | Component: [Mi Flora plant sensor](https://www.home-assistant.io/components/miflora/)<br>A compact battery powered plant sensor.<br><br>Limitations:<ul><li>Bluetooth Low Energy range is limited.</li><li>ZigBee Shield required Bluetooth be disabled, so on board Bluetooth wasn't available.</li></ul>Workaround:<ul><li>Component: [Plant](https://www.home-assistant.io/components/plant/)</li><li>BLE->MQTT: [Xiaomi Mi Flora Plant Sensor MQTT Client/Daemon](https://github.com/ThomDietrich/miflora-mqtt-daemon)</li><li>Hosted on: [Raspberry Pi Zero W](https://amzn.to/2ZLhm7d)</li></ul>|

@@ -1,0 +1,26 @@
+##################################################
+## Components/Sensors
+##################################################
+sensor:
+  - platform: template
+    sensors:
+      loft_total_power_now:
+        value_template: "{{ (states('sensor.loft1_current_consumption') | float + states('sensor.loft2_current_consumption') | float) | round(3) }}"
+        unit_of_measurement: 'W'
+        friendly_name: "Power Now - Loft"
+      loft_total_power_today:
+        value_template: "{{ (states('sensor.loft1_today_s_consumption') | float + states('sensor.loft2_today_s_consumption') | float) | round(3) }}"
+        unit_of_measurement: 'kWh'
+        friendly_name: "Power Today - Loft"
+      loft1_total_power_cost_today:
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.loft1_today_s_consumption') | float) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Loft Main UPS Feed Cost Today"
+      loft2_total_power_cost_today:
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.loft2_today_s_consumption') | float) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Loft Starlink Feed Cost Today"
+      loft_total_power_cost_today:
+        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.loft_total_power_today') | float) | round(2) }}"
+        unit_of_measurement: 'GBP'
+        friendly_name: "Power Cost Today - Loft"
