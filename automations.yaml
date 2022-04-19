@@ -7,7 +7,7 @@
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: sensor.garage_monitor_salt_level
     domain: sensor
-    above: 43
+    above: 46
     for:
       hours: 1
       minutes: 0
@@ -18,6 +18,7 @@
   - service: input_boolean.turn_on
     target:
       entity_id: input_boolean.low_salt
+    data: {}
   - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
     domain: mobile_app
     type: notify
@@ -613,7 +614,7 @@
       message: No Motion Detected - Turning off Magpie Iron
   mode: single
 - id: '1615656237892'
-  alias: 'State Change: Door Open - Set heating mode to eco'
+  alias: 'State Change: Door Open - Turn on heating eco mode'
   description: ''
   trigger:
   - platform: state
@@ -622,14 +623,13 @@
     for: 00:02:00
   condition: []
   action:
-  - service: climate.set_preset_mode
-    data:
-      preset_mode: eco
-    target:
-      entity_id: climate.hallway_thermostat
+  - type: turn_on
+    device_id: 5468cd9b4c499a8c26e7f4be748722cb
+    entity_id: switch.downstairs_thermostat_ecomode
+    domain: switch
   mode: single
 - id: '1615656264115'
-  alias: 'State Change: Door Closed - Reset heating mode'
+  alias: 'State Change: Door Closed - Turn off heating eco mode'
   description: ''
   trigger:
   - platform: state
@@ -637,11 +637,10 @@
     to: 'off'
   condition: []
   action:
-  - service: climate.set_preset_mode
-    data:
-      preset_mode: none
-    target:
-      entity_id: climate.hallway_thermostat
+  - type: turn_off
+    device_id: 5468cd9b4c499a8c26e7f4be748722cb
+    entity_id: switch.downstairs_thermostat_ecomode
+    domain: switch
   mode: single
 - id: '1615662841415'
   alias: 'State Change: House occupied'

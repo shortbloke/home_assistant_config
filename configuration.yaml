@@ -86,7 +86,7 @@ logger:
   # logs:
   #   custom_components.sensor.owlintuition: debug
   #   custom_components.owlintuition: debug
-    # RFXtrx: debug
+  #   RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/notify/
