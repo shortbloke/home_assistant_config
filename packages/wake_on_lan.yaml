@@ -1,0 +1,8 @@
+# https://www.home-assistant.io/integrations/wake_on_lan/
+wake_on_lan:
+
+switch:
+  - platform: wake_on_lan
+    name: parsec
+    mac: !secret parsec_mac
+    broadcast_address: !secret parsec_broadcast_address
