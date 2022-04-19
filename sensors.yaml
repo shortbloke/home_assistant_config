@@ -68,13 +68,6 @@
     - type: load_5m
     - type: load_15m
 
-- platform: filesize
-  file_paths:
-    - /config/home-assistant_v2.db
-
-# DNSIP https://www.home-assistant.io/integrations/dnsip/
-- platform: dnsip
-
 # Media Sensors
 - platform: plex_recently_added
   name: Recently added movies # will create sensor.plex_recently_added_
