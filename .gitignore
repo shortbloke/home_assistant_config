@@ -50,7 +50,7 @@ node-red/*
 *.js.gz
 
 # ignore custom_components
-custom_components/hacs
+custom_components
 www/community/*
 www/upcoming-media-card-images/*
 
@@ -62,3 +62,6 @@ sonoff-config-backup
 
 # Ignore *.ignore when temp disabling files
 *.ignore
+
+# Ignore homebridge folder
+homebridge
