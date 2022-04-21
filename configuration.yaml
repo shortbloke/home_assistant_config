@@ -12,7 +12,6 @@ homeassistant:
 # Include Files
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
-camera: !include cameras.yaml
 group: !include groups.yaml
 input_boolean: !include input_booleans.yaml
 input_select: !include input_selects.yaml
@@ -82,7 +81,7 @@ logbook:
       - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: error
+  default: warn
   # logs:
   #   custom_components.sensor.owlintuition: debug
   #   custom_components.owlintuition: debug
