@@ -46,34 +46,3 @@ template:
               {% endif %}
             {% endif %}
           {% endif %}
-
-# Workaround - Breaking change in 2022.4
-  - trigger: 
-    - platform: state
-      entity_id: sensor.owl_intuition_solar_exported_today
-    sensor:
-      - name: "Owl Solar Exported Today (template)"
-        unit_of_measurement: "kWh"
-        state_class: total_increasing
-        device_class: energy
-        state: >
-          {% if is_state('sensor.owl_intuition_solar_exported_today', 'unknown') %}
-            nan
-          {% else %}
-            {{ states('sensor.owl_intuition_solar_exported_today') | float }}
-          {% endif %}
-
-  - trigger: 
-    - platform: state
-      entity_id: sensor.owl_intuition_solar_generated_today
-    sensor:
-      - name: "Owl Solar Generated Today (template)"
-        unit_of_measurement: "kWh"
-        state_class: total_increasing
-        device_class: energy
-        state: >
-          {% if is_state('sensor.owl_intuition_solar_generated_today', 'unknown') %}
-            nan
-          {% else %}
-            {{ states('sensor.owl_intuition_solar_generated_today') | float }}
-          {% endif %}
