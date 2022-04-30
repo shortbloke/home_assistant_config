@@ -85,18 +85,6 @@ sensor.owl_intuition_solar_generated_today:
   friendly_name: Solar Generated Today
 sensor.owl_intuition_solar_exported_today:
   friendly_name: Solar Exported Today
-light.wifi_ufo_1:
-  friendly_name: "Desk"
-  icon: mdi:led-strip
-light.wifi_ufo_2:
-  friendly_name: "Window"
-  icon: mdi:led-strip
-light.wifi_ufo_3:
-  friendly_name: "Rear Wall"
-  icon: mdi:led-strip
-light.wifi_ufo_4:
-  friendly_name: "Bed"
-  icon: mdi:led-strip
 light.conservatory_desk:
   friendly_name: "Conservatory Desk Strip"
   icon: mdi:led-strip

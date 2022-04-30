@@ -8,10 +8,10 @@
 - platform: group
   name: Morgans Strip Lights
   entities:
-    - light.wifi_ufo_1
-    - light.wifi_ufo_2
-    - light.wifi_ufo_3
-    - light.wifi_ufo_4
+    - light.desk_zigbee_rgb_level_light_color_on_off
+    - light.rearwall_zigbee_rgb_level_light_color_on_off
+    - light.bed_zigbee_rgb_5f8fb6fe_level_light_color_on_off
+    - light.window_zigbee_rgb_level_light_color_on_off
 - platform: group
   name: Morgans Lights
   entities:
