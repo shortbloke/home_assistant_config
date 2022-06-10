@@ -37,7 +37,7 @@ template:
           {% else %}
             {% set elec = states('sensor.owl_intuition_electricity_today') | float %}
             {% set solar = states('sensor.owl_intuition_solar_generated_today') | float %}
-            {% set last_grid_today = states('sensor.owl_grid_energy_today') | float %}
+            {% set last_grid_today = states('sensor.owl_grid_energy_today') | float(default=0) %}
             {% if (float(elec) - float(solar)) >= 0 %}
               {% if ((float(elec) - float(solar)) > float(last_grid_today)) or ((float(elec) - float(solar)) < 1 ) %}
                 {{ float(elec) - float(solar) }}
