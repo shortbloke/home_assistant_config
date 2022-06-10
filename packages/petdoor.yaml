@@ -1,8 +1,8 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-cover:
-  - platform: mqtt
+mqtt: 
+  cover:
     name: "PetDoor"
     command_topic: "homeassistant/cover/petdoor/set"
     state_topic: "homeassistant/cover/petdoor/state"
