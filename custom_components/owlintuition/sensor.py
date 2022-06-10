@@ -43,7 +43,7 @@ CONF_COST_UNIT_OF_MEASUREMENT = 'cost_unit_of_measurement'
 CONF_COST_ICON = 'cost_icon'
 
 # OWL-specific constants
-VERSION = '1.5.0'
+VERSION = '1.6.0'
 DEFAULT_NAME = 'OWL Intuition'
 MODE_MONO = 'monophase'
 MODE_TRI = 'triphase'
@@ -278,25 +278,10 @@ class OwlIntuitionSensor(SensorEntity):
         """Return the current name for this sensor."""
         return self._name
 
-    # @property
-    # def _attr_device_class(self):
-    #     """Return the device class of the sensor."""
-    #     return SENSOR_TYPES[self._sensor_type][4]
-
-    # @property
-    # def _attr_native_unit_of_measurement(self):
-    #     """Return the unit of measurement of this entity."""
-    #     return SENSOR_TYPES[self._sensor_type][1]
-
     @property
     def _attr_native_value(self):
         """Return the current value for this sensor."""
         return self._state
-
-    # @property
-    # def _attr_state_class(self):
-    #     """Return the state class of the sensor."""
-    #     return SENSOR_TYPES[self._sensor_type][5]
 
     @property
     def icon(self):
@@ -310,14 +295,7 @@ class OwlIntuitionSensor(SensorEntity):
         if xml is None:
             return
         xml_ver = xml.attrib.get('ver')
-        # This never appears to have been setable: https://github.com/home-assistant/architecture/issues/190
-        # self._attrs[ATTR_LAST_UPDATE] = int(xml.find('timestamp').text)
-
-        # Setting last_reset for entities with state_class other than 'total' is not supported.
-        # if self._attr_device_class == SensorDeviceClass.ENERGY:
-        #     self._attr_last_reset = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
-
-        if (xml.tag == OWLCLASS_HEATING or xml.tag == OWLCLASS_HOTWATER or xml.tag == OWLCLASS_RELAYS):        
+        if (xml.tag == OWLCLASS_HEATING or xml.tag == OWLCLASS_HOTWATER or xml.tag == OWLCLASS_RELAYS):
             # Only supports first zone currently
             xml = xml.find('zones/zone')
 

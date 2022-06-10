@@ -68,23 +68,6 @@
     - type: load_5m
     - type: load_15m
 
-# Media Sensors
-- platform: plex_recently_added
-  name: Recently added movies # will create sensor.plex_recently_added_
-  token: !secret plex_token
-  host: !secret plex_host
-  port: 32400
-  section_types:
-    - movie
-
-- platform: plex_recently_added
-  name: Recently added tv # will create sensor.recently_added_tv
-  token: !secret plex_token
-  host: !secret plex_host
-  port: 32400
-  section_types:
-    - show
-
 # Owl Energy Monitor
 - platform: owlintuition
   host: 192.168.200.45
