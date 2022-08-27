@@ -26,14 +26,6 @@
       unit_of_measurement: '°C'
       friendly_name: "Temperature (Morgan)"
 
-# Sonoff Shower Monitor
-    ensuite_shower_minutes:
-      friendly_name: "Ensuite Shower Time"
-      value_template: "{{ state_attr('sensor.ensuite_shower_time_today', 'value') }}"
-    family_bathroom_shower_minutes:
-      friendly_name: "Family Bathroom Shower Time"
-      value_template: "{{ state_attr('sensor.family_bathroom_shower_time_today', 'value') }}"
-
 # Tera PC State
     tera_powered_on:
       friendly_name: "PC Tera Powered On"
