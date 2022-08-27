@@ -70,7 +70,7 @@ http:
   login_attempts_threshold: 100
   use_x_forwarded_for: true
   trusted_proxies:
-    - 192.168.200.11  # Add the IP address of the proxy server
+    - 192.168.200.1   # Add HA Proxy
 # https://www.home-assistant.io/components/logbook/
 logbook:
   include:
@@ -122,7 +122,6 @@ panel_iframe:
 recorder:
   purge_keep_days: 10
   commit_interval: 60
-  # db_url: !secret mariaDbUrl
 
 # https://www.home-assistant.io/components/sun/
 sun:
