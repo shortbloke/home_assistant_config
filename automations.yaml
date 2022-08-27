@@ -7,7 +7,7 @@
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: sensor.garage_monitor_salt_level
     domain: sensor
-    above: 46
+    above: 43
     for:
       hours: 1
       minutes: 0
@@ -34,7 +34,7 @@
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: sensor.garage_monitor_salt_level
     domain: sensor
-    below: 41
+    below: 20
     for:
       hours: 1
       minutes: 0
@@ -45,6 +45,7 @@
   - service: input_boolean.turn_off
     target:
       entity_id: input_boolean.low_salt
+    data: {}
   mode: single
 - id: '1615638959118'
   alias: 'Alert: Update Available Notification'
