@@ -1,29 +1,18 @@
 - id: '1615657205380'
   name: Comfortable
   entities:
-    switch.lwrf_livingroom_standard_lamp:
-      friendly_name: Standard Lamp
-      icon: mdi:floor-lamp
-      assumed_state: true
-      state: 'on'
-    switch.lwrf_displaycabinetlight:
-      friendly_name: Display Cabinet Light
-      icon: mdi:track-light
-      assumed_state: true
-      state: 'on'
     light.lwrf_livingroom_main:
-      brightness: 100
-      friendly_name: Downlights
-      icon: mdi:ceiling-light
-      assumed_state: false
-      supported_features: 1
-      state: 'on'
-    switch.lwrf_waxburner:
-      friendly_name: Wax Burner
-      icon: mdi:radiator
+      supported_color_modes:
+      - brightness
       assumed_state: true
+      icon: mdi:light-recessed
+      friendly_name: Downlights
+      supported_features: 0
+      color_mode: brightness
+      brightness: 100
       state: 'on'
   icon: mdi:lightbulb-on-outline
+  metadata: {}
 - id: '1615657615868'
   name: Bright
   entities:
