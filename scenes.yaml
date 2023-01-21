@@ -4,12 +4,17 @@
     light.lwrf_livingroom_main:
       supported_color_modes:
       - brightness
+      color_mode: brightness
+      brightness: 100
       assumed_state: true
       icon: mdi:light-recessed
       friendly_name: Downlights
       supported_features: 0
-      color_mode: brightness
-      brightness: 100
+      state: 'on'
+    switch.lwrf_waxburner:
+      assumed_state: true
+      icon: mdi:radiator
+      friendly_name: Wax Burner
       state: 'on'
   icon: mdi:lightbulb-on-outline
   metadata: {}
