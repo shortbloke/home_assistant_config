@@ -17,6 +17,7 @@ influxdb:
       - sensor.magpie2_total_consumption
       - sensor.magpie2_today_s_consumption
       - sensor.ironing_room_total_power_today
+      - sensor.ironing_room_power_cost_today
       # Kitchen
       - sensor.tumble_dryer_current_consumption
       - sensor.tumble_dryer_total_consumption
@@ -35,12 +36,16 @@ influxdb:
       # House
       - sensor.owl_grid_energy_now
       - sensor.owl_grid_energy_today
+      - sensor.owl_intuition_cost_today
       - sensor.owl_intuition_electricity_power
       - sensor.owl_intuition_electricity_today
       - sensor.owl_intuition_solar_generating
       - sensor.owl_intuition_solar_exporting
       - sensor.owl_intuition_solar_exported_today
       - sensor.owl_intuition_solar_generated_today
+      - sensor.utility_meter_gas_daily
+      - sensor.gas_price_day
+      - sensor.solar_daily_energy
       # Showers and Hot Water
       - water_heater.hallway_thermostat_hot_water
       - sensor.garage_monitor_water_temperature
