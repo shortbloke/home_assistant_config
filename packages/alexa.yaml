@@ -24,6 +24,8 @@ alexa:
         - switch.lwrf_conservatory_1
         - switch.lwrf_conservatory_2
         - media_player.frasertv
+        - switch.christmas_tree
+        - switch.christmas_tree_lights
     entity_config:
       switch.sonoff_garage_light:
         name: "Garage Light"

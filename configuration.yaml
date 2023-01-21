@@ -81,10 +81,10 @@ logbook:
       - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: warn
+  default: error
   # logs:
-  #   custom_components.sensor.owlintuition: debug
-  #   custom_components.owlintuition: debug
+    # custom_components.sensor.owlintuition: error
+    # custom_components.owlintuition: error
   #   RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
@@ -125,6 +125,36 @@ recorder:
 
 # https://www.home-assistant.io/components/sun/
 sun:
+
+# Switch
+# Copy switch to allow additional names for the same switch
+switch:
+  - platform: template
+    switches:
+      christmas_tree:
+        friendly_name: "Christmas tree"
+        value_template: "{{ is_state('switch.lwrf_displaycabinetlight', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          target: 
+            entity_id: switch.lwrf_displaycabinetlight
+        turn_off:
+          service: switch.turn_off
+          target: 
+            entity_id: switch.lwrf_displaycabinetlight
+      christmas_tree_lights:
+        friendly_name: "Christmas tree lights"
+        value_template: "{{ is_state('switch.lwrf_displaycabinetlight', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          target: 
+            entity_id: switch.lwrf_displaycabinetlight
+        turn_off:
+          service: switch.turn_off
+          target: 
+            entity_id: switch.lwrf_displaycabinetlight
+            
+            
 # https://www.home-assistant.io/components/tts/
 tts:
   - platform: google_translate
