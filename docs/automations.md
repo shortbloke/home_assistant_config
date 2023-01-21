@@ -7,9 +7,7 @@
 
 ## Backup
 
-- HassIO provides a service which snapshots the configuration. 
-- In combination with an [DropBox Sync add-on](https://github.com/danielwelch/hassio-dropbox-sync) and some automation scripts, it's possible to schedule regular snapshots and automatically upload these to DropBox.
-- Automation is configured to perform a weekly snapshot, whilst checking for new snapshots to sync daily.
+- HassIO provides a service which snapshots the configuration. Originally I set this up with dropbox sync and some automation scripts. I've since switched to the [Home Assistant Google Drive Backup add-on](https://github.com/sabeechen/hassio-google-drive-backup) which is a simpler solution.
 
 ## Presence/Occupancy
 
