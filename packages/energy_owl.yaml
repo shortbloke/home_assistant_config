@@ -1,7 +1,12 @@
 ####################################################
-# Owl Intution - Energy Sensor                     #
+# Owl Intuition - Energy Sensor                     #
 ####################################################
+
 template:
+  # State ensures:
+  #  - value is not set until both solar and electricity readings have been received and are no longer unknown
+  #  - reads the values in simple variables for elec and solar, to make if statements easier to read
+  #  - protects value going negative if one sensor resets to zero before the other at around midnight
   - trigger:
     - platform: state
       entity_id: sensor.owl_intuition_electricity_power
@@ -23,6 +28,11 @@ template:
             {% endif %}
           {% endif %}
 
+  # State ensures:
+  #  - value is not set until both solar and electricity readings have been received and are no longer unknown
+  #  - reads the values in simple variables for elec, solar and last_grid_today, to make if statements easier to read
+  #  - protects value going negative if one sensor resets to zero before the other at around midnight
+  #  - if elec - solar would be negative it uses the last value from the sensor, stored in last_grid_today
   - trigger: 
     - platform: state
       entity_id: sensor.owl_intuition_electricity_today
