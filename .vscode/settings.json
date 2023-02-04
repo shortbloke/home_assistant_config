@@ -2,5 +2,14 @@
     "files.eol": "\n",
     "files.associations": {
         "*.yaml": "yaml"
-    }
+    },
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "yaml"
+    ],
+    "spellright.language": [
+        "en"
+    ]
 }
