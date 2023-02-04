@@ -880,3 +880,20 @@
     type: send_command
     subtype: 'Off'
   mode: single
+- id: '1675235683724'
+  alias: Keep Hot Water above 35
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.garage_monitor_water_temperature
+    below: 35
+  condition:
+  - condition: state
+    entity_id: switch.downstairs_thermostat_hot_water
+    state: 'off'
+  action:
+  - service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id: switch.downstairs_thermostat_hot_water
+  mode: single
