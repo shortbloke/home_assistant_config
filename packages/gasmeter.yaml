@@ -13,12 +13,13 @@ input_number:  # Inputs used to allow values to be updated in UI.
     step: 0.001
     unit_of_measurement: p
     mode: box
-  gas_meter_m3:  # Current meter reading, allowing value to be corrected as needed.
+  gas_meter_reading:  # Current meter reading, allowing value to be corrected as needed.
     name: Gas Meter Reading
     min: 0
     max: 999999
     step: 0.001
     unit_of_measurement: m/3
+    # unit_of_measurement: ft/3 - adjust as needed depending on meter type
     mode: box
 
 utility_meter:  # Sensors to create hourly, daily, weekly and yearly incrementing counters for usage.
@@ -37,6 +38,11 @@ utility_meter:  # Sensors to create hourly, daily, weekly and yearly incrementin
   utility_meter_gas_yearly:
     source: sensor.gas_meter_kwh
     cycle: yearly
+  utility_meter_gas_cost_daily:
+    source: sensor.gas_price_day
+    cycle: daily
+
+
 
 automation:  # Automation used to react to changes in state from a magnetic sensor attached to the gas meter.
   id: energy_gas_pulse_received
@@ -51,26 +57,36 @@ automation:  # Automation used to react to changes in state from a magnetic sens
   action:    # Increment the input_number sensor for each decimetre of gas used, representing one rotation of the last digit on the gas meter.
   - service: input_number.set_value
     data_template:
-      entity_id: input_number.gas_meter_m3
-      value: "{{ (states.input_number.gas_meter_m3.state | float ) + 0.010 }}" # Take current value as a float and add 0.01
+      entity_id: input_number.gas_meter_reading
+      value: "{{ (states.input_number.gas_meter_reading.state | float ) + 0.010 }}" # Take current value as a float and add 0.01 m³ or ft³
 
 template:
   - sensor:  # Template sensor to create sensor type needed for Energy Dashboard
-    - name: "Gas Meter m3 Total"
+    - name: "Gas Meter Total"
       unit_of_measurement: "m³"
+      # unit_of_measurement: "ft³"
       state_class: "total_increasing"
       device_class: "gas"
-      state: "{{ (states.input_number.gas_meter_m3.state | float ) }}"
+      state: "{{ (states.input_number.gas_meter_reading.state | float ) }}"
 
 sensor:
   - platform: template
     sensors:
-      gas_meter_price_m3:     # Gas is measured in m³ but energy rate are given in kWh. Calculate the cost per m³.
+      # Gas meter units m³
+      gas_meter_price_m3:     # Gas is measured in m³, but energy rate are given in kWh. Calculate the cost per m³.
         unit_of_measurement: "GBP/m³"
         value_template: "{{ (states.input_number.energy_gas_unit.state | float * 1.02264 * 39.4 / 3.6/ 100) | round(4)}}"
       gas_meter_kwh:          # Convert the gas meter value in m³ to kWh
         unit_of_measurement: "kWh"
-        value_template: "{{ (states.input_number.gas_meter_m3.state | float * 1.02264 * 39.4 / 3.6) | round(2)}}"
+        value_template: "{{ (states.input_number.gas_meter_reading.state | float * 1.02264 * 39.4 / 3.6) | round(2)}}"
+
+      # Gas meter units ft³ - Uncomment 2 sensors below and comment out the 2 sensors above
+      # gas_meter_price_ft3:     # Gas is measured in ft³, but energy rate are given in kWh. Calculate the cost per ft³.
+      #   unit_of_measurement: "GBP/ft³"
+      #   value_template: "{{ (states.input_number.gas_meter_reading.state | float * 1.02264 * 39.2 * 2.83 / 3.6) | round(2)}}"
+      # gas_meter_kwh:          # Convert the gas meter value in ft³ to kWh
+      #   unit_of_measurement: "kWh"
+      #   value_template: "{{ (states.input_number.gas_meter_reading.state | float * 1.02264 * 39.2 * 2.83 / 3.6) | round(2)}}"
 
       gas_price_hour:         # Cost of gas used in the this hour.
         unit_of_measurement: 'GBP'
