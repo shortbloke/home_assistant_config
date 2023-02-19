@@ -13,9 +13,9 @@ influxdb:
       - sensor.irons_right_total_consumption
       - sensor.irons_right_total_consumption
       - sensor.irons_right_today_s_consumption
-      - sensor.magpie2_current_consumption
-      - sensor.magpie2_total_consumption
-      - sensor.magpie2_today_s_consumption
+      - sensor.magpie_iron_current_consumption
+      - sensor.magpie_iron_total_consumption
+      - sensor.magpie_iron_today_s_consumption
       - sensor.ironing_room_total_power_today
       - sensor.ironing_room_power_cost_today
       # Kitchen
