@@ -598,7 +598,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.magpie2_current_consumption
+    entity_id: sensor.magpie_iron_current_consumption
     above: '10'
     for: 00:00:10
   condition:
@@ -619,9 +619,13 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off
+    entity_id:
+    - binary_sensor.lumi_lumi_sensor_backdoor
     to: 'on'
-    for: 00:02:00
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
   condition: []
   action:
   - type: turn_on
@@ -634,7 +638,8 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off
+    entity_id:
+    - binary_sensor.lumi_lumi_sensor_backdoor
     to: 'off'
   condition: []
   action:
@@ -756,37 +761,45 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off
+        entity_id: binary_sensor.lumi_lumi_frasers_window_right
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off
+        entity_id: binary_sensor.lumi_lumi_sensor_frasers_window_left
         state: 'on'
       - condition: state
         entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off
+        entity_id: binary_sensor.lumi_lumi_sensor_frontdoor
         state: 'on'
       - condition: state
         entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_backdoor
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_morgans_window
         state: 'on'
   action:
   - service: notify.adults
     data:
       title: House Unoccupied - Left open
-      message: '{%if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off'',
-        ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off'',''friendly_name'')}}{%endif%}
+      message: '{%if is_state(''binary_sensor.lumi_lumi_frasers_window_right'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_frasers_window_right'',''friendly_name'')}}{%endif%}
+
+        {%if is_state(''binary_sensor.lumi_lumi_sensor_frasers_window_left'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_frasers_window_left'',''friendly_name'')}}{%endif%}
 
         {%if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off'',
         ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off'',''friendly_name'')}}{%endif%}
 
-        {%if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off'',
-        ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off'',''friendly_name'')}}{%endif%}
+        {%if is_state(''binary_sensor.lumi_lumi_sensor_frontdoor'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_frontdoor'',''friendly_name'')}}{%endif%}
 
         {%if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off'',
         ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off'',''friendly_name'')}}{%endif%}
 
-        {%if is_state(''binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off'',''friendly_name'')}}{%endif%}'
+        {%if is_state(''binary_sensor.lumi_lumi_sensor_backdoor'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_backdoor'',''friendly_name'')}}{%endif%}
+
+        {%if is_state(''binary_sensor.lumi_lumi_morgans_window'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_morgans_window'',''friendly_name'')}}{%endif%}'
   mode: single
 - id: '1621091408356'
   alias: 'Action & Alert: Shutdown PC - Tera if Fraser not home'
