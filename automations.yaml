@@ -909,6 +909,9 @@
     - condition: state
       entity_id: switch.downstairs_thermostat_hot_water
       state: 'off'
+    - condition: time
+      after: 06:00:00
+      before: '23:00:00'
   action:
   - service: homeassistant.turn_on
     data: {}
