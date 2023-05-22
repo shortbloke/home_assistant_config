@@ -74,7 +74,7 @@
 # REST Sensors - https://www.home-assistant.io/integrations/sensor.rest/
 # - platform: rest
 #   resource: http://localhost:8123/homeassistant/api/states/sensor.argon_one_addon_fan_speed
-#   methodd: POST
+#   method: POST
 #   payload: {}
 
 ####################################################

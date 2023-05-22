@@ -83,8 +83,8 @@ logbook:
 logger:
   default: error
   # logs:
-    # custom_components.sensor.owlintuition: error
-    # custom_components.owlintuition: error
+  #   custom_components.sensor.owlintuition: debug
+  #   custom_components.owlintuition: debug
   #   RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
