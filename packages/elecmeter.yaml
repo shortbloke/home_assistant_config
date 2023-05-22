@@ -11,5 +11,5 @@ input_number:
     min: 0
     max: 999999
     step: 0.0001
-    unit_of_measurement: "GBP/kWh"
+    unit_of_measurement: "GBP"
     mode: box
