@@ -165,3 +165,14 @@ tts:
     api_key: !secret voicerss_api_key
     language: "en-gb"
     format: "44khz_16bit_stereo"
+
+####################################################
+#                  Command Line                    #
+####################################################
+# Pi Temperature
+command_line:
+  - sensor:
+      command: "cat /sys/class/thermal/thermal_zone0/temp"
+      name: HA CPU Temperature
+      unit_of_measurement: "°C"
+      value_template: '{{ value | multiply(0.001) | round(1) }}'
