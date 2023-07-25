@@ -4,16 +4,15 @@ language: python
 addons:
   apt:
     packages:
-      - libudev-dev       # Zwave
-      - python-dev        # Stream
-      - pkg-config        # Stream
-      - libavformat-dev   # Stream
-      - libavcodec-dev    # Stream
-      - libavdevice-dev   # Stream
-      - libavutil-dev     # Stream
-      - libswscale-dev    # Stream
-      - libavresample-dev # Stream
-      - libavfilter-dev   # Stream
+      - libudev-dev           # Zwave
+      - python-dev-is-python3 # Stream
+      - pkg-config            # Stream
+      - libavformat-dev       # Stream
+      - libavcodec-dev        # Stream
+      - libavdevice-dev       # Stream
+      - libavutil-dev         # Stream
+      - libswscale-dev        # Stream
+      - libavfilter-dev       # Stream
 python:
   - "3.11"
 before_install:
