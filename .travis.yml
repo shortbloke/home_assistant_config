@@ -9,12 +9,11 @@ before_install:
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
   - "sudo mkdir -p /config/tmp"
 install:
-  - pip3 install homeassistant
-  - git clone https://github.com/ollo69/ha-smartthinq-sensors.git ha-smartthinq-sensors_component/
-  - mv ha-smartthinq-sensors_component/custom_components config/custom_components
   - git clone https://github.com/custom-components/sensor.owlintuition.git owlintuition_component/
-  - mv owlintuition_component/custom_components config/custom_components
-
+  - mv owlintuition_component/custom_components /config/custom_components
+  - git clone https://github.com/ollo69/ha-smartthinq-sensors.git ha-smartthinq-sensors_component/
+  - mv ha-smartthinq-sensors_component/custom_components /config/custom_components
+  - pip3 install homeassistant
 script:
   - hass -c . --script check_config
   
