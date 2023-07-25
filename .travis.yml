@@ -8,10 +8,10 @@ before_install:
   - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
   - "sudo mkdir -p /config/tmp"
-  - "mkdir -p config/custom_components"
+
 install:
   - git clone https://github.com/custom-components/sensor.owlintuition.git owlintuition_component/
-  - mv owlintuition_component/custom_components config/custom_components
+  - mv owlintuition_component/custom_components/owlintuition config/custom_components/owlintuition
   - git clone https://github.com/ollo69/ha-smartthinq-sensors.git ha-smartthinq-sensors_component/
   - mv ha-smartthinq-sensors_component/custom_components/smartthinq_sensors config/custom_components/smartthinq_sensors
   - pip3 install homeassistant
