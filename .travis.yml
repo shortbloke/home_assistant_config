@@ -11,10 +11,10 @@ before_install:
   - "sudo mkdir -p /config/custom_components"
 install:
   - pip3 install homeassistant
-  - git clone https://github.com/custom-components/sensor.owlintuition
-  - mv sensor.owlintuition/custom_components config/custom_components
-  - git clone https://github.com/ollo69/ha-smartthinq-sensors
-  - mv ha-smartthinq-sensors/custom_components config/custom_components
+  - git clone https://github.com/custom-components/sensor.owlintuition.git owlintuition_component
+  - mv owlintuition_component/custom_components config/custom_components
+  - git clone https://github.com/ollo69/ha-smartthinq-sensors.git ha-smartthinq-sensors_component
+  - mv ha-smartthinq-sensors_component/custom_components config/custom_components
 script:
   - hass -c . --script check_config
   
