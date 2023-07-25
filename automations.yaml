@@ -867,32 +867,6 @@
     type: send_command
     subtype: 'On'
   mode: single
-- id: '1639848261833'
-  alias: Turn on outdoor xmas lights at 3pm
-  description: ''
-  trigger:
-  - platform: time
-    at: '15:00'
-  condition: []
-  action:
-  - device_id: caa90b0edf23497cb73f5e5362b092b1
-    domain: rfxtrx
-    type: send_command
-    subtype: 'On'
-  mode: single
-- id: '1639848286991'
-  alias: Turn off outdoor xmas lights at midnight
-  description: ''
-  trigger:
-  - platform: time
-    at: 00:00
-  condition: []
-  action:
-  - device_id: caa90b0edf23497cb73f5e5362b092b1
-    domain: rfxtrx
-    type: send_command
-    subtype: 'Off'
-  mode: single
 - id: '1675235683724'
   alias: Keep Hot Water above 30
   description: ''
