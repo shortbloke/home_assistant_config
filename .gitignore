@@ -49,8 +49,10 @@ node-red/*
 # Compressed Lovelace components
 *.js.gz
 
-# ignore custom_components
-custom_components
+# ignore hacs
+custom_components/hacs
+
+# ignore frontend custom_components
 www/community/*
 www/upcoming-media-card-images/*
 
