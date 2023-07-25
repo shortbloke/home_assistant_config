@@ -49,8 +49,8 @@ node-red/*
 # Compressed Lovelace components
 *.js.gz
 
-# ignore hacs
-custom_components/hacs
+# ignore all custom_components - add in .travis.yaml
+custom_components
 
 # ignore frontend custom_components
 www/community/*
