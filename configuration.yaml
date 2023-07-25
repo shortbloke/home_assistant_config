@@ -6,8 +6,8 @@ homeassistant:
   # https://home-assistant.io/docs/configuration/packages/
   packages: !include_dir_named packages
   # Allow access to config dir, in order to have a sensor to monitor DB size.
-  allowlist_external_dirs:
-    - /config
+  # allowlist_external_dirs:
+  #   - /config
 
 # Include Files
 automation: !include automations.yaml
