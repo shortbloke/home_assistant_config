@@ -8,6 +8,7 @@ before_install:
   - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
   - "sudo mkdir -p /config/tmp"
+  - "sudo mkdir -p /config/custom_components"
 install:
   - pip3 install homeassistant
   - git clone https://github.com/custom-components/sensor.owlintuition
