@@ -10,11 +10,9 @@ before_install:
   - "sudo mkdir -p /config/tmp"
 
 install:
+  - pip3 install homeassistant
   - git clone https://github.com/custom-components/sensor.owlintuition.git owlintuition_component/
   - mv owlintuition_component/custom_components/owlintuition config/custom_components/owlintuition
-  - git clone https://github.com/ollo69/ha-smartthinq-sensors.git ha-smartthinq-sensors_component/
-  - mv ha-smartthinq-sensors_component/custom_components/smartthinq_sensors config/custom_components/smartthinq_sensors
-  - pip3 install homeassistant
 script:
   - hass -c . --script check_config
   
