@@ -11,6 +11,8 @@ before_install:
   - mkdir -p custom_components/ tmp/
   - git clone https://github.com/custom-components/sensor.owlintuition.git tmp/owlintuition_component/
   - mv tmp/owlintuition_component/custom_components/owlintuition custom_components/
+  - git clone https://github.com/ollo69/ha-smartthinq-sensors.git tmp/ha-smartthinq-sensors
+  - mv tmp/ha-smartthinq-sensors/custom_components/smartthinq-sensors custom_components/
 
 install:
   - pip3 install homeassistant
