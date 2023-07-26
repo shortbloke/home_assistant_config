@@ -9,6 +9,8 @@ before_install:
   - mv travis/travis.fake_ssl_key travis.fake_ssl_key
   - "sudo mkdir -p /config/tmp"
   - mkdir -p custom_components/ tmp/
+  - git clone https://github.com/custom-components/hacs.git tmp/hacs
+  - mv tmp/hacs/custom_components/hacs custom_components/
   - git clone https://github.com/custom-components/sensor.owlintuition.git tmp/owlintuition_component/
   - mv tmp/owlintuition_component/custom_components/owlintuition custom_components/
   - git clone https://github.com/ollo69/ha-smartthinq-sensors.git tmp/ha-smartthinq-sensors
