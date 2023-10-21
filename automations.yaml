@@ -802,7 +802,7 @@
         {%if is_state(''binary_sensor.lumi_lumi_morgans_window'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_morgans_window'',''friendly_name'')}}{%endif%}'
   mode: single
 - id: '1621091408356'
-  alias: 'Action & Alert: Shutdown PC - Tera if Fraser not home'
+  alias: 'Action: Shutdown PC - Tera if Fraser not home for 5 mins'
   description: ''
   trigger:
   - platform: state
@@ -826,6 +826,10 @@
           authenticationRequired: false
           destructive: false
           behavior: default
+  - type: toggle
+    device_id: 15f9831aec887ee4621e1c7124d77a47
+    entity_id: e95db23038c032115f4f94295c75bbd5
+    domain: switch
   mode: single
 - id: '1628523215496'
   alias: 'Notify: Shutdown Frasers PC'
@@ -891,4 +895,24 @@
     data: {}
     target:
       entity_id: switch.downstairs_thermostat_hot_water
+  mode: single
+- id: '1697876540698'
+  alias: 'Action: Shutdown PC - Tera idle for over 2 hours'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.tera_pc_idle
+    to: 'on'
+    for:
+      hours: 2
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - type: toggle
+    device_id: 15f9831aec887ee4621e1c7124d77a47
+    entity_id: e95db23038c032115f4f94295c75bbd5
+    domain: switch
+    enabled: true
   mode: single

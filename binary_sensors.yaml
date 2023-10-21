@@ -22,3 +22,10 @@
   host: 192.168.200.75
   name: "Frasers TV"
   count: 2
+
+# Sensor to detect if Fraser PC has been idle for over 5 mins
+- platform: template
+  sensors:
+    tera_pc_idle:
+      friendly_name: "Frasers PC On but Idle"
+      value_template: "{{as_timestamp(states.sensor.lastactive.last_changed) < as_timestamp(now()) - 300}}"
