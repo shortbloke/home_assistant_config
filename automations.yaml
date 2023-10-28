@@ -535,7 +535,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.irons_left_2_current_consumption
+    entity_id: sensor.irons_left_current_consumption
     above: '10'
     for: 00:00:10
   condition:
