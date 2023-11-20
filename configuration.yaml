@@ -60,7 +60,7 @@ notify:
   - name: adults
     platform: group
     services:
-      - service: mobile_app_martin_iphonexs
+      - service: mobile_app_martin_iphone12
       - service: mobile_app_michelle_iphone_se
 
   - name: martin
@@ -76,7 +76,7 @@ notify:
   - name: morgan
     platform: group
     services:
-      - service: mobile_app_morgans_iphone_7
+      - service: mobile_app_morgans_iphone_15_pro
 # https://www.home-assistant.io/components/panel_iframe/
 panel_iframe:
   tasmoadmin:

@@ -2,28 +2,27 @@
   alias: 'Alert: Low salt level'
   description: ''
   trigger:
-  - type: value
+  - type: distance
     platform: device
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
-    entity_id: sensor.garage_monitor_salt_level
+    entity_id: baeb3502f118115b51c15bb0da8962e3
     domain: sensor
     above: 43
     for:
       hours: 1
       minutes: 0
       seconds: 0
-      milliseconds: 0
   condition: []
   action:
   - service: input_boolean.turn_on
     target:
       entity_id: input_boolean.low_salt
     data: {}
-  - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
+  - device_id: c63b36e2a50cd3ffd1880f0aae89cf06
     domain: mobile_app
     type: notify
-    title: Water Softener
     message: Check Salt Level
+    title: Water Softner
   mode: single
 - id: '1615638220241'
   alias: 'State Change: Reset Salt Level Input Boolean'
@@ -46,41 +45,6 @@
     target:
       entity_id: input_boolean.low_salt
     data: {}
-  mode: single
-- id: '1615638959118'
-  alias: 'Alert: Update Available Notification'
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.updater
-  condition: []
-  action:
-  - device_id: 7cd0b1ffb3da4d3eb4465d4d5e609598
-    domain: mobile_app
-    type: notify
-    title: ''
-    message: Update for Home Assistant is available
-  mode: single
-- id: '1615639267650'
-  alias: 'Action: Turn off Garage light no motion for 15mins'
-  description: ''
-  trigger:
-  - type: no_motion
-    platform: device
-    device_id: f93fcb10f5467ec5d73867e8e7bfb88c
-    entity_id: binary_sensor.garage_monitor_motion
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 15
-      seconds: 0
-      milliseconds: 0
-  condition: []
-  action:
-  - type: turn_off
-    device_id: 222f36208319b30db3a981f7388b13d9
-    entity_id: switch.sonoff_garage_light
-    domain: switch
   mode: single
 - id: '1615640713545'
   alias: 'Action: Turn on Loft Fan above 30'
@@ -170,7 +134,7 @@
     after: '23:00'
     before: 06:59
   action:
-  - service: notify.mobile_app_martin_iphonexs
+  - service: notify.mobile_app_martin_iphone12
     data:
       message: Turning off Frasers TV Power
       data:
@@ -213,7 +177,7 @@
     entity_id: binary_sensor.frasers_tv
     state: 'on'
   action:
-  - service: notify.mobile_app_martin_iphonexs
+  - service: notify.mobile_app_martin_iphone12
     data:
       message: Cutting power to Fraser's TV
       data:
