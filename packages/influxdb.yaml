@@ -46,13 +46,9 @@ influxdb:
       - sensor.utility_meter_gas_daily
       - sensor.gas_price_day
       - sensor.solar_daily_energy
-      # Showers and Hot Water
+      # Hot Water
       - water_heater.hallway_thermostat_hot_water
       - sensor.garage_monitor_water_temperature
-      - sensor.ensuite_shower_power
-      - sensor.family_bathroom_shower_power
-      - sensor.ensuite_shower_uses_today
-      - sensor.family_bathroom_shower_uses_today
       # Temperature sensors
       - sensor.loft_fan_temperature
       - sensor.lumi_lumi_sens_ca8a3702_temperature
