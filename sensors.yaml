@@ -34,20 +34,6 @@
 ####################################################
 #                Component Sensors                 #
 ####################################################
-# Raspberry Pi System Information
-- platform: systemmonitor
-  resources:
-    - type: disk_free
-      arg: /
-    - type: disk_use_percent
-      arg: /
-    - type: swap_use_percent
-    - type: memory_free
-    - type: memory_use_percent
-    - type: processor_use
-    - type: load_1m
-    - type: load_5m
-    - type: load_15m
 
 # Owl Energy Monitor
 - platform: owlintuition
