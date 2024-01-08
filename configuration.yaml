@@ -46,7 +46,7 @@ logbook:
       - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: error
+  default: warn
   # logs:
   #   custom_components.sensor.owlintuition: debug
   #   custom_components.owlintuition: debug
