@@ -541,7 +541,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.ironing_table_current_consumption
+    entity_id: sensor.ironing_table_2_current_consumption
     above: '10'
     for: 00:00:10
   condition:
