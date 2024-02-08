@@ -246,55 +246,6 @@
       message: System Load 5m Load Average > 2.8
       title: HASS Low Resource Alert
   mode: single
-- id: '1615650481773'
-  alias: 'Alert: Water Plants'
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.phalburgundy_moisture
-    below: '5'
-  - platform: numeric_state
-    entity_id: sensor.herbs_moisture_2
-    below: '15'
-  - type: humidity
-    platform: device
-    device_id: db2ba42fde0de9e94450b86acdb171af
-    entity_id: sensor.phalbasel_moisture
-    domain: sensor
-    below: 5
-  - type: humidity
-    platform: device
-    device_id: b8cb90e663253b3dce279c59abb034f3
-    entity_id: sensor.phalpulsation_moisture
-    domain: sensor
-    above: 0
-    below: 5
-  - type: humidity
-    platform: device
-    device_id: 4d3b095ff0e59e3627623d30d13533bf
-    entity_id: sensor.phalwhite_moisture
-    domain: sensor
-    below: 5
-  - type: illuminance
-    platform: device
-    device_id: 62a6a80db565d64387f1f8eccafc6e9c
-    entity_id: sensor.minaturerose_light
-    domain: sensor
-    below: 15
-  - type: humidity
-    platform: device
-    device_id: c48bd57176866e2481ff749e892925d2
-    entity_id: sensor.flytrap_moisture
-    domain: sensor
-    below: 15
-  condition: []
-  action:
-  - service: notify.martin
-    data:
-      title: Plant Sensor
-      message: '{{ trigger.entity_id }} level {{ trigger.to_state.state }} % - Time
-        to water'
-  mode: single
 - id: '1615651874014'
   alias: 'State Change: Set washing machine active when power detected'
   description: ''
