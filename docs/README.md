@@ -17,8 +17,8 @@ Packages provide an simple way to encapsulate all the different configuration el
 
 ## Core Hardware of Home Assistant Hub
 
-- [Raspberry Pi 4 Model B 4GB RAM](https://amzn.to/3a4gGQc) - Core control system, running on [Hass.io](https://www.home-assistant.io/hassio/).
-  - System has been migrated to run on an SSD within an Argon ONE M.2 SATA enclosure. I've documented this process in [my blog](https://www.martinrowan.co.uk/2021/07/migrate-home-assistant-to-argon-one-m-2-ssd/).
+- [Raspberry Pi 5 (4GB RAM)](https://amzn.to/3OMiOCc) - Core control system, running on [Hassos](https://www.home-assistant.io/getting-started/).
+  - System has been migrated to run on an NVMe drive within an Argon NEO 5 NVMe case. I've documented this process in [my blog](https://www.martinrowan.co.uk/).
 - [Raspberry Pi Zero W](https://amzn.to/2ZLhm7d) - Hosting [Xiaomi Mi Flora to MQTT Gateway](https://github.com/ThomDietrich/miflora-mqtt-daemon). Mi Flora Bluetooth LE range was limited, the Pi Zero is positioned nearer the plants, and sends status over WiFi via MQTT.
 - [RFXCOM RFXtrx433E](http://www.rfxcom.com/store/Transceivers/14103) - Enables RX/TX of 433Mhz signals over a range of protocols.
   - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security, if you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
