@@ -37,7 +37,7 @@ sonos_say:
     - service: sonos.snapshot
       data:
         entity_id: "{{ sonos_entity }}"
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       data:
         entity_id: "{{ sonos_entity }}"
     - service: media_player.volume_set
@@ -60,7 +60,7 @@ burglar_alarm:
     - service: sonos.snapshot
       target:
         entity_id: all
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       target:
         entity_id: all
     - service: media_player.volume_mute

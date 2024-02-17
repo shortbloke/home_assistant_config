@@ -46,11 +46,12 @@ logbook:
       - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: warn
+  default: error
   # logs:
-  #   custom_components.sensor.owlintuition: debug
-  #   custom_components.owlintuition: debug
-  #   RFXtrx: debug
+    # homeassistant.core: debug
+    # homeassistant.components.recorder.core: debug
+    # custom_components.owlintuition.sensor: debug
+    # RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
 # https://www.home-assistant.io/components/notify/

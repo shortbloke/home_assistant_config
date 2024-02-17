@@ -161,7 +161,7 @@
   action:
   - service: script.sonos_say
     data:
-      sonos_entity: media_player.frasers_room
+      sonos_entity: media_player.play_1
       volume: 0.5
       message: Turn off your TV and go to sleep
       delay: 00:00:05
