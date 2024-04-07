@@ -415,7 +415,7 @@
       entity_id: input_select.dishwasher_status
   mode: single
 - id: '1615653930854'
-  alias: 'State Change: Ironing room motion detected'
+  alias: Ironing room motion detected
   description: ''
   trigger:
   - platform: state
@@ -430,13 +430,17 @@
       entity_id: input_select.ironing_room_motion_status
   mode: single
 - id: '1615654076969'
-  alias: 'State Change: Ironing room no motion 30 mins'
+  alias: Set ironing room to idle after 30mins of no motion
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.motion_sensor_ironing_room
+    entity_id:
+    - binary_sensor.motion_sensor_ironing_room
     to: 'off'
-    for: 00:30:00
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
   condition: []
   action:
   - service: input_select.select_option
@@ -445,89 +449,34 @@
     target:
       entity_id: input_select.ironing_room_motion_status
   mode: single
-- id: '1615654313811'
-  alias: 'Action & Alert: Ironing Room No Motion Turn off Irons Left'
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.irons_left_current_consumption
-    above: '10'
-    for: 00:00:10
-  condition:
-  - condition: state
-    entity_id: input_select.ironing_room_motion_status
-    state: idle
-  action:
-  - service: homeassistant.turn_off
-    target:
-      entity_id: switch.irons_left2
-  - service: notify.michelle
-    data:
-      title: Ironing Room Alert!
-      message: No Motion Detected - Turning off Ironing room Irons (Left)
-  mode: single
-- id: '1615654418022'
-  alias: 'Action & Alert: Ironing Room No Motion Turn off Irons Right'
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.irons_right_current_consumption
-    above: '10'
-    for: 00:00:10
-  condition:
-  - condition: state
-    entity_id: input_select.ironing_room_motion_status
-    state: idle
-  action:
-  - service: homeassistant.turn_off
-    target:
-      entity_id: switch.irons_right
-  - service: notify.michelle
-    data:
-      title: Ironing Room Alert!
-      message: No Motion Detected - Turning off Ironing room Irons (Right)
-  mode: single
 - id: '1615654485950'
-  alias: 'Action & Alert: Ironing Room No Motion Turn off Ironing Table'
+  alias: Turn off ironing table - no motion
   description: ''
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.ironing_table_2_current_consumption
-    above: '10'
-    for: 00:00:10
+  - type: power
+    platform: device
+    device_id: afb4afb7e069e3482f4a315e523b9ba0
+    entity_id: 107116bfb0f1db3f2eacc9d639d49e6a
+    domain: sensor
+    above: 10
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
   condition:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
     state: idle
   action:
-  - service: homeassistant.turn_off
-    target:
-      entity_id: switch.ironing_table
   - service: notify.michelle
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Ironing Table
-  mode: single
-- id: '1615654527691'
-  alias: 'Action & Alert: Ironing Room No Motion Turn off Magpie Iron'
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.magpie_iron_current_consumption
-    above: '10'
-    for: 00:00:10
-  condition:
-  - condition: state
-    entity_id: input_select.ironing_room_motion_status
-    state: idle
-  action:
-  - service: homeassistant.turn_off
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
     target:
-      device_id: 75c2b12fab4f575404cb2e5f583c64df
-  - service: notify.michelle
-    data:
-      title: Ironing Room Alert!
-      message: No Motion Detected - Turning off Magpie Iron
+      device_id: afb4afb7e069e3482f4a315e523b9ba0
   mode: single
 - id: '1615656237892'
   alias: 'State Change: Door Open - Turn on heating eco mode'
@@ -830,4 +779,164 @@
     entity_id: e95db23038c032115f4f94295c75bbd5
     domain: switch
     enabled: true
+  mode: single
+- id: '1712419138586'
+  alias: Device offline watchdog
+  description: ''
+  trigger:
+  - device_id: 86cdb8ce35fb4cbe9a07a87523b5fc18
+    domain: zha
+    platform: device
+    type: device_offline
+    subtype: device_offline
+  - platform: state
+    entity_id:
+    - switch.irons_left
+    - switch.irons_right
+    - switch.ironing_table_2
+    - switch.magpie_iron
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  - platform: state
+    entity_id:
+    - sensor.lumi_lumi_sensor_gas_meter_battery
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    to: unavailable
+  condition: []
+  action:
+  - service: notify.martin
+    data:
+      title: Watchdog
+      message: Device {{ trigger.from_state.name }} is {{ trigger.to_state.state }}
+  mode: single
+- id: '1712421523189'
+  alias: Low Battery Watchdog
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.portable_sensor_1_temperature
+    - sensor.portable_sensor_3_temperature
+    - sensor.portable_sensor_5_temperature
+    - sensor.portable_sensor_2_temperature
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    below: -10
+  - platform: numeric_state
+    entity_id:
+    - sensor.lumi_lumi_sensor_frontdoor_battery
+    - sensor.lumi_lumi_sensor_magnet_backdoor_battery
+    - sensor.lumi_lumi_sensor_magnet_aq2_bc705302_power
+    - sensor.lumi_lumi_sensor_morgans_window_battery
+    - sensor.lumi_lumi_sensor_frasers_window_left_battery
+    - sensor.lumi_lumi_sensor_frasers_window_right_battery
+    - sensor.lumi_lumi_sens_ca8a3702_power
+    - sensor.motion_sensor_garage_battery
+    - sensor.motion_sensor_ironing_room_battery
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    below: 20
+  condition: []
+  action:
+  - service: notify.martin
+    data:
+      title: Watchdog
+      message: Temperature sensor {{ trigger.from_state.name }} battery low
+  mode: single
+- id: '1712427494133'
+  alias: Turn off magpie iron - no motion
+  description: ''
+  trigger:
+  - type: power
+    platform: device
+    device_id: 92e4838c6495a1d38dcfd55c46d31afe
+    entity_id: 4717cedaf4676533a3d48c319bf4b752
+    domain: sensor
+    above: 10
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Magpie Iron
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: 92e4838c6495a1d38dcfd55c46d31afe
+  mode: single
+- id: '1712427569780'
+  alias: Turn off irons left - no motion
+  description: ''
+  trigger:
+  - type: current
+    platform: device
+    device_id: 2575b084dead5f93825afc33d9abff3a
+    entity_id: 17248ba0fecc52cae428597eb09f781a
+    domain: sensor
+    above: 10
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Irons (Left)
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: 2575b084dead5f93825afc33d9abff3a
+  mode: single
+- id: '1712427655992'
+  alias: Turn off irons right - no motion
+  description: ''
+  trigger:
+  - type: power
+    platform: device
+    device_id: f9ccf1d3a8c147fba8537950cae66234
+    entity_id: 639e3461ee66f052ee86976fd4b2fc3c
+    domain: sensor
+    above: 10
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: input_select.ironing_room_motion_status
+    state: idle
+  action:
+  - service: notify.michelle
+    data:
+      title: Ironing Room Alert!
+      message: No Motion Detected - Turning off Irons (Right)
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: f9ccf1d3a8c147fba8537950cae66234
   mode: single
