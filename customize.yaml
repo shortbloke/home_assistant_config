@@ -57,6 +57,14 @@ binary_sensor.motion_sensor_garage:
   icon: mdi:motion-sensor
 binary_sensor.motion_sensor_ironing_room:
   icon: mdi:motion-sensor
+sensor.ensuite_shower_uses_today:
+  icon: mdi:counter
+sensor.family_bathroom_shower_uses_today:
+  icon: mdi:counter
+sensor.ensuite_shower_minutes:
+  icon: mdi:clock-outline
+sensor.family_bathroom_shower_minutes:
+  icon: mdi:clock-outline
 sensor.owl_intuition_electricity_battery:
   friendly_name: Owl Battery
 sensor.owl_intuition_electricity_battery_level:

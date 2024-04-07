@@ -51,3 +51,39 @@
 #   resource: http://localhost:8123/homeassistant/api/states/sensor.argon_one_addon_fan_speed
 #   method: POST
 #   payload: {}
+
+###################################################
+#               History Statistics                 #
+####################################################
+- platform: history_stats
+  name: Ensuite Shower Uses Today
+  entity_id: binary_sensor.ensuite_shower_active
+  type: count
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Family Bathroom Shower Uses Today
+  entity_id: binary_sensor.family_bathroom_shower_active
+  type: count
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Ensuite Shower Time Today
+  entity_id: binary_sensor.ensuite_shower_active
+  type: time
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Family Bathroom Shower Time Today
+  entity_id: binary_sensor.family_bathroom_shower_active
+  type: time
+  state: 'on'
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+  
