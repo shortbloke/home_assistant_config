@@ -78,12 +78,7 @@ notify:
     platform: group
     services:
       - service: mobile_app_morgans_iphone_15_pro
-# https://www.home-assistant.io/components/panel_iframe/
-panel_iframe:
-  tasmoadmin:
-    title: TasmoAdmin
-    icon: mdi:lightbulb-on
-    url: !secret TasmoAdminURL
+
 # https://www.home-assistant.io/components/recorder/
 recorder:
   purge_keep_days: 10
