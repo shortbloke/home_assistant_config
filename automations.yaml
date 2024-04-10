@@ -798,14 +798,14 @@
     to: unavailable
     for:
       hours: 0
-      minutes: 1
+      minutes: 5
       seconds: 0
   - platform: state
     entity_id:
     - sensor.lumi_lumi_sensor_gas_meter_battery
     for:
       hours: 0
-      minutes: 1
+      minutes: 5
       seconds: 0
     to: unavailable
   condition: []
