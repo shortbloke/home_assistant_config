@@ -940,3 +940,53 @@
     target:
       device_id: f9ccf1d3a8c147fba8537950cae66234
   mode: single
+- id: '1714148328141'
+  alias: Turn on Conservatory Heater when cool during the day
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.portable_sensor_1_temperature
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    below: 20
+  condition:
+  - condition: time
+    after: 06:30:00
+    before: '23:00:00'
+  - type: is_not_open
+    condition: device
+    device_id: 49bce74c821c42fd980c192606b57418
+    entity_id: 319f694734396d89e5a6f6fa6ee17a56
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  action:
+  - type: turn_on
+    device_id: 690c237894576165879d1fb21a2aa627
+    entity_id: 3333f53a468f9108927bc5e6fc9bb161
+    domain: switch
+  mode: single
+- id: '1714148432236'
+  alias: Turn off Conservatory Heater when warm
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.portable_sensor_1_temperature
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    above: 22
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 690c237894576165879d1fb21a2aa627
+    entity_id: 3333f53a468f9108927bc5e6fc9bb161
+    domain: switch
+  mode: single

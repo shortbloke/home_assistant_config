@@ -17,6 +17,7 @@
 ## Heating Control
 
 - When the back door (ZigBee sensor) is left open, then Nest Heating Operation Mode is set to Eco. Once the door is closed it's returned to it's previous state (off, heat or eco)
+- When conservatory temperature below 20°C for 5 mins during the daytime, then turn on the heater, so long as the back door is closed. When above 22°C for 5 mins, always turn off the heater.
 
 ## Power Control
 

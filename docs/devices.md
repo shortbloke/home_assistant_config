@@ -15,6 +15,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 | Device | Functionality |
 | ---| --- |
 | [Nest Thermostat (3rd generation)](http://amzn.to/2umTkEp) | Component: via HomeBridge and HomeBridge Nest Plugin<br>Temperature, heating, hot water and protect control and monitoring<br><br>Limitations:<ul><li>Uses community add-on to enable HomeBridge to be installed see [add-on instructions](https://github.com/davide125/hassio-addons/tree/main/homebridge).</li></ul> |
+| [CHOSRY WiFi Fused Spur] (https://amzn.to/3wcDsp2) | Component: [HACS Custom Component: hass-localtuya](https://github.com/xZetsubou/hass-localtuya)<br>WiFi controlled 13A fused spur with energy monitoring, connected to panel heater in conservatory. Allowing automations to drive when the the heater is active, rather than relying on the onboard timer and thermostat. |
 
 ## Security
 
