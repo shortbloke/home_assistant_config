@@ -946,7 +946,7 @@
   trigger:
   - platform: numeric_state
     entity_id:
-    - sensor.portable_sensor_1_temperature
+    - sensor.conservatory_temperature
     for:
       hours: 0
       minutes: 5
@@ -977,7 +977,7 @@
   trigger:
   - platform: numeric_state
     entity_id:
-    - sensor.portable_sensor_1_temperature
+    - sensor.conservatory_temperature
     for:
       hours: 0
       minutes: 5
