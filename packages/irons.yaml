@@ -5,11 +5,11 @@ sensor:
   - platform: template
     sensors:
       ironing_room_total_power_now:
-        value_template: "{{ (states('sensor.irons_left_current_consumption') | float + states('sensor.irons_right_current_consumption') | float + states('sensor.ironing_table_2_current_consumption') | float + states('sensor.magpie_iron_current_consumption') | float) | round(3) }}"
+        value_template: "{{ (states('sensor.ironing_room_left_current_consumption') | float + states('sensor.ironing_room_right_current_consumption') | float + states('sensor.ironing_room_ironing_table_current_consumption') | float + states('sensor.ironing_room_magpie_current_consumption') | float) | round(3) }}"
         unit_of_measurement: 'W'
         friendly_name: "Power Now - Ironing Room"
       ironing_room_total_power_today:
-        value_template: "{{ (states('sensor.irons_left_today_s_consumption') | float + states('sensor.irons_right_today_s_consumption') | float + states('sensor.ironing_table_2_today_s_consumption') | float + states('sensor.magpie_iron_today_s_consumption') | float) | round(3) }}"
+        value_template: "{{ (states('sensor.ironing_room_left_today_s_consumption') | float + states('sensor.ironing_room_right_today_s_consumption') | float + states('sensor.ironing_room_ironing_table_today_s_consumption') | float + states('sensor.ironing_room_magpie_today_s_consumption') | float) | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Ironing Room"
       ironing_room_power_cost_today:

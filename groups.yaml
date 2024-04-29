@@ -32,7 +32,7 @@ conservatory_lights:
   name: Conservatory Lights
   entities:
     - switch.lwrf_conservatory_1
-    - switch.lwrf_conservatory_2
+    - switch.conservatory_window_lamp
 
 # Occupancy Groups
 adults_home:

@@ -453,16 +453,14 @@
   alias: Turn off ironing table - no motion
   description: ''
   trigger:
-  - type: power
-    platform: device
-    device_id: afb4afb7e069e3482f4a315e523b9ba0
-    entity_id: 107116bfb0f1db3f2eacc9d639d49e6a
-    domain: sensor
-    above: 10
+  - platform: numeric_state
+    entity_id:
+    - sensor.ironing_room_ironing_table_current_consumption
     for:
       hours: 0
       minutes: 0
       seconds: 10
+    above: 10
   condition:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
@@ -476,7 +474,7 @@
     metadata: {}
     data: {}
     target:
-      device_id: afb4afb7e069e3482f4a315e523b9ba0
+      device_id: 14afeceb9ed9aa8dcba55863c159ee66
   mode: single
 - id: '1615656237892'
   alias: 'State Change: Door Open - Turn on heating eco mode'
@@ -791,10 +789,10 @@
     subtype: device_offline
   - platform: state
     entity_id:
-    - switch.irons_left
-    - switch.irons_right
-    - switch.ironing_table_2
-    - switch.magpie_iron
+    - switch.ironing_room_left
+    - switch.ironing_room_right
+    - switch.ironing_room_ironing_table
+    - switch.ironing_room_magpie
     to: unavailable
     for:
       hours: 0
@@ -857,16 +855,14 @@
   alias: Turn off magpie iron - no motion
   description: ''
   trigger:
-  - type: power
-    platform: device
-    device_id: 92e4838c6495a1d38dcfd55c46d31afe
-    entity_id: 4717cedaf4676533a3d48c319bf4b752
-    domain: sensor
-    above: 10
+  - platform: numeric_state
+    entity_id:
+    - sensor.ironing_room_magpie_current_consumption
     for:
       hours: 0
       minutes: 0
       seconds: 10
+    above: 10
   condition:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
@@ -880,22 +876,20 @@
     metadata: {}
     data: {}
     target:
-      device_id: 92e4838c6495a1d38dcfd55c46d31afe
+      device_id: 470ad9c5b6b7072c0a5242574bd5cd9b
   mode: single
 - id: '1712427569780'
   alias: Turn off irons left - no motion
   description: ''
   trigger:
-  - type: current
-    platform: device
-    device_id: 2575b084dead5f93825afc33d9abff3a
-    entity_id: 17248ba0fecc52cae428597eb09f781a
-    domain: sensor
-    above: 10
+  - platform: numeric_state
+    entity_id:
+    - sensor.ironing_room_left_current_consumption
     for:
       hours: 0
       minutes: 0
       seconds: 10
+    above: 10
   condition:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
@@ -909,22 +903,20 @@
     metadata: {}
     data: {}
     target:
-      device_id: 2575b084dead5f93825afc33d9abff3a
+      device_id: 22221819a3f597cc0fb30e68142919f0
   mode: single
 - id: '1712427655992'
   alias: Turn off irons right - no motion
   description: ''
   trigger:
-  - type: power
-    platform: device
-    device_id: f9ccf1d3a8c147fba8537950cae66234
-    entity_id: 639e3461ee66f052ee86976fd4b2fc3c
-    domain: sensor
-    above: 10
+  - platform: numeric_state
+    entity_id:
+    - sensor.ironing_room_right_current_consumption
     for:
       hours: 0
       minutes: 0
       seconds: 10
+    above: 10
   condition:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
@@ -938,54 +930,118 @@
     metadata: {}
     data: {}
     target:
-      device_id: f9ccf1d3a8c147fba8537950cae66234
+      device_id: 42c2ee13a1fe93fe8f0122b894a1ea74
   mode: single
-- id: '1714148328141'
-  alias: Turn on Conservatory Heater when cool during the day
+- id: '1714148432236'
+  alias: Turn off conservatory Heater when warm
   description: ''
   trigger:
-  - platform: numeric_state
-    entity_id:
-    - sensor.conservatory_temperature
+  - type: temperature
+    platform: device
+    device_id: 4d356ab9babc02cd69fd6d03b58c36cb
+    entity_id: 1cedece2676bc81134654f41fd928e01
+    domain: sensor
+    above: 22
     for:
       hours: 0
       minutes: 5
       seconds: 0
-    below: 20
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 690c237894576165879d1fb21a2aa627
+    entity_id: 3333f53a468f9108927bc5e6fc9bb161
+    domain: switch
+  mode: single
+- id: '1714314533892'
+  alias: Turn on 3D Printer Light
+  description: Turns on 3D Printer light when 3D printer is turned on
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.3d_printer_current_consumption
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+    above: 2
+  condition: []
+  action:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: 92e4838c6495a1d38dcfd55c46d31afe
+  mode: single
+- id: '1714314593069'
+  alias: Turn off 3D Printer light
+  description: Turns off 3D Printer light when 3D printer is turned off
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.3d_printer_current_consumption
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+    below: 2
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      device_id:
+      - 92e4838c6495a1d38dcfd55c46d31afe
+    data: {}
+  mode: single
+- id: '1714340821923'
+  alias: Turn off conservatory heater during the night
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: 4d356ab9babc02cd69fd6d03b58c36cb
+    entity_id: 1cedece2676bc81134654f41fd928e01
+    domain: sensor
+    above: 18
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
   condition:
   - condition: time
-    after: 06:30:00
-    before: '23:00:00'
+    after: '23:00:00'
+    before: 06:30:00
+  action:
+  - type: turn_off
+    device_id: 690c237894576165879d1fb21a2aa627
+    entity_id: 3333f53a468f9108927bc5e6fc9bb161
+    domain: switch
+  mode: single
+- id: '1714370785072'
+  alias: Turn on conservatory heater when cold
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: 4d356ab9babc02cd69fd6d03b58c36cb
+    entity_id: 1cedece2676bc81134654f41fd928e01
+    domain: sensor
+    below: 20
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
   - type: is_not_open
     condition: device
     device_id: 49bce74c821c42fd980c192606b57418
     entity_id: 319f694734396d89e5a6f6fa6ee17a56
     domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+  - condition: time
+    after: 06:00:00
+    before: '23:00:00'
   action:
   - type: turn_on
-    device_id: 690c237894576165879d1fb21a2aa627
-    entity_id: 3333f53a468f9108927bc5e6fc9bb161
-    domain: switch
-  mode: single
-- id: '1714148432236'
-  alias: Turn off Conservatory Heater when warm
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id:
-    - sensor.conservatory_temperature
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-    above: 22
-  condition: []
-  action:
-  - type: turn_off
     device_id: 690c237894576165879d1fb21a2aa627
     entity_id: 3333f53a468f9108927bc5e6fc9bb161
     domain: switch
