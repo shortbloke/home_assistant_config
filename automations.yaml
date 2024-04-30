@@ -1007,6 +1007,8 @@
       hours: 0
       minutes: 5
       seconds: 0
+  - platform: time
+    at: '23:00:00'
   condition:
   - condition: time
     after: '23:00:00'
@@ -1031,6 +1033,8 @@
       hours: 0
       minutes: 5
       seconds: 0
+  - platform: time
+    at: 06:00:00
   condition:
   - type: is_not_open
     condition: device
