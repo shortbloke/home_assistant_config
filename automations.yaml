@@ -479,35 +479,35 @@
 - id: '1615656237892'
   alias: 'State Change: Door Open - Turn on heating eco mode'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - binary_sensor.lumi_lumi_sensor_backdoor
     to: 'on'
     for:
       hours: 0
       minutes: 2
       seconds: 0
-  condition: []
-  action:
+    trigger: state
+  conditions: []
+  actions:
   - type: turn_on
-    device_id: 5468cd9b4c499a8c26e7f4be748722cb
-    entity_id: switch.downstairs_thermostat_ecomode
+    device_id: cb39ce88b9c64146eb49e0f878612b5b
+    entity_id: 39a4ee7ea774d541089cca677b5327b5
     domain: switch
   mode: single
 - id: '1615656264115'
   alias: 'State Change: Door Closed - Turn off heating eco mode'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - binary_sensor.lumi_lumi_sensor_backdoor
     to: 'off'
-  condition: []
-  action:
+    trigger: state
+  conditions: []
+  actions:
   - type: turn_off
-    device_id: 5468cd9b4c499a8c26e7f4be748722cb
-    entity_id: switch.downstairs_thermostat_ecomode
+    device_id: cb39ce88b9c64146eb49e0f878612b5b
+    entity_id: 39a4ee7ea774d541089cca677b5327b5
     domain: switch
   mode: single
 - id: '1615662841415'
@@ -1028,13 +1028,11 @@
     device_id: 4d356ab9babc02cd69fd6d03b58c36cb
     entity_id: 1cedece2676bc81134654f41fd928e01
     domain: sensor
-    below: 20
+    below: 18
     for:
       hours: 0
       minutes: 5
       seconds: 0
-  - platform: time
-    at: 06:00:00
   condition:
   - type: is_not_open
     condition: device
