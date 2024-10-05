@@ -76,9 +76,12 @@ burglar_alarm:
         entity_id: all
         media_content_id: !secret siren_wav_url
         media_content_type: "music"
-    - service: homeassistant.turn_on  # Turns on Ring Floodlight camera siren (stops automatically after 30 seconds)
+    - service: siren.turn_on  # Turns on Ring Floo sirens (stops automatically after 30 seconds)
       target:
-        entity_id: switch.driveway_siren
+        entity_id:
+          - siren.conservatory_siren
+          - siren.driveway_siren
+          - siren.kitchen_siren
     - delay: '00:00:30'  # Sound siren for 30 seconds
     - service: sonos.restore
       target:
