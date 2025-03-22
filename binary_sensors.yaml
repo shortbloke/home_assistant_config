@@ -7,14 +7,14 @@
   sensors:
     ensuite_shower_active:
       friendly_name: "Ensuite Shower Active"
-      value_template: "{{ states('sensor.ensuite_shower_energy_power') | float > 4.0 }}"
+      value_template: "{{ states('sensor.ensuite_shower_energy_power') | float(0) > 4 }}"
       delay_on:
         seconds: 20
       delay_off:
         seconds: 20
     family_bathroom_shower_active:
       friendly_name: "Familiy Bathroom Shower Active"
-      value_template: "{{ states('sensor.family_bathroom_shower_energy_power') | float > 4.0 }}"
+      value_template: "{{ states('sensor.family_bathroom_shower_energy_power') | float(0) > 4 }}"
       delay_on:
         seconds: 20
       delay_off:
