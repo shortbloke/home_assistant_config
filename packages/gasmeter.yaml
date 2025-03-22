@@ -49,10 +49,10 @@ automation:  # Automation used to react to changes in state from a magnetic sens
   alias: Energy - Gas - Pulse Received
   trigger:   # Triggered by sensor changing from on to off or off to on
   - platform: state
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+    entity_id: binary_sensor.gas_meter_sensor_on_off
   condition: # Only act when state switches off.
   - condition: state
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+    entity_id: binary_sensor.gas_meter_sensor_on_off
     state: 'off'
   action:    # Increment the input_number sensor for each decimetre of gas used, representing one rotation of the last digit on the gas meter.
   - service: input_number.set_value
