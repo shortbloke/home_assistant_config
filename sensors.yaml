@@ -8,20 +8,6 @@
       value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom('%H:%M', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom('%H:%M', True) }}"
       icon_template: "{% if is_state('sun.sun', 'above_horizon') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}"
 
-# WH5 Portable Temperature and Humidity Sensors 
-    portable_sensor_2_temperature:
-      value_template: "{{ (states('sensor.temp_humid_2_temperature') | float - 40) | round(1) }}"
-      unit_of_measurement: '°C'
-      friendly_name: "Temperature (Living Room)"
-    portable_sensor_3_temperature:
-      value_template: "{{ (states('sensor.temp_humid_3_temperature') | float - 40) | round(1) }}"
-      unit_of_measurement: '°C'
-      friendly_name: "Temperature (Fraser)"
-    portable_sensor_5_temperature:
-      value_template: "{{ (states('sensor.temp_humid_5_temperature') | float - 40) | round(1) }}"
-      unit_of_measurement: '°C'
-      friendly_name: "Temperature (Morgan)"
-
 # Tera PC State
     tera_powered_on:
       friendly_name: "PC Tera Powered On"
