@@ -708,26 +708,26 @@
       entity_id: switch.shutdown
   mode: single
 - id: '1636214471227'
-  alias: 'Action: Turn off hall air freshener at night'
+  alias: 'Action: Turn off outside socket'
   description: ''
-  trigger:
-  - platform: time
-    at: '23:00'
-  condition: []
-  action:
+  triggers:
+  - at: 00:00:00
+    trigger: time
+  conditions: []
+  actions:
   - device_id: caa90b0edf23497cb73f5e5362b092b1
     domain: rfxtrx
     type: send_command
     subtype: 'Off'
   mode: single
 - id: '1636214504954'
-  alias: 'Action: Turn on hall air freshener in the morning'
+  alias: 'Action: Turn on outside socket'
   description: ''
-  trigger:
-  - platform: time
-    at: 07:00
-  condition: []
-  action:
+  triggers:
+  - at: '16:00:00'
+    trigger: time
+  conditions: []
+  actions:
   - device_id: caa90b0edf23497cb73f5e5362b092b1
     domain: rfxtrx
     type: send_command
@@ -781,14 +781,13 @@
 - id: '1712419138586'
   alias: Device offline watchdog
   description: ''
-  trigger:
+  triggers:
   - device_id: 86cdb8ce35fb4cbe9a07a87523b5fc18
     domain: zha
-    platform: device
     type: device_offline
     subtype: device_offline
-  - platform: state
-    entity_id:
+    trigger: device
+  - entity_id:
     - switch.ironing_room_left
     - switch.ironing_room_right
     - switch.ironing_room_ironing_table
@@ -798,20 +797,21 @@
       hours: 0
       minutes: 5
       seconds: 0
-  - platform: state
-    entity_id:
-    - sensor.lumi_lumi_sensor_gas_meter_battery
+    trigger: state
+  - entity_id:
+    - binary_sensor.gas_meter_sensor_on_off
     for:
       hours: 0
       minutes: 5
       seconds: 0
     to: unavailable
-  condition: []
-  action:
-  - service: notify.martin
-    data:
+    trigger: state
+  conditions: []
+  actions:
+  - data:
       title: Watchdog
       message: Device {{ trigger.from_state.name }} is {{ trigger.to_state.state }}
+    action: notify.martin
   mode: single
 - id: '1712421523189'
   alias: Low Battery Watchdog
@@ -935,19 +935,19 @@
 - id: '1714148432236'
   alias: Turn off conservatory Heater when warm
   description: ''
-  trigger:
+  triggers:
   - type: temperature
-    platform: device
-    device_id: 4d356ab9babc02cd69fd6d03b58c36cb
-    entity_id: 1cedece2676bc81134654f41fd928e01
+    device_id: 1464525c67b978b454de6a6b35724dbd
+    entity_id: 6b23f364cf47b36a714a15d256f70949
     domain: sensor
-    above: 22
+    trigger: device
+    above: 21
     for:
       hours: 0
-      minutes: 5
+      minutes: 0
       seconds: 0
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_off
     device_id: 690c237894576165879d1fb21a2aa627
     entity_id: 3333f53a468f9108927bc5e6fc9bb161
@@ -996,24 +996,24 @@
 - id: '1714340821923'
   alias: Turn off conservatory heater during the night
   description: ''
-  trigger:
+  triggers:
   - type: temperature
-    platform: device
-    device_id: 4d356ab9babc02cd69fd6d03b58c36cb
-    entity_id: 1cedece2676bc81134654f41fd928e01
+    device_id: 1464525c67b978b454de6a6b35724dbd
+    entity_id: 6b23f364cf47b36a714a15d256f70949
     domain: sensor
+    trigger: device
     above: 18
     for:
       hours: 0
-      minutes: 5
+      minutes: 0
       seconds: 0
-  - platform: time
-    at: '23:00:00'
-  condition:
+  - at: '23:00:00'
+    trigger: time
+  conditions:
   - condition: time
     after: '23:00:00'
     before: 06:30:00
-  action:
+  actions:
   - type: turn_off
     device_id: 690c237894576165879d1fb21a2aa627
     entity_id: 3333f53a468f9108927bc5e6fc9bb161
@@ -1022,18 +1022,10 @@
 - id: '1714370785072'
   alias: Turn on conservatory heater when cold
   description: ''
-  trigger:
-  - type: temperature
-    platform: device
-    device_id: 4d356ab9babc02cd69fd6d03b58c36cb
-    entity_id: 1cedece2676bc81134654f41fd928e01
-    domain: sensor
-    below: 18
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-  condition:
+  triggers:
+  - trigger: time_pattern
+    minutes: '15'
+  conditions:
   - type: is_not_open
     condition: device
     device_id: 49bce74c821c42fd980c192606b57418
@@ -1042,7 +1034,10 @@
   - condition: time
     after: 06:00:00
     before: '23:00:00'
-  action:
+  - condition: numeric_state
+    entity_id: sensor.conservatory_th_sensor_lcd_temperature
+    below: 18
+  actions:
   - type: turn_on
     device_id: 690c237894576165879d1fb21a2aa627
     entity_id: 3333f53a468f9108927bc5e6fc9bb161
