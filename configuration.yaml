@@ -130,10 +130,14 @@ tts:
 ####################################################
 #                  Command Line                    #
 ####################################################
-# Pi Temperature
+# Pi Temperature and Fan speed
 command_line:
   - sensor:
       command: "cat /sys/class/thermal/thermal_zone0/temp"
       name: HA CPU Temperature
       unit_of_measurement: "°C"
       value_template: '{{ value | multiply(0.001) | round(1) }}'
+  - sensor:
+      command: "cat /sys/devices/platform/cooling_fan/hwmon/hwmon3/fan1_input"
+      name: HA Fan Speed
+      unit_of_measurement: "rpm"
