@@ -49,29 +49,5 @@ influxdb:
       # Hot Water
       - water_heater.hallway_thermostat_hot_water
       - sensor.garage_monitor_water_temperature
-      # Showers
-      - sensor.ensuite_shower_power
-      - sensor.family_bathroom_shower_power
-      - sensor.ensuite_shower_uses_today
-      - sensor.family_bathroom_shower_uses_today
-      # Temperature sensors
-      - sensor.loft_fan_temperature
-      - sensor.lumi_lumi_sens_ca8a3702_temperature
-      - sensor.portable_sensor_1_temperature
-      - sensor.portable_sensor_2_temperature
-      - sensor.portable_sensor_3_temperature
-      - sensor.portable_sensor_5_temperature
-      - sensor.temp_humid_ext_1_temperature
-      - sensor.hallway_thermostat_house_temperature
-      - sensor.lumi_lumi_sens_ca8a3702_temperature
-      # Humidity sensors
-      - sensor.loft_fan_humidity
-      - sensor.temp_humid_1_humidity
-      - sensor.temp_humid_2_humidity
-      - sensor.temp_humid_3_humidity
-      - sensor.temp_humid_5_humidity
-      - sensor.temp_humid_ext_1_humidity
-      - sensor.hallway_thermostat_house_humidity
-      - sensor.lumi_lumi_sens_ca8a3702_humidity
       # Salt level sensor
       - sensor.garage_monitor_salt_level

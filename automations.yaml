@@ -799,7 +799,7 @@
       seconds: 0
     trigger: state
   - entity_id:
-    - binary_sensor.gas_meter_sensor_on_off
+    - button.gas_meter_sensor_identify_3
     for:
       hours: 0
       minutes: 5
@@ -812,44 +812,6 @@
       title: Watchdog
       message: Device {{ trigger.from_state.name }} is {{ trigger.to_state.state }}
     action: notify.martin
-  mode: single
-- id: '1712421523189'
-  alias: Low Battery Watchdog
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id:
-    - sensor.portable_sensor_1_temperature
-    - sensor.portable_sensor_3_temperature
-    - sensor.portable_sensor_5_temperature
-    - sensor.portable_sensor_2_temperature
-    for:
-      hours: 0
-      minutes: 1
-      seconds: 0
-    below: -10
-  - platform: numeric_state
-    entity_id:
-    - sensor.lumi_lumi_sensor_frontdoor_battery
-    - sensor.lumi_lumi_sensor_magnet_backdoor_battery
-    - sensor.lumi_lumi_sensor_magnet_aq2_bc705302_power
-    - sensor.lumi_lumi_sensor_morgans_window_battery
-    - sensor.lumi_lumi_sensor_frasers_window_left_battery
-    - sensor.lumi_lumi_sensor_frasers_window_right_battery
-    - sensor.lumi_lumi_sens_ca8a3702_power
-    - sensor.motion_sensor_garage_battery
-    - sensor.motion_sensor_ironing_room_battery
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-    below: 20
-  condition: []
-  action:
-  - service: notify.martin
-    data:
-      title: Watchdog
-      message: Temperature sensor {{ trigger.from_state.name }} battery low
   mode: single
 - id: '1712427494133'
   alias: Turn off magpie iron - no motion

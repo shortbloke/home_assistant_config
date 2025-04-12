@@ -81,8 +81,6 @@ notify:
 
 # https://www.home-assistant.io/components/recorder/
 recorder:
-  purge_keep_days: 10
-  commit_interval: 60
 
 # https://www.home-assistant.io/components/sun/
 sun:

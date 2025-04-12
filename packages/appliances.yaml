@@ -25,11 +25,11 @@ sensor:
         unit_of_measurement: 'GBP'
         friendly_name: "Power Cost Today - Loft"
       conservatory_total_power_now:
-        value_template: "{{ (states('sensor.conservatory_left_current_consumption') | float + states('sensor.c_desk_right_current_consumption') | float + states('sensor.conservatory_heater_power') | float + states('sensor.conservatory_window_lamp_current_consumption') | float + states('sensor.3d_printer_current_consumption') | float + states('sensor.3d_printer_light_current_consumption') | float) | round(3) }}"
+        value_template: "{{ (states('sensor.conservatory_left_current_consumption') | float + states('sensor.c_desk_right_current_consumption') | float + states('sensor.conservatory_heater_power') | float + states('sensor.conservatory_window_lamp_current_consumption') | float + states('sensor.3d_printer_current_consumption') | float + states('sensor.3d_printer_light_current_consumption') | float + states('sennsor.robovac_current_consumption')  | float) | round(3) }}"
         unit_of_measurement: 'W'
         friendly_name: "Power Now - Conservatory"
       conservatory_total_power_today:
-        value_template: "{{ (states('sensor.conservatory_left_today_s_consumption') | float + states('sensor.c_desk_right_today_s_consumption') | float + states('sensor.conservatory_heater_electricity') | float + states('sensor.conservatory_window_lamp_today_s_consumption') | float + states('sensor.3d_printer_today_s_consumption') | float + states('sensor.3d_printer_light_today_s_consumption') | float) | round(3) }}"
+        value_template: "{{ (states('sensor.conservatory_left_today_s_consumption') | float + states('sensor.c_desk_right_today_s_consumption') | float + states('sensor.conservatory_heater_electricity') | float + states('sensor.conservatory_window_lamp_today_s_consumption') | float + states('sensor.3d_printer_today_s_consumption') | float + states('sensor.3d_printer_light_today_s_consumption') | float + states('sensor.robovac_today_s_consumption') | float) | round(3) }}"
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Conservatory"
       conservatory_total_power_cost_today:
