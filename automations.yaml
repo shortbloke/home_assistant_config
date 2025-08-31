@@ -1005,3 +1005,219 @@
     entity_id: 3333f53a468f9108927bc5e6fc9bb161
     domain: switch
   mode: single
+- id: '1748977016554'
+  alias: Kitchen Sink Water Leak Notification
+  description: ''
+  triggers:
+  - type: moist
+    device_id: d126aca79aab093013c364369011e804
+    entity_id: 2d6664ac9e985b9adea50e7a520e1d3b
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  conditions: []
+  actions:
+  - action: notify.adults
+    metadata: {}
+    data:
+      message: Water detected under Kitchen sink
+      title: Water Leak
+    enabled: true
+  - action: notify.martin
+    metadata: {}
+    data:
+      message: Water detected under Kitcken Sink
+      title: Water Leak
+    enabled: false
+  - action: tts.voicerss_say
+    metadata: {}
+    data:
+      cache: false
+      entity_id: media_player.kitchen
+      message: Water leak detected under kitchen sink
+  mode: single
+- id: '1754253696584'
+  alias: Tesla Charging - Charging
+  description: ''
+  triggers:
+  - entity_id:
+    - sensor.tesla_charger_current_consumption
+    above: '100'
+    trigger: numeric_state
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  conditions: []
+  actions:
+  - data:
+      option: charging
+    action: input_select.select_option
+    target:
+      entity_id: input_select.tesla_charging_status
+  mode: single
+- id: '1754254191874'
+  alias: Tesla Charging - Finished
+  description: ''
+  triggers:
+  - entity_id:
+    - sensor.tesla_charger_current_consumption
+    trigger: numeric_state
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    below: 100
+  conditions:
+  - condition: state
+    entity_id: input_select.tesla_charging_status
+    state: charging
+  actions:
+  - data:
+      option: finished
+    action: input_select.select_option
+    target:
+      entity_id: input_select.tesla_charging_status
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - data:
+      option: idle
+    action: input_select.select_option
+    target:
+      entity_id: input_select.tesla_charging_status
+  - action: notify.martin
+    metadata: {}
+    data:
+      message: Charging completed
+      title: Tesla
+    enabled: false
+  mode: single
+- id: '1756499601267'
+  alias: Dynamic Tesla Solar Charging
+  description: Adjust Tesla charging current based on solar excess with 200W grid
+    import tolerance
+  triggers:
+  - entity_id:
+    - sensor.owl_solar_generating
+    - sensor.owl_electricity_power
+    - sensor.tesla_ble_charge_level
+    - sensor.tesla_ble_charge_limit
+    trigger: state
+  actions:
+  - data:
+      name: Tesla Solar Charging
+      message: 'Solar={{ solar }}W, House={{ house }}W, CarPower={{ car_power }}W,
+        Excess={{ excess_power }}W, Available={{ available_power }}W, SOC={{ soc }}%,
+        Limit={{ soc_limit }}%, CurrentSetting={{ current_setting }}A, ChargerOn={{
+        charger_on }} → Target={{ target_amps }}A
+
+        '
+    action: logbook.log
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ target_amps == 0 }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ current_setting != 10 }}'
+          sequence:
+          - target:
+              entity_id: number.tesla_ble_charging_amps
+            data:
+              value: 10
+            action: number.set_value
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ charger_on }}'
+          sequence:
+          - target:
+              entity_id: switch.tesla_ble_charger
+            action: switch.turn_off
+            data: {}
+          - data:
+              name: Tesla Solar Charging
+              message: Stopping charging – Import too high or SOC limit reached.
+            action: logbook.log
+    - conditions:
+      - condition: template
+        value_template: '{{ target_amps > 0 and target_amps < 5 }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ current_setting != target_amps }}'
+          sequence:
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: '{{ current_setting != 5 }}'
+              sequence:
+              - target:
+                  entity_id: number.tesla_ble_charging_amps
+                data:
+                  value: 5
+                action: number.set_value
+              - delay: 00:00:20
+          - target:
+              entity_id: number.tesla_ble_charging_amps
+            data:
+              value: '{{ target_amps }}'
+            action: number.set_value
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ not charger_on }}'
+          sequence:
+          - target:
+              entity_id: switch.tesla_ble_charger
+            action: switch.turn_on
+            data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ target_amps >= 5 }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ current_setting != target_amps }}'
+          sequence:
+          - target:
+              entity_id: number.tesla_ble_charging_amps
+            data:
+              value: '{{ target_amps }}'
+            action: number.set_value
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ not charger_on }}'
+          sequence:
+          - target:
+              entity_id: switch.tesla_ble_charger
+            action: switch.turn_on
+            data: {}
+  - delay: 00:01:00
+  mode: single
+  variables:
+    solar: '{{ states(''sensor.owl_solar_generating'') | float(0) }}'
+    house: '{{ states(''sensor.owl_electricity_power'') | float(0) }}'
+    voltage: '{{ states(''sensor.tesla_charger_voltage'') | float(230) }}'
+    soc: '{{ states(''sensor.tesla_ble_charge_level'') | float(0) }}'
+    soc_limit: '{{ states(''sensor.tesla_ble_charge_limit'') | float(100) }}'
+    current_setting: '{{ states(''number.tesla_ble_charging_amps'') | float(0) }}'
+    charger_on: '{{ is_state(''switch.tesla_ble_charger'',''on'') }}'
+    car_power: '{{ (voltage * current_setting) if charger_on else 0 }}'
+    excess_power: '{{ solar - (house - car_power) }}'
+    allowed_import: 200
+    available_power: '{{ excess_power + allowed_import }}'
+    target_amps: "{% if soc >= soc_limit %}\n  0\n{% else %}\n  {% set amps = (available_power
+      / voltage) | int %}\n  {% if amps < 2 %} 0\n  {% elif amps > 10 %} 10\n  {%
+      else %} {{ amps }}\n  {% endif %}\n{% endif %}\n"
