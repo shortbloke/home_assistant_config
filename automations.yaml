@@ -1109,6 +1109,10 @@
     - sensor.tesla_ble_charge_level
     - sensor.tesla_ble_charge_limit
     trigger: state
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.tesla_ble_charge_flap
+    state: 'on'
   actions:
   - data:
       name: Tesla Solar Charging
