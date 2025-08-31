@@ -1,0 +1,997 @@
+[
+    {
+        "id": "e38ae847954bcdbb",
+        "type": "tab",
+        "label": "Owl Intuition",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ca928319c0f4e11c",
+        "type": "udp in",
+        "z": "e38ae847954bcdbb",
+        "name": "",
+        "iface": "",
+        "port": "32000",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "733c6f228176f711",
+                "95eec54e7b2ce92a"
+            ]
+        ]
+    },
+    {
+        "id": "733c6f228176f711",
+        "type": "debug",
+        "z": "e38ae847954bcdbb",
+        "name": "Raw UDP Payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "95eec54e7b2ce92a",
+        "type": "xml",
+        "z": "e38ae847954bcdbb",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "8b693809e60bedd4",
+                "48dc2ca63a797cd0"
+            ]
+        ]
+    },
+    {
+        "id": "8b693809e60bedd4",
+        "type": "debug",
+        "z": "e38ae847954bcdbb",
+        "name": "XML Payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "48dc2ca63a797cd0",
+        "type": "switch",
+        "z": "e38ae847954bcdbb",
+        "name": "Payload Divider",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "solar",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "electricity",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "weather",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "bf8845239f955f29",
+                "6c5dcbf81fe7c907"
+            ],
+            [
+                "be2414dcbc341e25",
+                "d9bf702e2d151c87"
+            ],
+            [
+                "6c1126c9db226ede",
+                "d3dc3ee1c5db395f"
+            ],
+            [
+                "99b0e31f8140c2ca",
+                "d3dc3ee1c5db395f"
+            ]
+        ]
+    },
+    {
+        "id": "bf8845239f955f29",
+        "type": "debug",
+        "z": "e38ae847954bcdbb",
+        "name": "Solar",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "be2414dcbc341e25",
+        "type": "debug",
+        "z": "e38ae847954bcdbb",
+        "name": "Electricity",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "99b0e31f8140c2ca",
+        "type": "debug",
+        "z": "e38ae847954bcdbb",
+        "name": "Otherwise",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "6c5dcbf81fe7c907",
+        "type": "function",
+        "z": "e38ae847954bcdbb",
+        "name": "Solar Parser",
+        "func": "if ( msg.payload.solar.day)\n{\n    // Scale wh to kwh\n    if (Number( msg.payload.solar.day[0].generated[0]._) > 0)\n    {\n        msg.payload.solar.day[0].generated[0]._ = Number(msg.payload.solar.day[0].generated[0]._)/ 1000;\n    }\n    if (Number(msg.payload.solar.day[0].exported[0]._) > 0)\n    {\n        msg.payload.solar.day[0].exported[0]._ = Number(msg.payload.solar.day[0].exported[0]._) / 1000;\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "1338064ae823b560",
+                "25315fa8685c32f2",
+                "e71ed445d8556926",
+                "ec6edf1641b5ec88"
+            ]
+        ]
+    },
+    {
+        "id": "d9bf702e2d151c87",
+        "type": "function",
+        "z": "e38ae847954bcdbb",
+        "name": "Electricity Parser",
+        "func": "if ( msg.payload.electricity.property[0].day)\n{\n    // Scale wh to kwh\n    if (Number( msg.payload.electricity.property[0].day[0].wh[0] ) > 0)\n    {\n        msg.payload.electricity.property[0].day[0].wh[0] = Number(msg.payload.electricity.property[0].day[0].wh[0]) / 1000;\n    }\n    // Scale costs from GB Pence to GB Pounds\n    if (Number(msg.payload.electricity.property[0].current[0].cost[0]) > 0)\n    {\n     msg.payload.electricity.property[0].current[0].cost[0] = Number(msg.payload.electricity.property[0].current[0].cost[0]) / 100;\n    }\n    if (Number(msg.payload.electricity.property[0].day[0].cost[0]) > 0)\n    {\n        msg.payload.electricity.property[0].day[0].cost[0] = Number(msg.payload.electricity.property[0].day[0].cost[0]) / 100;\n    }\n    // Convert Battery value from string to a number, remove last character from the string (% sign)\n    msg.payload.electricity.battery[0].$.level = msg.payload.electricity.battery[0].$.level.slice(0,-1)\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 520,
+        "wires": [
+            [
+                "932d04eb59318c54",
+                "65f6a9bdaae3ef50",
+                "65425a145f7e1b38",
+                "6d9d5007b405d39b",
+                "e1956cb1dcbf6514",
+                "0cc3fe30e87ff160",
+                "808441d7a31fb59a"
+            ]
+        ]
+    },
+    {
+        "id": "d3dc3ee1c5db395f",
+        "type": "function",
+        "z": "e38ae847954bcdbb",
+        "name": "Not Implemented",
+        "func": "node.warn( \"Parsing not implemented for received payload type\" );\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c1126c9db226ede",
+        "type": "debug",
+        "z": "e38ae847954bcdbb",
+        "name": "Weather",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "1338064ae823b560",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Solar Generating",
+        "entityConfig": "0882174b5871c89f",
+        "version": 0,
+        "state": "payload.solar.current[0].generating[0]._",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.solar.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 990,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25315fa8685c32f2",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Solar Exporting",
+        "entityConfig": "6179ffc2835d6925",
+        "version": 0,
+        "state": "payload.solar.current[0].exporting[0]._",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.solar.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 980,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e71ed445d8556926",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Solar Generated Today",
+        "entityConfig": "4b931c79bb49cf53",
+        "version": 0,
+        "state": "payload.solar.day[0].generated[0]._",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.solar.timestamp[0]",
+                "valueType": "msg"
+            },
+            {
+                "property": "state_class",
+                "value": "total_increasing",
+                "valueType": "str"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 1000,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec6edf1641b5ec88",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Solar Exported Today",
+        "entityConfig": "08090fdc7b859a22",
+        "version": 0,
+        "state": "payload.solar.day[0].exported[0]._",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.solar.timestamp[0]",
+                "valueType": "msg"
+            },
+            {
+                "property": "state_class",
+                "value": "total_increasing",
+                "valueType": "str"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 1000,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "932d04eb59318c54",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Electricity Power",
+        "entityConfig": "64473cfba051be4e",
+        "version": 0,
+        "state": "payload.electricity.property[0].current[0].watts[0]",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 980,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65f6a9bdaae3ef50",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Electricity Today",
+        "entityConfig": "c9cad0287c2c847c",
+        "version": 0,
+        "state": "msg.payload.electricity.property[0].day[0].wh[0]",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            },
+            {
+                "property": "state_class",
+                "value": "total_increasing",
+                "valueType": "str"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 980,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65425a145f7e1b38",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Signal - RSSI",
+        "entityConfig": "d71d89c1100e3f0e",
+        "version": 0,
+        "state": "payload.electricity.signal[0].$.rssi",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 980,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6d9d5007b405d39b",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Battery Level",
+        "entityConfig": "9149fc88142676f9",
+        "version": 0,
+        "state": "payload.electricity.battery[0].$.level",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 970,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1956cb1dcbf6514",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Signal - LQI",
+        "entityConfig": "2b1cfd21cab496f5",
+        "version": 0,
+        "state": "payload.electricity.signal[0].$.lqi",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 970,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0cc3fe30e87ff160",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Cost",
+        "entityConfig": "d0e77e58df6a6b8d",
+        "version": 0,
+        "state": "payload.electricity.property[0].current[0].cost[0]",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "timestamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 950,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "808441d7a31fb59a",
+        "type": "ha-sensor",
+        "z": "e38ae847954bcdbb",
+        "name": "Cost Today",
+        "entityConfig": "6b2a0255027348d5",
+        "version": 0,
+        "state": "payload.electricity.property[0].day[0].cost[0]",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "state_class",
+                "value": "total_increasing",
+                "valueType": "str"
+            },
+            {
+                "property": "timetstamp",
+                "value": "payload.electricity.timestamp[0]",
+                "valueType": "msg"
+            }
+        ],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 970,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48ef8bb6287916b4",
+        "type": "server-events",
+        "z": "e38ae847954bcdbb",
+        "name": "",
+        "server": "1e379208.ea5f5e",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "eventType": "",
+        "eventData": "",
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event_type",
+                "valueType": "jsonata"
+            }
+        ],
+        "x": 120,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0882174b5871c89f",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Solar Generating",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Solar_Generating"
+            },
+            {
+                "property": "device_class",
+                "value": "power"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:flash"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "W"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "6179ffc2835d6925",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Solar Exporting",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Solar_Exporting"
+            },
+            {
+                "property": "device_class",
+                "value": "power"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:flash"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "W"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "4b931c79bb49cf53",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Solar Generated Today",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Solar_Generated_Today"
+            },
+            {
+                "property": "device_class",
+                "value": "energy"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:counter"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "kWh"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "08090fdc7b859a22",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Solar Exported Today",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Solar_Exported_Today"
+            },
+            {
+                "property": "device_class",
+                "value": "energy"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:counter"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "kWh"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "64473cfba051be4e",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Electricity Power",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Electricity_Power"
+            },
+            {
+                "property": "device_class",
+                "value": "power"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:flash"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "W"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "c9cad0287c2c847c",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Electricity Today",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Electricity_Today"
+            },
+            {
+                "property": "device_class",
+                "value": "energy"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:counter"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "kwh"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "d71d89c1100e3f0e",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Signal - RSSI",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Signal_RSSI"
+            },
+            {
+                "property": "device_class",
+                "value": "signal_strength"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:signal"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "dBm"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "9149fc88142676f9",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Battery Level",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Electricity Battery_Level"
+            },
+            {
+                "property": "device_class",
+                "value": "battery"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:battery"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "%"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "2b1cfd21cab496f5",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Signal - LQI",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Signal_LSI"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "d0e77e58df6a6b8d",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Cost",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Cost"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": "mdi:currency-gbp"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "GBP"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "6b2a0255027348d5",
+        "type": "ha-entity-config",
+        "server": "1e379208.ea5f5e",
+        "deviceConfig": "",
+        "name": "sensor config for Cost Today",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Owl_Cost_Today"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": "mdi:currency-gbp"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "GBP"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "resend": true
+    },
+    {
+        "id": "1e379208.ea5f5e",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": 30,
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": "at: ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "h23",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": true
+    }
+]

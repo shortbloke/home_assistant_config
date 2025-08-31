@@ -36,13 +36,13 @@ influxdb:
       # House
       - sensor.owl_grid_energy_now
       - sensor.owl_grid_energy_today
-      - sensor.owl_intuition_cost_today
-      - sensor.owl_intuition_electricity_power
-      - sensor.owl_intuition_electricity_today
-      - sensor.owl_intuition_solar_generating
-      - sensor.owl_intuition_solar_exporting
-      - sensor.owl_intuition_solar_exported_today
-      - sensor.owl_intuition_solar_generated_today
+      - sensor.owl_cost_today
+      - sensor.owl_electricity_power
+      - sensor.owl_electricity_today
+      - sensor.owl_solar_generating
+      - sensor.owl_solar_exporting
+      - sensor.owl_solar_exported_today
+      - sensor.owl_solar_generated_today
       - sensor.utility_meter_gas_daily
       - sensor.gas_price_day
       - sensor.solar_daily_energy

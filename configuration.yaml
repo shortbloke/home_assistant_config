@@ -50,7 +50,6 @@ logger:
   # logs:
     # homeassistant.core: debug
     # homeassistant.components.recorder.core: debug
-    # custom_components.owlintuition.sensor: debug
     # RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:

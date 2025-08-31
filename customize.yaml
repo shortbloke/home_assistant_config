@@ -65,26 +65,6 @@ sensor.ensuite_shower_minutes:
   icon: mdi:clock-outline
 sensor.family_bathroom_shower_minutes:
   icon: mdi:clock-outline
-sensor.owl_intuition_electricity_battery:
-  friendly_name: Owl Battery
-sensor.owl_intuition_electricity_battery_level:
-  friendly_name: Owl Battery Level
-sensor.owl_intuition_electricity_radio:
-  friendly_name: Owl Signal
-sensor.owl_intuition_electricity_power:
-  friendly_name: Electricity Using
-sensor.owl_intuition_electricity_today:
-  friendly_name: Electricity Used Today
-sensor.owl_intuition_cost_today:
-  friendly_name: Electricity Cost Today
-sensor.owl_intuition_solar_generating:
-  friendly_name: Solar Generating
-sensor.owl_intuition_solar_exporting:
-  friendly_name: Solar Exporting
-sensor.owl_intuition_solar_generated_today:
-  friendly_name: Solar Generated Today
-sensor.owl_intuition_solar_exported_today:
-  friendly_name: Solar Exported Today
 light.conservatory_desk:
   friendly_name: "Conservatory Desk Strip"
   icon: mdi:led-strip

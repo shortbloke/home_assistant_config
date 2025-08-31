@@ -28,3 +28,12 @@ dryer_status:
     - running
     - finished
   initial: idle
+
+tesla_charging_status:
+  name: Tesla Charging Status
+  options:
+    - idle
+    - charging
+    - finished
+  initial: idle
+  icon: mdi:car-electric
