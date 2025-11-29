@@ -21,7 +21,7 @@ The following devices are controlled via my Home Assistant configurations. They 
 
 | Device | Functionality |
 | ---| --- |
-| [Ring Floodlight Cam](https://en-uk.ring.com/products/floodlight-cam) | Component: [Ring](https://www.home-assistant.io/components/ring/)<br>Floodlight with motion activated camera.<br><br>Limitations:<ul><li>No live view of video via HomeAssistant</li><li>Unable to trigger the camera to start recording</li></ul> |
+| [Ring Floodlight Cam Pro (4k)](https://amzn.to/48pXN9l)<br><br>[Ring Wired Doorbell Pro](https://amzn.to/48Hjdjq)<br><br>[Ring Indoor Camera](https://amzn.to/48tK8yd)<br><br>[Ring Pan-Tilt Indoor Camera](https://amzn.to/4pJPo7T)<br><br>[Ring Outdoor Camera Plus](https://amzn.to/4p7oMNV)| Component: [ring-mqtt](https://github.com/tsightler/ring-mqtt)<br><br>Limitations:<ul><li>No live view of video via HomeAssistant, only snapshots</li><li>ring-mqtt needs to be added to the addon store. This integration is an improvement over the default ring integration which is not well maintained and some features have stopped working for new or newly added devices.</li></ul> |
 
 ## Gas, Electricity and Solar Generation Monitoring
 

@@ -6,11 +6,14 @@ substitutions:
   ble_mac_address: !secret ble_mac_address
   tesla_vin: !secret tesla_vin
   charging_amps_max: "10"
+  # The following shows the default board and variant settings. Uncomment and change them if they are not appropriate for your board:
+  board: "esp32-c6-devkitc-1"
+  variant: "esp32c6"
 
-esp32:
-  board: esp32-c6-devkitc-1
-  framework:
-    type: esp-idf
+# esp32:
+#   board: esp32-c6-devkitc-1
+#   framework:
+#     type: esp-idf
 
 api:
   encryption:

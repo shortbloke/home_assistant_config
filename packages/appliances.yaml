@@ -6,22 +6,22 @@ sensor:
     sensors:
       loft_total_power_now:
         value_template: >-
-          {{ (states('sensor.loft1_current_consumption') | float(0) +
+          {{ (states('sensor.loft_ups_current_consumption') | float(0) +
               states('sensor.loft2_current_consumption') | float(0)) | round(3) }}
         unit_of_measurement: 'W'
         friendly_name: "Power Now - Loft"
 
       loft_total_power_today:
         value_template: >-
-          {{ (states('sensor.loft1_today_s_consumption') | float(0) +
+          {{ (states('sensor.loft_ups_today_s_consumption') | float(0) +
               states('sensor.loft2_today_s_consumption') | float(0)) | round(3) }}
         unit_of_measurement: 'kWh'
         friendly_name: "Power Today - Loft"
 
-      loft1_total_power_cost_today:
+      loft_ups_total_power_cost_today:
         value_template: >-
           {{ (states('input_number.energy_elec_unit') | float(0) *
-              states('sensor.loft1_today_s_consumption') | float(0)) | round(2) }}
+              states('sensor.loft_ups_today_s_consumption') | float(0)) | round(2) }}
         unit_of_measurement: 'GBP'
         friendly_name: "Loft Main UPS Feed Cost Today"
 

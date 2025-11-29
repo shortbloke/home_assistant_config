@@ -27,7 +27,6 @@ everyone_away:
         - group.conservatory_lights
         - group.dining_room_lights
         - group.living_room_lights
-        - switch.sonoff_garage_light
 
 # Sonos
 sonos_say:
@@ -76,12 +75,14 @@ burglar_alarm:
         entity_id: all
         media_content_id: !secret siren_wav_url
         media_content_type: "music"
-    - service: siren.turn_on  # Turns on Ring Floo sirens (stops automatically after 30 seconds)
+    - service: switch.turn_on  # Turns on Ring sirens (stops automatically after 30 seconds)
       target:
         entity_id:
-          - siren.conservatory_siren
-          - siren.driveway_siren
-          - siren.kitchen_siren
+          - switch.cat_feeding_siren
+          - switch.conservatory_siren
+          - switch.front_siren
+          - switch.hallway_siren
+          - switch.kitchen_siren
     - delay: '00:00:30'  # Sound siren for 30 seconds
     - service: sonos.restore
       target:

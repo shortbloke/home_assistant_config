@@ -792,6 +792,7 @@
     - switch.ironing_room_right
     - switch.ironing_room_ironing_table
     - switch.ironing_room_magpie
+    - binary_sensor.motion_sensor_ironing_room
     to: unavailable
     for:
       hours: 0
@@ -1225,3 +1226,41 @@
     target_amps: "{% if soc >= soc_limit %}\n  0\n{% else %}\n  {% set amps = (available_power
       / voltage) | int %}\n  {% if amps < 2 %} 0\n  {% elif amps > 10 %} 10\n  {%
       else %} {{ amps }}\n  {% endif %}\n{% endif %}\n"
+- id: '1757452303890'
+  alias: Set Thermostat Temp to 22 when backdoor Closed
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.lumi_lumi_sensor_backdoor
+    to: 'off'
+    trigger: state
+  conditions: []
+  actions:
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 22
+    target:
+      entity_id: climate.downstairs_thermostat
+  mode: single
+- id: '1757452384425'
+  alias: Set thermostat to 18 when backdoor open for 1 min
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.lumi_lumi_sensor_backdoor
+    to: 'on'
+    trigger: state
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions: []
+  actions:
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 18
+    target:
+      entity_id: climate.downstairs_thermostat
+  mode: single
