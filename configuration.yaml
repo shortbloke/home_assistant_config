@@ -11,7 +11,6 @@ homeassistant:
 
 # Include Files
 automation: !include automations.yaml
-binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 input_boolean: !include input_booleans.yaml
 input_select: !include input_selects.yaml
@@ -86,32 +85,35 @@ sun:
 
 # Switch
 # Copy switch to allow additional names for the same switch
-switch:
-  - platform: template
-    switches:
-      christmas_tree:
-        friendly_name: "Christmas tree"
-        value_template: "{{ is_state('switch.lwrf_displaycabinetlight', 'on') }}"
-        turn_on:
-          service: switch.turn_on
-          target: 
-            entity_id: switch.lwrf_displaycabinetlight
-        turn_off:
-          service: switch.turn_off
-          target: 
-            entity_id: switch.lwrf_displaycabinetlight
-      christmas_tree_lights:
-        friendly_name: "Christmas tree lights"
-        value_template: "{{ is_state('switch.lwrf_displaycabinetlight', 'on') }}"
-        turn_on:
-          service: switch.turn_on
-          target: 
-            entity_id: switch.lwrf_displaycabinetlight
-        turn_off:
-          service: switch.turn_off
-          target: 
-            entity_id: switch.lwrf_displaycabinetlight
-            
+template:
+- switch:
+  - turn_on:
+    - target:
+        entity_id:
+        - switch.lwrf_displaycabinetlight
+      action: switch.turn_on
+    turn_off:
+    - target:
+        entity_id:
+        - switch.lwrf_displaycabinetlight
+      action: switch.turn_off
+    default_entity_id: switch.christmas_tree
+    name: Christmas tree
+    state: '{{ is_state(''switch.lwrf_displaycabinetlight'', ''on'') }}'
+- switch:
+  - turn_on:
+    - target:
+        entity_id:
+        - switch.lwrf_displaycabinetlight
+      action: switch.turn_on
+    turn_off:
+    - target:
+        entity_id:
+        - switch.lwrf_displaycabinetlight
+      action: switch.turn_off
+    default_entity_id: switch.christmas_tree_lights
+    name: Christmas tree lights
+    state: '{{ is_state(''switch.lwrf_displaycabinetlight'', ''on'') }}'   
             
 # https://www.home-assistant.io/components/tts/
 tts:
@@ -138,3 +140,35 @@ command_line:
       command: "cat /sys/devices/platform/cooling_fan/hwmon/hwmon3/fan1_input"
       name: HA Fan Speed
       unit_of_measurement: "rpm"
+
+##################################################
+#                   Templates                    #
+##################################################
+template:
+# Shower usage sensor
+- binary_sensor:
+  - delay_on: 0:00:20
+    delay_off: 0:00:20
+    default_entity_id: binary_sensor.ensuite_shower_active
+    name: Ensuite Shower Active
+    state: '{{ states(''sensor.ensuite_shower_energy_power'') | float(0) > 4 }}'
+- binary_sensor:
+  - delay_on: 0:00:20
+    delay_off: 0:00:20
+    default_entity_id: binary_sensor.family_bathroom_shower_active
+    name: Familiy Bathroom Shower Active
+    state: '{{ states(''sensor.family_bathroom_shower_energy_power'') | float(0) > 4 }}'
+# Sensor to detect if Fraser PC has been idle for over 5 mins
+- binary_sensor:
+  - default_entity_id: binary_sensor.tera_pc_idle
+    name: Frasers PC On but Idle
+    state: '{{as_timestamp(states.sensor.lastactive.last_changed) < as_timestamp(now()) - 300}}'
+- sensor:
+  - default_entity_id: sensor.tera_powered_on
+    name: PC Tera Powered On
+    state: '{{ not(is_state(''switch.shutdown'', ''unavailable'')) }}'
+- sensor:
+  - default_entity_id: sensor.sun_template
+    icon: '{% if is_state(''sun.sun'', ''above_horizon'') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
+    name: Sun
+    state: '{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom(''%H:%M'', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom(''%H:%M'', True) }}'

@@ -1,21 +1,30 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-sensor:
-  - platform: template
-    sensors:
-      ironing_room_total_power_now:
-        value_template: "{{ (states('sensor.ironing_room_left_current_consumption') | float + states('sensor.ironing_room_right_current_consumption') | float + states('sensor.ironing_room_ironing_table_current_consumption') | float + states('sensor.ironing_room_magpie_current_consumption') | float) | round(3) }}"
-        unit_of_measurement: 'W'
-        friendly_name: "Power Now - Ironing Room"
-      ironing_room_total_power_today:
-        value_template: "{{ (states('sensor.ironing_room_left_today_s_consumption') | float + states('sensor.ironing_room_right_today_s_consumption') | float + states('sensor.ironing_room_ironing_table_today_s_consumption') | float + states('sensor.ironing_room_magpie_today_s_consumption') | float) | round(3) }}"
-        unit_of_measurement: 'kWh'
-        friendly_name: "Power Today - Ironing Room"
-      ironing_room_power_cost_today:
-        value_template: "{{ (states('input_number.energy_elec_unit') | float * states('sensor.ironing_room_total_power_today') | float) | round(2) }}"
-        unit_of_measurement: 'GBP'
-        friendly_name: "Power Cost Today - Ironing Room"
-      ironing_room_motion_status: 
-        value_template: "{{ states.input_select.ironing_room_motion_status.state }}"
-        friendly_name: "Ironing Room Motion Status"
+template:
+- sensor:
+  - unit_of_measurement: W
+    default_entity_id: sensor.ironing_room_total_power_now
+    name: Power Now - Ironing Room
+    state: '{{ (states(''sensor.ironing_room_left_current_consumption'') | float +
+      states(''sensor.ironing_room_right_current_consumption'') | float + states(''sensor.ironing_room_ironing_table_current_consumption'')
+      | float + states(''sensor.ironing_room_magpie_current_consumption'') | float)
+      | round(3) }}'
+- sensor:
+  - unit_of_measurement: kWh
+    default_entity_id: sensor.ironing_room_total_power_today
+    name: Power Today - Ironing Room
+    state: '{{ (states(''sensor.ironing_room_left_today_s_consumption'') | float +
+      states(''sensor.ironing_room_right_today_s_consumption'') | float + states(''sensor.ironing_room_ironing_table_today_s_consumption'')
+      | float + states(''sensor.ironing_room_magpie_today_s_consumption'') | float)
+      | round(3) }}'
+- sensor:
+  - unit_of_measurement: GBP
+    default_entity_id: sensor.ironing_room_power_cost_today
+    name: Power Cost Today - Ironing Room
+    state: '{{ (states(''input_number.energy_elec_unit'') | float * states(''sensor.ironing_room_total_power_today'')
+      | float) | round(2) }}'
+- sensor:
+  - default_entity_id: sensor.ironing_room_motion_status
+    name: Ironing Room Motion Status
+    state: '{{ states.input_select.ironing_room_motion_status.state }}'
