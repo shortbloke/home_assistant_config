@@ -1264,3 +1264,52 @@
     target:
       entity_id: climate.downstairs_thermostat
   mode: single
+- id: '1766833081676'
+  alias: Owl Electricity Sensor Watchdog – Alert
+  description: Notify once if owl electricity sensor stops updating for 1 hour
+  triggers:
+  - entity_id: sensor.owl_electricity_power
+    attribute: timestamp
+    for:
+      hours: 1
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: input_boolean.owl_electricity_watchdog_alerted
+    state: 'off'
+  actions:
+  - data:
+      title: ⚠️ Electricity Sensor Stale
+      message: 'sensor.owl_electricity_power has not updated for over 1 hour. Last
+        timestamp value: {{ state_attr(''sensor.owl_electricity_power'', ''timestamp'')
+        }}
+
+        '
+    action: notify.martin
+  - target:
+      entity_id: input_boolean.owl_electricity_watchdog_alerted
+    action: input_boolean.turn_on
+  mode: single
+- id: '1766833113329'
+  alias: Owl Electricity Sensor Watchdog – Reset & Recovery
+  description: Notify when owl electricity sensor starts updating again
+  triggers:
+  - entity_id: sensor.owl_electricity_power
+    attribute: timestamp
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: input_boolean.owl_electricity_watchdog_alerted
+    state: 'on'
+  actions:
+  - data:
+      title: ✅ Electricity Sensor Recovered
+      message: 'sensor.owl_electricity_power has resumed reporting. New timestamp
+        value: {{ state_attr(''sensor.owl_electricity_power'', ''timestamp'') }}
+
+        '
+    action: notify.martin
+  - target:
+      entity_id: input_boolean.owl_electricity_watchdog_alerted
+    action: input_boolean.turn_off
+  mode: restart

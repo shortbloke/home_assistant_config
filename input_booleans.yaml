@@ -8,3 +8,7 @@ guest_mode:
 security_alarm:
   name: Sound whole house alarm
   icon: mdi:shield-home
+
+owl_electricity_watchdog_alerted:
+  name: Owl Electricity Watchdog Alerted
+  icon: mdi:alert
