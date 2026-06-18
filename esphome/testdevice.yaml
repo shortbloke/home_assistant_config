@@ -1,0 +1,72 @@
+esphome:
+  name: testdevice
+  friendly_name: TestDevice
+
+# esp32:
+#   board: esp32-c6-devkitc-1
+#   framework:
+#     type: esp-idf
+
+# # Enable logging
+# logger:
+
+# # Enable Home Assistant API
+# api:
+#   encryption:
+#     key: "L1bJX7BBP90nEgKa5/XGf1X9nWCn9faxOdLz7CFuWr4="
+
+# ota:
+#   - platform: esphome
+#     password: "85bb5d69bb040f6490335958eae13f8c"
+
+# wifi:
+#   ssid: !secret wifi_ssid
+#   password: !secret wifi_password
+
+#   # Enable fallback hotspot (captive portal) in case wifi connection fails
+#   ap:
+#     ssid: "Testdevice Fallback Hotspot"
+#     password: "3aBxP9GkpuUp"
+
+# captive_portal:
+    
+substitutions:
+  friendly_name: Tesla BLE
+  device_name: tesla-ble
+  device_description: Tesla BLE
+  ble_mac_address: !secret ble_mac_address
+  tesla_vin: !secret tesla_vin
+  charging_amps_max: "32"
+# The following shows the default board and variant settings. Uncomment and change them if they are not appropriate for your board:
+  board: "esp32-c6-devkitm-1"
+  variant: "ESP32C6"
+
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+packages:
+  base:  github://PedroKTFC/esphome-tesla-ble/packages/base.yml
+  common: github://PedroKTFC/esphome-tesla-ble/packages/common.yml
+  project: github://PedroKTFC/esphome-tesla-ble/packages/project.yml
+  client: github://PedroKTFC/esphome-tesla-ble/packages/client.yml
+  # listener: github://PedroKTFC/esphome-tesla-ble/packages/listener.yml # Uncomment this to scan find your VIN BLE MAC address
+
+# The following shows how to change the name of a sensor and how to change any of the parameters.
+# tesla_ble_vehicle: # THIS LINE MUST BE UNCOMMENTED IF ANY OF THE CHANGES BELOW ARE WANTED
+
+# You can change any sensor name in Home Assistant. However you can also change them here if it is more convenient for you.
+# For a list of all sensors etc, see the file client.yml in the packages directory.
+#  odometer: # miles by default, edit the entity in home assistant if you need km
+#    name: "Odometro" # Rename if desired
+# End of renaming
+
+# At the time of writing, these are set to the default values. If you require a different value, uncomment and edit the value
+#  update_interval: 10s # Base polling interval, used for VCSEC sensors
+#  post_wake_poll_time: 300 # How long to poll for data after car awakes at poll_data_period speed (s)
+#  poll_data_period: 60 # Polling interval after awakening during post_wake_poll_time interval (s)
+#  poll_charging_period: 10 # Period to poll for data when charging (s)
+#  poll_asleep_period: 60 # Period to poll for data when asleep (s)
+#  ble_disconnected_min_time: 300 # Minimum time BLE must be disconnected before sensors are Unknown (s)
+#  fast_poll_if_unlocked: 1 # if != 0, fast polls are enabled when unlocked
