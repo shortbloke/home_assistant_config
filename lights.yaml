@@ -15,7 +15,7 @@
 - platform: group
   name: Morgan's Lights
   entities:
-    - light.morgans_strip_lights
+    - light.morgan_s_strip_lights
     - light.lwrf_morgan_main
 - platform: group
   name: Fraser's Lights

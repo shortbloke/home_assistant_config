@@ -5,7 +5,7 @@ morgan_away:
   sequence:
   - action: light.turn_off
     target:
-      entity_id: light.morgans_lights
+      entity_id: light.morgan_s_lights
 fraser_away:
   alias: Fraser away
   description: Turn off Fraser's bedroom lights when Fraser leaves home.
@@ -22,7 +22,7 @@ everyone_away:
   - action: homeassistant.turn_off
     target:
       entity_id:
-      - light.morgans_lights
+      - light.morgan_s_lights
       - light.fraser_s_lights
       - group.conservatory_lights
       - group.dining_room_lights
