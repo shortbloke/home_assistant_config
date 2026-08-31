@@ -18,9 +18,7 @@ script:
             - media_player.move2
             - media_player.play_1
             - media_player.port_port
-            - media_player.unnamed_room_2
-            - media_player.unnamed_room_3
-            - media_player.unnamed_room_4
+            - media_player.living_room
       - action: media_player.unjoin
         target:
           entity_id: *sonos_players

@@ -5,13 +5,6 @@ alexa:
       include_domains:
         - light
         - scene
-      exclude_entities:
-      # Lights
-        # Unknown location
-        - light.12204702807d3a1b7075
-        - light.12204702807d3a252c69
-        # Outside Front
-        - light.driveway_light
       include_entities:
         - switch.lwrf_displaycabinetlight
         - switch.lwrf_livingroom_standard_lamp
@@ -23,12 +16,9 @@ alexa:
         - switch.lwrf_hall_socket_2
         - switch.lwrf_conservatory_1
         - switch.lwrf_conservatory_2
-        - media_player.frasertv
         - switch.christmas_tree
         - switch.christmas_tree_lights
     entity_config:
-      switch.sonoff_garage_light:
-        name: "Garage Light"
       scene.bright:
         name: "Mood bright"
         display_categories: SCENE_TRIGGER

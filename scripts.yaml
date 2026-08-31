@@ -13,7 +13,7 @@ fraser_away:
   sequence:
   - action: light.turn_off
     target:
-      entity_id: light.frasers_lights
+      entity_id: light.fraser_s_lights
 everyone_away:
   alias: Everyone away
   description: Turn off occupied-area lights when everyone leaves home.
@@ -23,7 +23,7 @@ everyone_away:
     target:
       entity_id:
       - light.morgans_lights
-      - light.frasers_lights
+      - light.fraser_s_lights
       - group.conservatory_lights
       - group.dining_room_lights
       - group.living_room_lights
