@@ -15,8 +15,10 @@ mqtt:
 sensor:
   - platform: history_stats
     name: PetDoor opened today count
+    unique_id: petdoor_opened_today_count
+    state_class: total_increasing
     entity_id: cover.petdoor
     type: count
     state: 'open'
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    start: "{{ today_at() }}"
     end: '{{ now() }}'

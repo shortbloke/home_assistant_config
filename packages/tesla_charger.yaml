@@ -8,17 +8,9 @@ input_select:
       - idle
       - charging
       - finished
-    initial: idle
     icon: mdi:car-electric
 
 template:
-- sensor:
-  - default_entity_id: sensor.tesla_charging_status
-    unique_id: tesla_charging_status
-    icon: mdi:car-electric
-    name: Tesla Charging Status
-    availability: "{{ has_value('input_select.tesla_charging_status') }}"
-    state: '{{ states(''input_select.tesla_charging_status'') }}'
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_charging_cost_today

@@ -509,6 +509,7 @@
   - trigger: state
     entity_id: person.morgan
     from: home
+    to: not_home
   conditions:
   - condition: state
     entity_id: input_boolean.guest_mode
@@ -525,6 +526,7 @@
   - trigger: state
     entity_id: person.morgan
     from: home
+    to: not_home
   conditions:
   - condition: and
     conditions:
@@ -556,6 +558,8 @@
     - person.fraser
     from:
     - home
+    to:
+    - not_home
     trigger: state
     for:
       hours: 0
@@ -639,10 +643,9 @@
     trigger: time
   conditions: []
   actions:
-  - device_id: caa90b0edf23497cb73f5e5362b092b1
-    domain: rfxtrx
-    type: send_command
-    subtype: 'Off'
+  - action: switch.turn_off
+    target:
+      entity_id: switch.lwrf_hall_socket_1
   mode: single
 - id: '1636214504954'
   alias: 'Action: Turn on outside socket'
@@ -652,10 +655,9 @@
     trigger: time
   conditions: []
   actions:
-  - device_id: caa90b0edf23497cb73f5e5362b092b1
-    domain: rfxtrx
-    type: send_command
-    subtype: 'On'
+  - action: switch.turn_on
+    target:
+      entity_id: switch.lwrf_hall_socket_1
   mode: single
 - id: '1675235683724'
   alias: Keep Hot Water above 30
@@ -686,17 +688,13 @@
   alias: Device offline watchdog
   description: ''
   triggers:
-  - device_id: 86cdb8ce35fb4cbe9a07a87523b5fc18
-    domain: zha
-    type: device_offline
-    subtype: device_offline
-    trigger: device
   - entity_id:
     - switch.ironing_room_left
     - switch.ironing_room_right
     - switch.ironing_room_ironing_table
     - switch.ironing_room_magpie
     - binary_sensor.motion_sensor_ironing_room
+    - binary_sensor.motion_sensor_garage
     to: unavailable
     for:
       hours: 0
