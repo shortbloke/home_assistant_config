@@ -95,15 +95,6 @@ template:
     default_entity_id: binary_sensor.family_bathroom_shower_active
     name: Familiy Bathroom Shower Active
     state: '{{ states(''sensor.family_bathroom_shower_energy_power'') | float(0) > 4 }}'
-# Sensor to detect if Fraser PC has been idle for over 5 mins
-- binary_sensor:
-  - default_entity_id: binary_sensor.tera_pc_idle
-    name: Frasers PC On but Idle
-    state: '{{as_timestamp(states.sensor.lastactive.last_changed) < as_timestamp(now()) - 300}}'
-- sensor:
-  - default_entity_id: sensor.tera_powered_on
-    name: PC Tera Powered On
-    state: '{{ not(is_state(''switch.shutdown'', ''unavailable'')) }}'
 - sensor:
   - default_entity_id: sensor.sun_template
     icon: '{% if is_state(''sun.sun'', ''above_horizon'') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'

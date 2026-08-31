@@ -416,8 +416,8 @@
   - action: notify.send_message
     target:
       entity_id:
-        - notify.martin_iphone_air
-        - notify.michelle_iphone_se
+      - notify.martin_iphone_air
+      - notify.michelle_iphone_se
     data:
       message: Finished!
       title: Dishwasher
@@ -649,8 +649,8 @@
   - action: notify.send_message
     target:
       entity_id:
-        - notify.martin_iphone_air
-        - notify.michelle_iphone_se
+      - notify.martin_iphone_air
+      - notify.michelle_iphone_se
     data:
       title: House Unoccupied - Left open
       message: '{%if is_state(''binary_sensor.lumi_lumi_frasers_window_right'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_frasers_window_right'',''friendly_name'')}}{%endif%}
@@ -668,38 +668,6 @@
         {%if is_state(''binary_sensor.lumi_lumi_sensor_backdoor'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_sensor_backdoor'',''friendly_name'')}}{%endif%}
 
         {%if is_state(''binary_sensor.lumi_lumi_morgans_window'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_morgans_window'',''friendly_name'')}}{%endif%}'
-  mode: single
-- id: '1621091408356'
-  alias: 'Action: Shutdown PC - Tera if Fraser not home for 5 mins'
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id: person.fraser
-    from: home
-    for: 0:05:00
-  conditions:
-  - condition: state
-    entity_id: sensor.tera_powered_on
-    state: 'True'
-  actions:
-  - action: notify.send_message
-    target:
-      entity_id: notify.martin_iphone_air
-    data:
-      message: Fraser no longer at home but PC On. Turn off?
-      title: PC Shutdown
-      data:
-        actions:
-        - action: FRASER_PC_SHUTDOWN
-          title: Shutdown Frasers PC?
-          activationMode: background
-          authenticationRequired: false
-          destructive: false
-          behavior: default
-  - type: toggle
-    device_id: 15f9831aec887ee4621e1c7124d77a47
-    entity_id: e95db23038c032115f4f94295c75bbd5
-    domain: switch
   mode: single
 - id: '1628523215496'
   alias: 'Notify: Shutdown Frasers PC'
@@ -766,26 +734,6 @@
     target:
       entity_id: switch.downstairs_thermostat_hot_water
   mode: single
-- id: '1697876540698'
-  alias: 'Action: Shutdown PC - Tera idle for over 2 hours'
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - binary_sensor.tera_pc_idle
-    to: 'on'
-    for:
-      hours: 2
-      minutes: 0
-      seconds: 0
-  conditions: []
-  actions:
-  - type: toggle
-    device_id: 15f9831aec887ee4621e1c7124d77a47
-    entity_id: e95db23038c032115f4f94295c75bbd5
-    domain: switch
-    enabled: true
-  mode: single
 - id: '1712419138586'
   alias: Device offline watchdog
   description: ''
@@ -819,14 +767,11 @@
   actions:
   - data:
       title: Watchdog
-      message: >
-        {% if trigger.to_state is defined and trigger.to_state is not none %}
-          Device {{ trigger.to_state.name }} is {{ trigger.to_state.state }}
-        {% elif trigger.device_id is defined %}
-          Device {{ device_attr(trigger.device_id, 'name') or trigger.device_id }} is offline
-        {% else %}
-          A monitored device is offline
-        {% endif %}
+      message: "{% if trigger.to_state is defined and trigger.to_state is not none
+        %}\n  Device {{ trigger.to_state.name }} is {{ trigger.to_state.state }}\n{%
+        elif trigger.device_id is defined %}\n  Device {{ device_attr(trigger.device_id,
+        'name') or trigger.device_id }} is offline\n{% else %}\n  A monitored device
+        is offline\n{% endif %}\n"
     action: notify.send_message
     target:
       entity_id: notify.martin_iphone_air
@@ -1065,8 +1010,8 @@
   - action: notify.send_message
     target:
       entity_id:
-        - notify.martin_iphone_air
-        - notify.michelle_iphone_se
+      - notify.martin_iphone_air
+      - notify.michelle_iphone_se
     metadata: {}
     data:
       message: Water detected under Kitchen sink
