@@ -46,7 +46,7 @@ template:
           {{ (
             states('sensor.electricity_unit_price') | float(0) *
             states('sensor.loft_ups_today_s_consumption') | float(0)
-          ) | round(2) }}
+          ) | round(4) }}
 
       - name: "Loft Non-UPS Feed Cost Today"
         unique_id: loft2_total_power_cost_today
@@ -61,7 +61,7 @@ template:
           {{ (
             states('sensor.electricity_unit_price') | float(0) *
             states('sensor.loft2_today_s_consumption') | float(0)
-          ) | round(2) }}
+          ) | round(4) }}
 
       - name: "Power Cost Today - Loft"
         unique_id: loft_total_power_cost_today
@@ -76,7 +76,7 @@ template:
           {{ (
             states('sensor.electricity_unit_price') | float(0) *
             states('sensor.loft_total_power_today') | float(0)
-          ) | round(2) }}
+          ) | round(4) }}
 
       - name: "Power Now - Conservatory"
         unique_id: conservatory_total_power_now
@@ -141,4 +141,4 @@ template:
           {{ (
             states('sensor.electricity_unit_price') | float(0) *
             states('sensor.conservatory_total_power_today') | float(0)
-          ) | round(2) }}
+          ) | round(4) }}

@@ -76,7 +76,7 @@ template:
       {{ (
         states('sensor.electricity_unit_price') | float(0) *
         states('sensor.ironing_room_total_power_today') | float(0)
-      ) | round(2) }}
+      ) | round(4) }}
 - sensor:
   - default_entity_id: sensor.ironing_room_motion_status
     unique_id: ironing_room_motion_status

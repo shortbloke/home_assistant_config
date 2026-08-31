@@ -2,28 +2,28 @@ input_number:
   energy_gas_unit:
     name: Gas unit price (p/kWh)
     min: 0
-    max: 999999
+    max: 500
     step: 0.0001
     unit_of_measurement: p/kWh
     mode: box
   energy_gas_standing:
     name: Gas daily standing charge
     min: 0
-    max: 999999
+    max: 1000
     step: 0.001
     unit_of_measurement: p/day
     mode: box
   energy_elec_unit:
     name: Electricity unit price (p/kWh)
     min: 0
-    max: 999999
+    max: 500
     step: 0.0001
     unit_of_measurement: p/kWh
     mode: box
   energy_elec_standing:
     name: Electricity daily standing charge
     min: 0
-    max: 999999
+    max: 1000
     step: 0.001
     unit_of_measurement: p/day
     mode: box
@@ -40,3 +40,20 @@ template:
           {{ (
             states('input_number.energy_elec_unit') | float(0) / 100
           ) | round(6) }}
+
+      - name: Electricity Cost Today
+        default_entity_id: sensor.electricity_cost_today
+        unique_id: electricity_cost_today
+        unit_of_measurement: GBP
+        device_class: monetary
+        state_class: total
+        availability: >
+          {{ has_value('sensor.owl_energy_today') and
+             has_value('sensor.electricity_unit_price') and
+             has_value('input_number.energy_elec_standing') }}
+        state: >
+          {{ (
+            states('sensor.owl_energy_today') | float(0) *
+            states('sensor.electricity_unit_price') | float(0) +
+            states('input_number.energy_elec_standing') | float(0) / 100
+          ) | round(4) }}

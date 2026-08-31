@@ -34,7 +34,7 @@ template:
       {{ (
         states('sensor.electricity_unit_price') | float(0) *
         states('sensor.tesla_charger_today_s_consumption') | float(0)
-      ) | round(2) }}
+      ) | round(4) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_charging_cost_this_month
@@ -50,4 +50,4 @@ template:
       {{ (
         states('sensor.electricity_unit_price') | float(0) *
         states('sensor.tesla_charger_this_month_s_consumption') | float(0)
-      ) | round(2) }}
+      ) | round(4) }}
