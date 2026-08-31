@@ -94,9 +94,9 @@
   alias: 'Schedule: Turn on in the morning and sunset'
   description: ''
   triggers:
-  - platform: time
+  - trigger: time
     at: 06:30:00
-  - platform: sun
+  - trigger: sun
     event: sunset
     offset: -01:00:00
   conditions: []
@@ -110,7 +110,7 @@
   alias: 'Action: Turn off twig lights after sunrise'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sun.sun
     attribute: elevation
     above: '10'
@@ -125,7 +125,7 @@
   alias: 'Action & Alert: Frasers TV tuned on after curfew'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: binary_sensor.frasers_tv
     to: 'on'
     for: 00:06:00
@@ -153,7 +153,7 @@
   alias: 'Notify: Late TV message (TTS)'
   description: ''
   triggers:
-  - platform: event
+  - trigger: event
     event_data:
       action: PLAY_LATE_TV_MESSAGE
     event_type: mobile_app_notification_action
@@ -170,7 +170,7 @@
   alias: 'Action & Alert: Turn off power to Frasers TV if on 30mins after curfew'
   description: ''
   triggers:
-  - platform: time
+  - trigger: time
     at: '23:30'
   conditions:
   - condition: state
@@ -196,7 +196,7 @@
   alias: 'Schedule: Restore power to Frasers TV'
   description: ''
   triggers:
-  - platform: time
+  - trigger: time
     at: 07:00:00
   conditions: []
   actions:
@@ -208,7 +208,7 @@
   alias: 'Alert: HASS Low Disk Space'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.disk_use_percent
     above: '90'
   conditions: []
@@ -222,7 +222,7 @@
   alias: 'Alert: HASS Low Memory'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.memory_use_percent
     above: '90'
   conditions: []
@@ -236,7 +236,7 @@
   alias: 'Alert: HASS High Load'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.load_5m
     above: '2.8'
   conditions: []
@@ -250,7 +250,7 @@
   alias: 'State Change: Set washing machine active when power detected'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.washing_machine_current_consumption
     above: '5'
   conditions:
@@ -273,7 +273,7 @@
   alias: 'State Change: Set washing machine to finished when power drops'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.washing_machine_current_consumption
     below: '5'
     for: 00:02:00
@@ -306,7 +306,7 @@
   alias: 'State Change: Set dryer active when power detected'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.tumble_dryer_current_consumption
     above: '800'
   conditions:
@@ -329,7 +329,7 @@
   alias: 'State Change: Set dryer to finished when power drops'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.tumble_dryer_current_consumption
     below: '100'
     for: 00:03:00
@@ -362,7 +362,7 @@
   alias: 'State Change: Set dishwasher active when power detected'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.dishwasher_current_consumption
     above: '100'
   conditions:
@@ -385,7 +385,7 @@
   alias: 'State Change: Set dishwasher to finished when power drops'
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id: sensor.dishwasher_current_consumption
     below: '1'
     for: 00:02:00
@@ -418,7 +418,7 @@
   alias: Ironing room motion detected
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: binary_sensor.motion_sensor_ironing_room
     to: 'on'
   conditions: []
@@ -433,7 +433,7 @@
   alias: Set ironing room to idle after 30mins of no motion
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id:
     - binary_sensor.motion_sensor_ironing_room
     to: 'off'
@@ -453,7 +453,7 @@
   alias: Turn off ironing table - no motion
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id:
     - sensor.ironing_room_ironing_table_current_consumption
     for:
@@ -480,7 +480,7 @@
   alias: 'State Change: House occupied'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: group.anyone_home
     to: home
   conditions:
@@ -498,7 +498,7 @@
   alias: 'State Change: House unoccupied'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: group.anyone_home
     from: home
   conditions:
@@ -519,7 +519,7 @@
   alias: 'State Change: Morgan presence changed from home'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: person.morgan
     from: home
   conditions:
@@ -535,7 +535,7 @@
   alias: 'Alert: Morgan away window open'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: person.morgan
     from: home
   conditions:
@@ -583,7 +583,7 @@
   alias: 'Alert: House unoccupied things left open'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: group.anyone_home
     from: home
   conditions:
@@ -639,7 +639,7 @@
   alias: 'Action: Shutdown PC - Tera if Fraser not home for 5 mins'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: person.fraser
     from: home
     for: 0:05:00
@@ -669,7 +669,7 @@
   alias: 'Notify: Shutdown Frasers PC'
   description: ''
   triggers:
-  - platform: event
+  - trigger: event
     event_data:
       action: FRASER_PC_SHUTDOWN
     event_type: mobile_app_notification_action
@@ -709,7 +709,7 @@
   alias: Keep Hot Water above 30
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id:
     - sensor.garage_monitor_water_temperature
   conditions:
@@ -734,7 +734,7 @@
   alias: 'Action: Shutdown PC - Tera idle for over 2 hours'
   description: ''
   triggers:
-  - platform: state
+  - trigger: state
     entity_id:
     - binary_sensor.tera_pc_idle
     to: 'on'
@@ -790,7 +790,7 @@
   alias: Turn off magpie iron - no motion
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id:
     - sensor.ironing_room_magpie_current_consumption
     for:
@@ -817,7 +817,7 @@
   alias: Turn off irons left - no motion
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id:
     - sensor.ironing_room_left_current_consumption
     for:
@@ -844,7 +844,7 @@
   alias: Turn off irons right - no motion
   description: ''
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id:
     - sensor.ironing_room_right_current_consumption
     for:
@@ -892,7 +892,7 @@
   alias: Turn on 3D Printer Light
   description: Turns on 3D Printer light when 3D printer is turned on
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id:
     - sensor.3d_printer_current_consumption
     for:
@@ -912,7 +912,7 @@
   alias: Turn off 3D Printer light
   description: Turns off 3D Printer light when 3D printer is turned off
   triggers:
-  - platform: numeric_state
+  - trigger: numeric_state
     entity_id:
     - sensor.3d_printer_current_consumption
     for:
