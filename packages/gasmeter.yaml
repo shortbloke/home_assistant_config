@@ -246,7 +246,7 @@ template:
       {{ ((
         states('sensor.utility_meter_gas_monthly') | float(0)
         * states('input_number.energy_gas_unit') | float(0)
-        + states('input_number.energy_gas_standing') | float(0) * 28
+        + states('input_number.energy_gas_standing') | float(0) * now().day
       ) / 100) | round(2) }}
     name: gas_price_month
 - sensor:
@@ -263,7 +263,8 @@ template:
       {{ ((
         state_attr('sensor.utility_meter_gas_monthly', 'last_period') | float(0)
         * states('input_number.energy_gas_unit') | float(0)
-        + states('input_number.energy_gas_standing') | float(0) * 28
+        + states('input_number.energy_gas_standing') | float(0)
+          * (now().replace(day=1) - timedelta(days=1)).day
       ) / 100) | round(2) }}
     name: gas_price_month_last
 - sensor:

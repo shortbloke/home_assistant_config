@@ -1,6 +1,8 @@
 script:
   burglar_alarm:
     alias: Burglar Alarm Siren
+    description: Sound all configured Sonos and Ring sirens for 30 seconds.
+    mode: single
     sequence:
       - action: sonos.snapshot
         target:

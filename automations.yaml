@@ -1179,14 +1179,17 @@
       hours: 0
       minutes: 1
       seconds: 0
-  conditions: []
+  conditions:
+  - condition: template
+    value_template: >
+      {{ state_attr('climate.downstairs_thermostat', 'temperature') is number }}
   actions:
   - action: input_number.set_value
     target:
       entity_id: input_number.thermostat_stored_temp
     data:
       value: '{{ state_attr(''climate.downstairs_thermostat'', ''temperature'') |
-        float }}
+        float(15) }}
 
         '
   - action: climate.set_temperature
@@ -1261,7 +1264,7 @@
     target:
       entity_id: climate.downstairs_thermostat
     data:
-      temperature: '{{ states(''input_number.thermostat_stored_temp'') | float }}
+      temperature: '{{ states(''input_number.thermostat_stored_temp'') | float(15) }}
 
         '
   mode: single

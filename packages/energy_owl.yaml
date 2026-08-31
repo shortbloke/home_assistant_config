@@ -37,7 +37,7 @@ template:
         unique_id: owl_energy_today
         default_entity_id: sensor.owl_energy_today
         unit_of_measurement: "kWh"
-        state_class: total_increasing
+        state_class: total
         device_class: energy
         availability: >
           {{ has_value('sensor.owl_electricity_today') and

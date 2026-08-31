@@ -24,10 +24,6 @@ living_room_lamps:
     - switch.lwrf_livingroom_standard_lamp
     - switch.lwrf_displaycabinetlight
     - switch.sonoff_wax_burner
-kitchen_lights:
-  name: Kitchen Lights
-  entities:
-    # - No entities yet 
 conservatory_lights:
   name: Conservatory Lights
   entities:

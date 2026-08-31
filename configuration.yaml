@@ -32,14 +32,12 @@ history:
 # https://www.home-assistant.io/components/logbook/
 logbook:
   include:
-    domains: 
+    domains:
       - automation
       - script
-    entities:
-      - binary_sensor.northway_away
 # https://www.home-assistant.io/components/logger/
 logger:
-  default: error
+  default: warning
   # logs:
     # homeassistant.core: debug
     # homeassistant.components.recorder.core: debug
@@ -87,16 +85,19 @@ template:
   - delay_on: 0:00:20
     delay_off: 0:00:20
     default_entity_id: binary_sensor.ensuite_shower_active
+    unique_id: ensuite_shower_active
     name: Ensuite Shower Active
     state: '{{ states(''sensor.ensuite_shower_energy_power'') | float(0) > 4 }}'
 - binary_sensor:
   - delay_on: 0:00:20
     delay_off: 0:00:20
     default_entity_id: binary_sensor.family_bathroom_shower_active
+    unique_id: family_bathroom_shower_active
     name: Family Bathroom Shower Active
     state: '{{ states(''sensor.family_bathroom_shower_energy_power'') | float(0) > 4 }}'
 - sensor:
   - default_entity_id: sensor.sun_template
+    unique_id: sun_template
     icon: '{% if is_state(''sun.sun'', ''above_horizon'') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
     name: Sun
     state: '{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom(''%H:%M'', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom(''%H:%M'', True) }}'

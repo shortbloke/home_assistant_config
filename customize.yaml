@@ -1,9 +1,5 @@
 zone.home:
   radius: 25
-sensor.washing_machine_power:
-  icon: mdi:flash
-sensor.washing_machine_power_today:
-  icon: mdi:counter
 sensor.washing_machine_status:
   icon: mdi:state-machine
 sensor.kitchen_total_power_now:
@@ -12,34 +8,16 @@ sensor.kitchen_total_power_today:
   icon: mdi:counter
 sensor.kitchen_total_power_cost_today:
   icon: mdi:currency-gbp
-sensor.tumble_dryer_power:
-  icon: mdi:flash
-sensor.tumble_dryer_power_today:
-  icon: mdi:counter
 sensor.dryer_status:
   icon: mdi:state-machine
 sensor.dishwasher_status:
   icon: mdi:state-machine
-sensor.dishwasher_power:
-  icon: mdi:counter
-sensor.dishwasher_power_today:
-  icon: mdi:counter
 sensor.ironing_room_motion_status:
   icon: mdi:motion-sensor
 sensor.ironing_room_total_power_today:
   icon: mdi:counter
 sensor.ironing_room_power_cost_today:
   icon: mdi:currency-gbp
-binary_sensor.lumi_lumi_sensor_magnet_aq2_5b337502_on_off:
-  friendly_name: Front Door
-  icon: mdi:door
-sensor.lumi_lumi_sensor_magnet_aq2_5b337502_power:
-  friendly_name: Front Door - Battery
-binary_sensor.lumi_lumi_sensor_magnet_aq2_643f6703_on_off:
-  friendly_name: Back Door
-  icon: mdi:door
-sensor.lumi_lumi_sensor_magnet_aq2_643f6703_power:
-  friendly_name: Back Door - Battery
 binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off:
   friendly_name: Garage Interior Door
   icon: mdi:door
@@ -48,11 +26,6 @@ sensor.lumi_lumi_sensor_magnet_aq2_bc705302_power:
 binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off:
   friendly_name: Ironing Room - Window
   icon: mdi:window-open
-binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off:
-  icon: mdi:window-open
-  friendly_name: Morgan - Window
-sensor.lumi_lumi_sensor_magnet_993d0303_power:
-  friendly_name: Morgan - Windows - Battery
 binary_sensor.motion_sensor_garage:
   icon: mdi:motion-sensor
 binary_sensor.motion_sensor_ironing_room:
@@ -74,7 +47,3 @@ light.conservatory_left:
 light.conservatory_right:
   friendly_name: "Conservatory Ceiling Right"
   icon: mdi:led-strip-variant
-sensor.external_ip:
-  icon: mdi:ip-network-outline
-  show_last_changed: true
-  

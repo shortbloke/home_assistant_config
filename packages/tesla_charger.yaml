@@ -27,7 +27,7 @@ template:
       ) | round(2) }}
 - sensor:
   - unit_of_measurement: GBP
-    default_entity_id: sensor.tesla_changing_cost_this_month
+    default_entity_id: sensor.tesla_charging_cost_this_month
     unique_id: tesla_changing_cost_this_month
     device_class: monetary
     state_class: total

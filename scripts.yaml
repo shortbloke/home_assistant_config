@@ -1,27 +1,37 @@
 morgan_away:
   alias: Morgan away
+  description: Turn off Morgan's bedroom lights when Morgan leaves home.
+  mode: single
   sequence:
-  - action: homeassistant.turn_off
-    entity_id:
-    - light.morgans_lights
+  - action: light.turn_off
+    target:
+      entity_id: light.morgans_lights
 fraser_away:
   alias: Fraser away
+  description: Turn off Fraser's bedroom lights when Fraser leaves home.
+  mode: single
   sequence:
-  - action: homeassistant.turn_off
-    entity_id:
-    - light.frasers_lights
+  - action: light.turn_off
+    target:
+      entity_id: light.frasers_lights
 everyone_away:
-  alias: everyone_away
+  alias: Everyone away
+  description: Turn off occupied-area lights when everyone leaves home.
+  mode: single
   sequence:
   - action: homeassistant.turn_off
-    entity_id:
-    - script.morgan_away
-    - script.fraser_away
-    - group.conservatory_lights
-    - group.dining_room_lights
-    - group.living_room_lights
+    target:
+      entity_id:
+      - light.morgans_lights
+      - light.frasers_lights
+      - group.conservatory_lights
+      - group.dining_room_lights
+      - group.living_room_lights
 sonos_say:
   alias: Sonos TTS script
+  description: Announce a supplied message on a Sonos entity and restore playback afterwards.
+  mode: queued
+  max: 10
   sequence:
   - action: sonos.snapshot
     data:
