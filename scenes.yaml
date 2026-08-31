@@ -11,7 +11,7 @@
       friendly_name: Downlights
       supported_features: 0
       state: 'on'
-    switch.lwrf_waxburner:
+    switch.sonoff_wax_burner:
       assumed_state: true
       icon: mdi:radiator
       friendly_name: Wax Burner

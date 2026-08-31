@@ -7,7 +7,7 @@ living_room_lights:
     - light.lwrf_diningroom_main
     - switch.lwrf_livingroom_standard_lamp
     - switch.lwrf_displaycabinetlight
-    - switch.lwrf_waxburner
+    - switch.sonoff_wax_burner
 dining_room_lights:
   name: Dining Room Lights
   entities:
@@ -23,7 +23,7 @@ living_room_lamps:
   entities:
     - switch.lwrf_livingroom_standard_lamp
     - switch.lwrf_displaycabinetlight
-    - switch.lwrf_waxburner
+    - switch.sonoff_wax_burner
 kitchen_lights:
   name: Kitchen Lights
   entities:
