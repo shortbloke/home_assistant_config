@@ -1,88 +1,43 @@
-##################################################
-## Scripts
-##################################################
-
-# Occupancy
 morgan_away:
   alias: Morgan away
   sequence:
-    - action: homeassistant.turn_off
-      entity_id:
-        - light.morgans_lights
-
+  - action: homeassistant.turn_off
+    entity_id:
+    - light.morgans_lights
 fraser_away:
   alias: Fraser away
   sequence:
-    - action: homeassistant.turn_off
-      entity_id:
-        - light.frasers_lights
-
+  - action: homeassistant.turn_off
+    entity_id:
+    - light.frasers_lights
 everyone_away:
   alias: everyone_away
   sequence:
-    - action: homeassistant.turn_off
-      entity_id:
-        - script.morgan_away
-        - script.fraser_away
-        - group.conservatory_lights
-        - group.dining_room_lights
-        - group.living_room_lights
-
-# Sonos
+  - action: homeassistant.turn_off
+    entity_id:
+    - script.morgan_away
+    - script.fraser_away
+    - group.conservatory_lights
+    - group.dining_room_lights
+    - group.living_room_lights
 sonos_say:
-  # Source: https://home-assistant.io/cookbook/sonos_say/
   alias: Sonos TTS script
   sequence:
-    - action: sonos.snapshot
-      data:
-        entity_id: "{{ sonos_entity }}"
-    - action: media_player.unjoin
-      data:
-        entity_id: "{{ sonos_entity }}"
-    - action: media_player.volume_set
-      data:
-        entity_id: "{{ sonos_entity }}"
-        volume_level: "{{ volume }}"
-    - action: tts.google_translate_say
-      data:
-        entity_id: "{{ sonos_entity }}"
-        message: "{{ message }}"
-    - delay: "{{ delay }}"
-    - action: sonos.restore
-      data:
-        entity_id: "{{ sonos_entity }}"
-
-burglar_alarm:
-  alias: Burglar Alarm Siren
-  sequence:
-    - action: sonos.snapshot
-      target:
-        entity_id: all
-    - action: media_player.unjoin
-      target:
-        entity_id: all
-    - action: media_player.volume_mute
-      data:
-        entity_id: all
-        is_volume_muted: false
-    - action: media_player.volume_set
-      data:
-        entity_id: all
-        volume_level: 1  # Max volume
-    - action: media_player.play_media
-      data:
-        entity_id: all
-        media_content_id: !secret siren_wav_url
-        media_content_type: "music"
-    - action: switch.turn_on  # Turns on Ring sirens (stops automatically after 30 seconds)
-      target:
-        entity_id:
-          - switch.cat_feeding_siren
-          - switch.conservatory_siren
-          - switch.front_siren
-          - switch.hallway_siren
-          - switch.kitchen_siren
-    - delay: '00:00:30'  # Sound siren for 30 seconds
-    - action: sonos.restore
-      target:
-        entity_id: all
+  - action: sonos.snapshot
+    data:
+      entity_id: '{{ sonos_entity }}'
+  - action: media_player.unjoin
+    data:
+      entity_id: '{{ sonos_entity }}'
+  - action: media_player.volume_set
+    data:
+      entity_id: '{{ sonos_entity }}'
+      volume_level: '{{ volume }}'
+  - action: tts.google_translate_say
+    data:
+      entity_id: '{{ sonos_entity }}'
+      message: '{{ message }}'
+  - delay: '{{ delay }}'
+  - action: sonos.restore
+    data:
+      entity_id: '{{ sonos_entity }}'

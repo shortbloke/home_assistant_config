@@ -1,0 +1,35 @@
+script:
+  burglar_alarm:
+    alias: Burglar Alarm Siren
+    sequence:
+      - action: sonos.snapshot
+        target:
+          entity_id: all
+      - action: media_player.unjoin
+        target:
+          entity_id: all
+      - action: media_player.volume_mute
+        data:
+          entity_id: all
+          is_volume_muted: false
+      - action: media_player.volume_set
+        data:
+          entity_id: all
+          volume_level: 1  # Max volume
+      - action: media_player.play_media
+        data:
+          entity_id: all
+          media_content_id: !secret siren_wav_url
+          media_content_type: music
+      - action: switch.turn_on  # Ring sirens stop automatically after 30 seconds
+        target:
+          entity_id:
+            - switch.cat_feeding_siren
+            - switch.conservatory_siren
+            - switch.front_siren
+            - switch.hallway_siren
+            - switch.kitchen_siren
+      - delay: "00:00:30"
+      - action: sonos.restore
+        target:
+          entity_id: all
