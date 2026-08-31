@@ -6,6 +6,8 @@ template:
   - unit_of_measurement: W
     default_entity_id: sensor.ironing_room_total_power_now
     unique_id: ironing_room_total_power_now
+    device_class: power
+    state_class: measurement
     name: Power Now - Ironing Room
     availability: >
       {{ has_value('sensor.ironing_room_left_current_consumption') and
@@ -20,6 +22,8 @@ template:
   - unit_of_measurement: kWh
     default_entity_id: sensor.ironing_room_total_power_today
     unique_id: ironing_room_total_power_today
+    device_class: energy
+    state_class: total_increasing
     name: Power Today - Ironing Room
     availability: >
       {{ has_value('sensor.ironing_room_left_today_s_consumption') and
@@ -34,6 +38,8 @@ template:
   - unit_of_measurement: GBP
     default_entity_id: sensor.ironing_room_power_cost_today
     unique_id: ironing_room_power_cost_today
+    device_class: monetary
+    state_class: total
     name: Power Cost Today - Ironing Room
     availability: >
       {{ has_value('input_number.energy_elec_unit') and

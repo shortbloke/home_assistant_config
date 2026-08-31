@@ -7,6 +7,8 @@ template:
         unique_id: loft_total_power_now
         default_entity_id: sensor.loft_total_power_now
         unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
         availability: >
           {{ has_value('sensor.loft_ups_current_consumption') and
              has_value('sensor.loft2_current_consumption') }}
@@ -20,6 +22,8 @@ template:
         unique_id: loft_total_power_today
         default_entity_id: sensor.loft_total_power_today
         unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
         availability: >
           {{ has_value('sensor.loft_ups_today_s_consumption') and
              has_value('sensor.loft2_today_s_consumption') }}
@@ -33,6 +37,8 @@ template:
         unique_id: loft_ups_total_power_cost_today
         default_entity_id: sensor.loft_ups_total_power_cost_today
         unit_of_measurement: "GBP"
+        device_class: monetary
+        state_class: total
         availability: >
           {{ has_value('input_number.energy_elec_unit') and
              has_value('sensor.loft_ups_today_s_consumption') }}
@@ -46,6 +52,8 @@ template:
         unique_id: loft2_total_power_cost_today
         default_entity_id: sensor.loft2_total_power_cost_today
         unit_of_measurement: "GBP"
+        device_class: monetary
+        state_class: total
         availability: >
           {{ has_value('input_number.energy_elec_unit') and
              has_value('sensor.loft2_today_s_consumption') }}
@@ -59,6 +67,8 @@ template:
         unique_id: loft_total_power_cost_today
         default_entity_id: sensor.loft_total_power_cost_today
         unit_of_measurement: "GBP"
+        device_class: monetary
+        state_class: total
         availability: >
           {{ has_value('input_number.energy_elec_unit') and
              has_value('sensor.loft_total_power_today') }}
@@ -72,6 +82,8 @@ template:
         unique_id: conservatory_total_power_now
         default_entity_id: sensor.conservatory_total_power_now
         unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
         availability: >
           {{ has_value('sensor.conservatory_left_current_consumption') and
              has_value('sensor.c_desk_right_current_consumption') and
@@ -95,6 +107,8 @@ template:
         unique_id: conservatory_total_power_today
         default_entity_id: sensor.conservatory_total_power_today
         unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
         availability: >
           {{ has_value('sensor.conservatory_left_today_s_consumption') and
              has_value('sensor.c_desk_right_today_s_consumption') and
@@ -118,6 +132,8 @@ template:
         unique_id: conservatory_total_power_cost_today
         default_entity_id: sensor.conservatory_total_power_cost_today
         unit_of_measurement: "GBP"
+        device_class: monetary
+        state_class: total
         availability: >
           {{ has_value('input_number.energy_elec_unit') and
              has_value('sensor.conservatory_total_power_today') }}

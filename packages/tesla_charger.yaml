@@ -13,6 +13,8 @@ template:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_charging_cost_today
     unique_id: tesla_charging_cost_today
+    device_class: monetary
+    state_class: total
     icon: mdi:currency-gbp
     name: Tesla Charging Cost Today
     availability: >
@@ -24,6 +26,8 @@ template:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_changing_cost_this_month
     unique_id: tesla_changing_cost_this_month
+    device_class: monetary
+    state_class: total
     icon: mdi:currency-gbp
     name: Tesla Charging Cost This Month
     availability: >
