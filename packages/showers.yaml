@@ -5,6 +5,7 @@ template:
         default_entity_id: binary_sensor.ensuite_shower_active
         unique_id: ensuite_shower_active
         name: Ensuite Shower Active
+        availability: "{{ has_value('sensor.ensuite_shower_energy_power') }}"
         state: "{{ states('sensor.ensuite_shower_energy_power') | float(0) > 4 }}"
   - binary_sensor:
       - delay_on: 0:00:20
@@ -12,6 +13,7 @@ template:
         default_entity_id: binary_sensor.family_bathroom_shower_active
         unique_id: family_bathroom_shower_active
         name: Family Bathroom Shower Active
+        availability: "{{ has_value('sensor.family_bathroom_shower_energy_power') }}"
         state: "{{ states('sensor.family_bathroom_shower_energy_power') | float(0) > 4 }}"
 
 sensor:
@@ -50,7 +52,7 @@ homeassistant:
       icon: mdi:counter
     sensor.family_bathroom_shower_uses_today:
       icon: mdi:counter
-    sensor.ensuite_shower_minutes:
+    sensor.ensuite_shower_time_today:
       icon: mdi:clock-outline
-    sensor.family_bathroom_shower_minutes:
+    sensor.family_bathroom_shower_time_today:
       icon: mdi:clock-outline

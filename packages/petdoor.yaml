@@ -1,14 +1,16 @@
 ##################################################
 ## Components/Sensors
 ##################################################
-mqtt: 
-  cover:
-    name: "PetDoor"
-    command_topic: "homeassistant/cover/petdoor/set"
-    state_topic: "homeassistant/cover/petdoor/state"
-    availability:
-      - topic: "homeassistant/cover/petdoor/availability"
-    retain: false
+mqtt:
+  - cover:
+      name: PetDoor
+      default_entity_id: cover.petdoor
+      unique_id: petdoor
+      command_topic: "homeassistant/cover/petdoor/set"
+      state_topic: "homeassistant/cover/petdoor/state"
+      availability:
+        - topic: "homeassistant/cover/petdoor/availability"
+      retain: false
 
 sensor:
   - platform: history_stats

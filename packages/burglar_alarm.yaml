@@ -11,21 +11,33 @@ script:
     sequence:
       - action: sonos.snapshot
         target:
-          entity_id: all
+          entity_id: &sonos_players
+            - media_player.bathroom
+            - media_player.kitchen
+            - media_player.master_bedroom
+            - media_player.move2
+            - media_player.play_1
+            - media_player.port_port
+            - media_player.unnamed_room_2
+            - media_player.unnamed_room_3
+            - media_player.unnamed_room_4
       - action: media_player.unjoin
         target:
-          entity_id: all
+          entity_id: *sonos_players
       - action: media_player.volume_mute
+        target:
+          entity_id: *sonos_players
         data:
-          entity_id: all
           is_volume_muted: false
       - action: media_player.volume_set
+        target:
+          entity_id: *sonos_players
         data:
-          entity_id: all
           volume_level: 1  # Max volume
       - action: media_player.play_media
+        target:
+          entity_id: *sonos_players
         data:
-          entity_id: all
           media_content_id: !secret siren_wav_url
           media_content_type: music
       - action: switch.turn_on  # Ring sirens stop automatically after 30 seconds
@@ -35,8 +47,8 @@ script:
             - switch.conservatory_siren
             - switch.front_siren
             - switch.hallway_siren
-            - switch.kitchen_siren
+            - switch.kitchen_siren_2
       - delay: "00:00:30"
       - action: sonos.restore
         target:
-          entity_id: all
+          entity_id: *sonos_players

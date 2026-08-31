@@ -57,4 +57,11 @@ template:
     unique_id: sun_template
     icon: '{% if is_state(''sun.sun'', ''above_horizon'') %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
     name: Sun
-    state: '{{ as_timestamp(states.sun.sun.attributes.next_rising) |  timestamp_custom(''%H:%M'', True) }} • {{ as_timestamp(states.sun.sun.attributes.next_setting) |  timestamp_custom(''%H:%M'', True) }}'
+    availability: >
+      {{ state_attr('sun.sun', 'next_rising') is not none and
+         state_attr('sun.sun', 'next_setting') is not none }}
+    state: >
+      {{ as_timestamp(state_attr('sun.sun', 'next_rising'))
+         | timestamp_custom('%H:%M', true) }} •
+      {{ as_timestamp(state_attr('sun.sun', 'next_setting'))
+         | timestamp_custom('%H:%M', true) }}
