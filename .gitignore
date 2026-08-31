@@ -43,6 +43,7 @@ deps
 .storage/*
 emulated_hue_ids.json
 node-red/*
+.ha_run.lock
 
 *.pickle
 
@@ -67,3 +68,9 @@ sonoff-config-backup
 
 # Ignore homebridge folder
 homebridge
+
+# Ignore cache
+.cache
+
+# Ignore esphome
+esphome/*

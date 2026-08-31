@@ -476,40 +476,6 @@
     target:
       device_id: 14afeceb9ed9aa8dcba55863c159ee66
   mode: single
-- id: '1615656237892'
-  alias: 'State Change: Door Open - Turn on heating eco mode'
-  description: ''
-  triggers:
-  - entity_id:
-    - binary_sensor.lumi_lumi_sensor_backdoor
-    to: 'on'
-    for:
-      hours: 0
-      minutes: 2
-      seconds: 0
-    trigger: state
-  conditions: []
-  actions:
-  - type: turn_on
-    device_id: cb39ce88b9c64146eb49e0f878612b5b
-    entity_id: 39a4ee7ea774d541089cca677b5327b5
-    domain: switch
-  mode: single
-- id: '1615656264115'
-  alias: 'State Change: Door Closed - Turn off heating eco mode'
-  description: ''
-  triggers:
-  - entity_id:
-    - binary_sensor.lumi_lumi_sensor_backdoor
-    to: 'off'
-    trigger: state
-  conditions: []
-  actions:
-  - type: turn_off
-    device_id: cb39ce88b9c64146eb49e0f878612b5b
-    entity_id: 39a4ee7ea774d541089cca677b5327b5
-    domain: switch
-  mode: single
 - id: '1615662841415'
   alias: 'State Change: House occupied'
   description: ''
@@ -594,18 +560,24 @@
 - id: '1615663191504'
   alias: 'State Change: Fraser presence changed from home'
   description: ''
-  trigger:
-  - platform: state
-    entity_id: person.fraser
-    from: home
-  condition:
+  triggers:
+  - entity_id:
+    - person.fraser
+    from:
+    - home
+    trigger: state
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  conditions:
   - condition: state
     entity_id: input_boolean.guest_mode
     state: 'off'
-  action:
-  - service: script.turn_on
-    target:
+  actions:
+  - target:
       entity_id: script.fraser_away
+    action: script.turn_on
   mode: single
 - id: '1615663371546'
   alias: 'Alert: House unoccupied things left open'
@@ -1211,6 +1183,7 @@
             data: {}
   - delay: 00:01:00
   mode: single
+  max_exceeded: silent
   variables:
     solar: '{{ states(''sensor.owl_solar_generating'') | float(0) }}'
     house: '{{ states(''sensor.owl_electricity_power'') | float(0) }}'
@@ -1226,25 +1199,8 @@
     target_amps: "{% if soc >= soc_limit %}\n  0\n{% else %}\n  {% set amps = (available_power
       / voltage) | int %}\n  {% if amps < 2 %} 0\n  {% elif amps > 10 %} 10\n  {%
       else %} {{ amps }}\n  {% endif %}\n{% endif %}\n"
-- id: '1757452303890'
-  alias: Set Thermostat Temp to 22 when backdoor Closed
-  description: ''
-  triggers:
-  - entity_id:
-    - binary_sensor.lumi_lumi_sensor_backdoor
-    to: 'off'
-    trigger: state
-  conditions: []
-  actions:
-  - action: climate.set_temperature
-    metadata: {}
-    data:
-      temperature: 22
-    target:
-      entity_id: climate.downstairs_thermostat
-  mode: single
 - id: '1757452384425'
-  alias: Set thermostat to 18 when backdoor open for 1 min
+  alias: Store and Reduce Thermostat Temperature when Back Door Open for 1 min
   description: ''
   triggers:
   - entity_id:
@@ -1257,12 +1213,19 @@
       seconds: 0
   conditions: []
   actions:
-  - action: climate.set_temperature
-    metadata: {}
+  - action: input_number.set_value
+    target:
+      entity_id: input_number.thermostat_stored_temp
     data:
-      temperature: 18
+      value: '{{ state_attr(''climate.downstairs_thermostat'', ''temperature'') |
+        float }}
+
+        '
+  - action: climate.set_temperature
     target:
       entity_id: climate.downstairs_thermostat
+    data:
+      temperature: 15
   mode: single
 - id: '1766833081676'
   alias: Owl Electricity Sensor Watchdog – Alert
@@ -1313,3 +1276,20 @@
       entity_id: input_boolean.owl_electricity_watchdog_alerted
     action: input_boolean.turn_off
   mode: restart
+- id: '1788167020847'
+  alias: Restore Thermostat Temperature when Back Door Closed
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.lumi_lumi_sensor_backdoor
+    to: 'off'
+  conditions: []
+  actions:
+  - action: climate.set_temperature
+    target:
+      entity_id: climate.downstairs_thermostat
+    data:
+      temperature: '{{ states(''input_number.thermostat_stored_temp'') | float }}
+
+        '
+  mode: single
