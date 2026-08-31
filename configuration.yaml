@@ -29,12 +29,6 @@ default_config:
 # https://www.home-assistant.io/integrations/history
 history:
 
-# https://home-assistant.io/components/http/
-http:
-  login_attempts_threshold: 100
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 192.168.200.1   # Add HA Proxy
 # https://www.home-assistant.io/components/logbook/
 logbook:
   include:

@@ -1,6 +1,4 @@
 influxdb:
-  host: !secret influx_host
-  port: 9086
   include:
     entities:
       # Ironing Room
