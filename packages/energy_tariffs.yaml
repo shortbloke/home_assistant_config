@@ -1,4 +1,18 @@
 input_number:
+  energy_gas_unit:
+    name: Gas unit price (p/kWh)
+    min: 0
+    max: 999999
+    step: 0.0001
+    unit_of_measurement: p/kWh
+    mode: box
+  energy_gas_standing:
+    name: Gas daily standing charge
+    min: 0
+    max: 999999
+    step: 0.001
+    unit_of_measurement: p/day
+    mode: box
   energy_elec_unit:
     name: Electricity unit price (GBP/kWh)
     min: 0

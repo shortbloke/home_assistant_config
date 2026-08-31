@@ -1,0 +1,56 @@
+template:
+  - binary_sensor:
+      - delay_on: 0:00:20
+        delay_off: 0:00:20
+        default_entity_id: binary_sensor.ensuite_shower_active
+        unique_id: ensuite_shower_active
+        name: Ensuite Shower Active
+        state: "{{ states('sensor.ensuite_shower_energy_power') | float(0) > 4 }}"
+  - binary_sensor:
+      - delay_on: 0:00:20
+        delay_off: 0:00:20
+        default_entity_id: binary_sensor.family_bathroom_shower_active
+        unique_id: family_bathroom_shower_active
+        name: Family Bathroom Shower Active
+        state: "{{ states('sensor.family_bathroom_shower_energy_power') | float(0) > 4 }}"
+
+sensor:
+  - platform: history_stats
+    name: Ensuite Shower Uses Today
+    entity_id: binary_sensor.ensuite_shower_active
+    type: count
+    state: "on"
+    start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: Family Bathroom Shower Uses Today
+    entity_id: binary_sensor.family_bathroom_shower_active
+    type: count
+    state: "on"
+    start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: Ensuite Shower Time Today
+    entity_id: binary_sensor.ensuite_shower_active
+    type: time
+    state: "on"
+    start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+    end: "{{ now() }}"
+  - platform: history_stats
+    name: Family Bathroom Shower Time Today
+    entity_id: binary_sensor.family_bathroom_shower_active
+    type: time
+    state: "on"
+    start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+    end: "{{ now() }}"
+
+homeassistant:
+  customize:
+    sensor.ensuite_shower_uses_today:
+      icon: mdi:counter
+    sensor.family_bathroom_shower_uses_today:
+      icon: mdi:counter
+    sensor.ensuite_shower_minutes:
+      icon: mdi:clock-outline
+    sensor.family_bathroom_shower_minutes:
+      icon: mdi:clock-outline

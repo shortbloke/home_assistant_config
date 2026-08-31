@@ -1,6 +1,16 @@
 ##################################################
 ## Components/Sensors
 ##################################################
+input_select:
+  tesla_charging_status:
+    name: Tesla Charging Status
+    options:
+      - idle
+      - charging
+      - finished
+    initial: idle
+    icon: mdi:car-electric
+
 template:
 - sensor:
   - default_entity_id: sensor.tesla_charging_status

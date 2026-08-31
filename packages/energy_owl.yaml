@@ -2,6 +2,11 @@
 # Owl Intuition - Energy Sensor                     #
 ####################################################
 
+input_boolean:
+  owl_electricity_watchdog_alerted:
+    name: Owl Electricity Watchdog Alerted
+    icon: mdi:alert
+
 template:
   - triggers:
       - trigger: state

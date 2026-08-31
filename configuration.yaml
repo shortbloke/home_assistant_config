@@ -13,11 +13,9 @@ homeassistant:
 automation: !include automations.yaml
 group: !include groups.yaml
 input_boolean: !include input_booleans.yaml
-input_select: !include input_selects.yaml
 light: !include lights.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
-sensor: !include sensors.yaml
 
 ####################################################
 #            Home Assistant Components             #
@@ -50,41 +48,10 @@ recorder:
 # https://www.home-assistant.io/components/sun/
 sun:
             
-####################################################
-#                  Command Line                    #
-####################################################
-# Pi Temperature and Fan speed
-command_line:
-  - sensor:
-      command: "cat /sys/class/thermal/thermal_zone0/temp"
-      name: HA CPU Temperature
-      unit_of_measurement: "°C"
-      value_template: '{{ value | multiply(0.001) | round(1) }}'
-  - sensor:
-      command: "cat /sys/devices/platform/cooling_fan/hwmon/hwmon*/fan1_input"
-      name: HA Fan Speed
-      unit_of_measurement: "rpm"
-      value_template: '{{ value | int(0) }}'
-
 ##################################################
 #                   Templates                    #
 ##################################################
 template:
-# Shower usage sensor
-- binary_sensor:
-  - delay_on: 0:00:20
-    delay_off: 0:00:20
-    default_entity_id: binary_sensor.ensuite_shower_active
-    unique_id: ensuite_shower_active
-    name: Ensuite Shower Active
-    state: '{{ states(''sensor.ensuite_shower_energy_power'') | float(0) > 4 }}'
-- binary_sensor:
-  - delay_on: 0:00:20
-    delay_off: 0:00:20
-    default_entity_id: binary_sensor.family_bathroom_shower_active
-    unique_id: family_bathroom_shower_active
-    name: Family Bathroom Shower Active
-    state: '{{ states(''sensor.family_bathroom_shower_energy_power'') | float(0) > 4 }}'
 - sensor:
   - default_entity_id: sensor.sun_template
     unique_id: sun_template

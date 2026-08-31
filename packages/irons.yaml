@@ -1,6 +1,28 @@
 ##################################################
 ## Components/Sensors
 ##################################################
+input_select:
+  ironing_room_motion_status:
+    name: Ironing Room Motion Status
+    options:
+      - idle
+      - motion
+    initial: motion
+
+homeassistant:
+  customize:
+    sensor.ironing_room_motion_status:
+      icon: mdi:motion-sensor
+    sensor.ironing_room_total_power_today:
+      icon: mdi:counter
+    sensor.ironing_room_power_cost_today:
+      icon: mdi:currency-gbp
+    binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off:
+      friendly_name: Ironing Room - Window
+      icon: mdi:window-open
+    binary_sensor.motion_sensor_ironing_room:
+      icon: mdi:motion-sensor
+
 template:
 - sensor:
   - unit_of_measurement: W

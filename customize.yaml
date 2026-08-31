@@ -1,43 +1,12 @@
 zone.home:
   radius: 25
-sensor.washing_machine_status:
-  icon: mdi:state-machine
-sensor.kitchen_total_power_now:
-  icon: mdi:flash
-sensor.kitchen_total_power_today:
-  icon: mdi:counter
-sensor.kitchen_total_power_cost_today:
-  icon: mdi:currency-gbp
-sensor.dryer_status:
-  icon: mdi:state-machine
-sensor.dishwasher_status:
-  icon: mdi:state-machine
-sensor.ironing_room_motion_status:
-  icon: mdi:motion-sensor
-sensor.ironing_room_total_power_today:
-  icon: mdi:counter
-sensor.ironing_room_power_cost_today:
-  icon: mdi:currency-gbp
 binary_sensor.lumi_lumi_sensor_magnet_aq2_bc705302_on_off:
   friendly_name: Garage Interior Door
   icon: mdi:door
 sensor.lumi_lumi_sensor_magnet_aq2_bc705302_power:
   friendly_name: Garage Interior Door - Battery
-binary_sensor.lumi_lumi_sensor_magnet_aq2_10327502_on_off:
-  friendly_name: Ironing Room - Window
-  icon: mdi:window-open
 binary_sensor.motion_sensor_garage:
   icon: mdi:motion-sensor
-binary_sensor.motion_sensor_ironing_room:
-  icon: mdi:motion-sensor
-sensor.ensuite_shower_uses_today:
-  icon: mdi:counter
-sensor.family_bathroom_shower_uses_today:
-  icon: mdi:counter
-sensor.ensuite_shower_minutes:
-  icon: mdi:clock-outline
-sensor.family_bathroom_shower_minutes:
-  icon: mdi:clock-outline
 light.conservatory_desk:
   friendly_name: "Conservatory Desk Strip"
   icon: mdi:led-strip

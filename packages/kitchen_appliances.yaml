@@ -1,6 +1,44 @@
 ##################################################
 ## Components/Sensors
 ##################################################
+input_select:
+  dishwasher_status:
+    name: Dishwasher Status
+    options:
+      - idle
+      - running
+      - finished
+    initial: idle
+  washing_machine_status:
+    name: Washing Machine Status
+    options:
+      - idle
+      - running
+      - finished
+    initial: idle
+  dryer_status:
+    name: Tumble Dryer Status
+    options:
+      - idle
+      - running
+      - finished
+    initial: idle
+
+homeassistant:
+  customize:
+    sensor.washing_machine_status:
+      icon: mdi:state-machine
+    sensor.kitchen_total_power_now:
+      icon: mdi:flash
+    sensor.kitchen_total_power_today:
+      icon: mdi:counter
+    sensor.kitchen_total_power_cost_today:
+      icon: mdi:currency-gbp
+    sensor.dryer_status:
+      icon: mdi:state-machine
+    sensor.dishwasher_status:
+      icon: mdi:state-machine
+
 template:
 - sensor:
   - default_entity_id: sensor.dishwasher_status
