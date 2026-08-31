@@ -50,17 +50,6 @@ recorder:
 # https://www.home-assistant.io/components/sun/
 sun:
             
-# https://www.home-assistant.io/components/tts/
-tts:
-  - platform: google_translate
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 300
-  - platform: voicerss
-    api_key: !secret voicerss_api_key
-    language: "en-gb"
-    format: "44khz_16bit_stereo"
-
 ####################################################
 #                  Command Line                    #
 ####################################################

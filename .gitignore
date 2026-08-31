@@ -74,3 +74,6 @@ homebridge
 
 # Ignore esphome
 esphome/*
+
+# Ignore tts files
+tts/*

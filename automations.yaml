@@ -971,11 +971,13 @@
       message: Water detected under kitchen sink
       title: Water Leak
     enabled: false
-  - action: tts.voicerss_say
+  - action: tts.speak
+    target:
+      entity_id: tts.google_translate_en_co_uk
     metadata: {}
     data:
       cache: false
-      entity_id: media_player.kitchen
+      media_player_entity_id: media_player.kitchen
       message: Water leak detected under kitchen sink
   mode: single
 - id: '1754253696584'

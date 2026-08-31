@@ -43,9 +43,11 @@ sonos_say:
     data:
       entity_id: '{{ sonos_entity }}'
       volume_level: '{{ volume }}'
-  - action: tts.google_translate_say
+  - action: tts.speak
+    target:
+      entity_id: tts.google_translate_en_co_uk
     data:
-      entity_id: '{{ sonos_entity }}'
+      media_player_entity_id: '{{ sonos_entity }}'
       message: '{{ message }}'
   - delay: '{{ delay }}'
   - action: sonos.restore
