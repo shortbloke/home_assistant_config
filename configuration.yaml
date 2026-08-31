@@ -93,7 +93,7 @@ template:
   - delay_on: 0:00:20
     delay_off: 0:00:20
     default_entity_id: binary_sensor.family_bathroom_shower_active
-    name: Familiy Bathroom Shower Active
+    name: Family Bathroom Shower Active
     state: '{{ states(''sensor.family_bathroom_shower_energy_power'') | float(0) > 4 }}'
 - sensor:
   - default_entity_id: sensor.sun_template

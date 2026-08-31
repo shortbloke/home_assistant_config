@@ -6,19 +6,19 @@
 ## Lights Groups
 ##################################################
 - platform: group
-  name: Morgans Strip Lights
+  name: Morgan's Strip Lights
   entities:
     - light.desk_zigbee_rgb_level_light_color_on_off
     - light.rearwall_zigbee_rgb_level_light_color_on_off
     - light.bed_zigbee_rgb_5f8fb6fe_level_light_color_on_off
     - light.window_zigbee_rgb_level_light_color_on_off
 - platform: group
-  name: Morgans Lights
+  name: Morgan's Lights
   entities:
     - light.morgans_strip_lights
     - light.lwrf_morgan_main
 - platform: group
-  name: Frasers Lights
+  name: Fraser's Lights
   entities:
     - light.fraser_downlights
     - light.fraser_spotlights

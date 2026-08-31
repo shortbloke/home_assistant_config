@@ -1,6 +1,6 @@
 input_number:
   energy_elec_unit:
-    name: Elec unit price (GBP/kwh)
+    name: Electricity unit price (GBP/kWh)
     min: 0
     max: 999999
     step: 0.0001

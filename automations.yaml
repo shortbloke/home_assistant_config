@@ -2,11 +2,8 @@
   alias: 'Alert: Low salt level'
   description: ''
   triggers:
-  - type: distance
-    trigger: device
-    device_id: f93fcb10f5467ec5d73867e8e7bfb88c
-    entity_id: baeb3502f118115b51c15bb0da8962e3
-    domain: sensor
+  - trigger: numeric_state
+    entity_id: sensor.garage_monitor_salt_level
     above: 43
     for:
       hours: 1
@@ -18,21 +15,19 @@
     target:
       entity_id: input_boolean.low_salt
     data: {}
-  - device_id: c63b36e2a50cd3ffd1880f0aae89cf06
-    domain: mobile_app
-    type: notify
-    message: Check Salt Level
-    title: Water Softner
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
+    data:
+      message: Check salt level
+      title: Water Softener
   mode: single
 - id: '1615638220241'
   alias: 'State Change: Reset Salt Level Input Boolean'
   description: ''
   triggers:
-  - type: value
-    trigger: device
-    device_id: f93fcb10f5467ec5d73867e8e7bfb88c
+  - trigger: numeric_state
     entity_id: sensor.garage_monitor_salt_level
-    domain: sensor
     below: 20
     for:
       hours: 1
@@ -50,11 +45,8 @@
   alias: 'Action: Turn on Loft Fan above 30'
   description: ''
   triggers:
-  - type: temperature
-    trigger: device
-    device_id: 11f3b2cca347d360c859eb46718cc34c
+  - trigger: numeric_state
     entity_id: sensor.loft_fan_temperature
-    domain: sensor
     above: 30
     for:
       hours: 0
@@ -63,20 +55,16 @@
       milliseconds: 0
   conditions: []
   actions:
-  - type: turn_on
-    device_id: 11f3b2cca347d360c859eb46718cc34c
-    entity_id: switch.sonoff_loft_fan
-    domain: switch
+  - action: switch.turn_on
+    target:
+      entity_id: switch.sonoff_loft_fan
   mode: single
 - id: '1615640737825'
   alias: 'Action: Turn off Loft Fan below 30'
   description: ''
   triggers:
-  - type: temperature
-    trigger: device
-    device_id: 11f3b2cca347d360c859eb46718cc34c
+  - trigger: numeric_state
     entity_id: sensor.loft_fan_temperature
-    domain: sensor
     below: 30
     for:
       hours: 0
@@ -85,10 +73,9 @@
       milliseconds: 0
   conditions: []
   actions:
-  - type: turn_off
-    device_id: 11f3b2cca347d360c859eb46718cc34c
-    entity_id: switch.sonoff_loft_fan
-    domain: switch
+  - action: switch.turn_off
+    target:
+      entity_id: switch.sonoff_loft_fan
   mode: single
 - id: '1615646609604'
   alias: 'Schedule: Turn on in the morning and sunset'
@@ -101,10 +88,9 @@
     offset: -01:00:00
   conditions: []
   actions:
-  - type: turn_on
-    device_id: 0b953119e29d4d2cb3c99048226eefd9
-    entity_id: switch.lwrf_hall_socket_2
-    domain: switch
+  - action: switch.turn_on
+    target:
+      entity_id: switch.lwrf_hall_socket_2
   mode: single
 - id: '1615646860464'
   alias: 'Action: Turn off twig lights after sunrise'
@@ -116,13 +102,12 @@
     above: '10'
   conditions: []
   actions:
-  - type: turn_off
-    device_id: 0b953119e29d4d2cb3c99048226eefd9
-    entity_id: switch.lwrf_hall_socket_2
-    domain: switch
+  - action: switch.turn_off
+    target:
+      entity_id: switch.lwrf_hall_socket_2
   mode: single
 - id: '1615647990496'
-  alias: 'Action & Alert: Frasers TV tuned on after curfew'
+  alias: "Action & Alert: Fraser's TV turned on after curfew"
   description: ''
   triggers:
   - trigger: state
@@ -138,7 +123,7 @@
     target:
       entity_id: notify.martin_iphone_air
     data:
-      message: Turning off Frasers TV Power
+      message: Turning off Fraser's TV power
       data:
         actions:
         - action: PLAY_LATE_TV_MESSAGE
@@ -169,7 +154,7 @@
       delay: 00:00:05
   mode: single
 - id: '1615648465209'
-  alias: 'Action & Alert: Turn off power to Frasers TV if on 30mins after curfew'
+  alias: "Action & Alert: Turn off power to Fraser's TV 30 minutes after curfew"
   description: ''
   triggers:
   - trigger: time
@@ -197,7 +182,7 @@
       entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615648558972'
-  alias: 'Schedule: Restore power to Frasers TV'
+  alias: "Schedule: Restore power to Fraser's TV"
   description: ''
   triggers:
   - trigger: time
@@ -448,7 +433,7 @@
       entity_id: input_select.ironing_room_motion_status
   mode: single
 - id: '1615654076969'
-  alias: Set ironing room to idle after 30mins of no motion
+  alias: Set ironing room to idle after 30 minutes of no motion
   description: ''
   triggers:
   - trigger: state
@@ -497,10 +482,8 @@
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Ironing Table
   - action: switch.turn_off
-    metadata: {}
-    data: {}
     target:
-      device_id: 14afeceb9ed9aa8dcba55863c159ee66
+      entity_id: switch.ironing_room_ironing_table
   mode: single
 - id: '1615662841415'
   alias: 'State Change: House occupied'
@@ -669,20 +652,6 @@
 
         {%if is_state(''binary_sensor.lumi_lumi_morgans_window'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_morgans_window'',''friendly_name'')}}{%endif%}'
   mode: single
-- id: '1628523215496'
-  alias: 'Notify: Shutdown Frasers PC'
-  description: ''
-  triggers:
-  - trigger: event
-    event_data:
-      action: FRASER_PC_SHUTDOWN
-    event_type: mobile_app_notification_action
-  conditions: []
-  actions:
-  - action: homeassistant.turn_on
-    target:
-      entity_id: switch.shutdown
-  mode: single
 - id: '1636214471227'
   alias: 'Action: Turn off outside socket'
   description: ''
@@ -806,10 +775,8 @@
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Magpie Iron
   - action: switch.turn_off
-    metadata: {}
-    data: {}
     target:
-      device_id: 470ad9c5b6b7072c0a5242574bd5cd9b
+      entity_id: switch.ironing_room_magpie
   mode: single
 - id: '1712427569780'
   alias: Turn off irons left - no motion
@@ -841,10 +808,8 @@
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Irons (Left)
   - action: switch.turn_off
-    metadata: {}
-    data: {}
     target:
-      device_id: 22221819a3f597cc0fb30e68142919f0
+      entity_id: switch.ironing_room_left
   mode: single
 - id: '1712427655992'
   alias: Turn off irons right - no motion
@@ -876,20 +841,15 @@
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Irons (Right)
   - action: switch.turn_off
-    metadata: {}
-    data: {}
     target:
-      device_id: 42c2ee13a1fe93fe8f0122b894a1ea74
+      entity_id: switch.ironing_room_right
   mode: single
 - id: '1714148432236'
-  alias: Turn off conservatory Heater when warm
+  alias: Turn off conservatory heater when warm
   description: ''
   triggers:
-  - type: temperature
-    device_id: 1464525c67b978b454de6a6b35724dbd
-    entity_id: 6b23f364cf47b36a714a15d256f70949
-    domain: sensor
-    trigger: device
+  - trigger: numeric_state
+    entity_id: sensor.conservatory_th_sensor_lcd_temperature
     above: 21
     for:
       hours: 0
@@ -897,10 +857,9 @@
       seconds: 0
   conditions: []
   actions:
-  - type: turn_off
-    device_id: 690c237894576165879d1fb21a2aa627
-    entity_id: 3333f53a468f9108927bc5e6fc9bb161
-    domain: switch
+  - action: switch.turn_off
+    target:
+      entity_id: switch.conservatory_heater_switch_1
   mode: single
 - id: '1714314533892'
   alias: Turn on 3D Printer Light
@@ -917,10 +876,8 @@
   conditions: []
   actions:
   - action: switch.turn_on
-    metadata: {}
-    data: {}
     target:
-      device_id: 92e4838c6495a1d38dcfd55c46d31afe
+      entity_id: switch.3d_printer_light
   mode: single
 - id: '1714314593069'
   alias: Turn off 3D Printer light
@@ -938,19 +895,14 @@
   actions:
   - action: switch.turn_off
     target:
-      device_id:
-      - 92e4838c6495a1d38dcfd55c46d31afe
-    data: {}
+      entity_id: switch.3d_printer_light
   mode: single
 - id: '1714340821923'
   alias: Turn off conservatory heater during the night
   description: ''
   triggers:
-  - type: temperature
-    device_id: 1464525c67b978b454de6a6b35724dbd
-    entity_id: 6b23f364cf47b36a714a15d256f70949
-    domain: sensor
-    trigger: device
+  - trigger: numeric_state
+    entity_id: sensor.conservatory_th_sensor_lcd_temperature
     above: 18
     for:
       hours: 0
@@ -963,10 +915,9 @@
     after: '23:00:00'
     before: 06:30:00
   actions:
-  - type: turn_off
-    device_id: 690c237894576165879d1fb21a2aa627
-    entity_id: 3333f53a468f9108927bc5e6fc9bb161
-    domain: switch
+  - action: switch.turn_off
+    target:
+      entity_id: switch.conservatory_heater_switch_1
   mode: single
 - id: '1714370785072'
   alias: Turn on conservatory heater when cold
@@ -975,11 +926,9 @@
   - trigger: time_pattern
     minutes: '15'
   conditions:
-  - type: is_not_open
-    condition: device
-    device_id: 49bce74c821c42fd980c192606b57418
-    entity_id: 319f694734396d89e5a6f6fa6ee17a56
-    domain: binary_sensor
+  - condition: state
+    entity_id: binary_sensor.lumi_lumi_sensor_backdoor
+    state: 'off'
   - condition: time
     after: 06:00:00
     before: '23:00:00'
@@ -987,20 +936,17 @@
     entity_id: sensor.conservatory_th_sensor_lcd_temperature
     below: 18
   actions:
-  - type: turn_on
-    device_id: 690c237894576165879d1fb21a2aa627
-    entity_id: 3333f53a468f9108927bc5e6fc9bb161
-    domain: switch
+  - action: switch.turn_on
+    target:
+      entity_id: switch.conservatory_heater_switch_1
   mode: single
 - id: '1748977016554'
   alias: Kitchen Sink Water Leak Notification
   description: ''
   triggers:
-  - type: moist
-    device_id: d126aca79aab093013c364369011e804
-    entity_id: 2d6664ac9e985b9adea50e7a520e1d3b
-    domain: binary_sensor
-    trigger: device
+  - trigger: state
+    entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1kitchen
+    to: 'on'
     for:
       hours: 0
       minutes: 0
@@ -1022,7 +968,7 @@
       entity_id: notify.martin_iphone_air
     metadata: {}
     data:
-      message: Water detected under Kitcken Sink
+      message: Water detected under kitchen sink
       title: Water Leak
     enabled: false
   - action: tts.voicerss_say
