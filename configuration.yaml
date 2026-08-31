@@ -46,31 +46,6 @@ logger:
     # RFXtrx: debug
 # https://www.home-assistant.io/docs/ecosystem/ios/
 ios:
-# https://www.home-assistant.io/components/notify/
-# and
-# https://www.home-assistant.io/components/notify.group/
-notify:
-  - name: adults
-    platform: group
-    services:
-      - service: mobile_app_martin_iphone12
-      - service: mobile_app_michelle_iphone_se
-
-  - name: martin
-    platform: group
-    services:
-      - service: mobile_app_martin_iphone12
-
-  - name: michelle
-    platform: group
-    services:
-      - service: mobile_app_michelle_iphone_se
-
-  - name: morgan
-    platform: group
-    services:
-      - service: mobile_app_morgans_iphone_15_pro
-
 # https://www.home-assistant.io/components/recorder/
 recorder:
 

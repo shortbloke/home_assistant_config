@@ -134,7 +134,9 @@
     after: '23:00'
     before: 06:59
   actions:
-  - action: notify.mobile_app_martin_iphone12
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     data:
       message: Turning off Frasers TV Power
       data:
@@ -177,7 +179,9 @@
     entity_id: binary_sensor.frasers_tv
     state: 'on'
   actions:
-  - action: notify.mobile_app_martin_iphone12
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     data:
       message: Cutting power to Fraser's TV
       data:
@@ -213,7 +217,9 @@
     above: '90'
   conditions: []
   actions:
-  - action: notify.martin
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     data:
       message: Low disk space > 90% used
       title: HASS Low Resource Alert
@@ -227,7 +233,9 @@
     above: '90'
   conditions: []
   actions:
-  - action: notify.martin
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     data:
       message: Low memory > 90% used
       title: HASS Low Resource Alert
@@ -241,7 +249,9 @@
     above: '2.8'
   conditions: []
   actions:
-  - action: notify.martin
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     data:
       message: System Load 5m Load Average > 2.8
       title: HASS Low Resource Alert
@@ -287,7 +297,9 @@
       option: finished
     target:
       entity_id: input_select.washing_machine_status
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: Washing Machine
       message: Finished!
@@ -343,7 +355,9 @@
       option: finished
     target:
       entity_id: input_select.dryer_status
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: Tumble Dryer
       message: Finished!
@@ -399,7 +413,11 @@
       option: finished
     target:
       entity_id: input_select.dishwasher_status
-  - action: notify.adults
+  - action: notify.send_message
+    target:
+      entity_id:
+        - notify.martin_iphone_air
+        - notify.michelle_iphone_se
     data:
       message: Finished!
       title: Dishwasher
@@ -472,7 +490,9 @@
     entity_id: sensor.ironing_room_ironing_table_current_consumption
     above: 10
   actions:
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Ironing Table
@@ -554,11 +574,15 @@
       entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off
       state: 'on'
   actions:
-  - action: notify.morgan
+  - action: notify.send_message
+    target:
+      entity_id: notify.morgans_iphone_15_pro
     data:
       title: 'Home Assistant: ALERT!'
       message: Bedroom Window Left Open
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: 'Home Assistant: ALERT!'
       message: Morgan's window has been left open
@@ -622,7 +646,11 @@
         entity_id: binary_sensor.lumi_lumi_morgans_window
         state: 'on'
   actions:
-  - action: notify.adults
+  - action: notify.send_message
+    target:
+      entity_id:
+        - notify.martin_iphone_air
+        - notify.michelle_iphone_se
     data:
       title: House Unoccupied - Left open
       message: '{%if is_state(''binary_sensor.lumi_lumi_frasers_window_right'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_frasers_window_right'',''friendly_name'')}}{%endif%}
@@ -654,7 +682,9 @@
     entity_id: sensor.tera_powered_on
     state: 'True'
   actions:
-  - action: notify.martin
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     data:
       message: Fraser no longer at home but PC On. Turn off?
       title: PC Shutdown
@@ -789,8 +819,17 @@
   actions:
   - data:
       title: Watchdog
-      message: Device {{ trigger.from_state.name }} is {{ trigger.to_state.state }}
-    action: notify.martin
+      message: >
+        {% if trigger.to_state is defined and trigger.to_state is not none %}
+          Device {{ trigger.to_state.name }} is {{ trigger.to_state.state }}
+        {% elif trigger.device_id is defined %}
+          Device {{ device_attr(trigger.device_id, 'name') or trigger.device_id }} is offline
+        {% else %}
+          A monitored device is offline
+        {% endif %}
+    action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
   mode: single
 - id: '1712427494133'
   alias: Turn off magpie iron - no motion
@@ -815,7 +854,9 @@
     entity_id: sensor.ironing_room_magpie_current_consumption
     above: 10
   actions:
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Magpie Iron
@@ -848,7 +889,9 @@
     entity_id: sensor.ironing_room_left_current_consumption
     above: 10
   actions:
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Irons (Left)
@@ -881,7 +924,9 @@
     entity_id: sensor.ironing_room_right_current_consumption
     above: 10
   actions:
-  - action: notify.michelle
+  - action: notify.send_message
+    target:
+      entity_id: notify.michelle_iphone_se
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Irons (Right)
@@ -1017,13 +1062,19 @@
       seconds: 10
   conditions: []
   actions:
-  - action: notify.adults
+  - action: notify.send_message
+    target:
+      entity_id:
+        - notify.martin_iphone_air
+        - notify.michelle_iphone_se
     metadata: {}
     data:
       message: Water detected under Kitchen sink
       title: Water Leak
     enabled: true
-  - action: notify.martin
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     metadata: {}
     data:
       message: Water detected under Kitcken Sink
@@ -1088,7 +1139,9 @@
     action: input_select.select_option
     target:
       entity_id: input_select.tesla_charging_status
-  - action: notify.martin
+  - action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
     metadata: {}
     data:
       message: Charging completed
@@ -1272,7 +1325,9 @@
         }}
 
         '
-    action: notify.martin
+    action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
   - target:
       entity_id: input_boolean.owl_electricity_watchdog_alerted
     action: input_boolean.turn_on
@@ -1295,7 +1350,9 @@
         value: {{ state_attr(''sensor.owl_electricity_power'', ''timestamp'') }}
 
         '
-    action: notify.martin
+    action: notify.send_message
+    target:
+      entity_id: notify.martin_iphone_air
   - target:
       entity_id: input_boolean.owl_electricity_watchdog_alerted
     action: input_boolean.turn_off
