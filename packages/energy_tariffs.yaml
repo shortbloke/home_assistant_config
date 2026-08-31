@@ -14,16 +14,29 @@ input_number:
     unit_of_measurement: p/day
     mode: box
   energy_elec_unit:
-    name: Electricity unit price (GBP/kWh)
+    name: Electricity unit price (p/kWh)
     min: 0
     max: 999999
     step: 0.0001
-    unit_of_measurement: "GBP/kWh"
+    unit_of_measurement: p/kWh
     mode: box
   energy_elec_standing:
-    name: Elec daily standing charge
+    name: Electricity daily standing charge
     min: 0
     max: 999999
-    step: 0.0001
-    unit_of_measurement: "GBP"
+    step: 0.001
+    unit_of_measurement: p/day
     mode: box
+
+template:
+  - sensor:
+      - name: Electricity Unit Price
+        default_entity_id: sensor.electricity_unit_price
+        unique_id: electricity_unit_price
+        unit_of_measurement: GBP/kWh
+        state_class: measurement
+        availability: "{{ has_value('input_number.energy_elec_unit') }}"
+        state: >
+          {{ (
+            states('input_number.energy_elec_unit') | float(0) / 100
+          ) | round(6) }}

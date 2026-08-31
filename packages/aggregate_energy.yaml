@@ -40,11 +40,11 @@ template:
         device_class: monetary
         state_class: total
         availability: >
-          {{ has_value('input_number.energy_elec_unit') and
+          {{ has_value('sensor.electricity_unit_price') and
              has_value('sensor.loft_ups_today_s_consumption') }}
         state: >
           {{ (
-            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.electricity_unit_price') | float(0) *
             states('sensor.loft_ups_today_s_consumption') | float(0)
           ) | round(2) }}
 
@@ -55,11 +55,11 @@ template:
         device_class: monetary
         state_class: total
         availability: >
-          {{ has_value('input_number.energy_elec_unit') and
+          {{ has_value('sensor.electricity_unit_price') and
              has_value('sensor.loft2_today_s_consumption') }}
         state: >
           {{ (
-            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.electricity_unit_price') | float(0) *
             states('sensor.loft2_today_s_consumption') | float(0)
           ) | round(2) }}
 
@@ -70,11 +70,11 @@ template:
         device_class: monetary
         state_class: total
         availability: >
-          {{ has_value('input_number.energy_elec_unit') and
+          {{ has_value('sensor.electricity_unit_price') and
              has_value('sensor.loft_total_power_today') }}
         state: >
           {{ (
-            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.electricity_unit_price') | float(0) *
             states('sensor.loft_total_power_today') | float(0)
           ) | round(2) }}
 
@@ -135,10 +135,10 @@ template:
         device_class: monetary
         state_class: total
         availability: >
-          {{ has_value('input_number.energy_elec_unit') and
+          {{ has_value('sensor.electricity_unit_price') and
              has_value('sensor.conservatory_total_power_today') }}
         state: >
           {{ (
-            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.electricity_unit_price') | float(0) *
             states('sensor.conservatory_total_power_today') | float(0)
           ) | round(2) }}

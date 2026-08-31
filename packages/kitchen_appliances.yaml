@@ -100,11 +100,11 @@ template:
     state_class: total
     name: Dishwasher Cost Today
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.dishwasher_today_s_consumption') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.dishwasher_today_s_consumption') | float(0)
       ) | round(2) }}
 - sensor:
@@ -115,11 +115,11 @@ template:
     state_class: total
     name: Tumble Dryer Cost Today
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.tumble_dryer_today_s_consumption') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.tumble_dryer_today_s_consumption') | float(0)
       ) | round(2) }}
 - sensor:
@@ -130,11 +130,11 @@ template:
     state_class: total
     name: Washing Machine Cost Today
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.washing_machine_today_s_consumption') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.washing_machine_today_s_consumption') | float(0)
       ) | round(2) }}
 - sensor:
@@ -145,11 +145,11 @@ template:
     state_class: total
     name: Power Cost Today - Kitchen
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.kitchen_total_power_today') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.kitchen_total_power_today') | float(0)
       ) | round(2) }}
 

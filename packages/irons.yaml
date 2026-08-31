@@ -70,11 +70,11 @@ template:
     state_class: total
     name: Power Cost Today - Ironing Room
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.ironing_room_total_power_today') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.ironing_room_total_power_today') | float(0)
       ) | round(2) }}
 - sensor:

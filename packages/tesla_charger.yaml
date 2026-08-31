@@ -28,11 +28,11 @@ template:
     icon: mdi:currency-gbp
     name: Tesla Charging Cost Today
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.tesla_charger_today_s_consumption') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.tesla_charger_today_s_consumption') | float(0)
       ) | round(2) }}
 - sensor:
@@ -44,10 +44,10 @@ template:
     icon: mdi:currency-gbp
     name: Tesla Charging Cost This Month
     availability: >
-      {{ has_value('input_number.energy_elec_unit') and
+      {{ has_value('sensor.electricity_unit_price') and
          has_value('sensor.tesla_charger_this_month_s_consumption') }}
     state: >
       {{ (
-        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.electricity_unit_price') | float(0) *
         states('sensor.tesla_charger_this_month_s_consumption') | float(0)
       ) | round(2) }}
