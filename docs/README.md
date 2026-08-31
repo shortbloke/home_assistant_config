@@ -1,11 +1,7 @@
-# Shortbloke's Home Assistant Configuration Files [![Build Status](https://travis-ci.org/shortbloke/home_assistant_config.svg?branch=master)](https://travis-ci.org/shortbloke/home_assistant_config)
+# Shortbloke's Home Assistant Configuration Files
 
 This is my currently active set of configuration files for my [Home Assistant](https://home-assistant.io) running on Raspberry Pi.
 If you are interested in following my progress be sure ⭐️ Star this repository and check out [my blog](https://www.martinrowan.co.uk).
-
-## Configuration File Status
-
-Each commit triggers a deployment to the latest home assistant version with Python 3.6 and 3.7. This is done though TravisCI. If this successfully passes, then my Pi will update itself with the latest configuration automatically.
 
 ![My Home Assistant Default View](images/default_view.jpg)
 
@@ -13,21 +9,22 @@ Each commit triggers a deployment to the latest home assistant version with Pyth
 
 I've limited the contents of configuration.yaml and utilised [packages](https://www.home-assistant.io/docs/configuration/packages/) to provide some grouping, in order to make it easier to understand and maintain.
 
-Packages provide an simple way to encapsulate all the different configuration elements for a adding support for a given component or device. Rather than needing to update many different files the changes are kept contained in a single file per package.
+Packages provide a simple way to encapsulate the configuration for a given integration or device. Rather than updating many different files, related changes are kept in a single package.
 
 ## Core Hardware of Home Assistant Hub
 
-- [Raspberry Pi 5 (4GB RAM)](https://amzn.to/3OMiOCc) - Core control system, running on [Hassos](https://www.home-assistant.io/getting-started/).
-  - System has been migrated to run on an NVMe drive within an Argon NEO 5 NVMe case. I've documented this process in [my blog](https://www.martinrowan.co.uk/).
-- [Raspberry Pi Zero W](https://amzn.to/2ZLhm7d) - Hosting [Xiaomi Mi Flora to MQTT Gateway](https://github.com/ThomDietrich/miflora-mqtt-daemon). Mi Flora Bluetooth LE range was limited, the Pi Zero is positioned nearer the plants, and sends status over WiFi via MQTT.
-- [RFXCOM RFXtrx433E](http://www.rfxcom.com/store/Transceivers/14103) - Enables RX/TX of 433Mhz signals over a range of protocols.
-  - Note: Lots of different protocols in use on 433Mhz which may need to be enabled via a management utility. 433Mhz lacks any real security, if you capture the code you can control the device, as I found out by accidentally controlling a neighbour's plug-in sockets.
-- [Nortek GoControl HUSBZB-1](https://www.nortekcontrol.com/products/2gig/husbzb-1-gocontrol-quickstick-combo/) - Provides support for Zigbee and I had hoped for Z-Wave too, but this doesn't support EU/UK frequencies!
+- [Raspberry Pi 5 (4 GB RAM)](https://amzn.to/3OMiOCc) - Core control system, running [Home Assistant OS](https://www.home-assistant.io/installation/raspberrypi/).
+  - Boots directly from a 250 GB WD Blue NVMe drive without an SD card.
+- [Argon ONE V5](https://www.martinrowan.co.uk/2026/08/migrating-home-assistant-to-argon-one-v5/) - Encloses the Raspberry Pi, NVMe storage, OLED status display and Zigbee coordinator.
+  - The OLED cycles through CPU, storage, memory, temperature, fan-speed and network information.
+  - The case fan is controlled through the Raspberry Pi fan header, with its current speed exposed to Home Assistant.
+- [Argon Industria Zigbee Module](https://argon40.com/en-gb/products/argon-industria-v5-zigbee-module) - Internal Texas Instruments CC2652 coordinator used by the Zigbee Home Automation integration. The existing Zigbee network was migrated from the former Nortek USB coordinator without re-pairing its devices.
+- [RFXCOM RFXtrx433E](http://www.rfxcom.com/store/Transceivers/14103) - Enables reception and transmission of 433 MHz signals over a range of protocols.
+  - Note: The required 433 MHz protocols may need to be enabled with a management utility. These devices lack meaningful security; capturing a code can allow another transmitter to control the device.
 
 ## More Information
 
 - [Devices controlled and sensors monitored](devices.md)
-- [Automation and shell scripts](automations.md)
-- [Configuration validation and automatic deployment](build_deploy.md)
+- [Automations and scripts](automations.md)
 
 **Note: Private information is stored in secrets.yaml (not uploaded)**

@@ -1,13 +1,8 @@
-# Automation Scripts
-
-## Utilities
-
-- Automatically sync latest configuration from GitHub on a successful script validation via TravisCI. [Learn more](build_deploy.md)
-- Send a notification when a new version of Home Assistant is made available.
+# Automations and Scripts
 
 ## Backup
 
-- HassIO provides a service which snapshots the configuration. Originally I set this up with dropbox sync and some automation scripts. I've since switched to the [Home Assistant Google Drive Backup add-on](https://github.com/sabeechen/hassio-google-drive-backup) which is a simpler solution.
+- Backups are managed by the [Home Assistant Google Drive Backup add-on](https://github.com/sabeechen/hassio-google-drive-backup).
 
 ## Presence/Occupancy
 
@@ -16,29 +11,42 @@
 
 ## Heating Control
 
-- When the back door (ZigBee sensor) is left open for 1 minute, then Nest thermostat temperature is stored and sent to 15°C. Once the door is closed it's returned to the previously stored temperature.
-- When conservatory temperature below 20°C for 5 mins during the daytime, then turn on the heater, so long as the back door is closed. When above 22°C for 5 mins, always turn off the heater.
+- When the back door is left open for one minute, store the thermostat temperature and reduce it to 15°C. Restore the stored temperature when the door closes.
+- Every hour at 15 minutes past, turn on the conservatory heater when the temperature is below 18°C, the back door is closed and the time is between 06:00 and 23:00.
+- Turn off the conservatory heater when the temperature rises above 21°C. During the night, turn it off at 23:00 or when the temperature rises above 18°C.
 
 ## Power Control
 
-- Turning on specific lights in the morning and 1 hour before sunset
-- Turn on a Sonoff relay switch when loft temperatures get high and off again when they lower
-  - This is used to power an inline fan which pulls cooler air from outside to the front of my HP MicroServer
-  - If there is no movement in a room turn off any TP Link Smart socket which is drawing power and send an alert
-  - Aim to ensure various appliances aren't left on accidentally
-  - This ensures smart switches aren't turned off just because they are on, only when something connected to them is drawing power
+- Turn on selected lights in the morning and one hour before sunset.
+- Turn on a Tasmota relay when the loft temperature rises above 30°C and turn it off when the temperature drops below 30°C. The relay powers an inline fan that draws cooler air towards the server.
+- Turn the 3D-printer light on and off based on the printer's power consumption.
+- Enforce a television curfew and optionally announce a reminder over Sonos.
+
+## Iron Safety
+
+- Track occupancy in the ironing room and change its state to idle after 30 minutes without motion.
+- If an iron is drawing more than 10 W while the room is idle, notify the user and turn off its smart plug.
 
 ## Kitchen Appliance Monitoring
 
-- Track power usage of kitchen appliances to determine when they have been turned on, and when they complete their cycle. Sending a notification when they finish.
+- Track washing-machine, tumble-dryer and dishwasher power usage to determine when a cycle starts and finishes, then send a completion notification.
 
-## Plant monitoring
+## Safety and Monitoring
 
-- Send notification when plants soil falls below specified minimum for each plant type.
+- Notify when a monitored Zigbee device, iron smart plug or gas-meter sensor is unavailable.
+- Notify mobile devices and announce over the kitchen Sonos speaker when water is detected under the kitchen sink.
+- Provide a burglar-alarm script that sounds configured Sonos speakers and Ring sirens for 30 seconds.
+- Alert when the Owl electricity feed has stopped updating for an hour and notify again when reporting recovers.
+- Alert when the water-softener salt level is low.
+
+## Energy and Electric Vehicle Charging
+
+- Detect when Tesla charging starts and finishes.
+- Dynamically adjust Tesla charging current to use available solar generation while allowing a small grid-import tolerance.
 
 ## Home Assistant Resource Usage Alerts
 
-- Monitor system resources and send alters to specific IOS device when thresholds breached. Items monitored:
+- Monitor system resources and send alerts to a specific iOS device when thresholds are breached. Items monitored:
   - High Load Average
   - Low Disk Space
   - Low Memory

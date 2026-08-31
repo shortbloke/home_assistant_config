@@ -1,79 +1,48 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-OZW_Log.txt
+# Secrets
+/secrets.yaml
 
-# Runtime data
-pids
-*.pid
-*.seed
+# Home Assistant runtime data
+/.storage/
+/.cache/
+/.cloud/
+/.HA_VERSION
+/.ha_run.lock
+/home-assistant*.log*
+/home-assistant_v2.db*
+/zigbee.db*
+/tts/
 
-# Python cache
-__pycache__
-*.pyc
+# External and generated integrations
+/custom_components/
+/node-red/
+/homebridge/
+/sonoff-config-backup/
+/www/community/
+/www/upcoming-media-card-images/
 
-# Other
-*.uuid
-*.conf
-*.db
-*.db-journal
-*.db-shm
-*.db-wal
-*.log
-*.noload
-*.txt
-*.sqlite
-*.xml
-*.backup
-*.google.token
-.google.token
-.HA_VERSION
-home-assistant.env
-home-assistant.*
-secrets.yaml
-known_devices.yaml
-google_calendars.yaml
-components
-deps
-!/.gitignore
-!/.travis.yml
-.config_entries.json
-.cloud
-.storage/*
-emulated_hue_ids.json
-node-red/*
-.ha_run.lock
+# ESPHome generated data
+/esphome/.device-builder*
+/esphome/archive/
 
+# Editor files
+/.vscode/*
+!/.vscode/settings.json
+
+# Python
+__pycache__/
+*.py[cod]
 *.pickle
 
-# Compressed Lovelace components
-*.js.gz
-
-# ignore all custom_components - add in .travis.yaml
-custom_components
-
-# ignore frontend custom_components
-www/community/*
-www/upcoming-media-card-images/*
-
-# Ignore sonoff config backups
-sonoff-config-backup
-
-# Ignore contents of .vscode directory
-.vscode/*
-
-# Ignore *.ignore when temp disabling files
+# Temporarily disabled configuration
 *.ignore
 
-# Ignore homebridge folder
-homebridge
+# Frontend build artefacts
+*.js.gz
 
-# Ignore cache
-.cache
-
-# Ignore esphome
-esphome/*
-
-# Ignore tts files
-tts/*
+# Legacy local data pending removal
+/airsonos.xml
+/options.xml
+/pyozw.sqlite
+/zwcfg_*.xml
+/zwscene.xml
+/neighbours/
