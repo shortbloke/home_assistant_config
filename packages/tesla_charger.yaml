@@ -20,8 +20,11 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.tesla_charger_today_s_consumption') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.tesla_charger_today_s_consumption'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.tesla_charger_today_s_consumption') | float(0)
+      ) | round(2) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_changing_cost_this_month
@@ -33,5 +36,8 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.tesla_charger_this_month_s_consumption') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.tesla_charger_this_month_s_consumption'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.tesla_charger_this_month_s_consumption') | float(0)
+      ) | round(2) }}

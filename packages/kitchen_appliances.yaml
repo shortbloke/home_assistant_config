@@ -31,9 +31,12 @@ template:
       {{ has_value('sensor.dishwasher_current_consumption') and
          has_value('sensor.tumble_dryer_current_consumption') and
          has_value('sensor.washing_machine_current_consumption') }}
-    state: '{{ (states(''sensor.dishwasher_current_consumption'') | float(0) + states(''sensor.tumble_dryer_current_consumption'')
-      | float(0) + states(''sensor.washing_machine_current_consumption'') | float(0)) |
-      round(3) }}'
+    state: >
+      {{ (
+        states('sensor.dishwasher_current_consumption') | float(0) +
+        states('sensor.tumble_dryer_current_consumption') | float(0) +
+        states('sensor.washing_machine_current_consumption') | float(0)
+      ) | round(3) }}
 - sensor:
   - unit_of_measurement: kWh
     default_entity_id: sensor.kitchen_total_power_today
@@ -45,9 +48,12 @@ template:
       {{ has_value('sensor.dishwasher_today_s_consumption') and
          has_value('sensor.tumble_dryer_today_s_consumption') and
          has_value('sensor.washing_machine_today_s_consumption') }}
-    state: '{{ (states(''sensor.dishwasher_today_s_consumption'') | float(0) + states(''sensor.tumble_dryer_today_s_consumption'')
-      | float(0) + states(''sensor.washing_machine_today_s_consumption'') | float(0)) |
-      round(3) }}'
+    state: >
+      {{ (
+        states('sensor.dishwasher_today_s_consumption') | float(0) +
+        states('sensor.tumble_dryer_today_s_consumption') | float(0) +
+        states('sensor.washing_machine_today_s_consumption') | float(0)
+      ) | round(3) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.dishwasher_total_power_cost_today
@@ -58,8 +64,11 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.dishwasher_today_s_consumption') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.dishwasher_today_s_consumption'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.dishwasher_today_s_consumption') | float(0)
+      ) | round(2) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tumble_dryer_total_power_cost_today
@@ -70,8 +79,11 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.tumble_dryer_today_s_consumption') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.tumble_dryer_today_s_consumption'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.tumble_dryer_today_s_consumption') | float(0)
+      ) | round(2) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.washing_machine_total_power_cost_today
@@ -82,8 +94,11 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.washing_machine_today_s_consumption') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.washing_machine_today_s_consumption'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.washing_machine_today_s_consumption') | float(0)
+      ) | round(2) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.kitchen_total_power_cost_today
@@ -94,8 +109,11 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.kitchen_total_power_today') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.kitchen_total_power_today'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.kitchen_total_power_today') | float(0)
+      ) | round(2) }}
 
 sensor:
   - platform: history_stats

@@ -14,10 +14,13 @@ template:
          has_value('sensor.ironing_room_right_current_consumption') and
          has_value('sensor.ironing_room_ironing_table_current_consumption') and
          has_value('sensor.ironing_room_magpie_current_consumption') }}
-    state: '{{ (states(''sensor.ironing_room_left_current_consumption'') | float(0) +
-      states(''sensor.ironing_room_right_current_consumption'') | float(0) + states(''sensor.ironing_room_ironing_table_current_consumption'')
-      | float(0) + states(''sensor.ironing_room_magpie_current_consumption'') | float(0))
-      | round(3) }}'
+    state: >
+      {{ (
+        states('sensor.ironing_room_left_current_consumption') | float(0) +
+        states('sensor.ironing_room_right_current_consumption') | float(0) +
+        states('sensor.ironing_room_ironing_table_current_consumption') | float(0) +
+        states('sensor.ironing_room_magpie_current_consumption') | float(0)
+      ) | round(3) }}
 - sensor:
   - unit_of_measurement: kWh
     default_entity_id: sensor.ironing_room_total_power_today
@@ -30,10 +33,13 @@ template:
          has_value('sensor.ironing_room_right_today_s_consumption') and
          has_value('sensor.ironing_room_ironing_table_today_s_consumption') and
          has_value('sensor.ironing_room_magpie_today_s_consumption') }}
-    state: '{{ (states(''sensor.ironing_room_left_today_s_consumption'') | float(0) +
-      states(''sensor.ironing_room_right_today_s_consumption'') | float(0) + states(''sensor.ironing_room_ironing_table_today_s_consumption'')
-      | float(0) + states(''sensor.ironing_room_magpie_today_s_consumption'') | float(0))
-      | round(3) }}'
+    state: >
+      {{ (
+        states('sensor.ironing_room_left_today_s_consumption') | float(0) +
+        states('sensor.ironing_room_right_today_s_consumption') | float(0) +
+        states('sensor.ironing_room_ironing_table_today_s_consumption') | float(0) +
+        states('sensor.ironing_room_magpie_today_s_consumption') | float(0)
+      ) | round(3) }}
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.ironing_room_power_cost_today
@@ -44,11 +50,14 @@ template:
     availability: >
       {{ has_value('input_number.energy_elec_unit') and
          has_value('sensor.ironing_room_total_power_today') }}
-    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.ironing_room_total_power_today'')
-      | float(0)) | round(2) }}'
+    state: >
+      {{ (
+        states('input_number.energy_elec_unit') | float(0) *
+        states('sensor.ironing_room_total_power_today') | float(0)
+      ) | round(2) }}
 - sensor:
   - default_entity_id: sensor.ironing_room_motion_status
     unique_id: ironing_room_motion_status
     name: Ironing Room Motion Status
     availability: "{{ has_value('input_select.ironing_room_motion_status') }}"
-    state: '{{ states.input_select.ironing_room_motion_status.state }}'
+    state: "{{ states('input_select.ironing_room_motion_status') }}"

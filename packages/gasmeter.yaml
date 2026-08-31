@@ -69,14 +69,17 @@ template:
     state_class: "total_increasing"
     device_class: "gas"
     availability: "{{ has_value('input_number.gas_meter_reading') }}"
-    state: "{{ (states.input_number.gas_meter_reading.state | float(0) ) }}"
+    state: "{{ states('input_number.gas_meter_reading') | float(0) }}"
 - sensor:
   - unit_of_measurement: GBP/m³
     default_entity_id: sensor.gas_meter_price_m3
     unique_id: gas_meter_price_m3
     availability: "{{ has_value('input_number.energy_gas_unit') }}"
-    state: '{{ (states.input_number.energy_gas_unit.state | float(0) * 1.02264 * 39.4
-      / 3.6/ 100) | round(4)}}'
+    state: >
+      {{ (
+        states('input_number.energy_gas_unit') | float(0)
+        * 1.02264 * 39.4 / 3.6 / 100
+      ) | round(4) }}
     name: gas_meter_price_m3
 - sensor:
   - unit_of_measurement: kWh
@@ -85,8 +88,11 @@ template:
     device_class: energy
     state_class: total_increasing
     availability: "{{ has_value('input_number.gas_meter_reading') }}"
-    state: '{{ (states.input_number.gas_meter_reading.state | float(0) * 1.02264 * 39.4
-      / 3.6) | round(2)}}'
+    state: >
+      {{ (
+        states('input_number.gas_meter_reading') | float(0)
+        * 1.02264 * 39.4 / 3.6
+      ) | round(2) }}
     name: gas_meter_kwh
 - sensor:
   - unit_of_measurement: GBP
@@ -98,9 +104,12 @@ template:
       {{ has_value('sensor.utility_meter_gas_hourly') and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_hourly.state | float(0) * states.input_number.energy_gas_unit.state
-      | float(0))  + (states.input_number.energy_gas_standing.state | float(0) /24)) /100)
-      | round(2) }}'
+    state: >
+      {{ ((
+        states('sensor.utility_meter_gas_hourly') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0) / 24
+      ) / 100) | round(2) }}
     name: gas_price_hour
 - sensor:
   - unit_of_measurement: GBP
@@ -112,21 +121,24 @@ template:
       {{ state_attr('sensor.utility_meter_gas_hourly', 'last_period') is number and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_hourly.attributes.last_period |
-      float * states.input_number.energy_gas_unit.state | float(0)) + (states.input_number.energy_gas_standing.state
-      | float(0) /24 )) /100) | round(2) }}'
+    state: >
+      {{ ((
+        state_attr('sensor.utility_meter_gas_hourly', 'last_period') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0) / 24
+      ) / 100) | round(2) }}
     name: gas_price_hour_last
 - sensor:
   - default_entity_id: sensor.gas_price_hour_display
     unique_id: gas_price_hour_display
     availability: "{{ has_value('sensor.gas_price_hour') }}"
-    state: £{{ states.sensor.gas_price_hour.state }}
+    state: £{{ states('sensor.gas_price_hour') }}
     name: gas_price_hour_display
 - sensor:
   - default_entity_id: sensor.gas_price_hour_last_display
     unique_id: gas_price_hour_last_display
     availability: "{{ has_value('sensor.gas_price_hour_last') }}"
-    state: £{{ states.sensor.gas_price_hour_last.state }}
+    state: £{{ states('sensor.gas_price_hour_last') }}
     name: gas_price_hour_last_display
 - sensor:
   - unit_of_measurement: GBP
@@ -138,9 +150,12 @@ template:
       {{ has_value('sensor.utility_meter_gas_daily') and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_daily.state | float(0) * states.input_number.energy_gas_unit.state
-      | float(0))  + (states.input_number.energy_gas_standing.state | float(0) )) /100)
-      | round(2) }}'
+    state: >
+      {{ ((
+        states('sensor.utility_meter_gas_daily') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0)
+      ) / 100) | round(2) }}
     name: gas_price_day
 - sensor:
   - unit_of_measurement: GBP
@@ -152,21 +167,24 @@ template:
       {{ state_attr('sensor.utility_meter_gas_daily', 'last_period') is number and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_daily.attributes.last_period | float(0)
-      * states.input_number.energy_gas_unit.state | float(0)) + (states.input_number.energy_gas_standing.state
-      | float(0) )) /100) | round(2) }}'
+    state: >
+      {{ ((
+        state_attr('sensor.utility_meter_gas_daily', 'last_period') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0)
+      ) / 100) | round(2) }}
     name: gas_price_day_last
 - sensor:
   - default_entity_id: sensor.gas_price_day_display
     unique_id: gas_price_day_display
     availability: "{{ has_value('sensor.gas_price_day') }}"
-    state: £{{ states.sensor.gas_price_day.state }}
+    state: £{{ states('sensor.gas_price_day') }}
     name: gas_price_day_display
 - sensor:
   - default_entity_id: sensor.gas_price_day_last_display
     unique_id: gas_price_day_last_display
     availability: "{{ has_value('sensor.gas_price_day_last') }}"
-    state: £{{ states.sensor.gas_price_day_last.state }}
+    state: £{{ states('sensor.gas_price_day_last') }}
     name: gas_price_day_last_display
 - sensor:
   - unit_of_measurement: GBP
@@ -178,9 +196,12 @@ template:
       {{ has_value('sensor.utility_meter_gas_weekly') and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_weekly.state | float(0) * states.input_number.energy_gas_unit.state
-      | float(0))  + (states.input_number.energy_gas_standing.state | float(0) * 7 )) /100)
-      | round(2) }}'
+    state: >
+      {{ ((
+        states('sensor.utility_meter_gas_weekly') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0) * 7
+      ) / 100) | round(2) }}
     name: gas_price_week
 - sensor:
   - unit_of_measurement: GBP
@@ -192,21 +213,24 @@ template:
       {{ state_attr('sensor.utility_meter_gas_weekly', 'last_period') is number and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_weekly.attributes.last_period |
-      float * states.input_number.energy_gas_unit.state | float(0)) + (states.input_number.energy_gas_standing.state
-      | float(0) * 7 )) /100) | round(2) }}'
+    state: >
+      {{ ((
+        state_attr('sensor.utility_meter_gas_weekly', 'last_period') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0) * 7
+      ) / 100) | round(2) }}
     name: gas_price_week_last
 - sensor:
   - default_entity_id: sensor.gas_price_week_display
     unique_id: gas_price_week_display
     availability: "{{ has_value('sensor.gas_price_week') }}"
-    state: £{{ states.sensor.gas_price_week.state }}
+    state: £{{ states('sensor.gas_price_week') }}
     name: gas_price_week_display
 - sensor:
   - default_entity_id: sensor.gas_price_week_last_display
     unique_id: gas_price_week_last_display
     availability: "{{ has_value('sensor.gas_price_week_last') }}"
-    state: £{{ states.sensor.gas_price_week_last.state }}
+    state: £{{ states('sensor.gas_price_week_last') }}
     name: gas_price_week_last_display
 - sensor:
   - unit_of_measurement: GBP
@@ -218,9 +242,12 @@ template:
       {{ has_value('sensor.utility_meter_gas_monthly') and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_monthly.state | float(0) * states.input_number.energy_gas_unit.state
-      | float(0))  + (states.input_number.energy_gas_standing.state | float(0) * 28 )) /100)
-      | round(2) }}'
+    state: >
+      {{ ((
+        states('sensor.utility_meter_gas_monthly') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0) * 28
+      ) / 100) | round(2) }}
     name: gas_price_month
 - sensor:
   - unit_of_measurement: GBP
@@ -232,19 +259,22 @@ template:
       {{ state_attr('sensor.utility_meter_gas_monthly', 'last_period') is number and
          has_value('input_number.energy_gas_unit') and
          has_value('input_number.energy_gas_standing') }}
-    state: '{{ (((states.sensor.utility_meter_gas_monthly.attributes.last_period |
-      float * states.input_number.energy_gas_unit.state | float(0)) + (states.input_number.energy_gas_standing.state
-      | float(0) * 28 )) /100) | round(2) }}'
+    state: >
+      {{ ((
+        state_attr('sensor.utility_meter_gas_monthly', 'last_period') | float(0)
+        * states('input_number.energy_gas_unit') | float(0)
+        + states('input_number.energy_gas_standing') | float(0) * 28
+      ) / 100) | round(2) }}
     name: gas_price_month_last
 - sensor:
   - default_entity_id: sensor.gas_price_month_display
     unique_id: gas_price_month_display
     availability: "{{ has_value('sensor.gas_price_month') }}"
-    state: £{{ states.sensor.gas_price_month.state }}
+    state: £{{ states('sensor.gas_price_month') }}
     name: gas_price_month_display
 - sensor:
   - default_entity_id: sensor.gas_price_month_last_display
     unique_id: gas_price_month_last_display
     availability: "{{ has_value('sensor.gas_price_month_last') }}"
-    state: £{{ states.sensor.gas_price_month_last.state }}
+    state: £{{ states('sensor.gas_price_month_last') }}
     name: gas_price_month_last_display
