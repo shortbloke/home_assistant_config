@@ -4,20 +4,30 @@
 template:
 - sensor:
   - default_entity_id: sensor.tesla_charging_status
+    unique_id: tesla_charging_status
     icon: mdi:car-electric
     name: Tesla Charging Status
+    availability: "{{ has_value('input_select.tesla_charging_status') }}"
     state: '{{ states(''input_select.tesla_charging_status'') }}'
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_charging_cost_today
+    unique_id: tesla_charging_cost_today
     icon: mdi:currency-gbp
     name: Tesla Charging Cost Today
-    state: '{{ (states(''input_number.energy_elec_unit'') | float * states(''sensor.tesla_charger_today_s_consumption'')
-      | float) | round(2) }}'
+    availability: >
+      {{ has_value('input_number.energy_elec_unit') and
+         has_value('sensor.tesla_charger_today_s_consumption') }}
+    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.tesla_charger_today_s_consumption'')
+      | float(0)) | round(2) }}'
 - sensor:
   - unit_of_measurement: GBP
     default_entity_id: sensor.tesla_changing_cost_this_month
+    unique_id: tesla_changing_cost_this_month
     icon: mdi:currency-gbp
     name: Tesla Charging Cost This Month
-    state: '{{ (states(''input_number.energy_elec_unit'') | float * states(''sensor.tesla_charger_this_month_s_consumption'')
-      | float) | round(2) }}'      
+    availability: >
+      {{ has_value('input_number.energy_elec_unit') and
+         has_value('sensor.tesla_charger_this_month_s_consumption') }}
+    state: '{{ (states(''input_number.energy_elec_unit'') | float(0) * states(''sensor.tesla_charger_this_month_s_consumption'')
+      | float(0)) | round(2) }}'

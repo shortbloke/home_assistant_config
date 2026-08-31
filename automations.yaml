@@ -1,9 +1,9 @@
 - id: '1615638107644'
   alias: 'Alert: Low salt level'
   description: ''
-  trigger:
+  triggers:
   - type: distance
-    platform: device
+    trigger: device
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: baeb3502f118115b51c15bb0da8962e3
     domain: sensor
@@ -12,9 +12,9 @@
       hours: 1
       minutes: 0
       seconds: 0
-  condition: []
-  action:
-  - service: input_boolean.turn_on
+  conditions: []
+  actions:
+  - action: input_boolean.turn_on
     target:
       entity_id: input_boolean.low_salt
     data: {}
@@ -27,9 +27,9 @@
 - id: '1615638220241'
   alias: 'State Change: Reset Salt Level Input Boolean'
   description: ''
-  trigger:
+  triggers:
   - type: value
-    platform: device
+    trigger: device
     device_id: f93fcb10f5467ec5d73867e8e7bfb88c
     entity_id: sensor.garage_monitor_salt_level
     domain: sensor
@@ -39,9 +39,9 @@
       minutes: 0
       seconds: 0
       milliseconds: 0
-  condition: []
-  action:
-  - service: input_boolean.turn_off
+  conditions: []
+  actions:
+  - action: input_boolean.turn_off
     target:
       entity_id: input_boolean.low_salt
     data: {}
@@ -49,9 +49,9 @@
 - id: '1615640713545'
   alias: 'Action: Turn on Loft Fan above 30'
   description: ''
-  trigger:
+  triggers:
   - type: temperature
-    platform: device
+    trigger: device
     device_id: 11f3b2cca347d360c859eb46718cc34c
     entity_id: sensor.loft_fan_temperature
     domain: sensor
@@ -61,8 +61,8 @@
       minutes: 5
       seconds: 0
       milliseconds: 0
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_on
     device_id: 11f3b2cca347d360c859eb46718cc34c
     entity_id: switch.sonoff_loft_fan
@@ -71,9 +71,9 @@
 - id: '1615640737825'
   alias: 'Action: Turn off Loft Fan below 30'
   description: ''
-  trigger:
+  triggers:
   - type: temperature
-    platform: device
+    trigger: device
     device_id: 11f3b2cca347d360c859eb46718cc34c
     entity_id: sensor.loft_fan_temperature
     domain: sensor
@@ -83,8 +83,8 @@
       minutes: 5
       seconds: 0
       milliseconds: 0
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_off
     device_id: 11f3b2cca347d360c859eb46718cc34c
     entity_id: switch.sonoff_loft_fan
@@ -93,14 +93,14 @@
 - id: '1615646609604'
   alias: 'Schedule: Turn on in the morning and sunset'
   description: ''
-  trigger:
+  triggers:
   - platform: time
     at: 06:30:00
   - platform: sun
     event: sunset
     offset: -01:00:00
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_on
     device_id: 0b953119e29d4d2cb3c99048226eefd9
     entity_id: switch.lwrf_hall_socket_2
@@ -109,13 +109,13 @@
 - id: '1615646860464'
   alias: 'Action: Turn off twig lights after sunrise'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sun.sun
     attribute: elevation
     above: '10'
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_off
     device_id: 0b953119e29d4d2cb3c99048226eefd9
     entity_id: switch.lwrf_hall_socket_2
@@ -124,17 +124,17 @@
 - id: '1615647990496'
   alias: 'Action & Alert: Frasers TV tuned on after curfew'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: binary_sensor.frasers_tv
     to: 'on'
     for: 00:06:00
-  condition:
+  conditions:
   - condition: time
     after: '23:00'
     before: 06:59
-  action:
-  - service: notify.mobile_app_martin_iphone12
+  actions:
+  - action: notify.mobile_app_martin_iphone12
     data:
       message: Turning off Frasers TV Power
       data:
@@ -145,21 +145,21 @@
           authenticationRequired: false
           destructive: false
           behavior: default
-  - service: homeassistant.turn_off
+  - action: homeassistant.turn_off
     target:
       entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615648232369'
   alias: 'Notify: Late TV message (TTS)'
   description: ''
-  trigger:
+  triggers:
   - platform: event
     event_data:
       action: PLAY_LATE_TV_MESSAGE
     event_type: mobile_app_notification_action
-  condition: []
-  action:
-  - service: script.sonos_say
+  conditions: []
+  actions:
+  - action: script.sonos_say
     data:
       sonos_entity: media_player.play_1
       volume: 0.5
@@ -169,15 +169,15 @@
 - id: '1615648465209'
   alias: 'Action & Alert: Turn off power to Frasers TV if on 30mins after curfew'
   description: ''
-  trigger:
+  triggers:
   - platform: time
     at: '23:30'
-  condition:
+  conditions:
   - condition: state
     entity_id: binary_sensor.frasers_tv
     state: 'on'
-  action:
-  - service: notify.mobile_app_martin_iphone12
+  actions:
+  - action: notify.mobile_app_martin_iphone12
     data:
       message: Cutting power to Fraser's TV
       data:
@@ -188,32 +188,32 @@
           authenticationRequired: false
           destructive: false
           behavior: default
-  - service: homeassistant.turn_off
+  - action: homeassistant.turn_off
     target:
       entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615648558972'
   alias: 'Schedule: Restore power to Frasers TV'
   description: ''
-  trigger:
+  triggers:
   - platform: time
     at: 07:00:00
-  condition: []
-  action:
-  - service: homeassistant.turn_on
+  conditions: []
+  actions:
+  - action: homeassistant.turn_on
     target:
       entity_id: switch.lwrf_loft_fraser_tv
   mode: single
 - id: '1615649323516'
   alias: 'Alert: HASS Low Disk Space'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.disk_use_percent
     above: '90'
-  condition: []
-  action:
-  - service: notify.martin
+  conditions: []
+  actions:
+  - action: notify.martin
     data:
       message: Low disk space > 90% used
       title: HASS Low Resource Alert
@@ -221,13 +221,13 @@
 - id: '1615649356820'
   alias: 'Alert: HASS Low Memory'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.memory_use_percent
     above: '90'
-  condition: []
-  action:
-  - service: notify.martin
+  conditions: []
+  actions:
+  - action: notify.martin
     data:
       message: Low memory > 90% used
       title: HASS Low Resource Alert
@@ -235,13 +235,13 @@
 - id: '1615649413577'
   alias: 'Alert: HASS High Load'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.load_5m
     above: '2.8'
-  condition: []
-  action:
-  - service: notify.martin
+  conditions: []
+  actions:
+  - action: notify.martin
     data:
       message: System Load 5m Load Average > 2.8
       title: HASS Low Resource Alert
@@ -249,11 +249,11 @@
 - id: '1615651874014'
   alias: 'State Change: Set washing machine active when power detected'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.washing_machine_current_consumption
     above: '5'
-  condition:
+  conditions:
   - condition: or
     conditions:
     - condition: state
@@ -262,8 +262,8 @@
     - condition: state
       entity_id: input_select.washing_machine_status
       state: finished
-  action:
-  - service: input_select.select_option
+  actions:
+  - action: input_select.select_option
     data:
       option: running
     target:
@@ -272,22 +272,22 @@
 - id: '1615652115472'
   alias: 'State Change: Set washing machine to finished when power drops'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.washing_machine_current_consumption
     below: '5'
     for: 00:02:00
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.washing_machine_status
     state: running
-  action:
-  - service: input_select.select_option
+  actions:
+  - action: input_select.select_option
     data:
       option: finished
     target:
       entity_id: input_select.washing_machine_status
-  - service: notify.michelle
+  - action: notify.michelle
     data:
       title: Washing Machine
       message: Finished!
@@ -296,7 +296,7 @@
       minutes: 2
       seconds: 0
       milliseconds: 0
-  - service: input_select.select_option
+  - action: input_select.select_option
     data:
       option: idle
     target:
@@ -305,11 +305,11 @@
 - id: '1615653075229'
   alias: 'State Change: Set dryer active when power detected'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.tumble_dryer_current_consumption
     above: '800'
-  condition:
+  conditions:
   - condition: or
     conditions:
     - condition: state
@@ -318,8 +318,8 @@
     - condition: state
       entity_id: input_select.dryer_status
       state: finished
-  action:
-  - service: input_select.select_option
+  actions:
+  - action: input_select.select_option
     data:
       option: running
     target:
@@ -328,22 +328,22 @@
 - id: '1615653218617'
   alias: 'State Change: Set dryer to finished when power drops'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.tumble_dryer_current_consumption
     below: '100'
     for: 00:03:00
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.dryer_status
     state: running
-  action:
-  - service: input_select.select_option
+  actions:
+  - action: input_select.select_option
     data:
       option: finished
     target:
       entity_id: input_select.dryer_status
-  - service: notify.michelle
+  - action: notify.michelle
     data:
       title: Tumble Dryer
       message: Finished!
@@ -352,7 +352,7 @@
       minutes: 2
       seconds: 0
       milliseconds: 0
-  - service: input_select.select_option
+  - action: input_select.select_option
     data:
       option: idle
     target:
@@ -361,11 +361,11 @@
 - id: '1615653304715'
   alias: 'State Change: Set dishwasher active when power detected'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.dishwasher_current_consumption
     above: '100'
-  condition:
+  conditions:
   - condition: or
     conditions:
     - condition: state
@@ -374,8 +374,8 @@
     - condition: state
       entity_id: input_select.dishwasher_status
       state: finished
-  action:
-  - service: input_select.select_option
+  actions:
+  - action: input_select.select_option
     data:
       option: running
     target:
@@ -384,22 +384,22 @@
 - id: '1615653473188'
   alias: 'State Change: Set dishwasher to finished when power drops'
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id: sensor.dishwasher_current_consumption
     below: '1'
     for: 00:02:00
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.dishwasher_status
     state: running
-  action:
-  - service: input_select.select_option
+  actions:
+  - action: input_select.select_option
     data:
       option: finished
     target:
       entity_id: input_select.dishwasher_status
-  - service: notify.adults
+  - action: notify.adults
     data:
       message: Finished!
       title: Dishwasher
@@ -408,7 +408,7 @@
       minutes: 2
       seconds: 0
       milliseconds: 0
-  - service: input_select.select_option
+  - action: input_select.select_option
     data:
       option: idle
     target:
@@ -417,13 +417,13 @@
 - id: '1615653930854'
   alias: Ironing room motion detected
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: binary_sensor.motion_sensor_ironing_room
     to: 'on'
-  condition: []
-  action:
-  - service: input_select.select_option
+  conditions: []
+  actions:
+  - action: input_select.select_option
     data:
       option: motion
     target:
@@ -432,7 +432,7 @@
 - id: '1615654076969'
   alias: Set ironing room to idle after 30mins of no motion
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id:
     - binary_sensor.motion_sensor_ironing_room
@@ -441,9 +441,9 @@
       hours: 0
       minutes: 30
       seconds: 0
-  condition: []
-  action:
-  - service: input_select.select_option
+  conditions: []
+  actions:
+  - action: input_select.select_option
     data:
       option: idle
     target:
@@ -452,7 +452,7 @@
 - id: '1615654485950'
   alias: Turn off ironing table - no motion
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id:
     - sensor.ironing_room_ironing_table_current_consumption
@@ -461,16 +461,16 @@
       minutes: 0
       seconds: 10
     above: 10
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
     state: idle
-  action:
-  - service: notify.michelle
+  actions:
+  - action: notify.michelle
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Ironing Table
-  - service: switch.turn_off
+  - action: switch.turn_off
     metadata: {}
     data: {}
     target:
@@ -479,16 +479,16 @@
 - id: '1615662841415'
   alias: 'State Change: House occupied'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: group.anyone_home
     to: home
-  condition:
+  conditions:
   - condition: state
     entity_id: input_boolean.guest_mode
     state: 'off'
-  action:
-  - service: climate.set_preset_mode
+  actions:
+  - action: climate.set_preset_mode
     data:
       preset_mode: none
     target:
@@ -497,48 +497,48 @@
 - id: '1615662905589'
   alias: 'State Change: House unoccupied'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: group.anyone_home
     from: home
-  condition:
+  conditions:
   - condition: state
     entity_id: input_boolean.guest_mode
     state: 'off'
-  action:
-  - service: climate.set_preset_mode
+  actions:
+  - action: climate.set_preset_mode
     data:
       preset_mode: eco
     target:
       entity_id: climate.hallway_house
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.everyone_away
   mode: single
 - id: '1615662965997'
   alias: 'State Change: Morgan presence changed from home'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: person.morgan
     from: home
-  condition:
+  conditions:
   - condition: state
     entity_id: input_boolean.guest_mode
     state: 'off'
-  action:
-  - service: script.turn_on
+  actions:
+  - action: script.turn_on
     target:
       entity_id: script.morgan_away
   mode: single
 - id: '1615663102226'
   alias: 'Alert: Morgan away window open'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: person.morgan
     from: home
-  condition:
+  conditions:
   - condition: and
     conditions:
     - condition: state
@@ -547,12 +547,12 @@
     - condition: state
       entity_id: binary_sensor.lumi_lumi_sensor_magnet_993d0303_on_off
       state: 'on'
-  action:
-  - service: notify.morgan
+  actions:
+  - action: notify.morgan
     data:
       title: 'Home Assistant: ALERT!'
       message: Bedroom Window Left Open
-  - service: notify.michelle
+  - action: notify.michelle
     data:
       title: 'Home Assistant: ALERT!'
       message: Morgan's window has been left open
@@ -582,11 +582,11 @@
 - id: '1615663371546'
   alias: 'Alert: House unoccupied things left open'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: group.anyone_home
     from: home
-  condition:
+  conditions:
   - condition: and
     conditions:
     - condition: state
@@ -615,8 +615,8 @@
       - condition: state
         entity_id: binary_sensor.lumi_lumi_morgans_window
         state: 'on'
-  action:
-  - service: notify.adults
+  actions:
+  - action: notify.adults
     data:
       title: House Unoccupied - Left open
       message: '{%if is_state(''binary_sensor.lumi_lumi_frasers_window_right'', ''on'')%}{{state_attr(''binary_sensor.lumi_lumi_frasers_window_right'',''friendly_name'')}}{%endif%}
@@ -638,17 +638,17 @@
 - id: '1621091408356'
   alias: 'Action: Shutdown PC - Tera if Fraser not home for 5 mins'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id: person.fraser
     from: home
     for: 0:05:00
-  condition:
+  conditions:
   - condition: state
     entity_id: sensor.tera_powered_on
     state: 'True'
-  action:
-  - service: notify.martin
+  actions:
+  - action: notify.martin
     data:
       message: Fraser no longer at home but PC On. Turn off?
       title: PC Shutdown
@@ -668,14 +668,14 @@
 - id: '1628523215496'
   alias: 'Notify: Shutdown Frasers PC'
   description: ''
-  trigger:
+  triggers:
   - platform: event
     event_data:
       action: FRASER_PC_SHUTDOWN
     event_type: mobile_app_notification_action
-  condition: []
-  action:
-  - service: homeassistant.turn_on
+  conditions: []
+  actions:
+  - action: homeassistant.turn_on
     target:
       entity_id: switch.shutdown
   mode: single
@@ -708,11 +708,11 @@
 - id: '1675235683724'
   alias: Keep Hot Water above 30
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id:
     - sensor.garage_monitor_water_temperature
-  condition:
+  conditions:
   - condition: and
     conditions:
     - condition: numeric_state
@@ -724,8 +724,8 @@
     - condition: time
       after: 06:00:00
       before: '23:00:00'
-  action:
-  - service: homeassistant.turn_on
+  actions:
+  - action: homeassistant.turn_on
     data: {}
     target:
       entity_id: switch.downstairs_thermostat_hot_water
@@ -733,7 +733,7 @@
 - id: '1697876540698'
   alias: 'Action: Shutdown PC - Tera idle for over 2 hours'
   description: ''
-  trigger:
+  triggers:
   - platform: state
     entity_id:
     - binary_sensor.tera_pc_idle
@@ -742,8 +742,8 @@
       hours: 2
       minutes: 0
       seconds: 0
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: toggle
     device_id: 15f9831aec887ee4621e1c7124d77a47
     entity_id: e95db23038c032115f4f94295c75bbd5
@@ -789,7 +789,7 @@
 - id: '1712427494133'
   alias: Turn off magpie iron - no motion
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id:
     - sensor.ironing_room_magpie_current_consumption
@@ -798,16 +798,16 @@
       minutes: 0
       seconds: 10
     above: 10
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
     state: idle
-  action:
-  - service: notify.michelle
+  actions:
+  - action: notify.michelle
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Magpie Iron
-  - service: switch.turn_off
+  - action: switch.turn_off
     metadata: {}
     data: {}
     target:
@@ -816,7 +816,7 @@
 - id: '1712427569780'
   alias: Turn off irons left - no motion
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id:
     - sensor.ironing_room_left_current_consumption
@@ -825,16 +825,16 @@
       minutes: 0
       seconds: 10
     above: 10
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
     state: idle
-  action:
-  - service: notify.michelle
+  actions:
+  - action: notify.michelle
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Irons (Left)
-  - service: switch.turn_off
+  - action: switch.turn_off
     metadata: {}
     data: {}
     target:
@@ -843,7 +843,7 @@
 - id: '1712427655992'
   alias: Turn off irons right - no motion
   description: ''
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id:
     - sensor.ironing_room_right_current_consumption
@@ -852,16 +852,16 @@
       minutes: 0
       seconds: 10
     above: 10
-  condition:
+  conditions:
   - condition: state
     entity_id: input_select.ironing_room_motion_status
     state: idle
-  action:
-  - service: notify.michelle
+  actions:
+  - action: notify.michelle
     data:
       title: Ironing Room Alert!
       message: No Motion Detected - Turning off Irons (Right)
-  - service: switch.turn_off
+  - action: switch.turn_off
     metadata: {}
     data: {}
     target:
@@ -891,7 +891,7 @@
 - id: '1714314533892'
   alias: Turn on 3D Printer Light
   description: Turns on 3D Printer light when 3D printer is turned on
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id:
     - sensor.3d_printer_current_consumption
@@ -900,9 +900,9 @@
       minutes: 0
       seconds: 5
     above: 2
-  condition: []
-  action:
-  - service: switch.turn_on
+  conditions: []
+  actions:
+  - action: switch.turn_on
     metadata: {}
     data: {}
     target:
@@ -911,7 +911,7 @@
 - id: '1714314593069'
   alias: Turn off 3D Printer light
   description: Turns off 3D Printer light when 3D printer is turned off
-  trigger:
+  triggers:
   - platform: numeric_state
     entity_id:
     - sensor.3d_printer_current_consumption
@@ -920,9 +920,9 @@
       minutes: 0
       seconds: 5
     below: 2
-  condition: []
-  action:
-  - service: switch.turn_off
+  conditions: []
+  actions:
+  - action: switch.turn_off
     target:
       device_id:
       - 92e4838c6495a1d38dcfd55c46d31afe

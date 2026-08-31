@@ -3,60 +3,53 @@
 ####################################################
 
 template:
-  # State ensures:
-  #  - value is not set until both solar and electricity readings have been received and are no longer unknown
-  #  - reads the values in simple variables for elec and solar, to make if statements easier to read
-  #  - protects value going negative if one sensor resets to zero before the other at around midnight
-  - trigger:
-    - platform: state
-      entity_id: sensor.owl_electricity_power
+  - triggers:
+      - trigger: state
+        entity_id:
+          - sensor.owl_electricity_power
+          - sensor.owl_solar_generating
+          - sensor.owl_solar_exporting
     sensor:
       - name: "Owl Energy Now"
+        unique_id: owl_energy_now
+        default_entity_id: sensor.owl_energy_now
         unit_of_measurement: "W"
         state_class: measurement
         device_class: power
+        availability: >
+          {{ has_value('sensor.owl_electricity_power') and
+             has_value('sensor.owl_solar_generating') and
+             has_value('sensor.owl_solar_exporting') }}
         state: >
-          {% if is_state('sensor.owl_electricity_power', 'unknown') or is_state('sensor.owl_solar_generating', 'unknown') or is_state('sensor.owl_electricity_power', '') or is_state('sensor.owl_solar_generating', '') %}
-            unknown
-          {% else %}
-            {% set elec = states('sensor.owl_electricity_power') | float %}
-            {% set solar = states('sensor.owl_solar_generating') | float %}
-            {% set solar_exporting = states('sensor.owl_solar_exporting') | float %}
-            {% set solar_using = float(solar) - float(solar_exporting) | float %}
-            {% if (float(elec) - float(solar_using)) < 0 %}
-              0
-            {% else %}
-              {{ float(elec) - float(solar_using) }}
-            {% endif %}
-          {% endif %}
+          {% set electricity = states('sensor.owl_electricity_power') | float(0) %}
+          {% set solar = states('sensor.owl_solar_generating') | float(0) %}
+          {% set exported = states('sensor.owl_solar_exporting') | float(0) %}
+          {{ [electricity - (solar - exported), 0] | max | round(1) }}
 
-  # State ensures:
-  #  - value is not set until both solar and electricity readings have been received and are no longer unknown
-  #  - reads the values in simple variables for elec, solar and last_grid_today, to make if statements easier to read
-  #  - protects value going negative if one sensor resets to zero before the other at around midnight
-  #  - if elec - solar would be negative it uses the last value from the sensor, stored in last_grid_today
-  - trigger: 
-    - platform: state
-      entity_id: sensor.owl_electricity_today
+  - triggers:
+      - trigger: state
+        entity_id:
+          - sensor.owl_electricity_today
+          - sensor.owl_solar_generated_today
+          - sensor.owl_solar_exported_today
     sensor:
       - name: "Owl Energy Today"
+        unique_id: owl_energy_today
+        default_entity_id: sensor.owl_energy_today
         unit_of_measurement: "kWh"
         state_class: total_increasing
         device_class: energy
+        availability: >
+          {{ has_value('sensor.owl_electricity_today') and
+             has_value('sensor.owl_solar_generated_today') and
+             has_value('sensor.owl_solar_exported_today') }}
         state: >
-          {% if is_state('sensor.owl_electricity_today', 'unknown') or is_state('sensor.owl_solar_generated_today', 'unknown') or is_state('sensor.owl_electricity_today', '') or is_state('sensor.owl_solar_generated_today', '') %}
-            unknown
+          {% set electricity = states('sensor.owl_electricity_today') | float(0) %}
+          {% set solar = states('sensor.owl_solar_generated_today') | float(0) %}
+          {% set exported = states('sensor.owl_solar_exported_today') | float(0) %}
+          {% set calculated = electricity - (solar - exported) %}
+          {% if calculated >= 0 %}
+            {{ calculated | round(3) }}
           {% else %}
-            {% set elec = states('sensor.owl_electricity_today') | float %}
-            {% set solar = states('sensor.owl_solar_generated_today') | float %}
-            {% set solar_export = states('sensor.owl_solar_exported_today') | float %}
-            {% set solar_used = float(solar) - float(solar_export) | float %}
-            {% set last_grid_today = states('sensor.owl_grid_energy_today') | float(default=0) %}
-            {% if (float(elec) - float(solar_used) ) >= 0 %}
-              {% if float(elec) - float(solar_used) > float(last_grid_today) %}
-                {{ float(elec) - float(solar_used) }}
-              {% else %}
-                {{ float(last_grid_today) }}
-              {% endif %}
-            {% endif %}
+            {{ this.state | float(0) }}
           {% endif %}

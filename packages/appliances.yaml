@@ -2,59 +2,127 @@
 ## Components/Sensors
 ##################################################
 template:
-- sensor:
-  - unit_of_measurement: W
-    default_entity_id: sensor.loft_total_power_now
-    name: Power Now - Loft
-    state: "{{ (states('sensor.loft_ups_current_consumption') | float(0) +\n    states('sensor.loft2_current_consumption')
-      | float(0)) | round(3) }}"
-- sensor:
-  - unit_of_measurement: kWh
-    default_entity_id: sensor.loft_total_power_today
-    name: Power Today - Loft
-    state: "{{ (states('sensor.loft_ups_today_s_consumption') | float(0) +\n    states('sensor.loft2_today_s_consumption')
-      | float(0)) | round(3) }}"
-- sensor:
-  - unit_of_measurement: GBP
-    default_entity_id: sensor.loft_ups_total_power_cost_today
-    name: Loft Main UPS Feed Cost Today
-    state: "{{ (states('input_number.energy_elec_unit') | float(0) *\n    states('sensor.loft_ups_today_s_consumption')
-      | float(0)) | round(2) }}"
-- sensor:
-  - unit_of_measurement: GBP
-    default_entity_id: sensor.loft2_total_power_cost_today
-    name: Loft Starlink Feed Cost Today
-    state: "{{ (states('input_number.energy_elec_unit') | float(0) *\n    states('sensor.loft2_today_s_consumption')
-      | float(0)) | round(2) }}"
-- sensor:
-  - unit_of_measurement: GBP
-    default_entity_id: sensor.loft_total_power_cost_today
-    name: Power Cost Today - Loft
-    state: "{{ (states('input_number.energy_elec_unit') | float(0) *\n    states('sensor.loft_total_power_today')
-      | float(0)) | round(2) }}"
-- sensor:
-  - unit_of_measurement: W
-    default_entity_id: sensor.conservatory_total_power_now
-    name: Power Now - Conservatory
-    state: "{{ (states('sensor.conservatory_left_current_consumption') | float(0)
-      +\n    states('sensor.c_desk_right_current_consumption') | float(0) +\n    states('sensor.conservatory_heater_power')
-      | float(0) +\n    states('sensor.conservatory_window_lamp_current_consumption')
-      | float(0) +\n    states('sensor.3d_printer_current_consumption') | float(0)
-      +\n    states('sensor.3d_printer_light_current_consumption') | float(0) +\n
-      \   states('sensor.robovac_current_consumption') | float(0)) | round(3) }}"
-- sensor:
-  - unit_of_measurement: kWh
-    default_entity_id: sensor.conservatory_total_power_today
-    name: Power Today - Conservatory
-    state: "{{ (states('sensor.conservatory_left_today_s_consumption') | float(0)
-      +\n    states('sensor.c_desk_right_today_s_consumption') | float(0) +\n    states('sensor.conservatory_heater_electricity')
-      | float(0) +\n    states('sensor.conservatory_window_lamp_today_s_consumption')
-      | float(0) +\n    states('sensor.3d_printer_today_s_consumption') | float(0)
-      +\n    states('sensor.3d_printer_light_today_s_consumption') | float(0) +\n
-      \   states('sensor.robovac_today_s_consumption') | float(0)) | round(3) }}"
-- sensor:
-  - unit_of_measurement: GBP
-    default_entity_id: sensor.conservatory_total_power_cost_today
-    name: Conservatory Cost Today
-    state: "{{ (states('input_number.energy_elec_unit') | float(0) *\n    states('sensor.conservatory_total_power_today')
-      | float(0)) | round(2) }}"
+  - sensor:
+      - name: "Power Now - Loft"
+        unique_id: loft_total_power_now
+        default_entity_id: sensor.loft_total_power_now
+        unit_of_measurement: "W"
+        availability: >
+          {{ has_value('sensor.loft_ups_current_consumption') and
+             has_value('sensor.loft2_current_consumption') }}
+        state: >
+          {{ (
+            states('sensor.loft_ups_current_consumption') | float(0) +
+            states('sensor.loft2_current_consumption') | float(0)
+          ) | round(3) }}
+
+      - name: "Power Today - Loft"
+        unique_id: loft_total_power_today
+        default_entity_id: sensor.loft_total_power_today
+        unit_of_measurement: "kWh"
+        availability: >
+          {{ has_value('sensor.loft_ups_today_s_consumption') and
+             has_value('sensor.loft2_today_s_consumption') }}
+        state: >
+          {{ (
+            states('sensor.loft_ups_today_s_consumption') | float(0) +
+            states('sensor.loft2_today_s_consumption') | float(0)
+          ) | round(3) }}
+
+      - name: "Loft Main UPS Feed Cost Today"
+        unique_id: loft_ups_total_power_cost_today
+        default_entity_id: sensor.loft_ups_total_power_cost_today
+        unit_of_measurement: "GBP"
+        availability: >
+          {{ has_value('input_number.energy_elec_unit') and
+             has_value('sensor.loft_ups_today_s_consumption') }}
+        state: >
+          {{ (
+            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.loft_ups_today_s_consumption') | float(0)
+          ) | round(2) }}
+
+      - name: "Loft Non-UPS Feed Cost Today"
+        unique_id: loft2_total_power_cost_today
+        default_entity_id: sensor.loft2_total_power_cost_today
+        unit_of_measurement: "GBP"
+        availability: >
+          {{ has_value('input_number.energy_elec_unit') and
+             has_value('sensor.loft2_today_s_consumption') }}
+        state: >
+          {{ (
+            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.loft2_today_s_consumption') | float(0)
+          ) | round(2) }}
+
+      - name: "Power Cost Today - Loft"
+        unique_id: loft_total_power_cost_today
+        default_entity_id: sensor.loft_total_power_cost_today
+        unit_of_measurement: "GBP"
+        availability: >
+          {{ has_value('input_number.energy_elec_unit') and
+             has_value('sensor.loft_total_power_today') }}
+        state: >
+          {{ (
+            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.loft_total_power_today') | float(0)
+          ) | round(2) }}
+
+      - name: "Power Now - Conservatory"
+        unique_id: conservatory_total_power_now
+        default_entity_id: sensor.conservatory_total_power_now
+        unit_of_measurement: "W"
+        availability: >
+          {{ has_value('sensor.conservatory_left_current_consumption') and
+             has_value('sensor.c_desk_right_current_consumption') and
+             has_value('sensor.conservatory_heater_power') and
+             has_value('sensor.conservatory_window_lamp_current_consumption') and
+             has_value('sensor.3d_printer_current_consumption') and
+             has_value('sensor.3d_printer_light_current_consumption') and
+             has_value('sensor.robovac_current_consumption') }}
+        state: >
+          {{ (
+            states('sensor.conservatory_left_current_consumption') | float(0) +
+            states('sensor.c_desk_right_current_consumption') | float(0) +
+            states('sensor.conservatory_heater_power') | float(0) +
+            states('sensor.conservatory_window_lamp_current_consumption') | float(0) +
+            states('sensor.3d_printer_current_consumption') | float(0) +
+            states('sensor.3d_printer_light_current_consumption') | float(0) +
+            states('sensor.robovac_current_consumption') | float(0)
+          ) | round(3) }}
+
+      - name: "Power Today - Conservatory"
+        unique_id: conservatory_total_power_today
+        default_entity_id: sensor.conservatory_total_power_today
+        unit_of_measurement: "kWh"
+        availability: >
+          {{ has_value('sensor.conservatory_left_today_s_consumption') and
+             has_value('sensor.c_desk_right_today_s_consumption') and
+             has_value('sensor.conservatory_heater_electricity') and
+             has_value('sensor.conservatory_window_lamp_today_s_consumption') and
+             has_value('sensor.3d_printer_today_s_consumption') and
+             has_value('sensor.3d_printer_light_today_s_consumption') and
+             has_value('sensor.robovac_today_s_consumption') }}
+        state: >
+          {{ (
+            states('sensor.conservatory_left_today_s_consumption') | float(0) +
+            states('sensor.c_desk_right_today_s_consumption') | float(0) +
+            states('sensor.conservatory_heater_electricity') | float(0) +
+            states('sensor.conservatory_window_lamp_today_s_consumption') | float(0) +
+            states('sensor.3d_printer_today_s_consumption') | float(0) +
+            states('sensor.3d_printer_light_today_s_consumption') | float(0) +
+            states('sensor.robovac_today_s_consumption') | float(0)
+          ) | round(3) }}
+
+      - name: "Conservatory Cost Today"
+        unique_id: conservatory_total_power_cost_today
+        default_entity_id: sensor.conservatory_total_power_cost_today
+        unit_of_measurement: "GBP"
+        availability: >
+          {{ has_value('input_number.energy_elec_unit') and
+             has_value('sensor.conservatory_total_power_today') }}
+        state: >
+          {{ (
+            states('input_number.energy_elec_unit') | float(0) *
+            states('sensor.conservatory_total_power_today') | float(0)
+          ) | round(2) }}
