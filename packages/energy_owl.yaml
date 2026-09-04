@@ -53,8 +53,4 @@ template:
           {% set solar = states('sensor.owl_solar_generated_today') | float(0) %}
           {% set exported = states('sensor.owl_solar_exported_today') | float(0) %}
           {% set calculated = electricity - (solar - exported) %}
-          {% if calculated >= 0 %}
-            {{ calculated | round(3) }}
-          {% else %}
-            {{ this.state | float(0) }}
-          {% endif %}
+          {{ [calculated, 0] | max | round(3) }}
