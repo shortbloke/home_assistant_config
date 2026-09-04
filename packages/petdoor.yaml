@@ -1,24 +1,8 @@
 ##################################################
-## Components/Sensors
+## Daily counters
 ##################################################
-mqtt:
-  - cover:
-      name: PetDoor
-      default_entity_id: cover.petdoor
-      unique_id: petdoor
-      command_topic: "homeassistant/cover/petdoor/set"
-      state_topic: "homeassistant/cover/petdoor/state"
-      availability:
-        - topic: "homeassistant/cover/petdoor/availability"
-      retain: false
-
-sensor:
-  - platform: history_stats
-    name: PetDoor opened today count
+utility_meter:
+  petdoor_opened_today_count:
+    source: sensor.pet_door_pet_door_open_count
+    cycle: daily
     unique_id: petdoor_opened_today_count
-    state_class: total_increasing
-    entity_id: cover.petdoor
-    type: count
-    state: 'open'
-    start: "{{ today_at() }}"
-    end: '{{ now() }}'
