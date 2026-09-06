@@ -527,7 +527,7 @@
         "attributes": [
             {
                 "property": "state_class",
-                "value": "total_increasing",
+                "value": "total",
                 "valueType": "str"
             },
             {
@@ -602,7 +602,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -638,7 +638,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -674,7 +674,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "total_increasing"
             },
             {
                 "property": "last_reset",
@@ -710,7 +710,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "total_increasing"
             },
             {
                 "property": "last_reset",
@@ -746,7 +746,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -782,7 +782,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "total_increasing"
             },
             {
                 "property": "last_reset",
@@ -818,7 +818,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -854,7 +854,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -890,7 +890,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -926,7 +926,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "measurement"
             },
             {
                 "property": "last_reset",
@@ -962,7 +962,7 @@
             },
             {
                 "property": "state_class",
-                "value": ""
+                "value": "total"
             },
             {
                 "property": "last_reset",

@@ -136,7 +136,7 @@ sensor:
   - platform: history_stats
     name: Dishwasher uses today
     unique_id: dishwasher_uses_today
-    state_class: total_increasing
+    state_class: total
     entity_id: input_select.dishwasher_status
     type: count
     state: 'finished'
@@ -145,7 +145,7 @@ sensor:
   - platform: history_stats
     name: Dishwasher uses this week
     unique_id: dishwasher_uses_this_week
-    state_class: total_increasing
+    state_class: total
     entity_id: input_select.dishwasher_status
     type: count
     state: 'finished'
@@ -155,7 +155,7 @@ sensor:
   - platform: history_stats
     name: Dryer uses today
     unique_id: dryer_uses_today
-    state_class: total_increasing
+    state_class: total
     entity_id: input_select.dryer_status
     type: count
     state: 'finished'
@@ -164,7 +164,7 @@ sensor:
   - platform: history_stats
     name: Dryer uses this week
     unique_id: dryer_uses_this_week
-    state_class: total_increasing
+    state_class: total
     entity_id: input_select.dryer_status
     type: count
     state: 'finished'
@@ -174,7 +174,7 @@ sensor:
   - platform: history_stats
     name: Washing machine uses today
     unique_id: washing_machine_uses_today
-    state_class: total_increasing
+    state_class: total
     entity_id: input_select.washing_machine_status
     type: count
     state: 'finished'
@@ -183,7 +183,7 @@ sensor:
   - platform: history_stats
     name: Washing machine uses this week
     unique_id: washing_machine_uses_this_week
-    state_class: total_increasing
+    state_class: total
     entity_id: input_select.washing_machine_status
     type: count
     state: 'finished'
