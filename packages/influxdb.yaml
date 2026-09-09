@@ -3,13 +3,22 @@ influxdb:
     entities:
       # Ironing Room
       - sensor.ironing_room_ironing_table_current_consumption
+      - sensor.ironing_room_ironing_table_this_month_s_consumption
       - sensor.ironing_room_ironing_table_today_s_consumption
+      - sensor.ironing_room_ironing_table_total_consumption
       - sensor.ironing_room_left_current_consumption
+      - sensor.ironing_room_left_this_month_s_consumption
       - sensor.ironing_room_left_today_s_consumption
+      - sensor.ironing_room_left_total_consumption
       - sensor.ironing_room_right_current_consumption
+      - sensor.ironing_room_right_this_month_s_consumption
       - sensor.ironing_room_right_today_s_consumption
+      - sensor.ironing_room_right_total_consumption
       - sensor.ironing_room_magpie_current_consumption
+      - sensor.ironing_room_magpie_this_month_s_consumption
       - sensor.ironing_room_magpie_today_s_consumption
+      - sensor.ironing_room_magpie_total_consumption
+      - sensor.ironing_room_total_power_now
       - sensor.ironing_room_total_power_today
       - sensor.ironing_room_power_cost_today
       # Kitchen
@@ -20,13 +29,73 @@ influxdb:
       - sensor.washing_machine_this_month_s_consumption
       - sensor.washing_machine_today_s_consumption
       - sensor.dishwasher_current_consumption
+      - sensor.dishwasher_this_month_s_consumption
       - sensor.dishwasher_total_consumption
       - sensor.dishwasher_today_s_consumption
+      - sensor.dishwasher_total_power_cost_today
+      - sensor.tumble_dryer_total_power_cost_today
+      - sensor.washing_machine_total_power_cost_today
       - sensor.dishwasher_uses_today
       - sensor.dryer_uses_today
       - sensor.washing_machine_uses_today
       - sensor.kitchen_total_power_now
       - sensor.kitchen_total_power_today
+      - sensor.kitchen_total_power_cost_today
+      # Other power-monitoring smartplugs
+      - sensor.3d_printer_current_consumption
+      - sensor.3d_printer_this_month_s_consumption
+      - sensor.3d_printer_today_s_consumption
+      - sensor.3d_printer_light_current_consumption
+      - sensor.3d_printer_light_this_month_s_consumption
+      - sensor.3d_printer_light_today_s_consumption
+      - sensor.3d_printer_light_total_consumption
+      - sensor.c_desk_right_current_consumption
+      - sensor.c_desk_right_this_month_s_consumption
+      - sensor.c_desk_right_today_s_consumption
+      - sensor.c_desk_right_total_consumption
+      - sensor.conservatory_left_current_consumption
+      - sensor.conservatory_left_this_month_s_consumption
+      - sensor.conservatory_left_today_s_consumption
+      - sensor.conservatory_left_total_consumption
+      - sensor.conservatory_window_lamp_current_consumption
+      - sensor.conservatory_window_lamp_this_month_s_consumption
+      - sensor.conservatory_window_lamp_today_s_consumption
+      - sensor.conservatory_window_lamp_total_consumption
+      - sensor.robovac_current_consumption
+      - sensor.robovac_this_month_s_consumption
+      - sensor.robovac_today_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_1_current_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_1_this_month_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_1_today_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_2_current_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_2_this_month_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_2_today_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_3_current_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_3_this_month_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_3_today_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_4_current_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_4_this_month_s_consumption
+      - sensor.frasers_room_vivarium_p304m_plug_4_today_s_consumption
+      - sensor.loft_ups_current_consumption
+      - sensor.loft_ups_this_month_s_consumption
+      - sensor.loft_ups_today_s_consumption
+      - sensor.loft2_current_consumption
+      - sensor.loft2_today_s_consumption
+      - sensor.loft2_total_consumption
+      - sensor.loft_8way_this_month_s_consumption
+      - sensor.tesla_charger_current_consumption
+      - sensor.tesla_charger_this_month_s_consumption
+      - sensor.tesla_charger_today_s_consumption
+      - sensor.tesla_charging_cost_today
+      - sensor.tesla_charging_cost_this_month
+      - sensor.loft_total_power_now
+      - sensor.loft_total_power_today
+      - sensor.loft_ups_total_power_cost_today
+      - sensor.loft2_total_power_cost_today
+      - sensor.loft_total_power_cost_today
+      - sensor.conservatory_total_power_now
+      - sensor.conservatory_total_power_today
+      - sensor.conservatory_total_power_cost_today
       # House
       - sensor.owl_energy_now
       - sensor.owl_energy_today

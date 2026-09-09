@@ -20,7 +20,6 @@ sensor:
   - platform: history_stats
     name: Ensuite Shower Uses Today
     unique_id: ensuite_shower_uses_today
-    state_class: total
     entity_id: binary_sensor.ensuite_shower_active
     type: count
     state: "on"
@@ -29,7 +28,6 @@ sensor:
   - platform: history_stats
     name: Family Bathroom Shower Uses Today
     unique_id: family_bathroom_shower_uses_today
-    state_class: total
     entity_id: binary_sensor.family_bathroom_shower_active
     type: count
     state: "on"
@@ -38,7 +36,6 @@ sensor:
   - platform: history_stats
     name: Ensuite Shower Time Today
     unique_id: ensuite_shower_time_today
-    state_class: total
     entity_id: binary_sensor.ensuite_shower_active
     type: time
     state: "on"
@@ -47,7 +44,6 @@ sensor:
   - platform: history_stats
     name: Family Bathroom Shower Time Today
     unique_id: family_bathroom_shower_time_today
-    state_class: total
     entity_id: binary_sensor.family_bathroom_shower_active
     type: time
     state: "on"
